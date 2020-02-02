@@ -2,6 +2,8 @@
 
 React, React Router를 이용해 Single Page Application 스타일의 Google Calendar를 만들어 보는 과제입니다. 그리고 Firebase를 이용해 사용자 데이터를 저장하도록 합니다.
 
+![Calendar](/readme-assets/calendar.png)
+
 ## Before you begin
 
 이번 과제를 시작하기 전에 다음에 대해 반드시 조사해보세요.
