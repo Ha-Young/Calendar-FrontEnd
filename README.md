@@ -1,68 +1,98 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Calendar
 
-## Available Scripts
+React, React Router를 이용해 Single Page Application 스타일의 Google Calendar를 만들어 보는 과제입니다. 그리고 Firebase를 이용해 사용자 데이터를 저장하도록 합니다.
 
-In the project directory, you can run:
+## Before you begin
 
-### `yarn start`
+이번 과제를 시작하기 전에 다음에 대해 반드시 조사해보세요.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [ ] npm이란 무엇이며 우리는 왜 npm을 사용하는 것일까요? (npm과 yarn은 어떤 차이가 있을까요?)
+- [ ] `node_modules` 디렉토리는 어떤 역할을 하는 것일까요?
+- [ ] `package.json` 파일은 어떤 용도일까요?
+- [ ] `package.json` 파일에 보면 여러 가지 종류의 Meta Data가 있습니다. 그 중 다음 Meta Data들에 대해서 조사해보세요.
+  - `"dependencies"`
+  - `"devDependencies"`
+  - `"scripts"`
+- [ ] `package-lock.json` 혹은 `yarn.lock` 파일의 용도는 무엇일까요?
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## How to start
 
-### `yarn test`
+### Package installation & Running local server
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+npm install or yarn install
+npm start or yarn start
+```
 
-### `yarn build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+이번 과제에서는 Firebase를 사용하셔야 합니다. 아래 단계를 순차적으로 따라하시거나, [Firebase Database 공식 가이드](https://firebase.google.com/docs/database/web/start)를 참고하여 `utils/firebase` 파일을 적절히 수정한 후 시작하세요.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- [ ] 우선 [Firebase 웹사이트](https://firebase.google.com/)를 방문하여 로그인 및 회원가입을 완료하세요.
+- [ ] [Firebase Console](https://console.firebase.google.com)로 이동하세요.
+- [ ] 새 프로젝트를 생성하세요.
+- [ ] Database 서비스 중, Realtime Database를 생성하세요. 주의) Cloud Firestore가 아닙니다.
+- [ ] 프로젝트 설정에서 본인만의 config 정보를 복사해오셔서 `utils/firebase`로 붙여넣으세요.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+작업을 진행하시면서 Firebase 관련 정보는 아래 링크에서 찾아보세요.
 
-### `yarn eject`
+- [Firebase Database 가이드](https://firebase.google.com/docs/database/web/start)
+- [Firebase Database API Doc](https://firebase.google.com/docs/reference/js/firebase.database)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Firebase Database에 저장하는 데이터의 구조에 대해 신중하게 결정하고 시작하시기 바랍니다. 참고: [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## TODO
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [ ] 우선 다음과 같이 두 개의 페이지를 구성하세요. 원한다면 React Router의 `HashRouter`를 사용하셔도 괜찮습니다.
+  - `/calendar`: 메인 달력 페이지
+  - `/event`: 이벤트 생성 페이지
+  - `/`: `/calendar`로 이동
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `/calendar` 메인 달력 페이지
 
-## Learn More
+- [ ] 현재 날짜에 해당하는 월의 달력이 보여져야 합니다. (월별로 보기)
+- [ ] 사용자는 일별로 보기, 주간으로 보기, 월별로 보기 중 하나를 선택할 수 있어야 합니다.
+- [ ] 사용자가 일별로 보기를 선택했을 경우, 현재 날짜에 해당하는 이벤트 정보가 보여져야 합니다.
+- [ ] 사용자가 주간으로 보기를 선택했을 경우, 현재 날짜가 속한 주에 해당하는 이벤트 정보가 보여져야 합니다.
+- [ ] 사용자가 월별로 보기를 선택했을 경우, 현재 날짜가 속한 월에 해당하는 이벤트 정보가 보여져야 합니다.
+- [ ] 일별로 보기와 주간으로 보기의 경우, 구글 캘린더와 같이 시간대 별로 보여져야 합니다.
+- [ ] 달력에서 이벤트를 클릭했을 경우, 해당 이벤트 상세 페이지(`/event/<EVENT_ID>`)로 이동해야 합니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `/event` 이벤트 생성 페이지
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [ ] 이벤트를 생성할 수 있는 Form이 보여져야 하고 사용자는 아래 정보를 입력할 수 있어야 합니다.
+  - 이벤트 제목
+  - 이벤트 시작 날짜
+  - 이벤트 시작 시간
+  - 이벤트 종료 날짜
+  - 이벤트 종료 시간
+  - 이벤트 위치
+  - 이벤트 설명
+- [ ] 위 정보는 모두 필수 정보입니다. 최대한 상식 선에서 스스로 유효성 검사를 실행해 주시기 바랍니다.
+- [ ] 사용자가 Form을 성공적으로 제출 혹은 저장했을 경우, 메인 달력 페이지로 이동해야 합니다.
 
-### Code Splitting
+#### `/event/<EVENT_ID>` 이벤트 상세 페이지
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- [ ] `<EVENT_ID>`에 해당하는 이벤트의 상세 정보를 보여주어야 합니다.
+  - 이벤트 제목
+  - 이벤트 시작 날짜
+  - 이벤트 시작 시간
+  - 이벤트 종료 날짜
+  - 이벤트 종료 시간
+  - 이벤트 위치
+  - 이벤트 설명
+- [ ] 사용자는 모든 입력 사항에 대해 수정할 수 있습니다.
+- [ ] 사용자는 이벤트를 삭제할 수 있어야 합니다.
+- [ ] 만약 유효하지 않은 `<EVENT_ID>`로 접근한다면 유효하지 않은 이벤트라는 정보를 표시해주어야 합니다.
 
-### Analyzing the Bundle Size
+### Component Unit Test
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+가장 간단한 컴포넌트부터 시작하여 최소한 1-2개라도 단위 테스트를 작성해보세요. 현재 과제에는 `@testing-library/react`가 설치되어 있습니다. [문서](https://testing-library.com/docs/react-testing-library/example-intro)를 읽고 작성해보시기 바랍니다.
 
-### Making a Progressive Web App
+### Firebase Authentication
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Firebase를 이용하여 로그인 기능을 쉽게 구현할 수 있습니다. [Firebase Authentication 문서](https://firebase.google.com/docs/auth/web/start)를 읽고 소셜 로그인 기능을 추가해보세요. *단, 로그인 기능을 추가한다면 이벤트 정보 또한 사용자 별로 관리가 되어야 합니다.*
 
-### Advanced Configuration
+### Firebase Hosting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Firebase를 이용하여 호스팅 또한 쉽게 할 수 있습니다. [Firebase Hosting 문서](https://firebase.google.com/docs/hosting)를 읽고 본인의 작업 결과물을 웹에 배포해보세요.
