@@ -41,7 +41,8 @@ npm start or yarn start
 - [Firebase Database 가이드](https://firebase.google.com/docs/database/web/start)
 - [Firebase Database API Doc](https://firebase.google.com/docs/reference/js/firebase.database)
 
-**Firebase Database에 저장하는 데이터의 구조에 대해 신중하게 결정하고 시작하시기 바랍니다. 참고: [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)**
+- **Firebase Database에 저장하는 데이터의 구조에 대해 신중하게 결정하고 시작하시기 바랍니다. 참고: [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)**
+- **Firebase Database에 저장하는 날짜 및 시간 정보는 ISO 형식으로 저장하시기 바랍니다.** ISO 형식에 대해서도 조사해보세요.
 
 ## TODO
 
