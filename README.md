@@ -4,19 +4,6 @@
 
 **React + React Router + Redux**를 복합적으로 이용해 Single Page Application 스타일의 Google Calendar를 만들어 보는 과제입니다. 그리고 Firebase를 이용해 사용자 데이터를 저장하도록 합니다.
 
-## Before you begin
-
-이번 과제를 시작하기 전에 다음에 대해 반드시 조사해보세요.
-
-- [ ] npm이란 무엇이며 우리는 왜 npm을 사용하는 것일까요? (npm과 yarn은 어떤 차이가 있을까요?)
-- [ ] `node_modules` 디렉토리는 어떤 역할을 하는 것일까요?
-- [ ] `package.json` 파일은 어떤 용도일까요?
-- [ ] `package.json` 파일에 보면 여러 가지 종류의 Meta Data가 있습니다. 그 중 다음 Meta Data들에 대해서 조사해보세요.
-  - `"dependencies"`
-  - `"devDependencies"`
-  - `"scripts"`
-- [ ] `package-lock.json` 혹은 `yarn.lock` 파일의 용도는 무엇일까요?
-
 ## How to start
 
 ### Package installation & Running local server
