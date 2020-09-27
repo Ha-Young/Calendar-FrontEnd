@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 // TODO: Create your own header.
 export default function Header () {
@@ -6,10 +7,10 @@ export default function Header () {
     <header>
       <nav>
         <ul>
-          <li>Menu 1</li>
-          <li>Menu 2</li>
+          <li><Link to='/'>Menu 1</Link></li>
+          <li><Link to='/event'>Menu 2</Link></li>
         </ul>
       </nav>
     </header>
-  )
+  );
 }

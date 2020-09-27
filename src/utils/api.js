@@ -1,5 +1,4 @@
 // TODO: You can modify, add, remove as you need.
-
 import firebase from './firebase';
 
 export async function saveSampleData () {
