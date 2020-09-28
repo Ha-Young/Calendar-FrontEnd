@@ -5,5 +5,11 @@ import {
   // HashRouter as Router
 } from 'react-router-dom';
 import App from './components/App/App';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById('root')
+);
