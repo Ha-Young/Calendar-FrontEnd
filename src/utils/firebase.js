@@ -1,7 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+require('dotenv').config();
 
+console.log(process.env.);
 // TODO: Enter your own config object
 const firebaseConfig = {
   apiKey: 'YOUR_API_KEY',
