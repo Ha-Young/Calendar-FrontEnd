@@ -1,0 +1,10 @@
+
+
+.login_btn {
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}

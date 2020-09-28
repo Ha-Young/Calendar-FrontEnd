@@ -1,0 +1,12 @@
+.Calendar {
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 50px;
+}
+
+.title {
+  margin: 20px;
+}
+
