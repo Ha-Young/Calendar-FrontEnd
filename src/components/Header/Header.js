@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // TODO: Create your own header.
-export default function Header () {
+export default function Header() {
   return (
     <header>
       <nav>
         <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
+          <li><Link to='/' exact>calendar-home</Link></li>
+          <li><Link to='/event'>event</Link></li>
+          <li><Link to='/calendar'>calendar</Link></li>
         </ul>
       </nav>
     </header>

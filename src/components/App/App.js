@@ -17,12 +17,8 @@ function App() {
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route path='/' exact>
-          <div>Main</div>
-        </Route>
-        <Route path='/event'>
-          <div>Event</div>
-        </Route>
+        <Route path='/' exact><div>Main</div></Route>
+        <Route path='/event'><div>Event</div></Route>
       </Switch>
     </div>
   );
