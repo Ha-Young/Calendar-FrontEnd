@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import styles from './App.module.css';
 import Header from '../Header/Header';
 import { saveSampleData } from '../../utils/api';
+require('dotenv').config();
 
 // Feel free to modify as you need.
 function App() {
