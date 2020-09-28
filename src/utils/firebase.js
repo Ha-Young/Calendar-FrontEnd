@@ -4,13 +4,14 @@ import 'firebase/database';
 
 // TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  databaseURL: 'YOUR_DATABASE_URL',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_ID',
-  appId: 'YOUR_APP_ID'
+  apiKey: "AIzaSyDVvDBoQV7mvO4oxsTZ7N9ZC_ohL-elAeY",
+  authDomain: "calendar-5fd53.firebaseapp.com",
+  databaseURL: "https://calendar-5fd53.firebaseio.com",
+  projectId: "calendar-5fd53",
+  storageBucket: "calendar-5fd53.appspot.com",
+  messagingSenderId: "193401623164",
+  appId: "1:193401623164:web:47d904ea96b7b27867aff9",
+  measurementId: "G-FFQTW6YY7N"
 };
 
 // Initialize Firebase
