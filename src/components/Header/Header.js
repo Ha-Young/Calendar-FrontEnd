@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // TODO: Create your own header.
 export default function Header() {
   return (
-    <header>
+    <header style={{border: "2px solid blue"}}>
       <nav>
         <ul>
           <li><Link to='/' exact>calendar-home</Link></li>
