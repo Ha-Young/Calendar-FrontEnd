@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   padding-right: 10px;
   display: grid;
-  grid-template-columns: 6% 1fr;
+  grid-template-columns: 5.5% 1fr 6%;
   border: 3px solid blue;
 `;
 
@@ -24,6 +24,13 @@ const Schedules = styled.div`
 const Hour = styled.div`
   text-align: center;
   margin-bottom: 120px;
+`;
+
+const Days = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  justify-content: center;
 `;
 
 export default function CalendarTimeline () {
@@ -60,7 +67,15 @@ export default function CalendarTimeline () {
       </Time>
       <Schedules>
         <div>24</div>
-        <div style={{border:"1px solid black"}}>1</div>
+        <Days>
+          <div style={{border:"1px solid black"}}>월</div>
+          <div>화</div>
+          <div>수</div>
+          <div>목</div>
+          <div>금</div>
+          <div>토</div>
+          <div>일</div>
+        </Days>
         <div style={{border:"1px solid black"}}>2</div>
         <div>3</div>
         <div>4</div>
@@ -86,6 +101,7 @@ export default function CalendarTimeline () {
         <div style={{border:"1px solid black"}}>24</div>
         <div>1</div>
       </Schedules>
+      <div>100</div>
     </Wrapper>
   );
 }
