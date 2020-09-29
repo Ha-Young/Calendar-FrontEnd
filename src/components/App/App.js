@@ -6,19 +6,15 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import styles from './App.module.css';
 import Header from '../Header/Header';
 import { saveSampleData } from '../../utils/api';
-import styled from "styled-components";
+import styled from 'styled-components';
 import SideBar from '../SideBar/SideBar';
-import CalendarLayout from '../CalendarContainer/CalendarContainer';
-import ImgBlock from '../ImgBlock/ImgBlock';
-require('dotenv').config();
+import CalendarContainer from '../Calendar/CalendarContainer/CalendarContainer';
 
 const Main = styled.div`
   height: 100vh;
   display: grid;
   grid-template-columns: 20% 1fr;
 `;
-
-
 
 // Feel free to modify as you need.
 function App() {
@@ -30,11 +26,10 @@ function App() {
     <Router>
       <Header />
       <Main>
-        <SideBar />  
-        <CalendarLayout />
+        <SideBar />
+        <CalendarContainer />
       </Main>
     </Router>
-    
   );
 }
 
