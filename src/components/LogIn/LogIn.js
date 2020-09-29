@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import styles from './LogIn.module.css';
 import { FcGoogle } from 'react-icons/fc';
+import Calendar from '../Calendar/Calendar';
+import { SiGooglecalendar } from 'react-icons/si';
 
-export default function LogIn ({ setIsLogIn }) {
+export default function LogIn () {
+  const userState = {
+    isLogIn: false,
+    name: '',
+    email: '',
+    photo: '',
+  }
 
-  const onLogIn = () => {
+  const [logInResult, setLogInResult] = useState(userState);
+
+  // api 가져오는거면.. useEffect?? async await로..
+
+  const signIn = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth().signInWithPopup(provider)
-      .then(result => {
-        const token = result.credential.accessToken;
+      .then((result) => {
+        // const token = result.credential.accessToken;
         const user = result.user;
-        console.log("Login Success");
         console.log(user);
-        console.log(token);
-      }).catch(error => {
+        console.log("Login Success");
+      })
+      .catch((error) => {
         console.log(error);
       });
 
@@ -23,24 +35,68 @@ export default function LogIn ({ setIsLogIn }) {
       if (user) {
         console.log("User signed in");
         console.log(user.displayName, user.email);
-        setIsLogIn({
+        setLogInResult({
           isLogIn: true,
           name: user.displayName,
           email: user.email,
           photo: user.photoURL,
-        })
+        });
       } else {
         console.log("User signed in");
       }
     });
   };
 
+  console.log(logInResult.isLogIn, "로그인했어?")
+
   return (
-    <div>
-      <button className={styles.LogIn} onClick={onLogIn}>
-        <FcGoogle className={styles.logo}/>
-        Sign in with Coogle
-      </button>
+    <div className={styles.container}>
+      {logInResult.isLogIn
+      ? <Calendar />
+      : <div className={styles.contents}>
+          <div className={styles.title}>
+            Coogle Calendar
+            <SiGooglecalendar className={styles.calendar_logo} />
+          </div>
+          <button className={styles.login_btn} onClick={signIn}>
+            <FcGoogle className={styles.google_logo} />
+            Sign in with Coogle
+          </button>
+        </div>
+      }
     </div>
   );
 }
+
+// export const searchYoutube = async (options) => {
+//   const YOUTUBE_URL = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&part=snippet${mapObjectToQueryStrings(
+//     options
+//   )}`;
+
+//   try {
+//     const res = await fetch(YOUTUBE_URL);
+//     const data = await res.json();
+
+//     return data;
+
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+// useEffect(() => {
+//   if (inputValue.length) {
+//     setPopularCount(COUNT);
+//     return;
+//   }
+
+//   (async () => {
+//     try {
+//       const popularResult = await fetchPopularYoutube(apiParams.popular);
+//       setVideoInfos([...popularResult.items]);
+
+//     } catch (err) {
+//       alert(err);
+//     }
+//   })();
+// }, [inputValue, popularCount]);

@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Header.module.css'
+import styles from './Header.module.css';
+import ToggleButton from './ToggleButton';
+import GetDate from './GetDate';
+import { FcNext, FcPrevious } from 'react-icons/fc';
 
 export default function Header () {
   return (
-    <header>
-      <nav>
-        <div>
-          <div><Link to='/'>Calendar</Link></div>
-          <div><Link to='/event'>Add Event</Link></div>
-        </div>
-        {/* <button className={styles.login_btn}><Link to='/login'>LogIn</Link></button> */}
-      </nav>
+    <header style={{width: '100%'}}>
+      <ToggleButton />
+      <GetDate />
+      <div className={styles.nav_btn_wrap}>
+
+      <button className={styles.prev_btn}><FcPrevious /></button>
+      <button className={styles.next_btn}><FcNext /></button>
+      </div>
     </header>
   );
 }

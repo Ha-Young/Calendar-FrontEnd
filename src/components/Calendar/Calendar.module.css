@@ -1,12 +1,32 @@
 .Calendar {
-  width: 600px;
-  height: 600px;
+  padding: 50px;
   background-color: white;
   border-radius: 20px;
-  padding: 50px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .title {
   margin: 20px;
 }
 
+.calendar_wrap {
+  height: 100%;
+  width: 100%;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table {
+  width: 800px;
+  height: 800px;
+  text-align: left;
+}
+
+.item {
+  border-top: 1px solid #9c9c9c;
+  height: 30px;
+}

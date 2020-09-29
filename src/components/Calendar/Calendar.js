@@ -1,19 +1,20 @@
 import React from 'react';
 import styles from './Calendar.module.css';
+import Header from '../Header/Header'
+import { Route, Switch } from 'react-router-dom';
+import Daily from './Daily';
+import Weekly from './Weekly'
 
 export default function Calendar () {
-
   return (
+    <div className={styles.calendar_wrap}>
     <div className={styles.Calendar}>
-      <div className="header">
-        <button>prev</button>
-        <span className={styles.title}>2020 October</span>
-        <button>next</button>
-      </div>
-      <div className="body">
-        <div> Day </div>
-      </div>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Daily} />
+        <Route path="/weekly" component={Weekly} />
+      </Switch>
     </div>
-  )
-
+    </div>
+  );
 }

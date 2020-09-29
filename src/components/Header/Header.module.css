@@ -1,10 +1,68 @@
-
-
-.login_btn {
-  height: 50px;
-  width: 50px;
+.toggle_btn {
+  width: 60px;
+  margin: 5px;
+  cursor: pointer;
+  color: #D3959B;
   background-color: white;
   border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px #D3959B;
+  border: 1px solid #D3959B;
+  outline: none;
+}
+
+.toggle_btn:hover {
+  background-color: #BFE4B9;
+}
+
+.toggle_btn:active {
+  background-color: #BFE4B9;
+  box-shadow: 0 5px #D3959B;
+  transform: translateY(4px);
+}
+
+.date {
+  font-size: 18px;
+  margin: 30px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.year {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.month {
+font-size: 20px;
+}
+
+.day {
+  padding: 10px;
+  background-color: #D3969B;
   border-radius: 50px;
-  cursor: pointer;
+  margin-top: 20px;
+  color: white;
+  font-weight: 600;;
+}
+
+.nav_btn_wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.prev_btn {
+  padding: 30px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.prev_btn {
+  padding: 30px;
+  background-color: white;
+  border-radius: 50px;
 }

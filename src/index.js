@@ -5,6 +5,18 @@ import {
   // HashRouter as Router
 } from 'react-router-dom';
 import App from './components/App/App';
-import "./styles.css"
+import "./styles.css";
+import store from "./store";
+import { Provider } from "react-redux";
 
-ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
+
+const rootElement = document.getElementById('root');
+
+ReactDOM.render(
+  // <Provider >
+    <Router>
+      <App />
+    </Router>
+  // </Provider>
+, rootElement);
+
