@@ -10,3 +10,30 @@ export async function saveSampleData () {
     test: 'text'
   });
 }
+
+const DUMMY = {
+  event1: {
+    id: 'event1',
+    title: 'Watch movie',
+    description: 'At home',
+    startTime: '2020-09-29-14:00',
+    endTime: '2020-09-29-16:00',
+  },
+  event2: {
+    id: 'event2',
+    title: 'Watch movie',
+    description: 'At home',
+    startTime: '2020-09-29-14:00',
+    endTime: '2020-09-29-16:00',
+  }
+}
+
+export function getSample() {
+  const result = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(DUMMY)
+    }, 500);
+  });
+
+  return result;
+}
