@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 `;
 
 const Time = styled.div`
-  padding-top: 60px;
+  
   display: grid;
   grid-auto-rows: minmax(100px, auto);
   align-items: center;
@@ -18,10 +18,12 @@ const Schedules = styled.div`
   padding-top: 10px;
   display: grid;
   grid-auto-rows: minmax(100px, auto);
+  align-items: space-between;
 `;
 
 const Hour = styled.div`
   text-align: center;
+  margin-bottom: 120px;
 `;
 
 export default function CalendarTimeline () {
@@ -29,6 +31,7 @@ export default function CalendarTimeline () {
   return (
     <Wrapper>
       <Time>
+        <Hour>12am</Hour>
         <Hour>1am</Hour>
         <Hour>2am</Hour>
         <Hour>3am</Hour>
@@ -53,7 +56,7 @@ export default function CalendarTimeline () {
         <Hour>10am</Hour>
         <Hour>11am</Hour>
         <Hour>12am</Hour>
-
+        <Hour>1am</Hour>
       </Time>
       <Schedules>
         <div>24</div>
@@ -78,9 +81,10 @@ export default function CalendarTimeline () {
         <div>19</div>
         <div>20</div>
         <div>21</div>
-        <div>22</div>
-        <div>23</div>
-        <div>24</div>
+        <div style={{border:"1px solid black"}}>22</div>
+        <div style={{border:"1px solid black"}}>23</div>
+        <div style={{border:"1px solid black"}}>24</div>
+        <div>1</div>
       </Schedules>
     </Wrapper>
   );
