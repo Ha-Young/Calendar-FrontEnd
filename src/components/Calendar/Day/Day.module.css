@@ -1,12 +1,13 @@
 .Day {
   width: 100%;
+  min-width: 120px;
 }
 
 .calendarHeader {
   position: fixed;
   margin-block-start: 0;
-  margin-inline-start: 3px;
   background-color: white;
+  min-width: 120px;
 }
 
 .calendarBody {

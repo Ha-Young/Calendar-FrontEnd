@@ -7,12 +7,15 @@ import styles from './App.module.css';
 import Header from '../AppHeader/AppHeader';
 import { saveSampleData } from '../../utils/api';
 import Calendar from '../Calendar/Calendar';
+import * as dayjs from 'dayjs';
 
 // Feel free to modify as you need.
 function App() {
   useEffect(() => {
     saveSampleData();
   }, []);
+
+  console.log(dayjs().format());
 
   return (
     <div className={styles.App}>

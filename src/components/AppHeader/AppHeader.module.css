@@ -10,24 +10,24 @@
 .title {
   position: fixed;
   top: -5px;
-  left: 50px;
+  left: 20px;
 }
 
 .previous {
   position: fixed;
   top: 22px;
-  left: 140px;
+  left: 95px;
 }
 
 .next {
   position: fixed;
   top: 22px;
-  left: 190px;
+  left: 145px;
 }
 
 .month {
   position: fixed;
-  left: 51.3%;
+  left: 50%;
   margin-block-start: 0.7em;
   margin-block-end: 0.7em;
 }
@@ -35,7 +35,7 @@
 select {
   position: fixed;
   top: 25px;
-  right: 90px;
+  right: 80px;
 }
 
 .create {
