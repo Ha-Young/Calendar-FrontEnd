@@ -14,7 +14,9 @@ export default function CalendarSchedule () {
     <Wrapper style={{border: "3px solid tomato"}}>
       <h2>x</h2>
       <h1>CalendarSchedule</h1>
-      <Button></Button>
+      <button>create</button>
+      <button>correction</button>
+      <button>delete</button>
 
    
     </Wrapper>
