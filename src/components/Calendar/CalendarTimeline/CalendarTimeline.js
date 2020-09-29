@@ -2,14 +2,39 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  
-  background: yellow;  
+  border: 3px solid blue;
 `;
 
 export default function CalendarTimeline () {
 
   return (
-    <Wrapper style={{border: "3px solid blue"}}>
+    <Wrapper>
+      <h1>CalendarTimeline</h1>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+      <div>10</div>
+      <div>11</div>
+      <div>12</div>
+      <div>13</div>
+      <div>14</div>
+      <div>15</div>
+      <div>16</div>
+      <div>17</div>
+      <div>18</div>
+      <div>19</div>
+      <div>20</div>
+      <div>21</div>
+      <div>22</div>
+      <div>23</div>
+      <div>24</div>
+      <h1>CalendarTimeline</h1>
       <h1>CalendarTimeline</h1>
     </Wrapper>
   );

@@ -1,0 +1,12 @@
+.withoutModal {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: scroll;
+  border: 3px solid turquoise;
+}
+
+
+/* const withModal = styled.div`
+  display: grid;
+  grid-template-columns: 2.5fr 7.5fr;
+`; */
