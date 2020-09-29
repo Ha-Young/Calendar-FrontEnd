@@ -1,5 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
+
+const HeadLeft = styled.div`
+
+`;
+
+
 
 // TODO: Create your own header.
 export default function Header() {

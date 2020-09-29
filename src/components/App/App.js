@@ -10,6 +10,13 @@ import styled from 'styled-components';
 import SideBar from '../SideBar/SideBar';
 import CalendarContainer from '../Calendar/CalendarContainer/CalendarContainer';
 
+const Trya = styled.div`
+  height: 100vh;
+  display:grid;
+  grid-template-rows: 15% 1fr;
+  padding-bottom: 50px;
+`;
+
 const Main = styled.div`
   height: 100vh;
   display: grid;
@@ -23,13 +30,15 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <>
+    <Trya>
       <Header />
       <Main>
         <SideBar />
         <CalendarContainer />
       </Main>
-    </Router>
+      </Trya>
+    </>
   );
 }
 
