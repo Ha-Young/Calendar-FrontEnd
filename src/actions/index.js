@@ -1,0 +1,26 @@
+import * as types from '../constants';
+
+export function setUser(userData) {
+  return {
+    type: types.SET_USER,
+    userData,
+  };
+}
+
+export function toggleWeeklyAndDaily() {
+  return {
+    type: types.TOGGLE_WEEKLY_AND_DAILY,
+  };
+}
+
+export function moveNextDay() {
+  return {
+    type: types.MOVE_NEXT_DAY,
+  };
+}
+
+export function movePrevDay() {
+  return {
+    type: types.MOVE_PREV_DAY,
+  };
+}
