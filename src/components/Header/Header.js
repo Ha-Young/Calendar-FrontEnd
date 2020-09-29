@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './Header.module.css';
+import Auth from '../Auth/Auth';
+
 // TODO: Create your own header.
 export default function Header() {
   const history = useHistory();
@@ -19,6 +21,7 @@ export default function Header() {
 
   return (
     <header>
+      <Auth />
       <nav>
         <button>PREV</button>
         <button>NEXT</button>
