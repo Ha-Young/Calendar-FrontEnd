@@ -18,8 +18,8 @@ function App() {
     <div className={styles.App}>
       <Header />
       <Switch>
-        {/* <Route exact path='/' exact component={ Calendar }/> */}
-        <Route exact path='/calendar' exact component={ Calendar }/>
+        <Route exact path='/' exact component={ Calendar }/>
+        {/* <Route exact path='/calendar' component={ Calendar }/> */}
         {/* <Route path='/events' component={ Events }/> */}
         {/* <Route path='/events/:eventId' component={}/> */}
       </Switch>
