@@ -10,6 +10,17 @@ import { combineReducers } from "redux";
 //   }
 // };
 
-export default combineReducers({
+const viewMode = (state = "DAILY", action) => {
+  switch (action.type) {
+    case "VIEW_DAILY":
+      return state = "DAILY";
+    case "VIEW_WEEKLY":
+      return state = "WEEKLY";
+    default:
+      return state;
+  }
+};
 
+export default combineReducers({
+  viewMode,
 });
