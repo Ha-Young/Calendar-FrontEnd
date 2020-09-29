@@ -15,7 +15,11 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-
+const MainDay = styled.div`
+  display:grid;
+  grid-template-columns: 40% 1fr;
+  overflow: hidden;
+`;
 
 export default function CalendarContainer () {
 
@@ -33,12 +37,30 @@ return (
   <Wrapper>
     <Route path="/" exact>
       <CalendarDateBar />
+      <MainDay>
+        <div 
+          className={styles.withoutModal}
+          onScroll={()=>{console.log(1)}}
+          ref={scrollRef}
+        >
+          <CalendarTimeline />
+        </div>
+        <CalendarSchedule />
+      </MainDay>
+    </Route>
+    
+    
+    
+    
+    
+    
+    <Route path="/weekly" exact>
+      <CalendarDateBar />
       <div 
         className={styles.withoutModal}
         onScroll={()=>{console.log(1)}}
         ref={scrollRef}
       >
-        
         <CalendarTimeline />
       </div>
     </Route>

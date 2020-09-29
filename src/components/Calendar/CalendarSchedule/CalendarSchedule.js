@@ -12,6 +12,7 @@ export default function CalendarSchedule () {
   // 기존일정의 디테일 확인은 기존 일정 클릭
   return (
     <Wrapper style={{border: "3px solid tomato"}}>
+      <h2>x</h2>
       <h1>CalendarSchedule</h1>
       <Button></Button>
 
