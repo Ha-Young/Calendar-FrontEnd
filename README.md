@@ -30,6 +30,14 @@ npm start
 - **Firebase Database에 저장하는 데이터의 구조에 대해 신중하게 결정하고 시작하시기 바랍니다. 참고: [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)**
 - **Firebase Database에 저장하는 날짜 및 시간 정보는 ISO 형식으로 저장하시기 바랍니다.** (ISO 형식에 대해서도 조사해보세요.)
 
+## Tips
+
+1. 리덕스는 처음부터 설정하고 시작하기를 권장합니다. (actions, reducers, components, containers 등의 디렉토리 구조)
+2. 컨테이너는 우선 최상위에 하나를 두고 시작하시되, 작업하면서 필요하면 추가적으로 만드세요.
+3. 처음부터 컨테이너나 컴포넌트 트리를 다 계획하고 시작하는 방향은 비효율적이고 시간이 오래 걸릴 확률이 많습니다. 현재 수준에서는 절대 초반 계획대로 되지 않을테니, 작업하면서 결정하세요.
+4. Firebase 데이터 구조, Redux State 구조만 생각하고 바로 뛰어드시길 권장합니다.
+5. Redux Middleware는 Redux-logger 하나만 우선 쓰시길 권장합니다.
+
 ## TODO
 
 - [ ] 우선 다음과 같이 페이지를 구성하세요. 필요하다면 React Router의 `HashRouter`를 사용하셔도 괜찮습니다.
