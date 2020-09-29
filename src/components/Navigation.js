@@ -1,10 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Button from './Button';
 
 export default function Navigation() {
+  const history = useHistory();
   function handleAddEvent() {
-    console.log("이벤트 만들어!");
+    history.push('/events/new');
   }
 
   return (

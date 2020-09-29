@@ -24,3 +24,10 @@ export function movePrevDay() {
     type: types.MOVE_PREV_DAY,
   };
 }
+
+export function createEvent(valueType , info) {
+  return {
+    type: types[valueType],
+    value: info,
+  };
+}
