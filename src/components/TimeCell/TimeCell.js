@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './TimeCell.module.css';
 
-export default function TimeCell() {
+export default function TimeCell({ event }) {
   return (
     <div className={styles.TimeCell}>
-      Time Cell
+      {event ? event.title : 'TimeCell'}
     </div>
   );
 }

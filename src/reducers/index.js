@@ -1,7 +1,6 @@
-import { act } from 'react-dom/test-utils';
 import { combineReducers } from 'redux';
 
-const today = new Date().getDate();
+const today = new Date().toISOString().substring(0, 10);
 
 const dateIninitialState = {
   today: today,
@@ -9,10 +8,10 @@ const dateIninitialState = {
   weeklyMode: false,
 };
 
-const eventsInitialState = {
-  // byId: {},
-  // allEvents: [],
-}
+// const eventsInitialState = {
+//   // byId: {},
+//   // allEvents: [],
+// }
 
 const date = function (state = dateIninitialState, action) {
   switch (action.type) {
@@ -21,13 +20,18 @@ const date = function (state = dateIninitialState, action) {
   }
 };
 
-const events = function (state = eventsInitialState, action) {
+const events = function (state = [], action) {
   switch (action.type) {
     case 'RECEIVE_EVENTS':
-      return {
+      return [...new Set(
+        [...state,
+        ...action.events])
+      ];
+    case 'ADD_EVENT':
+      return [
         ...state,
-        ...action.events
-      }
+        action.events
+      ];
     default:
       return state;
   }
@@ -38,4 +42,7 @@ export default combineReducers({
   events: events,
 });
 
-export const getEvents = (state) => state.events;
+export const getEventList = (state, day) => {
+  // 29
+  // state.events;
+}

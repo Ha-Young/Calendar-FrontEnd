@@ -27,7 +27,7 @@ function App() {
         <Route path='/event/new'>
           <NewEventContainer />
         </Route>
-        {/* <Redirect to='/calendar' /> */}
+        <Redirect to='/calendar' />
       </Switch>
     </div>
   );
