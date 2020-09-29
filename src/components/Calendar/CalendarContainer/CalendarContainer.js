@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import styles from './CalendarContainer.module.css';
 import { Route, Switch } from 'react-router-dom'
@@ -6,6 +6,7 @@ import CalendarDateBar from '../CalendarDateBar/CalendarDateBar';
 import CalendarTimeline from '../CalendarTimeline/CalendarTimeline';
 import CalendarSchedule from '../CalendarSchedule/CalendarSchedule';
 import CalendarEvent from '../CalendarEvent/CalendarEvent';
+import Button from '../../Shared/Button/Button';
 
 const Wrapper = styled.div`
   display:grid;
@@ -18,6 +19,15 @@ const Wrapper = styled.div`
 
 export default function CalendarContainer () {
 
+const [scrollRef, setScrollRef] = useState(useRef());
+
+useEffect (()=>{
+  scrollRef.current.addEventListener('scroll', () => {
+    console.log(1)
+  })
+}, [scrollRef]);
+
+
 
 return (
   <Wrapper>
@@ -25,8 +35,10 @@ return (
       <CalendarDateBar />
       <div 
         className={styles.withoutModal}
-        onScroll={()=>{console.log(1)}}  
+        onScroll={()=>{console.log(1)}}
+        ref={scrollRef}
       >
+        
         <CalendarTimeline />
       </div>
     </Route>
