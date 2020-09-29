@@ -1,0 +1,7 @@
+.Pager {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(130, 238, 144);
+}

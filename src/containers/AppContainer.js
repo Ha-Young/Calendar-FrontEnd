@@ -3,18 +3,24 @@ import { Route, Switch } from 'react-router-dom';
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
-import styles from "./App.module.css";
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Auth from "../Auth/Auth";
-import Header from "../Header/Header";
-import Contents from "../Contents/Contents";
-import Navigator from "../Navigator/Navigator";
+import Header from '../components/Header/Header';
+import Calendar from '../components/Calendar/Calendar';
+import Navigator from '../components/Navigator/Navigator';
 
-import { saveSampleData, authService } from "../../utils/api";
+import { saveSampleData, authService } from "../utils/api";
 
-function App() {
-  console.log('who', authService.currentUser);
+const BodyWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background: coral;
+`;
+
+function AppContainer() {
+
   // useEffect(() => {
   //   // (async function () {
   //   //   try {
@@ -29,12 +35,16 @@ function App() {
   // }, []);
 
   return (
-    <div className={styles.App}>
+    <div>
+      {/* <Auth /> */}
       <Header />
-      <Auth />
+      <BodyWrapper>
+        <Navigator />
+        <Calendar />
+      </BodyWrapper>
       <Switch>
-        <Route path='/' exact>
-          <div>Main</div>
+        <Route path='/:mode' exact>
+          <div></div>
         </Route>
         <Route path='/event'>
           <div>Event</div>
@@ -44,4 +54,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppContainer;

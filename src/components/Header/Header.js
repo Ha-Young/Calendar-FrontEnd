@@ -1,16 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import styles from './Header.module.css';
+
+import TodayButton from '../TodayButton/TodayButton';
+import Pager from '../Pager/Pager';
+import ModeButton from '../ModeButton/ModeButton';
+import ModeButtonContainer from '../../containers/ModeButtonContainer';
+import DateInfoContainer from '../../containers/DateInfoContainer';
 
 // TODO: Create your own header.
-export default function Header () {
+export default function Header() {
   return (
-    <header>
-      <nav>
-        <ul>
-          <li><Link to='/'>월</Link></li>
-          <li><Link to='/event'></Link></li>
-        </ul>
-      </nav>
+    <header className={styles.Header}>
+      <TodayButton />
+      <Pager />
+      <DateInfoContainer />
+      <ModeButtonContainer />
     </header>
   );
 }

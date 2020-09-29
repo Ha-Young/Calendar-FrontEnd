@@ -1,7 +1,13 @@
-import { combineReducers } from "redux";
-import { firebaseReducer, firestoreReducer } from "react-redux-firebase";
+import { combineReducers } from 'redux';
 
-export const rootReducer = combineReducers({
-  firebase: firebaseReducer,
-  firestore: firestoreReducer,
+import modes from './modes';
+import pager from './pager';
+import date from './date';
+
+const rootReducer = combineReducers({
+  modes,
+  date,
+  pager,
 });
+
+export default rootReducer;

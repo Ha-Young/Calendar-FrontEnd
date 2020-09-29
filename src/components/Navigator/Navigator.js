@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from './Navigator.module.css';
 
 const Navigator = () => {
   return (
-    <div></div>
+    <div className={styles.Navigator}></div>
   );
 };
 
-export default Navigator();
+export default Navigator;

@@ -1,4 +1,4 @@
-import * as firebase from "firebase/app";
+import * as firebase from 'firebase/app';
 
 // TODO: Enter your own config object
 const firebaseConfig = {
@@ -15,3 +15,5 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export default firebase;
+
+//9.29

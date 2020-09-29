@@ -1,0 +1,7 @@
+.ModeButton {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(45, 83, 189);
+}
