@@ -1,6 +1,6 @@
 # Calendar
 
-![Calendar](/readme-assets/calendar.png)
+![Calendar](/readme-assets/weekly_view.png)
 
 **React + React Router + Redux**를 복합적으로 이용해 Single Page Application 스타일의 Google Calendar를 만들어 보는 과제입니다. 그리고 Firebase를 이용해 사용자 데이터를 저장하도록 합니다.
 
@@ -57,6 +57,14 @@ npm start
 - [ ] 주간 스케줄 보기의 경우, X축 방향으로는 현재 주에 해당하는 날짜가 보여져야 합니다.
 - [ ] 이전 날짜/주 혹은 다음 날짜/주로 이동할 수 있는 버튼이 있어야 합니다.
 - [ ] 달력에서 이벤트를 클릭했을 경우, 해당 이벤트 상세 페이지(`/event/<EVENT_ID>`)로 이동해야 합니다.
+
+#### 일간 스케줄 보기의 예시 UI
+
+![Calendar](/readme-assets/daily_view.png)
+
+#### 주간 스케줄 보기의 예시 UI
+
+![Calendar](/readme-assets/weekly_view.png)
 
 ### `/events/new` 이벤트 생성 페이지
 
