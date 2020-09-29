@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  // HashRouter as Router
-} from 'react-router-dom';
-import App from './components/App/App';
+import React from 'react'
+import { render } from 'react-dom';
+import Root from './components/Root/Root'
+import store from 'reducers/store';
 
-ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
+render(
+  <Root store={store} />, document.getElementById('root')
+);

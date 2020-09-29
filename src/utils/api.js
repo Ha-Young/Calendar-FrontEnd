@@ -1,7 +1,7 @@
 // TODO: You can modify, add, remove as you need.
 import firebase from './firebase';
 
-export async function saveSampleData () {
+export async function saveData () {
   const database = firebase.database();
 
   // Note: `set` method returns a promise.

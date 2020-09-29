@@ -4,7 +4,7 @@ import styles from './Header.module.css';
 import Auth from '../Auth/Auth';
 
 // TODO: Create your own header.
-export default function Header() {
+export default function Header({ login, setLogin }) {
   const history = useHistory();
   const pathName = history.location.pathname;
 
@@ -21,7 +21,7 @@ export default function Header() {
 
   return (
     <header>
-      <Auth />
+      <Auth login={login} setLogin={setLogin} />
       <nav>
         <button>PREV</button>
         <button>NEXT</button>

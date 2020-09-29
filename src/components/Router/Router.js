@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Week from '../Week/Week';
 import Day from '../Day/Day';
 import EventPage from '../EventPage/EventPage';
 import NewEvent from '../NewEvent/NewEvent';
-import Event from '../Event/Event';
+import Event from '../../containers/Event';
 import Header from '../Header/Header';
 
-const AppRouter = () => {
+const AppRouter = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <>
-      <Header />
+      <Header login={isLoggedIn } setLogin={setIsLoggedIn} />
       <Switch>
         <Route exact path='/' component={Week} />
         <Route exact path='/day' component={Day} />

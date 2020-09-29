@@ -2,26 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { authService } from '../../utils/firebase';
 import styles from './Auth.module.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loggin } from '../../action/action';
 
-const Auth = () => {
+const Auth = ({ login, setLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isNewAccount, setIsNewAccount] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setIsLoggedIn(true);
+        setLogin(true);
       } else {
-        setIsLoggedIn(false);
+        setLogin(false);
       }
     });
   }, []);
 
   const Logout = () => {
-    authService.signOut().then(console.log);
+    authService.signOut();
+    setLogin(false);
     setIsNewAccount(false);
     setEmail('');
     setPassword('');
@@ -29,7 +31,6 @@ const Auth = () => {
 
   const onChange = (event) => {
     const { target: { name, value } } = event;
-
     switch (name) {
       case 'email':
         setEmail(value);
@@ -42,7 +43,7 @@ const Auth = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    let data;
+    let data; //data 전달 사용 안함
     try {
       if (isNewAccount) {
         data = await authService.createUserWithEmailAndPassword(email, password);
@@ -63,7 +64,7 @@ const Auth = () => {
   return (
     <>
       {
-        !isLoggedIn ?
+        !login ?
           <>
             <form onSubmit={onSubmit}>
               <input
