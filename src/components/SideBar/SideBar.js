@@ -13,7 +13,8 @@ const Monthly = styled.div`
 `;
 
 const Month = styled.div`
-  display: grid
+  display: grid;
+  grid-template-columns: 1fr 10% 10%;
 `;
 
 const Dates = styled.div`
@@ -35,7 +36,11 @@ export default function SideBar () {
     <Wrapper style={{border: "3px solid yellow"}}>
       
       <Monthly style={{border: "3px solid yellowgreen"}}>
-        <Month style={{border: "3px solid green"}}>1</Month>
+        <Month style={{border: "3px solid green"}}>
+          <div>september</div>
+          <button>1</button>
+          <button>2</button>
+        </Month>
         <Dates>
           <Weeks style={{border: "3px solid tomato"}}>
             <EveryDay>월</EveryDay>
