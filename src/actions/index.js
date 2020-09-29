@@ -13,15 +13,17 @@ export function toggleWeeklyAndDaily() {
   };
 }
 
-export function moveNextDay() {
+export function moveNextDay(count) {
   return {
     type: types.MOVE_NEXT_DAY,
+    count,
   };
 }
 
-export function movePrevDay() {
+export function movePrevDay(count) {
   return {
     type: types.MOVE_PREV_DAY,
+    count,
   };
 }
 

@@ -17,11 +17,19 @@ export default function ControlBar({
   moveNext,
   date: { year, month, date }
 }) {
+  function handleMoveNext() {
+    moveNext(isWeekly ? 7 : 1);
+  }
+
+  function handleMovePrev() {
+    movePrev(isWeekly ? 7 : 1);
+  }
+
   return (
     <Container className='status-bar'>
-      <Button value='<' onClick={movePrev} />
+      <Button value='<' onClick={handleMovePrev} />
       <span>{year}.{month}.{date}</span>
-      <Button value='>' onClick={moveNext} />
+      <Button value='>' onClick={handleMoveNext} />
       <Button value={isWeekly ? "일별 보기" : "주간 보기"} onClick={onToggle} />
     </Container>
   );

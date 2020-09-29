@@ -100,11 +100,11 @@ function mapDispatchToProps(dispatch) {
     toggleWeeklyAndDaily() {
       dispatch(toggleWeeklyAndDaily());
     },
-    moveNextDay() {
-      dispatch(moveNextDay());
+    moveNextDay(count) {
+      dispatch(moveNextDay(count));
     },
-    movePrevDay() {
-      dispatch(movePrevDay());
+    movePrevDay(count) {
+      dispatch(movePrevDay(count));
     },
   };
 }

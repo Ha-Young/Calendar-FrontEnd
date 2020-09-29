@@ -20,13 +20,13 @@ function isWeekly(state = false, action) {
 function currentDate(state = destructDate(), action) {
   if (action.type === MOVE_NEXT_DAY) {
     const currentDate = getDateSIOType(state);
-    const nextDate = getNextDay(currentDate, 1);
+    const nextDate = getNextDay(currentDate, action.count);
     return nextDate;
   }
 
   if (action.type === MOVE_PREV_DAY) {
     const currentDate = getDateSIOType(state);
-    const nextDate = getNextDay(currentDate, -1);
+    const nextDate = getNextDay(currentDate, -(action.count));
 
     return nextDate;
   }
