@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows:40% 1fr;
+  grid-template-rows: 5% 40% 1fr;
   padding-top: 20px;
 `;
 
@@ -34,7 +34,10 @@ export default function SideBar () {
 
   return (
     <Wrapper style={{border: "3px solid yellow"}}>
-      
+      <div>
+        <button>daily</button>
+        <button>weekly</button>
+      </div>
       <Monthly style={{border: "3px solid yellowgreen"}}>
         <Month style={{border: "3px solid green"}}>
           <div>september</div>
