@@ -2,6 +2,13 @@
   width: 100%;
 }
 
-h3 {
-  margin: 0 auto 10px auto;
+.calendarHeader {
+  position: fixed;
+  margin-block-start: 0;
+  margin-inline-start: 3px;
+  background-color: white;
+}
+
+.calendarBody {
+  margin-top: 30px;
 }

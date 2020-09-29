@@ -7,16 +7,19 @@ export default function Day() {
 
   return (
     <div className={styles.Day}>
-      <h3>
-        {"29일 화"}
+      <h3 className={styles.calendarHeader}>
+        {"29일 화요일"}
       </h3>
-      {
-        TIME.map(time => {
-          return (
-            <Hour key={time} />
-          );
-        })
-      }
+      <div className={styles.calendarBody}>
+        {
+          TIME.map(time => {
+            return (
+              <Hour key={time} />
+            );
+          })
+        }
+      </div>
+
     </div>
   );
 }

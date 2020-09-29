@@ -4,6 +4,7 @@
   height: 60px;
   top: 0;
   display: flex;
+  background-color: white;
 }
 
 .title {
@@ -14,32 +15,37 @@
 
 .previous {
   position: fixed;
-  top: 27px;
+  top: 22px;
   left: 140px;
 }
 
 .next {
   position: fixed;
-  top: 27px;
+  top: 22px;
   left: 190px;
 }
 
 .month {
   position: fixed;
-  top: 5px;
-  left: 50%;
+  left: 51.3%;
+  margin-block-start: 0.7em;
+  margin-block-end: 0.7em;
 }
 
 select {
   position: fixed;
-  top: 30px;
+  top: 25px;
   right: 90px;
 }
 
 .create {
   position: fixed;
-  top: 27px;
+  top: 22px;
   right: 10px;
+}
+
+h1 {
+  margin-block-start: 0.5em;
 }
 
 h1,
