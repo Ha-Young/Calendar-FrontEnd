@@ -1,0 +1,12 @@
+ul {
+  min-width: 80px;
+  text-align: right;
+  margin-top: 75px;
+  margin-right: 5px;
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+li {
+  height: 52px;
+}

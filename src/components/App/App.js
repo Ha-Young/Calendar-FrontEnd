@@ -21,9 +21,6 @@ function App() {
         <Route path='/calendar' exact>
           <div>Main</div>
         </Route>
-        <Route path='/event'>
-          <div>Event</div>
-        </Route>
       </Switch>
       <Calendar />
     </div>

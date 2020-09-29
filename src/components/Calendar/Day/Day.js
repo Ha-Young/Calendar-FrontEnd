@@ -7,9 +7,9 @@ export default function Day() {
 
   return (
     <div className={styles.Day}>
-      <div>
-        {"29일 화요일"}
-      </div>
+      <h3>
+        {"29일 화"}
+      </h3>
       {
         TIME.map(time => {
           return (

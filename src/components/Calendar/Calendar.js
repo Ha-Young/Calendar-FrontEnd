@@ -10,7 +10,9 @@ export default function Calendar() {
   return (
     <div className={styles.container}>
       <TimeBar />
-      { isDaily ? <Day /> : <Week />}
+      {
+        isDaily ? <Day /> : <Week />
+      }
     </div>
   );
 }

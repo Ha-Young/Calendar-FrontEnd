@@ -1,5 +1,48 @@
 .Header {
   position: fixed;
   width: 100%;
+  height: 60px;
   top: 0;
+  display: flex;
+}
+
+.title {
+  position: fixed;
+  top: -5px;
+  left: 50px;
+}
+
+.previous {
+  position: fixed;
+  top: 27px;
+  left: 140px;
+}
+
+.next {
+  position: fixed;
+  top: 27px;
+  left: 190px;
+}
+
+.month {
+  position: fixed;
+  top: 5px;
+  left: 50%;
+}
+
+select {
+  position: fixed;
+  top: 30px;
+  right: 90px;
+}
+
+.create {
+  position: fixed;
+  top: 27px;
+  right: 10px;
+}
+
+h1,
+h3 {
+  margin-bottom: 0;
 }

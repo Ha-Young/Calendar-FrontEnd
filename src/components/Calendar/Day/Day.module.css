@@ -1,3 +1,7 @@
 .Day {
   width: 100%;
 }
+
+h3 {
+  margin: 0 auto 10px auto;
+}
