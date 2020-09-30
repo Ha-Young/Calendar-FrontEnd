@@ -1,0 +1,14 @@
+.Weekly {
+  display: flex;
+  padding: 100px;
+}
+
+.timeList * {
+  width: 80px;
+  height: 30px;
+  color: #95A5A6;
+  text-align: right;
+  padding-right: 10px;
+  line-height: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}

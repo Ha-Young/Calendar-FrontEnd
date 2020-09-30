@@ -1,0 +1,44 @@
+.NewEvent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  padding: 100px 100px;
+  height: 100vh;
+}
+
+.NewEvent h2 {
+  color: #95A5A6;
+}
+
+.NewEvent form {
+  display: flex;
+  flex-direction: column;
+}
+
+.NewEvent form * {
+  width: 300px;
+}
+
+.NewEvent form input {
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid #95A5A6;
+}
+
+.NewEvent form label {
+  margin-top: 30px;
+  color: #95A5A6;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.NewEvent button {
+  margin-top: 30px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #95A5A6;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+}

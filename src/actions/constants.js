@@ -1,0 +1,6 @@
+export const ADD_EVENT = "ADD_EVENT";
+export const USER_LOGIN = "USER_LOGIN";
+export const USER_LOGOUT = "USER_LOGOUT";
+export const CLICK_PREV_BUTTON = "CLICK_PREV_BUTTON";
+export const CLICK_NEXT_BUTTON = "CLICK_NEXT_BUTTON";
+export const CHANGE_WEEKLY_VIEW = "CHANGE_WEEKLY_VIEW";

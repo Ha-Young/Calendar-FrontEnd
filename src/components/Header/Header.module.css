@@ -1,0 +1,10 @@
+.Header {
+  background-color: #95A5A6;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 100px;
+  align-items: center;
+}

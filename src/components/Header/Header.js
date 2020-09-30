@@ -1,15 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import SelectView from "../SelectView/SelectView";
+import EventButton from "./EventButton";
+import styles from "./Header.module.css";
 
-// TODO: Create your own header.
-export default function Header () {
+export default function Header ({ changeWeeklyView }) {
   return (
-    <header>
+    <header className={styles.Header}>
       <nav>
-        <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
-        </ul>
+        <h1>CALENDAR</h1>
+        <SelectView
+          changeWeeklyView={changeWeeklyView}
+        />
+        <Link to="/events">
+          <EventButton />
+        </Link>
       </nav>
     </header>
   );

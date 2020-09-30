@@ -1,31 +1,62 @@
-import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
-// TODO: We are using CSS Modules here.
-// Do your own research about CSS Modules.
-// For example, what is it? what are benefits?
-import styles from './App.module.css';
-import Header from '../Header/Header';
-import { saveSampleData } from '../../utils/api';
+import React, { useEffect, useState } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import styles from "./App.module.css";
+import { authService } from "../../utils/firebase";
+import { saveSampleData } from "../../utils/api";
+import moment from "moment";
 
-// Feel free to modify as you need.
-function App() {
+import Header from "../Header/Header";
+import Daily from "../Daily/Daily";
+import Weekly from "../Weekly/Weekly";
+import EventContainer from "../../containers/EventContainer";
+import Auth from "../Auth/Auth";
+import DatePicker from "../DatePicker/DatePicker";
+
+export default function App ({ userLogIn, userLogOut, isLoggedIn, date, clickPrevButton, clickNextButton, changeWeeklyView, isDailyView }) {
   useEffect(() => {
     saveSampleData();
   }, []);
 
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      if (user) {
+        userLogIn();
+      } else {
+        userLogOut();
+      }
+    });
+  }, [userLogIn, userLogOut]);
+
   return (
     <div className={styles.App}>
-      <Header />
-      <Switch>
-        <Route path='/' exact>
-          <div>Main</div>
-        </Route>
-        <Route path='/event'>
-          <div>Event</div>
-        </Route>
-      </Switch>
+      {
+        !isLoggedIn
+        ? <Auth />
+        :
+        <>
+          <Header
+            changeWeeklyView={changeWeeklyView}
+          />
+          <Switch>
+            <Route path="/calendar">
+              <DatePicker
+                date={date}
+                clickPrevButton={clickPrevButton}
+                clickNextButton={clickNextButton}
+              />
+              {
+                isDailyView
+                ? <Daily date={date} />
+                : <Weekly date={date} />
+              }
+            </Route>
+            <Route path="/events">
+              <EventContainer />
+            </Route>
+            <Redirect to="/calendar" />
+          </Switch>
+        </>
+      }
     </div>
   );
 }
-
-export default App;

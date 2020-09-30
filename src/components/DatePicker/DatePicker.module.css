@@ -1,0 +1,14 @@
+.DatePicker {
+  position: absolute;
+  top: 50px;
+  left: 500px;
+}
+.DatePicker button {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  margin-right: 50px;
+}
