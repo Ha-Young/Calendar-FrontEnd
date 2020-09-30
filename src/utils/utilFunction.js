@@ -8,9 +8,21 @@ export function destructDate(option) {
   }
 
   return {
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    date: date.getDate(),
+    year: String(date.getFullYear()),
+    month: (
+      String(date.getMonth() + 1).length === 1
+      ?
+        '0' + String(date.getMonth() + 1)
+      :
+        String(date.getMonth() + 1)
+    ),
+    date: (
+      String(date.getDate()).length === 1
+      ?
+        '0' + String(date.getDate())
+      :
+        String(date.getDate())
+    ),
   }
 }
 
@@ -44,4 +56,37 @@ export function getWeekData(date) {
     after2Days,
     after3Days,
   ];
+}
+
+
+
+export function reduceSnapshot(data, userId) {
+  const result = {
+    events: [],
+    eventsId: {},
+    date: {},
+  };
+
+  if (
+    !data ||
+    !data?.userId ||
+    !data.userId[userId]?.events
+  ) return result;
+
+  const eventIds = data.userId[userId].events;
+
+  for (let id in eventIds) {
+    result.events.push(eventIds[id]);
+
+    const eventId = eventIds[id];
+    result.eventsId[eventId] = data.events[eventId];
+
+    const createdAt = data.events[eventId].createdAt.slice(0, 10);
+    if (!result.date[createdAt]) {
+      result.date[createdAt] = [];
+    }
+    result.date[createdAt].push(eventId);
+  }
+
+  return result;
 }

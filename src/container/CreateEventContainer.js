@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { createEvent } from '../actions';
-import {
-  SET_TITLE,
-  SET_DESCRIPTION,
-  SET_DATE,
-  SET_START_TIME,
-  SET_END_TIME,
-} from '../constants';
 
 const Container = styled.section`
   display: flex;
@@ -61,29 +56,28 @@ const Container = styled.section`
 `;
 
 function CreateEventContainer({
-  eventState,
-  setEventInfo
+  createEvent,
+  uid,
 }) {
   const history = useHistory();
+  const [eventData, setEventData] = useState({
+    createdAt: "",
+    creator: "",
+    date: "",
+    description: "",
+    endTime: "",
+    id: "",
+    startTime: "",
+    title: "",
+  });
 
-  function handleTitleChange(e) {
-    setEventInfo(SET_TITLE, e.target.value);
-  }
-
-  function handleDescriptionChange(e) {
-    setEventInfo(SET_DESCRIPTION, e.target.value);
-  }
-
-  function handleDateChange(e) {
-    setEventInfo(SET_DATE, e.target.value);
-  }
-
-  function handleStartTimeChange(e) {
-    setEventInfo(SET_START_TIME, e.target.value);
-  }
-
-  function handleEndTimeChange(e) {
-    setEventInfo(SET_END_TIME, e.target.value);
+  function onChange({ target }) {
+    setEventData((prev) => {
+      return {
+        ...prev,
+        [target.name]: target.value,
+      }
+    })
   }
 
   function handleGoBack() {
@@ -92,7 +86,9 @@ function CreateEventContainer({
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(eventState);
+    //validation
+    createEvent(eventData, uid, nanoid(12));
+    history.push('/calendar');
   }
 
   return (
@@ -103,29 +99,34 @@ function CreateEventContainer({
           Title:
           <Input
             type='text'
-            onChange={handleTitleChange}
+            onChange={onChange}
             placeholder='Title 을 입력해주세요'
+            name='title'
           />
           Description:
           <Input
             type='text-area'
-            onChange={handleDescriptionChange}
+            onChange={onChange}
             placeholder='Description 을 입력해주세요'
+            name='description'
           />
           Date:
           <Input
             type='date'
-            onChange={handleDateChange}
+            onChange={onChange}
+            name='date'
           />
           StartTime:
           <Input
             type='time'
-            onChange={handleStartTimeChange}
+            onChange={onChange}
+            name='startTime'
           />
           EndTime:
           <Input
             type='time'
-            onChange={handleEndTimeChange}
+            onChange={onChange}
+            name='endTime'
           />
           <div>
             <Button
@@ -146,16 +147,21 @@ function CreateEventContainer({
 
 function mapDispatchToProps(dispatch) {
   return {
-    setEventInfo(valueType, info) {
-      dispatch(createEvent(valueType, info));
+    createEvent(data, uid, dataId) {
+      dispatch(createEvent(data, uid, dataId))
     },
   };
 }
 
 function mapstateToProps(state) {
   return {
-    eventState: state.eventState,
+    uid: state.user.uid,
   };
 }
+
+CreateEventContainer.propTypes = {
+  uid: PropTypes.string.isRequired,
+  createEvent: PropTypes.func.isRequired,
+};
 
 export default connect(mapstateToProps, mapDispatchToProps)(CreateEventContainer);

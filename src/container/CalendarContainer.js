@@ -59,13 +59,14 @@ const Container = styled.div`
 function CalendarContainer({
   isWeekly,
   currentDate,
+  eventData,
+  toggleWeeklyAndDaily,
   moveNextDay,
   movePrevDay,
-  toggleWeeklyAndDaily
 }) {
   return (
     <Container>
-      <Navigation />
+      <Navigation events={eventData}/>
       <section>
         <ControlBar
           onToggle={toggleWeeklyAndDaily}
@@ -79,9 +80,10 @@ function CalendarContainer({
           ?
             <WeeklyCalendar
               currentDate={currentDate}
+              eventData={eventData}
             />
           :
-            <DateBox date={currentDate} />
+            <DateBox date={currentDate} eventData={eventData} />
         }
       </section>
     </Container>
@@ -92,6 +94,7 @@ function mapStateToProps(state) {
   return {
     isWeekly: state.isWeekly,
     currentDate: state.currentDate,
+    eventData: state.eventData,
   };
 }
 
@@ -111,7 +114,11 @@ function mapDispatchToProps(dispatch) {
 
 CalendarContainer.propTypes = {
   isWeekly: PropTypes.bool.isRequired,
+  currentDate: PropTypes.object.isRequired,
+  eventData: PropTypes.object,
   toggleWeeklyAndDaily: PropTypes.func.isRequired,
+  moveNextDay: PropTypes.func.isRequired,
+  movePrevDay: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarContainer);

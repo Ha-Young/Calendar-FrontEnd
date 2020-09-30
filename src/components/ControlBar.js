@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Button from './Button';
 
@@ -34,3 +35,15 @@ export default function ControlBar({
     </Container>
   );
 }
+
+ControlBar.propTypes = {
+  isWeekly: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
+  movePrev: PropTypes.func.isRequired,
+  moveNext: PropTypes.func.isRequired,
+  date: PropTypes.shape({
+    year: PropTypes.string.isRequired,
+    month: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+  }).isRequired,
+};

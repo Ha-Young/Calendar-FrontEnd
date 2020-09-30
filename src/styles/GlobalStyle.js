@@ -12,4 +12,22 @@ export default createGlobalStyle`
   * {
     box-sizing: content-box;
   }
+
+  h5 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a:link {
+    color: black;
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
 `;
