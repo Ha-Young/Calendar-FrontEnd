@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, useHistory } from 'react-router-dom';
 import { getEventById } from '../../reducers';
 
-function UpdateEventContainer({ getEvent, onSubmit }) {
+function UpdateEventContainer({ getEvent, onSubmit, onDelete }) {
   const [input, setInput] = useState({
     id: '',
     date: '',
@@ -13,6 +13,7 @@ function UpdateEventContainer({ getEvent, onSubmit }) {
     description: ''
   });
   const { params } = useRouteMatch();
+  const history = useHistory();
 
   useEffect(() => {
     const targetEvent = getEvent(params.eventId);
@@ -31,6 +32,11 @@ function UpdateEventContainer({ getEvent, onSubmit }) {
     const name = target.name;
 
     setInput({ ...input, [name] : value });
+  }
+
+  function handleClick() {
+    onDelete(params.eventId);
+    history.push("/calendar");
   }
 
   return (
@@ -54,7 +60,7 @@ function UpdateEventContainer({ getEvent, onSubmit }) {
         </label>
         <input type='submit' value='Update' />
       </form>
-      <button onClick={() => {}}>Delete</button>
+      <button onClick={handleClick}>Delete</button>
     </>
   );
 }
@@ -79,7 +85,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(updateEvent(event));
     },
     onDelete(id) {
-
+      dispatch({ type: 'DELETE_EVENT', events: id });
     }
   };
 };

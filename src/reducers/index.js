@@ -35,10 +35,14 @@ const events = (state = {}, action) => {
         ...action.events
       };
     case 'UPDATE_EVENT':
-      console.log('updated!');
-      return Object.assign({}, state, action.events);
+      return {
+        ...state,
+        ...action.events
+      };
     case 'DELETE_EVENT':
-      return state;
+      const copiedState = Object.assign({}, state);
+      delete copiedState[action.events];
+      return copiedState;
     default:
       return state;
   }
