@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
-import { createEvent } from '../actions';
+import { setDataToFirebase } from '../utils/api';
 
 const Container = styled.section`
   display: flex;
@@ -56,17 +55,13 @@ const Container = styled.section`
 `;
 
 function CreateEventContainer({
-  createEvent,
   uid,
 }) {
   const history = useHistory();
   const [eventData, setEventData] = useState({
-    createdAt: "",
-    creator: "",
     date: "",
     description: "",
     endTime: "",
-    id: "",
     startTime: "",
     title: "",
   });
@@ -87,8 +82,8 @@ function CreateEventContainer({
   function handleSubmit(e) {
     e.preventDefault();
     //validation
-    createEvent(eventData, uid, nanoid(12));
-    history.push('/calendar');
+    setDataToFirebase(eventData, uid);
+    handleGoBack();
   }
 
   return (
@@ -117,17 +112,17 @@ function CreateEventContainer({
             name='date'
           />
           StartTime:
-          <Input
-            type='time'
-            onChange={onChange}
-            name='startTime'
-          />
+          <select name="startTime" onChange={onChange}>
+            {Array(24).fill(null).map((_, index) => {
+              return <option value={index}>{index}시</option>;
+            })}
+          </select>
           EndTime:
-          <Input
-            type='time'
-            onChange={onChange}
-            name='endTime'
-          />
+          <select name="endTime" onChange={onChange}>
+            {Array(24).fill(null).map((_, index) => {
+              return <option value={index}>{index}시</option>;
+            })}
+          </select>
           <div>
             <Button
               value='취소'
@@ -145,14 +140,6 @@ function CreateEventContainer({
   );
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    createEvent(data, uid, dataId) {
-      dispatch(createEvent(data, uid, dataId))
-    },
-  };
-}
-
 function mapstateToProps(state) {
   return {
     uid: state.user.uid,
@@ -164,4 +151,4 @@ CreateEventContainer.propTypes = {
   createEvent: PropTypes.func.isRequired,
 };
 
-export default connect(mapstateToProps, mapDispatchToProps)(CreateEventContainer);
+export default connect(mapstateToProps, null)(CreateEventContainer);

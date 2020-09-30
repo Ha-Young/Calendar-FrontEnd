@@ -1,18 +1,18 @@
+import { nanoid } from 'nanoid';
+import moment from 'moment';
+
 import firebase from './firebase';
 
 export const authService = firebase.auth();
 export const dataService = firebase.database();
 
-export function setDataToFirebase(data) {
-  dataService.ref(`/calendar/userId/${data.creator}/events`).push(
-    data.id
-  )
+export function setDataToFirebase(data, uid) {
+  const dataId = nanoid(12);
 
-  dataService.ref(`/calendar/events/${data.id}`).set({
+  dataService.ref(`/calendar/userId/${uid}/events/${dataId}`).set({
     ...data,
+    id: dataId,
+    creator: uid,
+    createdAt: moment().format('YYYY-MM-DD'),
   });
-}
-
-export async function getDataFromFirebase(userId) {
-  return await dataService.ref(`/calendar/userId/${userId}`).once('value');
 }

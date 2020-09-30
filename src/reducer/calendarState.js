@@ -1,39 +1,19 @@
-import { cloneDeep } from 'lodash';
+import moment from 'moment';
 
 import {
   TOGGLE_WEEKLY_AND_DAILY,
   MOVE_NEXT_DAY,
   MOVE_PREV_DAY,
-  CREATE_EVENT,
   SET_INIT_DATA,
 } from '../constants';
 import {
   destructDate,
-  getDateSIOType,
-  getNextDay
+  calculateNewDate,
 } from '../utils/utilFunction';
-import { setDataToFirebase } from '../utils/api';
 
 function eventData(state = {}, action) {
   if (action.type === SET_INIT_DATA) {
     return action.data;
-  }
-
-  if (action.type === CREATE_EVENT) {
-    const deepCopy = cloneDeep(state);
-    const data = action.data;
-
-    if (!deepCopy.date[data.date]) {
-      deepCopy.date[data.date] = [];
-    }
-
-    deepCopy.date[data.date].push(data.id);
-    deepCopy.events.push(data.id);
-    deepCopy.eventsId[data.id] = data;
-
-    setDataToFirebase(data);
-
-    return deepCopy;
   }
 
   return state;
@@ -47,18 +27,17 @@ function isWeekly(state = false, action) {
   return state;
 }
 
-function currentDate(state = destructDate(), action) {
+function currentDate(state = destructDate(moment()), action) {
   if (action.type === MOVE_NEXT_DAY) {
-    const currentDate = getDateSIOType(state);
-    const nextDate = getNextDay(currentDate, action.count);
-    return nextDate;
+    const nextDate = calculateNewDate(state, action.count);
+
+    return destructDate(nextDate);
   }
 
   if (action.type === MOVE_PREV_DAY) {
-    const currentDate = getDateSIOType(state);
-    const nextDate = getNextDay(currentDate, - (action.count));
+    const nextDate = calculateNewDate(state, -action.count);
 
-    return nextDate;
+    return destructDate(nextDate);
   }
 
   return state;

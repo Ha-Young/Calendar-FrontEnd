@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import moment from 'moment';
+
+import HourBox from './HourBox';
+import { combineDate } from '../utils/utilFunction';
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +17,7 @@ const Container = styled.div`
     text-align: center;
   }
 
-  div {
+  .hour-box {
     height: 200px;
     border: 1px solid ${({theme}) => theme.gray};
     text-align: center;
@@ -21,7 +25,7 @@ const Container = styled.div`
 `;
 
 function filterEvent(date, eventData) {
-  if (!eventData.date[date]) return;
+  if (!eventData.date[date]) return [];
 
   const currentDateEventList = eventData.date[date].map((eventId) => {
     return eventData.eventsId[eventId];
@@ -30,20 +34,30 @@ function filterEvent(date, eventData) {
   return currentDateEventList;
 }
 
+function isInEvent(hour, start, end) {
+  return (hour >= start && hour <= end);
+}
+
 export default function DateBox({ date, eventData }) {
-  const currentDate = `${date.year}-${date.month}-${date.date}`;
+  const currentDate = moment(combineDate(date)).format('YYYY-MM-DD');
   const currentDateEventList = filterEvent(currentDate, eventData);
 
-  const hours = Array(24).fill(null).map((none, index) => {
-    return index;
+  const hours = Array(24).fill(null).map((_, hour) => {
+    const events = currentDateEventList.map((event) => {
+      return (isInEvent(hour, event.startTime, event.endTime) ? event.title : null );
+    });
+
+    return {
+      hour,
+      events,
+    };
   });
 
-  console.log(currentDateEventList);
   return (
     <Container>
       <h3>{date.date}일</h3>
-      {hours.map((hour) => {
-        return <div key={hour}>{hour}시</div>;
+      {hours.map((hourData) => {
+        return <HourBox key={hourData.hour} data={hourData} />
       })}
     </Container>
   );

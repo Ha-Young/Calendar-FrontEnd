@@ -29,10 +29,9 @@ function AppContainer({ isLogin, user, setUser, setInitData }) {
   useEffect(() => {
     if (!user) return;
 
-    dataService.ref(`/calendar/`)
-      .once('value')
-      .then(snapshot => {
-        setInitData(reduceSnapshot(snapshot.val(), user.uid));
+    dataService.ref(`/calendar/userId/${user.uid}/events`)
+      .on('value', (snapshot) => {
+        setInitData(reduceSnapshot(snapshot.val()));
         setIsLoading(false);
       })
   }, [user, setInitData]);
