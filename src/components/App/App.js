@@ -43,7 +43,7 @@ export default function App ({ userLogIn, userLogOut, isLoggedIn, date, clickPre
               {
                 isDailyView
                 ? <Daily date={date} eventDetail={eventDetail} />
-                : <Weekly date={date} />
+                : <Weekly date={date} eventDetail={eventDetail} />
               }
             </Route>
             <Route path="/events/new">

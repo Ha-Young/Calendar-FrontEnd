@@ -3,15 +3,20 @@ import styles from "./styles.module.css";
 import TimeTable from "../TimeTable/TimeTable";
 import moment from "moment";
 
-export default function Weekly ({ date }) {
+export default function Weekly ({ date, eventDetail }) {
   const days = [];
   for (let i = 0; i < 7; i++) {
     days.push(moment(date).day(i));
   }
+
+
+
+
   return (
     <div className={styles.Weekly}>
       <div className={styles.timeList}>
         <div><h2>Time</h2></div>
+        <div>오전 0시</div>
         <div>오전 1시</div>
         <div>오전 2시</div>
         <div>오전 3시</div>
@@ -35,11 +40,14 @@ export default function Weekly ({ date }) {
         <div>오후 9시</div>
         <div>오후 10시</div>
         <div>오후 11시</div>
-        <div>오후 12시</div>
       </div>
       {
         days.map((day, index) => {
-          return <TimeTable key={index} date={moment(day).format("YYYY-MM-DD")} />
+          const dayOfEvents = eventDetail.filter((event) => {
+            return event.eventDate === moment(day).format("YYYY-MM-DD");
+          });
+
+          return <TimeTable key={index} date={moment(day).format("YYYY-MM-DD")} dayOfEvents={dayOfEvents} />
         })
       }
     </div>
