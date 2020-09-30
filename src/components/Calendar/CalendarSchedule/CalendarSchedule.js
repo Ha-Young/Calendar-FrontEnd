@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../../Shared/Button/Button';
+
 
 const Wrapper = styled.div`
   
@@ -14,9 +14,9 @@ export default function CalendarSchedule () {
     <Wrapper style={{border: "3px solid tomato"}}>
       <h2>x</h2>
       <h1>CalendarSchedule</h1>
-      <button>create</button>
-      <button>correction</button>
-      <button>delete</button>
+      {/* <ArrowShapedButton>create</ArrowShapedButton>
+      <ArrowShapedButton>correction</ArrowShapedButton>
+      <ArrowShapedButton>delete</ArrowShapedButton> */}
 
    
     </Wrapper>

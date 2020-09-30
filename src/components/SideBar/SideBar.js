@@ -10,7 +10,6 @@ const Wrapper = styled.div`
 
 export default function SideBar () {
 
-  
   return (
     <Wrapper>
       <div className='sidebar_button'>

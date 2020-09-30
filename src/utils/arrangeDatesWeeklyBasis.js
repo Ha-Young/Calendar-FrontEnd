@@ -1,11 +1,13 @@
 
 //나중에 유즈메모 사용가능할듯
-export default function arrangeDatesWeeklyBasis () {
+export default function arrangeDatesWeeklyBasis (move) {
+  //12월 > 1월 갈때, 1월 > 12월 갈때 년도 바뀌는 로직 추가해야함
+  const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];  
   const today = new Date();
-  const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
-  const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-  const prevMonthLastDate = new Date(today.getFullYear(), today.getMonth() + -1, 0).getDate();
-  let nextMonthFirstDate = new Date(today.getFullYear(), today.getMonth() + 1, 1).getDate();
+  const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + move, 1).getDay();
+  const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + move + 1, 0).getDate();
+  const prevMonthLastDate = new Date(today.getFullYear(), today.getMonth() + move + -1, 0).getDate();
+  let nextMonthFirstDate = new Date(today.getFullYear(), today.getMonth() + move + 1, 1).getDate();
   
   const weeklyBasisDates = [];
   let eachWeek = [];
@@ -36,5 +38,5 @@ export default function arrangeDatesWeeklyBasis () {
       eachWeek = [];
     }
   }
-  return weeklyBasisDates;
+  return {thisMonth: monthes[today.getMonth()], weeklyBasisDates};
 }

@@ -6,7 +6,7 @@ import CalendarDateBar from '../CalendarDateBar/CalendarDateBar';
 import CalendarTimeline from '../CalendarTimeline/CalendarTimeline';
 import CalendarSchedule from '../CalendarSchedule/CalendarSchedule';
 import CalendarEvent from '../CalendarEvent/CalendarEvent';
-import Button from '../../Shared/Button/Button';
+
 
 const Wrapper = styled.div`
   display:grid;

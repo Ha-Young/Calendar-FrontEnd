@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import arrangeDatesWeeklyBasis from '../../../utils/arrangeDatesWeeklyBasis'
 import MonthlyCalendarBody from './MonthlyCalendarBody/MonthlyCalendarBody';
 import MonthlyCalendarHead from './MonthlyCalendarHead/MonthlyCalendarHead';
 
@@ -10,10 +11,23 @@ const Wrapper = styled.div`
 `;
 
 export default function MonthlyCalendar () {
+  const [ changeMonth, setChangeMonth ] = useState(0);
+  const { thisMonth, weeklyBasisDates } = arrangeDatesWeeklyBasis(changeMonth); //리덕스 스테이트
+  
+  const nextMonth = function () {
+    setChangeMonth(changeMonth + 1);
+  };
+
+  const prevMonth = function () {
+    setChangeMonth(changeMonth - 1);
+  };
 
   return (
     <Wrapper>
-      <MonthlyCalendarHead></MonthlyCalendarHead>
+      <MonthlyCalendarHead month={thisMonth} 
+        nextMonth={nextMonth}
+        prevMonth={prevMonth}  
+      />
       <MonthlyCalendarBody></MonthlyCalendarBody>
     </Wrapper>
   );
