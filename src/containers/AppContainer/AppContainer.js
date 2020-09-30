@@ -13,12 +13,6 @@ import { changeViewMode } from "../../actions";
 
 // Feel free to modify as you need.
 function AppContainer({ onViewChange, isViewModeDaily }) {
-  console.log(dayjs().format());
-
-  // useEffect(() => {
-  //   onViewChange();
-  // }, [onViewChange]);
-
   return (
     <div className={styles.AppContainer}>
       <AppHeader
@@ -27,7 +21,7 @@ function AppContainer({ onViewChange, isViewModeDaily }) {
       <Switch>
         <Route path="/" exact>
           <Calendar
-            isViewModeDaily={isViewModeDaily}
+            viewMode={isViewModeDaily}
           />
         </Route>
       </Switch>

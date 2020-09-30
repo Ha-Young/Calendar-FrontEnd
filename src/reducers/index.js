@@ -1,16 +1,11 @@
 import { combineReducers } from "redux";
 
-// example
-// const visibleIds = (state = [], action) => {
-//   switch (action.type) {
-//     case RECEIVE_PRODUCTS:
-//       return action.products.map(product => product.id);
-//     default:
-//       return state;
-//   }
-// };
+const initialState = {
+  isViewModeDaily: true,
+  month: "",
+};
 
-const isViewModeDaily = (state = true, action) => {
+const isViewModeDaily = (state = initialState.isViewModeDaily, action) => {
   switch (action.type) {
     case "CHANGE_VIEW_MODE":
       return state = !state;

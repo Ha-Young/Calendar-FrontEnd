@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import * as dayjs from "dayjs";
 import styles from "./AppHeader.module.css";
 
 // TODO: Create your own header.
@@ -19,7 +20,7 @@ export default function AppHeader({ onViewChange }) {
       <button type="text" className={styles.next}>
         다음
       </button>
-      <h2 className={styles.month}>9월</h2>
+      <h2 className={styles.month}>{`${dayjs().format("M")}월`}</h2>
       <select onChange={onViewChange}>
         <option value="하루씩 보기">하루씩 보기</option>
         <option value="일주일씩 보기">일주일씩 보기</option>
