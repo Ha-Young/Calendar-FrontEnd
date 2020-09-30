@@ -25,8 +25,11 @@ export default function AppHeader({ onViewChange }) {
         <option value="하루씩 보기">하루씩 보기</option>
         <option value="일주일씩 보기">일주일씩 보기</option>
       </select>
-      <Link to="/event">
-        <button type="text" className={styles.create}>
+      <Link to="/events/new">
+        <button
+          type="text"
+          className={styles.create}
+        >
           만들기
         </button>
       </Link>

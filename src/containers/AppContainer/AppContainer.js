@@ -10,6 +10,7 @@ import Calendar from "../../components/Calendar/Calendar";
 import * as dayjs from "dayjs";
 import { connect } from "react-redux";
 import { changeViewMode } from "../../actions";
+import Form from "../../components/Form/Form";
 
 // Feel free to modify as you need.
 function AppContainer({ onViewChange, isViewModeDaily }) {
@@ -23,6 +24,15 @@ function AppContainer({ onViewChange, isViewModeDaily }) {
           <Calendar
             viewMode={isViewModeDaily}
           />
+        </Route>
+        <Route path="/events/new">
+          <Form submitHandler="" value="일정 더하기">
+            <input type="text" name="title" />
+            <input type="text" name="description" />
+            <input type="date" name="date" />
+            <input type="time" name="start" />
+            <input type="time" name="finish" />
+          </Form>
         </Route>
       </Switch>
     </div>
