@@ -1,0 +1,16 @@
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+}
+
+.photo {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.detail {
+  text-align: left;
+  margin: 50px;
+}

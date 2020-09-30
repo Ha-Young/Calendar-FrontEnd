@@ -2,28 +2,21 @@ import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import styles from './AppContainer.module.scss';
-import Header from '../../components/Header/Header';
-import SignInAndSignUp from '../../components/SignInAndSignUp/SignInAndSignUp';
+import styles from './App.module.scss';
+import Header from '../Header/Header';
+import UserProfile from '../UserProfile/UserProfile';
+import SignInAndSignUp from '../SignInAndSignUp/SignInAndSignUp';
 
 import { auth } from '../../firebase';
-import saveSampleData from '../../firebase/saveSampleData';
 import registerUserProfile from '../../firebase/registerUserProfile';
 
 import { setCurrentUser } from '../../redux/user/user-actions';
 
-const AppContainer = ({ currentUser, setCurrentUser }) => {
-  useEffect(() => {
-    saveSampleData();
-  }, []);
-
+const App = ({ currentUser, setCurrentUser }) => {
   useEffect(() => {
     const unsubscribeAuth = auth.onAuthStateChanged(async user => {
       if (user) {
         const userSnapShot = await registerUserProfile(user);
-
-        console.log('userSnapShot.val()', userSnapShot.val());
-
         setCurrentUser({ ...userSnapShot.val() });
       } else {
         setCurrentUser(null);
@@ -38,17 +31,14 @@ const AppContainer = ({ currentUser, setCurrentUser }) => {
       <Header />
       <Switch>
         <Route exact path='/'>
-          <div>DashBoard</div>
+          {currentUser ? <UserProfile /> : <div>당근캘린더</div>}
         </Route>
         <Route path='/event'>
           <div>Event</div>
         </Route>
-        <Route
-          path='/signin'
-          render={() =>
-            currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
-          }
-        ></Route>
+        <Route path='/signin'>
+          {currentUser ? <Redirect to='/' /> : <SignInAndSignUp />}
+        </Route>
       </Switch>
     </div>
   );
@@ -62,4 +52,4 @@ const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
