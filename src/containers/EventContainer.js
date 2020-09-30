@@ -16,6 +16,7 @@ export const NewEvent = ({ newEvent, setEvent }) => {
     event.preventDefault();
     setEvent(inputValues);
     setIsCreateEvent(true);
+    setInputValues({});
   };
 
   const onChange = (event) => {
@@ -61,9 +62,7 @@ export const NewEvent = ({ newEvent, setEvent }) => {
       </form>
       {
         isCreateEvent &&
-        <Route path='/events/:eventId'>
-          <Event event={newEvent} />
-        </Route>
+        <Event event={newEvent} />
       }
     </>
   )
