@@ -28,7 +28,7 @@ export default function MonthlyCalendar () {
         nextMonth={nextMonth}
         prevMonth={prevMonth}  
       />
-      <MonthlyCalendarBody></MonthlyCalendarBody>
+      <MonthlyCalendarBody weeks={weeklyBasisDates} />
     </Wrapper>
   );
 }

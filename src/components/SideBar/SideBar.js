@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import MonthlyCalendar from '../Calendar/MonthlyCalendar/MonthlyCalendar.js';
+import MonthlyCalendar from './MonthlyCalendar/MonthlyCalendar.js';
 
 const Wrapper = styled.div`
   display: grid;
