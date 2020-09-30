@@ -1,5 +1,5 @@
-import React from 'react';
-import {LOG_IN, CLICK_PREV_BUTTON, CLICK_NEXT_BUTTON} from "./constants"
+import React from "react";
+import {LOG_IN, CLICK_PREV_BUTTON, CLICK_NEXT_BUTTON} from "./constants";
 
 export const userLogin = () => {
   return {

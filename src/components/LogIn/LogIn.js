@@ -22,7 +22,7 @@ export default function LogIn () {
       .then((result) => {
         // const token = result.credential.accessToken;
         const user = result.user;
-        console.log(user);
+        console.log(user, "누구?");
         console.log("Login Success");
       })
       .catch((error) => {

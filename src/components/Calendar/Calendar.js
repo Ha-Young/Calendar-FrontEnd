@@ -10,7 +10,7 @@ export default function Calendar () {
   return (
     <div className={styles.calendar_wrap}>
     <div className={styles.Calendar}>
-      <Header />
+      <HeaderContainer />
       <Switch>
         <Route path="/" exact component={Daily} />
         <Route path="/weekly" component={Weekly} />
