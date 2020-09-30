@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   padding-top: 20px;
 `;
 
-export default function SideBar () {
+export default function SideBar ({ thisMonth, dates, onClickPrevMonth, onClickNextMonth }) {
 
   return (
     <Wrapper>
@@ -16,7 +16,12 @@ export default function SideBar () {
           <button>daily</button>
           <button>weekly</button>
         </div>
-      <MonthlyCalendar></MonthlyCalendar>
+      <MonthlyCalendar
+        thisMonth={thisMonth}
+        dates={dates}
+        onClickPrevMonth={onClickPrevMonth}
+        onClickNextMonth={onClickNextMonth}
+      />
       <div></div>
     </Wrapper>
   );

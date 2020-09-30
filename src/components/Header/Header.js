@@ -9,21 +9,18 @@ const Head = styled.div`
   
 `; 
 
-const HeadLeft = styled.div`
-
-`;
-
-const HeadRight = styled.div`
-  padding-left: 30px;
+const MainTitle = styled.div`
+  padding-top: 5px;
+  font-size: 60px;
 `;
 
 
 // TODO: Create your own header.
-export default function Header() {
+export default function Header({ thisMonth }) {
   return (
     <Head>
-      <HeadLeft>1</HeadLeft>
-      <HeadRight>September</HeadRight>
+      <div></div>
+      <MainTitle>{thisMonth}</MainTitle>
     </Head>
   );
 }

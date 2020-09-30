@@ -6,11 +6,11 @@ import CalendarDateBar from '../CalendarDateBar/CalendarDateBar';
 import CalendarTimeline from '../CalendarTimeline/CalendarTimeline';
 import CalendarSchedule from '../CalendarSchedule/CalendarSchedule';
 import CalendarEvent from '../CalendarEvent/CalendarEvent';
-
+import { getWeeklyDates } from '../../../utils/dates';
 
 const Wrapper = styled.div`
   display:grid;
-  grid-template-rows: 20% 1fr;
+  grid-template-rows: 10% 1fr;
   border: 3px solid red;
   overflow: hidden;
 `;
@@ -21,53 +21,67 @@ const MainDay = styled.div`
   overflow: hidden;
 `;
 
-export default function CalendarContainer () {
+export default function CalendarContainer ({ onClick }) {
 
-const [scrollRef, setScrollRef] = useState(useRef());
+// const [scrollRef, setScrollRef] = useState(useRef());
 
-useEffect (()=>{
-  scrollRef.current.addEventListener('scroll', () => {
-    console.log(1)
-  })
-}, [scrollRef]);
-
-
-
+// useEffect (()=>{
+//   scrollRef.current.addEventListener('scroll', () => {
+//     console.log(1)
+//   })
+// }, [scrollRef]);
+const [ changeWeek, setChangeWeek ] = useState(0);
+const { today, thisMonth, weeklyDates } = getWeeklyDates(changeWeek);
+// console.log(weeklyDates, 'wd')
 return (
   <Wrapper>
-    <Route path="/" exact>
-      <CalendarDateBar />
-      <MainDay>
-        <div 
-          className={styles.withoutModal}
-          onScroll={()=>{console.log(1)}}
-          ref={scrollRef}
-        >
-          <CalendarTimeline />
-        </div>
-        <CalendarSchedule />
-      </MainDay>
-    </Route>
-    
-    
-    
-    
-    
-    
-    <Route path="/weekly" exact>
-      <CalendarDateBar />
-      <div 
-        className={styles.withoutModal}
-        onScroll={()=>{console.log(1)}}
-        ref={scrollRef}
-      >
-        <CalendarTimeline />
-      </div>
-    </Route>
+    <CalendarDateBar
+      type="weekly"
+      dates={weeklyDates}
+      onClickprevWeek={onClick.bind(setChangeWeek, changeWeek, -1)}
+      onClickNextWeek={onClick.bind(setChangeWeek, changeWeek, 1)}
+    />
+    <CalendarTimeline />
+
+    {/* <CalendarDateBar type="daily"/>
+    <CalendarTimeline /> */}
 
   </Wrapper>
 );
 }
+
+
+
+
+// <Route path="/" exact>
+//       <CalendarDateBar />
+//       <MainDay>
+//         <div 
+//           className={styles.withoutModal}
+//           onScroll={()=>{console.log(1)}}
+//           ref={scrollRef}
+//         >
+//           <CalendarTimeline />
+//         </div>
+//         <CalendarSchedule />
+//       </MainDay>
+//     </Route>
+    
+    
+    
+    
+    
+    
+//     <Route path="/weekly" exact>
+//       <CalendarDateBar />
+//       <div 
+//         className={styles.withoutModal}
+//         onScroll={()=>{console.log(1)}}
+//         ref={scrollRef}
+//       >
+//         <CalendarTimeline />
+//       </div>
+//     </Route>
 
 
 

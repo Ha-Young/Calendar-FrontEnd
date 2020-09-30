@@ -9,13 +9,13 @@ const Wrapper = styled.div`
   padding: 0 5px 0 5px;
 `;
 
-export default function MonthlyCalendarHead ({ month, nextMonth, prevMonth }) {
+export default function MonthlyCalendarHead ({ thisMonth, onClickPrevMonth, onClickNextMonth }) {
 
   return (
     <Wrapper>
-      <div style={{marginTop: "4px"}}>{month}</div>
-      <ArrowShapedButton direction="left" onClick={prevMonth} />
-      <ArrowShapedButton direction="right" onClick={nextMonth} />
+      <div style={{marginTop: "4px"}}>{thisMonth}</div>
+      <ArrowShapedButton direction="left" onClick={onClickPrevMonth} />
+      <ArrowShapedButton direction="right" onClick={onClickNextMonth} />
     </Wrapper>
   );
 }

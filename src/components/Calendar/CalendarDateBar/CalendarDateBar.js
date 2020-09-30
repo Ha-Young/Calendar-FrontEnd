@@ -1,39 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const Weekly = styled.div`
-`;
-
-const Daily = styled.div`
-`;
-
-
-
+import styles from './CalendarDateBar.module.css'
+import ArrowShapedButton from '../../Shared/Button/ArrowShapedButton/ArrowShapedButton';
+import MonthlyCalendarBody from '../../SideBar/MonthlyCalendar/MonthlyCalendarBody/MonthlyCalendarBody';
+import MonthlyCalendarWeek from '../../SideBar/MonthlyCalendar/MonthlyCalendarWeek/MonthlyCalendarWeek.js';
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 35% 1fr;
-  padding-right: 10px;
+  grid-template-columns: 5% 1fr 5%;  
 `;
 
-const C1 = styled.div`
-  display:grid;
-  grid-template-columns: 5.5% 1fr 6%;
-`;
-
-
-const Day = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  margin-top: 20px;
-`;
-
-export default function CalendarDateBar () {
-
+export default function CalendarDateBar ({ type, dates, onClickprevWeek, onClickNextWeek }) {
+  
   return (
-    <>
-    <Daily>
+    <Wrapper>
+      <ArrowShapedButton className={styles.prevWeek} direction="left" onClick={onClickprevWeek} />
+      <MonthlyCalendarBody type={type} dates={dates} />
+      <ArrowShapedButton direction="right" onClick={onClickNextWeek} />
+    </Wrapper>
+  );
+}
+
+
+{/* 
+<Daily>
     <Wrapper>
       <C1>
       <div>1</div>
@@ -65,13 +55,7 @@ export default function CalendarDateBar () {
     </Wrapper>
 
     </Daily>
-    </>
-  );
-}
-
-
-
-
+    </> */}
 
 
 

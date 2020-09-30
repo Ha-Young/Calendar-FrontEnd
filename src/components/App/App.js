@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import styles from './App.module.css';
 import Header from '../Header/Header';
 import { saveSampleData } from '../../utils/api';
+import getMonthlyDates from '../../utils/dates';
 import styled from 'styled-components';
 import SideBar from '../SideBar/SideBar';
 import CalendarContainer from '../Calendar/CalendarContainer/CalendarContainer';
@@ -25,17 +26,26 @@ const Main = styled.div`
 
 // Feel free to modify as you need.
 function App() {
-  useEffect(() => {
-    saveSampleData();
-  }, []);
+  const [ changeMonth, setChangeMonth ] = useState(0);
+  const { thisMonth, monthlyDates } = getMonthlyDates(changeMonth); //리덕스 스테이트
+
+  const onClick = function (callback, status, change) {
+    callback(status + change);
+  }
+
 
   return (
     <>
     <Trya>
-      <Header />
+      <Header thisMonth={thisMonth} />
       <Main>
-        <SideBar />
-        <CalendarContainer />
+        <SideBar 
+          thisMonth={thisMonth}
+          dates={monthlyDates}
+          onClickPrevMonth={onClick.bind(setChangeMonth, changeMonth, 1)}
+          onClickNextMonth={onClick.bind(setChangeMonth, changeMonth, -1)}
+        />
+        <CalendarContainer onClick={onClick}/>
       </Main>
       </Trya>
     </>
@@ -43,3 +53,9 @@ function App() {
 }
 
 export default App;
+
+
+
+// useEffect(() => {
+//   saveSampleData();
+// }, []);

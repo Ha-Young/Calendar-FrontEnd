@@ -3,20 +3,29 @@ import styled from 'styled-components';
 import MonthlyCalendarWeek from '../MonthlyCalendarWeek/MonthlyCalendarWeek.js';
 
 const Wrapper = styled.div`
-  display:grid;  
-  border: 3px solid tomato;
+  display: grid;
 `;
 
-export default function MonthlyCalendarBody ({ weeks }) {
+export default function MonthlyCalendarBody ({ type, dates }) {
+  console.log(dates, 'abc')
+  const chooseType = function (type, dates) {
+    if (type === 'weekly') {
+      return (
+        <Wrapper style={{gridTemplateRows: `repeat(${dates.length + 1}, 1fr)`}}>
+          <MonthlyCalendarWeek isHead={true} />
+          {
+            dates.map((week, i) => {
+              return <MonthlyCalendarWeek key={i} isHead={false} dates={week} />
+            })
+          }
+        </Wrapper>
+      );
+    }
+  };
+  
+  return chooseType(type, dates);
+  
+  
 
-  return (
-    <Wrapper style={{gridTemplateRows: `repeat(${weeks.length + 1}, 1fr)`}}>
-      <MonthlyCalendarWeek isHead={true} />
-      {
-        weeks.map((week, i) => {
-          return <MonthlyCalendarWeek key={i} isHead={false} dates={week} />
-        })
-      }
-    </Wrapper>
-  );
+  
 }
