@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 `;
 
 export default function MonthlyCalendarBody ({ type, dates }) {
-  console.log(dates, 'abc')
+  
   const chooseType = function (type, dates) {
     if (type === 'weekly') {
       return (

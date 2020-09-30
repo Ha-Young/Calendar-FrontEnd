@@ -15,6 +15,8 @@ export default function MonthlyCalendarWeek ({ isHead, dates }) {
       const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       return (
         dayList.map((day, i) => {
+          if (day === 'Sat') return <div style={{color: "blue"}} key={i}>{day}</div>
+          if (day === 'Sun') return <div style={{color: "red"}} key={i}>{day}</div>
           return <div key={i}>{day}</div>
         })
       );
@@ -22,6 +24,8 @@ export default function MonthlyCalendarWeek ({ isHead, dates }) {
 
     return (
       dates.map((date, i) => {
+        // if (i === 6) return <div style={{color: "blue"}} key={i} class={date}>{date}</div>
+        // if (i === 0) return <div style={{color: "red"}} key={i} class={date}>{date}</div>
         return <div key={i} class={date}>{date}</div>
       })
     );

@@ -41,7 +41,7 @@ return (
       onClickprevWeek={onClick.bind(setChangeWeek, changeWeek, -1)}
       onClickNextWeek={onClick.bind(setChangeWeek, changeWeek, 1)}
     />
-    <CalendarTimeline />
+    <CalendarTimeline type="weekly"/>
 
     {/* <CalendarDateBar type="daily"/>
     <CalendarTimeline /> */}

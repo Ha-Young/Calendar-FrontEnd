@@ -6,7 +6,7 @@ import MonthlyCalendarWeek from '../../SideBar/MonthlyCalendar/MonthlyCalendarWe
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 5% 1fr 5%;  
+  grid-template-columns: 8% 1fr 7%;  
 `;
 
 export default function CalendarDateBar ({ type, dates, onClickprevWeek, onClickNextWeek }) {
@@ -14,13 +14,13 @@ export default function CalendarDateBar ({ type, dates, onClickprevWeek, onClick
   return (
     <Wrapper>
       <ArrowShapedButton 
-        css={{margin: "25px 0 0 15px", width: "10px", height: "10px"}} 
+        css={{margin: "25px 0 0 25px", width: "10px", height: "10px"}} 
         direction="left" 
         onClick={onClickprevWeek} 
       />
       <MonthlyCalendarBody type={type} dates={dates} />
       <ArrowShapedButton
-        css={{margin: "24px 0 0 10px", width: "10px", height: "10px"}} 
+        css={{margin: "24px 0 0 15px", width: "10px", height: "10px"}} 
         direction="right"
         onClick={onClickNextWeek}
       />
