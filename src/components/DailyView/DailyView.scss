@@ -1,0 +1,27 @@
+@import '../../constants/styles.constants.scss';
+
+.date {
+  height: calc(#{$cell-height * 2});
+}
+
+.daily-container {
+  border-left: 1px solid $gray;
+
+  .cell {
+    position: relative;
+
+    height: $cell-height;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    border-top: 1px solid $gray;
+
+    span {
+      position: absolute;
+      line-height: $cell-height;
+
+      margin-right: 10px;
+      background-color: $white;
+    }
+  }
+}

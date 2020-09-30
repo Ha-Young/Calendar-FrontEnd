@@ -15,7 +15,7 @@ const Header = ({ currentUser }) => {
             <Link to='/'>Home</Link>
           </li>
           <li>
-            <Link to='/event'>Event</Link>
+            <Link to='/calendar'>Calendar</Link>
           </li>
           {currentUser ? (
             <li onClick={() => auth.signOut()}>Sign Out</li>

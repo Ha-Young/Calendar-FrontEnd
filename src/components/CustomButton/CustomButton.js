@@ -1,10 +1,13 @@
 import React from 'react';
 
-import styles from './CustomButton.module.scss';
+import './CustomButton.scss';
 
-export default function CustomButton({ children, ...otherProps }) {
+export default function CustomButton({ children, selected, ...otherProps }) {
   return (
-    <button className={styles.CustomButton} {...otherProps}>
+    <button
+      className={`CustomButton${selected ? ' selected' : ''}`}
+      {...otherProps}
+    >
       {children}
     </button>
   );

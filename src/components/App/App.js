@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import styles from './App.module.scss';
 import Header from '../Header/Header';
 import UserProfile from '../UserProfile/UserProfile';
+import Calendar from '../Calendar/Calendar';
 import SignInAndSignUp from '../SignInAndSignUp/SignInAndSignUp';
 
 import { auth } from '../../firebase';
@@ -33,8 +34,8 @@ const App = ({ currentUser, setCurrentUser }) => {
         <Route exact path='/'>
           {currentUser ? <UserProfile /> : <div>당근캘린더</div>}
         </Route>
-        <Route path='/event'>
-          <div>Event</div>
+        <Route path='/calendar'>
+          {currentUser ? <Calendar /> : <Redirect to='/' />}
         </Route>
         <Route path='/signin'>
           {currentUser ? <Redirect to='/' /> : <SignInAndSignUp />}

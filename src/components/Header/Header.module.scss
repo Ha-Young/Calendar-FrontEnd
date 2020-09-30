@@ -1,14 +1,16 @@
 header {
+  margin-top: 10px;
 }
 
 ul {
+  margin: 0;
   display: flex;
   justify-content: flex-end;
 }
 
 li {
   list-style: none;
-  margin-right: 20px;
+  margin-right: 50px;
 }
 
 li:hover {

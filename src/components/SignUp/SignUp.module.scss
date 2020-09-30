@@ -1,4 +1,4 @@
-@import '../../styles/colors.scss';
+@import '../../constants/styles.constants.scss';
 
 .SignUp {
   width: 40%;
@@ -7,7 +7,6 @@
 
   h2 {
     text-align: right;
-    margin-bottom: 0;
   }
 }
 

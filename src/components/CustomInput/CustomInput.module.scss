@@ -1,4 +1,4 @@
-@import '../../styles/colors.scss';
+@import '../../constants/styles.constants.scss';
 
 @mixin shrinkLabel {
   top: -14px;
@@ -7,7 +7,6 @@
 
 .group {
   position: relative;
-  margin: 45px 0;
   color: $main-color;
 
   input {
@@ -18,7 +17,7 @@
     border: none;
     border-radius: 0;
     border-bottom: 1px solid $main-color;
-    margin: 25px 0;
+    margin: 30px 0;
     font-size: inherit;
     font-family: inherit;
 

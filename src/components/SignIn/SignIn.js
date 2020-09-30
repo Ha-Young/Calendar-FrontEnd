@@ -43,14 +43,14 @@ export default function SignIn() {
       <form onSubmit={handleSubmit}>
         <CustomInput
           type='email'
-          label='email'
+          label='Email'
           value={email}
           handleChange={handleChange}
           required
         />
         <CustomInput
           type='password'
-          label='password'
+          label='Password'
           value={password}
           handleChange={handleChange}
           required

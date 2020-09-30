@@ -1,0 +1,25 @@
+@import '../../constants/styles.constants.scss';
+
+.timeline-container {
+  margin-top: calc(#{$cell-height * 2});
+
+  .cell {
+    position: relative;
+
+    height: $cell-height;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    border-top: 1px solid $gray;
+    padding-right: 30px;
+
+    span {
+      position: absolute;
+      top: calc(#{$cell-height/(-2)});
+      line-height: $cell-height;
+      font-size: 0.8rem;
+
+      background-color: $white;
+    }
+  }
+}
