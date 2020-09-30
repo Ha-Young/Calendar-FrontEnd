@@ -4,7 +4,7 @@ import { authService, firebaseInstance } from "../../utils/firebase";
 export default function Auth () {
   const onSocialClick = async () => {
     const provider = new firebaseInstance.auth.GoogleAuthProvider();
-    const data = await authService.signInWithPopup(provider);
+    await authService.signInWithPopup(provider);
   };
 
   return (

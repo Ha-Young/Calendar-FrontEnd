@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
-import manageEvent from './manageEvent';
+import manageEvent, { eventDetail } from './manageEvent';
 
-const rootReducer = combineReducers({ manageEvent });
-
+const rootReducer = combineReducers({ manageEvent, eventDetail });
 export default rootReducer;

@@ -33,11 +33,31 @@
   margin-bottom: 3px;
 }
 
-.NewEvent button {
+.submitButton {
   margin-top: 30px;
   height: 40px;
   border-radius: 20px;
   background-color: #95A5A6;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+}
+
+.submitButton:disabled {
+  margin-top: 30px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: white;
+  text-transform: uppercase;
+}
+
+.cancelButton {
+  margin-top: 10px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
   border: none;
   color: white;
   text-transform: uppercase;

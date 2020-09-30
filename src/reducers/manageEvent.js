@@ -5,24 +5,32 @@ import {
   CLICK_PREV_BUTTON,
   CLICK_NEXT_BUTTON,
   CHANGE_WEEKLY_VIEW,
+  GET_EVENTS_DATA,
 } from "../actions/constants";
 import moment from "moment";
 
 const initialState = {
-  inputs: {},
   date: moment().format("YYYY-MM-DD"),
   isLoggedIn: false,
   isDailyView: true,
 };
 
-const manageEvent = (state = initialState, action) => {
+export const eventDetail = (state = [], action) => {
   switch (action.type) {
     case ADD_EVENT:
-      return {
-        ...state,
-        inputs: action.inputs,
-        id: Date.now(),
-      };
+      return [
+        action.eventDetails,
+        ...state
+      ];
+    case GET_EVENTS_DATA:
+      return state.concat(action.data);
+    default:
+      return state;
+  }
+};
+
+const manageEvent = (state = initialState, action) => {
+  switch (action.type) {
     case USER_LOGIN:
       return {
         ...state,
@@ -36,12 +44,12 @@ const manageEvent = (state = initialState, action) => {
     case CLICK_PREV_BUTTON:
       return {
         ...state,
-        date: moment(state.date).subtract(1, "days").format("YYYY-MM-DD"),
+        date: moment(state.date).subtract(action.days, "days").format("YYYY-MM-DD"),
       };
     case CLICK_NEXT_BUTTON:
       return {
         ...state,
-        date: moment(state.date).add(1, "days").format("YYYY-MM-DD"),
+        date: moment(state.date).add(action.days, "days").format("YYYY-MM-DD"),
       };
     case CHANGE_WEEKLY_VIEW:
       return {

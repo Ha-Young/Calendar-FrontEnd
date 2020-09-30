@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import styles from "./NewEvent.module.css";
+import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 export default function NewEvent ({ addEvent }) {
-  const [inputs, setInputs] = useState({
+  const history = useHistory();
+  const [eventDetails, setEventDetails] = useState({
     eventName: "",
     eventDescription: "",
-    startDate: "",
+    eventDate: "",
     startTime: "",
-    endDate: "",
     endTime: "",
   });
 
-  const { eventName, eventDescription, startDate, startTime, endDate, endTime } = inputs;
+  const { eventName, eventDescription, eventDate, startTime, endTime } = eventDetails;
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -19,15 +21,23 @@ export default function NewEvent ({ addEvent }) {
 
   const onChange = (event) => {
     const { value, name } = event.target;
-    setInputs({
-      ...inputs,
+    setEventDetails({
+      ...eventDetails,
       [name]: value,
     });
   };
 
   const onClick = () => {
-    addEvent(inputs);
+    const id = "event" + Date.now();
+    addEvent({...eventDetails, createdAt: moment().toISOString(), id: id});
   };
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    history.push("/calendar");
+  };
+
+  const isEventDetailsFilled = eventName && eventDescription && eventDate && startTime && endTime;
 
   return (
     <div className={styles.NewEvent}>
@@ -37,15 +47,13 @@ export default function NewEvent ({ addEvent }) {
         <input type="text" name="eventName" placeholder="Event Name" value={eventName} onChange={onChange} required/>
         <label htmlFor="eventDescription">Event Description</label>
         <input type="text" name="eventDescription" placeholder="Event Description" value={eventDescription} onChange={onChange} required/>
-        <label htmlFor="startDate">Start Date</label>
-        <input type="date" name="startDate" value={startDate} onChange={onChange} required/>
+        <label htmlFor="eventDate">Event Date</label>
+        <input type="date" name="eventDate" value={eventDate} onChange={onChange} required/>
         <input type="time" name="startTime" value={startTime} onChange={onChange} required/>
-        <label htmlFor="startDate">End Date</label>
-        <input type="date" name="endDate" value={endDate} onChange={onChange} required/>
         <input type="time" name="endTime" value={endTime} onChange={onChange} required/>
-        <button onClick={onClick}>Submit</button>
+        <button className={styles.submitButton} onClick={onClick} disabled={isEventDetailsFilled ? false : true}>Submit</button>
+        <button className={styles.cancelButton} onClick={handleClick}>Cancel</button>
       </form>
     </div>
   );
 }
-

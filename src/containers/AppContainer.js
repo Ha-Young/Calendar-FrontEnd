@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { userLogIn, userLogOut, clickPrevButton, clickNextButton, changeWeeklyView } from "../actions/actionCreators";
+import { userLogIn, userLogOut, clickPrevButton, clickNextButton, changeWeeklyView, getEventsData} from "../actions/actionCreators";
 import App from "../components/App/App";
+import { getData } from "../utils/api";
 
-function AppContainer ({ userLogIn, userLogOut, isLoggedIn, date, isDailyView, clickPrevButton, clickNextButton, changeWeeklyView }) {
+function AppContainer ({ userLogIn, userLogOut, isLoggedIn, date, isDailyView, clickPrevButton, clickNextButton, changeWeeklyView, getEventsData, eventDetail }) {
+  useEffect(() => {
+    (async function getStoredData () {
+      const storedData = await getData();
+      getEventsData(storedData);
+    })();
+  }, []);
+
   return (
     <App
       userLogIn={userLogIn}
@@ -14,17 +22,19 @@ function AppContainer ({ userLogIn, userLogOut, isLoggedIn, date, isDailyView, c
       clickPrevButton={clickPrevButton}
       clickNextButton={clickNextButton}
       changeWeeklyView={changeWeeklyView}
+      eventDetail={eventDetail}
     />
   );
 }
 
 const mapStateToProps = (state) => {
-  const { manageEvent: {date, isLoggedIn, isDailyView}} = state;
+  const { manageEvent: {date, isLoggedIn, isDailyView}, eventDetail } = state;
 
   return {
     isLoggedIn: isLoggedIn,
     date: date,
     isDailyView: isDailyView,
+    eventDetail: eventDetail,
   };
 };
 
@@ -32,9 +42,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     userLogIn: () => dispatch(userLogIn()),
     userLogOut: () => dispatch(userLogOut()),
-    clickPrevButton: (date) => dispatch(clickPrevButton(date)),
-    clickNextButton: (date) => dispatch(clickNextButton(date)),
+    clickPrevButton: (days) => dispatch(clickPrevButton(days)),
+    clickNextButton: (days) => dispatch(clickNextButton(days)),
     changeWeeklyView: () => dispatch(changeWeeklyView()),
+    getEventsData: (data) => dispatch(getEventsData(data)),
   };
 };
 

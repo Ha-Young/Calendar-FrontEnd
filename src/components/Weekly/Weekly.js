@@ -5,13 +5,13 @@ import moment from "moment";
 
 export default function Weekly ({ date }) {
   const days = [];
-  for (let i = 1; i < 8; i++) {
+  for (let i = 0; i < 7; i++) {
     days.push(moment(date).day(i));
   }
   return (
     <div className={styles.Weekly}>
       <div className={styles.timeList}>
-        <div><h2> </h2></div>
+        <div><h2>Time</h2></div>
         <div>오전 1시</div>
         <div>오전 2시</div>
         <div>오전 3시</div>

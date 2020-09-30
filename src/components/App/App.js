@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import styles from "./App.module.css";
 import { authService } from "../../utils/firebase";
-import { saveSampleData } from "../../utils/api";
-import moment from "moment";
 
 import Header from "../Header/Header";
 import Daily from "../Daily/Daily";
@@ -12,11 +10,7 @@ import EventContainer from "../../containers/EventContainer";
 import Auth from "../Auth/Auth";
 import DatePicker from "../DatePicker/DatePicker";
 
-export default function App ({ userLogIn, userLogOut, isLoggedIn, date, clickPrevButton, clickNextButton, changeWeeklyView, isDailyView }) {
-  useEffect(() => {
-    saveSampleData();
-  }, []);
-
+export default function App ({ userLogIn, userLogOut, isLoggedIn, date, clickPrevButton, clickNextButton, changeWeeklyView, isDailyView, eventDetail}) {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
@@ -41,16 +35,18 @@ export default function App ({ userLogIn, userLogOut, isLoggedIn, date, clickPre
             <Route path="/calendar">
               <DatePicker
                 date={date}
+                isDailyView={isDailyView}
                 clickPrevButton={clickPrevButton}
                 clickNextButton={clickNextButton}
               />
+              {/* container로 전환 */}
               {
                 isDailyView
-                ? <Daily date={date} />
+                ? <Daily date={date} eventDetail={eventDetail} />
                 : <Weekly date={date} />
               }
             </Route>
-            <Route path="/events">
+            <Route path="/events/new">
               <EventContainer />
             </Route>
             <Redirect to="/calendar" />

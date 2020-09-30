@@ -12,7 +12,7 @@ export default function Header ({ changeWeeklyView }) {
         <SelectView
           changeWeeklyView={changeWeeklyView}
         />
-        <Link to="/events">
+        <Link to="/events/new">
           <EventButton />
         </Link>
       </nav>

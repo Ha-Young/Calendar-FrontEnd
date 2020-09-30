@@ -5,12 +5,13 @@ import {
   CLICK_PREV_BUTTON,
   CLICK_NEXT_BUTTON,
   CHANGE_WEEKLY_VIEW,
+  GET_EVENTS_DATA,
 } from "./constants";
 
-export const addEvent = (inputs) => {
+export const addEvent = (eventDetails) => {
   return {
     type: ADD_EVENT,
-    inputs
+    eventDetails
   };
 };
 
@@ -26,22 +27,29 @@ export const userLogOut = () => {
   };
 };
 
-export const clickPrevButton = (date) => {
+export const clickPrevButton = (days) => {
   return {
     type: CLICK_PREV_BUTTON,
-    date
+    days
   };
 };
 
-export const clickNextButton = (date) => {
+export const clickNextButton = (days) => {
   return {
     type: CLICK_NEXT_BUTTON,
-    date
+    days
   };
 };
 
 export const changeWeeklyView = () => {
   return {
     type: CHANGE_WEEKLY_VIEW,
+  };
+};
+
+export const getEventsData = (data) => {
+  return {
+    type: GET_EVENTS_DATA,
+    data
   };
 };
