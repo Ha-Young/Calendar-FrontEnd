@@ -8,23 +8,32 @@ const Wrapper = styled.div`
 
 export default function MonthlyCalendarBody ({ type, dates }) {
   
-  const chooseType = function (type, dates) {
-    if (type === 'weekly') {
-      return (
-        <Wrapper style={{gridTemplateRows: `repeat(${dates.length + 1}, 1fr)`}}>
-          <MonthlyCalendarWeek isHead={true} />
-          {
-            dates.map((week, i) => {
-              return <MonthlyCalendarWeek key={i} isHead={false} dates={week} />
-            })
-          }
-        </Wrapper>
-      );
-    }
-  };
+  // const chooseType = function (type, dates) {
+  //   if (type === 'weekly') {
+  //     return (
+  //       <Wrapper style={{gridTemplateRows: `repeat(${dates.length + 1}, 1fr)`}}>
+  //         <MonthlyCalendarWeek isHead={true} />
+  //         {
+  //           dates.map((week, i) => {
+  //             return <MonthlyCalendarWeek key={i} isHead={false} dates={week} />
+  //           })
+  //         }
+  //       </Wrapper>
+  //     );
+  //   }
+  // };
   
-  return chooseType(type, dates);
-  
+  // return chooseType(type, dates);
+  return (
+    <Wrapper style={{gridTemplateRows: `repeat(${dates.length + 1}, 1fr)`}}>
+      <MonthlyCalendarWeek isHead={true} />
+      {
+        dates.map((week, i) => {
+          return <MonthlyCalendarWeek key={i} isHead={false} dates={week} type={type} />
+        })
+      }
+    </Wrapper>
+  );
   
 
   

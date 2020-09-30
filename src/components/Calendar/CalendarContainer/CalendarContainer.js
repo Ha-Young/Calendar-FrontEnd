@@ -37,6 +37,10 @@ return (
     />
     <CalendarTimeline type="weekly" />
 
+
+    //type을 내리는게 아니고 app레벨에서 오늘의 날짜를 받아서 믿으로 내려주고
+    // 버튼이 눌리면 날짜가 하나 변경 되어서 그걸 다시 내려주고 리 렌더 하는 형식으로
+    // 그리고 나중에 리덕스로 교체
     <CalendarDateBar 
       type="daily"
       dates={weeklyDates.weeklyDates}

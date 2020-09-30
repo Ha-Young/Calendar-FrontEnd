@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-export default function MonthlyCalendarWeek ({ isHead, dates }) {
+export default function MonthlyCalendarWeek ({ isHead, dates, type }) {
   
   function insertDates () {
     if (isHead) {
