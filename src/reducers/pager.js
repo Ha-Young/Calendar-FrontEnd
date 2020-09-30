@@ -1,4 +1,3 @@
-import React from 'react';
 import { BEFORE, NEXT } from '../constants/ActionType';
 
 const initialState = {

@@ -5,18 +5,25 @@ import { Route, Switch } from 'react-router-dom';
 // For example, what is it? what are benefits?
 import styled from 'styled-components';
 
+import CalendarContainer from './CalendarContainer';
+import DetailsContainer from './DetailsContainer';
 import Header from '../components/Header/Header';
-import Calendar from '../components/Calendar/Calendar';
-import Navigator from '../components/Navigator/Navigator';
 
 import { saveSampleData, authService } from "../utils/api";
 
-const BodyWrapper = styled.div`
+
+const AppWrapper = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+`;
+const BodyWrapper = styled.div`
+  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  background: coral;
 `;
 
 function AppContainer() {
@@ -35,14 +42,18 @@ function AppContainer() {
   // }, []);
 
   return (
-    <div>
+    <AppWrapper>
       {/* <Auth /> */}
       <Header />
       <BodyWrapper>
-        <Navigator />
-        <Calendar />
+        <CalendarContainer />
+        <DetailsContainer />
       </BodyWrapper>
+
       <Switch>
+        <Route path='/' exact>
+          <div></div>
+        </Route>
         <Route path='/:mode' exact>
           <div></div>
         </Route>
@@ -50,7 +61,7 @@ function AppContainer() {
           <div>Event</div>
         </Route>
       </Switch>
-    </div>
+    </AppWrapper>
   );
 }
 

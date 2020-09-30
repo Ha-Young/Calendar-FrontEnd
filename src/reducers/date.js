@@ -1,14 +1,21 @@
-import React from 'react';
+import getDatesOfWeek from '../utils/getDatesOfWeek';
 
-const date = (
-  state = {
-    year: 2000,
-    month: 1,
-    day: 1,
-  },
-  action
-) => {
-  console.log('date',state) //3번 실행 되는 이유는?
+let todayDate = new Date();
+const todayDateObj = {
+  year: todayDate.getFullYear(),
+  month: todayDate.getMonth() + 1,
+  date: todayDate.getDate(),
+  day: todayDate.getDay(),
+}
+const initialState = {
+  todayDate: todayDateObj,
+  calendarDate: todayDateObj,
+  weekState: getDatesOfWeek(todayDateObj),
+};
+
+const date = (state = initialState, action) => {
+  console.log(state,'??');
+  console.log(state);
   switch (action.type) {
     default:
       return state;

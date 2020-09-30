@@ -13,9 +13,9 @@ import { Provider } from 'react-redux';
 import rootReducer from './reducers/index';
 import AppContainer from './containers/AppContainer';
 
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 const store = createStore(rootReducer);
-
-
 
 ReactDOM.render(
   <Provider store={store}>

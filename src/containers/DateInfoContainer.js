@@ -2,23 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DateInfo from '../components/DateInfo/DateInfo';
 
-
-const DateInfoContainer = ({ year, month, day }) => {
-  return (
-    <DateInfo
-      year={year}
-      month={month}
-      day={day}
-    />
-  );
-};
-
 const mapStateToProp = state => {
   return {
-    year: state.date.year,
-    month: state.date.month,
-    day: state.date.day,
+    mode: state.modes.mode,
+    year: state.date.calendarDate.year,
+    month: state.date.calendarDate.month,
+    date: state.date.calendarDate.date,
   };
 };
 
-export default connect(mapStateToProp, null)(DateInfoContainer);
+export default connect(mapStateToProp, null)(DateInfo);

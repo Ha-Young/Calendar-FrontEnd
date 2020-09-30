@@ -1,12 +1,16 @@
 import React from 'react';
 import styles from './DateInfo.module.css';
+import { MODE_DAY } from '../../constants/ActionType';
 
-const DateInfo = ({ year, month, day }) => {
+const DateInfo = ({ mode, year, month, date }) => {
   return (
     <div className={styles.DateInfo}>
-      <div>{year}년</div>
-      <div>{month}월</div>
-      <div>{day}일</div>
+      <span>{year}년</span>
+      <span>{month}월</span>
+      {
+        mode === MODE_DAY &&
+        <span>{date}일</span>
+      }
     </div>
   );
 };

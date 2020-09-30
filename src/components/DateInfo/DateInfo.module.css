@@ -5,3 +5,7 @@
   align-items: center;
   background: rgb(146, 95, 0);
 }
+.DateInfo span {
+  margin-left: 5px;
+  margin-right: 5px;
+}

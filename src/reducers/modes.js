@@ -1,12 +1,7 @@
-import { MODE_MONTH, MODE_WEEK, MODE_DAY } from '../constants/ActionType';
+import { MODE_WEEK, MODE_DAY } from '../constants/ActionType';
 
 const modes = (state = { mode: MODE_WEEK }, action) => {
-  console.log(state);
   switch (action.type) {
-    case MODE_MONTH:
-      return {
-        mode: MODE_MONTH,
-      };
     case MODE_WEEK:
       return {
         mode: MODE_WEEK,
