@@ -1,0 +1,18 @@
+
+  .TimeLine {
+    width: 100px;
+    height: 1152px;
+    padding: 20px;
+  }
+
+  .Time {
+    width: 100px;
+    height: 48px;
+  }
+
+  .Time::after {
+    content: '';
+    border-bottom: #dadce0 1px solid;
+    position: absolute;
+    width: 1600px;
+  }
