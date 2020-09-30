@@ -1,0 +1,11 @@
+@import '../../styles/colors.scss';
+
+.title {
+  color: $blue;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px auto;
+}

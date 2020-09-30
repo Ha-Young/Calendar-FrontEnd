@@ -1,0 +1,12 @@
+@import '../../styles/colors.scss';
+
+.App {
+  text-align: center;
+  max-width: 920px;
+  padding: 10px;
+  margin: 10px auto;
+
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+}

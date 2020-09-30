@@ -1,0 +1,21 @@
+@import '../../styles/colors.scss';
+
+.SignIn {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    text-align: left;
+    margin-bottom: 0;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error {
+  color: $red;
+}

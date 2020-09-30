@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import styles from './AppContainer.module.css';
+import styles from './AppContainer.module.scss';
 import Header from '../../components/Header/Header';
+import SignInAndSignUp from '../../components/SignInAndSignUp/SignInAndSignUp';
 
 import { auth } from '../../firebase';
 import saveSampleData from '../../firebase/saveSampleData';
@@ -17,21 +18,17 @@ const AppContainer = ({ currentUser, setCurrentUser }) => {
   }, []);
 
   useEffect(() => {
-    console.log('useEffect by', setCurrentUser);
-    const setCurruntUserBySnapShot = async userAuth => {
-      if (userAuth) {
-        const userSnapShot = await registerUserProfile(userAuth).once('value');
+    const unsubscribeAuth = auth.onAuthStateChanged(async user => {
+      if (user) {
+        const userSnapShot = await registerUserProfile(user);
 
-        console.log('userSnapShot', userSnapShot);
         console.log('userSnapShot.val()', userSnapShot.val());
 
         setCurrentUser({ ...userSnapShot.val() });
       } else {
         setCurrentUser(null);
       }
-    };
-
-    const unsubscribeAuth = auth.onAuthStateChanged(setCurruntUserBySnapShot);
+    });
 
     return unsubscribeAuth;
   }, [setCurrentUser]);
@@ -49,7 +46,7 @@ const AppContainer = ({ currentUser, setCurrentUser }) => {
         <Route
           path='/signin'
           render={() =>
-            currentUser ? <Redirect to='/' /> : <div>Sign In And Sign Up</div>
+            currentUser ? <Redirect to='/' /> : <SignInAndSignUp />
           }
         ></Route>
       </Switch>

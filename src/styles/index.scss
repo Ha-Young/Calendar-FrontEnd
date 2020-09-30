@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import 'colors.scss';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: $black;
+  background-color: $gray;
+}
+
+* {
+  box-sizing: border-box;
+  // border: 1px dashed rgb(220, 220, 220);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

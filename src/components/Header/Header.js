@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 
 import { auth } from '../../firebase';
 
