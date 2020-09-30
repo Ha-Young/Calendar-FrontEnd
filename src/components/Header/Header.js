@@ -1,14 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './Header.module.css';
 import ToggleButton from './ToggleButton';
 import GetDate from './GetDate';
 
-export default function Header () {
+export default function Header ({
+  yesterday,
+  tomorrow,
+  handleYesterday,
+  handleTomorrow,
+}) {
   return (
     <header style={{width: '100%'}}>
       <ToggleButton />
-      <GetDate />
+      <GetDate
+        yesterday={yesterday}
+        tomorrow={tomorrow}
+        handleYesterday={handleYesterday}
+        handleTomorrow={handleTomorrow}
+      />
     </header>
   );
 }

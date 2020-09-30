@@ -1,21 +1,6 @@
-import React from "react"
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
+import changeDate from "./events";
 
-const loginReducer = () => {
-  return [
-    { title: "hello"},
-  ];
-};
+const rootReducer = combineReducers({ changeDate });
 
-const nextDayReducer = (state=null, action) => {
-  if (action.type === "LOG_IN") {
-    return action.payload;
-  }
-
-  return state;
-}
-
-export default combineReducers({
-  login: loginReducer,
-  checkLogIn: nextDayReducer,
-})
+export default rootReducer;

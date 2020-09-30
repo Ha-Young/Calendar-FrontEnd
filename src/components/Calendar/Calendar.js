@@ -4,6 +4,7 @@ import Header from '../Header/Header'
 import { Route, Switch } from 'react-router-dom';
 import Daily from './Daily';
 import Weekly from './Weekly'
+import HeaderContainer from '../../containers/HeaderContainer'
 
 export default function Calendar () {
   return (

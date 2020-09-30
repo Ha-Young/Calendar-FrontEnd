@@ -1,14 +1,27 @@
 import React from 'react';
+import {LOG_IN, CLICK_PREV_BUTTON, CLICK_NEXT_BUTTON} from "./constants"
 
-// Action creator
-export const login = (user) => {
-  // Return an action
+export const userLogin = () => {
   return {
-    type: 'LOG_IN',
-    isLogIn: false,
-    name: '',
-    email: '',
-    photo: '',
+    type: LOG_IN,
+  }
+}
+
+export const moveToPrevDay = () => {
+  return {
+    type: CLICK_PREV_BUTTON,
+  }
+}
+
+export const moveToNextDay = () => {
+  return {
+    type: CLICK_NEXT_BUTTON,
   };
 };
 
+// export const login = user => {
+//   return {
+//     type: types.LOG_IN,
+//     user,
+//   }
+// };

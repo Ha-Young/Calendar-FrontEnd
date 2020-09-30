@@ -11,11 +11,9 @@ export default function LogIn () {
     name: '',
     email: '',
     photo: '',
-  }
+  };
 
   const [logInResult, setLogInResult] = useState(userState);
-
-  // api 가져오는거면.. useEffect?? async await로..
 
   const signIn = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -67,6 +65,14 @@ export default function LogIn () {
     </div>
   );
 }
+
+// const mapStateToProps = state => {
+//   const { visibilityFilter } = state;
+//   const login = loginReducer(state, visibilityFilter);
+//   return { login };
+// };
+
+// export default connect(mapStateToProps)(LogIn);
 
 // export const searchYoutube = async (options) => {
 //   const YOUTUBE_URL = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&part=snippet${mapObjectToQueryStrings(

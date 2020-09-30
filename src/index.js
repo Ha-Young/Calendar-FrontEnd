@@ -4,17 +4,16 @@ import { Provider } from "react-redux";
 import {createStore} from "redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./components/App/App";
-import reducers from './reducers'
+import reducers from './reducers';
 import "./styles.css";
 
-
-const rootElement = document.getElementById("root");
 const store = createStore(reducers);
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>
       <App />
     </Router>
-  </Provider>
-  , rootElement);
-
+  </Provider>,
+  document.getElementById("root")
+);
