@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import styles from './EventContainer.module.css';
+import styles from './EventsContainer.module.css';
 
 import DailyCard from '../../components/DailyCard/DailyCard';
 
 import { getSample } from '../../utils/api';
 
-function EventContainer({ onLoad, events, date }) {
+function EventsContainer({ onLoad, events, date }) {
   const [filteredEvents, setFilteredEvents] = useState(null);
 
   useEffect(() => {
@@ -14,21 +14,24 @@ function EventContainer({ onLoad, events, date }) {
   }, [onLoad]);
 
   useEffect(() => {
-    const filtered =
-      events.filter((event) => event.date === date.selectedDay);
-
-    console.log('events', events);
-    console.log('filtered', filtered);
+    console.log(events);
+    const filtered = [];
+    for (const eventId of Object.keys(events)) {
+      if (events[eventId].date === date.selectedDay) {
+        filtered.push(events[eventId]);
+      }
+    }
 
     setFilteredEvents(filtered);
   }, [events]);
 
   return (
-    <div className={styles.EventContainer} >
+    <div className={styles.EventsContainer} >
       <DailyCard
-        date={date.selectedDay}
+        date={date}
         events={filteredEvents}
       />
+      {/* <DailyCard /> */}
     </div>
   );
 }
@@ -49,4 +52,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EventsContainer);
+

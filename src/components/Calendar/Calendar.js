@@ -1,7 +1,7 @@
 import React from 'react';
 // import styles from './Calendar.module.css';
 
-import EventContainer from '../../containers/EventContainer/EventContainer';
+import EventContainer from '../../containers/EventsContainer/EventsContainer';
 
 export default function Calendar() {
   return (

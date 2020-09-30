@@ -8,6 +8,7 @@ import styles from './App.module.css';
 import Header from '../Header/Header';
 import Calendar from '../Calendar/Calendar';
 import NewEventContainer from '../../containers/NewEventContainer/NewEventContainer';
+import UpdateEventContainer from '../../containers/UpdateEventContainer/UpdateEventContainer';
 
 import { saveSampleData } from '../../utils/api';
 
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path='/event/new'>
           <NewEventContainer />
+        </Route>
+        <Route path="/event/:eventId">
+          <UpdateEventContainer />
         </Route>
         <Redirect to='/calendar' />
       </Switch>

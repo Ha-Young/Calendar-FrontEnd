@@ -1,37 +1,44 @@
 import { combineReducers } from 'redux';
 
-const today = new Date().toISOString().substring(0, 10);
+const weekly = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const day = new Date().toISOString().substring(0, 10);
+const dayStringify = weekly[new Date().getDay()];
 
 const dateIninitialState = {
-  today: today,
-  selectedDay: today,
+  dayStringify: dayStringify,
+  today: day,
+  selectedDay: day,
   weeklyMode: false,
 };
 
 // const eventsInitialState = {
-//   // byId: {},
-//   // allEvents: [],
+//   events: {}
 // }
 
-const date = function (state = dateIninitialState, action) {
+const date = (state = dateIninitialState, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-const events = function (state = [], action) {
+const events = (state = {}, action) => {
   switch (action.type) {
     case 'RECEIVE_EVENTS':
-      return [...new Set(
-        [...state,
-        ...action.events])
-      ];
-    case 'ADD_EVENT':
-      return [
+      return {
         ...state,
-        action.events
-      ];
+        ...action.events
+      };
+    case 'ADD_EVENT':
+      return {
+        ...state,
+        ...action.events
+      };
+    case 'UPDATE_EVENT':
+      console.log('updated!');
+      return Object.assign({}, state, action.events);
+    case 'DELETE_EVENT':
+      return state;
     default:
       return state;
   }
@@ -42,7 +49,40 @@ export default combineReducers({
   events: events,
 });
 
-export const getEventList = (state, day) => {
-  // 29
-  // state.events;
-}
+export const getEventById = (state, id) => {
+  return (state[id]);
+};
+
+// const events = function (state = [], action) {
+//   switch (action.type) {
+//     case 'RECEIVE_EVENTS':
+//       return [...new Set(
+//         [...state,
+//         ...action.events])
+//       ];
+//     case 'ADD_EVENT':
+//       return [
+//         ...state,
+//         action.events
+//       ];
+//     default:
+//       return state;
+//   }
+// };
+
+// case 'ADD_EVENT':
+//       const { date } = action.events;
+//       const timeStampId = `date_${new Date(date).getTime()}`;
+//       const newId = `event_${Math.random().toString(36).substring(2)}`;
+
+//       action.events.id = newId;
+
+//       if(!state[timeStampId]) {
+//         return {
+//           ...state,
+//           [timeStampId]: [action.events]
+//         };
+//       }
+
+//       state[timeStampId].push(action.events);
+//       return state;
