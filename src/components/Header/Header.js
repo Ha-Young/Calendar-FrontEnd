@@ -1,16 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-// TODO: Create your own header.
-export default function Header () {
+import styles from './Header.module.css';
+
+import { auth } from '../../firebase';
+
+const Header = ({ currentUser }) => {
   return (
-    <header>
+    <header className={styles.Header}>
       <nav>
         <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/event'>Event</Link>
+          </li>
+          {currentUser ? (
+            <li onClick={() => auth.signOut()}>Sign Out</li>
+          ) : (
+            <li>
+              <Link to='/signin'>Sign In</Link>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
   );
-}
+};
+
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
+export default connect(mapStateToProps, null)(Header);
