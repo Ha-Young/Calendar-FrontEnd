@@ -7,8 +7,9 @@ const reducer = (state = {}, action) => {
         id: String(Date.now()),
         title: action.title,
         description: action.description,
-        date: action.date,
-        user: state.user
+        startDate: action.startDate,
+        endDate: action.endDate,
+        user: action.user
       };
       return { ...state, events: event };
     case REMOVE_EVENT:

@@ -1,33 +1,22 @@
 import React from 'react';
 import styles from './Cell.module.css';
+import { Link } from 'react-router-dom';
 
 const Cell = () => {
+  const cells = [];
+
+  for (let i = 0; i < 24; i++) {
+    cells.push(
+      <Link to='/events/:eventId'>
+        <div className={styles.cell}>{i}</div>
+      </Link>)
+  }
+  
   return (
     <div className={styles.cells}>
-      <div className={styles.cell}>1</div>
-      <div className={styles.cell}>2</div>
-      <div className={styles.cell}>3</div>
-      <div className={styles.cell}>4</div>
-      <div className={styles.cell}>4</div>
-      <div className={styles.cell}>5</div>
-      <div className={styles.cell}>6</div>
-      <div className={styles.cell}>7</div>
-      <div className={styles.cell}>8</div>
-      <div className={styles.cell}>9</div>
-      <div className={styles.cell}>0</div>
-      <div className={styles.cell}>11</div>
-      <div className={styles.cell}>12</div>
-      <div className={styles.cell}>12</div>
-      <div className={styles.cell}>12</div>
-      <div className={styles.cell}>13</div>
-      <div className={styles.cell}>14</div>
-      <div className={styles.cell}>15</div>
-      <div className={styles.cell}>16</div>
-      <div className={styles.cell}>16</div>
-      <div className={styles.cell}>17</div>
-      <div className={styles.cell}>17</div>
-      <div className={styles.cell}>18</div>
-      <div className={styles.cell}>19</div>
+      {
+        cells.map(cell => cell)
+      }
     </div>
   );
 };

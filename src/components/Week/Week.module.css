@@ -4,7 +4,7 @@
 
 .days {
   width: 100%;
-  margin-left: 70px;
+  margin-left: 75px;
   display: flex;
   justify-content: space-between;
 }

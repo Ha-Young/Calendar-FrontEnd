@@ -9,6 +9,7 @@ import { saveData } from 'utils/api';
 export const EventCantainer = ({ user, newEvent, setEvent }) => {
   useEffect(() => {
     if (newEvent) {
+      console.log(newEvent);
       saveData({user, ...newEvent});
     }
   }, [newEvent]);//event to firebase

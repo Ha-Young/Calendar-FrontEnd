@@ -1,4 +1,4 @@
-import { ADD_EVENT, REMOVE_EVENT, LOGIN } from 'constants/actionTypes';
+import { ADD_EVENT, REMOVE_EVENT, LOGIN, GET_DATA} from 'constants/actionTypes';
 
 
 export const addEvent = event => {
@@ -6,7 +6,8 @@ export const addEvent = event => {
     type: ADD_EVENT,
     title: event.title,
     description: event.description,
-    date: event.date
+    startDate: event.startDate,
+    endDate: event.endDate
   }
 };
 
@@ -23,4 +24,10 @@ export const loggin = (user, isLogin) => {
     user: user,
     isLogin: isLogin
   }
+};
+
+export const getData = events => {
+  return {
+    type: GET_DATA,
+  };
 };

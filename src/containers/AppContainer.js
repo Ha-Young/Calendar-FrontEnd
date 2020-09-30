@@ -14,9 +14,9 @@ export const AppContainer = ({ isLoggedIn, setIsLoggedIn }) => {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setIsLoggedIn(user.email, true);
+        setIsLoggedIn(user.uid, true);
       } else {
-        setIsLoggedIn(user.email, false);
+        setIsLoggedIn(user.uid, false);
       }
     });
   }, []);

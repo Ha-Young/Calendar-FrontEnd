@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 
-const EventMaker = ({ user, eventSubmit }) => {
+const EventMaker = ({ eventSubmit }) => {
   const [inputValues, setInputValues] = useState({
     title: '',
     description: '',
-    date: ''
+    startDate: '',
+    endDate: ''
   });
 
   const onSubmit = (event) => {
     event.preventDefault();
     eventSubmit(inputValues);
-    setInputValues({});
+    setInputValues({
+      title: '',
+      description: '',
+      startDate: '',
+      endDate: ''
+    });
   };
 
   const onChange = (event) => {
@@ -23,8 +29,11 @@ const EventMaker = ({ user, eventSubmit }) => {
       case 'description':
         setInputValues({ ...inputValues, description: value });
         break;
-      case 'date':
-        setInputValues({ ...inputValues, date: value });
+      case 'startDate':
+        setInputValues({ ...inputValues, startDate: value });
+        break;
+      case 'endDate':
+        setInputValues({ ...inputValues, endDate: value });
     }
   };
 
@@ -48,9 +57,16 @@ const EventMaker = ({ user, eventSubmit }) => {
         />
         <input
           type='datetime-local'
-          name='date'
-          placeholder='date'
-          value={inputValues.date}
+          name='startDate'
+          placeholder='start date'
+          value={inputValues.startDate}
+          onChange={onChange}
+        />
+        <input
+          type='datetime-local'
+          name='endDate'
+          placeholder='end date'
+          value={inputValues.endDate}
           onChange={onChange}
         />
         <button type='submit'>입력</button>
