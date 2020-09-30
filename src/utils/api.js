@@ -11,61 +11,7 @@ export async function saveSampleData () {
   });
 }
 
-/*
 
-events: {
-  [timeStamp-1]: {
-    event_1: {
-      id: event_1,
-      date: 2020-09-30,
-      startTime: 18:00,
-      endTime: 20:00,
-      title: title,
-      description: description
-    },
-    event_2: {
-      id: event_1,
-      date: 2020-09-30,
-      startTime: 18:00,
-      endTime: 20:00,
-      title: title,
-      description: description
-    }
-  },
-  [timeStamp-2]: {
-    event_1: {
-      ...
-    },
-    event_2: {
-      ...
-    }
-  }
-}
-
-*/
-
-// const DUMMY = {
-//   'date_1601337600000': [
-//     {
-//       id: 'event1',
-//       title: 'Watch movie',
-//       description: 'At home',
-//       date: '2020-09-29',
-//       startTime: '14:00',
-//       endTime: '16:00',
-//     }
-//   ],
-//   'date_1601424000000': [
-//     {
-//       id: 'event2',
-//       title: 'GO HOME',
-//       description: 'At home',
-//       date: '2020-09-30',
-//       startTime: '18:00',
-//       endTime: '20:00',
-//     }
-//   ]
-// };
 
 const DUMMY = {
   event_1: {
@@ -95,3 +41,26 @@ export function getSample() {
 
   return result;
 }
+
+// const DUMMY = {
+//   'date_1601337600000': [
+//     {
+//       id: 'event1',
+//       title: 'Watch movie',
+//       description: 'At home',
+//       date: '2020-09-29',
+//       startTime: '14:00',
+//       endTime: '16:00',
+//     }
+//   ],
+//   'date_1601424000000': [
+//     {
+//       id: 'event2',
+//       title: 'GO HOME',
+//       description: 'At home',
+//       date: '2020-09-30',
+//       startTime: '18:00',
+//       endTime: '20:00',
+//     }
+//   ]
+// };

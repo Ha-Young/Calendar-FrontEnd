@@ -1,18 +1,20 @@
 import { combineReducers } from 'redux';
 
-const weekly = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+// util
+
+const DAY_LIST = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const day = new Date().toISOString().substring(0, 10);
-const dayStringify = weekly[new Date().getDay()];
+const dayString = DAY_LIST[new Date().getDay()];
 
 const dateIninitialState = {
-  dayStringify: dayStringify,
+  dayStringify: dayString,
   current: day,
   selectedDay: day,
   isWeeklyMode: false,
-  weekList: makeWeekList()
+  weekList: generateWeekList()
 };
 
-function makeWeekList() {
+function generateWeekList() {
   const current = new Date();
   const week = [];
 
@@ -74,7 +76,7 @@ export const getEventById = (state, id) => {
 
 export const getEventListByDate = (state, target) => {
   const filtered = [];
-  // console.log(state, target);
+
   for (const id of Object.keys(state)) {
     if (state[id].date === target) {
       filtered.push(state[id]);

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, useRouteMatch, useHistory } from 'react-router-dom';
 import { getEventById } from '../../reducers';
 
-function UpdateEventContainer({ getEvent, onSubmit, onDelete }) {
+function UpdateEventContainer({ getState, onSubmit, onDelete }) {
   const [input, setInput] = useState({
     id: '',
     date: '',
@@ -16,13 +16,12 @@ function UpdateEventContainer({ getEvent, onSubmit, onDelete }) {
   const history = useHistory();
 
   useEffect(() => {
-    const targetEvent = getEvent(params.eventId);
+    const targetEvent = getState(params.eventId);
     if (targetEvent) setInput(targetEvent);
   }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(input);
     onSubmit(input);
   }
 
@@ -73,7 +72,7 @@ const updateEvent = (event) => {
 
 const mapStateToProps = (state) => {
   return {
-    getEvent(id) {
+    getState(id) {
       return getEventById(state.events, id);
     }
   }
