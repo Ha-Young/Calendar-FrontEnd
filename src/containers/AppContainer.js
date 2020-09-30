@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { authService } from '../../utils/firebase';
-import styles from './Auth.module.css';
+import { authService } from '../utils/firebase';
+import { App } from '../components/App/App';
+import { connect } from 'react-redux';
+import { loggin } from '../action/action';
 
-const Auth = ({ login, setLogin }) => {
+export const AppContainer = ({ isLoggedIn, setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isNewAccount, setIsNewAccount] = useState(false);
@@ -10,17 +12,18 @@ const Auth = ({ login, setLogin }) => {
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
-        setLogin(true);
+        setIsLoggedIn(user.email, true);
       } else {
-        setLogin(false);
+        setIsLoggedIn(user.email, false);
       }
     });
-  }, [login]);
+  }, []);
 
   const Logout = () => {
     authService.signOut();
-    setLogin(false);
+    setIsLoggedIn(false);
     setIsNewAccount(false);
     setEmail('');
     setPassword('');
@@ -28,6 +31,7 @@ const Auth = ({ login, setLogin }) => {
 
   const onChange = (event) => {
     const { target: { name, value } } = event;
+
     switch (name) {
       case 'email':
         setEmail(value);
@@ -39,7 +43,7 @@ const Auth = ({ login, setLogin }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    let data; //data 전달 사용 안함
+    let data;
     try {
       if (isNewAccount) {
         data = await authService.createUserWithEmailAndPassword(email, password);
@@ -60,7 +64,7 @@ const Auth = ({ login, setLogin }) => {
   return (
     <>
       {
-        !login ?
+        !isLoggedIn ?
           <>
             <form onSubmit={onSubmit}>
               <input
@@ -87,10 +91,24 @@ const Auth = ({ login, setLogin }) => {
           <>
             <div>{email}</div>
             <button onClick={Logout}>Logout</button>
+            <App />
           </>
       }
     </>
   )
 };
 
-export default Auth;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    isLoggedIn: state.isLogin
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setIsLoggedIn: (user, isLoggedIn) => { dispatch(loggin(user, isLoggedIn)) }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

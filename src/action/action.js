@@ -13,14 +13,14 @@ export const addEvent = event => {
 export const removeEvent = id => {
   return {
     type: REMOVE_EVENT,
-    id: id
+    id,
   }
 };
 
-export const loggin = boolean => {
+export const loggin = (user, isLogin) => {
   return {
     type: LOGIN,
-    boolean: boolean
+    user: user,
+    isLogin: isLogin
   }
 };
-
