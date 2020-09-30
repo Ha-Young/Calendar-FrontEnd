@@ -21,12 +21,12 @@ const TimeWeek = styled.div`
 
 
 
-const SchedulesWeek = styled.div`
-  padding-top: 10px;
-  display: grid;
-  grid-auto-rows: minmax(100px, auto);
-  align-items: space-between;
-`;
+// const SchedulesWeek = styled.div`
+//   padding-top: 10px;
+//   display: grid;
+//   grid-auto-rows: minmax(100px, auto);
+//   align-items: space-between;
+// `;
 
 const SchedulesDay = styled.div`
   padding-top: 10px;
@@ -54,7 +54,7 @@ const Days = styled.div`
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 8% 1fr;
+  grid-template-columns: 8% 1fr 6.8%;
   border: 3px solid blue;
   overflow: scroll;
 `;  
@@ -66,7 +66,7 @@ const Wrapper = styled.div`
 // `;
 
 
-export default function CalendarTimeline ({ type }) {
+export default function CalendarTimeline () {
   const [scrollRef, setScrollRef] = useState(useRef());
   
   useEffect (()=>{
@@ -78,7 +78,8 @@ export default function CalendarTimeline ({ type }) {
   return (
     <Wrapper ref={scrollRef}>
       <CalendarTimelineTime />
-      {/* <CalendarTimelineSchedule type={type}/> */}
+      <CalendarTimelineSchedule />
+      <div></div>
     </Wrapper>
   );
 }

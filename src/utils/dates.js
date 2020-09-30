@@ -6,7 +6,7 @@ export default function getMonthlyDates (move) {
   const today = new Date();
   const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + move, 1).getDay();
   const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + move + 1, 0).getDate();
-  const prevMonthLastDate = new Date(today.getFullYear(), today.getMonth() + move + -1, 0).getDate();
+  const prevMonthLastDate = new Date(today.getFullYear(), today.getMonth() + move, 0).getDate();
   let nextMonthFirstDate = new Date(today.getFullYear(), today.getMonth() + move + 1, 1).getDate();
   
   const monthlyDates = [];
@@ -50,10 +50,10 @@ export function getWeeklyDates (move) {
   const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];  
   const today = new Date();
   const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
-  const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+  const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
   const prevMonthLastDate = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-  let nextMonthFirstDate = new Date(today.getFullYear(), today.getMonth(), 1).getDate();
-  
+  let nextMonthFirstDate = new Date(today.getFullYear(), today.getMonth() + 1, 1).getDate();
+  debugger;
   const monthlyDates = [];
   let eachWeek = [];
   let isExcuted = false;

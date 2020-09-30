@@ -32,7 +32,7 @@ export default function CalendarContainer ({ onClick }) {
 // }, [scrollRef]);
 const [ changeWeek, setChangeWeek ] = useState(0);
 const { today, thisMonth, weeklyDates } = getWeeklyDates(changeWeek);
-// console.log(weeklyDates, 'wd')
+console.log(weeklyDates, 'wd')
 return (
   <Wrapper>
     <CalendarDateBar
@@ -41,7 +41,7 @@ return (
       onClickprevWeek={onClick.bind(setChangeWeek, changeWeek, -1)}
       onClickNextWeek={onClick.bind(setChangeWeek, changeWeek, 1)}
     />
-    <CalendarTimeline type="weekly"/>
+    <CalendarTimeline />
 
     {/* <CalendarDateBar type="daily"/>
     <CalendarTimeline /> */}
