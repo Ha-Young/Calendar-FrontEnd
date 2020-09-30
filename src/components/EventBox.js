@@ -49,7 +49,7 @@ export default function EventBox({
     title,
     description,
     id,
-    createdAt
+    date
   }
 }) {
   return (
@@ -58,7 +58,7 @@ export default function EventBox({
         <article>
           <h5>{title}</h5>
           <p>{description}</p>
-          <span>{createdAt.slice(0, 10)}</span>
+          <span>{date}</span>
         </article>
       </Link>
     </Wrapper>

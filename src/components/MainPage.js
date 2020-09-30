@@ -3,6 +3,7 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 
 import CalendarContainer from '../container/CalendarContainer';
 import CreateEventContainer from '../container/CreateEventContainer';
+import EventPageContainer from '../container/EventPageContainer';
 
 export default function MainPage() {
   const history = useHistory();
@@ -20,7 +21,7 @@ export default function MainPage() {
         <CreateEventContainer />
       </Route>
       <Route path="/events/:eventId">
-
+        <EventPageContainer />
       </Route>
     </Switch>
   );

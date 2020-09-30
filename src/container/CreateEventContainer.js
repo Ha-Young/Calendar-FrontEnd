@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+import { nanoid } from 'nanoid';
 
-import Input from '../components/Input';
 import Button from '../components/Button';
+import WriteEventForm from '../components/WriteEventForm';
 import { setDataToFirebase } from '../utils/api';
 
 const Container = styled.section`
@@ -58,25 +60,27 @@ function CreateEventContainer({
   uid,
 }) {
   const history = useHistory();
+
+  function handleGoBack() {
+    history.push('/calendar');
+  }
+
   const [eventData, setEventData] = useState({
-    date: "",
+    date: moment().format('YYYY-MM-DD'),
     description: "",
-    endTime: "",
-    startTime: "",
+    endTime: moment().hour(),
+    startTime: moment().hour(),
     title: "",
+    id: nanoid(12),
   });
 
-  function onChange({ target }) {
+  function handleChange({ target }) {
     setEventData((prev) => {
       return {
         ...prev,
         [target.name]: target.value,
       }
     })
-  }
-
-  function handleGoBack() {
-    history.push('/calendar');
   }
 
   function handleSubmit(e) {
@@ -88,54 +92,21 @@ function CreateEventContainer({
 
   return (
     <Container>
-      <fieldset>
-        <legend>이벤트 만들기</legend>
-        <div>
-          Title:
-          <Input
-            type='text'
-            onChange={onChange}
-            placeholder='Title 을 입력해주세요'
-            name='title'
-          />
-          Description:
-          <Input
-            type='text-area'
-            onChange={onChange}
-            placeholder='Description 을 입력해주세요'
-            name='description'
-          />
-          Date:
-          <Input
-            type='date'
-            onChange={onChange}
-            name='date'
-          />
-          StartTime:
-          <select name="startTime" onChange={onChange}>
-            {Array(24).fill(null).map((_, index) => {
-              return <option value={index}>{index}시</option>;
-            })}
-          </select>
-          EndTime:
-          <select name="endTime" onChange={onChange}>
-            {Array(24).fill(null).map((_, index) => {
-              return <option value={index}>{index}시</option>;
-            })}
-          </select>
-          <div>
-            <Button
-              value='취소'
-              onClick={handleGoBack}
-            />
-            <Button
-              type='submit'
-              value='이벤트 만들기'
-              onClick={handleSubmit}
-            />
-          </div>
-        </div>
-      </fieldset>
+      <WriteEventForm
+        formTitle="이벤트 만들기"
+        onChange={handleChange}
+        data={eventData}
+      >
+        <Button
+          value='취소'
+          onClick={handleGoBack}
+        />
+        <Button
+          type='submit'
+          value='이벤트 만들기'
+          onClick={handleSubmit}
+        />
+      </WriteEventForm>
     </Container>
   );
 }
@@ -148,7 +119,6 @@ function mapstateToProps(state) {
 
 CreateEventContainer.propTypes = {
   uid: PropTypes.string.isRequired,
-  createEvent: PropTypes.func.isRequired,
 };
 
 export default connect(mapstateToProps, null)(CreateEventContainer);

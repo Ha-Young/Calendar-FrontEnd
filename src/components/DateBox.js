@@ -22,6 +22,12 @@ const Container = styled.div`
     border: 1px solid ${({theme}) => theme.gray};
     text-align: center;
   }
+
+  .paint {
+    background: ${({theme}) => theme.blue};
+    border-radius: 10px;
+    color: white;
+  }
 `;
 
 function filterEvent(date, eventData) {
@@ -43,8 +49,8 @@ export default function DateBox({ date, eventData }) {
   const currentDateEventList = filterEvent(currentDate, eventData);
 
   const hours = Array(24).fill(null).map((_, hour) => {
-    const events = currentDateEventList.map((event) => {
-      return (isInEvent(hour, event.startTime, event.endTime) ? event.title : null );
+    const events = currentDateEventList.filter((event) => {
+      return isInEvent(hour, event.startTime, event.endTime);
     });
 
     return {
