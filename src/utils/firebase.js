@@ -4,13 +4,13 @@ import 'firebase/database';
 
 // TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  databaseURL: 'YOUR_DATABASE_URL',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_ID',
-  appId: 'YOUR_APP_ID'
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: 'calendar-toggo.firebaseapp.com',
+  databaseURL: 'https://calendar-toggo.firebaseio.com',
+  projectId: 'calendar-toggo',
+  storageBucket: 'calendar-toggo.appspot.com',
+  messagingSenderId: '118110214373',
+  appId: '1:118110214373:web:1d3a6668d814d4d5b19c0c',
 };
 
 // Initialize Firebase
