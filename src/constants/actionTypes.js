@@ -1,0 +1,1 @@
+export const RECEIVE_SCHEDULE = "RECEIVE_SCHEDULE";

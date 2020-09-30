@@ -3,12 +3,19 @@ import styled, { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Work+Sans');
 
+  @font-face {
+    font-family: 'IBMPlexSansKR-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Work Sans', 'IBMPlexSansKR-Light', sans-serif;
   }
 
   a {
@@ -18,7 +25,7 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const Main = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
 
   button{
     padding: 10px;
@@ -27,15 +34,27 @@ export const Main = styled.div`
 `;
 
 export const CalendarContainer = styled.div`
-  background-color: orangered;
+  /* background-color: orangered; */
   min-height: 500px;
   max-width: 80%;
   margin: 0 auto;
 `;
 
 export const Daily = styled.div`
-  background-color: white;
+  position: relative;
+  /* background-color: white; */
 
+  .timelines {
+    position: absolute;
+    width: 100%;
+    z-index: 500;
+  }
+  .timeline {
+    position: relative;
+    border: 1px solid #d9d7d7;
+    min-height: 60px;
+    max-height: 60px;
+  }
   .time {
     position: absolute;
     top: 0;
@@ -45,10 +64,25 @@ export const Daily = styled.div`
     color: #595959;
     font-size: 12px;
   }
-  .timeline {
+
+  .schedules {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+  }
+  .schedule {
     position: relative;
-    border: 1px solid #d9d7d7;
-    min-height: 50px;
+    top: 0px; /* 임시 */
+    box-shadow: 0 0 4px black;
+    margin: 0 10px;
+    padding:1em;
+    flex:1;
+
+    .scheduleDesc{
+      font-size: 0.8em;
+    }
   }
 `;
 
