@@ -2,17 +2,19 @@
   .TimeLine {
     width: 100px;
     height: 1152px;
-    padding: 20px;
   }
 
   .Time {
-    width: 100px;
+    width: 70px;
     height: 48px;
+    margin-left: 10px;
+    
   }
 
   .Time::after {
     content: '';
     border-bottom: #dadce0 1px solid;
     position: absolute;
-    width: 1600px;
+    width: 90%;
+    right: 2px;
   }

@@ -3,6 +3,7 @@ import { authService } from '../utils/firebase';
 import { App } from '../components/App/App';
 import { connect } from 'react-redux';
 import { loggin } from '../action/action';
+import { formatDistance, subDays } from 'date-fns'
 
 export const AppContainer = ({ isLoggedIn, setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,6 @@ export const AppContainer = ({ isLoggedIn, setIsLoggedIn }) => {
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         setIsLoggedIn(user.email, true);
       } else {

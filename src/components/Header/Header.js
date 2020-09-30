@@ -22,8 +22,11 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <nav>
+        <div className={styles.nextButton}>
         <button>PREV</button>
+        <div><h1>1월</h1></div>
         <button>NEXT</button>
+        </div>
         <div className={styles.Selector}>
           <select onChange={onChange}>
             <option value='WEEK'>{pathName === '/' ? 'WEEK' : 'DAY'}</option>
