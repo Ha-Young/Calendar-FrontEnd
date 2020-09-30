@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { authService } from '../../utils/firebase';
 import styles from './Auth.module.css';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { loggin } from '../../action/action';
 
 const Auth = ({ login, setLogin }) => {
   const [email, setEmail] = useState('');
@@ -19,7 +16,7 @@ const Auth = ({ login, setLogin }) => {
         setLogin(false);
       }
     });
-  }, []);
+  }, [login]);
 
   const Logout = () => {
     authService.signOut();
@@ -37,7 +34,6 @@ const Auth = ({ login, setLogin }) => {
         break;
       case 'password':
         setPassword(value);
-        break;
     }
   };
 
@@ -91,9 +87,6 @@ const Auth = ({ login, setLogin }) => {
           <>
             <div>{email}</div>
             <button onClick={Logout}>Logout</button>
-            <Link to="/events/new">
-              <button className={styles.AddEventButton}>add event</button>
-            </Link>
           </>
       }
     </>

@@ -1,4 +1,4 @@
-import {ADD_EVENT, REMOVE_EVENT, LOGIN} from 'constants/actionTypes';
+import { ADD_EVENT, REMOVE_EVENT, LOGIN } from 'constants/actionTypes';
 
 
 export const addEvent = event => {
@@ -6,8 +6,7 @@ export const addEvent = event => {
     type: ADD_EVENT,
     title: event.title,
     description: event.description,
-    startDate: event.startDate,
-    endDate: event.endDate
+    date: event.date
   }
 };
 
@@ -24,5 +23,4 @@ export const loggin = boolean => {
     boolean: boolean
   }
 };
-
 
