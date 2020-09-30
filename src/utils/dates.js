@@ -1,13 +1,13 @@
 
 //나중에 유즈메모 사용가능할듯
-export default function getMonthlyDates (move) {
+export default function getMonthlyDates (changeMonth) {
   //12월 > 1월 갈때, 1월 > 12월 갈때 년도 바뀌는 로직 추가해야함
   const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];  
   const today = new Date();
-  const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + move, 1).getDay();
-  const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + move + 1, 0).getDate();
-  const prevMonthLastDate = new Date(today.getFullYear(), today.getMonth() + move, 0).getDate();
-  let nextMonthFirstDate = new Date(today.getFullYear(), today.getMonth() + move + 1, 1).getDate();
+  const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + changeMonth, 1).getDay();
+  const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + changeMonth + 1, 0).getDate();
+  const prevMonthLastDate = new Date(today.getFullYear(), today.getMonth() + changeMonth, 0).getDate();
+  let nextMonthFirstDate = new Date(today.getFullYear(), today.getMonth() + changeMonth + 1, 1).getDate();
   
   const monthlyDates = [];
   let eachWeek = [];
@@ -41,19 +41,21 @@ export default function getMonthlyDates (move) {
   
   return {
     today: today.getDate(),
-    thisMonth: monthes[today.getMonth()], 
+    title: monthes[today.getMonth()],
+    thisMonth: monthes[today.getMonth() + changeMonth], 
     monthlyDates,
   };
 }
 
-export function getWeeklyDates (move) {
+export function getWeeklyDates (changeWeek) {
+  //주 바꾸다 달 바뀌면 같이 바뀌는 로직
   const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];  
   const today = new Date();
   const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
   const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
   const prevMonthLastDate = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
   let nextMonthFirstDate = new Date(today.getFullYear(), today.getMonth() + 1, 1).getDate();
-  debugger;
+  
   const monthlyDates = [];
   let eachWeek = [];
   let isExcuted = false;
@@ -84,7 +86,7 @@ export function getWeeklyDates (move) {
     }
   }
 
-  return (function (move) {
+  return (function getSpecificWeek (changeWeek) {
     let targetIndex;
     monthlyDates.forEach((week, i) => {
       if (week.includes(today.getDate())) {
@@ -92,16 +94,41 @@ export function getWeeklyDates (move) {
       }
     });
 
-    if (!move) move = 0;
+    if (!changeWeek) changeWeek = 0;
 
-    if (monthlyDates[targetIndex + move]) {
+    if (monthlyDates[targetIndex + changeWeek]) {
       return {
         today: today.getDate(),
-        thisMonth: monthes[today.getMonth()],
-        weeklyDates: [monthlyDates[targetIndex + move]],
+        title: monthes[today.getMonth()],
+        thisMonth: monthes[today.getMonth() + changeWeek],
+        weeklyDates: [monthlyDates[targetIndex + changeWeek]],
       };
     }
-  //else면 다시 불러오기 
-  })(move);
 
+    const adjacentMonthDates = getMonthlyDates(changeWeek);
+    const presentMonthlyDates = [...monthlyDates];
+    let newMonthlyDates;
+
+    if (targetIndex + changeWeek < 0) {
+      presentMonthlyDates.shift();
+      newMonthlyDates = [...adjacentMonthDates.monthlyDates, ...presentMonthlyDates];
+  
+      return {
+        today: today.getDate(),
+        title: monthes[today.getMonth()],
+        thisMonth: monthes[today.getMonth() + changeWeek],
+        weeklyDates: [newMonthlyDates[adjacentMonthDates.monthlyDates.length - 1 + changeWeek]],
+      };
+    }
+
+    adjacentMonthDates.shift();
+    newMonthlyDates = [...presentMonthlyDates, ...adjacentMonthDates.monthlyDates];
+
+    return {
+      today: today.getDate(),
+      title: monthes[today.getMonth()],
+      thisMonth: monthes[today.getMonth() + changeWeek],
+      weeklyDates: [newMonthlyDates[presentMonthlyDates.length - 1 + changeWeek]],
+    };
+  })(changeWeek);
 }

@@ -21,8 +21,8 @@ const MainDay = styled.div`
   overflow: hidden;
 `;
 
-export default function CalendarContainer ({ onClick }) {
-
+export default function CalendarContainer ({ weeklyDates, onClickPrevWeek, onClickNextWeek }) {
+console.log(weeklyDates)
 // const [scrollRef, setScrollRef] = useState(useRef());
 
 // useEffect (()=>{
@@ -30,16 +30,14 @@ export default function CalendarContainer ({ onClick }) {
 //     console.log(1)
 //   })
 // }, [scrollRef]);
-const [ changeWeek, setChangeWeek ] = useState(0);
-const { today, thisMonth, weeklyDates } = getWeeklyDates(changeWeek);
-console.log(weeklyDates, 'wd')
+
 return (
   <Wrapper>
     <CalendarDateBar
       type="weekly"
-      dates={weeklyDates}
-      onClickprevWeek={onClick.bind(setChangeWeek, changeWeek, -1)}
-      onClickNextWeek={onClick.bind(setChangeWeek, changeWeek, 1)}
+      dates={weeklyDates.weeklyDates}
+      onClickPrevWeek={onClickPrevWeek}
+      onClickNextWeek={onClickNextWeek}
     />
     <CalendarTimeline />
 

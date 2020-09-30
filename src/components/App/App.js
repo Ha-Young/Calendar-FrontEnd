@@ -6,12 +6,12 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import styles from './App.module.css';
 import Header from '../Header/Header';
 import { saveSampleData } from '../../utils/api';
-import getMonthlyDates from '../../utils/dates';
+import getMonthlyDates, { getWeeklyDates } from '../../utils/dates';
 import styled from 'styled-components';
 import SideBar from '../SideBar/SideBar';
 import CalendarContainer from '../Calendar/CalendarContainer/CalendarContainer';
 
-const Trya = styled.div`
+const Wrapper = styled.div`
   height: 100vh;
   display:grid;
   grid-template-rows: 15% 1fr;
@@ -27,28 +27,40 @@ const Main = styled.div`
 // Feel free to modify as you need.
 function App() {
   const [ changeMonth, setChangeMonth ] = useState(0);
-  const { thisMonth, monthlyDates } = getMonthlyDates(changeMonth); //리덕스 스테이트
+  const [ monthlyDates, setMonthlyDates ] = useState(getMonthlyDates(changeMonth));
+  const [ changeWeek, setChangeWeek ] = useState(0);
+  const [ weeklyDates, setWeeklyDates] = useState(getWeeklyDates(changeWeek));
+  
+  useEffect(() => {
+    setMonthlyDates(getMonthlyDates(changeMonth));
+  }, [changeMonth]);
+
+  useEffect(() => {
+    setWeeklyDates(getWeeklyDates(changeWeek));
+  }, [changeWeek]);
 
   const onClick = function (callback, status, change) {
     callback(status + change);
-  }
-
+    console.log('click')
+  };
 
   return (
-    <>
-    <Trya>
-      <Header thisMonth={thisMonth} />
+    <Wrapper>
+      <Header thisMonth={monthlyDates.title} />
       <Main>
         <SideBar 
-          thisMonth={thisMonth}
-          dates={monthlyDates}
-          onClickPrevMonth={onClick.bind(setChangeMonth, changeMonth, 1)}
-          onClickNextMonth={onClick.bind(setChangeMonth, changeMonth, -1)}
+          thisMonth={monthlyDates.thisMonth}
+          dates={monthlyDates.monthlyDates}
+          onClickPrevMonth={onClick.bind(null, setChangeMonth, changeMonth, -1)}
+          onClickNextMonth={onClick.bind(null, setChangeMonth, changeMonth, 1)}
         />
-        <CalendarContainer onClick={onClick}/>
+        <CalendarContainer 
+          weeklyDates={weeklyDates}
+          onClickPrevWeek={onClick.bind(null, setChangeWeek, changeWeek, -1)}
+          onClickNextWeek={onClick.bind(null, setChangeWeek, changeWeek, 1)}
+        />
       </Main>
-      </Trya>
-    </>
+    </Wrapper>
   );
 }
 

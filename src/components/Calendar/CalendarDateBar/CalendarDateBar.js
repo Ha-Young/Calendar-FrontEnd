@@ -9,14 +9,14 @@ const Wrapper = styled.div`
   grid-template-columns: 8% 1fr 7%;  
 `;
 
-export default function CalendarDateBar ({ type, dates, onClickprevWeek, onClickNextWeek }) {
+export default function CalendarDateBar ({ type, dates, onClickPrevWeek, onClickNextWeek }) {
   
   return (
     <Wrapper>
-      <ArrowShapedButton 
+      <ArrowShapedButton
         css={{margin: "25px 0 0 25px", width: "10px", height: "10px"}} 
         direction="left" 
-        onClick={onClickprevWeek} 
+        onClick={onClickPrevWeek}
       />
       <MonthlyCalendarBody type={type} dates={dates} />
       <ArrowShapedButton
