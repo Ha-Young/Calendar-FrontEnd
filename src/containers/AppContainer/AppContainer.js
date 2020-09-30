@@ -9,40 +9,44 @@ import { saveSampleData } from "../../utils/api";
 import Calendar from "../../components/Calendar/Calendar";
 import * as dayjs from "dayjs";
 import { connect } from "react-redux";
+import { changeViewMode } from "../../actions";
 
 // Feel free to modify as you need.
-function AppContainer({ onViewChange }) {
+function AppContainer({ onViewChange, isViewModeDaily }) {
+  console.log(dayjs().format());
+
   // useEffect(() => {
-  //   saveSampleData();
-  // }, []);
-
-  // console.log(dayjs().format());
-
-  useEffect(() => {
-    onViewChange();
-  }, [onViewChange]);
+  //   onViewChange();
+  // }, [onViewChange]);
 
   return (
     <div className={styles.AppContainer}>
-      <AppHeader />
+      <AppHeader
+        onViewChange={onViewChange}
+      />
       <Switch>
-        <Route path="/calendar" exact>
-          <div>Main</div>
+        <Route path="/" exact>
+          <Calendar
+            isViewModeDaily={isViewModeDaily}
+          />
         </Route>
       </Switch>
-      <Calendar />
     </div>
   );
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    onViewChange() {
+      dispatch(changeViewMode());
+    },
   };
 };
 
-const mapStateToProps = state => ({
-  viewMode: state
-});
+const mapStateToProps = state => {
+  return {
+    isViewModeDaily: state.isViewModeDaily,
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
