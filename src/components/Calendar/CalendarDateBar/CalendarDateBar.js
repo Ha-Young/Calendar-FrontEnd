@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import styles from './CalendarDateBar.module.css'
 import ArrowShapedButton from '../../Shared/Button/ArrowShapedButton/ArrowShapedButton';
 import MonthlyCalendarBody from '../../SideBar/MonthlyCalendar/MonthlyCalendarBody/MonthlyCalendarBody';
 import MonthlyCalendarWeek from '../../SideBar/MonthlyCalendar/MonthlyCalendarWeek/MonthlyCalendarWeek.js';
@@ -14,9 +13,17 @@ export default function CalendarDateBar ({ type, dates, onClickprevWeek, onClick
   
   return (
     <Wrapper>
-      <ArrowShapedButton className={styles.prevWeek} direction="left" onClick={onClickprevWeek} />
+      <ArrowShapedButton 
+        css={{margin: "25px 0 0 15px", width: "10px", height: "10px"}} 
+        direction="left" 
+        onClick={onClickprevWeek} 
+      />
       <MonthlyCalendarBody type={type} dates={dates} />
-      <ArrowShapedButton direction="right" onClick={onClickNextWeek} />
+      <ArrowShapedButton
+        css={{margin: "24px 0 0 10px", width: "10px", height: "10px"}} 
+        direction="right"
+        onClick={onClickNextWeek}
+      />
     </Wrapper>
   );
 }

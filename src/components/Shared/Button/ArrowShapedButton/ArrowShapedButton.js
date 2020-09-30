@@ -8,12 +8,12 @@ const Button = styled.i`
   border: solid black;
   border-width: 0 3px 3px 0;
   display: inline-block;
-  margin-top: 10px;
 `;
 
-export default function ArrowShapedButton ({ direction, onClick }) {
+export default function ArrowShapedButton ({ css, direction, onClick }) {
   return (
-    <Button 
+    <Button
+      style={css}
       className={styles[direction]}
       onClick={() => console.log(1)}>
     </Button>

@@ -9,9 +9,7 @@ const Wrapper = styled.div`
 `;
 
 export default function MonthlyCalendarWeek ({ isHead, dates }) {
-  //프롭 받아서 깔기
-// 7일치 깔기
-  console.log(dates, 'a')
+  
   function insertDates () {
     if (isHead) {
       const dayList = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

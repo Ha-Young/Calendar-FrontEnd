@@ -14,8 +14,8 @@ export default function MonthlyCalendarHead ({ thisMonth, onClickPrevMonth, onCl
   return (
     <Wrapper>
       <div style={{marginTop: "4px"}}>{thisMonth}</div>
-      <ArrowShapedButton direction="left" onClick={onClickPrevMonth} />
-      <ArrowShapedButton direction="right" onClick={onClickNextMonth} />
+      <ArrowShapedButton css={{marginTop: "10px"}} direction="left" onClick={onClickPrevMonth} />
+      <ArrowShapedButton css={{marginTop: "10px"}} direction="right" onClick={onClickNextMonth} />
     </Wrapper>
   );
 }
