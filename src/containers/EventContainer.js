@@ -1,76 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addEvent } from 'action/action';
-import Event from 'components/Event/Event';
+import EventDetail from 'components/EventDetail/EventDetail';
 import { Route } from 'react-router-dom';
+import EventMaker from 'components/EventMaker/EventMaker';
+import { saveData } from 'utils/api';
 
-export const NewEvent = ({ newEvent, setEvent }) => {
-  const [isCreateEvent, setIsCreateEvent] = useState(false);
-  const [inputValues, setInputValues] = useState({
-    title: '',
-    description: '',
-    date: ''
-  });
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    setEvent(inputValues);
-    setIsCreateEvent(true);
-    setInputValues({});
-  };
-
-  const onChange = (event) => {
-    const { target: { name, value } } = event;
-    switch (name) {
-      case 'title':
-        setInputValues({ ...inputValues, title: value });
-        break;
-      case 'description':
-        setInputValues({ ...inputValues, description: value });
-        break;
-      case 'date':
-        setInputValues({ ...inputValues, date: value });
+export const EventCantainer = ({ user, newEvent, setEvent }) => {
+  useEffect(() => {
+    if (newEvent) {
+      saveData({user, ...newEvent});
     }
-  };
+  }, [newEvent]);//event to firebase
 
   return (
     <>
-      <h3>New Event</h3>
-      <form onSubmit={onSubmit}>
-        <input
-          type='text'
-          name='title'
-          placeholder='title'
-          value={inputValues.title}
-          onChange={onChange}
-        />
-        <input
-          type='text'
-          name='description'
-          placeholder='description'
-          value={inputValues.description}
-          onChange={onChange}
-        />
-        <input
-          type='datetime-local'
-          name='date'
-          placeholder='date'
-          value={inputValues.date}
-          onChange={onChange}
-        />
-        <button type='submit'>입력</button>
-      </form>
-      {
-        isCreateEvent &&
-        <Event event={newEvent} />
-      }
+      <Route path='/events/new'>
+        <EventMaker user={user} eventSubmit={setEvent} />
+      </Route>
+      <Route path='/events/:eventId'>
+        <EventDetail events={newEvent} />
+      </Route>
     </>
-  )
-
+  );
 };
 
 const mapStateToProps = (state) => {
-  return { newEvent: state.event };
+  return {
+    user: state.user,
+    newEvent: state.events
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -79,5 +38,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewEvent);
-
+export default connect(mapStateToProps, mapDispatchToProps)(EventCantainer);

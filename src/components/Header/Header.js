@@ -1,11 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './Header.module.css';
-import Auth from '../Auth/Auth';
 import { Link } from 'react-router-dom';
 
 // TODO: Create your own header.
-export default function Header({ login, setLogin }) {
+export default function Header() {
   const history = useHistory();
   const pathName = history.location.pathname;
 
@@ -22,7 +21,6 @@ export default function Header({ login, setLogin }) {
 
   return (
     <header className={styles.header}>
-      <Auth login={login} setLogin={setLogin} />
       <nav>
         <button>PREV</button>
         <button>NEXT</button>
@@ -32,12 +30,9 @@ export default function Header({ login, setLogin }) {
             <option value='DAY'>{pathName !== '/' ? 'WEEK' : 'DAY'}</option>
           </select>
         </div>
-        {
-          login &&
-          <Link to="/events/new">
+          <Link to='/events/new'>
             <button className={styles.AddEventButton}>add event</button>
           </Link>
-        }
       </nav>
     </header>
   );
