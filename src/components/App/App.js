@@ -7,6 +7,7 @@ import styles from './App.module.css';
 import Header from '../Header/Header';
 import { saveSampleData } from '../../utils/api';
 import Calendar from '../Calendar/Calendar';
+import Weekly from '../Weekly/Weekly';
 
 // Feel free to modify as you need.
 function App() {
@@ -18,9 +19,10 @@ function App() {
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route exact path='/' exact component={ Calendar }/>
-        {/* <Route exact path='/calendar' component={ Calendar }/> */}
-        {/* <Route path='/events' component={ Events }/> */}
+        <Route exact path='/' exact component={ Calendar } />
+        <Route exact path='/calendar' component={ Calendar } />
+        <Route exact path='/weekly' component={ Weekly } />
+        {/* <Route path='/events' component={ Events } /> */}
         {/* <Route path='/events/:eventId' component={}/> */}
       </Switch>
     </div>

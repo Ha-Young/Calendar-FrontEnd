@@ -1,0 +1,23 @@
+.Date {
+  width: 100px;
+  height: 100px;
+}
+
+.Dayofweek {
+  width: 100px;
+  height: 30px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px;
+  padding-top: 7px;
+  color: grey;
+}
+
+.Day {
+  width: 100px;
+  height: 67px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 55px;
+  color: grey;
+}

@@ -1,0 +1,26 @@
+.WeeklyOutline {
+  width: 800px;
+  height: 90%;
+  border: 2px solid brown;
+  margin: 0 auto;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.SevenDays {
+  display: flex;
+  justify-content: flex-end;
+  width: 800px;
+  height: 100px;
+  background-color: burlywood;
+}
+
+.TimeTable {
+  display: flex;
+  width: 800px;
+}
+
+.box {
+  display: flex;
+  width: 100px;
+}

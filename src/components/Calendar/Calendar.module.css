@@ -4,12 +4,13 @@
   margin: 0 auto;
   width: 800px;
   height: 90%;
+  border: 2px solid brown;
 }
 
-.Daily {
-  width: 800px;
-  height: 90px;
-  background-color: cadetblue;
+.DateBox {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
 }
 
 .Box {
@@ -17,35 +18,4 @@
   flex-direction: row;
   width: 800px;
   height: 1250px;
-}
-
-.Timeline {
-  width: 100px;
-  height: 1250px;
-}
-
-.Time {
-  position: relative;
-  width: 100px;
-  height: 50px;
-  font-size: 11px;
-  border-top: 1px solid beige;
-}
-
-.Hour {
-  display: block;
-  position: relative;
-  text-align: center;
-  top: -3px;
-}
-
-.Todoline {
-  width: 680px;
-  height: 1250px;
-}
-
-.Todo {
-  width: 680px;
-  height: 50px;
-  border-top: 1px solid black;
 }
