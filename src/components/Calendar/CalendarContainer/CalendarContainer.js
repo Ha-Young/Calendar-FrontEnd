@@ -15,11 +15,7 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-const MainDay = styled.div`
-  display:grid;
-  grid-template-columns: 40% 1fr;
-  overflow: hidden;
-`;
+
 
 export default function CalendarContainer ({ weeklyDates, onClickPrevWeek, onClickNextWeek }) {
 console.log(weeklyDates)
@@ -39,10 +35,18 @@ return (
       onClickPrevWeek={onClickPrevWeek}
       onClickNextWeek={onClickNextWeek}
     />
-    <CalendarTimeline />
+    <CalendarTimeline type="weekly" />
 
-    {/* <CalendarDateBar type="daily"/>
-    <CalendarTimeline /> */}
+    <CalendarDateBar 
+      type="daily"
+      dates={weeklyDates.weeklyDates}
+      onClickPrevWeek={onClickPrevWeek}
+      onClickNextWeek={onClickNextWeek}
+    />
+    <CalendarTimeline type="daily" />
+      
+    
+    
 
   </Wrapper>
 );
