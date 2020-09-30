@@ -3,17 +3,20 @@ import ToggleButton from './ToggleButton';
 import GetDate from './GetDate';
 
 export default function Header ({
-  yesterday,
-  tomorrow,
+  year,
+  month,
+  day,
   handleYesterday,
   handleTomorrow,
 }) {
+
   return (
     <header style={{width: '100%'}}>
       <ToggleButton />
       <GetDate
-        yesterday={yesterday}
-        tomorrow={tomorrow}
+        year={year}
+        month={month}
+        day={day}
         handleYesterday={handleYesterday}
         handleTomorrow={handleTomorrow}
       />

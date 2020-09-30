@@ -1,20 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import getDate from "../components/Header/GetDate";
-import Header from "../components/Header/Header";
+import Calendar from "../components/Calendar/Calendar"
 import { moveToPrevDay, moveToNextDay } from "../actions/index";
-import {format, addDays, subDays} from 'date-fns';
 
-function HeaderContainer ({
-  prevDay,
-  nextDay,
+function CalendarContainer ({
+  date,
   clickPrevDay,
   clickNextDay,
 }) {
   return (
-    <Header
-      yesterday={prevDay}
-      tomorrow={nextDay}
+    <Calendar
+      getDate={date}
       handleYesterday={clickPrevDay}
       handleTomorrow={clickNextDay}
     />
@@ -25,8 +21,7 @@ function HeaderContainer ({
 // reducer date???
 const mapStateToProps = state => {
   return {
-    prevDay: state.date,
-    nextDay: state.date,
+    date: state.events,
   }
 };
 
@@ -35,12 +30,10 @@ const mapStateToProps = state => {
 // redux의 dispatch를 인자로 사용.. 이걸로 store 상태 변경
 const mapDispatchToProps = dispatch => {
   return {
-    clickPrevDay: () => {
-      dispatch(moveToPrevDay())
-    },
+    clickPrevDay: () => dispatch(moveToPrevDay()),
     clickNextDay: () => dispatch(moveToNextDay()),
   };
 };
 
 // store랑 reducer 연결시킨 컴포넌트(컨테이너)가 반환됨
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarContainer);

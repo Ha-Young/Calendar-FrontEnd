@@ -1,29 +1,35 @@
 
-import { LOG_IN, CLICK_PREV_BUTTON, CLICK_NEXT_BUTTON } from "../actions/constants";
-import { format, addDays, subDays } from "date-fns";
+import { CLICK_PREV_BUTTON, CLICK_NEXT_BUTTON, ADD_EVENT } from "../actions/constants";
+import { addDays, subDays } from "date-fns";
+
+// login 기능 가져오기..
 
 const initialState = {
-  date: new Date,
+  date: new Date(),
 }
 
-const changeDate = (state = initialState, action) => {
+const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CLICK_PREV_BUTTON:
       return {
         ...state,
         date: subDays(state.date, 1),
-      };
+      }
     case CLICK_NEXT_BUTTON:
       return {
         ...state,
         date: addDays(state.date, 1),
       };
+    case ADD_EVENT:
+      return {
+        ...state,
+      }
     default:
       return state;
   }
 }
 
-export default changeDate;
+export default eventsReducer;
 
 
 

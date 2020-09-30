@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import styles from './LogIn.module.css';
 import { FcGoogle } from 'react-icons/fc';
-import Calendar from '../Calendar/Calendar';
 import { SiGooglecalendar } from 'react-icons/si';
+import CalendarContainer from '../../containers/CalendarContainer';
 
 export default function LogIn () {
   const userState = {
@@ -31,8 +31,6 @@ export default function LogIn () {
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log("User signed in");
-        console.log(user.displayName, user.email);
         setLogInResult({
           isLogIn: true,
           name: user.displayName,
@@ -50,7 +48,7 @@ export default function LogIn () {
   return (
     <div className={styles.container}>
       {logInResult.isLogIn
-      ? <Calendar />
+      ? <CalendarContainer />
       : <div className={styles.contents}>
           <div className={styles.title}>
             Coogle Calendar

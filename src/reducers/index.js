@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import changeDate from "./events";
+import eventsReducer from "./events";
 
-const rootReducer = combineReducers({ date: changeDate });
+const rootReducer = combineReducers({ events: eventsReducer });
 
 export default rootReducer;
