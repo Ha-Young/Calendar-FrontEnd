@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import styles from './Header.module.css';
 
 // TODO: Create your own header.
-export default function Header () {
+function Header({ date, onChange }) {
+  const [isWeeklyMode, setWeeklyMode] = useState(date.weeklyMode);
+
+  useEffect(() => {
+    onChange(isWeeklyMode);
+  }, [isWeeklyMode]);
+
+  function handleChange({ target }) {
+    if (target.value === 'Week') {
+      return setWeeklyMode(true);
+    }
+    setWeeklyMode(false);
+  }
+
   return (
     <header className={styles.Header}>
       <nav>
+      <div>
+        <select name='weekly-select' id='weekly-select' onChange={handleChange}>
+          <option value='day'>Day</option>
+          <option value='Week'>Week</option>
+        </select>
+      </div>
         <ul>
           <li><Link to='/calendar'>Home</Link></li>
           <li><Link to='/event/new'>Make Event</Link></li>
@@ -15,3 +35,19 @@ export default function Header () {
     </header>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    date: state.date
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChange(value) {
+      dispatch({ type: 'CHANGE_CALENDAR_VIEW_MODE', payload: { weeklyMode: value } });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

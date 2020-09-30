@@ -14,6 +14,10 @@ function EventsContainer({ onLoad, events, date }) {
   }, [onLoad]);
 
   useEffect(() => {
+    console.log(date.weeklyMode);
+  }, [date]);
+
+  useEffect(() => {
     console.log(events);
     const filtered = [];
     for (const eventId of Object.keys(events)) {
@@ -27,11 +31,16 @@ function EventsContainer({ onLoad, events, date }) {
 
   return (
     <div className={styles.EventsContainer} >
-      <DailyCard
-        date={date}
-        events={filteredEvents}
-      />
-      {/* <DailyCard /> */}
+      {
+        !date.weeklyMode ?
+        <DailyCard
+          date={date}
+          events={filteredEvents}
+        />
+        :
+        Array.from({ length: 7 }).map((_, idx) => (<DailyCard key={idx} date={date}
+          events={filteredEvents} />))
+      }
     </div>
   );
 }
@@ -53,4 +62,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsContainer);
-

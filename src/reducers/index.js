@@ -17,6 +17,11 @@ const dateIninitialState = {
 
 const date = (state = dateIninitialState, action) => {
   switch (action.type) {
+    case 'CHANGE_CALENDAR_VIEW_MODE':
+      return {
+        ...state,
+        ...action.payload
+      }
     default:
       return state;
   }
