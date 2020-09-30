@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
+import MonthlyCalendarBody from './MonthlyCalendarBody/MonthlyCalendarBody';
+import MonthlyCalendarHead from './MonthlyCalendarHead/MonthlyCalendarHead';
 
 const Wrapper = styled.div`
   display: grid;
@@ -7,20 +9,12 @@ const Wrapper = styled.div`
   border: 3px solid yellowgreen;
 `;
 
-const CalendarHead = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 10% 10%;
-`;
-
-
 export default function MonthlyCalendar () {
 
   return (
     <Wrapper>
-      <CalendarHead>
-
-      </CalendarHead>
-      
+      <MonthlyCalendarHead></MonthlyCalendarHead>
+      <MonthlyCalendarBody></MonthlyCalendarBody>
     </Wrapper>
   );
 }
