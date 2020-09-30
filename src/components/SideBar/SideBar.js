@@ -23,6 +23,11 @@ const Dates = styled.div`
   grid-template-rows: repeat(7, 1fr);
 `;
 
+const Weeks = styled.div`
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+`;
+
 
 
 const EveryDay = styled.div`
