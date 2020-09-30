@@ -26,8 +26,8 @@ export default function DailyCard({ date, events }) {
 
   return (
     <div className={styles.DailyCard}>
-      <div>{date.dayStringify}</div>
-      <div>{date.selectedDay}</div>
+      {/* <div>{date.dayStringify}</div> */}
+      <div>{date}</div>
       {timeCellList.map((event, idx) => {
         if (event) {
           return (<TimeCell key={idx} event={event} />);

@@ -6,14 +6,24 @@ const dayStringify = weekly[new Date().getDay()];
 
 const dateIninitialState = {
   dayStringify: dayStringify,
-  today: day,
+  current: day,
   selectedDay: day,
-  weeklyMode: false,
+  isWeeklyMode: false,
+  weekList: makeWeekList()
 };
 
-// const eventsInitialState = {
-//   events: {}
-// }
+function makeWeekList() {
+  const current = new Date();
+  const week = [];
+
+  for (let i = 1; i <= 7; i++) {
+    const firstDay = current.getDate() - current.getDay() + i;
+    const day = new Date(current.setDate(firstDay)).toISOString().slice(0, 10);
+    week.push(day);
+  }
+
+  return week;
+}
 
 const date = (state = dateIninitialState, action) => {
   switch (action.type) {
@@ -61,6 +71,18 @@ export default combineReducers({
 export const getEventById = (state, id) => {
   return (state[id]);
 };
+
+export const getEventListByDate = (state, target) => {
+  const filtered = [];
+  // console.log(state, target);
+  for (const id of Object.keys(state)) {
+    if (state[id].date === target) {
+      filtered.push(state[id]);
+    }
+  }
+
+  return filtered;
+}
 
 // const events = function (state = [], action) {
 //   switch (action.type) {

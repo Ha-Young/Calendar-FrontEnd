@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import styles from './Header.module.css';
 
 // TODO: Create your own header.
-function Header({ date, onChange }) {
-  const [isWeeklyMode, setWeeklyMode] = useState(date.weeklyMode);
+function Header({ onChange }) {
+  // const [isWeeklyMode, setWeeklyMode] = useState(date.weeklyMode);
 
-  useEffect(() => {
-    onChange(isWeeklyMode);
-  }, [isWeeklyMode]);
+  // useEffect(() => {
+  //   onChange(isWeeklyMode);
+  // }, [isWeeklyMode]);
 
   function handleChange({ target }) {
     if (target.value === 'Week') {
-      return setWeeklyMode(true);
+      return onChange(true);
     }
-    setWeeklyMode(false);
+    onChange(false);
   }
 
   return (
@@ -36,18 +36,18 @@ function Header({ date, onChange }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    date: state.date
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     date: state.date
+//   };
+// };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onChange(value) {
-      dispatch({ type: 'CHANGE_CALENDAR_VIEW_MODE', payload: { weeklyMode: value } });
+      dispatch({ type: 'CHANGE_CALENDAR_VIEW_MODE', payload: { isWeeklyMode: value } });
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);

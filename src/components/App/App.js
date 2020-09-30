@@ -20,9 +20,9 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <Header />
       <Switch>
         <Route path='/calendar' exact>
+          <Header />
           <Calendar />
         </Route>
         <Route path='/event/new'>
