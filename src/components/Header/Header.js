@@ -16,7 +16,7 @@ function Header({ onChange }) {
     <header className={styles.Header}>
       <nav>
         <div>
-          <Link to='/event/new'>Make Event</Link>
+          <Link to='/event/new' style={{ textDecoration: 'none'}}>Make new event</Link>
         </div>
         <div>
           <select name='weekly-select' id='weekly-select' onChange={handleChange} defaultValue='Week'>

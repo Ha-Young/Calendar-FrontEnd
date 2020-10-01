@@ -60,7 +60,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     async onLoad() {
       const result = await readEventListOnce();
-      console.log('onLoad:', result);
+      // console.log('onLoad:', result);
       dispatch({ type: 'LOADED_EVENTS', payload: { isLoading: false }});
       dispatch({ type: 'RECEIVE_EVENTS', events: result });
     },

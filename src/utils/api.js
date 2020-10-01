@@ -1,5 +1,6 @@
 // TODO: You can modify, add, remove as you need.
 import firebase from './firebase';
+import { generateRandomString } from './generateRandomString';
 
 const database = firebase.database();
 const eventsRef = database.ref('events/');
@@ -12,13 +13,11 @@ const updateToEventList = (event) => {
   return { type: 'UPDATE_EVENT', events: event };
 };
 
-const generateRandomString = () => (Math.random().toString(36).substring(2));
-
 // ========================================================
 
 export async function readEventList(dispatch) {
   await eventsRef.on('value', function (snapshot) {
-    console.log('listener called');
+    // console.log('listener called');
     dispatch({ type: 'RECEIVE_EVENTS', events: snapshot.val() });
   });
 }
@@ -53,10 +52,6 @@ export async function deleteEvent(id, dispatch) {
   dispatch({ type: 'DELETE_EVENT', events: id });
 }
 
-  // console.log('readEvent: ', result.val());
-  // const result = await readEventListOnce();
-  // console.log('deleteEvent:', result);
-
 // ========================================================
 
 // export async function saveSampleData () {
@@ -68,19 +63,6 @@ export async function deleteEvent(id, dispatch) {
 //   //   test: 'text'
 //   // });
 // }
-
-// export async function readEventList() {
-//   await database.ref('events/').on('value', function (snapshot) {
-//     // if (snapshot.val() === null) {
-//     //   await database.ref('events/').set({
-//     //     test: 'text'
-//     //   });
-//     //   return;
-//     // }
-//     console.log('firebase: ', snapshot.val());
-//   });
-// }
-
 
 // export function getSample() {
 //   const result = new Promise((resolve) => {
@@ -110,26 +92,3 @@ export async function deleteEvent(id, dispatch) {
 //     endTime: '16:00',
 //   }
 // }
-
-// const DUMMY = {
-//   'date_1601337600000': [
-//     {
-//       id: 'event1',
-//       title: 'Watch movie',
-//       description: 'At home',
-//       date: '2020-09-29',
-//       startTime: '14:00',
-//       endTime: '16:00',
-//     }
-//   ],
-//   'date_1601424000000': [
-//     {
-//       id: 'event2',
-//       title: 'GO HOME',
-//       description: 'At home',
-//       date: '2020-09-30',
-//       startTime: '18:00',
-//       endTime: '20:00',
-//     }
-//   ]
-// };

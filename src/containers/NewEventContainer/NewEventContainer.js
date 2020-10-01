@@ -59,13 +59,6 @@ function NewEventContainer({ onSubmit }) {
   );
 }
 
-// Redux Action..?
-// const addToEventList = (event) => {
-//   const newId = `event_${Math.random().toString(36).substring(2)}`;
-//   event.id = newId;
-//   return { type: 'ADD_EVENT', events: { [newId] : event } };
-// };
-
 // Redux Subscription
 const mapStateToProps = (state) => {
   return {
@@ -83,58 +76,9 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewEventContainer);
 
-
-/*
-
-DB STRUCTURE..
-
-CRUD..
-
-events: {
-  [timeStamp-1]: {
-    event_1: {
-      id: event_1,
-      date: 2020-09-30,
-      startTime: 18:00,
-      endTime: 20:00,
-      title: title,
-      description: description
-    },
-    event_2: {
-      id: event_1,
-      date: 2020-09-30,
-      startTime: 18:00,
-      endTime: 20:00,
-      title: title,
-      description: description
-    }
-  },
-  [timeStamp-2]: {
-    event_1: {
-      ...
-    },
-    event_2: {
-      ...
-    }
-  }
-}
-
-*/
-
-// const makeEventObject = (event) => {
-//   const eventProps = ['id', 'title', 'description', 'date', 'startTime', 'endTime'];
-//   let eventObj = eventProps.reduce((obj, key, index) => {
-//     if (key === 'id') {
-//       obj[key] = 'event_' + Math.random().toString(36).substring(2);
-//       return obj;
-//     }
-//     if (!event[index - 1]) {
-//       obj[key] = null;
-//       return obj;
-//     }
-//     obj[key] = event[index - 1];
-//     return obj;
-//   }, {});
-
-//   return eventObj;
+// Redux Action..?
+// const addToEventList = (event) => {
+//   const newId = `event_${Math.random().toString(36).substring(2)}`;
+//   event.id = newId;
+//   return { type: 'ADD_EVENT', events: { [newId] : event } };
 // };

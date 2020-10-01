@@ -38,33 +38,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, null)(EventsContainer);
-
-// const [filteredEvents, setFilteredEvents] = useState(null);
-
-  // useEffect(() => {
-  //   if (date.isWeeklyMode) {
-  //     console.log(date.weekList);
-  //   }
-
-  //   // const filtered = [];
-  //   // for (const eventId of Object.keys(events)) {
-  //   //   if (events[eventId].date === date.selectedDay) {
-  //   //     filtered.push(events[eventId]);
-  //   //   }
-  //   // }
-
-  //   const result = getEventListByDate(events, date.selectedDay);
-  //   setFilteredEvents(result);
-  // }, [events, date]);
-
-  // useEffect(() => {
-  //   // console.log(events);
-  //   const filtered = [];
-  //   for (const eventId of Object.keys(events)) {
-  //     if (events[eventId].date === date.selectedDay) {
-  //       filtered.push(events[eventId]);
-  //     }
-  //   }
-
-  //   setFilteredEvents(filtered);
-  // }, [events]);

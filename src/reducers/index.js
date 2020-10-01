@@ -75,37 +75,3 @@ export const getEventListByDate = (state, target) => {
 
   return filtered;
 }
-
-// const events = function (state = [], action) {
-//   switch (action.type) {
-//     case 'RECEIVE_EVENTS':
-//       return [...new Set(
-//         [...state,
-//         ...action.events])
-//       ];
-//     case 'ADD_EVENT':
-//       return [
-//         ...state,
-//         action.events
-//       ];
-//     default:
-//       return state;
-//   }
-// };
-
-// case 'ADD_EVENT':
-//       const { date } = action.events;
-//       const timeStampId = `date_${new Date(date).getTime()}`;
-//       const newId = `event_${Math.random().toString(36).substring(2)}`;
-
-//       action.events.id = newId;
-
-//       if(!state[timeStampId]) {
-//         return {
-//           ...state,
-//           [timeStampId]: [action.events]
-//         };
-//       }
-
-//       state[timeStampId].push(action.events);
-//       return state;

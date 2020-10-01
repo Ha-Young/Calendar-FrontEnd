@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.

@@ -3,8 +3,6 @@
   padding-bottom: 100px;
   width: 98%;
   display: flex;
-  /* background-color: blue; */
-  /* position: relative; */
   justify-content: center;
 }
 
@@ -32,17 +30,6 @@ button {
   grid-template-rows: 60px repeat(25, 40px);
   position: absolute;
   top: 60px;
-  border: 0.1px solid blue;
   opacity: 0.1;
   grid-auto-flow: column;
-}
-
-.grid div:nth-child(even) {
-  border-bottom: 0.1px solid tomato;
-  /* background-color: thistle; */
-}
-
-.grid div:nth-child(odd) {
-  border-bottom: 0.1px solid tomato;
-  /* background-color: teal; */
 }

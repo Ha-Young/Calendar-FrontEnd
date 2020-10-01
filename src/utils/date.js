@@ -43,4 +43,10 @@ function generateWeekList(target, isPrev) {
   return week;
 }
 
-export { DAY_LIST, stepToDay, generateToday, generateDayString, generateWeekList }
+export {
+  DAY_LIST,
+  stepToDay,
+  generateToday,
+  generateDayString,
+  generateWeekList
+};

@@ -69,12 +69,6 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
   );
 }
 
-// const updateEvent = (event) => {
-//   return { type: 'UPDATE_EVENT', events: { [event.id] : event } };
-// };
-
-// Redux Subscription
-
 const mapStateToProps = (state) => {
   return {
     getState(id) {
@@ -97,3 +91,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateEventContainer);
+
+// const updateEvent = (event) => {
+//   return { type: 'UPDATE_EVENT', events: { [event.id] : event } };
+// };
