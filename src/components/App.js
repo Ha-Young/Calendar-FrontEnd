@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import LoginPage from './LoginPage';
 import MainPage from './MainPage';
 
-export default function App({ isLogin }) {
+export default function App({ isLogin, isLoading }) {
   return (
     isLogin ?
-      <MainPage />
+      <MainPage isLoading={isLoading}/>
     :
       <LoginPage />
   );

@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ClockLoader from 'react-spinners/ClockLoader';
-import styled from 'styled-components';
 
 import App from '../components/App';
 import { authService, dataService } from '../utils/api';
 import { reduceSnapshot } from '../utils/utilFunction';
 import { setUser, setInitData } from '../actions';
 
-const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 function AppContainer({ isLogin, currentUserID, setUser, setInitData }) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading]= useState(true);
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
@@ -37,22 +27,14 @@ function AppContainer({ isLogin, currentUserID, setUser, setInitData }) {
   }, [currentUserID, setInitData]);
 
   return (
-      isLoading ?
-        <Wrapper>
-          <ClockLoader
-            size={150}
-            color={'navy'}
-          />
-        </Wrapper>
-      :
-        <App isLogin={isLogin}/>
+    <App isLogin={isLogin} isLoading={isLoading}/>
   );
 }
 
 function mapStateToProps(state) {
   return {
     isLogin: state.isLogin,
-    currentUserID: state.user.uid,
+    currentUserID: state.user?.uid,
   };
 }
 
