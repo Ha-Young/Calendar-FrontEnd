@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./styles.module.css";
-import TimeTable from "../TimeTable/TimeTable";
+import styles from "./Weekly.module.css";
 import moment from "moment";
+import TimeTable from "../TimeTable/TimeTable";
 
-export default function Weekly ({ date, eventDetail }) {
+export default function Weekly ({ date, eventList }) {
   const days = [];
   for (let i = 0; i < 7; i++) {
     days.push(moment(date).day(i));
@@ -12,7 +12,9 @@ export default function Weekly ({ date, eventDetail }) {
   return (
     <div className={styles.Weekly}>
       <div className={styles.timeList}>
-        <div><h2 className={styles.time}>Time</h2></div>
+        <div>
+          <h2 className={styles.time}>Time</h2>
+        </div>
         <div>오전 0시</div>
         <div>오전 1시</div>
         <div>오전 2시</div>
@@ -40,11 +42,17 @@ export default function Weekly ({ date, eventDetail }) {
       </div>
       {
         days.map((day, index) => {
-          const dayOfEvents = eventDetail.filter((event) => {
-            return event.eventDate === moment(day).format("YYYY-MM-DD");
+          const matchedEventList = eventList.filter((list) => {
+            return list.eventDate === moment(day).format("YYYY-MM-DD");
           });
 
-          return <TimeTable key={index} date={moment(day).format("YYYY-MM-DD")} dayOfEvents={dayOfEvents} />
+          return (
+            <TimeTable
+              key={index}
+              date={moment(day).format("YYYY-MM-DD")}
+              matchedEventList={matchedEventList}
+            />
+          );
         })
       }
     </div>

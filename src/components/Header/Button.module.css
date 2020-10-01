@@ -1,0 +1,24 @@
+.Button {
+  border: 1px solid #E5E8E8;
+  margin-bottom: 50px;
+  width: 200px;
+  height: 40px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  text-align-last: center;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+.Button:focus {
+  border: 0;
+  outline: 0;
+}
+
+.Button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border: none;
+}

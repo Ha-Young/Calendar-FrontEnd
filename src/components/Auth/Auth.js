@@ -1,5 +1,7 @@
 import React from "react";
 import { authService, firebaseInstance } from "../../utils/firebase";
+import styles from "./Auth.module.css";
+import Button from "../Header/Button";
 
 export default function Auth () {
   const onSocialClick = async () => {
@@ -8,7 +10,12 @@ export default function Auth () {
   };
 
   return (
-    <button onClick={onSocialClick}>Continue with Google</button>
+    <main className={styles.Auth}>
+      <h1>Calendar</h1>
+      <Button
+        onClick={onSocialClick}
+        title="Continue with Google"
+      />
+    </main>
   );
 }
-

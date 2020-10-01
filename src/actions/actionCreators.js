@@ -1,14 +1,22 @@
 import {
+  GET_STORED_EVENTS_DATA,
   ADD_EVENT,
-  USER_LOGIN,
-  USER_LOGOUT,
-  CLICK_PREV_BUTTON,
-  CLICK_NEXT_BUTTON,
-  CHANGE_WEEKLY_VIEW,
-  GET_EVENTS_DATA,
   UPDATE_EVENT,
   DELETE_EVENT,
+  USER_LOGIN,
+  USER_LOGOUT,
+  CLICK_PREV_DATE_BUTTON,
+  CLICK_NEXT_DATE_BUTTON,
+  CHANGE_WEEKLY_VIEW,
+  SHOW_ERROR_MESSAGE,
 } from "./constants";
+
+export const getStoredEventsData = (data) => {
+  return {
+    type: GET_STORED_EVENTS_DATA,
+    data
+  };
+};
 
 export const addEvent = (eventDetails) => {
   return {
@@ -43,17 +51,17 @@ export const userLogOut = () => {
   };
 };
 
-export const clickPrevButton = (days) => {
+export const clickPrevDateButton = (days) => {
   return {
-    type: CLICK_PREV_BUTTON,
-    days
+    type: CLICK_PREV_DATE_BUTTON,
+    days,
   };
 };
 
-export const clickNextButton = (days) => {
+export const clickNextDateButton = (days) => {
   return {
-    type: CLICK_NEXT_BUTTON,
-    days
+    type: CLICK_NEXT_DATE_BUTTON,
+    days,
   };
 };
 
@@ -63,10 +71,9 @@ export const changeWeeklyView = () => {
   };
 };
 
-export const getEventsData = (data) => {
+export const showErrorMessage = (error) => {
   return {
-    type: GET_EVENTS_DATA,
-    data
+    type: SHOW_ERROR_MESSAGE,
+    error,
   };
 };
-

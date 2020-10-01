@@ -1,45 +1,48 @@
 import React from "react";
-import styles from "./styles.module.css";
-import moment from "moment";
 import { Link } from "react-router-dom";
+import moment from "moment";
+import styles from "./TimeTable.module.css";
 
-export default function TimeTable ({ date, dayOfEvents }) {
+
+export default function TimeTable ({ date, matchedEventList }) {
   const timeLine = Array(24);
 
-  dayOfEvents.forEach((item) => {
-    const startTime = parseInt(item.startTime.substring(0, 2));
-    const endTime = parseInt(item.endTime.substring(0, 2));
+  matchedEventList.forEach((list) => {
+    const startTime = Number(list.startTime.substring(0, 2));
+    const endTime = Number(list.endTime.substring(0, 2));
     const duration = endTime - startTime;
 
     for (let i = startTime; i < startTime + duration; i++) {
-      if (item.eventDate === date) {
-        timeLine[i] = [item.eventName, item.id];
+      if (list.eventDate === date) {
+        timeLine[i] = [list.eventName, list.id];
       }
     }
   });
 
+  // h2 주변에 div 없애기
   return (
-    <>
-      <div className={styles.TimeTable}>
-        <div><h2 className={styles.date}>{moment(date).format("DD")}</h2></div>
-        {
-          [...timeLine].map((item, index) => {
-            return (
-              item ?
-                <Link to={`/events/${item[1]}`} className={styles.link}>
+    <div className={styles.TimeTable}>
+      <div><h2 className={styles.date}>{moment(date).format("DD")}</h2></div>
+      {
+        [...timeLine].map((list, index) => {
+          return (
+            list
+              ? <Link
+                  to={`/events/${list[1]}`}
+                  className={styles.link}
+                >
                   <div
                     key={index}
-                    value={item[1]}
-                    style={{backgroundColor: "#95A5A6", color: "white"}} // CSS module 조건부 렌더링으로 바꿀 방법 고민해보기
+                    value={list[1]}
+                    className={styles.matchedTime}
                   >
-                    {item[0]}
+                    {list[0]}
                   </div>
                 </Link>
-              : <div key={index}>{item}</div>
-            );
-          })
-        }
-      </div>
-    </>
+              : <div key={index}></div>
+          );
+        })
+      }
+    </div>
   );
 }

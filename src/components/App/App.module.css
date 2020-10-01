@@ -1,9 +1,16 @@
+.appMain {
+  display: flex;
+}
+
 body {
   margin: 0;
 }
-.App {
-  display: flex;
+
+a {
+  text-decoration: none;
 }
-h1 {
-  color: white;
+
+button:focus {
+  outline: 0;
+  cursor: pointer;
 }

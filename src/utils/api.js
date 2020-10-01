@@ -1,27 +1,28 @@
-// TODO: You can modify, add, remove as you need.
-import firebase from './firebase';
+import firebase from "./firebase";
 
 const database = firebase.database();
 
-export async function pushData (data) {
+export const pushData = async (data) => {
   await database.ref(`/${data.id}`).set(data);
-}
+};
 
-export async function getData () {
-  const data = [];
+export const getData = async () => {
+  const eventData = [];
   await database.ref("/").once("value", (snapshot) => {
     snapshot.forEach((childSnapshot) => {
-      data.push(childSnapshot.val());
+      eventData.push(childSnapshot.val());
     });
   });
 
-  return data;
-}
+  return eventData;
+};
 
-export async function updateData (data) {
+export const updateData = async (data) => {
   await database.ref(`/${data.id}`).update(data);
-}
+};
 
-export async function deleteData (data) {
-  await database.ref(`/${data.id}`).remove(() => console.log("remove done..."));
-}
+export const deleteData = async (data) => {
+  await database.ref(`/${data.id}`).remove(() => {
+    console.log("remove done...");
+  }); // 여기도 고치기
+};

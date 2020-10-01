@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styles from "./NewEvent.module.css";
 import { useHistory } from "react-router-dom";
+import styles from "./NewEvent.module.css";
 import moment from "moment";
 
 export default function NewEvent ({ addEvent }) {
@@ -13,13 +13,19 @@ export default function NewEvent ({ addEvent }) {
     endTime: "",
   });
 
-  const { eventName, eventDescription, eventDate, startTime, endTime } = eventDetails;
+  const {
+    eventName,
+    eventDescription,
+    eventDate,
+    startTime,
+    endTime
+  } = eventDetails;
 
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
   };
 
-  const onChange = (event) => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     setEventDetails({
       ...eventDetails,
@@ -27,13 +33,17 @@ export default function NewEvent ({ addEvent }) {
     });
   };
 
-  const onClick = () => {
+  const handleSubmitButton = () => {
     const id = "event" + Date.now();
-    addEvent({...eventDetails, createdAt: moment().toISOString(), id: id});
+    addEvent({
+      id: id,
+      createdAt: moment().toISOString(),
+      ...eventDetails,
+    });
     history.push("/calendar");
   };
 
-  const handleClick = (event) => {
+  const handleCancelButton = (event) => {
     event.preventDefault();
     history.push("/calendar");
   };
@@ -43,17 +53,60 @@ export default function NewEvent ({ addEvent }) {
   return (
     <div className={styles.NewEvent}>
       <h2>Create Events</h2>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="eventName">Event Name</label>
-        <input type="text" name="eventName" placeholder="Event Name" value={eventName} onChange={onChange} required/>
+        <input
+          type="text"
+          name="eventName"
+          placeholder="Event Name"
+          value={eventName}
+          onChange={handleChange}
+          required
+        />
         <label htmlFor="eventDescription">Event Description</label>
-        <input type="text" name="eventDescription" placeholder="Event Description" value={eventDescription} onChange={onChange} required/>
+        <input
+          type="text"
+          name="eventDescription"
+          placeholder="Event Description"
+          value={eventDescription}
+          onChange={handleChange}
+          required
+        />
         <label htmlFor="eventDate">Event Date</label>
-        <input type="date" name="eventDate" value={eventDate} onChange={onChange} required/>
-        <input type="time" name="startTime" value={startTime} onChange={onChange} required/>
-        <input type="time" name="endTime" value={endTime} onChange={onChange} required/>
-        <button className={styles.submitButton} onClick={onClick} disabled={isEventDetailsFilled ? false : true}>Submit</button>
-        <button className={styles.cancelButton} onClick={handleClick}>Cancel</button>
+        <input
+          type="date"
+          name="eventDate"
+          value={eventDate}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="time"
+          name="startTime"
+          value={startTime}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="time"
+          name="endTime"
+          value={endTime}
+          onChange={handleChange}
+          required
+        />
+        <button
+          className={styles.submitButton}
+          onClick={handleSubmitButton}
+          disabled={isEventDetailsFilled ? false : true}
+        >
+          Submit
+        </button>
+        <button
+          className={styles.cancelButton}
+          onClick={handleCancelButton}
+        >
+          Cancel
+        </button>
       </form>
     </div>
   );

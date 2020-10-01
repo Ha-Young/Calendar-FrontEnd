@@ -1,15 +1,37 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { userLogIn, userLogOut, clickPrevButton, clickNextButton, changeWeeklyView, getEventsData, updateEvent, deleteEvent} from "../actions/actionCreators";
+import { getData } from "../utils/api";
+import {
+  userLogIn,
+  userLogOut,
+  clickPrevDateButton,
+  clickNextDateButton,
+  changeWeeklyView,
+  getStoredEventsData
+} from "../actions/actionCreators";
 import App from "../components/App/App";
-import { getData, updateData, deleteData } from "../utils/api";
 
-function AppContainer ({ userLogIn, userLogOut, isLoggedIn, date, isDailyView, clickPrevButton, clickNextButton, changeWeeklyView, getEventsData, eventDetail, updateEvent, deleteEvent }) {
+function AppContainer (props) {
+  const {
+    userLogIn,
+    userLogOut,
+    isLoggedIn,
+    date,
+    isDailyView,
+    clickPrevDateButton,
+    clickNextDateButton,
+    changeWeeklyView,
+    getStoredEventsData,
+    eventList
+  } = props;
+
+  const getStoredData = async () => {
+    const storedEventsData = await getData();
+    getStoredEventsData(storedEventsData);
+  };
+
   useEffect(() => {
-    (async function getStoredData () {
-      const storedData = await getData();
-      getEventsData(storedData);
-    })();
+    getStoredData();
   }, []);
 
   return (
@@ -19,24 +41,22 @@ function AppContainer ({ userLogIn, userLogOut, isLoggedIn, date, isDailyView, c
       isLoggedIn={isLoggedIn}
       date={date}
       isDailyView={isDailyView}
-      clickPrevButton={clickPrevButton}
-      clickNextButton={clickNextButton}
+      clickPrevDateButton={clickPrevDateButton}
+      clickNextDateButton={clickNextDateButton}
       changeWeeklyView={changeWeeklyView}
-      eventDetail={eventDetail}
-      updateEvent={updateEvent}
-      deleteEvent={deleteEvent}
+      eventList={eventList}
     />
   );
 }
 
 const mapStateToProps = (state) => {
-  const { manageEvent: {date, isLoggedIn, isDailyView}, eventDetail } = state;
+  const { eventControl: { date, isLoggedIn, isDailyView }, eventList } = state;
 
   return {
-    isLoggedIn: isLoggedIn,
     date: date,
+    isLoggedIn: isLoggedIn,
     isDailyView: isDailyView,
-    eventDetail: eventDetail,
+    eventList: eventList,
   };
 };
 
@@ -44,26 +64,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     userLogIn: () => dispatch(userLogIn()),
     userLogOut: () => dispatch(userLogOut()),
-    clickPrevButton: (days) => dispatch(clickPrevButton(days)),
-    clickNextButton: (days) => dispatch(clickNextButton(days)),
+    clickPrevDateButton: (days) => dispatch(clickPrevDateButton(days)),
+    clickNextDateButton: (days) => dispatch(clickNextDateButton(days)),
     changeWeeklyView: () => dispatch(changeWeeklyView()),
-    getEventsData: (data) => dispatch(getEventsData(data)),
-    updateEvent: async (eventDetails) => {
-      try {
-        await updateData(eventDetails);
-        dispatch(updateEvent(eventDetails));
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    deleteEvent: async (eventDetails) => {
-      try {
-        await deleteData(eventDetails);
-        dispatch(deleteEvent(eventDetails));
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    getStoredEventsData: (data) => dispatch(getStoredEventsData(data)),
   }
 };
 

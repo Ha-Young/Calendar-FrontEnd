@@ -1,6 +1,5 @@
-import { combineReducers } from 'redux';
-import manageEvent, { eventDetail } from './manageEvent';
+import { combineReducers } from "redux";
+import eventControl, { eventList } from "./events";
 
-const rootReducer = combineReducers({ manageEvent, eventDetail });
-// events: manageEvent 이런 식으로..! ventDetail -> eventList... 배열이니까 바꾸는 것 고민, manageEvent도 명사로 바꾸기
+const rootReducer = combineReducers({ eventControl, eventList });
 export default rootReducer;

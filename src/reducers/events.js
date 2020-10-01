@@ -1,31 +1,26 @@
 import {
-  ADD_EVENT ,
-  USER_LOGIN,
-  USER_LOGOUT,
-  CLICK_PREV_BUTTON,
-  CLICK_NEXT_BUTTON,
-  CHANGE_WEEKLY_VIEW,
-  GET_EVENTS_DATA,
+  GET_STORED_EVENTS_DATA,
+  ADD_EVENT,
   UPDATE_EVENT,
   DELETE_EVENT,
+  USER_LOGIN,
+  USER_LOGOUT,
+  CLICK_PREV_DATE_BUTTON,
+  CLICK_NEXT_DATE_BUTTON,
+  CHANGE_WEEKLY_VIEW,
+  SHOW_ERROR_MESSAGE,
 } from "../actions/constants";
 import moment from "moment";
 
-const initialState = {
-  date: moment().format("YYYY-MM-DD"),
-  isLoggedIn: false,
-  isDailyView: true,
-};
-
-export const eventDetail = (state = [], action) => {
+export const eventList = (state = [], action) => {
   switch (action.type) {
+    case GET_STORED_EVENTS_DATA:
+      return state.concat(action.data);
     case ADD_EVENT:
       return [
         action.eventDetails,
-        ...state
+        ...state,
       ];
-    case GET_EVENTS_DATA:
-      return state.concat(action.data);
     case UPDATE_EVENT:
       return state.map((item) => {
         if (item.id !== action.eventDetails.id) {
@@ -42,7 +37,14 @@ export const eventDetail = (state = [], action) => {
   }
 };
 
-const manageEvent = (state = initialState, action) => {
+const initialState = {
+  date: moment().format("YYYY-MM-DD"),
+  isLoggedIn: false,
+  isDailyView: true,
+  error: null,
+};
+
+const eventControl = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOGIN:
       return {
@@ -54,12 +56,12 @@ const manageEvent = (state = initialState, action) => {
         ...state,
         isLoggedIn: false,
       };
-    case CLICK_PREV_BUTTON:
+    case CLICK_PREV_DATE_BUTTON:
       return {
         ...state,
         date: moment(state.date).subtract(action.days, "days").format("YYYY-MM-DD"),
       };
-    case CLICK_NEXT_BUTTON:
+    case CLICK_NEXT_DATE_BUTTON:
       return {
         ...state,
         date: moment(state.date).add(action.days, "days").format("YYYY-MM-DD"),
@@ -68,10 +70,16 @@ const manageEvent = (state = initialState, action) => {
       return {
         ...state,
         isDailyView: !state.isDailyView,
-      }
+      };
+    // 다시 생각해보세요 에러 메시지
+    case SHOW_ERROR_MESSAGE:
+      return {
+        ...state,
+        error: true,
+      };
     default:
       return state;
   }
 };
 
-export default manageEvent;
+export default eventControl;

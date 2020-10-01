@@ -1,33 +1,38 @@
 import React, { useEffect, useState } from "react";
-import styles from "./EventDetail.module.css";
 import { useParams, useHistory } from "react-router-dom";
+import styles from "./EventDetail.module.css";
 import moment from "moment";
 
-export default function EventDetail ({ setEventId, matchEvent, updateEvent, deleteEvent }) {
+export default function EventDetail ({ setEventId, matchedEvent, updateEvent, deleteEvent }) {
+  const history = useHistory();
   const [eventDetails, setEventDetails] = useState({});
   const [isEditButtonClicked, setIsEditButtonClicked] = useState(false);
-  const { eventName, eventDescription, eventDate, startTime, endTime } = eventDetails;
-
-  const history = useHistory();
   const { eventId } = useParams();
+  const {
+    eventName,
+    eventDescription,
+    eventDate,
+    startTime,
+    endTime
+  } = eventDetails;
 
   useEffect(() => {
     setEventId(eventId);
     setEventDetails({
       ...eventDetails,
-      eventName : matchEvent?.eventName,
-      eventDescription: matchEvent?.eventDescription,
-      eventDate: matchEvent?.eventDate,
-      startTime: matchEvent?.startTime,
-      endTime: matchEvent?.endTime,
+      eventName : matchedEvent?.eventName,
+      eventDescription: matchedEvent?.eventDescription,
+      eventDate: matchedEvent?.eventDate,
+      startTime: matchedEvent?.startTime,
+      endTime: matchedEvent?.endTime,
     });
-  }, [matchEvent]);
+  }, [matchedEvent]);
 
-  const onSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
   };
 
-  const onChange = (event) => {
+  const handleChange = (event) => {
     const { value, name } = event.target;
     setEventDetails({
       ...eventDetails,
@@ -35,24 +40,34 @@ export default function EventDetail ({ setEventId, matchEvent, updateEvent, dele
     });
   };
 
-  const handleEditButtonClick = () => {
+  const handleEditButton = () => {
     if (!isEditButtonClicked) {
       setIsEditButtonClicked(true);
       return;
     }
-    updateEvent({...eventDetails, createdAt: moment().toISOString(), id: eventId});
+
+    updateEvent({
+      id: eventId,
+      createdAt: moment().toISOString(),
+      ...eventDetails,
+    });
     history.push("/calendar");
   };
 
-  const handleDeleteButtonClick = () => {
+  const handleDeleteButton = () => {
     const confirmDelete = window.confirm("삭제하시겠습니까?");
+
     if (confirmDelete) {
-      deleteEvent({...eventDetails, createdAt: moment().toISOString(), id: eventId});
+      deleteEvent({
+        id: eventId,
+        createdAt: moment().toISOString(),
+        ...eventDetails,
+      });
       history.push("/calendar");
     }
   };
 
-  const handleCancelButtonClick = () => {
+  const handleCancelButton = () => {
     history.push("/calendar");
   };
 
@@ -60,20 +75,60 @@ export default function EventDetail ({ setEventId, matchEvent, updateEvent, dele
     <div className={styles.EventDetail}>
       <h2>Event Details</h2>
       <fieldset disabled={isEditButtonClicked ? false : true}>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="eventName">Event Name</label>
-          <input type="text" name="eventName" value={eventName || ""} onChange={onChange} />
+          <input
+            type="text"
+            name="eventName"
+            value={eventName || ""}
+            onChange={handleChange}
+          />
           <label htmlFor="eventDescription">Event Description</label>
-          <input type="text" name="eventDescription" value={eventDescription || ""} onChange={onChange}/>
+          <input
+            type="text"
+            name="eventDescription"
+            value={eventDescription || ""}
+            onChange={handleChange}
+          />
           <label htmlFor="eventDate">Event Date</label>
-          <input type="date" name="eventDate" value={eventDate || ""} onChange={onChange}/>
-          <input type="time" name="startTime" value={startTime || ""} onChange={onChange}/>
-          <input type="time" name="endTime" value={endTime || ""} onChange={onChange}/>
+          <input
+            type="date"
+            name="eventDate"
+            value={eventDate || ""}
+            onChange={handleChange}
+          />
+          <input
+            type="time"
+            name="startTime"
+            value={startTime || ""}
+            onChange={handleChange}
+          />
+          <input
+            type="time"
+            name="endTime"
+            value={endTime || ""}
+            onChange={handleChange}
+          />
         </form>
       </fieldset>
-      <button className={styles.editButton} onClick={handleEditButtonClick}>Edit</button>
-      <button className={styles.deleteButton} onClick={handleDeleteButtonClick}>Delete</button>
-      <button className={styles.cancelButton} onClick={handleCancelButtonClick}>Cancel</button>
+      <button
+        className={styles.editButton}
+        onClick={handleEditButton}
+      >
+        Edit
+      </button>
+      <button
+        className={styles.deleteButton}
+        onClick={handleDeleteButton}
+      >
+        Delete
+      </button>
+      <button
+        className={styles.cancelButton}
+        onClick={handleCancelButton}
+      >
+        Cancel
+      </button>
     </div>
   );
 }
