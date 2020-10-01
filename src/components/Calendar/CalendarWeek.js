@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(7, 1fr);
   border: 3px solid tomato;
   text-align: center;

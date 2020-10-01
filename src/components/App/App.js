@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import getMonthlyDates, { getWeeklyDates } from '../../utils/date';
 import HeaderContainer from '../../containers/HeaderContainer';
 import SideBar from '../Sidebar/SideBar';
-import Schedule from '../Schedule/Schedule';
+import ScheduleContainer from '../../containers/ScheduleContainer';
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -20,40 +20,36 @@ const Main = styled.div`
 
 // Feel free to modify as you need.
 function App() {
-  const [ changeMonth, setChangeMonth ] = useState(0);
-  const [ monthlyDates, setMonthlyDates ] = useState(getMonthlyDates(changeMonth));
-  const [ changeWeek, setChangeWeek ] = useState(0);
-  const [ weeklyDates, setWeeklyDates] = useState(getWeeklyDates(changeWeek));
-  const [ openModal, setOpenModal ] = useState(false);
+  // const [ changeMonth, setChangeMonth ] = useState(0);
+  // const [ monthlyDates, setMonthlyDates ] = useState(getMonthlyDates(changeMonth));
+  // const [ changeWeek, setChangeWeek ] = useState(0);
+  // const [ weeklyDates, setWeeklyDates] = useState(getWeeklyDates(changeWeek));
+  // const [ openModal, setOpenModal ] = useState(false);
   
-  useEffect(() => {
-    setMonthlyDates(getMonthlyDates(changeMonth));
-  }, [changeMonth]);
+  // useEffect(() => {
+  //   setMonthlyDates(getMonthlyDates(changeMonth));
+  // }, [changeMonth]);
 
-  useEffect(() => {
-    setWeeklyDates(getWeeklyDates(changeWeek));
-  }, [changeWeek]);
+  // useEffect(() => {
+  //   setWeeklyDates(getWeeklyDates(changeWeek));
+  // }, [changeWeek]);
 
   function onClick (callback, status, change) {
     callback(status + change);
     console.log('click')
   };
 
-  function createNewSchedule () {
-    console.log('modal')
-  }
+
 
   return (
     <Wrapper>  
-
       <HeaderContainer/>
       <Main>
         <SideBar/>
-        <Schedule 
-          weeklyDates={weeklyDates}
-          onClickPrevWeek={onClick.bind(null, setChangeWeek, changeWeek, -1)}
-          onClickNextWeek={onClick.bind(null, setChangeWeek, changeWeek, 1)}
-          openModal={createNewSchedule}
+        <ScheduleContainer
+          // weeklyDates={weeklyDates}
+          // onClickPrevWeek={onClick.bind(null, setChangeWeek, changeWeek, -1)}
+          // onClickNextWeek={onClick.bind(null, setChangeWeek, changeWeek, 1)}
         />
       </Main>
     </Wrapper>

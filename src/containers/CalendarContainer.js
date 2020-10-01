@@ -8,7 +8,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     updateCalendar: function (type, change) {
-      console.log(type, change, 'dispatch')
+      dispatch({type, change});
+    },
+    updateToday: function (type, change) {
       dispatch({type, change});
     }
   };

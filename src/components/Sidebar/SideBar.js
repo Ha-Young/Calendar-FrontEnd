@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from '../Shared/Button';
 import CalendarContainer from '../../containers/CalendarContainer';
 import { Link } from 'react-router-dom'
 
@@ -14,8 +15,8 @@ export default function SideBar () {
   return (
     <Wrapper>
       <div className='sidebar_button'>
-          <Link to='/' exact><button>daily</button></Link>
-          <Link to='/weekly' exact><button>weekly</button></Link>
+          <Link to='/' exact><Button>daily</Button></Link>
+          <Link to='/weekly' exact><Button>weekly</Button></Link>
       </div>
       <CalendarContainer />
       <div></div>

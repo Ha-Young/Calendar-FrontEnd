@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import styles from './ArrowShapedButton.module.css';
 
-const Button = styled.i`
+const ArrowShape = styled.i`
   width: 8px;
   height: 8px;
   border: solid black;
@@ -12,10 +12,10 @@ const Button = styled.i`
 
 export default function ArrowShapedButton ({ css, direction, onClick }) {
   return (
-    <Button
+    <ArrowShape
       style={css}
       className={styles[direction]}
       onClick={onClick}>
-    </Button>
+    </ArrowShape>
   );
 }

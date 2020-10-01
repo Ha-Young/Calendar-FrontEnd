@@ -17,5 +17,5 @@ export default function CalendarBody ({ type, dates }) { //MonthlyCalendarBody
         })
       }
     </Wrapper>
-  );  
+  );
 }

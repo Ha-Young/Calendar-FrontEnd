@@ -17,7 +17,8 @@ const Main = styled.div`
   overflow: hidden;
 `;
 
-export default function Schedule ({ weeklyDates, onClickPrevWeek, onClickNextWeek, openModal }) { //CalendarContainer
+export default function Schedule ({ dates, updateCalendar }) { //CalendarContainer
+  
   
   return (
     <Switch>
@@ -25,9 +26,8 @@ export default function Schedule ({ weeklyDates, onClickPrevWeek, onClickNextWee
         <Wrapper>
             <ScheduleHead
               type='daily'
-              dates={weeklyDates.weeklyDates}
-              onClickPrevWeek={onClickPrevWeek}
-              onClickNextWeek={onClickNextWeek}
+              dates={dates.weeklyDates}
+              updateCalendar={updateCalendar}
             />
             <ScheduleBody type='daily'  />    
         </Wrapper>
@@ -37,9 +37,8 @@ export default function Schedule ({ weeklyDates, onClickPrevWeek, onClickNextWee
         <Wrapper>
           <ScheduleHead
             type='weekly'
-            dates={weeklyDates.weeklyDates}
-            onClickPrevWeek={onClickPrevWeek}
-            onClickNextWeek={onClickNextWeek}
+            dates={dates.weeklyDates}
+            updateCalendar={updateCalendar}
           />
           <ScheduleBody type='weekly' />
         </Wrapper>
