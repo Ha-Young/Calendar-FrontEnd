@@ -1,13 +1,22 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 
 
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ModalContents = styled.div`
   padding-top: 50px;
-  display: grid;
-  grid-template-rows: 15% 5% 50% 15% 15%;
-  background-color:pink;
+  width: 500px;
+  background-color: beige;
   position: relative;
 `;
 
@@ -22,20 +31,13 @@ const CloseButton = styled.div`
 
 
 export default function Modal ({ children }) {
-  // const toggleModal = useCallback(
-  //   (videoInfo) => {
-  //     if (isEmpty(modalInfo)) {
-  //       return setModalInfo(videoInfo);
-  //     }
-  //     setModalInfo({});
-  //   },
-  //   [modalInfo],
-  // );
-  console.log(children, 'c')
+
   return (
-    <ModalContents>
-      <CloseButton>+</CloseButton>
-      {children}
-    </ModalContents>
+    <Wrapper>
+      <ModalContents>
+        <Link to='/' exact><CloseButton>+</CloseButton></Link>
+        {children}
+      </ModalContents>
+    </Wrapper>
   );
 }

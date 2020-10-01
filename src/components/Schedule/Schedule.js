@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components';
 import ScheduleHead from './ScheduleHead';
 import ScheduleBody from './ScheduleBody';
-
+import Modal from '../Shared/Modal';
+import CreateEvent from '../Event/createEvent';
 const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 12% 1fr;
@@ -21,7 +22,11 @@ export default function Schedule ({ dates, updateCalendar }) {
   
   return (
     <Switch>
-      
+      <Route path='/event'>
+        <Modal>
+          <CreateEvent />
+        </Modal>
+      </Route>
 
       <Route path='/' exact>
         <Wrapper>

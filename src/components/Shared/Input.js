@@ -11,7 +11,7 @@ const InputEl = styled.input`
   font-size: 16px;
   letter-spacing: -0.5px;
   transition: 0.3s all ease;
-  background-color: #828482;
+  background-color: white;
 
   &:hover,
   &:focus,
