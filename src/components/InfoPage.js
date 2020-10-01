@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Container = styled.section`
   display: flex;
@@ -26,3 +27,7 @@ export default function InfoPage({ children }) {
     </Container>
   );
 }
+
+InfoPage.propTypes = {
+  children: PropTypes.node.isRequired,
+};

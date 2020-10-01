@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import Proptypes from 'prop-types';
-import ClockLoader from "react-spinners/ClockLoader";
+import PropTypes from 'prop-types';
+import ClockLoader from 'react-spinners/ClockLoader';
 import styled from 'styled-components';
 
+import App from '../components/App';
 import { authService, dataService } from '../utils/api';
 import { reduceSnapshot } from '../utils/utilFunction';
 import { setUser, setInitData } from '../actions';
-import App from '../components/App';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-function AppContainer({ isLogin, user, setUser, setInitData }) {
+function AppContainer({ isLogin, currentUserID, setUser, setInitData }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,33 +27,32 @@ function AppContainer({ isLogin, user, setUser, setInitData }) {
   }, [setUser]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!currentUserID) return;
 
-    dataService.ref(`/calendar/userId/${user.uid}/events`)
+    dataService.ref(`/calendar/userId/${currentUserID}/events`)
       .on('value', (snapshot) => {
         setInitData(reduceSnapshot(snapshot.val()));
         setIsLoading(false);
-      })
-  }, [user, setInitData]);
+      });
+  }, [currentUserID, setInitData]);
 
   return (
-      isLoading
-      ?
-      <Wrapper>
-        <ClockLoader
-          size={150}
-          color={"navy"}
-        />
-      </Wrapper>
+      isLoading ?
+        <Wrapper>
+          <ClockLoader
+            size={150}
+            color={'navy'}
+          />
+        </Wrapper>
       :
-        <App isLogin={isLogin} />
+        <App isLogin={isLogin}/>
   );
 }
 
 function mapStateToProps(state) {
   return {
     isLogin: state.isLogin,
-    user: state.user,
+    currentUserID: state.user.uid,
   };
 }
 
@@ -69,10 +68,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 AppContainer.propTypes = {
-  isLogin: Proptypes.bool.isRequired,
-  //user
-  setUser: Proptypes.func.isRequired,
-  setInitData: Proptypes.func.isRequired,
+  isLogin: PropTypes.bool.isRequired,
+  currentUserID: PropTypes.string,
+  setUser: PropTypes.func.isRequired,
+  setInitData: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

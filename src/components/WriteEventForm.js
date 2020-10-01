@@ -17,56 +17,62 @@ export default function WriteEventForm({
   } = data;
 
   return (
-      <fieldset>
-      <legend>{formTitle}</legend>
+    <fieldset>
+      <legend>
+        {formTitle}
+      </legend>
+      <div>
+        Title:
+        <Input
+          type='text'
+          onChange={onChange}
+          placeholder='Title 을 입력해주세요'
+          name='title'
+          value={title}
+        />
+        Description:
+        <Input
+          type='text-area'
+          onChange={onChange}
+          placeholder='Description 을 입력해주세요'
+          name='description'
+          value={description}
+        />
+        Date:
+        <Input
+          type='date'
+          onChange={onChange}
+          name='date'
+          value={date}
+        />
+        StartTime:
+        <select
+          name='startTime'
+          onChange={onChange}
+          value={startTime}
+        >
+          {
+            Array(24).fill(null).map((_, index) => {
+              return <option key={index} value={index}>{index}시</option>;
+            })
+          }
+        </select>
+        EndTime:
+        <select
+          name='endTime'
+          onChange={onChange}
+          value={endTime}
+        >
+          {
+            Array(24).fill(null).map((_, index) => {
+              return <option key={index} value={index}>{index}시</option>;
+            })
+          }
+        </select>
         <div>
-          Title:
-          <Input
-            type='text'
-            onChange={onChange}
-            placeholder='Title 을 입력해주세요'
-            name='title'
-            value={title}
-          />
-          Description:
-          <Input
-            type='text-area'
-            onChange={onChange}
-            placeholder='Description 을 입력해주세요'
-            name='description'
-            value={description}
-          />
-          Date:
-          <Input
-            type='date'
-            onChange={onChange}
-            name='date'
-            value={date}
-          />
-          StartTime:
-          <select
-            name="startTime"
-            onChange={onChange}
-            value={startTime}
-          >
-            {Array(24).fill(null).map((_, index) => {
-              return <option key={index} value={index}>{index}시</option>;
-            })}
-          </select>
-          EndTime:
-          <select
-            name="endTime"
-            onChange={onChange}
-            value={endTime}
-          >
-            {Array(24).fill(null).map((_, index) => {
-              return <option key={index} value={index}>{index}시</option>;
-            })}
-          </select>
-          <div>
-            {children}
-          </div>
+          {children}
         </div>
-      </fieldset>
+      </div>
+    </fieldset>
   );
 }

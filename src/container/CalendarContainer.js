@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import Navigation from '../components/Navigation';
+import WeeklyCalendar from '../components/WeeklyCalendar';
+import ControlBar from '../components/ControlBar';
+import DateBox from '../components/DateBox';
 import {
   toggleWeeklyAndDaily,
   moveNextDay,
   movePrevDay,
 } from '../actions';
-import Navigation from '../components/Navigation';
-import WeeklyCalendar from '../components/WeeklyCalendar';
-import ControlBar from '../components/ControlBar';
-import DateBox from '../components/DateBox';
 
 const Container = styled.div`
   display: flex;
@@ -76,14 +76,13 @@ function CalendarContainer({
           isWeekly={isWeekly}
         />
         {
-          isWeekly
-          ?
+          isWeekly ?
             <WeeklyCalendar
               currentDate={currentDate}
               eventData={eventData}
             />
           :
-            <DateBox date={currentDate} eventData={eventData} />
+            <DateBox date={currentDate} eventData={eventData}/>
         }
       </section>
     </Container>

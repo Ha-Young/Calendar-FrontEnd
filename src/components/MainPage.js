@@ -14,13 +14,13 @@ export default function MainPage() {
 
   return (
     <Switch>
-      <Route path="/calendar">
+      <Route path='/calendar'>
         <CalendarContainer />
       </Route>
-      <Route path="/events/new">
+      <Route path='/events/new'>
         <CreateEventContainer />
       </Route>
-      <Route path="/events/:eventId">
+      <Route path='/events/:eventId'>
         <EventPageContainer />
       </Route>
     </Switch>

@@ -6,8 +6,7 @@ import MainPage from './MainPage';
 
 export default function App({ isLogin }) {
   return (
-    isLogin
-    ?
+    isLogin ?
       <MainPage />
     :
       <LoginPage />

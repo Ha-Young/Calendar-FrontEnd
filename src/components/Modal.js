@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -32,3 +33,7 @@ export default function Modal({ children }) {
     </Wrapper>
   );
 }
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+};

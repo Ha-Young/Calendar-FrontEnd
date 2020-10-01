@@ -28,10 +28,10 @@ export default function ControlBar({
 
   return (
     <Container className='status-bar'>
-      <Button value='<' onClick={handleMovePrev} />
+      <Button value='<' onClick={handleMovePrev}/>
       <span>{year}.{month}.{date}</span>
-      <Button value='>' onClick={handleMoveNext} />
-      <Button value={isWeekly ? "일별 보기" : "주간 보기"} onClick={onToggle} />
+      <Button value='>' onClick={handleMoveNext}/>
+      <Button value={isWeekly ? '일별 보기' : '주간 보기'} onClick={onToggle}/>
     </Container>
   );
 }

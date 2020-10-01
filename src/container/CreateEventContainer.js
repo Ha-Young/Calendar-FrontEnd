@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { nanoid } from 'nanoid';
 
 import Button from '../components/Button';
 import WriteEventForm from '../components/WriteEventForm';
@@ -69,10 +69,10 @@ function CreateEventContainer({
 
   const [eventData, setEventData] = useState({
     date: moment().format('YYYY-MM-DD'),
-    description: "",
+    description: '',
     endTime: moment().hour(),
     startTime: moment().hour(),
-    title: "",
+    title: '',
     id: nanoid(12),
   });
 
@@ -81,11 +81,11 @@ function CreateEventContainer({
       return {
         ...prev,
         [target.name]: target.value,
-      }
-    })
+      };
+    });
   }
 
-  function createEvent(e) {
+  function createEvent() {
     const validMessage = validateEventForm(eventData);
 
     if (validMessage) {
@@ -104,15 +104,15 @@ function CreateEventContainer({
     <Container>
       {
         !!validMessage &&
-          <Modal>
-            <h3>{validMessage}</h3>
-            <div>
-              <Button value='뒤로' onClick={initValidMessage} />
-            </div>
-          </Modal>
+        <Modal>
+          <h3>{validMessage}</h3>
+          <div>
+            <Button value='뒤로' onClick={initValidMessage}/>
+          </div>
+        </Modal>
       }
       <WriteEventForm
-        formTitle="이벤트 만들기"
+        formTitle='이벤트 만들기'
         onChange={handleChange}
         data={eventData}
       >

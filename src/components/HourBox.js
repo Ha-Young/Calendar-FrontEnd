@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Modal from './Modal';
 import Button from './Button';
@@ -44,19 +45,29 @@ export default function HourBox({ data }) {
       }
       <div
         key={data.hour}
-        className={`hour-box ${hasEvents ? 'paint' : ""}`}
+        className={`hour-box ${hasEvents ? 'paint' : ''}`}
         onClick={toggleModal}
-      >{`${data.hour}시`}
-        {
-          <ul>
-            {
-              data.events.map(event => {
-                return <li key={event.id}>{event.title}</li>;
-              })
-            }
-          </ul>
-        }
+      >
+      {
+        `${data.hour}시`
+      }
+      {
+        <ul>
+          {
+            data.events.map(event => {
+              return <li key={event.id}>{event.title}</li>;
+            })
+          }
+        </ul>
+      }
       </div>
     </>
   );
 }
+
+HourBox.propTypes = {
+  data: PropTypes.shape({
+    events: PropTypes.array,
+    hour: PropTypes.number.isRequired,
+  }),
+};

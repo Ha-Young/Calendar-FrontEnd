@@ -86,13 +86,19 @@ export default function DateBox({ date, eventData }) {
   return (
     <Container>
       <h3>{date.date}일</h3>
-      {hours.map((hourData) => {
-        return <HourBox key={hourData.hour} data={hourData} />
-      })}
+      {
+        hours.map((hourData) => {
+          return <HourBox key={hourData.hour} data={hourData}/>;
+        })
+      }
     </Container>
   );
 }
 
 Date.propTypes ={
   date: PropTypes.string.isRequired,
+  eventData: PropTypes.shape({
+    date: PropTypes.string,
+    eventsId: PropTypes.string.isRequired,
+  }),
 };

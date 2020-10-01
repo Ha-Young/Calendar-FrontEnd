@@ -63,6 +63,7 @@ const Container = styled.section`
   }
 `;
 
+//TODO redux로 상태 몰아넣기
 function EventPageContainer({ eventData, uid }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [validationMessage, setValidationMessage] = useState('');
@@ -85,8 +86,8 @@ function EventPageContainer({ eventData, uid }) {
       return {
         ...prev,
         [target.name]: target.value,
-      }
-    })
+      };
+    });
   }
 
   function goHome() {
@@ -116,7 +117,7 @@ function EventPageContainer({ eventData, uid }) {
   }
 
   function initValidationMessage() {
-    setValidationMessage('')
+    setValidationMessage('');
   }
 
   function toggleModal() {
@@ -133,22 +134,23 @@ function EventPageContainer({ eventData, uid }) {
     <InfoPage>
       <Container>
       {
-        isOpenedConfirmModal && <Modal>
-          <Button value="안지우기" onClick={toggleModal} />
-          <Button value="정말 지우기" onClick={confirmRemove} />
+        isOpenedConfirmModal &&
+        <Modal>
+          <Button value='안지우기' onClick={toggleModal}/>
+          <Button value='정말 지우기' onClick={confirmRemove}/>
         </Modal>
       }
       {
-        !!validationMessage && <Modal>
+        !!validationMessage &&
+        <Modal>
           <h3>{validationMessage}</h3>
           <div>
-            <Button value="뒤로" onClick={initValidationMessage} />
+            <Button value='뒤로' onClick={initValidationMessage}/>
           </div>
         </Modal>
       }
       {
-        isUpdating
-        ?
+        isUpdating ?
           <WriteEventForm
             formTitle='정보 업데이트'
             onChange={handleChange}
@@ -170,9 +172,12 @@ function EventPageContainer({ eventData, uid }) {
           </>
       }
         <div className='button-box'>
-          <Button value='뒤로' onClick={goBack} />
-          <Button value='업데이트' onClick={handleUpdate} />
-          {!isUpdating && <Button value='지우기' onClick={toggleModal} />}
+          <Button value='뒤로' onClick={goBack}/>
+          <Button value='업데이트' onClick={handleUpdate}/>
+          {
+            !isUpdating &&
+            <Button value='지우기' onClick={toggleModal}/>
+          }
         </div>
       </Container>
     </InfoPage>
