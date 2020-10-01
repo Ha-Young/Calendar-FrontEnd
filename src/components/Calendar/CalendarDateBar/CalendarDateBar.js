@@ -6,26 +6,39 @@ import MonthlyCalendarWeek from '../../SideBar/MonthlyCalendar/MonthlyCalendarWe
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 8% 1fr 7%;  
+  
 `;
 
 export default function CalendarDateBar ({ type, dates, onClickPrevWeek, onClickNextWeek }) {
   
-  return (
-    <Wrapper>
-      <ArrowShapedButton
-        css={{margin: "25px 0 0 25px", width: "10px", height: "10px"}} 
-        direction="left" 
-        onClick={onClickPrevWeek}
-      />
-      <MonthlyCalendarBody type={type} dates={dates} />
-      <ArrowShapedButton
-        css={{margin: "24px 0 0 15px", width: "10px", height: "10px"}} 
-        direction="right"
-        onClick={onClickNextWeek}
-      />
-    </Wrapper>
-  );
+  function renderByType () {
+    if (type === 'weekly') {
+      return (
+        <Wrapper style={{gridTemplateColumns:"8% 1fr 7%"}}>
+          <ArrowShapedButton
+            css={{margin: "25px 0 0 25px", width: "10px", height: "10px"}} 
+            direction="left" 
+            onClick={onClickPrevWeek}
+          />
+          <MonthlyCalendarBody type={type} dates={dates} />
+          <ArrowShapedButton
+            css={{margin: "24px 0 0 15px", width: "10px", height: "10px"}} 
+            direction="right"
+            onClick={onClickNextWeek}
+          />
+        </Wrapper>
+      );
+    } 
+
+    return (
+      <Wrapper style={{gridTemplateColumns:"1fr"}}>
+        <MonthlyCalendarBody type={type} dates={dates} />
+      </Wrapper>
+    );
+  }
+
+  return renderByType();
+  
 }
 
 

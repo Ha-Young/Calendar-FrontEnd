@@ -54,7 +54,6 @@ const Days = styled.div`
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 8% 1fr 6.8%;
   border: 3px solid blue;
   overflow: scroll;
 `;  
@@ -66,7 +65,7 @@ const Wrapper = styled.div`
 // `;
 
 
-export default function CalendarTimeline () {
+export default function CalendarTimeline ({ type }) {
   const [scrollRef, setScrollRef] = useState(useRef());
   
   useEffect (()=>{
@@ -74,14 +73,27 @@ export default function CalendarTimeline () {
       console.log(1)
     })
   }, [scrollRef]);
-  
-  return (
-    <Wrapper ref={scrollRef}>
-      <CalendarTimelineTime />
-      <CalendarTimelineSchedule />
-      <div></div>
-    </Wrapper>
-  );
+
+  function renderByType () {
+    if (type === 'weekly') {
+      return (
+        <Wrapper ref={scrollRef} style={{gridTemplateColumns:"8% 1fr 6.8%"}}>
+          <CalendarTimelineTime />
+          <CalendarTimelineSchedule type={type}/>
+          <div></div>
+        </Wrapper>
+      );    
+    }
+
+    return (
+      <Wrapper ref={scrollRef} style={{gridTemplateColumns:"15% 1fr"}}>
+        <CalendarTimelineTime />
+        <CalendarTimelineSchedule type={type}/>
+      </Wrapper>
+    );
+  }
+
+  return renderByType();
 }
 
 

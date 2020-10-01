@@ -16,29 +16,39 @@ const HourlySchedule = styled.div`
 `;
 
 
-export default function CalendarTimelineSchedule () {
+export default function CalendarTimelineSchedule ({ type }) {
   
-  function hourlySchedule () {
-    const scheduleTable = [];
-    for (let i = 0; i < 26; i++) {
-      scheduleTable[i] = (
-        <HourlySchedule key={i}>
-          <div style={{border:"3px solid pink"}}></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </HourlySchedule>
-      );
+  function renderByType () {
+    let scheduleTable;
+    if (type === 'weekly') {
+      scheduleTable = [];
+      for (let i = 0; i < 26; i++) {
+        scheduleTable[i] = (
+          <HourlySchedule key={i}>
+            <div style={{border:"3px solid pink"}}></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </HourlySchedule>
+        );
+      }
+      return scheduleTable;
     }
-    return scheduleTable;
+    
+    scheduleTable = [];
+      for (let i = 0; i < 26; i++) {
+        scheduleTable[i] = <HourlySchedule key={i} />
+      }
+      return scheduleTable;
+
   }
   
   return (
     <Wrapper>
-      {hourlySchedule()}
+      {renderByType()}
     </Wrapper>
   );
 }
