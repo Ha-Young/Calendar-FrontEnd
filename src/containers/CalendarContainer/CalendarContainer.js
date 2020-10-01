@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import styles from './Calendar.module.css';
+import styles from './CalendarContainer.module.css';
 
-import EventContainer from '../../containers/EventsContainer/EventsContainer';
+import EventContainer from '../EventsContainer/EventsContainer';
 
 import { readEventListOnce } from '../../utils/api';
 import { stepToDay, generateDayString, generateWeekList } from '../../utils/date';

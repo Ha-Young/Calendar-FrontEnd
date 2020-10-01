@@ -6,7 +6,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import styles from './App.module.css';
 
 import Header from '../Header/Header';
-import Calendar from '../Calendar/Calendar';
+import Calendar from '../../containers/Calendar/Calendar';
 import NewEventContainer from '../../containers/NewEventContainer/NewEventContainer';
 import UpdateEventContainer from '../../containers/UpdateEventContainer/UpdateEventContainer';
 

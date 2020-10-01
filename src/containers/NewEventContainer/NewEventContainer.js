@@ -1,67 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+
+import Form from '../../components/Form/Form';
 
 import { writeEvent } from '../../utils/api';
 
 function NewEventContainer({ onSubmit }) {
-  const [inputValue, setInputValue] = useState({
-    id: '',
-    date: '',
-    startTime: '',
-    endTime: '',
-    title: '',
-    description: ''
-  });
-  const history = useHistory();
-
-  function handleSubmit() {
-    if (inputValue.endTime === "00:00") {
-      inputValue.endTime = "24:00";
-    }
-    onSubmit(inputValue);
-    history.push('/calendar');
-  }
-
-  function handleChange(e) {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-
-    setInputValue({ ...inputValue, [name]: value });
-  }
-
-  return (
-    <>
-      <Link to='/calendar'>Back</Link>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title: <input name='title' type='text' value={inputValue.title} onChange={handleChange} />
-        </label>
-        <label>
-          Description: <input name='description' type='text' value={inputValue.description} onChange={handleChange} />
-        </label>
-        <label>
-          Date: <input name='date' type='date' value={inputValue.date} onChange={handleChange} />
-        </label>
-        <label>
-          Start: <input name='startTime' type='time' value={inputValue.startTime} onChange={handleChange} step={3600} />
-        </label>
-        <label>
-          End: <input name='endTime' type='time' value={inputValue.endTime} onChange={handleChange} step={3600} />
-        </label>
-        <input type='submit' value='Create' />
-      </form>
-    </>
-  );
+  return (<Form onSubmit={onSubmit} />);
 }
-
-// Redux Subscription
-const mapStateToProps = (state) => {
-  return {
-    events: state.events
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -71,7 +17,14 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewEventContainer);
+export default connect(null, mapDispatchToProps)(NewEventContainer);
+
+// Redux Subscription
+// const mapStateToProps = (state) => {
+//   return {
+//     events: state.events
+//   };
+// };
 
 // Redux Action..?
 // const addToEventList = (event) => {
