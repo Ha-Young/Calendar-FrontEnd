@@ -5,10 +5,14 @@ import styles from "./AppHeader.module.css";
 
 // TODO: Create your own header.
 export default function AppHeader({
+  viewMode,
   showDaily,
   showWeekly,
-  onPreviousDateClick,
-  onNextDateClick,
+  displayDate,
+  onPreviousDayClick,
+  onNextDayClick,
+  onPreviousWeekClick,
+  onNextWeekClick,
 }) {
   function onChange(event) {
     if (event.target.value === "daily") {
@@ -29,13 +33,27 @@ export default function AppHeader({
       <Link to="/">
         <h1 className={styles.title}>달력</h1>
       </Link>
-      <button type="text" className={styles.previous} onClick={onPreviousDateClick}>
-        이전
-      </button>
-      <button type="text" className={styles.next} onClick={onNextDateClick}>
-        다음
-      </button>
-      <h2 className={styles.month}>{`${dayjs().format("M")}월`}</h2>
+      {
+        viewMode === "DAILY"
+          ? <>
+            <button type="text" className={styles.previous} onClick={onPreviousDayClick}>
+              이전
+          </button>
+            <button type="text" className={styles.next} onClick={onNextDayClick}>
+              다음
+          </button>
+          </>
+          : <>
+            <button type="text" className={styles.previous} onClick={onPreviousWeekClick}>
+              이전
+          </button>
+            <button type="text" className={styles.next} onClick={onNextWeekClick}>
+              다음
+          </button>
+          </>
+      }
+
+      <h2 className={styles.month}>{`${dayjs(displayDate).format("M")}월`}</h2>
       <select className={styles.viewSelector} onChange={onChange}>
         <option value="daily">하루씩 보기</option>
         <option value="weekly">일주일씩 보기</option>

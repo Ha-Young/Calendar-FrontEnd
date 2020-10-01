@@ -22,7 +22,7 @@ export default function Calendar({ viewMode, date }) {
       {
         viewMode === "WEEKLY"
         && <Week
-          day={day}
+          date={date}
           dayOfWeek={dayOfWeek}
         />
       }

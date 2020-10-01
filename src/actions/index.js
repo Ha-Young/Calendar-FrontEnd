@@ -14,10 +14,18 @@ export const logout = () => ({
   type: "LOGOUT"
 });
 
-export const showPrevious = () => ({
-  type: "SHOW_PREVIOUS"
+export const showPreviousDay = () => ({
+  type: "SHOW_PREVIOUS_DAY"
 });
 
-export const showNext = () => ({
-  type: "SHOW_NEXT"
+export const showNextDay = () => ({
+  type: "SHOW_NEXT_DAY"
+});
+
+export const showPreviousWeek = () => ({
+  type: "SHOW_PREVIOUS_WEEK"
+});
+
+export const showNextWeek = () => ({
+  type: "SHOW_NEXT_WEEK"
 });

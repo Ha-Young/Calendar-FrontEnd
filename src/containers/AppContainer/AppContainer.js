@@ -5,10 +5,10 @@ import { Route, Switch } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./AppContainer.module.css";
 import AppHeader from "../../components/AppHeader/AppHeader";
-import { saveSampleData, saveNewEvent } from "../../utils/api";
+import { saveNewEvent } from "../../utils/api";
 import Calendar from "../../components/Calendar/Calendar";
 import { connect } from "react-redux";
-import { showDaily, showWeekly, login, logout, showPrevious, showNext } from "../../actions";
+import { showDaily, showWeekly, login, logout, showPreviousDay, showNextDay, showPreviousWeek, showNextWeek } from "../../actions";
 import Form from "../../components/Form/Form";
 import { auth, provider } from "../../utils/firebase";
 import Auth from "../../Auth/Auth";
@@ -23,8 +23,10 @@ function AppContainer({
   onLogout,
   isLoggedIn,
   displayDate,
-  onPreviousDateClick,
-  onNextDateClick,
+  onPreviousDayClick,
+  onNextDayClick,
+  onPreviousWeekClick,
+  onNextWeekClick,
 }) {
   // useEffect(() => {
   //   const starCountRef = firebase.database().ref(`users/${userId}`);
@@ -32,8 +34,6 @@ function AppContainer({
   //     updateStarCount(postElement, snapshot.val());
   //   });
   // }, []);
-
-  // console.log(displayDate)
 
   const [newEventTitle, setNewEventTitle] = useState("");
   const [newEventDescription, setNewEventDescription] = useState("");
@@ -64,10 +64,14 @@ function AppContainer({
         isLoggedIn
           ? <>
             <AppHeader
+              viewMode={viewMode}
               showDaily={showDaily}
               showWeekly={showWeekly}
-              onPreviousDateClick={onPreviousDateClick}
-              onNextDateClick={onNextDateClick}
+              displayDate={displayDate}
+              onPreviousDayClick={onPreviousDayClick}
+              onNextDayClick={onNextDayClick}
+              onPreviousWeekClick={onPreviousWeekClick}
+              onNextWeekClick={onNextWeekClick}
             />
             <Switch>
               <Route path="/" exact>
@@ -129,11 +133,17 @@ const mapDispatchToProps = dispatch => {
     onLogout() {
       dispatch(logout());
     },
-    onPreviousDateClick() {
-      dispatch(showPrevious());
+    onPreviousDayClick() {
+      dispatch(showPreviousDay());
     },
     onNextDateClick() {
-      dispatch(showNext());
+      dispatch(showNextDay());
+    },
+    onPreviousWeekClick() {
+      dispatch(showPreviousWeek());
+    },
+    onNextWeekClick() {
+      dispatch(showNextWeek());
     },
   };
 };

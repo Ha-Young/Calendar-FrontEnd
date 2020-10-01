@@ -2,42 +2,37 @@ import React from "react";
 import Day from "../Day/Day";
 import * as dayjs from "dayjs";
 
-export default function Week({ day, dayOfWeek }) {
-  let firstDay;
+export default function Week({ date, dayOfWeek }) {
+  const days = [date];
+  let decrementer = dayOfWeek;
+  let incrementer = dayOfWeek;
 
-  switch (dayOfWeek) {
-    case 0:
-      firstDay = day;
-      break;
-    case 1:
-      firstDay = day - 1;
-      break;
-    case 2:
-      firstDay = day - 2;
-      break;
-    case 3:
-      firstDay = day - 3;
-      break;
-    case 4:
-      firstDay = day - 4;
-      break;
-    case 5:
-      firstDay = day - 5;
-      break;
-    case 6:
-      firstDay = day - 6;
+  while (decrementer > 0) {
+    const firstDate = days[0].slice(0, 10).split("-");
+    const previousDate = [firstDate[0], firstDate[1], `${Number(firstDate[2]) - 1}`].join("-");
+
+    days.unshift(dayjs(previousDate).format());
+
+    decrementer--;
   }
 
-  const DAYS = [firstDay, firstDay + 1, firstDay + 2, firstDay + 3, firstDay + 4, firstDay + 5, firstDay + 6];
+  while (incrementer < 6) {
+    const lastDate = days[days.length - 1].slice(0, 10).split("-");
+    const nextDate = [lastDate[0], lastDate[1], `${Number(lastDate[2]) + 1}`].join("-");
+
+    days.push(dayjs(nextDate).format());
+
+    incrementer++;
+  }
 
   return (
     <>
       {
-        DAYS.map((day, index) => {
+        days.map((day, index) => {
           return (
             <Day
               key={day}
-              day={firstDay + index}
+              day={dayjs(day).format("D")}
               dayOfWeek={index}
             />
           );
