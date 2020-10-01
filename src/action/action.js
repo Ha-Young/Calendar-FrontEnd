@@ -1,13 +1,10 @@
-import { ADD_EVENT, REMOVE_EVENT, LOGIN, GET_DATA} from 'constants/actionTypes';
+import { GET_EVENTS, REMOVE_EVENT, LOGIN } from 'constants/actionTypes';
 
 
-export const addEvent = event => {
+export const getEvents = events => {
   return {
-    type: ADD_EVENT,
-    title: event.title,
-    description: event.description,
-    startDate: event.startDate,
-    endDate: event.endDate
+    type: GET_EVENTS,
+    events: events
   }
 };
 
@@ -26,8 +23,3 @@ export const loggin = (user, isLogin) => {
   }
 };
 
-export const getData = events => {
-  return {
-    type: GET_DATA,
-  };
-};

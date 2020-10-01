@@ -1,8 +1,8 @@
-import { ADD_EVENT, REMOVE_EVENT, LOGIN } from '../constants/actionTypes';
+import { GET_EVENTS, REMOVE_EVENT, LOGIN } from '../constants/actionTypes';
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    case ADD_EVENT:
+    case GET_EVENTS:
       const event = {
         id: String(Date.now()),
         title: action.title,

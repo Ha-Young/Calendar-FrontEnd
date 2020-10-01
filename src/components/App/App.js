@@ -8,7 +8,6 @@ import Header from '../Header/Header';
 import { database } from 'firebase';
 
 export const App = () => {
-
   console.log(database);
   return (
     <>

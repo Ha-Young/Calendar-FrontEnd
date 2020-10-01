@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
+import { saveData } from 'utils/api';
 
-const EventMaker = ({ eventSubmit }) => {
+const EventMaker = ({ isSubmit }) => {
   const [inputValues, setInputValues] = useState({
     title: '',
     description: '',
-    startDate: '',
-    endDate: ''
+    date: '',
+    startTime: '',
+    endTime: ''
   });
 
   const onSubmit = (event) => {
     event.preventDefault();
-    eventSubmit(inputValues);
+    
+    isSubmit(true);
+    saveData(inputValues);
     setInputValues({
       title: '',
       description: '',
-      startDate: '',
-      endDate: ''
+      date: '',
+      startTime: '',
+      endTime: ''
     });
   };
 
@@ -24,16 +29,15 @@ const EventMaker = ({ eventSubmit }) => {
 
     switch (name) {
       case 'title':
-        setInputValues({ ...inputValues, title: value, });
-        break;
+        setInputValues({ ...inputValues, title: value }); break;
       case 'description':
-        setInputValues({ ...inputValues, description: value });
-        break;
-      case 'startDate':
-        setInputValues({ ...inputValues, startDate: value });
-        break;
-      case 'endDate':
-        setInputValues({ ...inputValues, endDate: value });
+        setInputValues({ ...inputValues, description: value }); break;
+      case 'date':
+        setInputValues({ ...inputValues, date: value }); break;
+      case 'startTime':
+        setInputValues({ ...inputValues, startTime: value }); break;
+      case 'endTime':
+        setInputValues({ ...inputValues, endTime: value }); break;
     }
   };
 
@@ -56,17 +60,24 @@ const EventMaker = ({ eventSubmit }) => {
           onChange={onChange}
         />
         <input
-          type='datetime-local'
-          name='startDate'
-          placeholder='start date'
-          value={inputValues.startDate}
+          type='date'
+          name='date'
+          placeholder='date'
+          value={inputValues.date}
           onChange={onChange}
         />
         <input
-          type='datetime-local'
-          name='endDate'
-          placeholder='end date'
-          value={inputValues.endDate}
+          type='time'
+          name='startTime'
+          placeholder='startTime'
+          value={inputValues.startTime}
+          onChange={onChange}
+        />
+        <input
+          type='time'
+          name='endTime'
+          placeholder='endTime'
+          value={inputValues.endTime}
           onChange={onChange}
         />
         <button type='submit'>입력</button>

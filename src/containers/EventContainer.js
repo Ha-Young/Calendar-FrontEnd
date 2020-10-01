@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addEvent } from 'action/action';
+import { getEvents } from 'action/action';
 import EventDetail from 'components/EventDetail/EventDetail';
 import { Route } from 'react-router-dom';
 import EventMaker from 'components/EventMaker/EventMaker';
 import { saveData } from 'utils/api';
+import {getData} from 'utils/api';
 
-export const EventCantainer = ({ user, newEvent, setEvent }) => {
+export const EventCantainer = ({ user, events, getEvents }) => {
+  const [isSubmitEvent, setIsSubmitEvent] = useState(false);
+
   useEffect(() => {
-    if (newEvent) {
-      console.log(newEvent);
-      saveData({user, ...newEvent});
-    }
-  }, [newEvent]);//event to firebase
+    if (!isSubmitEvent) return;
+    
+    getData(user, getEvents);
+    setIsSubmitEvent(false);
+  }, [isSubmitEvent]);
 
   return (
     <>
       <Route path='/events/new'>
-        <EventMaker user={user} eventSubmit={setEvent} />
+        <EventMaker isSubmit={setIsSubmitEvent} />
       </Route>
       <Route path='/events/:eventId'>
-        <EventDetail events={newEvent} />
+        <EventDetail events={events} />
       </Route>
     </>
   );
@@ -29,13 +32,13 @@ export const EventCantainer = ({ user, newEvent, setEvent }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    newEvent: state.events
+    events: state.events
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setEvent: event => { dispatch(addEvent(event)) }
+    getEvents: events => { dispatch(getEvents(events)) }
   };
 };
 
