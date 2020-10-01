@@ -1,0 +1,4 @@
+export const SET_CURRENT_VIEW_MODE = 'SET_CURRENT_VIEW_MODE';
+export const SET_DATE = 'SET_DATE';
+export const MOVE_TO_NEXT_PAGE = 'MOVE_TO_NEXT_PAGE';
+export const MOVE_TO_PREV_PAGE = 'MOVE_TO_PREV_PAGE';

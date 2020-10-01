@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { setCurrentUser } from '../../redux/user/user.actions';
+
 import styles from './App.module.scss';
 import Header from '../Header/Header';
 import UserProfile from '../UserProfile/UserProfile';
@@ -10,8 +12,6 @@ import SignInAndSignUp from '../SignInAndSignUp/SignInAndSignUp';
 
 import { auth } from '../../firebase';
 import registerUserProfile from '../../firebase/registerUserProfile';
-
-import { setCurrentUser } from '../../redux/user/user-actions';
 
 const App = ({ currentUser, setCurrentUser }) => {
   useEffect(() => {
@@ -35,7 +35,7 @@ const App = ({ currentUser, setCurrentUser }) => {
           {currentUser ? <UserProfile /> : <div>당근캘린더</div>}
         </Route>
         <Route path='/calendar'>
-          {currentUser ? <Calendar /> : <Redirect to='/' />}
+          {currentUser ? <Calendar /> : <Redirect to='/signin' />}
         </Route>
         <Route path='/signin'>
           {currentUser ? <Redirect to='/' /> : <SignInAndSignUp />}

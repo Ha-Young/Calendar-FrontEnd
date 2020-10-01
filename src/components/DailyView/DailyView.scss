@@ -1,9 +1,5 @@
 @import '../../constants/styles.constants.scss';
 
-.date {
-  height: calc(#{$cell-height * 2});
-}
-
 .daily-container {
   border-left: 1px solid $gray;
 
@@ -22,6 +18,12 @@
 
       margin-right: 10px;
       background-color: $white;
+    }
+
+    &:hover {
+      background-color: $lightgray;
+      box-shadow: $box-shadow;
+      cursor: pointer;
     }
   }
 }

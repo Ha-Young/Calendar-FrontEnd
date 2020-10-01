@@ -1,9 +1,9 @@
-export const VIEW_MODE = {
-  DAILY: 'DAILY',
-  WEEKLY: 'WEEKLY',
+export const VIEW_MODES = {
+  DAILY: { title: 'DAILY', gap: 1 },
+  WEEKLY: { title: 'WEEKLY', gap: 7 },
 };
 
-export const VIEW_MODE_LIST = Object.values(VIEW_MODE);
+export const VIEW_MODES_LIST = Object.values(VIEW_MODES);
 
 export const TIMELINE_12_SET = [
   '자정 🌙',
@@ -31,3 +31,5 @@ export const TIMELINE_12_SET = [
   '오후 10시',
   '오후 11시',
 ];
+
+export const TIMELINE_NUM_SET = TIMELINE_12_SET.map((v, idx) => idx);

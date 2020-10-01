@@ -86,7 +86,7 @@ export default function SignUp() {
           }}
           required
         />
-        <CustomButton type='submit'>Sign In</CustomButton>
+        <CustomButton type='submit'>Sign Up</CustomButton>
       </form>
       {error && <span className={styles.error}>{`😡 ${error}`}</span>}
     </div>
