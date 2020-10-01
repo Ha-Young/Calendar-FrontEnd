@@ -2,16 +2,10 @@ import React from 'react';
 
 import './CustomButton.scss';
 
-export default function CustomButton({
-  children,
-  selected,
-  onClick,
-  ...otherProps
-}) {
+export default function CustomButton({ children, selected, ...otherProps }) {
   return (
     <button
       className={`CustomButton${selected ? ' selected' : ''}`}
-      onClick={() => (selected ? null : onClick())}
       {...otherProps}
     >
       {children}

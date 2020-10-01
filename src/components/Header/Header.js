@@ -12,6 +12,9 @@ const Header = ({ currentUser }) => {
       <nav>
         <ul>
           <li>
+            <Link to='/events/new'>NEW</Link>
+          </li>
+          <li>
             <Link to='/'>Home</Link>
           </li>
           <li>

@@ -1,0 +1,31 @@
+@import '../../constants/styles.constants.scss';
+
+.CustomTimeInput {
+  position: relative;
+  color: $main-color;
+
+  display: flex;
+  justify-content: space-around;
+
+  select {
+    width: 35%;
+    background: none;
+    padding: 10px 10px 10px 5px;
+    border: none;
+    border-bottom: 1px solid $main-color;
+    font-size: inherit;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  label {
+    display: flex;
+    justify-items: flex-end;
+    align-items: center;
+
+    margin: 0 10px;
+  }
+}

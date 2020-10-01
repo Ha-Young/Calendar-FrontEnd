@@ -39,7 +39,11 @@ const App = ({ currentUser, setCurrentUser }) => {
           {currentUser ? <Calendar /> : <Redirect to='/signin' />}
         </Route>
         <Route path='/events/new'>
-          {currentUser ? <NewEvent /> : <Redirect to='/signin' />}
+          {currentUser ? (
+            <NewEvent currentUser={currentUser} />
+          ) : (
+            <Redirect to='/signin' />
+          )}
         </Route>
         <Route path='/signin'>
           {currentUser ? <Redirect to='/' /> : <SignInAndSignUp />}

@@ -10,7 +10,7 @@ export default function CustomInput({
 }) {
   return (
     <div className={styles.group}>
-      <input onChange={handleChange} {...otherProps} />
+      <input onChange={handleChange} value={value} {...otherProps} />
       {label ? (
         <label className={value.length ? styles.shrink : ''}>{label}</label>
       ) : null}
