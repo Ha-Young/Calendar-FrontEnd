@@ -3,15 +3,7 @@ import { GET_EVENTS, REMOVE_EVENT, LOGIN } from '../constants/actionTypes';
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case GET_EVENTS:
-      const event = {
-        id: String(Date.now()),
-        title: action.title,
-        description: action.description,
-        startDate: action.startDate,
-        endDate: action.endDate,
-        user: action.user
-      };
-      return { ...state, events: event };
+      return { ...state, events: action.events };
     case REMOVE_EVENT:
       return [state.filter(event => event.id !== action.id)];
     case LOGIN:

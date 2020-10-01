@@ -5,6 +5,8 @@ import { Route, Link, useParams } from 'react-router-dom';
 const EventDetail = ({ events }) => {
   const params = useParams();
   //url매치되는 곳에 뿌려주면 될거같은데...
+  // // const foundData = [...events['2020']['10']];
+  // console.log(foundData);
   return (
     <>
       {

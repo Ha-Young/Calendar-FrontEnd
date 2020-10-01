@@ -12,8 +12,7 @@ export const EventCantainer = ({ user, events, getEvents }) => {
 
   useEffect(() => {
     if (!isSubmitEvent) return;
-    
-    getData(user, getEvents);
+    getData(user, getEvents, setIsSubmitEvent);
     setIsSubmitEvent(false);
   }, [isSubmitEvent]);
 

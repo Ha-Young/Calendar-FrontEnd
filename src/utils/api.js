@@ -15,10 +15,12 @@ export const saveData = async (event) => {
   );
 }
 
-export const getData = async (user, dispatch) => {
+export const getData = async (user, dispatch, isDispatch) => {
   await database.ref(`users/${user}`).on('value', function (snapshot) {
    const data = snapshot.val();
+   console.log('fromfire', data);
    dispatch(data);
+   isDispatch(true);
   });
 } //firebase data to state
 
