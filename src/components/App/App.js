@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import getMonthlyDates, { getWeeklyDates } from '../../utils/date';
-import Header from '../Header/Header';
-import SideBar from '../SideBar/SideBar';
+import HeaderContainer from '../../containers/HeaderContainer';
+import SideBar from '../Sidebar/SideBar';
 import Schedule from '../Schedule/Schedule';
 
 const Wrapper = styled.div`
@@ -45,9 +45,10 @@ function App() {
 
   return (
     <Wrapper>  
-      <Header thisMonth={monthlyDates.title} />
+      {/* <Header thisMonth={monthlyDates.title} /> */}
+      <HeaderContainer/>
       <Main>
-        <SideBar 
+        <SideBar
           thisMonth={monthlyDates.thisMonth}
           dates={monthlyDates.monthlyDates}
           onClickPrevMonth={onClick.bind(null, setChangeMonth, changeMonth, -1)}

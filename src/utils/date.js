@@ -2,6 +2,7 @@
 //나중에 유즈메모 사용가능할듯
 export default function getMonthlyDates (changeMonth) {
   //12월 > 1월 갈때, 1월 > 12월 갈때 년도 바뀌는 로직 추가해야함
+  if (!changeMonth) changeMonth = 0;
   const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];  
   const today = new Date();
   const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + changeMonth, 1).getDay();

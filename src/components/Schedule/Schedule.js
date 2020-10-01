@@ -6,7 +6,7 @@ import ScheduleBody from './ScheduleBody';
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 10% 1fr;
+  grid-template-rows: 12% 1fr;
   border: 3px solid red;
   overflow: hidden;
 `;

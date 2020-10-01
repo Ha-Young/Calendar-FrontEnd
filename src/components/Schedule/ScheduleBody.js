@@ -13,8 +13,8 @@ const Wrapper = styled.div`
 export default function ScheduleBody ({ type, openModal }) { //CalendarTimeline
   const [scrollRef, setScrollRef] = useState(useRef());
 
-  let match = useRouteMatch()
-  console.log(match, 'mat')
+  // let match = useRouteMatch()
+  // console.log(match, 'mat')
 
   useEffect (()=>{
     scrollRef.current.addEventListener('scroll', () => {
