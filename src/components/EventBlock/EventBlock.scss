@@ -1,0 +1,49 @@
+@import '../../constants/styles.constants.scss';
+
+.event-block {
+  position: absolute;
+  width: 100%;
+  border: 1px solid $white;
+  background-color: #5d5d5d;
+  color: $white;
+  opacity: 0.9;
+  box-shadow: $box-shadow;
+
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 5px;
+  text-align: left;
+  overflow: hidden;
+
+  &.daily {
+    padding: 2px 10px;
+
+    .title {
+      font-size: 1rem;
+    }
+    .description {
+      font-size: 0.8rem;
+      font-weight: 100;
+    }
+  }
+
+  &.weekly {
+    padding: 5px;
+
+    .title {
+      font-size: 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .description {
+      display: none;
+    }
+  }
+
+  &:hover {
+    background-color: $red;
+    cursor: pointer;
+  }
+}

@@ -1,9 +1,8 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 
 import './DailyEvents.scss';
-import getEventBlockStyle from '../../utils/getEventBlockStyle';
+import EventBlock from '../EventBlock/EventBlock';
 
 const DayEvents = ({ currentViewMode }) => {
   const events = [
@@ -29,15 +28,8 @@ const DayEvents = ({ currentViewMode }) => {
 
   return (
     <div className='events-container'>
-      {events.map(({ title, description, start, end }, idx) => (
-        <div
-          key={idx}
-          className={`${currentViewMode.title} event-block`}
-          style={getEventBlockStyle(start, end)}
-        >
-          <div className='title'>{title}</div>
-          <div className='description'>{description}</div>
-        </div>
+      {events.map((event, idx) => (
+        <EventBlock key={idx} viewMode={currentViewMode.title} event={event} />
       ))}
     </div>
   );
