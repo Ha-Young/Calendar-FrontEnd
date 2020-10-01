@@ -70,15 +70,11 @@ export function validateEventForm(form) {
   let message = '';
 
   if (!title.length) {
-    message = '제목은 반드시 적어주세요\n';
+    message += '😰제목은 반드시 적어주세요.';
   }
 
   if (Number(startTime) > Number(endTime)) {
-    message = '이벤트 시간을 확인해주세요\n';
-  }
-
-  if (!message.length) {
-    message = '이벤트를 등록할까요?';
+    message += '😿이벤트 시간을 확인해주세요.';
   }
 
   return message;

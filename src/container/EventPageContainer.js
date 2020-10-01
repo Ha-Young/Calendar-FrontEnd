@@ -7,7 +7,7 @@ import Button from '../components/Button';
 import InfoPage from '../components/InfoPage';
 import WriteEventForm from '../components/WriteEventForm';
 import Modal from '../components/Modal';
-import validateEventForm from '../utils/utilFunction';
+import { validateEventForm } from '../utils/utilFunction';
 import {
   setDataToFirebase,
   deleteDataFromFirebase
@@ -44,6 +44,7 @@ const Container = styled.section`
 
 function EventPageContainer({ eventData, uid }) {
   const [isUpdating, setIsUpdating] = useState(false);
+  const [validMessage, setValidMessage] = useState('');
   const [isOpenedConfirmModal, setIsOpenedConfirmModal] = useState(false);
   const history = useHistory();
   const currentEventId = useParams().eventId;
@@ -68,17 +69,29 @@ function EventPageContainer({ eventData, uid }) {
   }
 
   function goBack() {
-    history.push('/calendar');
+    if (isUpdating) {
+      setIsUpdating(false);
+    } else {
+      history.push('/calendar');
+    }
   }
 
   function handleUpdate() {
     if (isUpdating) {
-      //validation
-      setDataToFirebase(currentEventData, uid, currentEventId);
-      history.push('/calendar');
+      const validMessage = validateEventForm(currentEventData);
+        if (validMessage) {
+          setValidMessage(validMessage);
+        } else {
+          setDataToFirebase(currentEventData, uid, currentEventId);
+          history.push('/calendar');
+        }
     } else {
       setIsUpdating(true);
     }
+  }
+
+  function initValidMessage() {
+    setValidMessage('')
   }
 
   function toggleModal() {
@@ -97,6 +110,14 @@ function EventPageContainer({ eventData, uid }) {
         isOpenedConfirmModal && <Modal>
           <Button value="안지우기" onClick={toggleModal} />
           <Button value="정말 지우기" onClick={confirmRemove} />
+        </Modal>
+      }
+      {
+        !!validMessage && <Modal>
+          <h3>{validMessage}</h3>
+          <div>
+            <Button value="뒤로" onClick={initValidMessage} />
+          </div>
         </Modal>
       }
       {
@@ -125,7 +146,7 @@ function EventPageContainer({ eventData, uid }) {
         <div className='button-box'>
           <Button value='뒤로' onClick={goBack} />
           <Button value='업데이트' onClick={handleUpdate} />
-          <Button value='지우기' onClick={toggleModal} />
+          {!isUpdating && <Button value='지우기' onClick={toggleModal} />}
         </div>
       </Container>
     </InfoPage>

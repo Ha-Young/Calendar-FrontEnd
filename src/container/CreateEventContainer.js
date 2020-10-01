@@ -8,7 +8,9 @@ import { nanoid } from 'nanoid';
 
 import Button from '../components/Button';
 import WriteEventForm from '../components/WriteEventForm';
+import Modal from '../components/Modal';
 import { setDataToFirebase } from '../utils/api';
+import { validateEventForm } from '../utils/utilFunction';
 
 const Container = styled.section`
   display: flex;
@@ -59,6 +61,7 @@ function CreateEventContainer({
   uid,
 }) {
   const history = useHistory();
+  const [validMessage, setValidMessage] = useState('');
 
   function handleGoBack() {
     history.push('/calendar');
@@ -82,15 +85,32 @@ function CreateEventContainer({
     })
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    //validation
-    setDataToFirebase(eventData, uid);
-    handleGoBack();
+  function createEvent(e) {
+    const validMessage = validateEventForm(eventData);
+
+    if (validMessage) {
+      setValidMessage(validMessage);
+    } else {
+      setDataToFirebase(eventData, uid);
+      handleGoBack();
+    }
+  }
+
+  function initValidMessage() {
+    setValidMessage('');
   }
 
   return (
     <Container>
+      {
+        !!validMessage &&
+          <Modal>
+            <h3>{validMessage}</h3>
+            <div>
+              <Button value='뒤로' onClick={initValidMessage} />
+            </div>
+          </Modal>
+      }
       <WriteEventForm
         formTitle="이벤트 만들기"
         onChange={handleChange}
@@ -101,9 +121,8 @@ function CreateEventContainer({
           onClick={handleGoBack}
         />
         <Button
-          type='submit'
           value='이벤트 만들기'
-          onClick={handleSubmit}
+          onClick={createEvent}
         />
       </WriteEventForm>
     </Container>
