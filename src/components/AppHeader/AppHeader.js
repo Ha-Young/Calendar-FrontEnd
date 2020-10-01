@@ -4,10 +4,20 @@ import * as dayjs from "dayjs";
 import styles from "./AppHeader.module.css";
 
 // TODO: Create your own header.
-export default function AppHeader({ onViewChange }) {
-  useEffect(() => {
-    onViewChange();
-  }, [onViewChange]);
+export default function AppHeader({ showDaily, showWeekly }) {
+  function onChange(event) {
+    if (event.target.value === "daily") {
+      showDaily();
+
+      return;
+    }
+
+    if (event.target.value === "weekly") {
+      showWeekly();
+
+      return;
+    }
+  }
 
   return (
     <header className={styles.Header}>
@@ -21,9 +31,9 @@ export default function AppHeader({ onViewChange }) {
         다음
       </button>
       <h2 className={styles.month}>{`${dayjs().format("M")}월`}</h2>
-      <select onChange={onViewChange}>
-        <option value="하루씩 보기">하루씩 보기</option>
-        <option value="일주일씩 보기">일주일씩 보기</option>
+      <select onChange={onChange}>
+        <option value="daily">하루씩 보기</option>
+        <option value="weekly">일주일씩 보기</option>
       </select>
       <Link to="/events/new">
         <button

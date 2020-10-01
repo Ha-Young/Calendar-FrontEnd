@@ -1,19 +1,33 @@
 import { combineReducers } from "redux";
 
 const initialState = {
-  isViewModeDaily: true,
-  month: "",
+  viewMode: "DAILY",
+  isLoggedIn: false,
 };
 
-const isViewModeDaily = (state = initialState.isViewModeDaily, action) => {
+const viewMode = (state = initialState.viewMode, action) => {
   switch (action.type) {
-    case "CHANGE_VIEW_MODE":
-      return state = !state;
+    case "SHOW_DAILY":
+      return state = "DAILY";
+    case "SHOW_WEEKLY":
+      return state = "WEEKLY";
     default:
-      return !state;
+      return state;
+  }
+};
+
+const isLoggedIn = (state = initialState.isLoggedIn, action) => {
+  switch (action.type) {
+    case "LOGIN":
+      return state = true;
+    case "LOGOUT":
+      return state = false;
+    default:
+      return state;
   }
 };
 
 export default combineReducers({
-  isViewModeDaily,
+  viewMode,
+  isLoggedIn,
 });

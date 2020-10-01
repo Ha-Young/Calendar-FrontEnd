@@ -10,3 +10,20 @@ export async function saveSampleData() {
     test: "text"
   });
 }
+
+export async function saveNewEvent(
+  userId,
+  title,
+  description,
+  date,
+  start,
+  finish
+) {
+  firebase.database().ref(`users/${userId}`).set({
+    title,
+    description,
+    date,
+    start,
+    finish,
+  });
+}

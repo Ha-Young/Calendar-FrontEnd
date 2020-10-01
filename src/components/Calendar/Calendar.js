@@ -13,15 +13,18 @@ export default function Calendar({ viewMode }) {
     <div className={styles.container}>
       <TimeBar />
       {
-        viewMode
-          ? <Day
-            day={day}
-            dayOfWeek={dayOfWeek}
-          />
-          : <Week
-            day={day}
-            dayOfWeek={dayOfWeek}
-          />
+        viewMode === "DAILY"
+        && <Day
+          day={day}
+          dayOfWeek={dayOfWeek}
+        />
+      }
+      {
+        viewMode === "WEEKLY"
+        && <Week
+          day={day}
+          dayOfWeek={dayOfWeek}
+        />
       }
     </div>
   );

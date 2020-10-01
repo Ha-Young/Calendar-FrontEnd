@@ -4,17 +4,21 @@ import "firebase/database";
 
 // TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: "AIzaSyDVvDBoQV7mvO4oxsTZ7N9ZC_ohL-elAeY",
-  authDomain: "calendar-5fd53.firebaseapp.com",
-  databaseURL: "https://calendar-5fd53.firebaseio.com",
-  projectId: "calendar-5fd53",
-  storageBucket: "calendar-5fd53.appspot.com",
-  messagingSenderId: "193401623164",
-  appId: "1:193401623164:web:47d904ea96b7b27867aff9",
-  measurementId: "G-FFQTW6YY7N"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 export default firebase;
+
+export const auth = firebase.auth();
+
+export const provider = new firebase.auth.GoogleAuthProvider();
