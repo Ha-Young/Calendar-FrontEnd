@@ -40,11 +40,32 @@ const Container = styled.section`
       background: ${({theme}) => theme.red};
     }
   }
+
+  fieldset {
+    width: 100%;
+    height: 100%;
+    border: none;
+
+    legend {
+      font-size: 40px;
+      font-weight: 200;
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      height: 80%;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
 `;
 
 function EventPageContainer({ eventData, uid }) {
   const [isUpdating, setIsUpdating] = useState(false);
-  const [validMessage, setValidMessage] = useState('');
+  const [validationMessage, setValidationMessage] = useState('');
   const [isOpenedConfirmModal, setIsOpenedConfirmModal] = useState(false);
   const history = useHistory();
   const currentEventId = useParams().eventId;
@@ -84,7 +105,7 @@ function EventPageContainer({ eventData, uid }) {
     if (isUpdating) {
       const validMessage = validateEventForm(currentEventData);
         if (validMessage) {
-          setValidMessage(validMessage);
+          setValidationMessage(validationMessage);
         } else {
           setDataToFirebase(currentEventData, uid, currentEventId);
           goHome();
@@ -94,8 +115,8 @@ function EventPageContainer({ eventData, uid }) {
     }
   }
 
-  function initValidMessage() {
-    setValidMessage('')
+  function initValidationMessage() {
+    setValidationMessage('')
   }
 
   function toggleModal() {
@@ -118,10 +139,10 @@ function EventPageContainer({ eventData, uid }) {
         </Modal>
       }
       {
-        !!validMessage && <Modal>
-          <h3>{validMessage}</h3>
+        !!validationMessage && <Modal>
+          <h3>{validationMessage}</h3>
           <div>
-            <Button value="뒤로" onClick={initValidMessage} />
+            <Button value="뒤로" onClick={initValidationMessage} />
           </div>
         </Modal>
       }
