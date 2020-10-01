@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import styles from './App.module.css';
-import { saveSampleData } from '../../utils/api';
-import LogIn from '../LogIn/LogIn'
+import React, { useEffect } from "react";
+import styles from "./App.module.css";
+import { saveSampleData } from "../../utils/api";
+import AuthContainer from "../../containers/AuthContainer";
 
 function App() {
   useEffect(() => {
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <LogIn />
+      <AuthContainer />
     </div>
   );
 }

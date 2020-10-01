@@ -1,37 +1,45 @@
 import React from "react";
 import { connect } from "react-redux";
-import Calendar from "../components/Calendar/Calendar"
-import { moveToPrevDay, moveToNextDay } from "../actions/index";
+import Calendar from "../components/Calendar"
+import { moveToPrevDay, moveToNextDay, openModal, closeModal } from "../actions/index";
 
 function CalendarContainer ({
   date,
   clickPrevDay,
   clickNextDay,
+  times,
+  isModalOpen,
+  clickModalOpen,
+  clickModalClose,
 }) {
+
   return (
     <Calendar
       getDate={date}
       handleYesterday={clickPrevDay}
       handleTomorrow={clickNextDay}
+      times={times}
+      clickToOpenModal={clickModalOpen}
+      clickToCloseModal={clickModalClose}
+      isModalOpen={isModalOpen}
     />
   );
 }
 
-// store의 state를 prop으로 엮어줌
-// reducer date???
 const mapStateToProps = state => {
   return {
-    date: state.events,
-  }
+    date: state.events.date,
+    times: state.events.times,
+    isModalOpen: state.modal.isModalOpen,
+  };
 };
 
-// reducer에 action 알리는 함수(dispatch) 를 prop으로 엮어줌
-// moveToPrevDay 는 객체(type) 반환하는 함수.
-// redux의 dispatch를 인자로 사용.. 이걸로 store 상태 변경
 const mapDispatchToProps = dispatch => {
   return {
     clickPrevDay: () => dispatch(moveToPrevDay()),
     clickNextDay: () => dispatch(moveToNextDay()),
+    clickModalOpen: () => dispatch(openModal()),
+    clickModalClose: () => dispatch(closeModal()),
   };
 };
 

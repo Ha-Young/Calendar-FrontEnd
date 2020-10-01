@@ -1,6 +1,5 @@
-import React from 'react';
-import ToggleButton from './ToggleButton';
-import GetDate from './GetDate';
+import React from "react";
+import GetDate from "./GetDate";
 
 export default function Header ({
   year,
@@ -11,8 +10,7 @@ export default function Header ({
 }) {
 
   return (
-    <header style={{width: '100%'}}>
-      <ToggleButton />
+    <header style={{ width: "100%" }}>
       <GetDate
         year={year}
         month={month}

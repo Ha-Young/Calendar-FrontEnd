@@ -1,11 +1,12 @@
 .Calendar {
-  padding: 50px;
+  width: 800px;
   background-color: white;
   border-radius: 20px;
   padding: 30px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 }
 
 .title {
@@ -21,12 +22,18 @@
 }
 
 .table {
-  width: 800px;
-  height: 800px;
+  width: 90%;
+  height: 100%;
   text-align: left;
+  cursor: pointer;
 }
 
 .item {
   border-top: 1px solid #9c9c9c;
   height: 30px;
+}
+
+.weekly_container {
+  display: flex;
+  width: 90%;
 }

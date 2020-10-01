@@ -1,4 +1,6 @@
 export const LOG_IN = "LOG_IN";
-export const CLICK_NEXT_BUTTON = "CLICK_NEXT_BUTTON";
-export const CLICK_PREV_BUTTON = "CLICK_PREV_BUTTON";
-export const ADD_EVENT = "ADD_EVENT";
+export const ADD_DAY = "ADD_DAY";
+export const SUB_DAY = "SUB_DAY";
+export const OPEN_MODAL = "OPEN_MODAL";
+export const CLOSE_MODAL = "CLOSE_MODAL";
+export const NEW_EVENT = "NEW_EVENT";

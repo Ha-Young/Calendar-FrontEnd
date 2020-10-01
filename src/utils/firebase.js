@@ -14,4 +14,36 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+// let userId = 0;
+// const [value, setValue] = useState('');
+// const [textList, setTextList] = useState([])
+
+// useEffect(() => {
+//   const starCountRef = firebase.database().ref("users/");
+//   starCountRef.on("value", function (snapshot) {
+//     setTextList(Object.values(snapshot.val()));
+
+//   });
+// }, [])
+
+
+
+// //ref 다음이 폴더구조가 된다. 디렉토리 구조.. 디렉토리에 따른 참조
+
+// function writeUserData(text) {
+//   userId++
+//   firebase.database().ref('users/' + userId).set({
+//     // username: name,
+//     // email: email,
+//     // profile_picture : imageUrl
+//     text
+//   });
+// }
+
+// function storeText () {
+//   writeUserData(value);
+//   setValue('');
+// }
+
+
 export default firebase;

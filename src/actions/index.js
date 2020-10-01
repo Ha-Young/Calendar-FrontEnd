@@ -1,26 +1,46 @@
-import {LOG_IN, CLICK_PREV_BUTTON, CLICK_NEXT_BUTTON} from "./constants";
+import {
+  LOG_IN,
+  SUB_DAY,
+  ADD_DAY,
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  NEW_EVENT,
+} from "./constants";
 
-export const userLogin = () => {
+export const userLogin = text => {
   return {
     type: LOG_IN,
-  }
+    text,
+  };
 }
 
 export const moveToPrevDay = () => {
   return {
-    type: CLICK_PREV_BUTTON,
-  }
+    type: SUB_DAY,
+  };
 }
 
 export const moveToNextDay = () => {
   return {
-    type: CLICK_NEXT_BUTTON,
+    type: ADD_DAY,
   };
 };
 
-// export const login = user => {
-//   return {
-//     type: types.LOG_IN,
-//     user,
-//   }
-// };
+export const openModal = () => {
+  return {
+    type: OPEN_MODAL,
+  };
+}
+
+export const closeModal = () => {
+  return {
+    type: CLOSE_MODAL,
+  };
+}
+
+export const updateNewEvent = text => {
+  return {
+    type: NEW_EVENT,
+    text,
+  };
+}
