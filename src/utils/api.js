@@ -2,7 +2,7 @@
 import { database } from './firebase';
 import { authService } from 'utils/firebase';
 
-export const saveData = async (event) => {
+export const saveData = async event => {
   const user = authService.currentUser.uid;
   const year = event.date.substring(0, 4);
   const month = event.date.substring(5, 7);
@@ -23,3 +23,4 @@ export const getData = async (user, dispatch, isDispatch) => {
    isDispatch(true);
   });
 };
+

@@ -10,7 +10,7 @@ const EventMaker = ({ isSubmit }) => {
     endTime: ''
   });
 
-  const onSubmit = (event) => {
+  const onSubmit = event => {
     event.preventDefault();
 
     isSubmit(true);
@@ -24,7 +24,7 @@ const EventMaker = ({ isSubmit }) => {
     });
   };
 
-  const onChange = (event) => {
+  const onChange = event => {
     const { target: { name, value } } = event;
 
     switch (name) {

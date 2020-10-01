@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
-
+import DateChanger from 'components/DateChanger/DateChanger';
 // TODO: Create your own header.
 const Header = () => {
   const history = useHistory();
@@ -22,11 +22,6 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <nav>
-        <div className={styles.nextButton}>
-        <button>PREV</button>
-        <div><h1>1월</h1></div>
-        <button>NEXT</button>
-        </div>
         <div className={styles.Selector}>
           <select onChange={onChange}>
             <option value='WEEK'>{pathName === '/' ? 'WEEK' : 'DAY'}</option>

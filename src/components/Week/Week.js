@@ -3,32 +3,37 @@ import styles from './Week.module.css';
 import TimeLine from 'components/TimeLine/TimeLine';
 import Cell from 'components/Cell/Cell';
 
-const Week = () => {
+const Week = ({ days }) => {
   const cells = [];
 
   for (let i = 0; i < 7; i++) {
     cells.push(<Cell />);
   }
-    return (
+  return (
     <>
-      <div className={styles.week}>
-        <div className={styles.days}>
-          <div className={styles.day}><h1>월</h1></div>
-          <div className={styles.day}><h1>화</h1></div>
-          <div className={styles.day}><h1>수</h1></div>
-          <div className={styles.day}><h1>목</h1></div>
-          <div className={styles.day}><h1>금</h1></div>
-          <div className={styles.day}><h1>토</h1></div>
-          <div className={styles.day}><h1>일</h1></div>
-        </div>
-      </div>
-      <div className={styles.cell}>
-      <TimeLine />
       {
-        cells.map(cell => cell)
+        days &&
+        <>
+          <div className={styles.week}>
+            <div className={styles.days}>
+              <div className={styles.day}><h1>{days.mon}</h1></div>
+              <div className={styles.day}><h1>{days.tue}</h1></div>
+              <div className={styles.day}><h1>{days.wen}</h1></div>
+              <div className={styles.day}><h1>{days.thu}</h1></div>
+              <div className={styles.day}><h1>{days.fri}</h1></div>
+              <div className={styles.day}><h1>{days.sat}</h1></div>
+              <div className={styles.day}><h1>{days.sun}</h1></div>
+            </div>
+          </div>
+          <div className={styles.cellContainer}>
+            <TimeLine />
+            {
+              cells.map(cell => cell)
+            }
+          </div>
+        </>
       }
-      </div>
-      </>
+    </>
   );
 };
 

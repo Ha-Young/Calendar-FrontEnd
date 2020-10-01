@@ -1,5 +1,19 @@
-import { GET_EVENTS, REMOVE_EVENT, LOGIN } from 'constants/actionTypes';
+import {
+  LOGIN,
+  GET_EVENTS,
+  REMOVE_EVENT,
+  SET_DAY,
+  SET_DAYS,
+  SET_MONTH
+} from 'constants/actionTypes';
 
+export const loggin = (user, isLogin) => {
+  return {
+    type: LOGIN,
+    user: user,
+    isLogin: isLogin
+  }
+};
 
 export const getEvents = events => {
   return {
@@ -15,10 +29,23 @@ export const removeEvent = id => {
   }
 };
 
-export const loggin = (user, isLogin) => {
+export const setDay = count => {
   return {
-    type: LOGIN,
-    user: user,
-    isLogin: isLogin
+    type: SET_DAY,
+    day: count
+  }
+};
+
+export const setDays = counts => {
+  return {
+    type: SET_DAYS,
+    days: counts
+  }
+};
+
+export const setMonth = count => {
+  return {
+    type: SET_MONTH,
+    month: count
   }
 };

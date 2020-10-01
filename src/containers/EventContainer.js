@@ -26,14 +26,14 @@ export const EventCantainer = ({ user, events, getEvents }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     user: state.user,
     events: state.events
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getEvents: events => { dispatch(getEvents(events)) }
   };
