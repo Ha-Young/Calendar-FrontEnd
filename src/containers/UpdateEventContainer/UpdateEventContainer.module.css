@@ -1,0 +1,16 @@
+.UpdateEventContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteButton {
+  all: unset;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: rgb(255, 67, 67);
+}

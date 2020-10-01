@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import styles from './Form.module.css';
 
-export default function Form({ onSubmit, target }) {
+export default function Form({ onSubmit, target, text }) {
   const [inputValue, setInputValue] = useState(target || {
     id: '',
     date: '',
@@ -12,9 +13,9 @@ export default function Form({ onSubmit, target }) {
   });
   const history = useHistory();
 
-  function handleSubmit() {
-    if (inputValue.endTime === "00:00") {
-      inputValue.endTime = "24:00";
+  function handleFormSubmit() {
+    if (inputValue.endTime === '00:00') {
+      inputValue.endTime = '24:00';
     }
     onSubmit(inputValue);
     history.push('/calendar');
@@ -30,24 +31,24 @@ export default function Form({ onSubmit, target }) {
 
   return (
     <>
-      <Link to='/calendar'>Back</Link>
-      <form onSubmit={handleSubmit}>
+      <Link to='/calendar' className={styles.backButton}>{`Back`}</Link>
+      <form onSubmit={handleFormSubmit} className={styles.Form}>
         <label>
-          Title: <input name='title' type='text' value={inputValue.title} onChange={handleChange} />
+          <input name='title' type='text' placeholder='Title' value={inputValue.title} onChange={handleChange} />
         </label>
         <label>
-          Description: <input name='description' type='text' value={inputValue.description} onChange={handleChange} />
+          <input name='description' type='text' placeholder='Description' value={inputValue.description} onChange={handleChange} />
         </label>
         <label>
-          Date: <input name='date' type='date' value={inputValue.date} onChange={handleChange} />
+          <input name='date' type='date' value={inputValue.date} onChange={handleChange} />
         </label>
         <label>
-          Start: <input name='startTime' type='time' value={inputValue.startTime} onChange={handleChange} step={3600} />
+          <input name='startTime' type='time' value={inputValue.startTime} onChange={handleChange} step={3600} />
         </label>
         <label>
-          End: <input name='endTime' type='time' value={inputValue.endTime} onChange={handleChange} step={3600} />
+          <input name='endTime' type='time' value={inputValue.endTime} onChange={handleChange} step={3600} />
         </label>
-        <input type='submit' value='Create' />
+        <input type='submit' value={text} />
       </form>
     </>
   );

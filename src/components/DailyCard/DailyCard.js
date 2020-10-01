@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import styles from './DailyCard.module.css';
 import { Link } from 'react-router-dom';
+import styles from './DailyCard.module.css';
 
 import TimeCell from '../TimeCell/TimeCell';
 
@@ -36,26 +36,24 @@ export default function DailyCard({ date, events }) {
                 <Link
                   key={event.id}
                   to={`/event/${event.id}`}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <div style={{
-                    position: 'relative',
+                  className={styles.event}
+                  style={{
                     top: event.top,
-                    width: '100%',
                     height: event.height,
-                    backgroundColor: 'salmon',
-                  }}>
-                  <div>{event.title}</div>
-                  </div>
+                  }}
+                >
+                  {event.title}
                 </Link>
               );
             })
           }
         </div>
-        <div className={styles.title}>{date}</div>
-        {Array.from({ length: 24 }).map((_, idx) => {
-          return (<TimeCell className={styles.cell} key={idx} />);
-        })}
+        <div className={styles.date}>{date}</div>
+        {
+          Array.from({ length: 24 }).map((_, idx) => {
+            return (<TimeCell key={idx} />);
+          })
+        }
       </div>
     </>
   );

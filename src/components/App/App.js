@@ -6,7 +6,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import styles from './App.module.css';
 
 import Header from '../Header/Header';
-import Calendar from '../../containers/Calendar/Calendar';
+import CalendarContainer from '../../containers/CalendarContainer/CalendarContainer';
 import NewEventContainer from '../../containers/NewEventContainer/NewEventContainer';
 import UpdateEventContainer from '../../containers/UpdateEventContainer/UpdateEventContainer';
 
@@ -17,7 +17,7 @@ function App() {
       <Switch>
         <Route path='/calendar' exact>
           <Header />
-          <Calendar />
+          <CalendarContainer />
         </Route>
         <Route path='/event/new'>
           <NewEventContainer />

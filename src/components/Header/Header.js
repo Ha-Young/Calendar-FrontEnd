@@ -16,10 +16,21 @@ function Header({ onChange }) {
     <header className={styles.Header}>
       <nav>
         <div>
-          <Link to='/event/new' style={{ textDecoration: 'none'}}>Make new event</Link>
+          <Link
+            to='/event/new'
+            className={styles.addButton}
+          >
+            New event
+          </Link>
         </div>
+        <div>Calendar</div>
         <div>
-          <select name='weekly-select' id='weekly-select' onChange={handleChange} defaultValue='Week'>
+          <select
+            name='weekly-select'
+            id='weekly-select'
+            onChange={handleChange}
+            defaultValue='Week'
+          >
             <option value='day'>Day</option>
             <option value='Week'>Week</option>
           </select>

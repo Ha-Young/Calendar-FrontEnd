@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Link, useRouteMatch, useHistory } from 'react-router-dom';
+import { useRouteMatch, useHistory } from 'react-router-dom';
+import styles from './UpdateEventContainer.module.css';
 
 import Form from '../../components/Form/Form';
 
@@ -13,17 +14,18 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
 
   function handleClick() {
     onDelete(params.eventId);
-    history.push("/calendar");
+    history.push('/calendar');
   }
 
   return (
-    <>
+    <div className={styles.UpdateEventContainer}>
       <Form
         onSubmit={onSubmit}
         target={getState(params.eventId)}
+        text='Update'
       />
-      <button onClick={handleClick}>Delete</button>
-    </>
+      <button onClick={handleClick} className={styles.deleteButton}>Delete</button>
+    </div>
   );
 }
 
