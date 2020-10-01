@@ -4,10 +4,32 @@ import {
   REMOVE_EVENT,
   SET_DAY,
   SET_DAYS,
-  SET_MONTH
+  SET_MONTH,
+  SET_YEAR
 } from '../constants/actionTypes';
 
-const reducer = (state = {}, action) => {
+import format from 'date-fns/format';
+
+const year = format(new Date(), 'yyyy');
+const month = format(new Date(), 'MM');
+const day = format(new Date(), 'dd');
+
+const initialState = {
+  day: day,
+  days: {
+    mon: day,
+    tue: day,
+    wen: day,
+    thu: day,
+    fri: day,
+    sat: day,
+    sun: day
+  },
+  month: month,
+  year: year
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_EVENTS:
       return { ...state, events: action.events };
@@ -16,9 +38,11 @@ const reducer = (state = {}, action) => {
     case SET_DAY:
       return { ...state, day: action.day }; //val
     case SET_DAYS:
-      return { ...state, day: action.days }; //obj
+      return { ...state, days: action.days }; //obj
     case SET_MONTH:
-      return { ...state, day: action.month };//val
+      return { ...state, month: action.month };//val
+    case SET_YEAR:
+      return { ...state, year: action.year };//val
     case LOGIN:
       return { ...state, isLogin: action.isLogin, user: action.user };
     default:

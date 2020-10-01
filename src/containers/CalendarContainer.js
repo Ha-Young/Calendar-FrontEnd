@@ -4,7 +4,7 @@ import Week from 'components/Week/Week';
 import Day from 'components/Day/Day';
 import { connect } from 'react-redux';
 import DateChanger from 'components/DateChanger/DateChanger';
-import { setDay, setDays, setMonth } from 'action/action';
+import { setDay, setDays, setMonth, setYear } from 'action/action';
 
 export const CalendarContainer = ({
   day,
@@ -12,7 +12,9 @@ export const CalendarContainer = ({
   days,
   setDays,
   month,
-  setMonth
+  setMonth,
+  year,
+  setYear
 }) => {
   return (
     <>
@@ -22,7 +24,9 @@ export const CalendarContainer = ({
         day={day}
         setDay={setDay}
         days={days}
-        setDays={setDays} />
+        setDays={setDays}
+        year={year}
+        setYear={setYear} />
       <Switch>
         <Route exact path='/' component={() => <Week days={days} />} />
         <Route exact path='/day' component={() => <Day day={day} />} />
@@ -33,9 +37,10 @@ export const CalendarContainer = ({
 
 const mapStateToProps = (state) => {
   return {
-    day: state.day, //날짜, 요일 뿌려주기 for day
-    days: state.days, //날짜들, 요일들 뿌려주기 for week
-    month: state.month
+    day: state.day,
+    days: state.days,
+    month: state.month,
+    year: state.year
   };
 };
 
@@ -43,7 +48,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setDay: count => { dispatch(setDay(count)) },
     setDays: count => { dispatch(setDays(count)) },
-    setMonth: count => { dispatch(setMonth(count)) }
+    setMonth: count => { dispatch(setMonth(count)) },
+    setYear: count => { dispatch(setYear(count)) }
   };
 };
 

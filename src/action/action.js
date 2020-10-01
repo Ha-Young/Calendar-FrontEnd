@@ -4,7 +4,8 @@ import {
   REMOVE_EVENT,
   SET_DAY,
   SET_DAYS,
-  SET_MONTH
+  SET_MONTH,
+  SET_YEAR
 } from 'constants/actionTypes';
 
 export const loggin = (user, isLogin) => {
@@ -47,5 +48,12 @@ export const setMonth = count => {
   return {
     type: SET_MONTH,
     month: count
+  }
+};
+
+export const setYear = count => {
+  return {
+    type: SET_YEAR,
+    year: count
   }
 };
