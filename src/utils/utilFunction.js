@@ -1,5 +1,10 @@
 import moment from 'moment';
 
+import {
+  NONE_TITLE_MESSAGE,
+  INVALID_TIME_MESSAGE,
+} from '../constants';
+
 export function combineDate(fullDate) {
   return `${fullDate.year}${fullDate.month}${fullDate.date}`;
 }
@@ -13,9 +18,9 @@ export function destructDate(fullDate) {
 }
 
 export function calculateNewDate(currentDate, count) {
-  return moment(
-    new moment(combineDate(currentDate)).add(count, 'days').format('YYYYMMDD')
-  );
+  return destructDate(moment(new moment(combineDate(currentDate))
+    .add(count, 'days')
+    .format('YYYYMMDD')));
 }
 
 export function getWeekData(date) {
@@ -27,13 +32,13 @@ export function getWeekData(date) {
   const after3Days = calculateNewDate(date, 3);
 
   return [
-    destructDate(before3Days),
-    destructDate(before2Days),
-    destructDate(beforeDay),
+    before3Days,
+    before2Days,
+    beforeDay,
     date,
-    destructDate(afterDay),
-    destructDate(after2Days),
-    destructDate(after3Days),
+    afterDay,
+    after2Days,
+    after3Days,
   ];
 }
 
@@ -70,11 +75,11 @@ export function validateEventForm(form) {
   let message = '';
 
   if (!title.length) {
-    message += '😰제목은 반드시 적어주세요.';
+    message += NONE_TITLE_MESSAGE;
   }
 
   if (Number(startTime) > Number(endTime)) {
-    message += '😿이벤트 시간을 확인해주세요.';
+    message += INVALID_TIME_MESSAGE;
   }
 
   return message;

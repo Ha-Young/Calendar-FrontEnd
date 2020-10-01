@@ -1,44 +1,40 @@
 {
-  "events": {
-    "event-id-1": {
-      "id": "event-id-1",
-      "title": "test-title-1",
-      "description": "test-description-1",
-      "date": "2020-09-14",
-      "startTime": "19:38",
-      "endTime": "21:40",
-      "createdAt": "test-createAt-1",
-      "creator": "ixU0i6QUBPNfrgDFltvniWKzVPU2"
-    },
-    "event-id-2": {
-      "id": "event-id-2",
-      "title": "test-title-2",
-      "description": "test-description-2",
-      "date": "2020-09-15",
-      "startTime": "19:38",
-      "endTime": "21:40",
-      "createdAt": "test-createAt-2",
-      "creator": "ixU0i6QUBPNfrgDFltvniWKzVPU2"
-    },
-    "event-id-3": {
-      "id": "event-id-3",
-      "title": "test-title-3",
-      "description": "test-description-3",
-      "date": "test-date-3",
-      "startTime": "test-startTime-3",
-      "endTime": "test-endTime-3",
-      "createdAt": "test-createAt-3",
-      "creator": "test-id-2"
-    }
-  },
-  "userId": {
-    "ixU0i6QUBPNfrgDFltvniWKzVPU2": {
-      "id": "ixU0i6QUBPNfrgDFltvniWKzVPU2",
-      "events": ["event-id-1", "event-id-2"]
-    },
-    "test-id-2": {
-      "id": "test-id-2",
-      "events": ["event-id-3"]
+  "calendar": {
+    "userId": {
+      "testUserId": {
+        "events": {
+          "XkrhgHtr7pRs": {
+            "createdAt": "2020-10-01",
+            "creator": "testUserId",
+            "date": "",
+            "description": "",
+            "endTime": 15,
+            "id": "XkrhgHtr7pRs",
+            "startTime": 15,
+            "title": "4441"
+          },
+          "s9pJlxKMVbqm": {
+            "createdAt": "2020-10-01",
+            "creator": "testUserId",
+            "date": "2020-10-01",
+            "description": "",
+            "endTime": 14,
+            "id": "s9pJlxKMVbqm",
+            "startTime": 14,
+            "title": "제목입니다"
+          },
+          "tuO26eRMuNU4": {
+            "createdAt": "2020-10-01",
+            "creator": "testUserId",
+            "date": "2020-10-01",
+            "description": "142",
+            "endTime": 15,
+            "id": "tuO26eRMuNU4",
+            "startTime": 15,
+            "title": "13222"
+          }
+        }
+      }
     }
   }
 }
