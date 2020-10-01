@@ -1,9 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 
-import './DayBlock.scss';
+import './DailyTitleBlock.scss';
 
-export default function DayBlock({ date }) {
+export default function DailyTitleBlock({ date }) {
   const isToday = moment().isSame(date, 'day');
 
   return (

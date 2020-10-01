@@ -1,4 +1,4 @@
-import { database } from '.';
+import { database } from '..';
 import moment from 'moment';
 
 const registerUserProfile = async userAuth => {
@@ -9,7 +9,6 @@ const registerUserProfile = async userAuth => {
     try {
       const { email, displayName, photoURL } = userAuth;
       const createdAt = moment().format('LLL');
-      console.log('createdAt', createdAt);
 
       await userRef.set({
         displayName,

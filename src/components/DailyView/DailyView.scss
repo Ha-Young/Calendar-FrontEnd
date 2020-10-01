@@ -4,8 +4,6 @@
   border-left: 1px solid $gray;
 
   .cell {
-    position: relative;
-
     height: $cell-height;
     display: flex;
     justify-content: flex-end;
@@ -13,9 +11,7 @@
     border-top: 1px solid $gray;
 
     span {
-      position: absolute;
       line-height: $cell-height;
-
       margin-right: 10px;
       background-color: $white;
     }

@@ -3,20 +3,20 @@ import React from 'react';
 import './DailyView.scss';
 
 import { TIMELINE_NUM_SET } from '../../constants/calendar.constants';
-import DayBlock from '../DayBlock/DayBlock';
+import DailyTitleBlock from '../DailyTitleBlock/DailyTitleBlock';
+import DayEvents from '../DailyEvents/DailyEvents';
 
 export default function DailyView({ date, events }) {
   return (
     <div className='daily-container'>
-      <DayBlock date={date} />
+      <DailyTitleBlock date={date} />
+      <DayEvents />
       {TIMELINE_NUM_SET.map(hour => (
         <div
           className='cell'
           key={hour}
           onClick={() => console.log(date, hour)}
-        >
-          <span></span>
-        </div>
+        />
       ))}
     </div>
   );

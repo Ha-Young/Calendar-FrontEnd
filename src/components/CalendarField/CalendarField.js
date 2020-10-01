@@ -13,19 +13,15 @@ export default function CalendarField({ viewMode, date }) {
     if (gap === 1) {
       setDays([date]);
     } else if (gap === 7) {
-      const sunday = moment(date).startOf('week');
+      const startOfThisWeek = moment(date).startOf('week');
       const dates = [];
       for (let i = 0; i < gap; i++) {
-        const weekday = moment(sunday).add(i, 'days');
+        const weekday = moment(startOfThisWeek).add(i, 'days');
         dates.push(weekday);
       }
       setDays(dates);
     }
   }, [viewMode, date]);
-
-  useEffect(() => {
-    console.log('days', days);
-  }, [days]);
 
   return (
     <div className='calendar-field'>

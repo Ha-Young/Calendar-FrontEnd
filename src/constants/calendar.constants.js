@@ -33,3 +33,5 @@ export const TIMELINE_12_SET = [
 ];
 
 export const TIMELINE_NUM_SET = TIMELINE_12_SET.map((v, idx) => idx);
+
+export const CELL_HEIGHT = 30;

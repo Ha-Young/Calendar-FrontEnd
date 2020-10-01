@@ -8,10 +8,11 @@ import styles from './App.module.scss';
 import Header from '../Header/Header';
 import UserProfile from '../UserProfile/UserProfile';
 import Calendar from '../Calendar/Calendar';
+import NewEvent from '../NewEvent/NewEvent';
 import SignInAndSignUp from '../SignInAndSignUp/SignInAndSignUp';
 
 import { auth } from '../../firebase';
-import registerUserProfile from '../../firebase/registerUserProfile';
+import registerUserProfile from '../../firebase/utils/registerUserProfile';
 
 const App = ({ currentUser, setCurrentUser }) => {
   useEffect(() => {
@@ -36,6 +37,9 @@ const App = ({ currentUser, setCurrentUser }) => {
         </Route>
         <Route path='/calendar'>
           {currentUser ? <Calendar /> : <Redirect to='/signin' />}
+        </Route>
+        <Route path='/events/new'>
+          {currentUser ? <NewEvent /> : <Redirect to='/signin' />}
         </Route>
         <Route path='/signin'>
           {currentUser ? <Redirect to='/' /> : <SignInAndSignUp />}
