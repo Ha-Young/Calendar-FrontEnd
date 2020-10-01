@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getEvents } from 'action/action';
-import EventDetail from 'components/EventDetail/EventDetail';
+import EventDetails from 'components/EventDetail/EventDetail';
 import { Route } from 'react-router-dom';
 import EventMaker from 'components/EventMaker/EventMaker';
 import { getData } from 'utils/api';
@@ -11,6 +11,7 @@ export const EventCantainer = ({ user, events, getEvents }) => {
 
   useEffect(() => {
     if (!isSubmitEvent) return;
+    console.log(events);
     getData(user, getEvents, setIsSubmitEvent);
     setIsSubmitEvent(false);
   }, [isSubmitEvent]);
@@ -20,9 +21,7 @@ export const EventCantainer = ({ user, events, getEvents }) => {
       <Route path='/events/new'>
         <EventMaker isSubmit={setIsSubmitEvent} />
       </Route>
-      <Route path='/events/:eventId'>
-        <EventDetail events={events} />
-      </Route>
+        <EventDetails events={events} />
     </>
   );
 };
