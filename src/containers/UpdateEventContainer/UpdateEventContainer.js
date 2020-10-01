@@ -6,7 +6,7 @@ import { getEventById } from '../../reducers';
 import { updateEvent, deleteEvent } from '../../utils/api';
 
 function UpdateEventContainer({ getState, onSubmit, onDelete }) {
-  const [inputValue, setInput] = useState({
+  const [inputValue, setInputValue] = useState({
     id: '',
     date: '',
     startTime: '',
@@ -14,12 +14,12 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
     title: '',
     description: ''
   });
-  const { params } = useRouteMatch();
   const history = useHistory();
+  const { params } = useRouteMatch();
 
   useEffect(() => {
     const targetEvent = getState(params.eventId);
-    if (targetEvent) setInput(targetEvent);
+    if (targetEvent) setInputValue(targetEvent);
   }, []);
 
   function handleSubmit() {
@@ -35,7 +35,7 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
     const value = target.value;
     const name = target.name;
 
-    setInput({ ...inputValue, [name] : value });
+    setInputValue({ ...inputValue, [name] : value });
   }
 
   function handleClick() {
@@ -91,7 +91,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateEventContainer);
-
-// const updateEvent = (event) => {
-//   return { type: 'UPDATE_EVENT', events: { [event.id] : event } };
-// };

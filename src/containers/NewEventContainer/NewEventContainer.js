@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ function NewEventContainer({ onSubmit }) {
   });
   const history = useHistory();
 
-  function handleSubmit(e) {
+  function handleSubmit() {
     if (inputValue.endTime === "00:00") {
       inputValue.endTime = "24:00";
     }
@@ -28,10 +28,7 @@ function NewEventContainer({ onSubmit }) {
     const value = target.value;
     const name = target.name;
 
-    setInputValue({
-      ...inputValue,
-      [name]: value,
-    });
+    setInputValue({ ...inputValue, [name]: value });
   }
 
   return (
@@ -39,21 +36,21 @@ function NewEventContainer({ onSubmit }) {
       <Link to='/calendar'>Back</Link>
       <form onSubmit={handleSubmit}>
         <label>
-          Title: <input name='title' type='text' onChange={handleChange} />
+          Title: <input name='title' type='text' value={inputValue.title} onChange={handleChange} />
         </label>
         <label>
-          Description: <input name='description' type='text' onChange={handleChange} />
+          Description: <input name='description' type='text' value={inputValue.description} onChange={handleChange} />
         </label>
         <label>
-          Date: <input name='date' type='date' onChange={handleChange} />
+          Date: <input name='date' type='date' value={inputValue.date} onChange={handleChange} />
         </label>
         <label>
-          Start: <input name='startTime' type='time' onChange={handleChange} step={3600} />
+          Start: <input name='startTime' type='time' value={inputValue.startTime} onChange={handleChange} step={3600} />
         </label>
         <label>
-          End: <input name='endTime' type='time' onChange={handleChange} step={3600} />
+          End: <input name='endTime' type='time' value={inputValue.endTime} onChange={handleChange} step={3600} />
         </label>
-        <input type='submit' value='create event' />
+        <input type='submit' value='Create' />
       </form>
     </>
   );

@@ -33,7 +33,11 @@ export default function DailyCard({ date, events }) {
           {
             cellList.map((event) => {
               return (
-                <Link to={`/event/${event.id}`} style={{ textDecoration: 'none' }}>
+                <Link
+                  key={event.id}
+                  to={`/event/${event.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
                   <div style={{
                     position: 'relative',
                     top: event.top,
