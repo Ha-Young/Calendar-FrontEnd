@@ -57,7 +57,7 @@ const Calendar = ({
                 onClick={() => setCurrentViewMode(viewMode)}
                 selected={viewMode.title === currentViewMode.title}
               >
-                {viewMode.title}
+                {viewMode.title.toUpperCase()}
               </CustomButton>
             ))}
         </div>

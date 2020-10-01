@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import './DailyEvents.scss';
 import getEventBlockStyle from '../../utils/getEventBlockStyle';
 
-export default function DayEvents() {
-  const viewMode = 'DAILY';
+const DayEvents = ({ currentViewMode }) => {
   const events = [
     {
       title: '장보기',
@@ -31,7 +32,7 @@ export default function DayEvents() {
       {events.map(({ title, description, start, end }, idx) => (
         <div
           key={idx}
-          className={`${viewMode.toLowerCase()} event-block`}
+          className={`${currentViewMode.title} event-block`}
           style={getEventBlockStyle(start, end)}
         >
           <div className='title'>{title}</div>
@@ -40,4 +41,10 @@ export default function DayEvents() {
       ))}
     </div>
   );
-}
+};
+
+const mapStateToProps = ({ calendar }) => ({
+  currentViewMode: calendar.currentViewMode,
+});
+
+export default connect(mapStateToProps, null)(DayEvents);

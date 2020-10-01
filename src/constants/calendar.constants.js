@@ -1,6 +1,6 @@
 export const VIEW_MODES = {
-  DAILY: { title: 'DAILY', gap: 1 },
-  WEEKLY: { title: 'WEEKLY', gap: 7 },
+  DAILY: { title: 'daily', gap: 1 },
+  WEEKLY: { title: 'weekly', gap: 7 },
 };
 
 export const VIEW_MODES_LIST = Object.values(VIEW_MODES);
