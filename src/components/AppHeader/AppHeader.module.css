@@ -32,7 +32,7 @@
   margin-block-end: 0.7em;
 }
 
-select {
+.viewSelector {
   position: fixed;
   top: 25px;
   right: 80px;

@@ -31,7 +31,7 @@ export default function AppHeader({ showDaily, showWeekly }) {
         다음
       </button>
       <h2 className={styles.month}>{`${dayjs().format("M")}월`}</h2>
-      <select onChange={onChange}>
+      <select className={styles.viewSelector} onChange={onChange}>
         <option value="daily">하루씩 보기</option>
         <option value="weekly">일주일씩 보기</option>
       </select>
