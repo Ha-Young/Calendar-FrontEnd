@@ -52,7 +52,6 @@ const Container = styled.section`
         }
       }
     }
-
   }
 `;
 

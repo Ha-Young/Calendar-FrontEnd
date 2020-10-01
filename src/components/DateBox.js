@@ -21,12 +21,36 @@ const Container = styled.div`
     height: 200px;
     border: 1px solid ${({theme}) => theme.gray};
     text-align: center;
+    overflow:hidden;
+  }
+
+  ul {
+    width: 100%;
+
+    .event-list {
+      width: 100%;
+      transition: all 0.3s;
+      margin-bottom: 5px;
+
+      &:hover {
+        width: 100%;
+        background: ${({theme}) => theme.yellow};
+        color: white;
+        cursor: pointer;
+      }
+    }
   }
 
   .paint {
     background: ${({theme}) => theme.blue};
     border-radius: 10px;
     color: white;
+    transition: all 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      background: ${({theme}) => theme.yellow};
+    }
   }
 `;
 

@@ -6,7 +6,12 @@ import styled from 'styled-components';
 import Button from '../components/Button';
 import InfoPage from '../components/InfoPage';
 import WriteEventForm from '../components/WriteEventForm';
-import { setDataToFirebase } from '../utils/api';
+import Modal from '../components/Modal';
+import validateEventForm from '../utils/utilFunction';
+import {
+  setDataToFirebase,
+  deleteDataFromFirebase
+} from '../utils/api';
 
 const Container = styled.section`
   display: flex;
@@ -39,6 +44,7 @@ const Container = styled.section`
 
 function EventPageContainer({ eventData, uid }) {
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isOpenedConfirmModal, setIsOpenedConfirmModal] = useState(false);
   const history = useHistory();
   const currentEventId = useParams().eventId;
   const currentEvent = eventData.eventsId[currentEventId];
@@ -67,7 +73,7 @@ function EventPageContainer({ eventData, uid }) {
 
   function handleUpdate() {
     if (isUpdating) {
-      console.log(uid)
+      //validation
       setDataToFirebase(currentEventData, uid, currentEventId);
       history.push('/calendar');
     } else {
@@ -75,9 +81,24 @@ function EventPageContainer({ eventData, uid }) {
     }
   }
 
+  function toggleModal() {
+    setIsOpenedConfirmModal(prev => !prev);
+  }
+
+  function confirmRemove() {
+    deleteDataFromFirebase(uid, currentEventId);
+    history.push('/calendar');
+  }
+
   return (
     <InfoPage>
       <Container>
+      {
+        isOpenedConfirmModal && <Modal>
+          <Button value="안지우기" onClick={toggleModal} />
+          <Button value="정말 지우기" onClick={confirmRemove} />
+        </Modal>
+      }
       {
         isUpdating
         ?
@@ -102,8 +123,9 @@ function EventPageContainer({ eventData, uid }) {
           </>
       }
         <div className='button-box'>
-          <Button value='뒤로' onClick={goBack}/>
-          <Button value='업데이트' onClick={handleUpdate}/>
+          <Button value='뒤로' onClick={goBack} />
+          <Button value='업데이트' onClick={handleUpdate} />
+          <Button value='지우기' onClick={toggleModal} />
         </div>
       </Container>
     </InfoPage>

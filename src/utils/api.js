@@ -14,3 +14,7 @@ export function setDataToFirebase(data, uid, dataId = nanoid(12)) {
     createdAt: moment().format('YYYY-MM-DD'),
   });
 }
+
+export function deleteDataFromFirebase(uid, dataId) {
+  dataService.ref(`/calendar/userId/${uid}/events/${dataId}`).set(null);
+}

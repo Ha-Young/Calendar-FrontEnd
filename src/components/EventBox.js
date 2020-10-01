@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   background: ${({theme}) => theme.blue};
   margin: 5px 20px;
   border-radius: 10px;
+  transition: all 0.3s;
 
   a {
     width: 100%;
@@ -41,6 +42,7 @@ const Wrapper = styled.div`
 
   &:hover {
     cursor: pointer;
+    background: ${({theme}) => theme.yellow};
   }
 `;
 

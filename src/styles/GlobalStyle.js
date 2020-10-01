@@ -30,4 +30,12 @@ export default createGlobalStyle`
     color: black;
     text-decoration: none;
   }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    text-align: center;
+  }
 `;

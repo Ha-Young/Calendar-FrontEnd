@@ -20,6 +20,14 @@ export default function WeeklyCalendar({
 }
 
 WeeklyCalendar.propTypes = {
-  currentDate: PropTypes.string.isRequired,
-  eventData: PropTypes.object,
+  currentDate: PropTypes.shape({
+    year: PropTypes.string.isRequired,
+    month: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+  }).isRequired,
+  eventData: PropTypes.shape({
+    date: PropTypes.object,
+    events: PropTypes.array,
+    eventsId: PropTypes.object,
+  }).isRequired,
 };
