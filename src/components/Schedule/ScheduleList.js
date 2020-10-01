@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 const Wrapper = styled.div`
   padding-top: 10px;
@@ -16,22 +17,23 @@ const HourlySchedule = styled.div`
 `;
 
 
-export default function ScheduleList ({ type, openModal }) {
-  
+export default function ScheduleList () {
+  let path = useRouteMatch().path
+
   function renderByType () {
     let scheduleTable;
-    if (type === 'weekly') {
+    if (path === '/weekly') {
       scheduleTable = [];
       for (let i = 0; i < 26; i++) {
         scheduleTable[i] = (
           <HourlySchedule key={i}>
-            <div onClick={openModal} style={{border:"3px solid pink"}}></div>
-            <div onClick={openModal}></div>
-            <div onClick={openModal}></div>
-            <div onClick={openModal}></div>
-            <div onClick={openModal}></div>
-            <div onClick={openModal}></div>
-            <div onClick={openModal}></div>
+            <Link to='event'><div style={{border:"3px solid pink"}}></div></Link>
+            <Link to='event'><div></div></Link>
+            <Link to='event'><div></div></Link>
+            <Link to='event'><div></div></Link>
+            <Link to='event'><div></div></Link>
+            <Link to='event'><div></div></Link>
+            <Link to='event'><div></div></Link>
           </HourlySchedule>
         );
       }
@@ -40,7 +42,7 @@ export default function ScheduleList ({ type, openModal }) {
     
     scheduleTable = [];
       for (let i = 0; i < 26; i++) {
-        scheduleTable[i] = <HourlySchedule onClick={openModal} key={i} />
+        scheduleTable[i] = <Link to='event'><HourlySchedule key={i} /></Link>
       }
       return scheduleTable;
   }

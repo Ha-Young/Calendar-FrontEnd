@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -29,7 +29,6 @@ const CloseButton = styled.div`
   cursor: pointer;
 `;
 
-
 export default function Modal ({ children }) {
 
   return (
@@ -39,5 +38,6 @@ export default function Modal ({ children }) {
         {children}
       </ModalContents>
     </Wrapper>
+    
   );
 }

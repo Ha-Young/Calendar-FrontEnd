@@ -25,7 +25,7 @@ export default function ScheduleBody ({ type }) {
       return (
         <Wrapper ref={scrollRef} style={{gridTemplateColumns: '8% 1fr 6.8%'}}>
           <ScheduleTimeline />
-          <ScheduleListContainer type={type} />
+          <ScheduleListContainer />
           <div></div>
         </Wrapper>
       );    
@@ -34,7 +34,7 @@ export default function ScheduleBody ({ type }) {
     return (
       <Wrapper ref={scrollRef} style={{gridTemplateColumns: '15% 1fr'}}>
         <ScheduleTimeline />
-        <ScheduleListContainer type={type} />
+        <ScheduleListContainer />
       </Wrapper>
     );
   }
