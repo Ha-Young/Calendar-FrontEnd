@@ -23,7 +23,7 @@ function App() {
       <GlobalStyles />
       <Header />
       <Switch>
-        <Route path='/main'>
+        <Route path={[ '/main', '/main/:params' ]}>
           <Main />
         </Route>
         <Route path='/event'>

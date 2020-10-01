@@ -12,27 +12,24 @@ export async function saveSampleData () {
 }
 
 const databaseRef = firebase.database().ref();
-let scheduleId = 0;
 
 export const schedule = {
   getSchedules: async (callback) => {
-    // 1. 파이어베이스에서 저장된 스케줄 정보들을 가지고 오는 로직
-    // 2. 저장된 정보를 callback에 넘겨준다
-    // callback은 이 정보를 토대로 액션을 만들고, 해당 액션을 디스패치로 감싸주는 함수로 mapDispatchToProps 안에 정의되어 있을 것!
-    await database.ref('schedule').once('value', (data) => {
-      const result = data.val();
-      scheduleId = result.length;
-      callback(result);
-    });
+    try {
+      await database.ref('schedule').once('value', (data) => {
+        const result = data.val();
+        callback(result);
+      });
+    } catch (err) {
+      console.error(err);
+    }
   },
   setSchedule: async (schedule) => {
     try {
-      await databaseRef.child(`schedule/${scheduleId}`).set({
-        ...schedule,
-        scheduleId
+      await databaseRef.child(`schedule/${schedule.startDate}`).push().set({
+        ...schedule
       });
 
-      scheduleId++;
     } catch (err) {
       console.error(err);
     }
