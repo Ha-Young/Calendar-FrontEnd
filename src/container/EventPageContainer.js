@@ -51,12 +51,12 @@ function EventPageContainer({ eventData, uid }) {
   const currentEvent = eventData.eventsId[currentEventId];
 
   const [currentEventData, setCurrentEventData] = useState({
-    date: currentEvent.date,
-    description: currentEvent.description,
-    endTime: currentEvent.endTime,
-    startTime: currentEvent.startTime,
-    title: currentEvent.title,
-    id: currentEvent.id,
+    date: currentEvent?.date,
+    description: currentEvent?.description,
+    endTime: currentEvent?.endTime,
+    startTime: currentEvent?.startTime,
+    title: currentEvent?.title,
+    id: currentEvent?.id,
   });
 
   function handleChange({ target }) {
@@ -68,11 +68,15 @@ function EventPageContainer({ eventData, uid }) {
     })
   }
 
+  function goHome() {
+    history.push('/calendar');
+  }
+
   function goBack() {
     if (isUpdating) {
       setIsUpdating(false);
     } else {
-      history.push('/calendar');
+      goHome();
     }
   }
 
@@ -83,7 +87,7 @@ function EventPageContainer({ eventData, uid }) {
           setValidMessage(validMessage);
         } else {
           setDataToFirebase(currentEventData, uid, currentEventId);
-          history.push('/calendar');
+          goHome();
         }
     } else {
       setIsUpdating(true);
@@ -100,10 +104,11 @@ function EventPageContainer({ eventData, uid }) {
 
   function confirmRemove() {
     deleteDataFromFirebase(uid, currentEventId);
-    history.push('/calendar');
+    goHome();
   }
 
   return (
+    currentEvent &&
     <InfoPage>
       <Container>
       {
