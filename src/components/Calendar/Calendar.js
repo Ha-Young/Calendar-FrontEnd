@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-// import styles from './Calendar.module.css';
+import styles from './Calendar.module.css';
 
 import EventContainer from '../../containers/EventsContainer/EventsContainer';
 
@@ -32,16 +32,19 @@ function Calendar({ onLoad, date, onBackward, onForward }) {
 
   return (
     <>
-      <div>Calendar</div>
-      <div>
-        <button onClick={handleClickToPrevious}>Previous</button>
-        <button onClick={handleClickToNext}>Next</button>
+      <div className={styles.Calendar}>
+        <div className={styles.controller}>
+          <button onClick={handleClickToPrevious}>Previous</button>
+          <button onClick={handleClickToNext}>Next</button>
+        </div>
+        {
+          date.isLoading ? <div>is loading...</div>
+          :
+          <>
+            <EventContainer />
+          </>
+        }
       </div>
-      {
-        date.isLoading ? <div>is loading...</div>
-        :
-        <EventContainer />
-      }
     </>
   );
 }

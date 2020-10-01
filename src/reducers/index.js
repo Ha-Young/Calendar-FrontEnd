@@ -6,7 +6,7 @@ const dateIninitialState = {
   current: generateToday(),
   selectedDay: generateToday(),
   weekList: generateWeekList(),
-  isWeeklyMode: false,
+  isWeeklyMode: true,
   isLoading: true,
 };
 

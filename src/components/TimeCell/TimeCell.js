@@ -7,12 +7,18 @@ export default function TimeCell({ event }) {
     <>
       {
         event ?
-        <Link to={`/event/${event.id}`} className={styles.TimeCell}>
-          {event.title}
-        </Link>
+        <div className={styles.TimeCell}></div>
         :
-        <div className={styles.TimeCell}>TimeCell</div>
+        <div className={styles.TimeCell}></div>
       }
     </>
   );
 }
+
+/*
+
+<Link to={`/event/${event.id}`} className={styles.TimeCell}>
+          {event.title}
+        </Link>
+
+*/

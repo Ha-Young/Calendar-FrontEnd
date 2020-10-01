@@ -1,4 +1,7 @@
 .TimeCell {
-  display: block;
-  border: 1px solid slateblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 0.1px solid rgba(0, 0, 0, 0.1);
+  height: 60px;
 }

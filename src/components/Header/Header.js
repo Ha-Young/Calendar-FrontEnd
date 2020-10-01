@@ -15,15 +15,15 @@ function Header({ onChange }) {
   return (
     <header className={styles.Header}>
       <nav>
-      <div>
-        <select name='weekly-select' id='weekly-select' onChange={handleChange}>
-          <option value='day'>Day</option>
-          <option value='Week'>Week</option>
-        </select>
-      </div>
-        <ul>
-          <li><Link to='/event/new'>Make Event</Link></li>
-        </ul>
+        <div>
+          <Link to='/event/new'>Make Event</Link>
+        </div>
+        <div>
+          <select name='weekly-select' id='weekly-select' onChange={handleChange} defaultValue='Week'>
+            <option value='day'>Day</option>
+            <option value='Week'>Week</option>
+          </select>
+        </div>
       </nav>
     </header>
   );
