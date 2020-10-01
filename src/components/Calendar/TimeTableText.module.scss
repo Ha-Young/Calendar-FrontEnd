@@ -1,0 +1,19 @@
+.TimeTableText {
+  display: flex;
+  height: 1200px;
+  flex-direction: column;
+  text-align: left;
+  position: relative;
+  top: 2.2%;
+  right: 0.5%;
+
+  span {
+    display: inline-block;
+    width: 2.1rem;
+    height: 100px;
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: monospace;
+  }
+}

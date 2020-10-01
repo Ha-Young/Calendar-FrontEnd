@@ -1,0 +1,17 @@
+.DailyCalendarBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  border: 1px solid gray;
+  border-collapse: separate;
+
+  &:nth-child(even) {
+    background-color: seashell;
+  }
+
+  &:nth-child(odd) {
+    background-color: whitesmoke;
+  }
+}

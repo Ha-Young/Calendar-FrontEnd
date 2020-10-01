@@ -1,0 +1,19 @@
+.DailyCalendar {
+  display: flex;
+  width: 70%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  .rowWrap {
+    width: 100%;
+  }
+
+  .CalenderBarWrap {
+    box-shadow: 3px 3px 7px 2px black;
+  }
+
+  h2 {
+    text-align: left;
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,9 @@
+.UnitSelector {
+  width: 5%;
+  min-width: 50px;
+  height: 25%;
+
+  &:focus {
+    outline: none;
+  }
+}

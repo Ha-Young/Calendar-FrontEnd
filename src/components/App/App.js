@@ -1,29 +1,26 @@
-import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
-// TODO: We are using CSS Modules here.
-// Do your own research about CSS Modules.
-// For example, what is it? what are benefits?
-import styles from './App.module.css';
-import Header from '../Header/Header';
-import { saveSampleData } from '../../utils/api';
+import React, { useEffect } from "react";
+import { Route, Redirect } from "react-router-dom";
+import { Reset } from "styled-reset";
+import HeaderContainer from "../../containers/HeaderContainer/HeaderContainer";
+import Main from "../Main/Main";
+import CalendarContainer from "../../containers/CalendarContainer/CalendarCotainer";
+import EventPageCotainer from "../../containers/EventPageCotainer/EventPageCotainer";
+import styles from "./App.module.scss";
 
-// Feel free to modify as you need.
 function App() {
-  useEffect(() => {
-    saveSampleData();
-  }, []);
-
   return (
     <div className={styles.App}>
-      <Header />
-      <Switch>
-        <Route path='/' exact>
-          <div>Main</div>
+      <Reset />
+      <HeaderContainer />
+      <Main>
+        <Route path="/calendar">
+          <CalendarContainer />
         </Route>
-        <Route path='/event'>
-          <div>Event</div>
+        <Route path="/events/:eventId">
+          <EventPageCotainer />
         </Route>
-      </Switch>
+        <Redirect to="/calendar" />
+      </Main>
     </div>
   );
 }
