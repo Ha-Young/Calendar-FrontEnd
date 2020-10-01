@@ -1,9 +1,7 @@
 // TODO: You can modify, add, remove as you need.
-import firebase, { auth } from "./firebase";
+import firebase, { auth, database } from "./firebase";
 
 export async function saveSampleData() {
-  const database = firebase.database();
-
   // Note: `set` method returns a promise.
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
   await database.ref("test/123").set({
@@ -39,7 +37,7 @@ const TIME_INDEX = {
   "오후 11시59분": "24"
 };
 
-export async function saveNewEvent(
+export function saveNewEvent(
   title,
   description,
   date,
@@ -50,14 +48,16 @@ export async function saveNewEvent(
   const year = dateArray[0];
   const month = dateArray[1];
   const day = dateArray[2];
-  const startTime = start.slice(0, -2);
-  const finishTime = finish.slice(0, -2);
+  const startTime = TIME_INDEX[start.slice(0, -2)];
+  const finishTime = TIME_INDEX[finish.slice(0, -2)];
   const database = firebase.database();
 
-  await database.ref(`${auth.currentUser.uid}/${year}/${month}/${day}`).push({
+  console.log(date, start, finish);
+
+  database.ref(`${auth.currentUser.uid}/${year}/${month}/${day}`).push({
     title,
     description,
-    startTime: TIME_INDEX[startTime],
-    finishTime: TIME_INDEX[finishTime],
+    startTime,
+    finishTime,
   });
 }

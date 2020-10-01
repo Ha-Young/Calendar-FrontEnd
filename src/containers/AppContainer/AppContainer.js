@@ -10,7 +10,7 @@ import Calendar from "../../components/Calendar/Calendar";
 import { connect } from "react-redux";
 import { showDaily, showWeekly, login, logout, showPreviousDay, showNextDay, showPreviousWeek, showNextWeek } from "../../actions";
 import Form from "../../components/Form/Form";
-import { auth, provider } from "../../utils/firebase";
+import { auth, database, provider } from "../../utils/firebase";
 import Auth from "../../Auth/Auth";
 
 // Feel free to modify as you need.
@@ -28,13 +28,9 @@ function AppContainer({
   onPreviousWeekClick,
   onNextWeekClick,
 }) {
-  // useEffect(() => {
-  //   const starCountRef = firebase.database().ref(`users/${userId}`);
-  //   starCountRef.on('value', function(snapshot) {
-  //     updateStarCount(postElement, snapshot.val());
-  //   });
-  // }, []);
-
+  const [currentYear, setCurrentYear] = useState(displayDate.slice(0, 4));
+  const [currentMonth, setCurrentMonth] = useState(displayDate.slice(5, 7));
+  const [currentDay, setCurrentDay] = useState(displayDate.slice(8, 10));
   const [newEventTitle, setNewEventTitle] = useState("");
   const [newEventDescription, setNewEventDescription] = useState("");
   const [newEventDate, setNewEventDate] = useState("");
@@ -42,6 +38,23 @@ function AppContainer({
   const [newEventFinishTime, setNewEventFinishTime] = useState("");
   const startTimeOptions = ["오전 12시", "오전 1시", "오전 2시", "오전 3시", "오전 4시", "오전 5시", "오전 6시", "오전 7시", "오전 8시", "오전 9시", "오전 10시", "오전 11시", "오후 12시", "오후 1시", "오후 2시", "오후 3시", "오후 4시", "오후 5시", "오후 6시", "오후 7시", "오후 8시", "오후 9시", "오후 10시", "오후 11시"];
   const finishTimeOptions = ["오전 1시", "오전 2시", "오전 3시", "오전 4시", "오전 5시", "오전 6시", "오전 7시", "오전 8시", "오전 9시", "오전 10시", "오전 11시", "오후 12시", "오후 1시", "오후 2시", "오후 3시", "오후 4시", "오후 5시", "오후 6시", "오후 7시", "오후 8시", "오후 9시", "오후 10시", "오후 11시", "오후 11시59분"];
+  const [fetchedData, setFetchedData] = useState({});
+
+  useEffect(() => {
+    setCurrentYear(displayDate.slice(0, 4));
+    setCurrentMonth(displayDate.slice(5, 7));
+    setCurrentDay(displayDate.slice(8, 10));
+  }, [displayDate]);
+
+  useEffect(() => {
+    if (!auth.currentUser) return;
+
+    const displayDateRef = database.ref(`${auth.currentUser.uid}/${currentYear}/${currentMonth}/${currentDay}`);
+
+    displayDateRef.on('value', function(snapshot) {
+      console.log(snapshot.val());
+    });
+  }, [isLoggedIn, displayDate]);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -136,7 +149,7 @@ const mapDispatchToProps = dispatch => {
     onPreviousDayClick() {
       dispatch(showPreviousDay());
     },
-    onNextDateClick() {
+    onNextDayClick() {
       dispatch(showNextDay());
     },
     onPreviousWeekClick() {
