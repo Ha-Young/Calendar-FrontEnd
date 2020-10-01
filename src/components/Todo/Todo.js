@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Todo.module.css';
 
-const timeRange = new Array(24).fill(0);
+const timeRange = new Array(23).fill(0);
 
 const OutlineTodo = () => {
   return (

@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import styles from './Calendar.module.css';
+import styles from './Daily.module.css';
 import Todo from '../Todo/Todo';
 import Timeline from '../Timeline/Timeline';
-import Date from '../Date/Date';
+import Date from '../CalendarItemHeader/CalendarItemHeader';
 
-function Calendar () {
-  const [date, setDate] = useState('');
-
+function Daily ({ day, date }) {
   return (
     <div className={styles.Outline}>
       <div className={styles.DateBox}>
-        <Date />
+        <Date day={day} date={date} />
       </div>
       <div className={styles.Box}>
         <Timeline />
@@ -20,4 +18,4 @@ function Calendar () {
   );
 }
 
-export default Calendar;
+export default Daily;

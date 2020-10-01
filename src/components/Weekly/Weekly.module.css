@@ -23,4 +23,5 @@
 .box {
   display: flex;
   width: 100px;
+  border-right: 1px dotted grey;
 }
