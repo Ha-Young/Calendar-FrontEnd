@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import getMonthlyDates, { getWeeklyDates } from '../../utils/date';
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
-import getMonthlyDates, { getWeeklyDates } from '../../utils/date';
-import CalendarContainer from '../Calendar/CalendarContainer/CalendarContainer';
+import Schedule from '../Schedule/Schedule';
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -54,7 +53,7 @@ function App() {
           onClickPrevMonth={onClick.bind(null, setChangeMonth, changeMonth, -1)}
           onClickNextMonth={onClick.bind(null, setChangeMonth, changeMonth, 1)}
         />
-        <CalendarContainer 
+        <Schedule 
           weeklyDates={weeklyDates}
           onClickPrevWeek={onClick.bind(null, setChangeWeek, changeWeek, -1)}
           onClickNextWeek={onClick.bind(null, setChangeWeek, changeWeek, 1)}

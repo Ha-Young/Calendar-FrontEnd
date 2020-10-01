@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import MonthlyCalendarBody from './MonthlyCalendarBody/MonthlyCalendarBody';
-import MonthlyCalendarHead from './MonthlyCalendarHead/MonthlyCalendarHead';
+import CalendarHead from './CalendarHead';
+import CalendarBody from './CalendarBody';
+
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows:15% 1fr;
+  grid-template-rows: 15% 1fr;
   border: 3px solid yellowgreen;
 `;
 
@@ -13,11 +14,12 @@ export default function Calendar ({ thisMonth, dates, onClickPrevMonth, onClickN
   
   return (
     <Wrapper>
-      <MonthlyCalendarHead thisMonth={thisMonth} 
+      <CalendarHead
+        thisMonth={thisMonth} 
         onClickPrevMonth={onClickPrevMonth}
         onClickNextMonth={onClickNextMonth}
       />
-      <MonthlyCalendarBody type="weekly" dates={dates} />
+      <CalendarBody type="weekly" dates={dates} />
     </Wrapper>
   );
 }

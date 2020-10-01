@@ -43,7 +43,6 @@ export default function ScheduleList ({ type, openModal }) { //CalendarTimelineS
         scheduleTable[i] = <HourlySchedule onClick={openModal} key={i} />
       }
       return scheduleTable;
-
   }
   
   return (

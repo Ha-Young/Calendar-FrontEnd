@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ArrowShapedButton from '../../../Shared/Button/ArrowShapedButton/ArrowShapedButton.js';
+import ArrowShapedButton from '../Shared/ArrowShapedButton';
 
 const Wrapper = styled.div`
   display: grid;

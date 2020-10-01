@@ -1,41 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import MonthlyCalendarWeek from '../MonthlyCalendarWeek/MonthlyCalendarWeek.js';
+import CalendarWeek from './CalendarWeek';
 
 const Wrapper = styled.div`
   display: grid;
 `;
 
 export default function CalendarBody ({ type, dates }) { //MonthlyCalendarBody
-  
 
-  // const chooseType = function (type, dates) {
-  //   if (type === 'weekly') {
-  //     return (
-  //       <Wrapper style={{gridTemplateRows: `repeat(${dates.length + 1}, 1fr)`}}>
-  //         <MonthlyCalendarWeek isHead={true} />
-  //         {
-  //           dates.map((week, i) => {
-  //             return <MonthlyCalendarWeek key={i} isHead={false} dates={week} />
-  //           })
-  //         }
-  //       </Wrapper>
-  //     );
-  //   }
-  // };
-  
-  // return chooseType(type, dates);
   return (
     <Wrapper style={{gridTemplateRows: `repeat(${dates.length + 1}, 1fr)`}}>
-      <MonthlyCalendarWeek isHead={true} />
+      <CalendarWeek isHead={true} />
       {
         dates.map((week, i) => {
-          return <MonthlyCalendarWeek key={i} isHead={false} dates={week} type={type} />
+          return <CalendarWeek key={i} isHead={false} dates={week} type={type} />
         })
       }
     </Wrapper>
-  );
-  
-
-  
+  );  
 }
