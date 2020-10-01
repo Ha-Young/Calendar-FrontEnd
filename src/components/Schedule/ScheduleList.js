@@ -16,7 +16,7 @@ const HourlySchedule = styled.div`
 `;
 
 
-export default function ScheduleList ({ type, openModal }) { //CalendarTimelineSchedule
+export default function ScheduleList ({ type, openModal }) {
   
   function renderByType () {
     let scheduleTable;

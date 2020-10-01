@@ -17,11 +17,12 @@ const Main = styled.div`
   overflow: hidden;
 `;
 
-export default function Schedule ({ dates, updateCalendar }) { //CalendarContainer
-  
+export default function Schedule ({ dates, updateCalendar }) {
   
   return (
     <Switch>
+      
+
       <Route path='/' exact>
         <Wrapper>
             <ScheduleHead

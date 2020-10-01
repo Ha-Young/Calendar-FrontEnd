@@ -9,9 +9,9 @@ const Wrapper = styled.div`
   display: grid;
 `;
 
-export default function ScheduleHead ({ type, dates, updateCalendar }) { //CalendarDateBar
+export default function ScheduleHead ({ type, dates, updateCalendar }) {
   const [clickCount, setClickCount] = useState(0);
-  console.log(dates, 'a')
+  
   const onClick = useCallback((callback, status, change) => {
     callback(status + change);
   }, [clickCount]);

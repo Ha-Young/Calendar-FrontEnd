@@ -2,7 +2,8 @@ import React, {useEffect, useState, useRef} from 'react';
 import { useRouteMatch } from 'react-router-dom'
 import styled from 'styled-components';
 import ScheduleTimeline from './ScheduleTimeline';
-import ScheduleList from './ScheduleList';
+import ScheduleListContainer from '../../containers/ScheduleListContainer';
+
 
 const Wrapper = styled.div`
   display: grid;
@@ -10,11 +11,8 @@ const Wrapper = styled.div`
   overflow: scroll;
 `;  
 
-export default function ScheduleBody ({ type, openModal }) { //CalendarTimeline
+export default function ScheduleBody ({ type }) {
   const [scrollRef, setScrollRef] = useState(useRef());
-
-  // let match = useRouteMatch()
-  // console.log(match, 'mat')
 
   useEffect (()=>{
     scrollRef.current.addEventListener('scroll', () => {
@@ -27,7 +25,7 @@ export default function ScheduleBody ({ type, openModal }) { //CalendarTimeline
       return (
         <Wrapper ref={scrollRef} style={{gridTemplateColumns: '8% 1fr 6.8%'}}>
           <ScheduleTimeline />
-          <ScheduleList type={type} />
+          <ScheduleListContainer type={type} />
           <div></div>
         </Wrapper>
       );    
@@ -36,7 +34,7 @@ export default function ScheduleBody ({ type, openModal }) { //CalendarTimeline
     return (
       <Wrapper ref={scrollRef} style={{gridTemplateColumns: '15% 1fr'}}>
         <ScheduleTimeline />
-        <ScheduleList type={type} />
+        <ScheduleListContainer type={type} />
       </Wrapper>
     );
   }

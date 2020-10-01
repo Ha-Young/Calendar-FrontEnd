@@ -20,37 +20,18 @@ const Main = styled.div`
 
 // Feel free to modify as you need.
 function App() {
-  // const [ changeMonth, setChangeMonth ] = useState(0);
-  // const [ monthlyDates, setMonthlyDates ] = useState(getMonthlyDates(changeMonth));
-  // const [ changeWeek, setChangeWeek ] = useState(0);
-  // const [ weeklyDates, setWeeklyDates] = useState(getWeeklyDates(changeWeek));
-  // const [ openModal, setOpenModal ] = useState(false);
   
-  // useEffect(() => {
-  //   setMonthlyDates(getMonthlyDates(changeMonth));
-  // }, [changeMonth]);
-
-  // useEffect(() => {
-  //   setWeeklyDates(getWeeklyDates(changeWeek));
-  // }, [changeWeek]);
-
   function onClick (callback, status, change) {
     callback(status + change);
     console.log('click')
   };
-
-
 
   return (
     <Wrapper>  
       <HeaderContainer/>
       <Main>
         <SideBar/>
-        <ScheduleContainer
-          // weeklyDates={weeklyDates}
-          // onClickPrevWeek={onClick.bind(null, setChangeWeek, changeWeek, -1)}
-          // onClickNextWeek={onClick.bind(null, setChangeWeek, changeWeek, 1)}
-        />
+        <ScheduleContainer/>
       </Main>
     </Wrapper>
   );
