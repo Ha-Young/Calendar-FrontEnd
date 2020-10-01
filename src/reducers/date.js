@@ -5,7 +5,10 @@ import {
 } from "../constants/actionTypes";
 import getCurrentDate from "../utils/getCurrentDate";
 
-export const currentDate = (state = getCurrentDate(new Date()), action) => {
+const initialCurrentDate = getCurrentDate(new Date());
+const initialDateUnit = "일";
+
+export const currentDate = (state = initialCurrentDate, action) => {
   const currentDate = new Date(state);
 
   switch (action.type) {
@@ -20,7 +23,7 @@ export const currentDate = (state = getCurrentDate(new Date()), action) => {
   }
 };
 
-export const dateUnit = (state = "일", action) => {
+export const dateUnit = (state = initialDateUnit, action) => {
   switch (action.type) {
     case CHANGE_DATE_UNIT:
       return action.dateUnit;

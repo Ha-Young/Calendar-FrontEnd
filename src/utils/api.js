@@ -12,6 +12,7 @@ export async function receiveEventData() {
   const database = firebase.database();
   const dataRef = database.ref("events/");
   let eventData;
+
   await dataRef.once("value", function (snapshot) {
     eventData = snapshot.val();
   });
