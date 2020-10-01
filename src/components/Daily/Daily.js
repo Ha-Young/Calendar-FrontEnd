@@ -11,7 +11,7 @@ export default function Daily ({ date, eventDetail}) {
     <>
       <div className={styles.Daily}>
         <div className={styles.timeList}>
-          <div><h2>TIME</h2></div>
+          <div><h2 className={styles.time}>TIME</h2></div>
           <div>오전 0시</div>
           <div>오전 1시</div>
           <div>오전 2시</div>

@@ -6,6 +6,7 @@ import {
   CLICK_NEXT_BUTTON,
   CHANGE_WEEKLY_VIEW,
   GET_EVENTS_DATA,
+  UPDATE_EVENT,
 } from "../actions/constants";
 import moment from "moment";
 
@@ -24,6 +25,13 @@ export const eventDetail = (state = [], action) => {
       ];
     case GET_EVENTS_DATA:
       return state.concat(action.data);
+    case UPDATE_EVENT:
+      return state.map((item) => {
+        if (item.id !== action.eventDetails.id) {
+          return item;
+        }
+        return action.eventDetails;
+      });
     default:
       return state;
   }

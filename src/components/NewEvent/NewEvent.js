@@ -30,6 +30,7 @@ export default function NewEvent ({ addEvent }) {
   const onClick = () => {
     const id = "event" + Date.now();
     addEvent({...eventDetails, createdAt: moment().toISOString(), id: id});
+    history.push("/calendar");
   };
 
   const handleClick = (event) => {

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { userLogIn, userLogOut, clickPrevButton, clickNextButton, changeWeeklyView, getEventsData} from "../actions/actionCreators";
+import { userLogIn, userLogOut, clickPrevButton, clickNextButton, changeWeeklyView, getEventsData, updateEvent} from "../actions/actionCreators";
 import App from "../components/App/App";
 import { getData } from "../utils/api";
 
-function AppContainer ({ userLogIn, userLogOut, isLoggedIn, date, isDailyView, clickPrevButton, clickNextButton, changeWeeklyView, getEventsData, eventDetail }) {
+function AppContainer ({ userLogIn, userLogOut, isLoggedIn, date, isDailyView, clickPrevButton, clickNextButton, changeWeeklyView, getEventsData, eventDetail, updateEvent }) {
   useEffect(() => {
     (async function getStoredData () {
       const storedData = await getData();
@@ -23,6 +23,7 @@ function AppContainer ({ userLogIn, userLogOut, isLoggedIn, date, isDailyView, c
       clickNextButton={clickNextButton}
       changeWeeklyView={changeWeeklyView}
       eventDetail={eventDetail}
+      updateEvent={updateEvent}
     />
   );
 }
@@ -46,6 +47,7 @@ const mapDispatchToProps = (dispatch) => {
     clickNextButton: (days) => dispatch(clickNextButton(days)),
     changeWeeklyView: () => dispatch(changeWeeklyView()),
     getEventsData: (data) => dispatch(getEventsData(data)),
+    updateEvent: (eventDetails) => dispatch(updateEvent(eventDetails)),
   };
 };
 

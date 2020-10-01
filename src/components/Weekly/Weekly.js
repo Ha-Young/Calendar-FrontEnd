@@ -9,13 +9,10 @@ export default function Weekly ({ date, eventDetail }) {
     days.push(moment(date).day(i));
   }
 
-
-
-
   return (
     <div className={styles.Weekly}>
       <div className={styles.timeList}>
-        <div><h2>Time</h2></div>
+        <div><h2 className={styles.time}>Time</h2></div>
         <div>오전 0시</div>
         <div>오전 1시</div>
         <div>오전 2시</div>

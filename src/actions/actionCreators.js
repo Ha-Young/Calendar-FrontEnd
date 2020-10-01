@@ -6,12 +6,20 @@ import {
   CLICK_NEXT_BUTTON,
   CHANGE_WEEKLY_VIEW,
   GET_EVENTS_DATA,
+  UPDATE_EVENT,
 } from "./constants";
 
 export const addEvent = (eventDetails) => {
   return {
     type: ADD_EVENT,
-    eventDetails
+    eventDetails,
+  };
+};
+
+export const updateEvent = (eventDetails) => {
+  return {
+    type: UPDATE_EVENT,
+    eventDetails,
   };
 };
 
@@ -53,3 +61,4 @@ export const getEventsData = (data) => {
     data
   };
 };
+

@@ -4,7 +4,7 @@ import firebase from './firebase';
 const database = firebase.database();
 
 export async function pushData (data) {
-  await database.ref("/").push(data);
+  await database.ref(`/${data.id}`).set(data);
 }
 
 export async function getData () {
