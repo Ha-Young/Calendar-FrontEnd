@@ -10,14 +10,8 @@ import Calendar from '../Calendar/Calendar';
 import NewEventContainer from '../../containers/NewEventContainer/NewEventContainer';
 import UpdateEventContainer from '../../containers/UpdateEventContainer/UpdateEventContainer';
 
-import { saveSampleData } from '../../utils/api';
-
 // Feel free to modify as you need.
 function App() {
-  useEffect(() => {
-    saveSampleData();
-  }, []);
-
   return (
     <div className={styles.App}>
       <Switch>
@@ -38,48 +32,3 @@ function App() {
 }
 
 export default App;
-
-/*
-
-<Provider store={store}>
-  <App>
-    <Route path="/event/:eventId">
-      <ModalContainer /> <-> [READ] getState() <-> RX
-      <UpdateButton onClick={e} /> -> [UPDATE] dispatch() -> RX -> update() -> FB -> [listener]
-      <DeleteButton onClick={e} /> -> [DELETE] dispatch() -> RX -> delete() -> FB -> [listener]
-    </Route>
-    <AppHeader>
-      <Link to="/event/new">
-        <NewEventButton />
-      </Link>
-      <ViewModeToggle /> **[localState]
-    </AppHeader>
-    <Switch>
-      <Route path="/calendar">
-        <Calendar>
-          <PreviousButton />
-          <NextButton />
-          <EventContainer> <-> [READ] getState() <-> RX <-> on() <-> FB
-            <CardList>
-              <DailyCard>
-                (<div>00:00</div> * 24)(?)
-              </DailyCard>
-            </CardList>
-          </EventContainer>
-        </Calendar>
-      </Route>
-      <Route path="/event/new">
-        <NewEventContainer>
-          <Link path="/calender">
-            <BackButton />
-          </Link>
-          <ModalContainer ?? /> -> [WRITE] dispatch() -> RX -> write() -> FB -> [listener]
-        </NewEventContainer>
-      </Route>
-      <Redirect to="/calendar">
-    </Switch>
-  </App>
-</Provider>
-
-
-*/

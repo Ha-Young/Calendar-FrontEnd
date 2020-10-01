@@ -16,7 +16,7 @@ export default function DailyCard({ date, events }) {
       const endTime = parseInt(event.endTime.substring(0, 2));
       const duration = endTime - startTime;
 
-      for (let i = startTime; i <= startTime + duration; i++) {
+      for (let i = startTime; i <= startTime + duration - 1; i++) {
         timeCellList[i] = event;
       }
     });

@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { Link, useRouteMatch, useHistory } from 'react-router-dom';
 import { getEventById } from '../../reducers';
 
+import { updateEvent, deleteEvent } from '../../utils/api';
+
 function UpdateEventContainer({ getState, onSubmit, onDelete }) {
-  const [input, setInput] = useState({
+  const [inputValue, setInput] = useState({
     id: '',
     date: '',
     startTime: '',
@@ -20,9 +22,12 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
     if (targetEvent) setInput(targetEvent);
   }, []);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    onSubmit(input);
+  function handleSubmit() {
+    if (inputValue.endTime === "00:00") {
+      inputValue.endTime = "24:00";
+    }
+    onSubmit(inputValue);
+    history.push('/calendar');
   }
 
   function handleChange(e) {
@@ -30,7 +35,7 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
     const value = target.value;
     const name = target.name;
 
-    setInput({ ...input, [name] : value });
+    setInput({ ...inputValue, [name] : value });
   }
 
   function handleClick() {
@@ -43,19 +48,19 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
       <Link to='/calendar'>Back</Link>
       <form onSubmit={handleSubmit}>
         <label>
-          Title: <input name='title' type='text' value={input.title} onChange={handleChange} />
+          Title: <input name='title' type='text' value={inputValue.title} onChange={handleChange} />
         </label>
         <label>
-          Description: <input name='description' type='text' value={input.description} onChange={handleChange} />
+          Description: <input name='description' type='text' value={inputValue.description} onChange={handleChange} />
         </label>
         <label>
-          Date: <input name='date' type='date' value={input.date} onChange={handleChange} />
+          Date: <input name='date' type='date' value={inputValue.date} onChange={handleChange} />
         </label>
         <label>
-          Start: <input name='startTime' type='time' value={input.startTime} onChange={handleChange} step={3600} />
+          Start: <input name='startTime' type='time' value={inputValue.startTime} onChange={handleChange} step={3600} />
         </label>
         <label>
-          End: <input name='endTime' type='time' value={input.endTime} onChange={handleChange} step={3600} />
+          End: <input name='endTime' type='time' value={inputValue.endTime} onChange={handleChange} step={3600} />
         </label>
         <input type='submit' value='Update' />
       </form>
@@ -64,9 +69,9 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
   );
 }
 
-const updateEvent = (event) => {
-  return { type: 'UPDATE_EVENT', events: { [event.id] : event } };
-};
+// const updateEvent = (event) => {
+//   return { type: 'UPDATE_EVENT', events: { [event.id] : event } };
+// };
 
 // Redux Subscription
 
@@ -81,10 +86,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit(event) {
-      dispatch(updateEvent(event));
+      updateEvent(event, dispatch);
+      // dispatch(updateEvent(event));
     },
     onDelete(id) {
-      dispatch({ type: 'DELETE_EVENT', events: id });
+      deleteEvent(id, dispatch);
+      // dispatch({ type: 'DELETE_EVENT', events: id });
     }
   };
 };

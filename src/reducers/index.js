@@ -1,35 +1,29 @@
 import { combineReducers } from 'redux';
-
-// util
-
-const DAY_LIST = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-const day = new Date().toISOString().substring(0, 10);
-const dayString = DAY_LIST[new Date().getDay()];
+import { generateToday, generateDayString, generateWeekList } from '../utils/date';
 
 const dateIninitialState = {
-  dayStringify: dayString,
-  current: day,
-  selectedDay: day,
+  dayStringify: generateDayString(),
+  current: generateToday(),
+  selectedDay: generateToday(),
+  weekList: generateWeekList(),
   isWeeklyMode: false,
-  weekList: generateWeekList()
+  isLoading: true,
 };
-
-function generateWeekList() {
-  const current = new Date();
-  const week = [];
-
-  for (let i = 1; i <= 7; i++) {
-    const firstDay = current.getDate() - current.getDay() + i;
-    const day = new Date(current.setDate(firstDay)).toISOString().slice(0, 10);
-    week.push(day);
-  }
-
-  return week;
-}
 
 const date = (state = dateIninitialState, action) => {
   switch (action.type) {
+    case 'LOADED_EVENTS':
+      return {
+        ...state,
+        ...action.payload
+      }
     case 'CHANGE_CALENDAR_VIEW_MODE':
+      return {
+        ...state,
+        ...action.payload
+      }
+    case 'BACKWARD_DAYS':
+    case 'FORWARD_DAYS':
       return {
         ...state,
         ...action.payload
@@ -47,10 +41,6 @@ const events = (state = {}, action) => {
         ...action.events
       };
     case 'ADD_EVENT':
-      return {
-        ...state,
-        ...action.events
-      };
     case 'UPDATE_EVENT':
       return {
         ...state,

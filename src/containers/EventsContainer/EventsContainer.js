@@ -1,21 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styles from './EventsContainer.module.css';
 
 import DailyCard from '../../components/DailyCard/DailyCard';
 
-import { getSample } from '../../utils/api';
 import { getEventListByDate } from '../../reducers/index';
 
-function EventsContainer({ onLoad, events, date }) {
-  useEffect(() => {
-    onLoad();
-  }, [onLoad]);
-
-  useEffect(() => {
-    console.log(events);
-  }, [events]);
-
+function EventsContainer({ events, date }) {
   return (
     <div className={styles.EventsContainer} >
       {
@@ -46,16 +37,7 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    async onLoad() {
-      const result = await getSample(); // firebase
-      dispatch({ type: 'RECEIVE_EVENTS', events: result });
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(EventsContainer);
+export default connect(mapStateToProps, null)(EventsContainer);
 
 // const [filteredEvents, setFilteredEvents] = useState(null);
 

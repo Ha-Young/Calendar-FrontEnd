@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-function NewEventContainer({ onSubmit, events }) {
+import { writeEvent } from '../../utils/api';
+
+function NewEventContainer({ onSubmit }) {
   const [inputValue, setInputValue] = useState({
-    id: null,
-    date: null,
-    startTime: null,
-    endTime: null,
-    title: null,
-    description: null
+    id: '',
+    date: '',
+    startTime: '',
+    endTime: '',
+    title: '',
+    description: ''
   });
-
-  useEffect(() => {
-    console.log(events);
-  }, [events]);
+  const history = useHistory();
 
   function handleSubmit(e) {
-    e.preventDefault();
-    console.log(inputValue);
+    if (inputValue.endTime === "00:00") {
+      inputValue.endTime = "24:00";
+    }
     onSubmit(inputValue);
+    history.push('/calendar');
   }
 
   function handleChange(e) {
@@ -59,11 +60,11 @@ function NewEventContainer({ onSubmit, events }) {
 }
 
 // Redux Action..?
-const addToEventList = (event) => {
-  const newId = `event_${Math.random().toString(36).substring(2)}`;
-  event.id = newId;
-  return { type: 'ADD_EVENT', events: { [newId] : event } };
-};
+// const addToEventList = (event) => {
+//   const newId = `event_${Math.random().toString(36).substring(2)}`;
+//   event.id = newId;
+//   return { type: 'ADD_EVENT', events: { [newId] : event } };
+// };
 
 // Redux Subscription
 const mapStateToProps = (state) => {
@@ -75,7 +76,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit(event) {
-      dispatch(addToEventList(event));
+      writeEvent(event, dispatch);
     }
   };
 };
