@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -30,7 +30,7 @@ const CloseButton = styled.div`
 `;
 
 export default function Modal ({ children }) {
-
+  console.log(useParams(), 'pa')
   return (
     <Wrapper>
       <ModalContents>

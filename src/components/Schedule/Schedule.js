@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ScheduleHead from './ScheduleHead';
 import ScheduleBody from './ScheduleBody';
 import Modal from '../Shared/Modal';
-import CreateEvent from '../Event/createEvent';
+import CreateEvent from '../Event/CreateEvent';
 const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 12% 1fr;
@@ -22,12 +22,16 @@ export default function Schedule ({ dates, updateCalendar }) {
   
   return (
     <Switch>
-      <Route path='/event'>
+      <Route path='/event/:event_Id' exact>
         <Modal>
           <CreateEvent />
         </Modal>
       </Route>
-
+      <Route path='/event/new' exact>
+        <Modal>
+          <CreateEvent />
+        </Modal>
+      </Route>
       <Route path='/' exact>
         <Wrapper>
             <ScheduleHead
@@ -38,7 +42,6 @@ export default function Schedule ({ dates, updateCalendar }) {
             <ScheduleBody type='daily'  />    
         </Wrapper>
       </Route>
-
       <Route path='/weekly'>
         <Wrapper>
           <ScheduleHead

@@ -21,11 +21,6 @@ const Main = styled.div`
 // Feel free to modify as you need.
 function App() {
   
-  function onClick (callback, status, change) {
-    callback(status + change);
-    console.log('click')
-  };
-
   return (
     <Wrapper>  
       <HeaderContainer/>

@@ -27,13 +27,13 @@ export default function ScheduleList () {
       for (let i = 0; i < 26; i++) {
         scheduleTable[i] = (
           <HourlySchedule key={i}>
-            <Link to='event'><div style={{border:"3px solid pink"}}></div></Link>
-            <Link to='event'><div></div></Link>
-            <Link to='event'><div></div></Link>
-            <Link to='event'><div></div></Link>
-            <Link to='event'><div></div></Link>
-            <Link to='event'><div></div></Link>
-            <Link to='event'><div></div></Link>
+            <Link to={`/event/${i}`}><div style={{border:"3px solid pink"}}></div></Link>
+            <Link to={`/event/${i}`}><div></div></Link>
+            <Link to={`/event/${i}`}><div></div></Link>
+            <Link to={`/event/${i}`}><div></div></Link>
+            <Link to={`/event/${i}`}><div></div></Link>
+            <Link to={`/event/${i}`}><div></div></Link>
+            <Link to={`/event/${i}`}><div></div></Link>
           </HourlySchedule>
         );
       }
@@ -42,7 +42,7 @@ export default function ScheduleList () {
     
     scheduleTable = [];
       for (let i = 0; i < 26; i++) {
-        scheduleTable[i] = <Link to='event'><HourlySchedule key={i} /></Link>
+        scheduleTable[i] = <Link to={`/event/${i}`}><HourlySchedule key={i} /></Link>
       }
       return scheduleTable;
   }
