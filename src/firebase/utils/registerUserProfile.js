@@ -7,10 +7,11 @@ const registerUserProfile = async userAuth => {
 
   if (!snapShot.exists()) {
     try {
-      const { email, displayName, photoURL } = userAuth;
+      const { uid, email, displayName, photoURL } = userAuth;
       const createdAt = moment().format('LLL');
 
       await userRef.set({
+        uid,
         displayName,
         email,
         photoURL,

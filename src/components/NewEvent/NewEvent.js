@@ -22,16 +22,25 @@ export default function NewEvent({ currentUser, initDate, initStartHour }) {
   }, [initDate]);
 
   useEffect(() => {
-    console.log('setDATE', date);
-  }, [date]);
+    setError(null);
+  }, [title, description, date, startHour, endHour]);
 
-  const handleSubmit = ev => {
+  const handleSubmit = async ev => {
     ev.preventDefault();
 
-    if (endHour <= startHour) {
+    if (+endHour <= +startHour) {
       setError('종료시간은 시작시간 이후로 설정해주세요.');
+      return;
     }
-    // setEventByDate(currentUser);
+
+    const result = await setEventByDate(currentUser.uid, date, {
+      title,
+      description,
+      start: convertToISOString.combine(date, startHour + ''),
+      endHour: convertToISOString.combine(date, endHour + ''),
+    });
+
+    console.log(result.val());
   };
 
   return (

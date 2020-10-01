@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styles from './SignUp.module.scss';
 import CustomInput from '../CustomInput/CustomInput';
@@ -38,6 +38,10 @@ export default function SignUp() {
     }
   };
 
+  useEffect(() => {
+    setError(null);
+  }, [displayName, email, password, confirmPassword]);
+
   return (
     <div className={styles.SignUp}>
       <h2>Sign Up</h2>
@@ -47,10 +51,7 @@ export default function SignUp() {
           name='displayName'
           label='Display Name'
           value={displayName}
-          onChange={ev => {
-            setDisplayName(ev.target.value);
-            setError(null);
-          }}
+          onChange={ev => setDisplayName(ev.target.value)}
           required
         />
         <CustomInput
@@ -58,10 +59,7 @@ export default function SignUp() {
           name='email'
           label='Email'
           value={email}
-          onChange={ev => {
-            setEmail(ev.target.value);
-            setError(null);
-          }}
+          onChange={ev => setEmail(ev.target.value)}
           required
         />
         <CustomInput
@@ -69,10 +67,7 @@ export default function SignUp() {
           name='password'
           label='Password'
           value={password}
-          onChange={ev => {
-            setPassword(ev.target.value);
-            setError(null);
-          }}
+          onChange={ev => setPassword(ev.target.value)}
           required
         />
         <CustomInput
@@ -80,10 +75,7 @@ export default function SignUp() {
           name='confirmPassword'
           label='Confirm Password'
           value={confirmPassword}
-          onChange={ev => {
-            setConfirmPassword(ev.target.value);
-            setError(null);
-          }}
+          onChange={ev => setConfirmPassword(ev.target.value)}
           required
         />
         <CustomButton type='submit'>Sign Up</CustomButton>

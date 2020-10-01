@@ -7,7 +7,7 @@ export default function CustomTimeInput({ startHandler, endHandler }) {
   return (
     <div className={styles.CustomTimeInput}>
       <label>Start</label>
-      <select name='start' onChange={startHandler}>
+      <select name='start' onChange={ev => startHandler(ev.target.value)}>
         {TIMELINE_12_SET.map((hour, idx) => (
           <option key={idx} value={idx}>
             {hour}
@@ -15,7 +15,7 @@ export default function CustomTimeInput({ startHandler, endHandler }) {
         ))}
       </select>
       <label>End</label>
-      <select name='end' onChange={endHandler}>
+      <select name='end' onChange={ev => endHandler(ev.target.value)}>
         {TIMELINE_12_SET.map((hour, idx) => (
           <option key={idx} value={idx}>
             {hour}
