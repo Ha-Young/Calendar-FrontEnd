@@ -7,6 +7,7 @@ import {
   CHANGE_WEEKLY_VIEW,
   GET_EVENTS_DATA,
   UPDATE_EVENT,
+  DELETE_EVENT,
 } from "./constants";
 
 export const addEvent = (eventDetails) => {
@@ -19,6 +20,13 @@ export const addEvent = (eventDetails) => {
 export const updateEvent = (eventDetails) => {
   return {
     type: UPDATE_EVENT,
+    eventDetails,
+  };
+};
+
+export const deleteEvent = (eventDetails) => {
+  return {
+    type: DELETE_EVENT,
     eventDetails,
   };
 };

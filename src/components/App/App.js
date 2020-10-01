@@ -11,7 +11,7 @@ import Auth from "../Auth/Auth";
 import DatePicker from "../DatePicker/DatePicker";
 import EventDetail from "../EventDetail/EventDetail";
 
-export default function App ({ userLogIn, userLogOut, isLoggedIn, date, clickPrevButton, clickNextButton, changeWeeklyView, isDailyView, eventDetail, updateEvent}) {
+export default function App ({ userLogIn, userLogOut, isLoggedIn, date, clickPrevButton, clickNextButton, changeWeeklyView, isDailyView, eventDetail, updateEvent, deleteEvent}) {
   const [eventId, setEventId] = useState("");
 
   useEffect(() => {
@@ -24,9 +24,17 @@ export default function App ({ userLogIn, userLogOut, isLoggedIn, date, clickPre
     });
   }, [userLogIn, userLogOut]);
 
-  const matchEvent = eventDetail?.filter((event) => {
+  const matchEvent = eventDetail?.filter((event) => { // event 객체가 따로 있어서 다르게 지어주는 것이 좋을 것 같음
     return event?.id === eventId;
   });
+
+  // const checkValidEventId = () => {
+  //   const validEventId = eventDetail.map((event) => {
+  //     return event.id;
+  //   });
+
+  //   return validEventId.includes(eventId);
+  // };
 
   return (
     <div className={styles.App}>
@@ -57,11 +65,16 @@ export default function App ({ userLogIn, userLogOut, isLoggedIn, date, clickPre
               <EventContainer />
             </Route>
             <Route path="/events/:eventId">
-              <EventDetail
-                setEventId={(eventId) => setEventId(eventId)}
-                matchEvent={matchEvent.pop()}
-                updateEvent={updateEvent}
-              />
+              {
+                // checkValidEventId()
+                // &&
+                  <EventDetail
+                    setEventId={(eventId) => setEventId(eventId)}
+                    matchEvent={matchEvent.pop()}
+                    updateEvent={updateEvent}
+                    deleteEvent={deleteEvent}
+                  />
+              }
             </Route>
             <Redirect to="/calendar" />
           </Switch>

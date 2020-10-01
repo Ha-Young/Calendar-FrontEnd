@@ -3,11 +3,10 @@ import styles from "./EventDetail.module.css";
 import { useParams, useHistory } from "react-router-dom";
 import moment from "moment";
 
-export default function EventDetail ({ setEventId, matchEvent, updateEvent }) {
+export default function EventDetail ({ setEventId, matchEvent, updateEvent, deleteEvent }) {
   const [eventDetails, setEventDetails] = useState({});
-
-  const { eventName, eventDescription, eventDate, startTime, endTime } = eventDetails;
   const [isEditButtonClicked, setIsEditButtonClicked] = useState(false);
+  const { eventName, eventDescription, eventDate, startTime, endTime } = eventDetails;
 
   const history = useHistory();
   const { eventId } = useParams();
@@ -45,6 +44,14 @@ export default function EventDetail ({ setEventId, matchEvent, updateEvent }) {
     history.push("/calendar");
   };
 
+  const handleDeleteButtonClick = () => {
+    const confirmDelete = window.confirm("삭제하시겠습니까?");
+    if (confirmDelete) {
+      deleteEvent({...eventDetails, createdAt: moment().toISOString(), id: eventId});
+      history.push("/calendar");
+    }
+  };
+
   const handleCancelButtonClick = () => {
     history.push("/calendar");
   };
@@ -65,6 +72,7 @@ export default function EventDetail ({ setEventId, matchEvent, updateEvent }) {
         </form>
       </fieldset>
       <button className={styles.editButton} onClick={handleEditButtonClick}>Edit</button>
+      <button className={styles.deleteButton} onClick={handleDeleteButtonClick}>Delete</button>
       <button className={styles.cancelButton} onClick={handleCancelButtonClick}>Cancel</button>
     </div>
   );

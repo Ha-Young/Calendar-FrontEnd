@@ -7,6 +7,7 @@ import {
   CHANGE_WEEKLY_VIEW,
   GET_EVENTS_DATA,
   UPDATE_EVENT,
+  DELETE_EVENT,
 } from "../actions/constants";
 import moment from "moment";
 
@@ -31,6 +32,10 @@ export const eventDetail = (state = [], action) => {
           return item;
         }
         return action.eventDetails;
+      });
+    case DELETE_EVENT:
+      return state.filter((item) => {
+        return item.id !== action.eventDetails.id;
       });
     default:
       return state;

@@ -71,3 +71,14 @@
   color: white;
   text-transform: uppercase;
 }
+
+.deleteButton {
+  margin-top: 10px;
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+}
