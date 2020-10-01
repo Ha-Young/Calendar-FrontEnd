@@ -18,9 +18,9 @@ export function destructDate(fullDate) {
 }
 
 export function calculateNewDate(currentDate, count) {
-  return destructDate(moment(new moment(combineDate(currentDate))
+  return moment(new moment(combineDate(currentDate))
     .add(count, 'days')
-    .format('YYYYMMDD')));
+    .format('YYYYMMDD'));
 }
 
 export function getWeekData(date) {
@@ -32,13 +32,13 @@ export function getWeekData(date) {
   const after3Days = calculateNewDate(date, 3);
 
   return [
-    before3Days,
-    before2Days,
-    beforeDay,
+    destructDate(before3Days),
+    destructDate(before2Days),
+    destructDate(beforeDay),
     date,
-    afterDay,
-    after2Days,
-    after3Days,
+    destructDate(afterDay),
+    destructDate(after2Days),
+    destructDate(after3Days),
   ];
 }
 

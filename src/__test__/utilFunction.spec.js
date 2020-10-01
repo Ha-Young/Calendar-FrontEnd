@@ -40,7 +40,7 @@ describe('Util function test', () => {
       date: '02',
     };
 
-    expect(calculateNewDate(testObjDate, 1)).toEqual(nextDate);
+    expect(destructDate(calculateNewDate(testObjDate, 1))).toEqual(nextDate);
   });
 
   test('getWeekData', () => {
