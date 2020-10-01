@@ -14,6 +14,10 @@ export const logout = () => ({
   type: "LOGOUT"
 });
 
-export const setNewEventTitle = () => ({
-  type: "SET_NEW_EVENT_TITLE"
+export const showPrevious = () => ({
+  type: "SHOW_PREVIOUS"
+});
+
+export const showNext = () => ({
+  type: "SHOW_NEXT"
 });

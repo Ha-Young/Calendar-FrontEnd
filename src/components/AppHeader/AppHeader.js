@@ -4,7 +4,12 @@ import * as dayjs from "dayjs";
 import styles from "./AppHeader.module.css";
 
 // TODO: Create your own header.
-export default function AppHeader({ showDaily, showWeekly }) {
+export default function AppHeader({
+  showDaily,
+  showWeekly,
+  onPreviousDateClick,
+  onNextDateClick,
+}) {
   function onChange(event) {
     if (event.target.value === "daily") {
       showDaily();
@@ -24,10 +29,10 @@ export default function AppHeader({ showDaily, showWeekly }) {
       <Link to="/">
         <h1 className={styles.title}>달력</h1>
       </Link>
-      <button type="text" className={styles.previous}>
+      <button type="text" className={styles.previous} onClick={onPreviousDateClick}>
         이전
       </button>
-      <button type="text" className={styles.next}>
+      <button type="text" className={styles.next} onClick={onNextDateClick}>
         다음
       </button>
       <h2 className={styles.month}>{`${dayjs().format("M")}월`}</h2>

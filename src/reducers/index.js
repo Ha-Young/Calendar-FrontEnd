@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import * as dayjs from "dayjs";
 
 const initialState = {
   viewMode: "DAILY",
@@ -8,6 +9,7 @@ const initialState = {
   newEventDate: "",
   newEventStartTime: "",
   newEventFinishTime: "",
+  displayDate: dayjs().format(),
 };
 
 const viewMode = (state = initialState.viewMode, action) => {
@@ -32,14 +34,25 @@ const isLoggedIn = (state = initialState.isLoggedIn, action) => {
   }
 };
 
-const newEventTitle = (state = initialState.newEventTitle, action) => {
-  switch (action.type) {
-    case "SET_NEW_EVENT_TITLE":
+const displayDate = (state = initialState.displayDate, action) => {
+  const previousDate = state.slice(0, 10).split("-");
+  let newDate;
 
+  switch (action.type) {
+    case "SHOW_PREVIOUS":
+      newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) - 1}`].join("-");
+      return state = dayjs(newDate).format();
+    case "SHOW_NEXT":
+      newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) + 1}`].join("-");
+      console.log(newDate);
+      return state = dayjs(newDate).format();
+    default:
+      return state;
   }
 }
 
 export default combineReducers({
   viewMode,
   isLoggedIn,
+  displayDate,
 });

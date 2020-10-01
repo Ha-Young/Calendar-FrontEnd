@@ -8,7 +8,7 @@ import AppHeader from "../../components/AppHeader/AppHeader";
 import { saveSampleData, saveNewEvent } from "../../utils/api";
 import Calendar from "../../components/Calendar/Calendar";
 import { connect } from "react-redux";
-import { showDaily, showWeekly, login, logout } from "../../actions";
+import { showDaily, showWeekly, login, logout, showPrevious, showNext } from "../../actions";
 import Form from "../../components/Form/Form";
 import { auth, provider } from "../../utils/firebase";
 import Auth from "../../Auth/Auth";
@@ -22,6 +22,9 @@ function AppContainer({
   onLogin,
   onLogout,
   isLoggedIn,
+  displayDate,
+  onPreviousDateClick,
+  onNextDateClick,
 }) {
   // useEffect(() => {
   //   const starCountRef = firebase.database().ref(`users/${userId}`);
@@ -29,6 +32,8 @@ function AppContainer({
   //     updateStarCount(postElement, snapshot.val());
   //   });
   // }, []);
+
+  // console.log(displayDate)
 
   const [newEventTitle, setNewEventTitle] = useState("");
   const [newEventDescription, setNewEventDescription] = useState("");
@@ -61,11 +66,14 @@ function AppContainer({
             <AppHeader
               showDaily={showDaily}
               showWeekly={showWeekly}
+              onPreviousDateClick={onPreviousDateClick}
+              onNextDateClick={onNextDateClick}
             />
             <Switch>
               <Route path="/" exact>
                 <Calendar
                   viewMode={viewMode}
+                  date={displayDate}
                 />
                 <button onClick={logout}>나가기</button>
               </Route>
@@ -121,6 +129,12 @@ const mapDispatchToProps = dispatch => {
     onLogout() {
       dispatch(logout());
     },
+    onPreviousDateClick() {
+      dispatch(showPrevious());
+    },
+    onNextDateClick() {
+      dispatch(showNext());
+    },
   };
 };
 
@@ -129,6 +143,7 @@ const mapStateToProps = state => {
   return {
     viewMode: state.viewMode,
     isLoggedIn: state.isLoggedIn,
+    displayDate: state.displayDate,
   };
 };
 
