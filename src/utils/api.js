@@ -13,7 +13,7 @@ export const saveData = async (event) => {
   await database.ref(`users/${user}/events/${year}/${month}/${id}`).set(
     event
   );
-}
+};
 
 export const getData = async (user, dispatch, isDispatch) => {
   await database.ref(`users/${user}`).on('value', function (snapshot) {
@@ -22,6 +22,4 @@ export const getData = async (user, dispatch, isDispatch) => {
    dispatch(data);
    isDispatch(true);
   });
-} //firebase data to state
-
-//'bd1aIoIVAFaUMKVK1xkaaruiBhn1'
+};

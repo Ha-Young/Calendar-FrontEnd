@@ -3,7 +3,6 @@ import { authService } from '../utils/firebase';
 import { App } from '../components/App/App';
 import { connect } from 'react-redux';
 import { loggin } from '../action/action';
-import { formatDistance, subDays } from 'date-fns'
 
 export const AppContainer = ({ isLoggedIn, setIsLoggedIn }) => {
   const [email, setEmail] = useState('');

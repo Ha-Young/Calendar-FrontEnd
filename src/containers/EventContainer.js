@@ -4,8 +4,7 @@ import { getEvents } from 'action/action';
 import EventDetail from 'components/EventDetail/EventDetail';
 import { Route } from 'react-router-dom';
 import EventMaker from 'components/EventMaker/EventMaker';
-import { saveData } from 'utils/api';
-import {getData} from 'utils/api';
+import { getData } from 'utils/api';
 
 export const EventCantainer = ({ user, events, getEvents }) => {
   const [isSubmitEvent, setIsSubmitEvent] = useState(false);

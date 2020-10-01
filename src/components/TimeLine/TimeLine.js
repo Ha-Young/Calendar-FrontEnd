@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './TimeLine.module.css';
-import Cell from 'components/Cell/Cell';
 
 const TimeLine = () => {
   return (

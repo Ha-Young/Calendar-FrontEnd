@@ -12,7 +12,7 @@ const EventMaker = ({ isSubmit }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    
+
     isSubmit(true);
     saveData(inputValues);
     setInputValues({

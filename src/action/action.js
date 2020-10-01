@@ -22,4 +22,3 @@ export const loggin = (user, isLogin) => {
     isLogin: isLogin
   }
 };
-

@@ -5,7 +5,7 @@ import Cell from 'components/Cell/Cell';
 
 const Week = () => {
   const cells = [];
-  
+
   for (let i = 0; i < 7; i++) {
     cells.push(<Cell />);
   }

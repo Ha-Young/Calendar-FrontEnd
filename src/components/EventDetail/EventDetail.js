@@ -22,10 +22,5 @@ const EventDetail = ({ events }) => {
     </>
   );
 };
+
 export default EventDetail;
-
-//connet해서 들어오는 evnet를 또 수정할 수 있게 해야...
-
-
-//방향..?
-//컴포넌트안에 시간을 더 쪼개서 div를 추가 div클릭

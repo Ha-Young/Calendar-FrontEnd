@@ -4,7 +4,7 @@ import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 
 // TODO: Create your own header.
-export default function Header() {
+const Header = () => {
   const history = useHistory();
   const pathName = history.location.pathname;
 
@@ -39,4 +39,6 @@ export default function Header() {
       </nav>
     </header>
   );
-}
+};
+
+export default Header;

@@ -11,7 +11,7 @@ const Cell = () => {
         <div className={styles.cell}>{i}</div>
       </Link>)
   }
-  
+
   return (
     <div className={styles.cells}>
       {
