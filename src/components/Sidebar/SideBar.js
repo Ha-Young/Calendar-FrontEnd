@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Calendar from '../Calendar/Calendar';
+import CalendarContainer from '../../containers/CalendarContainer';
 import { Link } from 'react-router-dom'
 
 const Wrapper = styled.div`
@@ -9,20 +9,15 @@ const Wrapper = styled.div`
   padding-top: 20px;
 `;
 
-export default function SideBar ({ thisMonth, dates, onClickPrevMonth, onClickNextMonth }) {
-
+export default function SideBar () {
+    
   return (
     <Wrapper>
       <div className='sidebar_button'>
           <Link to='/' exact><button>daily</button></Link>
           <Link to='/weekly' exact><button>weekly</button></Link>
       </div>
-      <Calendar
-        thisMonth={thisMonth}
-        dates={dates}
-        onClickPrevMonth={onClickPrevMonth}
-        onClickNextMonth={onClickNextMonth}
-      />
+      <CalendarContainer />
       <div></div>
     </Wrapper>
   );

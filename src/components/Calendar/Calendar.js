@@ -10,16 +10,15 @@ const Wrapper = styled.div`
   border: 3px solid yellowgreen;
 `;
 
-export default function Calendar ({ thisMonth, dates, onClickPrevMonth, onClickNextMonth }) { //MonthlyCalendar
+export default function Calendar ({ dates, updateCalendar }) { //MonthlyCalendar
   
   return (
     <Wrapper>
       <CalendarHead
-        thisMonth={thisMonth} 
-        onClickPrevMonth={onClickPrevMonth}
-        onClickNextMonth={onClickNextMonth}
+        thisMonth={dates.thisMonth} 
+        updateCalendar={updateCalendar}
       />
-      <CalendarBody type="weekly" dates={dates} />
+      <CalendarBody type="weekly" dates={dates.monthlyDates} />
     </Wrapper>
   );
 }

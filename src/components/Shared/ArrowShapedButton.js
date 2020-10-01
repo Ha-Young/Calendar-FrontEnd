@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import styles from './ArrowShapedButton.module.css';
 
 const Button = styled.i`
@@ -11,7 +11,6 @@ const Button = styled.i`
 `;
 
 export default function ArrowShapedButton ({ css, direction, onClick }) {
-  
   return (
     <Button
       style={css}

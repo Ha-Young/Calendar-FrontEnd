@@ -13,7 +13,6 @@ export default function CalendarWeek ({ isHead, dates, type }) { //MonthlyCalend
 
   useEffect (()=>{
     if (today !== new Date().getDate()) setToday(new Date().getDate());
-    console.log(today, 'date changed');
   }, [today]);
 
   function onClick () {

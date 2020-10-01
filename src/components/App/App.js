@@ -45,15 +45,10 @@ function App() {
 
   return (
     <Wrapper>  
-      {/* <Header thisMonth={monthlyDates.title} /> */}
+
       <HeaderContainer/>
       <Main>
-        <SideBar
-          thisMonth={monthlyDates.thisMonth}
-          dates={monthlyDates.monthlyDates}
-          onClickPrevMonth={onClick.bind(null, setChangeMonth, changeMonth, -1)}
-          onClickNextMonth={onClick.bind(null, setChangeMonth, changeMonth, 1)}
-        />
+        <SideBar/>
         <Schedule 
           weeklyDates={weeklyDates}
           onClickPrevWeek={onClick.bind(null, setChangeWeek, changeWeek, -1)}
