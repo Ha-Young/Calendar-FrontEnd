@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import firebase from "firebase/app";
 import styles from "./LogIn.module.css";
 import { FcGoogle } from "react-icons/fc";
@@ -7,9 +7,6 @@ import CalendarContainer from "../../containers/CalendarContainer";
 
 export default function Auth ({
   logInState,
-  userName,
-  userEmail,
-  userPhotoUrl,
   setLogIn,
 }) {
   useEffect(() => {
@@ -21,11 +18,10 @@ export default function Auth ({
       .auth()
       .signInWithPopup(provider)
       .then(result => {
-        alert(`안녕하세요 ${result.user.displayName}님 🤓`)
-        console.log(userName)
+        alert(`안녕하세요 ${result.user.displayName}님 🤓`);
       })
       .catch(error => {
-        alert(`로그인에 실패하였습니다. 다시 확인해주세요`)
+        alert(`로그인에 실패하였습니다. 다시 확인해주세요`);
       });
   }, [logInState]);
 

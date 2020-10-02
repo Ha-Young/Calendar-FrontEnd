@@ -56,3 +56,16 @@
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
 }
+
+.label {
+  margin: 10px;
+}
+
+.time_input {
+  margin-bottom: 10px;
+}
+
+.icon {
+  color: white;
+  font-size: 20px;
+}

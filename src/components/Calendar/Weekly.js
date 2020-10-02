@@ -1,6 +1,7 @@
-import React from 'react';
-import TimeTable from './TimeTable';
+import React from "react";
+import TimeTable from "./TimeTable";
 import styles from "./Calendar.module.css";
+import TimeView from "./TimeView";
 
 export default function Weekly({
   times,
@@ -11,7 +12,8 @@ export default function Weekly({
 }) {
   return (
     <div className={styles.weekly_container}>
-      {[...Array(8)].map(() => {
+      <TimeView times={times}/>
+      {[...Array(7)].map(() => {
         return (
           <TimeTable
             times={times}
@@ -21,9 +23,8 @@ export default function Weekly({
             eventInfo={eventInfo}
           />
         );
-      })}
+      })
+      }
     </div>
   );
 }
-
-   // <Header />

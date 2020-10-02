@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import styles from "./App.module.css";
 import { saveSampleData } from "../../utils/api";
+import styles from "./App.module.css";
 import AuthContainer from "../../containers/AuthContainer";
 
 function App() {

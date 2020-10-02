@@ -1,5 +1,5 @@
 import React from "react";
-import GetDate from "./GetDate";
+import DateView from "./DateView";
 
 export default function Header ({
   year,
@@ -8,10 +8,9 @@ export default function Header ({
   handleYesterday,
   handleTomorrow,
 }) {
-
   return (
     <header style={{ width: "100%" }}>
-      <GetDate
+      <DateView
         year={year}
         month={month}
         day={day}

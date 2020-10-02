@@ -2,11 +2,6 @@
 import { ADD_DAY, SUB_DAY, OPEN_MODAL, CLOSE_MODAL } from "../actions/constants";
 import { addDays, subDays } from "date-fns";
 
-// login 기능 가져오기..
-// case action 이름 변경하기
-// open modal의 isClick 이름 변경하기........
-
-
 const initialState = {
   date: new Date(),
   times: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
@@ -28,7 +23,7 @@ export const handleDateReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export const handleModalReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -45,4 +40,4 @@ export const handleModalReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};

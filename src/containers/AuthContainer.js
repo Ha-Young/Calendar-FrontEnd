@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import Auth from "../components/Auth"
-import { userLogin } from "../actions/index";
+import Auth from "../components/Auth/Auth";
+import { userLogin } from "../actions";
 
 function AuthContainer ({
   logInState,
@@ -36,5 +36,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// store랑 reducer 연결시킨 컴포넌트(컨테이너)가 반환됨
 export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer);

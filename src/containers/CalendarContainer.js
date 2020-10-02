@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Calendar from "../components/Calendar"
+import Calendar from "../components/Calendar/Calendar"
 import { moveToPrevDay, moveToNextDay, openModal, closeModal } from "../actions/index";
 
 function CalendarContainer ({
@@ -12,7 +12,6 @@ function CalendarContainer ({
   clickModalOpen,
   clickModalClose,
 }) {
-
   return (
     <Calendar
       getDate={date}
@@ -43,5 +42,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// store랑 reducer 연결시킨 컴포넌트(컨테이너)가 반환됨
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarContainer);

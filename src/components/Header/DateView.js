@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Header.module.css";
 import NavButton from "./NavButton";
 
-export default function GetDate ({
+export default function DateView ({
   year,
   month,
   day,
