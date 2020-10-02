@@ -7,12 +7,12 @@ const getEventById = async eventId => {
   return snapShot.val();
 };
 
-const getEventsByDate = async (uid, date) => {
+const getEventListByDate = async (uid, date) => {
   const ISODate = convertToISOString.Dates(date);
   const snapShot = await database
     .ref(`users/${uid}/eventRefs/${ISODate}`)
     .once('value');
-  const events = [];
+  const eventList = [];
   let eventIds = [];
 
   try {
@@ -25,10 +25,22 @@ const getEventsByDate = async (uid, date) => {
 
   for (const eventId of eventIds) {
     const event = await getEventById(eventId);
-    events.push(event);
+    eventList.push(event);
   }
 
-  return events;
+  return { date, eventList };
 };
 
-export default getEventsByDate;
+const getEventLists = async payload => {
+  const { uid, dates } = payload;
+  console.log(payload);
+  const eventLists = [];
+  for (const date of dates) {
+    const eventListByDate = await getEventListByDate(uid, date);
+    eventLists.push(eventListByDate);
+  }
+
+  return eventLists;
+};
+
+export default getEventLists;

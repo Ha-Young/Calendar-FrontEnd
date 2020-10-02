@@ -5,17 +5,27 @@ export const setCurrentViewMode = viewMode => ({
   payload: viewMode,
 });
 
-export const setDate = date => ({
-  type: types.SET_DATE,
-  payload: date,
+export const setBaseDate = baseDate => ({
+  type: types.SET_BASE_DATE,
+  payload: baseDate,
 });
 
-export const moveToNextPage = date => ({
+export const setDatesShown = baseDate => ({
+  type: types.SET_DATES_SHOWN,
+  payload: baseDate,
+});
+
+export const setEventLists = uid => ({
+  type: types.SET_EVENT_LISTS,
+  payload: uid,
+});
+
+export const moveToNextPage = baseDate => ({
   type: types.MOVE_TO_NEXT_PAGE,
-  payload: date,
+  payload: baseDate,
 });
 
-export const moveToPrevPage = date => ({
+export const moveToPrevPage = baseDate => ({
   type: types.MOVE_TO_PREV_PAGE,
-  payload: date,
+  payload: baseDate,
 });

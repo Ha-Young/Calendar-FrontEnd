@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import './DailyEventsContainer.scss';
 import EventBlock from '../../components/EventBlock/EventBlock';
 
-import getEventsByDate from '../../firebase/utils/getEventsByDate';
+import getEventLists from '../../firebase/utils/getEventLists';
 
 const DailyEvents = ({ date, currentUser, currentViewMode }) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const getEvents = async () => {
-      const eventsByDate = await getEventsByDate(currentUser.uid, date);
+      const eventsByDate = await getEvents(currentUser.uid, date);
       setEvents(eventsByDate);
     };
     getEvents();

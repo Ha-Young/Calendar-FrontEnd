@@ -8,10 +8,11 @@ import DailyEvents from '../../container/DailyEventsContainer/DailyEventsContain
 import { TIMELINE_NUM_SET } from '../../constants/calendar.constants';
 import convertToISOString from '../../utils/convertToISOString';
 
-export default function DailyColumn({ date }) {
+export default function DailyColumn({ eventList }) {
+  console.log(eventList);
   return (
     <div className='daily-container'>
-      <DailyTitleBlock date={date} />
+      {/* <DailyTitleBlock date={date} />
       <DailyEvents date={date} />
       {TIMELINE_NUM_SET.map(hour => (
         <Link
@@ -26,7 +27,7 @@ export default function DailyColumn({ date }) {
         >
           <div className='cell' key={hour} />
         </Link>
-      ))}
+      ))} */}
     </div>
   );
 }

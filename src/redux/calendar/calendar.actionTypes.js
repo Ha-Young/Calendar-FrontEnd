@@ -1,4 +1,6 @@
 export const SET_CURRENT_VIEW_MODE = 'SET_CURRENT_VIEW_MODE';
-export const SET_DATE = 'SET_DATE';
+export const SET_BASE_DATE = 'SET_BASE_DATE';
+export const SET_DATES_SHOWN = 'SET_DATES_SHOWN';
+export const SET_EVENT_LISTS = 'SET_EVENT_LISTS';
 export const MOVE_TO_NEXT_PAGE = 'MOVE_TO_NEXT_PAGE';
 export const MOVE_TO_PREV_PAGE = 'MOVE_TO_PREV_PAGE';

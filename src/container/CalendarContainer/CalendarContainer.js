@@ -5,14 +5,16 @@ import { connect } from 'react-redux';
 
 import {
   setCurrentViewMode,
-  setDate,
+  setBaseDate,
+  setDatesShown,
+  setEventLists,
   moveToNextPage,
   moveToPrevPage,
 } from '../../redux/calendar/calendar.actions';
 
 import './CalendarContainer.scss';
 import Timeline from '../../components/Timeline/Timeline';
-import EventsField from '../../components/EventsField/EventsField';
+import DailyColumn from '../../components/DailyColumn/DailyColumn';
 
 import {
   VIEW_MODES,
@@ -21,41 +23,51 @@ import {
 import CustomButton from '../../components/CustomButton/CustomButton';
 
 const Calendar = ({
+  currentUser,
   currentViewMode,
-  date,
+  baseDate,
+  datesShown,
+  eventLists,
   setCurrentViewMode,
-  setDate,
+  setBaseDate,
+  setDatesShown,
   moveToPrevPage,
   moveToNextPage,
 }) => {
-  const setDateToday = useCallback(() => {
+  const setBaseDateToday = useCallback(() => {
     const today = moment().startOf('day');
-    setDate(today);
-  }, [setDate]);
+    setBaseDate(today);
+    setDatesShown(today);
+  }, [setBaseDate]);
 
   const getTitle = useCallback(() => {
     if (currentViewMode.title === VIEW_MODES.DAILY.title) {
-      return moment(date).format('YYYY년 M월 D일');
+      return moment(baseDate).format('YYYY년 M월 D일');
     }
     if (currentViewMode.title === VIEW_MODES.WEEKLY.title) {
-      return `${moment(date).weeks()} 번째 주`;
+      return `${moment(baseDate).weeks()} 번째 주`;
     }
-  }, [date]);
+  }, [baseDate]);
 
   useEffect(() => {
     setCurrentViewMode(VIEW_MODES.WEEKLY);
-    setDateToday();
+    setBaseDateToday();
   }, []);
+
+  useEffect(() => {
+    console.log(setEventLists, datesShown);
+    setEventLists(currentUser.uid);
+  }, [datesShown]);
 
   return (
     <div className='calendar-container'>
       <div className='navigation'>
         <div className='today'>
-          <CustomButton onClick={setDateToday}>Today</CustomButton>
+          <CustomButton onClick={setBaseDateToday}>Today</CustomButton>
         </div>
         <div className='current'>
-          <FcPrevious size={24} onClick={moveToPrevPage} />
-          <FcNext size={24} onClick={moveToNextPage} />
+          <FcPrevious size={24} onClick={() => moveToPrevPage(baseDate)} />
+          <FcNext size={24} onClick={() => moveToNextPage(baseDate)} />
           {getTitle()}
         </div>
         <div className='view-modes'>
@@ -73,22 +85,31 @@ const Calendar = ({
       </div>
       <div className='content'>
         <Timeline />
-        <EventsField viewMode={currentViewMode} date={date} />
+        <div className='events-field'>
+          {eventLists.map((eventList, idx) => (
+            <DailyColumn key={idx} evenList={eventList} />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ calendar }) => ({
+const mapStateToProps = ({ user, calendar }) => ({
+  currentUser: user.currentUser,
   currentViewMode: calendar.currentViewMode,
-  date: calendar.date,
+  baseDate: calendar.baseDate,
+  datesShown: calendar.datesShown,
+  eventLists: calendar.eventLists,
 });
 
 const mapDispatchToProps = dispatch => ({
   setCurrentViewMode: viewMode => dispatch(setCurrentViewMode(viewMode)),
-  setDate: date => dispatch(setDate(date)),
-  moveToPrevPage: date => dispatch(moveToPrevPage(date)),
-  moveToNextPage: date => dispatch(moveToNextPage(date)),
+  setBaseDate: baseDate => dispatch(setBaseDate(baseDate)),
+  setDatesShown: baseDate => dispatch(setDatesShown(baseDate)),
+  setEventLists: uid => dispatch(setEventLists(uid)),
+  moveToPrevPage: baseDate => dispatch(moveToPrevPage(baseDate)),
+  moveToNextPage: baseDate => dispatch(moveToNextPage(baseDate)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
