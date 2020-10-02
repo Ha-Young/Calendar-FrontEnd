@@ -31,9 +31,7 @@ const getEventListByDate = async (uid, date) => {
   return { date, eventList };
 };
 
-const getEventLists = async payload => {
-  const { uid, dates } = payload;
-  console.log(payload);
+const getEventLists = async (uid, dates) => {
   const eventLists = [];
   for (const date of dates) {
     const eventListByDate = await getEventListByDate(uid, date);

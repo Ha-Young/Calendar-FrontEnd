@@ -15,9 +15,9 @@ export const setDatesShown = baseDate => ({
   payload: baseDate,
 });
 
-export const setEventLists = uid => ({
+export const setEventLists = eventLists => ({
   type: types.SET_EVENT_LISTS,
-  payload: uid,
+  payload: eventLists,
 });
 
 export const moveToNextPage = baseDate => ({

@@ -2,7 +2,6 @@ import * as types from './calendar.actionTypes';
 import moment from 'moment';
 
 import getDatesShown from '../../utils/getDatesShown';
-import getEventLists from '../../firebase/utils/getEventLists';
 
 const initialState = {
   currentViewMode: {},
@@ -15,12 +14,6 @@ const calendarReducer = (state = initialState, { type, payload }) => {
   let newBaseDate;
 
   switch (type) {
-    case types.SET_EVENT_LISTS:
-      console.log('이벤트리스트 추가');
-      return {
-        ...state,
-        eventLists: getEventLists(payload, state.datesShown),
-      };
     case types.SET_CURRENT_VIEW_MODE:
       return {
         ...state,
@@ -34,7 +27,11 @@ const calendarReducer = (state = initialState, { type, payload }) => {
         ...state,
         datesShown: getDatesShown(payload, state.currentViewMode.gap),
       };
-
+    case types.SET_EVENT_LISTS:
+      return {
+        ...state,
+        eventLists: payload,
+      };
     case types.MOVE_TO_NEXT_PAGE:
       newBaseDate = moment(payload).add(state.currentViewMode.gap, 'days');
       return {

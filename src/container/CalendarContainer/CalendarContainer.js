@@ -15,12 +15,13 @@ import {
 import './CalendarContainer.scss';
 import Timeline from '../../components/Timeline/Timeline';
 import DailyColumn from '../../components/DailyColumn/DailyColumn';
+import CustomButton from '../../components/CustomButton/CustomButton';
 
 import {
   VIEW_MODES,
   VIEW_MODES_LIST,
 } from '../../constants/calendar.constants';
-import CustomButton from '../../components/CustomButton/CustomButton';
+import getEventLists from '../../firebase/utils/getEventLists';
 
 const Calendar = ({
   currentUser,
@@ -31,6 +32,7 @@ const Calendar = ({
   setCurrentViewMode,
   setBaseDate,
   setDatesShown,
+  setEventLists,
   moveToPrevPage,
   moveToNextPage,
 }) => {
@@ -38,7 +40,7 @@ const Calendar = ({
     const today = moment().startOf('day');
     setBaseDate(today);
     setDatesShown(today);
-  }, [setBaseDate]);
+  }, [setBaseDate, setDatesShown]);
 
   const getTitle = useCallback(() => {
     if (currentViewMode.title === VIEW_MODES.DAILY.title) {
@@ -47,17 +49,23 @@ const Calendar = ({
     if (currentViewMode.title === VIEW_MODES.WEEKLY.title) {
       return `${moment(baseDate).weeks()} 번째 주`;
     }
-  }, [baseDate]);
+  }, [baseDate, currentViewMode.title]);
 
   useEffect(() => {
     setCurrentViewMode(VIEW_MODES.WEEKLY);
     setBaseDateToday();
-  }, []);
+  }, [setCurrentViewMode, setBaseDateToday]);
 
   useEffect(() => {
-    console.log(setEventLists, datesShown);
-    setEventLists(currentUser.uid);
-  }, [datesShown]);
+    const getEventListsByDateeShown = async () => {
+      const eventLists = await getEventLists(currentUser.uid, datesShown);
+      setEventLists(eventLists);
+    };
+
+    if (datesShown.length) {
+      getEventListsByDateeShown();
+    }
+  }, [datesShown, currentUser.uid, setEventLists]);
 
   return (
     <div className='calendar-container'>
@@ -86,9 +94,15 @@ const Calendar = ({
       <div className='content'>
         <Timeline />
         <div className='events-field'>
-          {eventLists.map((eventList, idx) => (
-            <DailyColumn key={idx} evenList={eventList} />
-          ))}
+          {eventLists.length &&
+            eventLists.map(({ date, eventList }, idx) => (
+              <DailyColumn
+                key={idx}
+                date={date}
+                eventList={eventList}
+                viewMode={currentViewMode}
+              />
+            ))}
         </div>
       </div>
     </div>

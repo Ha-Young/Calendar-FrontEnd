@@ -3,17 +3,20 @@ import { Link } from 'react-router-dom';
 
 import './DailyColumn.scss';
 import DailyTitleBlock from '../DailyTitleBlock/DailyTitleBlock';
-import DailyEvents from '../../container/DailyEventsContainer/DailyEventsContainer';
+import EventBlock from '../EventBlock/EventBlock';
 
 import { TIMELINE_NUM_SET } from '../../constants/calendar.constants';
 import convertToISOString from '../../utils/convertToISOString';
 
-export default function DailyColumn({ eventList }) {
-  console.log(eventList);
+export default function DailyColumn({ date, eventList, viewMode }) {
   return (
     <div className='daily-container'>
-      {/* <DailyTitleBlock date={date} />
-      <DailyEvents date={date} />
+      <DailyTitleBlock date={date} />
+      <div className='events-container'>
+        {eventList.map((event, idx) => (
+          <EventBlock key={idx} viewMode={viewMode.title} content={event} />
+        ))}
+      </div>
       {TIMELINE_NUM_SET.map(hour => (
         <Link
           key={hour}
@@ -27,7 +30,7 @@ export default function DailyColumn({ eventList }) {
         >
           <div className='cell' key={hour} />
         </Link>
-      ))} */}
+      ))}
     </div>
   );
 }
