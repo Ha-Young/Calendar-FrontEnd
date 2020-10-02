@@ -6,7 +6,7 @@ import styles from './Day.module.css';
 const Day = ({ day }) => {
   return (
     <>
-      <div className={styles.day}><h1>{day}</h1></div>
+      <div className={styles.day}><h2>{day}</h2></div>
       <div className={styles.cellContainer}>
         <TimeLine />
         <Cell />

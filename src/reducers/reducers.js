@@ -2,6 +2,7 @@ import {
   LOGIN,
   GET_EVENTS,
   SET_DAY,
+  SET_WEEK,
   SET_MONTH,
   SET_YEAR,
   SET_CALENDAR_TYPE
@@ -20,6 +21,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, events: action.events };
     case SET_DAY:
       return { ...state, day: action.day };
+    case SET_WEEK:
+      return { ...state, week: action.week };
     case SET_MONTH:
       return { ...state, month: action.month };
     case SET_YEAR:

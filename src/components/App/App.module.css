@@ -62,7 +62,7 @@ button :global {
 }
 
 h1 {
-  font-size: var(--font-micro);
+  font-size: var(--font-large);
   font-weight: var(--weight-regular);
   color:var(--color-dark-grey);
   margin: 16px 0;

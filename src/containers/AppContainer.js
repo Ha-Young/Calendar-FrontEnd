@@ -15,7 +15,7 @@ export const AppContainer = ({ isLoggedIn, setIsLoggedIn, setCalendarType }) => 
       if (user) {
         setIsLoggedIn(user.uid, true);
       } else {
-        setIsLoggedIn(user.uid, false);
+        setIsLoggedIn(null, false);
       }
     });
   }, []);
@@ -42,12 +42,12 @@ export const AppContainer = ({ isLoggedIn, setIsLoggedIn, setCalendarType }) => 
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    let data;
+
     try {
       if (isNewAccount) {
-        data = await authService.createUserWithEmailAndPassword(email, password);
+        await authService.createUserWithEmailAndPassword(email, password);
       } else {
-        data = await authService.signInWithEmailAndPassword(email, password);
+        await authService.signInWithEmailAndPassword(email, password);
       }
     } catch (error) {
       setError(error.message);

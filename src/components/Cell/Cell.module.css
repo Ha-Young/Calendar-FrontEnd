@@ -10,10 +10,10 @@
   height: 48px;
   line-height: 50px;
   opacity: 0;
-  background-color: gray;
+  background-color: lightsalmon;
 }
 
 .cell:hover {
   opacity: 1;
-  transition: 1s ease-in;
+  transition: 1s linear;
 }

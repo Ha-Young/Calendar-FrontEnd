@@ -1,16 +1,8 @@
 import React from 'react';
-import { Route, useParams } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 const EventDetails = ({ events }) => {
-  const params = useParams();
   const id = '12343456';
-  if (events) {
-    console.log('details', [...[events['events']['2020']['10']]]);
-    console.log(Object.values(events['events']['2020']['10']).length);
-  }
-  //url매치되는 곳에 뿌려주면 될거같은데...
-  // // const foundData = [...events['2020']['10']];
-  // console.log(foundData);
   return (
     <>
       {

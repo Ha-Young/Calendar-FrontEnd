@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { saveData } from 'utils/api';
+import { useHistory } from 'react-router-dom';
 
 const EventMaker = ({ isSubmit }) => {
+  const DEFAULT_DURATION = 1200;
+  const history = useHistory();
   const [inputValues, setInputValues] = useState({
     title: '',
     description: '',
@@ -22,6 +25,10 @@ const EventMaker = ({ isSubmit }) => {
       startTime: '',
       endTime: ''
     });
+
+    setTimeout(() => {
+      history.push('/');
+    }, DEFAULT_DURATION);
   };
 
   const onChange = event => {
@@ -84,6 +91,6 @@ const EventMaker = ({ isSubmit }) => {
       </form>
     </>
   );
-}
+};
 
 export default EventMaker;
