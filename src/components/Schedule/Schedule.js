@@ -5,6 +5,7 @@ import ScheduleHead from './ScheduleHead';
 import ScheduleBody from './ScheduleBody';
 import Modal from '../Shared/Modal';
 import CreateEvent from '../Event/CreateEvent';
+import CreateEventContainer from '../../containers/CreateEventContainer';
 const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 12% 1fr;
@@ -24,12 +25,12 @@ export default function Schedule ({ dates, updateCalendar }) {
     <Switch>
       <Route path='/event/:event_Id' exact>
         <Modal>
-          <CreateEvent />
+          <CreateEventContainer />
         </Modal>
       </Route>
       <Route path='/event/new' exact>
         <Modal>
-          <CreateEvent />
+        <CreateEventContainer />
         </Modal>
       </Route>
       <Route path='/' exact>

@@ -20,14 +20,14 @@ const InputEl = styled.input`
   }
 `;
 
-export default function Input ({ onChange, placeholder, value, type }) {
+export default function Input ({ placeholder, value, type, name }) {
   return (
     <InputEl
       className="input"
+      name={name}
       type={type}
       placeholder={placeholder}
       value={value}
-      onChange={(ev) => onChange(ev.target.value)}
     />
   );
 }

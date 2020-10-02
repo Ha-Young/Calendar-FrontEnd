@@ -30,7 +30,6 @@ const CloseButton = styled.div`
 `;
 
 export default function Modal ({ children }) {
-  console.log(useParams(), 'pa')
   return (
     <Wrapper>
       <ModalContents>
