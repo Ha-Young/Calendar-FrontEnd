@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styles from './CalendarContainer.module.css';
 
@@ -80,3 +81,16 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+
+Calendar.propTypes = {
+  onLoad: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  dataInfo: PropTypes.shape({
+    dayStringify: PropTypes.string.isRequired,
+    current: PropTypes.string.isRequired,
+    selectedDay: PropTypes.string.isRequired,
+    weekList: PropTypes.array.isRequired,
+    isWeeklyMode: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired
+  })
+};

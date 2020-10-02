@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 import { ROUTER } from '../../router';
 import styles from './Form.module.css';
@@ -54,3 +55,16 @@ export default function Form({ onSubmit, target, text }) {
     </>
   );
 }
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  target: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    startTime: PropTypes.string.isRequired,
+    endTime: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
+  })
+};

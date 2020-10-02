@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ROUTER } from '../../router';
 import styles from './EventCell.module.css';
@@ -20,3 +21,12 @@ export default function EventCell({ event }) {
     </Link>
   );
 }
+
+EventCell.propTypes = {
+  event: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    top: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
+  })
+};

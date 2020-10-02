@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ROUTER } from '../../router';
 import { connect } from 'react-redux';
@@ -56,3 +57,15 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
+
+HeaderContainer.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  dataInfo: PropTypes.shape({
+    dayStringify: PropTypes.string.isRequired,
+    current: PropTypes.string.isRequired,
+    selectedDay: PropTypes.string.isRequired,
+    weekList: PropTypes.array.isRequired,
+    isWeeklyMode: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired
+  })
+};

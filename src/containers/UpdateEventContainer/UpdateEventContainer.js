@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import { ROUTER } from '../../router';
 import { connect } from 'react-redux';
@@ -66,3 +67,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateEventContainer);
+
+UpdateEventContainer.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
+};

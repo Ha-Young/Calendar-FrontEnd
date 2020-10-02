@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './DailyCard.module.css';
 
 import EventCell from '../EventCell/EventCell';
@@ -52,3 +53,8 @@ export default function DailyCard({ date, events }) {
     </>
   );
 }
+
+DailyCard.propTypes = {
+  date: PropTypes.string.isRequired,
+  events: PropTypes.array.isRequired
+};
