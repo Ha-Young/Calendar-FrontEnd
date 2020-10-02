@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as dayjs from "dayjs";
 import styles from "./AppHeader.module.css";
-import { VIEWMODE_DAILY, DAILY, WEEKLY } from "../../constants";
+import { VIEWMODE_DAILY, VIEWMODE_WEEKLY, DAILY, WEEKLY } from "../../constants";
 
 export default function AppHeader({
   viewMode,
@@ -45,7 +45,7 @@ export default function AppHeader({
         </>
       }
       {
-        viewMode === VIEWMODE_DAILY
+        viewMode === VIEWMODE_WEEKLY
         && <>
           <button type="text" className={styles.previous} onClick={onPreviousWeekClick}>
             이전
