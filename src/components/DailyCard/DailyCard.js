@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './DailyCard.module.css';
 
+import EventCell from '../EventCell/EventCell';
 import TimeCell from '../TimeCell/TimeCell';
 
 export default function DailyCard({ date, events }) {
@@ -14,6 +14,7 @@ export default function DailyCard({ date, events }) {
     }
 
     const newCellList = [];
+    const POSITION_RANGE = 60;
 
     events.forEach((event) => {
       const startTime = parseInt(event.startTime.substring(0, 2));
@@ -23,8 +24,8 @@ export default function DailyCard({ date, events }) {
       newCellList.push({
         id: event.id,
         title: event.title,
-        top: startTime * 60,
-        height: duration * 60,
+        top: startTime * POSITION_RANGE,
+        height: duration * POSITION_RANGE,
       });
     });
 
@@ -34,21 +35,11 @@ export default function DailyCard({ date, events }) {
   return (
     <>
       <div className={styles.DailyCard}>
-        <div className={styles.eventCell}>
+        <div className={styles.eventCard}>
           {
             cellList.map((event) => {
               return (
-                <Link
-                  key={event.id}
-                  to={`/event/${event.id}`}
-                  className={styles.event}
-                  style={{
-                    top: event.top,
-                    height: event.height,
-                  }}
-                >
-                  {event.title}
-                </Link>
+                <EventCell event={event} />
               );
             })
           }

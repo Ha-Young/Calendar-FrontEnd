@@ -1,0 +1,12 @@
+.EventCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+  background-color: rgb(255, 111, 86);
+  color: white;
+  text-decoration: none;
+  word-wrap: break-word;
+}
