@@ -59,7 +59,6 @@ const Container = styled.section`
 
 const currentDate = new Date();
 const initEventForm = {
-  id: nanoid(12),
   title: '',
   description: '',
   startTime: String(getHours(currentDate)),
