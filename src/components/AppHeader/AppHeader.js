@@ -34,23 +34,19 @@ export default function AppHeader({
         <h1 className={styles.title}>달력</h1>
       </Link>
       {
-        viewMode === VIEWMODE_DAILY
-        && <>
-          <button type="text" className={styles.previous} onClick={onPreviousDayClick}>
+        <>
+          <button
+            type="text"
+            className={styles.previous}
+            onClick={viewMode === VIEWMODE_DAILY ? onPreviousDayClick : onPreviousWeekClick}
+          >
             이전
           </button>
-          <button type="text" className={styles.next} onClick={onNextDayClick}>
-            다음
-          </button>
-        </>
-      }
-      {
-        viewMode === VIEWMODE_WEEKLY
-        && <>
-          <button type="text" className={styles.previous} onClick={onPreviousWeekClick}>
-            이전
-          </button>
-          <button type="text" className={styles.next} onClick={onNextWeekClick}>
+          <button
+            type="text"
+            className={styles.next}
+            onClick={viewMode === VIEWMODE_DAILY ? onNextDayClick : onPreviousWeekClick}
+          >
             다음
           </button>
         </>
