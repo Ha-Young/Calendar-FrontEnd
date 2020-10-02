@@ -15,30 +15,25 @@ function Calendar({ onLoad, onChange, dateInfo }) {
     onLoad();
   }, []);
 
-  function handleClickToPrevious() {
-    if (isWeeklyMode) {
-      const newWeekList = generateWeekList(weekList[0], true);
-      return onChange(newWeekList);
-    }
-    const newSelectedDay = stepToDay(selectedDay, true);
-    onChange(newSelectedDay, true);
-  }
+  function handleClick({ target }) {
+    let isPrevious = false;
+    if (target.name === 'previous') isPrevious = true;
 
-  function handleClickToNext() {
     if (isWeeklyMode) {
-      const newWeekList = generateWeekList(weekList[0], false);
+      const newWeekList = generateWeekList(weekList[0], isPrevious);
       return onChange(newWeekList);
     }
-    const newSelectedDay = stepToDay(selectedDay, false);
-    onChange(newSelectedDay, true);
+
+    const newSelectedDay = stepToDay(selectedDay, isPrevious);
+    onChange(newSelectedDay, !isWeeklyMode);
   }
 
   return (
     <>
       <div className={styles.Calendar}>
         <div className={styles.controller}>
-          <button onClick={handleClickToPrevious}>Previous</button>
-          <button onClick={handleClickToNext}>Next</button>
+          <button name='previous' onClick={handleClick}>Previous</button>
+          <button name='next' onClick={handleClick}>Next</button>
         </div>
         {
           isLoading ? <div>is loading...</div>

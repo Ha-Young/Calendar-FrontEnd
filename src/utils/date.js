@@ -1,48 +1,45 @@
 const DAY_LIST = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const DAY_STEP = 86400000;
+const WEEK_STEP = 691200000;
 
-function generateDay(target) {
-  if (target) return new Date(target).toISOString().substring(0, 10);
-  return new Date().toISOString().substring(0, 10);
-}
+const generateDay = (target) => {
+  const current = target ? new Date(target) : new Date();
+  return current.toISOString().substring(0, 10);
+};
 
-function generateDayString(target) {
-  if (target) return DAY_LIST[new Date(target).getDay()];
-  return DAY_LIST[new Date().getDay()];
-}
+const generateDayString = (target) => {
+  const current = target ? new Date(target) : new Date();
+  return DAY_LIST[current.getDay()];
+};
 
-function stepToDay(target, isPrev) {
+const stepToDay = (target, isPrevious) => {
   let step = DAY_STEP;
-  if (isPrev) step *= -1;
+  if (isPrevious) step *= -1;
   return generateDay(new Date(target).getTime() + step);
-}
+};
 
-function generateWeekList(target, isPrev) {
-  const WEEK_STEP = 691200000;
+const generateWeekList = (target, isPrevious) => {
+  const week = [];
+  let step = WEEK_STEP;
   let current;
 
-  if (target && isPrev) {
+  if (target) {
+    if (isPrevious) step *= -1;
     const selectedTime = new Date(target).getTime();
-    const targetTime = new Date(selectedTime - WEEK_STEP).toISOString().substring(0, 10);
-    current = new Date(targetTime);
-  } else if (target && !isPrev) {
-    const selectedTime = new Date(target).getTime();
-    const targetTime = new Date(selectedTime + WEEK_STEP).toISOString().substring(0, 10);
+    const targetTime = generateDay(selectedTime + step);
     current = new Date(targetTime);
   } else {
     current = new Date();
   }
 
-  const week = [];
-
   for (let i = 1; i <= 7; i++) {
     const firstDay = current.getDate() - current.getDay() + i;
-    const day = new Date(current.setDate(firstDay)).toISOString().slice(0, 10);
+    const day = generateDay(current.setDate(firstDay));
     week.push(day);
   }
 
   return week;
-}
+};
 
 export {
   DAY_LIST,
