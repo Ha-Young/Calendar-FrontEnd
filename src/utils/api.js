@@ -1,6 +1,5 @@
 // TODO: You can modify, add, remove as you need.
 import firebase from './firebase';
-import { generateRandomString } from './generateRandomString';
 
 const database = firebase.database();
 const eventsRef = database.ref('events/');
@@ -15,7 +14,7 @@ export const readEventListOnce = async () => {
 };
 
 export const writeEvent = async (data) => {
-  data.id = `event_${generateRandomString()}`;
+  data.id = `event${eventsRef.push().key}`;
 
   try {
     await database.ref(`events/${data.id}`).set(data, function (error) {

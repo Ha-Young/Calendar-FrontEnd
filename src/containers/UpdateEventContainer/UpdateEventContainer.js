@@ -10,7 +10,7 @@ import { updateEvent, deleteEvent } from '../../utils/api';
 import { getEventById } from '../../reducers/events';
 import { updateToEventList, deleteTargetEvent } from '../../actions/index';
 
-function UpdateEventContainer({ getState, onSubmit, onDelete }) {
+function UpdateEventContainer({ onSearch, onSubmit, onDelete }) {
   const history = useHistory();
   const { params } = useRouteMatch();
 
@@ -23,7 +23,7 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
     <div className={styles.UpdateEventContainer}>
       <Form
         onSubmit={onSubmit}
-        target={getState(params.eventId)}
+        target={onSearch(params.eventId)}
         text='Update'
       />
       <button
@@ -38,7 +38,7 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
 
 const mapStateToProps = ({ events }) => {
   return {
-    getState(id) {
+    onSearch(id) {
       return getEventById(events.byId, id);
     }
   };
