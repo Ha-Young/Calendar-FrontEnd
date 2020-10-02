@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTER } from '../../router';
 import { connect } from 'react-redux';
@@ -8,12 +8,12 @@ import { swapCalendarViewMode } from '../../actions/index';
 
 // TODO: Create your own header.
 function HeaderContainer({ onChange, dateInfo }) {
-  function handleChange({ target }) {
+  const handleChange = useCallback(function ({ target }) {
     if (target.value === 'week') {
       return onChange(true);
     }
     onChange(false);
-  }
+  }, [onChange]);
 
   return (
     <header className={styles.Header}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import { ROUTER } from '../../router';
 import { connect } from 'react-redux';
@@ -14,10 +14,10 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
   const history = useHistory();
   const { params } = useRouteMatch();
 
-  function handleClick() {
+  const handleClick = useCallback(function () {
     onDelete(params.eventId);
     history.push(ROUTER.CALENDAR);
-  }
+  }, [onDelete, history]);
 
   return (
     <div className={styles.UpdateEventContainer}>

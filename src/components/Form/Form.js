@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { ROUTER } from '../../router';
 import styles from './Form.module.css';
@@ -14,21 +14,21 @@ export default function Form({ onSubmit, target, text }) {
   });
   const history = useHistory();
 
-  function handleFormSubmit() {
+  const handleFormSubmit = useCallback(function () {
     if (inputValue.endTime === '00:00') {
       inputValue.endTime = '24:00';
     }
     onSubmit(inputValue);
     history.push(ROUTER.CALENDAR);
-  }
+  }, [inputValue, onSubmit, history]);
 
-  function handleChange(e) {
+  const handleChange = useCallback(function (e) {
     const target = e.target;
     const value = target.value;
     const name = target.name;
 
     setInputValue({ ...inputValue, [name]: value });
-  }
+  }, [inputValue, setInputValue]);
 
   return (
     <>

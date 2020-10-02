@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import styles from './CalendarContainer.module.css';
 
@@ -15,7 +15,7 @@ function Calendar({ onLoad, onChange, dateInfo }) {
     onLoad();
   }, []);
 
-  function handleClick({ target }) {
+  const handleClick = useCallback(function ({ target }) {
     let isPrevious = false;
     if (target.name === 'previous') isPrevious = true;
 
@@ -26,7 +26,7 @@ function Calendar({ onLoad, onChange, dateInfo }) {
 
     const newSelectedDay = stepToDay(selectedDay, isPrevious);
     onChange(newSelectedDay, !isWeeklyMode);
-  }
+  }, [onChange, dateInfo]);
 
   return (
     <>
