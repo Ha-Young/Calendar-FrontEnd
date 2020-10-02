@@ -33,6 +33,9 @@ const allIds = (state = [], { type, events }) => {
       const newState = [];
       for (const key in events) newState.push(key);
       return newState;
+    case DELETE_EVENT:
+      const copiedState = state.slice();
+      return copiedState.filter((id) => id !== events);
     default:
       return state;
   }

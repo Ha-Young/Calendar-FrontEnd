@@ -4,6 +4,7 @@ import styles from './NewEventContainer.module.css';
 
 import Form from '../../components/Form/Form';
 
+import { addToEventList } from '../../actions/index';
 import { writeEvent } from '../../utils/api';
 
 function NewEventContainer({ onSubmit }) {
@@ -16,8 +17,13 @@ function NewEventContainer({ onSubmit }) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit(event) {
-      writeEvent(event, dispatch);
+    async onSubmit(event) {
+      try {
+        const result = await writeEvent(event);
+        dispatch(addToEventList(result));
+      } catch (error) {
+        console.error(error.message);
+      }
     }
   };
 };

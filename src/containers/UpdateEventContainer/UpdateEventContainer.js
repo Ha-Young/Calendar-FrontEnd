@@ -7,6 +7,7 @@ import Form from '../../components/Form/Form';
 
 import { getEventById } from '../../reducers/events';
 import { updateEvent, deleteEvent } from '../../utils/api';
+import { updateToEventList, deleteTargetEvent } from '../../actions/index';
 
 function UpdateEventContainer({ getState, onSubmit, onDelete }) {
   const history = useHistory();
@@ -44,13 +45,21 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit(event) {
-      updateEvent(event, dispatch);
-      // dispatch(updateEvent(event));
+    async onSubmit(event) {
+      try {
+        const result = await updateEvent(event);
+        dispatch(updateToEventList(result));
+      } catch (error) {
+        console.warn(error.message);
+      }
     },
-    onDelete(id) {
-      deleteEvent(id, dispatch);
-      // dispatch({ type: 'DELETE_EVENT', events: id });
+    async onDelete(id) {
+      try {
+        await deleteEvent(id);
+        dispatch(deleteTargetEvent(id));
+      } catch (error) {
+        console.warn(error.message);
+      }
     }
   };
 };

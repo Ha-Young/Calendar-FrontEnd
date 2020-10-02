@@ -6,29 +6,30 @@ import EventContainer from '../EventsContainer/EventsContainer';
 
 import { readEventListOnce } from '../../utils/api';
 import { stepToDay, generateWeekList } from '../../utils/date';
-
 import { changeTargetDate, setLoadedState, receiveEventList } from '../../actions/index';
 
-function Calendar({ onLoad, dateInfo, onChange }) {
+function Calendar({ onLoad, onChange, dateInfo }) {
+  const { isWeeklyMode, weekList, selectedDay, isLoading } = dateInfo;
+
   useEffect(() => {
     onLoad();
   }, []);
 
   function handleClickToPrevious() {
-    if (dateInfo.isWeeklyMode) {
-      const newWeekList = generateWeekList(dateInfo.weekList[0], true);
+    if (isWeeklyMode) {
+      const newWeekList = generateWeekList(weekList[0], true);
       return onChange(newWeekList);
     }
-    const newSelectedDay = stepToDay(dateInfo.selectedDay, true);
+    const newSelectedDay = stepToDay(selectedDay, true);
     onChange(newSelectedDay, true);
   }
 
   function handleClickToNext() {
-    if (dateInfo.isWeeklyMode) {
-      const newWeekList = generateWeekList(dateInfo.weekList[0], false);
+    if (isWeeklyMode) {
+      const newWeekList = generateWeekList(weekList[0], false);
       return onChange(newWeekList);
     }
-    const newSelectedDay = stepToDay(dateInfo.selectedDay, false);
+    const newSelectedDay = stepToDay(selectedDay, false);
     onChange(newSelectedDay, true);
   }
 
@@ -40,7 +41,7 @@ function Calendar({ onLoad, dateInfo, onChange }) {
           <button onClick={handleClickToNext}>Next</button>
         </div>
         {
-          dateInfo.isLoading ? <div>is loading...</div>
+          isLoading ? <div>is loading...</div>
           :
           <>
             <div className={styles.timeTable}>
@@ -62,18 +63,20 @@ function Calendar({ onLoad, dateInfo, onChange }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    dateInfo: state.dateInfo
-  }
-};
+const mapStateToProps = ({ dateInfo }) => ({
+  dateInfo
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
     async onLoad() {
-      const result = await readEventListOnce();
-      dispatch(setLoadedState());
-      dispatch(receiveEventList(result));
+      try {
+        const result = await readEventListOnce();
+        dispatch(setLoadedState());
+        dispatch(receiveEventList(result));
+      } catch (error) {
+        console.warn(error.message);
+      }
     },
     onChange(date, option) {
       dispatch(changeTargetDate(date, option));
