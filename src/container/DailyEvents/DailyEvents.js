@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './DailyEvents.scss';
-import EventBlock from '../EventBlock/EventBlock';
+import EventBlock from '../../components/EventBlock/EventBlock';
 
 import getEventsByDate from '../../firebase/utils/getEventsByDate';
 

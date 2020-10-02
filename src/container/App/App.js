@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/user/user.actions';
 
 import styles from './App.module.scss';
-import Header from '../Header/Header';
-import UserProfile from '../UserProfile/UserProfile';
+import Header from '../../components/Header/Header';
+import UserProfile from '../../components/UserProfile/UserProfile';
 import Calendar from '../Calendar/Calendar';
-import NewEvent from '../NewEvent/NewEvent';
-import SignInAndSignUp from '../SignInAndSignUp/SignInAndSignUp';
+import NewEvent from '../../components/NewEvent/NewEvent';
+import SignInAndSignUp from '../../components/SignInAndSignUp/SignInAndSignUp';
 
 import { auth } from '../../firebase';
 import registerUserProfile from '../../firebase/utils/registerUserProfile';
@@ -34,7 +34,7 @@ const App = ({ currentUser, setCurrentUser }) => {
         <SignInAndSignUp />
       ) : (
         <>
-          <Header />
+          <Header isLoggedIn={!!currentUser} />
           <Switch>
             <Route exact path='/'>
               <UserProfile user={currentUser} />

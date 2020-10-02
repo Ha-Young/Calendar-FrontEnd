@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import styles from './Header.module.scss';
 
 import { auth } from '../../firebase';
 
-const Header = ({ currentUser }) => {
+const Header = ({ isLoggedIn }) => {
   return (
     <header className={styles.Header}>
       <nav>
@@ -20,7 +19,7 @@ const Header = ({ currentUser }) => {
           <li>
             <Link to='/events/new'>New Event</Link>
           </li>
-          {currentUser ? (
+          {isLoggedIn ? (
             <li onClick={() => auth.signOut()}>Sign Out</li>
           ) : (
             <li>
@@ -33,8 +32,4 @@ const Header = ({ currentUser }) => {
   );
 };
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
-});
-
-export default connect(mapStateToProps, null)(Header);
+export default Header;

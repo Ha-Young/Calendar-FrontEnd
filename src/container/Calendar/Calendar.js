@@ -11,14 +11,14 @@ import {
 } from '../../redux/calendar/calendar.actions';
 
 import './Calendar.scss';
-import Timeline from '../Timeline/Timeline';
-import EventsField from '../EventsField/EventsField';
+import Timeline from '../../components/Timeline/Timeline';
+import EventsField from '../../components/EventsField/EventsField';
 
 import {
   VIEW_MODES,
   VIEW_MODES_LIST,
 } from '../../constants/calendar.constants';
-import CustomButton from '../CustomButton/CustomButton';
+import CustomButton from '../../components/CustomButton/CustomButton';
 
 const Calendar = ({
   currentViewMode,
@@ -33,10 +33,19 @@ const Calendar = ({
     setDate(today);
   }, [setDate]);
 
+  const getTitle = useCallback(() => {
+    if (currentViewMode.title === VIEW_MODES.DAILY.title) {
+      return moment(date).format('YYYY년 M월 D일');
+    }
+    if (currentViewMode.title === VIEW_MODES.WEEKLY.title) {
+      return `${moment(date).weeks()} 번째 주`;
+    }
+  }, [date]);
+
   useEffect(() => {
     setCurrentViewMode(VIEW_MODES.WEEKLY);
     setDateToday();
-  }, [setCurrentViewMode, setDateToday]);
+  }, []);
 
   return (
     <div className='calendar-container'>
@@ -47,7 +56,7 @@ const Calendar = ({
         <div className='current'>
           <FcPrevious size={24} onClick={moveToPrevPage} />
           <FcNext size={24} onClick={moveToNextPage} />
-          {moment(date).format('YYYY년 M월 D일')}
+          {getTitle()}
         </div>
         <div className='view-modes'>
           {currentViewMode &&

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './DailyColumn.scss';
 import DailyTitleBlock from '../DailyTitleBlock/DailyTitleBlock';
-import DailyEvents from '../DailyEvents/DailyEvents';
+import DailyEvents from '../../container/DailyEvents/DailyEvents';
 
 import { TIMELINE_NUM_SET } from '../../constants/calendar.constants';
 import convertToISOString from '../../utils/convertToISOString';
