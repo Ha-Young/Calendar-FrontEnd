@@ -1,5 +1,3 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CreateEvent from '../components/Event/CreateEvent';
 
@@ -10,7 +8,7 @@ const mapDispatchToProps = (dispatch) => {
       const actionType = e.target.eventChange.value;
       const eventInfo = {
         id: {
-          mainId: e.target.eventStart.value.toString().substring(6,8), 
+          mainId: e.target.eventStart.value.toString().substring(6,8),
           subId: e.target.eventStart.value,
           title: e.target.title.value,
         },
@@ -23,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch({type: actionType, eventInfo: eventInfo});
     }
-  }
-}
+  };
+};
 
 export default connect(null, mapDispatchToProps)(CreateEvent);

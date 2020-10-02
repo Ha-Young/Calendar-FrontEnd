@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../Shared/Button';
 import CalendarContainer from '../../containers/CalendarContainer';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: grid;
@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 `;
 
 export default function SideBar () {
-    
+
   return (
     <Wrapper>
       <div className='sidebar_button'>
@@ -19,7 +19,7 @@ export default function SideBar () {
           <Link to='/weekly' exact><Button>weekly</Button></Link>
           <Link to='/event/new' exact><Button>create</Button></Link>
       </div>
-      <CalendarContainer />
+      <CalendarContainer/>
       <div></div>
     </Wrapper>
   );

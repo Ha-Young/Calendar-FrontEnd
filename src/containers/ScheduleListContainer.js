@@ -2,7 +2,7 @@ import ScheduleList from '../components/Schedule/ScheduleList';
 import { connect } from 'react-redux';
 import { isEmpty } from 'lodash';
 
-const mapStateToProps = (state) => { 
+const mapStateToProps = (state) => {
   let presentDate = state.dates.monthlyDates.today;
   (presentDate < 10) ? presentDate = '0' + presentDate : presentDate = presentDate.toString();
 

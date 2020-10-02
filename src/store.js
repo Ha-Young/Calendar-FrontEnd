@@ -9,8 +9,3 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default createStore(reducer, applyMiddleware(...middleware));
-
-
-
-
-

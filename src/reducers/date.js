@@ -27,7 +27,7 @@ const weeklyDates = (state = getWeeklyDates(), action) => {
         ...state,
         thisMonth: getWeeklyDates(action.change).thisMonth,
         weeklyDates: getWeeklyDates(action.change).weeklyDates,
-      }
+      };
     case CHANGE_DAY:
       return {
         ...state, 

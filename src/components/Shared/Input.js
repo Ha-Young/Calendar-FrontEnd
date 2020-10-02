@@ -23,7 +23,7 @@ const InputEl = styled.input`
 export default function Input ({ placeholder, value, type, name }) {
   return (
     <InputEl
-      className="input"
+      className='input'
       name={name}
       type={type}
       placeholder={placeholder}

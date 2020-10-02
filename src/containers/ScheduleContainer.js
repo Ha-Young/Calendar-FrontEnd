@@ -11,6 +11,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({type, change});
     }
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Schedule);
