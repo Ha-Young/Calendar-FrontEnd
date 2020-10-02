@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./DateDisplay.module.scss";
 import getConnectedMonth from "../../utils/getConnectedMonth";
 import getCurrentWeek from "../../utils/getCurrentWeek";
@@ -23,5 +24,10 @@ function DateDisplay({ dateUnit, currentDate }) {
 
   return <h1 className={styles.DateDisplay}>{dateText}</h1>;
 }
+
+DateDisplay.propTypes = {
+  dateUnit: PropTypes.string.isRequired,
+  currentDate: PropTypes.string.isRequired,
+};
 
 export default DateDisplay;

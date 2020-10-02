@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import styles from "./UnitSelectorContainer.module.scss";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import styles from "./UnitSelectorContainer.module.scss";
 import { changeDateUnit } from "../../actions";
 
 function UnitSelectorContainer({ onDateUnitChange }) {
@@ -30,6 +31,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(changeDateUnit(currentDateUnit));
     },
   };
+};
+
+UnitSelectorContainer.propTypes = {
+  onDateUnitChange: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(UnitSelectorContainer);

@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { receiveEventData } from "../../utils/api";
-import { INCREASE_DATE, DECREASE_DATE } from "../../constants/actionTypes";
-import { increaseDate, decreaseDate, updateEvent } from "../../actions/index";
+import PropTypes from "prop-types";
 import UnitSelectorContainer from "../UnitSelectorContainer/UnitSelectorContainer";
 import NavigationButton from "../../components/Button/NavigationButton";
 import DateDisplay from "../../components/DateDisplay/DateDisplay";
 import EventCreationButton from "../../components/Button/EventCreationButton";
+import { INCREASE_DATE, DECREASE_DATE } from "../../constants/actionTypes";
+import { increaseDate, decreaseDate, updateEvent } from "../../actions/index";
+import { receiveEventData } from "../../utils/api";
 import styles from "./HeaderContainer.module.scss";
 
 function HeaderContainer({
@@ -70,5 +71,12 @@ function mapDispatchToProps(dispatch) {
     },
   };
 }
+
+HeaderContainer.propTypes = {
+  dateUnit: PropTypes.string.isRequired,
+  currentDate: PropTypes.string.isRequired,
+  onDateChange: PropTypes.func.isRequired,
+  onEventChange: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "./CalendarBar.module.scss";
 import CalendarEventBar from "./CalendarEventBar";
 
@@ -16,5 +17,10 @@ function CalendarBar({ eventTitle, eventId }) {
     </>
   );
 }
+
+CalendarBar.propTypes = {
+  eventTitle: PropTypes.string,
+  eventId: PropTypes.number,
+};
 
 export default CalendarBar;

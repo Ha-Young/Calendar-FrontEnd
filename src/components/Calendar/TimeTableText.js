@@ -11,7 +11,7 @@ function TimeTableText() {
   return (
     <div className={styles.TimeTableText}>
       {timeArray.map((time) => (
-        <span key={time} >{time}시</span>
+        <span key={time}>{time}시</span>
       ))}
     </div>
   );

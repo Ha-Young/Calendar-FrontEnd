@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "./EventCreationPage.module.scss";
 
 function EventDetailPage({ eventInfo, onEventChange }) {
   const [eventTitle, setEventTitle] = useState(eventInfo.eventTitle);
   const [eventDate, setEventDate] = useState(eventInfo.eventDate);
-  const [eventStartTime, setEventStartTime] = useState(
-    eventInfo.eventStartTime
-  );
+  const [eventStartTime, setEventStartTime] = useState(eventInfo.eventStartTime);
   const [eventEndTime, setEventEndTime] = useState(eventInfo.eventEndTime);
-  const [eventDescription, setEventDescription] = useState(
-    eventInfo.eventDescription
-  );
+  const [eventDescription, setEventDescription] = useState(eventInfo.eventDescription);
   const eventId = eventInfo.eventId;
   const history = useHistory();
 
@@ -28,7 +25,6 @@ function EventDetailPage({ eventInfo, onEventChange }) {
 
     onEventChange(changeType, eventInfo);
   };
-
 
   return (
     <div className={styles.SubmitForm}>
@@ -88,5 +84,17 @@ function EventDetailPage({ eventInfo, onEventChange }) {
     </div>
   );
 }
+
+EventDetailPage.propTypes = {
+  onEventChange: PropTypes.func.isRequired,
+  eventInfo: PropTypes.shape({
+    eventDate: PropTypes.string,
+    eventDescription: PropTypes.string,
+    eventEndTime: PropTypes.string,
+    eventStartTime: PropTypes.string,
+    eventId: PropTypes.number,
+    eventTitle: PropTypes.string,
+  }),
+};
 
 export default EventDetailPage;

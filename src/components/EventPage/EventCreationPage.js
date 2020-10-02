@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import styles from "./EventCreationPage.module.scss";
 
@@ -73,5 +74,9 @@ function EventCreationPage({ onEventChange }) {
     </div>
   );
 }
+
+EventCreationPage.propTypes = {
+  onEventChange: PropTypes.func.isRequired,
+};
 
 export default EventCreationPage;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import styles from "./NavigationButton.module.scss";
 
@@ -18,5 +19,9 @@ function NavigationButton({ onClick }) {
     </div>
   );
 }
+
+NavigationButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default NavigationButton;

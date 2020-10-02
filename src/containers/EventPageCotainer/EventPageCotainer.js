@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "./EventPageCotainer.module.scss";
 import EventCreationPage from "../../components/EventPage/EventCreationPage";
 import EventDetailPage from "../../components/EventPage/EventDetailPage";
@@ -14,9 +15,7 @@ import {
 function EventPageCotainer({ events, onEventChange }) {
   const { eventId } = useParams();
   const history = useHistory();
-  const currentEventInfo = events?.filter(
-    (event) => event?.eventId === Number(eventId)
-  )[0];
+  const currentEventInfo = events?.[eventId];
 
   const handleEventChange = async (changeType, eventInfo) => {
     try {
@@ -41,15 +40,14 @@ function EventPageCotainer({ events, onEventChange }) {
           <EventCreationPage onEventChange={handleEventChange} />
         </>
       ) : (
-        currentEventInfo && (
-          <>
-            <h1>이벤트 상세보기</h1>
-            <EventDetailPage
-              eventInfo={currentEventInfo}
-              onEventChange={handleEventChange}
-            />
-          </>
-        )
+        currentEventInfo &&
+        <>
+          <h1>이벤트 상세보기</h1>
+          <EventDetailPage
+            eventInfo={currentEventInfo}
+            onEventChange={handleEventChange}
+          />
+        </>
       )}
     </div>
   );
@@ -57,7 +55,7 @@ function EventPageCotainer({ events, onEventChange }) {
 
 function mapStateToProps(state) {
   return {
-    events: state.events,
+    events: state.events.byId,
   };
 }
 
@@ -68,5 +66,17 @@ function mapDispatchToProps(dispatch) {
     },
   };
 }
+
+EventPageCotainer.propTypes = {
+  onEventChange: PropTypes.func.isRequired,
+  events: PropTypes.shape({
+    eventDate: PropTypes.string,
+    eventDescription: PropTypes.string,
+    eventEndTime: PropTypes.string,
+    eventStartTime: PropTypes.string,
+    eventId: PropTypes.number,
+    eventTitle: PropTypes.string,
+  }),
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventPageCotainer);

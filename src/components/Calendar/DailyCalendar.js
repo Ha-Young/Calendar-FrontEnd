@@ -1,13 +1,18 @@
 import React from "react";
-import styles from "./DailyCalendar.module.scss";
+import PropTypes from "prop-types";
 import CalenderBar from "./CalendarBar";
 import TimeTableText from "./TimeTableText";
+import styles from "./DailyCalendar.module.scss";
 
 function DailyCalender({ currentDate, events }) {
   const nodeForMap = Array(24).fill(0);
-  const filteredEvents = events.filter(
-    (event) => event?.eventDate === currentDate
-  );
+  const filteredEvents = [];
+
+  for (let prop in events) {
+    if (events[prop].eventDate === currentDate) {
+      filteredEvents.push(events[prop]);
+    }
+  }
 
   return (
     <div className={styles.DailyCalendar}>
@@ -48,5 +53,17 @@ function DailyCalender({ currentDate, events }) {
     </div>
   );
 }
+
+DailyCalender.propTypes = {
+  currentDate: PropTypes.string.isRequired,
+  events: PropTypes.shape({
+    eventDate: PropTypes.string,
+    eventDescription: PropTypes.string,
+    eventEndTime: PropTypes.string,
+    eventStartTime: PropTypes.string,
+    eventId: PropTypes.number,
+    eventTitle: PropTypes.string,
+  }),
+};
 
 export default DailyCalender;
