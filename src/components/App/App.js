@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 // For example, what is it? what are benefits?
 import styles from './App.module.css';
 
-import Header from '../Header/Header';
+import HeaderContainer from '../../containers/HeaderContainer/HeaderContainer';
 import CalendarContainer from '../../containers/CalendarContainer/CalendarContainer';
 import NewEventContainer from '../../containers/NewEventContainer/NewEventContainer';
 import UpdateEventContainer from '../../containers/UpdateEventContainer/UpdateEventContainer';
@@ -16,7 +16,7 @@ function App() {
     <div className={styles.App}>
       <Switch>
         <Route path='/calendar' exact>
-          <Header />
+          <HeaderContainer />
           <CalendarContainer />
         </Route>
         <Route path='/event/new'>

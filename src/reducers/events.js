@@ -1,15 +1,16 @@
 import { combineReducers } from 'redux';
+import { RECEIVE_EVENTS, ADD_EVENT, UPDATE_EVENT, DELETE_EVENT } from '../actions';
 
 const byId = (state = {}, action) => {
   switch (action.type) {
-    case 'RECEIVE_EVENTS':
-    case 'ADD_EVENT':
-    case 'UPDATE_EVENT':
+    case RECEIVE_EVENTS:
+    case ADD_EVENT:
+    case UPDATE_EVENT:
       return {
         ...state,
         ...action.events
       };
-    case 'DELETE_EVENT':
+    case DELETE_EVENT:
       const copiedState = Object.assign({}, state);
       delete copiedState[action.events];
       return copiedState;
@@ -20,9 +21,13 @@ const byId = (state = {}, action) => {
 
 const allIds = (state = [], action) => {
   switch (action.type) {
-    case 'RECEIVE_EVENTS':
+    case RECEIVE_EVENTS:
       const newState = [];
       for (const key in action.events) newState.push(key);
+      // return [
+      //   ...state,
+      //   ...newState
+      // ];
       return newState;
     default:
       return state;

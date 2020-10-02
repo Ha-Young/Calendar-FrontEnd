@@ -27,18 +27,6 @@ button {
   border-radius: 24px;
 }
 
-/* .grid {
-  z-index: 999;
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 60px repeat(25, 40px);
-  position: absolute;
-  top: 60px;
-  opacity: 0.1;
-  grid-auto-flow: column;
-} */
-
 .timeTable {
   position: relative;
   top: 6px;

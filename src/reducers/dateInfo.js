@@ -1,4 +1,5 @@
 import { generateDay, generateDayString, generateWeekList } from '../utils/date';
+import { LOAD_ENDED, CHANGE_CALENDAR_VIEW_MODE, CHANGE_TARGET_DATE } from '../actions/index';
 
 const dateInfoIninitialState = {
   dayStringify: generateDayString(),
@@ -11,18 +12,17 @@ const dateInfoIninitialState = {
 
 export const dateInfo = (state = dateInfoIninitialState, action) => {
   switch (action.type) {
-    case 'LOADED_EVENTS':
+    case LOAD_ENDED:
       return {
         ...state,
         ...action.payload
       };
-    case 'CHANGE_CALENDAR_VIEW_MODE':
+    case CHANGE_CALENDAR_VIEW_MODE:
       return {
         ...state,
         ...action.payload
       };
-    case 'BACKWARD_DAYS':
-    case 'FORWARD_DAYS':
+    case CHANGE_TARGET_DATE:
       return {
         ...state,
         ...action.payload

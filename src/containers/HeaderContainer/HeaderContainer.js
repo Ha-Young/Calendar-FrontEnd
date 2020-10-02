@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import styles from './Header.module.css';
+import styles from './HeaderContainer.module.css';
+
+import { swapCalendarViewMode } from '../../actions/index';
 
 // TODO: Create your own header.
-function Header({ onChange, dateInfo }) {
+function HeaderContainer({ onChange, dateInfo }) {
   function handleChange({ target }) {
     if (target.value === 'Week') {
       return onChange(true);
@@ -49,9 +51,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onChange(value) {
-      dispatch({ type: 'CHANGE_CALENDAR_VIEW_MODE', payload: { isWeeklyMode: value } });
+      dispatch(swapCalendarViewMode(value));
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

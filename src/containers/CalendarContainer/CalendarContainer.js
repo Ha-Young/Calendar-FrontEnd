@@ -5,9 +5,11 @@ import styles from './CalendarContainer.module.css';
 import EventContainer from '../EventsContainer/EventsContainer';
 
 import { readEventListOnce } from '../../utils/api';
-import { stepToDay, generateDayString, generateWeekList } from '../../utils/date';
+import { stepToDay, generateWeekList } from '../../utils/date';
 
-function Calendar({ onLoad, dateInfo, onBackward, onForward }) {
+import { changeTargetDate, setLoadedState, receiveEventList } from '../../actions/index';
+
+function Calendar({ onLoad, dateInfo, onChange }) {
   useEffect(() => {
     onLoad();
   }, []);
@@ -15,19 +17,19 @@ function Calendar({ onLoad, dateInfo, onBackward, onForward }) {
   function handleClickToPrevious() {
     if (dateInfo.isWeeklyMode) {
       const newWeekList = generateWeekList(dateInfo.weekList[0], true);
-      return onBackward(newWeekList);
+      return onChange(newWeekList);
     }
     const newSelectedDay = stepToDay(dateInfo.selectedDay, true);
-    onBackward(newSelectedDay, true);
+    onChange(newSelectedDay, true);
   }
 
   function handleClickToNext() {
     if (dateInfo.isWeeklyMode) {
       const newWeekList = generateWeekList(dateInfo.weekList[0], false);
-      return onForward(newWeekList);
+      return onChange(newWeekList);
     }
     const newSelectedDay = stepToDay(dateInfo.selectedDay, false);
-    onForward(newSelectedDay, true);
+    onChange(newSelectedDay, true);
   }
 
   return (
@@ -70,22 +72,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     async onLoad() {
       const result = await readEventListOnce();
-      dispatch({ type: 'LOADED_EVENTS', payload: { isLoading: false }});
-      dispatch({ type: 'RECEIVE_EVENTS', events: result });
+      dispatch(setLoadedState());
+      dispatch(receiveEventList(result));
     },
-    onBackward(data, option) {
-      if (option) {
-        dispatch({ type: 'BACKWARD_DAYS', payload: { selectedDay: data, dayStringify: generateDayString(data) }});
-        return;
-      }
-      dispatch({ type: 'BACKWARD_DAYS', payload: { weekList: data }});
-    },
-    onForward(data, option) {
-      if (option) {
-        dispatch({ type: 'FORWARD_DAYS', payload: { selectedDay: data, dayStringify: generateDayString(data) }});
-        return;
-      }
-      dispatch({ type: 'FORWARD_DAYS', payload: { weekList: data }});
+    onChange(date, option) {
+      dispatch(changeTargetDate(date, option));
     }
   }
 };

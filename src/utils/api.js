@@ -1,26 +1,10 @@
 // TODO: You can modify, add, remove as you need.
 import firebase from './firebase';
 import { generateRandomString } from './generateRandomString';
+import { addToEventList, updateToEventList, deleteTargetEvent } from '../actions/index';
 
 const database = firebase.database();
 const eventsRef = database.ref('events/');
-
-const addToEventList = (event) => {
-  return { type: 'ADD_EVENT', events: event };
-};
-
-const updateToEventList = (event) => {
-  return { type: 'UPDATE_EVENT', events: event };
-};
-
-// ========================================================
-
-export async function readEventList(dispatch) {
-  await eventsRef.on('value', function (snapshot) {
-    // console.log('listener called');
-    dispatch({ type: 'RECEIVE_EVENTS', events: snapshot.val() });
-  });
-}
 
 export async function readEventListOnce() {
   const result = await eventsRef.once('value');
@@ -39,7 +23,7 @@ export async function writeEvent(data, dispatch) {
 }
 
 export async function updateEvent(data, dispatch) {
-  await database.ref('events/').child(data.id).update(data, function (error) {
+  await eventsRef.child(data.id).update(data, function (error) {
     console.warn(error);
   });
 
@@ -48,21 +32,9 @@ export async function updateEvent(data, dispatch) {
 }
 
 export async function deleteEvent(id, dispatch) {
-  await database.ref('events/').child(id).remove();
-  dispatch({ type: 'DELETE_EVENT', events: id });
+  await eventsRef.child(id).remove();
+  dispatch(deleteTargetEvent(id));
 }
-
-// ========================================================
-
-// export async function saveSampleData () {
-//   // const database = firebase.database();
-
-//   // Note: `set` method returns a promise.
-//   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-//   // await database.ref('test/123').set({
-//   //   test: 'text'
-//   // });
-// }
 
 // export function getSample() {
 //   const result = new Promise((resolve) => {
