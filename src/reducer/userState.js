@@ -1,20 +1,15 @@
 import { SET_USER } from '../constants';
+import { createReducer } from '@reduxjs/toolkit';
 
-function user(state = {}, action) {
-  if (action.type === SET_USER) {
-    return action.payload;
-  }
+const user = createReducer({}, {
+  [SET_USER]: (_, action) => action.payload,
+});
 
-  return state;
-}
-
-function isLogin(state = false, action) {
-  if (action.type === SET_USER && action.payload) {
-    return !state;
-  }
-
-  return state;
-}
+const isLogin = createReducer(false, {
+  [SET_USER]: (state, action) => {
+    return action.payload ? !state : state;
+  },
+});
 
 export default {
   user,

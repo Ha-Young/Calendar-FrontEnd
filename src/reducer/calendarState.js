@@ -9,38 +9,26 @@ import {
   combineDate,
   calculateNewDate,
 } from '../utils/utilFunction';
+import { createReducer } from '@reduxjs/toolkit';
 
-function eventData(state = {}, action) {
-  if (action.type === SET_INIT_DATA) {
-    return action.payload;
-  }
+const eventData = createReducer({}, {
+  [SET_INIT_DATA]: (_, action) => action.payload,
+});
 
-  return state;
-}
+const isWeekly = createReducer(false, {
+  [TOGGLE_WEEKLY_AND_DAILY]: state => !state,
+});
 
-function isWeekly(state = false, action) {
-  if (action.type === TOGGLE_WEEKLY_AND_DAILY) {
-    return !state;
-  }
-
-  return state;
-}
-
-function currentDate(state = destructDate(new Date()), action) {
-  if (action.type === MOVE_NEXT_DAY) {
+const currentDate = createReducer(destructDate(new Date()), {
+  [MOVE_NEXT_DAY]: (state, action) => {
     const nextDate = calculateNewDate(combineDate(state), action.payload);
-
     return destructDate(nextDate);
+  },
+  [MOVE_PREV_DAY]: (state, action) => {
+    const prevDate = calculateNewDate(combineDate(state), -action.payload);
+    return destructDate(prevDate);
   }
-
-  if (action.type === MOVE_PREV_DAY) {
-    const nextDate = calculateNewDate(combineDate(state), -action.payload);
-
-    return destructDate(nextDate);
-  }
-
-  return state;
-}
+});
 
 export default {
   eventData,
