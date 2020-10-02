@@ -35,22 +35,25 @@ export default function AppHeader({
       </Link>
       {
         viewMode === VIEWMODE_DAILY
-          ? <>
-            <button type="text" className={styles.previous} onClick={onPreviousDayClick}>
-              이전
+        && <>
+          <button type="text" className={styles.previous} onClick={onPreviousDayClick}>
+            이전
           </button>
-            <button type="text" className={styles.next} onClick={onNextDayClick}>
-              다음
+          <button type="text" className={styles.next} onClick={onNextDayClick}>
+            다음
           </button>
-          </>
-          : <>
-            <button type="text" className={styles.previous} onClick={onPreviousWeekClick}>
-              이전
+        </>
+      }
+      {
+        viewMode === VIEWMODE_DAILY
+        && <>
+          <button type="text" className={styles.previous} onClick={onPreviousWeekClick}>
+            이전
           </button>
-            <button type="text" className={styles.next} onClick={onNextWeekClick}>
-              다음
+          <button type="text" className={styles.next} onClick={onNextWeekClick}>
+            다음
           </button>
-          </>
+        </>
       }
       <h2 className={styles.month}>{`${dayjs(displayDate).format("M")}월`}</h2>
       <select className={styles.viewSelector} onChange={onChange}>
