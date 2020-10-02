@@ -4,4 +4,5 @@ import events from './events';
 
 export default combineReducers({
   dates,
+  events,
 });

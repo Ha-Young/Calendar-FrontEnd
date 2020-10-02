@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import ScheduleHead from './ScheduleHead';
 import ScheduleBody from './ScheduleBody';
 import Modal from '../Shared/Modal';
-import CreateEvent from '../Event/CreateEvent';
 import CreateEventContainer from '../../containers/CreateEventContainer';
+
 const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 12% 1fr;

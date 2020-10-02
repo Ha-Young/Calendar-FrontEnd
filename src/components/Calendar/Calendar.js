@@ -4,7 +4,6 @@ import CalendarHead from './CalendarHead';
 import CalendarBody from './CalendarBody';
 import { CHANGE_DAY } from '../../constants/actionTypes';
 
-
 const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 15% 1fr;

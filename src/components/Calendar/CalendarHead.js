@@ -18,7 +18,7 @@ export default function CalendarHead ({ thisMonth, updateCalendar }) { //mcalhea
   }, [clickCount]);
 
   useEffect(() => {
-    updateCalendar(CHANGE_MONTH, clickCount);
+    updateCalendar('CHANGE_MONTH', clickCount);
   }, [clickCount]);
   
   return (

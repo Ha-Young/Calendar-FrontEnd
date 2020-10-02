@@ -1,20 +1,28 @@
 import React from 'react';
-import styled from 'styled-components';
-import CreateEvent from '../components/Event/CreateEvent';
 import { connect } from 'react-redux';
-
-const mapStateToProps = (stat) => {
-  return {
-    haha: 123
-  }
-}
+import CreateEvent from '../components/Event/CreateEvent';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    testt: function (a) {
-      console.log(a);
+    onSubmit: function (e) {
+      e.preventDefault();
+      const actionType = e.target.eventChange.value;
+      const eventInfo = {
+        id: {
+          mainId: e.target.eventStart.value.toString().substring(0, 8),
+          order: e.target.eventStart.value.toString().substring(8),
+        },
+        detail: {
+          eventTitle: e.target.title.value,
+          eventDesc: e.target.desc.value,
+          eventStart: e.target.eventStart.value,
+          eventEnd: e.target.eventEnd.value,
+        }
+      };
+      dispatch({type: actionType, eventInfo: eventInfo});
     }
-  };
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent);
+export default connect(null, mapDispatchToProps)(CreateEvent);
+
