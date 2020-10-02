@@ -17,7 +17,7 @@ const HourlySchedule = styled.div`
 `;
 
 
-export default function ScheduleList () {
+export default function ScheduleList ({ eventInfo }) {
   let path = useRouteMatch().path
 
   function renderByType () {

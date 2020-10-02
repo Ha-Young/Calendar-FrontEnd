@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from '../constants/actionTypes';
 
 const handleEvent = (state, action) => {
+  console.log(state, 'event reducer');
   switch (action.type) {
     case CREATE_EVENT: 
       const newState = {...state};

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Input from '../Shared/Input';
 import Button from '../Shared/Button';
@@ -9,10 +10,8 @@ const Wrapper = styled.div`
 `;
 
 export default function CreateEvent ({ onSubmit }) {
-  //아래의 인풋들 위의 컨테이너에서 모아서 스테이트로 만들기
-  //이벤트 리듀서 만들기
+  
   //스케쥴 리스트 컨테이너 만들기 > 작업해서 리스트에 뿌려주기
-  //밑에 폼태그 
   //기본 주소를 /calendar 으로 하고 / 으로 들어오면 / 캘린더로 리디렉토리
   
   return (
