@@ -56,27 +56,27 @@ export default function App (props) {
       {
         !isLoggedIn
           ? <Auth />
-          : <main className={styles.appMain}>
+          : <div className={styles.appMain}>
               <Header
-                changeWeeklyView={changeWeeklyView}
-                userProfile={userProfile.email}
+                changeView={changeWeeklyView}
+                userName={userProfile.displayName}
               />
               <Switch>
                 <Route path="/calendar">
                   <NavButton
-                    selectedDate={selectedDate}
-                    isDailyView={isDailyView}
-                    clickPrevDateButton={clickPrevDateButton}
-                    clickNextDateButton={clickNextDateButton}
+                    date={selectedDate}
+                    viewType={isDailyView}
+                    clickPrevButton={clickPrevDateButton}
+                    clickNextButton={clickNextDateButton}
                   />
                   {
                     isDailyView
                       ? <Daily
-                          selectedDate={selectedDate}
+                          date={selectedDate}
                           eventList={matchedEventList}
                         />
                       : <Weekly
-                          selectedWeek={selectedWeek}
+                          week={selectedWeek}
                           eventList={eventList}
                         />
                   }
@@ -86,7 +86,7 @@ export default function App (props) {
                 </Route>
                 <Redirect to="/calendar" />
               </Switch>
-            </main>
+            </div>
       }
     </>
   );

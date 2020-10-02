@@ -3,16 +3,16 @@ import moment from "moment";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import styles from "./NavButton.module.css";
 
-export default function NavButton ({ clickPrevDateButton, clickNextDateButton, selectedDate, isDailyView }) {
+export default function NavButton ({ date, viewType, clickPrevButton, clickNextButton }) {
   const handleClick = (event) => {
     if (event.target.value === "prev") {
-      isDailyView
-        ? clickPrevDateButton(1)
-        : clickPrevDateButton(7);
+      viewType
+        ? clickPrevButton(1)
+        : clickPrevButton(7);
     } else if (event.target.value === "next") {
-      isDailyView
-        ? clickNextDateButton(1)
-        : clickNextDateButton(7);
+      viewType
+        ? clickNextButton(1)
+        : clickNextButton(7);
     }
   };
 
@@ -25,7 +25,7 @@ export default function NavButton ({ clickPrevDateButton, clickNextDateButton, s
         <FaArrowLeft size="1.2rem" />
       </button>
       <span className={styles.thisMonth}>
-        {moment(selectedDate).format("YYYY-MM")}
+        {moment(date).format("YYYY-MM")}
       </span>
       <button
         onClick={handleClick}

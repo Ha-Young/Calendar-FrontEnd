@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  pushData,
-  updateData,
-  deleteData
-} from "../utils/api";
-import {
-  addEvent,
-  updateEvent,
-  deleteEvent,
-  showErrorMessage
-} from "../actions/actionCreators";
+import { pushData, updateData, deleteData } from "../utils/api";
+import { addEvent, updateEvent, deleteEvent, showErrorMessage } from "../actions/actionCreators";
 import NewEvent from "../components/NewEvent/NewEvent";
 import EventDetail from "../components/EventDetail/EventDetail";
 import Modal from "../components/Modal/Modal";
 
-function EventContainer ({ eventList, errorMessage, addEvent, updateEvent, deleteEvent }) {
+function EventContainer (props) {
+  const {
+    eventList,
+    errorMessage,
+    addEvent,
+    updateEvent,
+    deleteEvent,
+  } = props;
   const [eventId, setEventId] = useState("");
   const [isValidEventId, setIsValidEventId] = useState(true);
 
@@ -41,7 +39,7 @@ function EventContainer ({ eventList, errorMessage, addEvent, updateEvent, delet
       <Switch>
         <Route path="/events/new">
           <NewEvent
-            addEvent={addEvent}
+            onAddEvent={addEvent}
             errorMessage={errorMessage}
           />
         </Route>
@@ -51,8 +49,8 @@ function EventContainer ({ eventList, errorMessage, addEvent, updateEvent, delet
               <EventDetail
                 setEventId={(eventId) => setEventId(eventId)}
                 matchedEvent={matchedEvent}
-                updateEvent={updateEvent}
-                deleteEvent={deleteEvent}
+                onUpdateEvent={updateEvent}
+                onDeleteEvent={deleteEvent}
                 errorMessage={errorMessage}
               />
             : <Modal text="Sorry! This URL is not valid and cannot be loaded." />
@@ -66,9 +64,9 @@ function EventContainer ({ eventList, errorMessage, addEvent, updateEvent, delet
 const mapStateToProps = (state) => {
   const {
     eventControl: {
-      errorMessage
+      errorMessage,
     },
-    eventList
+    eventList,
   } = state;
 
   return {

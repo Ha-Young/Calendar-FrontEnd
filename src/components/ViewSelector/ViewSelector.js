@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./ViewSelector.module.css";
 
-export default function ViewSelector ({ changeWeeklyView }) {
+export default function ViewSelector ({ changeView }) {
   return (
     <select
       name="calendarView"
-      onChange={changeWeeklyView}
+      onChange={changeView}
       className={styles.ViewSelector}
     >
       <option value="daily">Daily</option>

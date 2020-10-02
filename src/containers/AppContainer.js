@@ -22,7 +22,7 @@ function AppContainer (props) {
     clickNextDateButton,
     changeWeeklyView,
     getStoredEventsData,
-    eventList
+    eventList,
   } = props;
 
   const getStoredData = async () => {
@@ -54,9 +54,9 @@ const mapStateToProps = (state) => {
     eventControl: {
       selectedDate,
       isLoggedIn,
-      isDailyView
+      isDailyView,
     },
-    eventList
+    eventList,
   } = state;
 
   return {

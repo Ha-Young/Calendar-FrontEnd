@@ -3,7 +3,7 @@ import moment from "moment";
 import styles from "./Weekly.module.css";
 import TimeTable from "../TimeTable/TimeTable";
 
-export default function Weekly ({ selectedWeek, eventList }) {
+export default function Weekly ({ week, eventList }) {
   return (
     <div className={styles.Weekly}>
       <div className={styles.timeList}>
@@ -35,7 +35,7 @@ export default function Weekly ({ selectedWeek, eventList }) {
         <div>오후 12시</div>
       </div>
       {
-        selectedWeek.map((day, index) => {
+        week.map((day, index) => {
           eventList.filter((list) => {
             return list.eventDate === moment(day).format("YYYY-MM-DD");
           });
@@ -43,7 +43,7 @@ export default function Weekly ({ selectedWeek, eventList }) {
           return (
             <TimeTable
               key={index}
-              selectedDate={moment(day).format("YYYY-MM-DD")}
+              date={moment(day).format("YYYY-MM-DD")}
               eventList={eventList}
             />
           );

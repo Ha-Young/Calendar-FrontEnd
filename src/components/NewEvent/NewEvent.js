@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 import styles from "./NewEvent.module.css";
 import Modal from "../Modal/Modal";
 
-export default function NewEvent ({ addEvent, errorMessage }) {
+export default function NewEvent ({ onAddEvent, errorMessage }) {
   const history = useHistory();
   const [eventDetails, setEventDetails] = useState({
     eventName: "",
@@ -18,7 +18,7 @@ export default function NewEvent ({ addEvent, errorMessage }) {
     eventDescription,
     eventDate,
     startTime,
-    endTime
+    endTime,
   } = eventDetails;
 
   const handleSubmit = (event) => {
@@ -35,7 +35,7 @@ export default function NewEvent ({ addEvent, errorMessage }) {
 
   const handleSubmitButton = async () => {
     const id = "event" + Date.now();
-    await addEvent({
+    await onAddEvent({
       id: id,
       createdAt: moment().toISOString(),
       ...eventDetails,

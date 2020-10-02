@@ -10,7 +10,6 @@ export default function Modal ({ text }) {
   }, []);
 
   const history = useHistory();
-
   const handleClick = () => {
     history.push("/");
   };

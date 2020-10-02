@@ -4,7 +4,15 @@ import moment from "moment";
 import styles from "./EventDetail.module.css";
 import Modal from "../Modal/Modal";
 
-export default function EventDetail ({ setEventId, matchedEvent, updateEvent, deleteEvent, errorMessage }) {
+export default function EventDetail (props) {
+  const {
+    setEventId,
+    matchedEvent,
+    onUpdateEvent,
+    onDeleteEvent,
+    errorMessage,
+  } = props;
+
   const history = useHistory();
   const { eventId } = useParams();
   const [eventDetails, setEventDetails] = useState({});
@@ -14,14 +22,14 @@ export default function EventDetail ({ setEventId, matchedEvent, updateEvent, de
     eventDescription,
     eventDate,
     startTime,
-    endTime
+    endTime,
   } = eventDetails;
 
   useEffect(() => {
     setEventId(eventId);
     setEventDetails({
       ...eventDetails,
-      eventName : matchedEvent?.eventName,
+      eventName: matchedEvent?.eventName,
       eventDescription: matchedEvent?.eventDescription,
       eventDate: matchedEvent?.eventDate,
       startTime: matchedEvent?.startTime,
@@ -47,7 +55,7 @@ export default function EventDetail ({ setEventId, matchedEvent, updateEvent, de
       return;
     }
 
-    await updateEvent({
+    await onUpdateEvent({
       id: eventId,
       createdAt: moment().toISOString(),
       ...eventDetails,
@@ -60,7 +68,7 @@ export default function EventDetail ({ setEventId, matchedEvent, updateEvent, de
     const confirmDelete = window.confirm("Are you sure you want to delete?");
 
     if (confirmDelete) {
-      await deleteEvent({
+      await onDeleteEvent({
         id: eventId,
         createdAt: moment().toISOString(),
         ...eventDetails,

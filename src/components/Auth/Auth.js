@@ -11,13 +11,13 @@ export default function Auth () {
   };
 
   return (
-    <main className={styles.Auth}>
+    <div className={styles.Auth}>
       <MdImportContacts size="7rem" />
       <h1>Calendar</h1>
       <Button
         title="Continue with Google"
         onClick={handleSocialLogin}
       />
-    </main>
+    </div>
   );
 }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import styles from "./TimeTable.module.css";
 
-export default function TimeTable ({ selectedDate, eventList }) {
+export default function TimeTable ({ date, eventList }) {
   const timeLine = Array(24);
 
   eventList.forEach((list) => {
@@ -12,7 +12,7 @@ export default function TimeTable ({ selectedDate, eventList }) {
     const duration = endTime - startTime;
 
     for (let i = startTime; i <= startTime + duration; i++) {
-      if (list.eventDate === selectedDate) {
+      if (list.eventDate === date) {
         timeLine[i] = [list.eventName, list.id];
       }
     }
@@ -21,7 +21,7 @@ export default function TimeTable ({ selectedDate, eventList }) {
   return (
     <div className={styles.TimeTable}>
       <div className={styles.date}>
-        {moment(selectedDate).format("DD")}
+        {moment(date).format("DD")}
       </div>
       {
         [...timeLine].map((list, index) => {
@@ -32,14 +32,9 @@ export default function TimeTable ({ selectedDate, eventList }) {
                   to={`/events/${list[1]}`}
                   className={styles.link}
                 >
-                  <div className={styles.matchedTime}>
-                    {list[0]}
-                  </div>
+                  <div className={styles.matchedTime}>{list[0]}</div>
                 </Link>
-              : <div
-                  key={index}
-                  className={styles.emptyTime}
-                ></div>
+              : <div key={index} className={styles.emptyTime} />
           );
         })
       }

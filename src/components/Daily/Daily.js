@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Daily.module.css";
 import TimeTable from "../TimeTable/TimeTable";
 
-export default function Daily ({ selectedDate, eventList }) {
+export default function Daily ({ date, eventList }) {
   return (
     <div className={styles.Daily}>
       <div className={styles.timeList}>
@@ -34,7 +34,7 @@ export default function Daily ({ selectedDate, eventList }) {
         <div>오후 12시</div>
       </div>
       <TimeTable
-        selectedDate={selectedDate}
+        date={date}
         eventList={eventList}
       />
     </div>

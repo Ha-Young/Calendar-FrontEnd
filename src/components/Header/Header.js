@@ -6,7 +6,7 @@ import styles from "./Header.module.css";
 import ViewSelector from "../ViewSelector/ViewSelector";
 import Button from "./Button";
 
-export default function Header ({ changeWeeklyView, userProfile }) {
+export default function Header ({ changeView, userName }) {
   const handleLogOutButton = () => {
     authService.signOut();
   };
@@ -15,7 +15,7 @@ export default function Header ({ changeWeeklyView, userProfile }) {
     <header className={styles.Header}>
       <nav>
         <div className={styles.userLogin}>
-          <h2>{userProfile}</h2>
+          <h2>{userName}</h2>
           <Button
             title="Log out"
             onClick={handleLogOutButton}
@@ -25,7 +25,7 @@ export default function Header ({ changeWeeklyView, userProfile }) {
           <FaRegCalendarCheck size="7rem" />
           <h1>CALENDAR</h1>
         </div>
-        <ViewSelector changeWeeklyView={changeWeeklyView} />
+        <ViewSelector changeView={changeView} />
         <Link to="/events/new">
           <Button title="Create Event" />
         </Link>
