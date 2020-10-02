@@ -1,5 +1,3 @@
-import { generateDayString } from '../utils/date';
-
 export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 export const ADD_EVENT = 'ADD_EVENT';
 export const UPDATE_EVENT = 'UPDATE_EVENT';
@@ -26,21 +24,13 @@ export const CHANGE_CALENDAR_VIEW_MODE = 'CHANGE_CALENDAR_VIEW_MODE';
 export const CHANGE_TARGET_DATE = 'CHANGE_TARGET_DATE';
 
 export const setLoadedState = () => {
-  return { type: LOAD_ENDED, payload: { isLoading: false }};
+  return { type: LOAD_ENDED, payload: false };
 };
 
 export const swapCalendarViewMode = (value) => {
-  return { type: CHANGE_CALENDAR_VIEW_MODE, payload: { isWeeklyMode: value }};
+  return { type: CHANGE_CALENDAR_VIEW_MODE, payload: value };
 };
 
 export const changeTargetDate = (date, isADay) => {
-  let payload;
-
-  if (isADay) {
-    payload = { selectedDay: date, dayStringify: generateDayString(date) };
-  } else {
-    payload = { weekList: date };
-  }
-
-  return { type: CHANGE_TARGET_DATE, payload };
+  return { type: CHANGE_TARGET_DATE, payload: { isADay, date } };
 };
