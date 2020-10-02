@@ -39,7 +39,7 @@ export default function Modal({ children, clickOverlay }) {
       ></div>
       {children}
     </ModalWrapper>
-  )
+  );
 }
 
 Modal.propTypes = {
