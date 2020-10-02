@@ -69,6 +69,7 @@ function CreateEventContainer({
   uid,
 }) {
   const history = useHistory();
+  const currentDate = new Date();
   const [validMessage, setValidMessage] = useState('');
   const [eventData, setEventData] = useState(initEventForm);
 
