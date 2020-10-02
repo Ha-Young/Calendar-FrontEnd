@@ -1,22 +1,20 @@
 import React from 'react';
-import styles from './Calendar.module.css';
+import { MODE_WEEK } from '../../constants/ActionType';
 import ScheduleModeDay from '../ScheduleModeDay/ScheduleModeDay';
 import ScheduleModeWeek from '../ScheduleModeWeek/ScheduleModeWeek';
-import { MODE_WEEK } from '../../constants/ActionType';
+import styles from './Calendar.module.css';
 
-const Calendar = ({ mode, dateObj, weekState }) => {
+const Calendar = ({ mode, dateState }) => {
   return (
     <div className={styles.Calendar}>
       {
         mode === MODE_WEEK ?
-        <ScheduleModeWeek dateObj={dateObj} weekState={weekState}/>
+        <ScheduleModeWeek dateState={dateState}/>
         :
-        <ScheduleModeDay date={dateObj.date} />
+        <ScheduleModeDay />
       }
     </div>
   );
 };
 
 export default Calendar;
-
-//9.29

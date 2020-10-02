@@ -1,6 +1,9 @@
 import { MODE_WEEK, MODE_DAY } from '../constants/ActionType';
 
-const modes = (state = { mode: MODE_WEEK }, action) => {
+const initialState = {
+  mode: MODE_WEEK,
+};
+const calendarModeReducer = (state = initialState, action) => {
   switch (action.type) {
     case MODE_WEEK:
       return {
@@ -15,4 +18,4 @@ const modes = (state = { mode: MODE_WEEK }, action) => {
   }
 };
 
-export default modes;
+export default calendarModeReducer;

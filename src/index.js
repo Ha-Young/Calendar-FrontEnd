@@ -1,19 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-
-import {
-  BrowserRouter as Router,
-  // HashRouter as Router
-} from 'react-router-dom';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
-import rootReducer from './reducers/index';
+import rootReducer from './reducers/rootReducer';
 import AppContainer from './containers/AppContainer';
-
-import { composeWithDevTools } from 'redux-devtools-extension';
+import './index.css';
 
 const store = createStore(rootReducer);
 

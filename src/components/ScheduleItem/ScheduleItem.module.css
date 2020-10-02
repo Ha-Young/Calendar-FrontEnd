@@ -3,3 +3,11 @@
   display: flex;
   flex-direction: column;
 }
+
+.ScheduleTimeWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}

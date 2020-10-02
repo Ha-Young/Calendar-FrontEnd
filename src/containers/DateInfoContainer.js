@@ -1,13 +1,13 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import DateInfo from '../components/DateInfo/DateInfo';
 
 const mapStateToProp = state => {
   return {
     mode: state.modes.mode,
-    year: state.date.calendarDate.year,
-    month: state.date.calendarDate.month,
-    date: state.date.calendarDate.date,
+    year: state.date.dateState.year,
+    month: state.date.dateState.month + 1,
+    date: state.date.dateState.date,
+    betweenState: state.date.dateState.betweenState,
   };
 };
 

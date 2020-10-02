@@ -1,21 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import ScheduleTimeItemContainer from '../../containers/ScheduleTimeItemContainer';
+import EventContainer from '../../containers/EventContainer';
 import styles from './ScheduleItem.module.css';
 
-import ScheduleTimeItemContainer from '../../containers/ScheduleTimeItemContainer';
-
-const ScheduleTimeWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
 const countArr = new Array(24).fill();
-const ScheduleItem = () => {
+const ScheduleItem = ({ dayIndex }) => {
   return (
     <div className={styles.ScheduleItem}>
-      <ScheduleTimeWrapper>
-        {countArr.map((_, i) => <ScheduleTimeItemContainer />)}
-      </ScheduleTimeWrapper>
+      <div className={styles.ScheduleTimeWrapper}>
+        <EventContainer dayIndex={dayIndex}/>
+        {countArr.map((_, i) => <ScheduleTimeItemContainer key={i} dayIndex={dayIndex} timeIndex={i}/>)}
+      </div>
     </div>
   );
 };

@@ -1,15 +1,23 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { setDetails } from '../actions/index';
-import SchdeuleTimeItme from '../components/ScheduleTimeItem/ScheduleTimeItem';
 import { DETAIL_OPEN } from '../constants/ActionType';
+import ScheduleTimeItem from '../components/ScheduleTimeItem/ScheduleTimeItem';
 
-const mapStateToProps = state => {
-
+const ScheduleTimeItemContainer = ({ dayIndex, timeIndex, openDetails }) => {
+  return (
+    <ScheduleTimeItem dayIndex={dayIndex} timeIndex={timeIndex} openDetails={openDetails}/>
+  );
 };
 const mapDispatchProps = dispatch => {
   return {
-    openDetails: () => dispatch(setDetails(DETAIL_OPEN)),
+    openDetails: (e) => {
+      const idArray = e.target.id.split("-");
+      const dayIndex = idArray[1];
+      const timeIndex = idArray[2];
+      dispatch(setDetails(DETAIL_OPEN, dayIndex, timeIndex));
+    },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchProps)(SchdeuleTimeItme);
+export default connect(null, mapDispatchProps)(ScheduleTimeItemContainer);

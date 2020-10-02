@@ -1,19 +1,11 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import Calendar from '../components/Calendar/Calendar';
 
-const CalendarContainer = ({ mode, dateObj, weekState }) => {
-  return (
-    <Calendar mode={mode} dateObj={dateObj} weekState={weekState}/>
-  );
-};
-
 const mapStateToProps = state => {
   return {
-    mode: state.modes.mode,
-    dateObj: state.date.calendarDate,
-    weekState: state.date.weekState,
+    mode: state.calendarModeReducer.mode,
+    dateState: state.currentDateReducer.dateState,
   };
 };
 
-export default connect(mapStateToProps, null)(CalendarContainer);
+export default connect(mapStateToProps, null)(Calendar);

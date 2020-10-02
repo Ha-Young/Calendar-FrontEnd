@@ -1,15 +1,17 @@
-// TODO: You can modify, add, remove as you need.
-import firebase from "./firebase";
-import "firebase/auth";
+import firebase from './firebase';
+import 'firebase/database';
 
 export async function saveSampleData () {
   const database = firebase.database();
 
-  // Note: `set` method returns a promise.
-  // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
   await database.ref("test/123").set({
     test: "text"
   });
 }
 
-export const authService = firebase.auth();
+export async function getData(query) {
+  const database = firebase.database();
+  const data = await database.ref(query).once('value');
+
+  return data.val();
+}

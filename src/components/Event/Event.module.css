@@ -1,0 +1,11 @@
+.DetailTitleWrapper {
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.DetailDescriptionWrapper {
+  margin-left: 10px;
+  margin-top: 2px;
+  color: #4f4f4f;
+}

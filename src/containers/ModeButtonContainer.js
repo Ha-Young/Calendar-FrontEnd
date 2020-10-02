@@ -1,13 +1,6 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import ModeButton from '../components/ScheduleModeChanger/ScheduleModeChanger';
-import { changeMode } from '../actions/index'
-
-const ModeButtonContainer = ({ changeMode }) => {
-  return (
-    <ModeButton onChangeMode={changeMode}/>
-  );
-};
+import { changeMode } from '../actions/index';
+import ScheduleModeChanger from '../components/ScheduleModeChanger/ScheduleModeChanger';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -17,4 +10,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ModeButtonContainer);
+export default connect(null, mapDispatchToProps)(ScheduleModeChanger);

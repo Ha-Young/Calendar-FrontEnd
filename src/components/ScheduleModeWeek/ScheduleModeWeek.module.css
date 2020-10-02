@@ -3,4 +3,22 @@
   width: 100%;
   height: 100%;
   flex-direction: column;
+  background: rgb(248, 248, 248);
+}
+
+.TimeWrapper {
+  width: 100%;
+  height: 780px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  background: white;
+}
+
+.ViewHeader {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border: 1px solid #ededed;
 }

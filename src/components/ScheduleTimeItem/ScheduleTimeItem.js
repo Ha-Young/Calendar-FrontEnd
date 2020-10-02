@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './ScheduleTimeItem.module.css';
 
-const ScheduleTimeItem = ({ openDetails }) => {
+const ScheduleTimeItem = ({ dayIndex, timeIndex, openDetails }) => {
   return (
     <div
+      id={`timeItem-${dayIndex}-${timeIndex}`}
       className={styles.ScheduleTimeItem}
-      onClick={() => openDetails()}
+      onClick={(e) => openDetails(e)}
     />
   );
 };
