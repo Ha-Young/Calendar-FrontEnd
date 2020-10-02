@@ -14,7 +14,7 @@ import {
 export const getStoredEventsData = (data) => {
   return {
     type: GET_STORED_EVENTS_DATA,
-    data
+    data,
   };
 };
 

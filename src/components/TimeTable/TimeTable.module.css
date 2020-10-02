@@ -7,11 +7,11 @@
 .emptyTime {
   width: 120px;
   height: 50px;
-  line-height: 50px;
   padding-right: 10px;
-  border-bottom: var(--main-border);
   border-left: var(--main-border);
+  border-bottom: var(--main-border);
   box-sizing: border-box;
+  line-height: 50px;
 }
 
 .date {
@@ -20,6 +20,7 @@
   font-size: 30px;
   font-weight: 600;
 }
+
 .matchedTime {
   background-color: var(--main-color);
   color: white;

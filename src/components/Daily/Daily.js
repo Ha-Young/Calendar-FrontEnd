@@ -2,11 +2,7 @@ import React from "react";
 import styles from "./Daily.module.css";
 import TimeTable from "../TimeTable/TimeTable";
 
-export default function Daily ({ todayDate, eventList }) {
-  const matchedEventList = eventList.filter((list) => {
-    return list.eventDate === todayDate;
-  });
-
+export default function Daily ({ selectedDate, eventList }) {
   return (
     <div className={styles.Daily}>
       <div className={styles.timeList}>
@@ -38,8 +34,8 @@ export default function Daily ({ todayDate, eventList }) {
         <div>오후 12시</div>
       </div>
       <TimeTable
-        todayDate={todayDate}
-        matchedEventList={matchedEventList}
+        selectedDate={selectedDate}
+        eventList={eventList}
       />
     </div>
   );

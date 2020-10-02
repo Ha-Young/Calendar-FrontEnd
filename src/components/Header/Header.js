@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ViewSelector from "../ViewSelector/ViewSelector";
-import Button from "./Button";
-import styles from "./Header.module.css";
 import { authService } from "../../utils/firebase";
 import { FaRegCalendarCheck } from "react-icons/fa";
+import styles from "./Header.module.css";
+import ViewSelector from "../ViewSelector/ViewSelector";
+import Button from "./Button";
 
 export default function Header ({ changeWeeklyView, userProfile }) {
   const handleLogOutButton = () => {

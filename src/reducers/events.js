@@ -1,3 +1,4 @@
+import moment from "moment";
 import {
   GET_STORED_EVENTS_DATA,
   ADD_EVENT,
@@ -10,7 +11,6 @@ import {
   CHANGE_WEEKLY_VIEW,
   SHOW_ERROR_MESSAGE,
 } from "../actions/constants";
-import moment from "moment";
 
 export const eventList = (state = [], action) => {
   switch (action.type) {
@@ -38,7 +38,7 @@ export const eventList = (state = [], action) => {
 };
 
 const initialState = {
-  todayDate: moment().format("YYYY-MM-DD"),
+  selectedDate: moment().format("YYYY-MM-DD"),
   isLoggedIn: false,
   isDailyView: true,
   errorMessage: null,
@@ -59,12 +59,18 @@ const eventControl = (state = initialState, action) => {
     case CLICK_PREV_DATE_BUTTON:
       return {
         ...state,
-        todayDate: moment(state.todayDate).subtract(action.days, "days").format("YYYY-MM-DD"),
+        selectedDate:
+          moment(state.selectedDate)
+            .subtract(action.days, "days")
+            .format("YYYY-MM-DD"),
       };
     case CLICK_NEXT_DATE_BUTTON:
       return {
         ...state,
-        todayDate: moment(state.todayDate).add(action.days, "days").format("YYYY-MM-DD"),
+        selectedDate:
+          moment(state.selectedDate)
+            .add(action.days, "days")
+            .format("YYYY-MM-DD"),
       };
     case CHANGE_WEEKLY_VIEW:
       return {

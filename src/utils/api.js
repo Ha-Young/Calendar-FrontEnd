@@ -3,12 +3,12 @@ import firebase from "./firebase";
 const database = firebase.database();
 
 export const pushData = async (data) => {
-  await database.ref(`/${data.id}`).set(data);
+  await database.ref(`/events/${data.id}`).set(data);
 };
 
 export const getData = async () => {
   const eventData = [];
-  await database.ref("/").once("value", (snapshot) => {
+  await database.ref("/events").once("value", (snapshot) => {
     snapshot.forEach((childSnapshot) => {
       eventData.push(childSnapshot.val());
     });
@@ -18,9 +18,9 @@ export const getData = async () => {
 };
 
 export const updateData = async (data) => {
-  await database.ref(`/${data.id}`).update(data);
+  await database.ref(`/events/${data.id}`).update(data);
 };
 
 export const deleteData = async (data) => {
-  await database.ref(`/${data.id}`).remove();
+  await database.ref(`/events/${data.id}`).remove();
 };

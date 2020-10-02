@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import styles from "./Modal.module.css";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import styles from "./Modal.module.css";
 
 export default function Modal ({ text }) {
   useEffect(() => {

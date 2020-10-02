@@ -20,10 +20,6 @@ function EventContainer ({ eventList, errorMessage, addEvent, updateEvent, delet
   const [eventId, setEventId] = useState("");
   const [isValidEventId, setIsValidEventId] = useState(true);
 
-  const matchedEvent = eventList?.filter((list) => {
-    return list?.id === eventId;
-  }).pop();
-
   useEffect(() => {
     setIsValidEventId(checkValidEventId());
   }, [isValidEventId]);
@@ -35,6 +31,10 @@ function EventContainer ({ eventList, errorMessage, addEvent, updateEvent, delet
 
     return validEventId.includes(eventId);
   };
+
+  const matchedEvent = eventList?.filter((list) => {
+    return list.id === eventId;
+  }).pop();
 
   return (
     <>
@@ -64,7 +64,12 @@ function EventContainer ({ eventList, errorMessage, addEvent, updateEvent, delet
 }
 
 const mapStateToProps = (state) => {
-  const { eventControl: { errorMessage }, eventList } = state;
+  const {
+    eventControl: {
+      errorMessage
+    },
+    eventList
+  } = state;
 
   return {
     eventList: eventList,

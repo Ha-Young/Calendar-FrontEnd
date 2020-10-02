@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { authService } from "../../utils/firebase";
+import moment from "moment";
 import styles from "./App.module.css";
 
 import EventContainer from "../../containers/EventContainer";
@@ -15,7 +16,7 @@ export default function App (props) {
     userLogIn,
     userLogOut,
     isLoggedIn,
-    todayDate,
+    selectedDate,
     clickPrevDateButton,
     clickNextDateButton,
     isDailyView,
@@ -41,6 +42,15 @@ export default function App (props) {
     });
   }, [userLogIn, userLogOut]);
 
+  const matchedEventList = eventList.filter((list) => {
+    return list.eventDate === selectedDate;
+  });
+
+  const selectedWeek = [];
+  for (let i = 0; i < 7; i++) {
+    selectedWeek.push(moment(selectedDate).day(i));
+  }
+
   return (
     <>
       {
@@ -54,15 +64,21 @@ export default function App (props) {
               <Switch>
                 <Route path="/calendar">
                   <NavButton
-                    todayDate={todayDate}
+                    selectedDate={selectedDate}
                     isDailyView={isDailyView}
                     clickPrevDateButton={clickPrevDateButton}
                     clickNextDateButton={clickNextDateButton}
                   />
                   {
                     isDailyView
-                      ? <Daily todayDate={todayDate} eventList={eventList} />
-                      : <Weekly todayDate={todayDate} eventList={eventList} />
+                      ? <Daily
+                          selectedDate={selectedDate}
+                          eventList={matchedEventList}
+                        />
+                      : <Weekly
+                          selectedWeek={selectedWeek}
+                          eventList={eventList}
+                        />
                   }
                 </Route>
                 <Route path="/events">

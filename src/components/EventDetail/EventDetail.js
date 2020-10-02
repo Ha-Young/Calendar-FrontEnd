@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import styles from "./EventDetail.module.css";
 import moment from "moment";
+import styles from "./EventDetail.module.css";
 import Modal from "../Modal/Modal";
 
 export default function EventDetail ({ setEventId, matchedEvent, updateEvent, deleteEvent, errorMessage }) {
   const history = useHistory();
+  const { eventId } = useParams();
   const [eventDetails, setEventDetails] = useState({});
   const [isEditButtonClicked, setIsEditButtonClicked] = useState(false);
-  const { eventId } = useParams();
   const {
     eventName,
     eventDescription,
@@ -27,13 +27,13 @@ export default function EventDetail ({ setEventId, matchedEvent, updateEvent, de
       startTime: matchedEvent?.startTime,
       endTime: matchedEvent?.endTime,
     });
-  }, [matchedEvent]);
+  }, [eventId, matchedEvent]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
 
-  const handleChange = (event) => {
+  const handleInputsChange = (event) => {
     const { value, name } = event.target;
     setEventDetails({
       ...eventDetails,
@@ -53,11 +53,6 @@ export default function EventDetail ({ setEventId, matchedEvent, updateEvent, de
       ...eventDetails,
     });
 
-    if (errorMessage) {
-      alert(errorMessage);
-      return;
-    }
-
     history.push("/calendar");
   };
 
@@ -71,11 +66,6 @@ export default function EventDetail ({ setEventId, matchedEvent, updateEvent, de
         ...eventDetails,
       });
 
-      if (errorMessage) {
-        alert(errorMessage);
-        return;
-      }
-
       history.push("/calendar");
     }
   };
@@ -86,6 +76,10 @@ export default function EventDetail ({ setEventId, matchedEvent, updateEvent, de
 
   return (
     <>
+      {
+        errorMessage
+        && <Modal title={errorMessage} />
+      }
       <div className={styles.EventDetail}>
         <h2>Event Details</h2>
         <fieldset disabled={isEditButtonClicked ? false : true}>
@@ -95,33 +89,33 @@ export default function EventDetail ({ setEventId, matchedEvent, updateEvent, de
               type="text"
               name="eventName"
               value={eventName || ""}
-              onChange={handleChange}
+              onChange={handleInputsChange}
             />
             <label htmlFor="eventDescription">Event Description</label>
             <input
               type="text"
               name="eventDescription"
               value={eventDescription || ""}
-              onChange={handleChange}
+              onChange={handleInputsChange}
             />
             <label htmlFor="eventDate">Event Date</label>
             <input
               type="date"
               name="eventDate"
               value={eventDate || ""}
-              onChange={handleChange}
+              onChange={handleInputsChange}
             />
             <input
               type="time"
               name="startTime"
               value={startTime || ""}
-              onChange={handleChange}
+              onChange={handleInputsChange}
             />
             <input
               type="time"
               name="endTime"
               value={endTime || ""}
-              onChange={handleChange}
+              onChange={handleInputsChange}
             />
           </form>
         </fieldset>

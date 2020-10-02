@@ -16,7 +16,7 @@ function AppContainer (props) {
     userLogIn,
     userLogOut,
     isLoggedIn,
-    todayDate,
+    selectedDate,
     isDailyView,
     clickPrevDateButton,
     clickNextDateButton,
@@ -39,7 +39,7 @@ function AppContainer (props) {
       userLogIn={userLogIn}
       userLogOut={userLogOut}
       isLoggedIn={isLoggedIn}
-      todayDate={todayDate}
+      selectedDate={selectedDate}
       isDailyView={isDailyView}
       clickPrevDateButton={clickPrevDateButton}
       clickNextDateButton={clickNextDateButton}
@@ -50,10 +50,17 @@ function AppContainer (props) {
 }
 
 const mapStateToProps = (state) => {
-  const { eventControl: { todayDate, isLoggedIn, isDailyView }, eventList } = state;
+  const {
+    eventControl: {
+      selectedDate,
+      isLoggedIn,
+      isDailyView
+    },
+    eventList
+  } = state;
 
   return {
-    todayDate: todayDate,
+    selectedDate: selectedDate,
     isLoggedIn: isLoggedIn,
     isDailyView: isDailyView,
     eventList: eventList,
@@ -68,7 +75,7 @@ const mapDispatchToProps = (dispatch) => {
     clickNextDateButton: (days) => dispatch(clickNextDateButton(days)),
     changeWeeklyView: () => dispatch(changeWeeklyView()),
     getStoredEventsData: (data) => dispatch(getStoredEventsData(data)),
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (AppContainer);

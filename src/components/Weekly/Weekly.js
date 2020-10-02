@@ -1,14 +1,9 @@
 import React from "react";
-import styles from "./Weekly.module.css";
 import moment from "moment";
+import styles from "./Weekly.module.css";
 import TimeTable from "../TimeTable/TimeTable";
 
-export default function Weekly ({ todayDate, eventList }) {
-  const days = [];
-  for (let i = 0; i < 7; i++) {
-    days.push(moment(todayDate).day(i));
-  }
-
+export default function Weekly ({ selectedWeek, eventList }) {
   return (
     <div className={styles.Weekly}>
       <div className={styles.timeList}>
@@ -40,16 +35,16 @@ export default function Weekly ({ todayDate, eventList }) {
         <div>오후 12시</div>
       </div>
       {
-        days.map((day, index) => {
-          const matchedEventList = eventList.filter((list) => {
+        selectedWeek.map((day, index) => {
+          eventList.filter((list) => {
             return list.eventDate === moment(day).format("YYYY-MM-DD");
           });
 
           return (
             <TimeTable
               key={index}
-              todayDate={moment(day).format("YYYY-MM-DD")}
-              matchedEventList={matchedEventList}
+              selectedDate={moment(day).format("YYYY-MM-DD")}
+              eventList={eventList}
             />
           );
         })
