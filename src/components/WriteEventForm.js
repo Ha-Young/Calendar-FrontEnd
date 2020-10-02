@@ -16,6 +16,8 @@ export default function WriteEventForm({
     title,
   } = data;
 
+  const hours24 = Array(24).fill(null);
+
   return (
     <fieldset>
       <legend>
@@ -53,7 +55,7 @@ export default function WriteEventForm({
           value={startTime}
         >
           {
-            Array(24).fill(null).map((_, index) => {
+            hours24.map((_, index) => {
               return <option key={index} value={index}>{index}시</option>;
             })
           }
@@ -65,7 +67,7 @@ export default function WriteEventForm({
           value={endTime}
         >
           {
-            Array(24).fill(null).map((_, index) => {
+            hours24.map((_, index) => {
               return <option key={index} value={index}>{index}시</option>;
             })
           }

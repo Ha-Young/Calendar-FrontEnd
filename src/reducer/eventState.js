@@ -8,7 +8,7 @@ const initState = {
   isUpdating: false,
   validationMessage: '',
   isOpenedConfirmModal: false,
-}
+};
 
 function eventPageCondition(state = initState, action) {
   if (action.type === TOGGLE_IS_UPDATING) {
@@ -37,4 +37,4 @@ function eventPageCondition(state = initState, action) {
 
 export default {
   eventPageCondition,
-}
+};

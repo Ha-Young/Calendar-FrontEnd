@@ -12,7 +12,7 @@ export default function LoginPage() {
   return (
     <>
       <h1>로그인을 먼저 해주세요</h1>
-      <Button onClick={handleClick} value='Google Login' />
+      <Button onClick={handleClick} value='Google Login'/>
     </>
   );
 }

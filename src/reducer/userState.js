@@ -1,6 +1,6 @@
 import { SET_USER } from '../constants';
 
-function user(state = { uid: process.env.REACT_APP_uid }, action) {
+function user(state = {}, action) {
   if (action.type === SET_USER) {
     return action.userData;
   }
@@ -8,11 +8,9 @@ function user(state = { uid: process.env.REACT_APP_uid }, action) {
   return state;
 }
 
-function isLogin(state = true, action) {
-  if (action.type === SET_USER) {
-    if (action.userData) {
-      return !state;
-    }
+function isLogin(state = false, action) {
+  if (action.type === SET_USER && action.userData) {
+    return !state;
   }
 
   return state;

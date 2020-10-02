@@ -63,7 +63,6 @@ const Container = styled.section`
   }
 `;
 
-//TODO redux로 상태 몰아넣기
 function EventPageContainer({ eventData, uid }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [validationMessage, setValidationMessage] = useState('');
