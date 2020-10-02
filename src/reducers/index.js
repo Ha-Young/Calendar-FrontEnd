@@ -10,6 +10,7 @@ const initialState = {
   newEventStartTime: "",
   newEventFinishTime: "",
   displayDate: dayjs().format(),
+  eventData: {},
 };
 
 const viewMode = (state = initialState.viewMode, action) => {
@@ -62,8 +63,21 @@ const displayDate = (state = initialState.displayDate, action) => {
   }
 }
 
+const eventData = (state = initialState.eventData, action) => {
+  switch (action.type) {
+    case "FETCH_EVENTS":
+      return {
+        ...state,
+
+      };
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   viewMode,
   isLoggedIn,
   displayDate,
+  eventData,
 });

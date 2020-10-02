@@ -29,3 +29,8 @@ export const showPreviousWeek = () => ({
 export const showNextWeek = () => ({
   type: "SHOW_NEXT_WEEK"
 });
+
+export const fetchEvents = data => ({
+  type: "FETCH_EVENTS",
+  data,
+});

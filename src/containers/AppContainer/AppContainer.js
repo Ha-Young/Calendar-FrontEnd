@@ -8,7 +8,7 @@ import AppHeader from "../../components/AppHeader/AppHeader";
 import { saveNewEvent } from "../../utils/api";
 import Calendar from "../../components/Calendar/Calendar";
 import { connect } from "react-redux";
-import { showDaily, showWeekly, login, logout, showPreviousDay, showNextDay, showPreviousWeek, showNextWeek } from "../../actions";
+import { showDaily, showWeekly, login, logout, showPreviousDay, showNextDay, showPreviousWeek, showNextWeek, fetchEvents } from "../../actions";
 import Form from "../../components/Form/Form";
 import { auth, database, provider } from "../../utils/firebase";
 import Auth from "../../Auth/Auth";
@@ -27,6 +27,8 @@ function AppContainer({
   onNextDayClick,
   onPreviousWeekClick,
   onNextWeekClick,
+  fetchEvents,
+  eventData,
 }) {
   const [currentYear, setCurrentYear] = useState(displayDate.slice(0, 4));
   const [currentMonth, setCurrentMonth] = useState(displayDate.slice(5, 7));
@@ -38,7 +40,6 @@ function AppContainer({
   const [newEventFinishTime, setNewEventFinishTime] = useState("");
   const startTimeOptions = ["오전 12시", "오전 1시", "오전 2시", "오전 3시", "오전 4시", "오전 5시", "오전 6시", "오전 7시", "오전 8시", "오전 9시", "오전 10시", "오전 11시", "오후 12시", "오후 1시", "오후 2시", "오후 3시", "오후 4시", "오후 5시", "오후 6시", "오후 7시", "오후 8시", "오후 9시", "오후 10시", "오후 11시"];
   const finishTimeOptions = ["오전 1시", "오전 2시", "오전 3시", "오전 4시", "오전 5시", "오전 6시", "오전 7시", "오전 8시", "오전 9시", "오전 10시", "오전 11시", "오후 12시", "오후 1시", "오후 2시", "오후 3시", "오후 4시", "오후 5시", "오후 6시", "오후 7시", "오후 8시", "오후 9시", "오후 10시", "오후 11시", "오후 11시59분"];
-  const [fetchedData, setFetchedData] = useState({});
 
   useEffect(() => {
     setCurrentYear(displayDate.slice(0, 4));
@@ -158,15 +159,18 @@ const mapDispatchToProps = dispatch => {
     onNextWeekClick() {
       dispatch(showNextWeek());
     },
+    onLoad() {
+      dispatch(fetchEvents());
+    }
   };
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     viewMode: state.viewMode,
     isLoggedIn: state.isLoggedIn,
     displayDate: state.displayDate,
+    eventData: state.eventData,
   };
 };
 

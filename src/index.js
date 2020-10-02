@@ -5,21 +5,18 @@ import {
   // HashRouter as Router
 } from "react-router-dom";
 import AppContainer from "./containers/AppContainer/AppContainer";
-import { createStore } from "redux";
+import { createLogger } from "redux-logger";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
 
-// middleware?
-// example
-// const middleware = [];
+const middleware = [];
 
-// if (process.env.NODE_ENV !== "production") {
-//   middleware.push(createLogger());
-// }
+if (process.env.NODE_ENV !== "production") {
+  middleware.push(createLogger());
+}
 
-// const store = createStore(reducer, applyMiddleware(...middleware));
-
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
   <Provider store={store}>
