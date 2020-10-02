@@ -1,6 +1,6 @@
 # Calendar
 
-![Calendar](/readme-assets/calendar.png)
+![Calendar](/readme-assets/weekly_view.png)
 
 **React + React Router + Redux**를 복합적으로 이용해 Single Page Application 스타일의 Google Calendar를 만들어 보는 과제입니다. 그리고 Firebase를 이용해 사용자 데이터를 저장하도록 합니다.
 
@@ -30,6 +30,14 @@ npm start
 - **Firebase Database에 저장하는 데이터의 구조에 대해 신중하게 결정하고 시작하시기 바랍니다. 참고: [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)**
 - **Firebase Database에 저장하는 날짜 및 시간 정보는 ISO 형식으로 저장하시기 바랍니다.** (ISO 형식에 대해서도 조사해보세요.)
 
+## Tips
+
+1. 리덕스는 처음부터 설정하고 시작하기를 권장합니다. (actions, reducers, components, containers 등의 디렉토리 구조)
+2. 컨테이너는 우선 최상위에 하나를 두고 시작하시되, 작업하면서 필요하면 추가적으로 만드세요.
+3. 처음부터 컨테이너나 컴포넌트 트리를 다 계획하고 시작하는 방향은 비효율적이고 시간이 오래 걸릴 확률이 많습니다. 현재 수준에서는 절대 초반 계획대로 되지 않을테니, 작업하면서 결정하세요.
+4. Firebase 데이터 구조, Redux State 구조만 생각하고 바로 뛰어드시길 권장합니다.
+5. Redux Middleware는 Redux-logger 하나만 우선 쓰시길 권장합니다.
+
 ## TODO
 
 - [ ] 우선 다음과 같이 페이지를 구성하세요. 필요하다면 React Router의 `HashRouter`를 사용하셔도 괜찮습니다.
@@ -48,10 +56,18 @@ npm start
 - [?] 사용자가 일별로 보기를 선택했을 경우, 현재 날짜에 해당하는 이벤트 정보가 보여져야 합니다.
 - [ ] 사용자가 주간으로 보기를 선택했을 경우, 현재 날짜가 속한 주에 해당하는 이벤트 정보가 보여져야 합니다.
 - [ ] 구글 캘린더와 같이 Y축 방향으로는 시간대 정보가 보여져야 합니다.
-- [ ] 일별로 보기의 경우, X축 방향으로는 현재 날짜가 보여져야 합니다.
-- [ ] 주간으로 보기의 경우, X축 방향으로는 현재 주에 해당하는 날짜가 보여져야 합니다.
+- [ ] 일간 스케줄 보기의 경우, X축 방향으로는 현재 날짜가 보여져야 합니다.
+- [ ] 주간 스케줄 보기의 경우, X축 방향으로는 현재 주에 해당하는 날짜가 보여져야 합니다.
 - [ ] 이전 날짜/주 혹은 다음 날짜/주로 이동할 수 있는 버튼이 있어야 합니다.
 - [ ] 달력에서 이벤트를 클릭했을 경우, 해당 이벤트 상세 페이지(`/event/<EVENT_ID>`)로 이동해야 합니다.
+
+#### 일간 스케줄 보기의 예시 UI
+
+![Calendar](/readme-assets/daily_view.png)
+
+#### 주간 스케줄 보기의 예시 UI
+
+![Calendar](/readme-assets/weekly_view.png)
 
 ### `/events/new` 이벤트 생성 페이지
 
@@ -62,6 +78,8 @@ npm start
   - 이벤트 종료 날짜 및 시간
 - [ ] 위 정보는 모두 필수 정보입니다. 최대한 상식 선에서 스스로 유효성 검사를 실행해 주시기 바랍니다.
 - [ ] 사용자가 Form을 성공적으로 제출 혹은 저장했을 경우, 메인 달력 페이지로 이동해야 합니다.
+- [ ] 모든 이벤트는 시작일과 종료일이 같아야 합니다.
+- [ ] 모든 이벤트는 1시간 단위로 시간을 조정할 수 있습니다.
 
 #### `/events/<EVENT_ID>` 이벤트 상세 페이지
 
@@ -73,6 +91,8 @@ npm start
 - [ ] 사용자는 모든 입력 사항에 대해 수정할 수 있습니다.
 - [ ] 사용자는 이벤트를 삭제할 수 있어야 합니다.
 - [ ] 만약 유효하지 않은 `<EVENT_ID>`로 접근한다면 유효하지 않은 이벤트라는 정보를 표시해주어야 합니다.
+
+## Advanced TODO
 
 ### Component Unit Test
 
