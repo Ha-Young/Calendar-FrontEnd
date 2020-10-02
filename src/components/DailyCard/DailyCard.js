@@ -8,8 +8,10 @@ export default function DailyCard({ date, events }) {
   const [cellList, setCellList] = useState([]);
 
   useEffect(() => {
-    if (!events.length) return;
-    console.log('Daily Card', events);
+    if (!events.length) {
+      setCellList([]);
+      return;
+    }
     const newCellList = [];
 
     events.forEach((event) => {
@@ -23,8 +25,6 @@ export default function DailyCard({ date, events }) {
         height: duration * 60,
       });
     });
-
-    // console.log(cellList);
 
     setCellList(newCellList);
   }, [events]);

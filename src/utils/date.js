@@ -1,19 +1,20 @@
 const DAY_LIST = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const DAY_STEP = 86400000;
 
-function generateToday() {
+function generateDay(target) {
+  if (target) return new Date(target).toISOString().substring(0, 10);
   return new Date().toISOString().substring(0, 10);
 }
 
 function generateDayString(target) {
-  return DAY_LIST[new Date(target).getDay()];
+  if (target) return DAY_LIST[new Date(target).getDay()];
+  return DAY_LIST[new Date().getDay()];
 }
 
 function stepToDay(target, isPrev) {
-  const DAY_STEP = 86400000;
-  if (isPrev) {
-    return new Date(new Date(target).getTime() - DAY_STEP).toISOString().substring(0, 10);
-  }
-  return new Date(new Date(target).getTime() + DAY_STEP).toISOString().substring(0, 10);
+  let step = DAY_STEP;
+  if (isPrev) step *= -1;
+  return generateDay(new Date(target).getTime() + step);
 }
 
 function generateWeekList(target, isPrev) {
@@ -46,7 +47,7 @@ function generateWeekList(target, isPrev) {
 export {
   DAY_LIST,
   stepToDay,
-  generateToday,
+  generateDay,
   generateDayString,
   generateWeekList
 };

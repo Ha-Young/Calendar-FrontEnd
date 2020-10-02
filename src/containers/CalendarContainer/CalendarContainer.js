@@ -62,8 +62,7 @@ function Calendar({ onLoad, dateInfo, onBackward, onForward }) {
 
 const mapStateToProps = (state) => {
   return {
-    dateInfo: state.dateInfo,
-    events: state.events
+    dateInfo: state.dateInfo
   }
 };
 
@@ -71,7 +70,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     async onLoad() {
       const result = await readEventListOnce();
-      // console.log('onLoad:', result);
       dispatch({ type: 'LOADED_EVENTS', payload: { isLoading: false }});
       dispatch({ type: 'RECEIVE_EVENTS', events: result });
     },

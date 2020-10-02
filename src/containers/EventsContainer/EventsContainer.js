@@ -12,6 +12,7 @@ function EventsContainer({ events, dateInfo }) {
       {
         dateInfo.isWeeklyMode ?
         dateInfo.weekList.map((targetDate, idx) => {
+          {/* console.log(targetDate); */}
           return (
             <DailyCard
               key={idx}
