@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 
 import { setCurrentUser } from '../../redux/user/user.actions';
 
-import styles from './App.module.scss';
+import styles from './AppContainer.module.scss';
 import Header from '../../components/Header/Header';
 import UserProfile from '../../components/UserProfile/UserProfile';
-import Calendar from '../Calendar/Calendar';
+import CalendarContainer from '../CalendarContainer/CalendarContainer';
 import NewEvent from '../../components/NewEvent/NewEvent';
 import SignInAndSignUp from '../../components/SignInAndSignUp/SignInAndSignUp';
 
@@ -40,7 +40,7 @@ const App = ({ currentUser, setCurrentUser }) => {
               <UserProfile user={currentUser} />
             </Route>
             <Route path='/calendar'>
-              <Calendar />
+              <CalendarContainer />
             </Route>
             <Route path='/events/new'>
               <NewEvent createdBy={currentUser.uid} />

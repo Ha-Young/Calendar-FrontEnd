@@ -6,12 +6,12 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 import './index.scss';
-import App from './container/App/App';
+import AppContainer from './container/AppContainer/AppContainer';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <AppContainer />
     </Router>
   </Provider>,
   document.getElementById('root')

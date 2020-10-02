@@ -10,7 +10,7 @@ import {
   moveToPrevPage,
 } from '../../redux/calendar/calendar.actions';
 
-import './Calendar.scss';
+import './CalendarContainer.scss';
 import Timeline from '../../components/Timeline/Timeline';
 import EventsField from '../../components/EventsField/EventsField';
 
