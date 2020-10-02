@@ -66,7 +66,7 @@ function Timeline({ showDailyPage, ...props }) {
     );
   }
 
-  function DailySchedule( {event, date} ) {
+  function DailySchedulePage( {event, date} ) {
     const unitTime = time.map((time, i) => {
       return (
         <div key={i} className={styles.UnitTime}> </div>
@@ -106,20 +106,20 @@ function Timeline({ showDailyPage, ...props }) {
     );
   }
 
-  function WeekSchedule() {
+  function WeeklySchedulePage() {
     const day = new Date().getDay();
 
-    const unitTime = time.map((time, i) => {
+    const unitTime = time.map((time) => {
       return (
-        <div key={i} className={styles.UnitTime}></div>
+        <div key={time} className={styles.UnitTime}></div>
       );
     });
 
-    const weeklySchedule = week.map((week, i) => {
+    const weeklySchedule = week.map((week) => {
       const todayCheking = (day === i + 1 || day - 1 === i) ? "TodayWeekScheduleBox" : "WeekScheduleBox";
 
       return (
-        <div key={i} className={styles[todayCheking]}>
+        <div key={week} className={styles[todayCheking]}>
           {unitTime}
         </div>
       );
@@ -135,7 +135,7 @@ function Timeline({ showDailyPage, ...props }) {
       </div>
       <div className={styles.TimelineContainer}>
         <Time />
-        {showDailyPage ? <DailySchedule event={props.addEventReducer} date={props.updateDateReducer}/> : <WeekSchedule />}
+        {showDailyPage ? <DailySchedulePage event={props.addEventReducer} date={props.updateDateReducer}/> : <WeeklySchedulePage />}
       </div>
     </>
   );
