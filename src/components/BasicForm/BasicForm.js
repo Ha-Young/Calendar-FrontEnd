@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BasicForm({ className, buttonName, type, placeholder }) { // naming
+export default function BasicForm({ className, buttonName, type, placeholder }) {
   return (
     <>
       <form>

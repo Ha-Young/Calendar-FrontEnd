@@ -9,7 +9,7 @@ const TimeLineNavWrapper = styled.div`
   margin: 2em;
 `;
 
-export default function TimeLineNav({ value, navLength }) { // 스타일드 컴포넌트로 빼는게 나을지도...
+export default function TimeLineNav({ value, navLength }) {
   const timeNavLength = Array.from({length: navLength}, (value, i) => i + 1);
 
   return (

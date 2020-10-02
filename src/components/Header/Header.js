@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-//import MenuContainer from '../../containers/MenuContainer'
 import Menu from '../Menu/Menu';
 
 const HeaderWrapper = styled.div`

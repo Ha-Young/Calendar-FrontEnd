@@ -16,7 +16,6 @@ export async function getEventData() {
 };
 
 export async function saveEventData(data) {
-  //const trimForSaveData = trimEventInfo(data);
   // Note: `set` method returns a promise.
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
   const savedpath = data.startEventDate;
