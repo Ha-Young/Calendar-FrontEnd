@@ -1,0 +1,9 @@
+export const SHOW_DAILY = "SHOW_DAILY";
+export const SHOW_WEEKLY = "SHOW_WEEKLY";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const SHOW_PREVIOUS_DAY = "SHOW_PREVIOUS_DAY";
+export const SHOW_NEXT_DAY = "SHOW_NEXT_DAY";
+export const SHOW_PREVIOUS_WEEK = "SHOW_PREVIOUS_WEEK"
+export const SHOW_NEXT_WEEK = "SHOW_NEXT_WEEK";
+export const FETCH_EVENTS = "FETCH_EVENTS";

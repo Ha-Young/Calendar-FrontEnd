@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import * as dayjs from "dayjs";
 import styles from "./AppHeader.module.css";
+import { VIEWMODE_DAILY, DAILY, WEEKLY } from "../../constants";
 
 // TODO: Create your own header.
 export default function AppHeader({
@@ -15,13 +16,13 @@ export default function AppHeader({
   onNextWeekClick,
 }) {
   function onChange(event) {
-    if (event.target.value === "daily") {
+    if (event.target.value === DAILY) {
       showDaily();
 
       return;
     }
 
-    if (event.target.value === "weekly") {
+    if (event.target.value === WEEKLY) {
       showWeekly();
 
       return;
@@ -34,7 +35,7 @@ export default function AppHeader({
         <h1 className={styles.title}>달력</h1>
       </Link>
       {
-        viewMode === "DAILY"
+        viewMode === VIEWMODE_DAILY
           ? <>
             <button type="text" className={styles.previous} onClick={onPreviousDayClick}>
               이전
@@ -55,8 +56,8 @@ export default function AppHeader({
 
       <h2 className={styles.month}>{`${dayjs(displayDate).format("M")}월`}</h2>
       <select className={styles.viewSelector} onChange={onChange}>
-        <option value="daily">하루씩 보기</option>
-        <option value="weekly">일주일씩 보기</option>
+        <option value={DAILY}>하루씩 보기</option>
+        <option value={WEEKLY}>일주일씩 보기</option>
       </select>
       <Link to="/events/new">
         <button

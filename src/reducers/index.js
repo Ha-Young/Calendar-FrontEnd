@@ -1,8 +1,21 @@
 import { combineReducers } from "redux";
 import * as dayjs from "dayjs";
+import {
+  VIEWMODE_DAILY,
+  VIEWMODE_WEEKLY,
+  SHOW_DAILY,
+  SHOW_WEEKLY,
+  LOGIN,
+  LOGOUT,
+  SHOW_PREVIOUS_DAY,
+  SHOW_NEXT_DAY,
+  SHOW_PREVIOUS_WEEK,
+  SHOW_NEXT_WEEK,
+  FETCH_EVENTS,
+} from "../constants";
 
 const initialState = {
-  viewMode: "DAILY",
+  viewMode: VIEWMODE_DAILY,
   isLoggedIn: false,
   newEventTitle: "",
   newEventDescription: "",
@@ -15,10 +28,10 @@ const initialState = {
 
 const viewMode = (state = initialState.viewMode, action) => {
   switch (action.type) {
-    case "SHOW_DAILY":
-      return state = "DAILY";
-    case "SHOW_WEEKLY":
-      return state = "WEEKLY";
+    case SHOW_DAILY:
+      return state = VIEWMODE_DAILY;
+    case SHOW_WEEKLY:
+      return state = VIEWMODE_WEEKLY;
     default:
       return state;
   }
@@ -26,9 +39,9 @@ const viewMode = (state = initialState.viewMode, action) => {
 
 const isLoggedIn = (state = initialState.isLoggedIn, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case LOGIN:
       return state = true;
-    case "LOGOUT":
+    case LOGOUT:
       return state = false;
     default:
       return state;
@@ -40,19 +53,19 @@ const displayDate = (state = initialState.displayDate, action) => {
   let newDate;
 
   switch (action.type) {
-    case "SHOW_PREVIOUS_DAY":
+    case SHOW_PREVIOUS_DAY:
       newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) - 1}`].join("-");
       return state = dayjs(newDate).format();
-    case "SHOW_NEXT_DAY":
+    case SHOW_NEXT_DAY:
       newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) + 1}`].join("-");
       return state = dayjs(newDate).format();
-    case "SHOW_PREVIOUS_WEEK":
+    case SHOW_PREVIOUS_WEEK:
       for (let i = 0; i < 7; i++) {
         newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) - 1}`].join("-");
         previousDate = dayjs(newDate).format().slice(0, 10).split("-");
       }
       return state = dayjs(newDate).format();
-    case "SHOW_NEXT_WEEK":
+    case SHOW_NEXT_WEEK:
       for (let i = 0; i < 7; i++) {
         newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) + 1}`].join("-");
         previousDate = dayjs(newDate).format().slice(0, 10).split("-");
@@ -65,7 +78,7 @@ const displayDate = (state = initialState.displayDate, action) => {
 
 const eventData = (state = initialState.eventData, action) => {
   switch (action.type) {
-    case "FETCH_EVENTS":
+    case FETCH_EVENTS:
       return {
         ...state,
 

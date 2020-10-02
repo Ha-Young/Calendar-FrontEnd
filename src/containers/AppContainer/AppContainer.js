@@ -8,10 +8,21 @@ import AppHeader from "../../components/AppHeader/AppHeader";
 import { saveNewEvent } from "../../utils/api";
 import Calendar from "../../components/Calendar/Calendar";
 import { connect } from "react-redux";
-import { showDaily, showWeekly, login, logout, showPreviousDay, showNextDay, showPreviousWeek, showNextWeek, fetchEvents } from "../../actions";
+import {
+  showDaily,
+  showWeekly,
+  login,
+  logout,
+  showPreviousDay,
+  showNextDay,
+  showPreviousWeek,
+  showNextWeek,
+  fetchEvents,
+} from "../../actions";
 import Form from "../../components/Form/Form";
 import { auth, database, provider } from "../../utils/firebase";
 import Auth from "../../Auth/Auth";
+import { START_TIME_OPTIONS, FINISH_TIME_OPTIONS } from "../../constants";
 
 // Feel free to modify as you need.
 function AppContainer({
@@ -38,8 +49,6 @@ function AppContainer({
   const [newEventDate, setNewEventDate] = useState("");
   const [newEventStartTime, setNewEventStartTime] = useState("");
   const [newEventFinishTime, setNewEventFinishTime] = useState("");
-  const startTimeOptions = ["오전 12시", "오전 1시", "오전 2시", "오전 3시", "오전 4시", "오전 5시", "오전 6시", "오전 7시", "오전 8시", "오전 9시", "오전 10시", "오전 11시", "오후 12시", "오후 1시", "오후 2시", "오후 3시", "오후 4시", "오후 5시", "오후 6시", "오후 7시", "오후 8시", "오후 9시", "오후 10시", "오후 11시"];
-  const finishTimeOptions = ["오전 1시", "오전 2시", "오전 3시", "오전 4시", "오전 5시", "오전 6시", "오전 7시", "오전 8시", "오전 9시", "오전 10시", "오전 11시", "오후 12시", "오후 1시", "오후 2시", "오후 3시", "오후 4시", "오후 5시", "오후 6시", "오후 7시", "오후 8시", "오후 9시", "오후 10시", "오후 11시", "오후 11시59분"];
 
   useEffect(() => {
     setCurrentYear(displayDate.slice(0, 4));
@@ -53,7 +62,7 @@ function AppContainer({
     const displayDateRef = database.ref(`${auth.currentUser.uid}/${currentYear}/${currentMonth}/${currentDay}`);
 
     displayDateRef.on('value', function(snapshot) {
-      console.log(snapshot.val());
+      console.log(snapshot.val()); // 기존 정보가 나옴..
     });
   }, [isLoggedIn, displayDate]);
 
@@ -106,7 +115,7 @@ function AppContainer({
                   <select onChange={ev => setNewEventStartTime(ev.target.value)} value={newEventStartTime}>
                     <option>{"시작 시간"}</option>
                     {
-                      startTimeOptions.map(option => {
+                      START_TIME_OPTIONS.map(option => {
                         return (
                           <option key={option}>{`${option}부터`}</option>
                         );
@@ -116,7 +125,7 @@ function AppContainer({
                   <select onChange={ev => setNewEventFinishTime(ev.target.value)} value={newEventFinishTime}>
                     <option>{"끝나는 시간"}</option>
                     {
-                      finishTimeOptions.map(option => {
+                      FINISH_TIME_OPTIONS.map(option => {
                         return (
                           <option key={option}>{`${option}까지`}</option>
                         );
