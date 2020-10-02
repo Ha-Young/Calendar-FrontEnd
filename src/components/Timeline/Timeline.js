@@ -20,6 +20,7 @@ function Timeline({ showDailyPage, ...props }) {
 
   const week = ['MON', 'TUES', 'WED', 'THUR', 'FRI', 'SAT', 'SUN'];
   const monthDays = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const updateDate = props.updateDateReducer;
 
   function Time() {
     const hour = time.filter(time => Number.isInteger(time) === true);
@@ -43,9 +44,9 @@ function Timeline({ showDailyPage, ...props }) {
   }
 
   function DailyDayAndDate() {
-    let date = props.updateDateReducer.date;
-    let day = props.updateDateReducer.day;
-    let month = props.updateDateReducer.monthDaily + 1;
+    const date = updateDate.date;
+    const month = updateDate.monthDaily + 1;
+    let day = updateDate.day;
 
     if (day < 0) {
       while (day < 0) {
@@ -66,10 +67,10 @@ function Timeline({ showDailyPage, ...props }) {
     );
   }
 
-  function DailySchedulePage( {event, date} ) {
-    const unitTime = time.map((time, i) => {
+  function DailySchedulePage() {
+    const unitTime = time.map((time) => {
       return (
-        <div key={i} className={styles.UnitTime}> </div>
+        <div key={time} className={styles.UnitTime}> </div>
       );
     });
 
@@ -82,8 +83,8 @@ function Timeline({ showDailyPage, ...props }) {
 
   function WeekDaysAndDate() {
     const day = new Date().getDay();
-    const monthWeekly = props.updateDateReducer.monthWeekly;
-    let monday = props.updateDateReducer.monday;
+    const monthWeekly = updateDate.monthWeekly;
+    let monday = updateDate.monday;
 
     return (
       week.map((week, i) => {
@@ -107,7 +108,7 @@ function Timeline({ showDailyPage, ...props }) {
   }
 
   function WeeklySchedulePage() {
-    const day = new Date().getDay();
+    const day = updateDate.day;
 
     const unitTime = time.map((time) => {
       return (
@@ -115,7 +116,7 @@ function Timeline({ showDailyPage, ...props }) {
       );
     });
 
-    const weeklySchedule = week.map((week) => {
+    const weeklySchedule = week.map((week, i) => {
       const todayCheking = (day === i + 1 || day - 1 === i) ? "TodayWeekScheduleBox" : "WeekScheduleBox";
 
       return (
@@ -135,7 +136,7 @@ function Timeline({ showDailyPage, ...props }) {
       </div>
       <div className={styles.TimelineContainer}>
         <Time />
-        {showDailyPage ? <DailySchedulePage event={props.addEventReducer} date={props.updateDateReducer}/> : <WeeklySchedulePage />}
+        {showDailyPage ? <DailySchedulePage /> : <WeeklySchedulePage />}
       </div>
     </>
   );
