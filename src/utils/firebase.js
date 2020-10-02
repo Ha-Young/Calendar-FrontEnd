@@ -3,7 +3,6 @@ import 'firebase/auth';
 import 'firebase/database';
 require('dotenv').config();
 
-// TODO: Enter your own config object
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -14,7 +13,6 @@ const firebaseConfig = {
   appId: process.env.APP_ID,
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 export default firebase;
