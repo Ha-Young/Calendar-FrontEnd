@@ -1,12 +1,12 @@
-import moment from "moment";
-import { ADD_EVENT, MOVE_DATE, DATE_SHOWN } from "../constants/actionTypes";
+import moment from 'moment';
+import { ADD_EVENT, MOVE_DATE, DATE_SHOWN } from '../constants/actionTypes';
 
 export const showDate = () => {
   return (
     {
       type: DATE_SHOWN,
-      presentDate: "",
-      nextDate: ""
+      presentDate: '',
+      nextDate: ''
     }
   );
 };
@@ -16,7 +16,7 @@ export const addEvent = (event) => {
     return (
       {
         type: ADD_EVENT,
-        eventId: ""
+        eventId: ''
       }
     );
   }
@@ -35,7 +35,7 @@ export const addEvent = (event) => {
 };
 
 export const moveDate = (eventInfo) => {
-  if (eventInfo.buttonTypes === "prevButton") {
+  if (eventInfo.buttonTypes === 'prevButton') {
     const newShownDate = moment(eventInfo.currentDate).subtract('1', 'days').format('YYYY-MM-DD');
 
     return (
@@ -46,7 +46,7 @@ export const moveDate = (eventInfo) => {
     );
   }
 
-  if (eventInfo.buttonTypes === "nextButton") {
+  if (eventInfo.buttonTypes === 'nextButton') {
     const newShownDate = moment(eventInfo.currentDate).add('1', 'days').format('YYYY-MM-DD');
 
     return (

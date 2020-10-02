@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./DailyCalendar.module.css";
 
@@ -41,7 +41,7 @@ const DailyCalendar = ({
           }
 
           return (
-            <Link to="/event">
+            <Link to='/event'>
               <div
                 key={index}
                 className={

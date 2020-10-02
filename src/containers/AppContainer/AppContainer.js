@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import 'firebase/auth';
 
 import Header from '../../components/Header/Header';
-import DailyCalendar from "../../components/DailyCalendar/DailyCalendar";
-import EventForm from "../../components/EventForm/EventForm";
+import DailyCalendar from '../../components/DailyCalendar/DailyCalendar';
+import EventForm from '../../components/EventForm/EventForm';
 
-import { addEvent, moveDate } from "../../actions";
-import { getDataFromDB, cancelOutReadEventData } from "../../utils/api";
+import { addEvent, moveDate } from '../../actions';
+import { getDataFromDB, cancelOutReadEventData } from '../../utils/api';
 
 import styles from './AppContainer.module.css';
 

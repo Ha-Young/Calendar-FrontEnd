@@ -23,7 +23,7 @@ const Header = ({
         <nav>
           <div className={styles.dateMove}>
             <button
-              className="prevButton"
+              className='prevButton'
               onClick={e => onClick(e.target.className)}>
               {"<"}
             </button>
@@ -31,7 +31,7 @@ const Header = ({
               <h1>{date}</h1>
             </div>
             <button
-              className="nextButton"
+              className='nextButton'
               onClick={e => onClick(e.target.className)}>
               {">"}
             </button>

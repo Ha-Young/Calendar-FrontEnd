@@ -1,4 +1,4 @@
-import { SELECT_DAILY_MODE, SELECT_WEEKLY_MODE } from "../constants/actionTypes";
+import { SELECT_DAILY_MODE, SELECT_WEEKLY_MODE } from '../constants/actionTypes';
 
 const initialState = {
   calendarMode: SELECT_DAILY_MODE

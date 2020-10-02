@@ -1,14 +1,14 @@
-import { ADD_EVENT } from "../constants/actionTypes";
+import { ADD_EVENT } from '../constants/actionTypes';
 
 const initialState = [
   {
     type: ADD_EVENT,
-    eventId: "",
-    eventDate: "",
-    title: "",
-    description: "",
-    startTime: "",
-    endTime: ""
+    eventId: '',
+    eventDate: '',
+    title: '',
+    description: '',
+    startTime: '',
+    endTime: ''
   }
 ];
 

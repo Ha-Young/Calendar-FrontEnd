@@ -1,7 +1,7 @@
-import moment from "moment";
-import { MOVE_DATE } from "../constants/actionTypes";
+import moment from 'moment';
+import { MOVE_DATE } from '../constants/actionTypes';
 
-const today = moment().format("YYYY-MM-DD");
+const today = moment().format('YYYY-MM-DD');
 
 const initialState = {
   type: MOVE_DATE,
