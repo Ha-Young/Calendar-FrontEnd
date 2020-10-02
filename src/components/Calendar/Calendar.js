@@ -6,8 +6,11 @@ import TimeBar from "./TimeBar/TimeBar";
 import * as dayjs from "dayjs";
 import { VIEWMODE_DAILY, VIEWMODE_WEEKLY } from "../../constants";
 
-export default function Calendar({ viewMode, date }) {
-  const day = dayjs(date).format("D");
+export default function Calendar({
+  viewMode,
+  date,
+  eventData,
+}) {
   const dayOfWeek = dayjs(date).day();
 
   return (
@@ -16,8 +19,9 @@ export default function Calendar({ viewMode, date }) {
       {
         viewMode === VIEWMODE_DAILY
         && <Day
-          day={day}
+          date={date}
           dayOfWeek={dayOfWeek}
+          eventData={eventData}
         />
       }
       {

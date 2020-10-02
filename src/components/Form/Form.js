@@ -1,15 +1,22 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import styles from "./Form.module.css";
 
 export default function Form({
   children,
   submitHandler,
   buttonDescription,
+  redirectUrl,
 }) {
   return (
-    <div className={styles.Form}>
+    <form
+      className={styles.Form}
+      onSubmit={submitHandler}
+    >
       {children}
-      <button onClick={submitHandler}>{buttonDescription}</button>
-    </div>
+      <Link to={redirectUrl}>
+        <input type="submit" value={buttonDescription} />
+      </Link>
+    </form>
   );
 }

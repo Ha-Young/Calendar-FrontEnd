@@ -17,11 +17,6 @@ import {
 const initialState = {
   viewMode: VIEWMODE_DAILY,
   isLoggedIn: false,
-  newEventTitle: "",
-  newEventDescription: "",
-  newEventDate: "",
-  newEventStartTime: "",
-  newEventFinishTime: "",
   displayDate: dayjs().format(),
   eventData: {},
 };
@@ -79,10 +74,7 @@ const displayDate = (state = initialState.displayDate, action) => {
 const eventData = (state = initialState.eventData, action) => {
   switch (action.type) {
     case FETCH_EVENTS:
-      return {
-        ...state,
-
-      };
+      return state = action.data;
     default:
       return state;
   }

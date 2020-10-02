@@ -4,7 +4,6 @@ import * as dayjs from "dayjs";
 import styles from "./AppHeader.module.css";
 import { VIEWMODE_DAILY, DAILY, WEEKLY } from "../../constants";
 
-// TODO: Create your own header.
 export default function AppHeader({
   viewMode,
   showDaily,
@@ -31,7 +30,7 @@ export default function AppHeader({
 
   return (
     <header className={styles.Header}>
-      <Link to="/">
+      <Link to="/calendar">
         <h1 className={styles.title}>달력</h1>
       </Link>
       {

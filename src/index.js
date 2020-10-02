@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
-  // HashRouter as Router
 } from "react-router-dom";
 import AppContainer from "./containers/AppContainer/AppContainer";
 import { createLogger } from "redux-logger";

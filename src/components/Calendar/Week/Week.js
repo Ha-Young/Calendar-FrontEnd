@@ -32,7 +32,7 @@ export default function Week({ date, dayOfWeek }) {
           return (
             <Day
               key={day}
-              day={dayjs(day).format("D")}
+              date={day}
               dayOfWeek={index}
             />
           );
