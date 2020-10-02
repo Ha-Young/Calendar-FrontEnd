@@ -1,3 +1,6 @@
 .App {
+  position: relative;
+  left: 50px;
   text-align: center;
+  width: 90%;
 }

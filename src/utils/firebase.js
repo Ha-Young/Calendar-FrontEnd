@@ -4,13 +4,13 @@ import 'firebase/database';
 
 // TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  databaseURL: 'YOUR_DATABASE_URL',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_ID',
-  appId: 'YOUR_APP_ID'
+  apiKey: 'AIzaSyDDCJRLFsxrD4Gmsv2SBYRXPq-kMjouLHQ',
+  authDomain: 'calender-b863f.firebaseapp.com',
+  databaseURL: 'https://calender-b863f.firebaseio.com',
+  projectId: 'calender-b863f',
+  storageBucket: 'calender-b863f.appspot.com',
+  messagingSenderId: '881861819445',
+  appId: '1:881861819445:web:0f12dbedd605720758057c'
 };
 
 // Initialize Firebase

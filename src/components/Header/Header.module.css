@@ -1,0 +1,29 @@
+.Header {
+  position: relative;
+  display: flex;
+  margin-top: 30px;
+}
+
+.Nav {
+  position: relative;
+  top: 10px;
+  left: 65%;
+  font-size: 18px;
+}
+
+.Date {
+  position: relative;
+  left: 35%;
+  font-size: 30px;
+  width: 40px;
+  height: 30px;
+  border: solid black;
+  border-radius: 10px;
+}
+
+.Year {
+  position: relative;
+  left: 20px;
+  font-size: 30px;
+}
+  

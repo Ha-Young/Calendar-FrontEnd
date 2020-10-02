@@ -1,0 +1,93 @@
+.TimelineContainer {
+  position: relative;
+  display: flex;
+  margin: 30px auto;
+  width: 100%;
+  border: solid rgb(0, 225, 255);
+}
+
+.Time {
+  position: relative;
+  width: 20%;
+  border: 1.5px solid green;
+}
+
+.Hour {
+  position: relative;
+  border: 1.5px solid rgb(126, 128, 0);
+  height: 63px;
+}
+
+.UnitTime {
+  position: relative;
+  border: 1.5px solid rgb(158, 158, 153);
+  height: 30px;
+}
+
+.DailyScheduleBox {
+  position: relative;
+  width: 80%;
+  border: 1.5px solid palevioletred;
+}
+
+.DailyDayAndDate {
+  position: relative;
+  left: 40%;
+  width: 170px;
+  height: 70px;
+  font-size: 25px;
+}
+
+.Month {
+  position: relative;
+  top: 53px;
+  right: 20px;
+}
+
+.Date {
+  position: relative;
+  top: 53px;
+  right: 20px;
+}
+
+.Day {
+  position: relative;
+  top: 53px;
+}
+
+.WeekScheduleBox {
+  position: relative;
+  width: 12%;
+  border: 1.5px solid rgb(92, 0, 128);
+}
+
+.TodayWeekScheduleBox {
+  position: relative;
+  width: 12%;
+  border: 2px solid brown;
+}
+
+.WeekDaysAndDate {
+  position: relative;
+  display: flex;
+  top: 10px;
+  left: 250px;
+  height: 70px;
+  width: 80%;
+}
+
+.Days {
+  position: relative;
+  top: 50px;
+  font-size: 18px;
+  width: 80%;
+}
+
+.Today {
+  position: relative;
+  top: 50px;
+  font-size: 18px;
+  color: brown;
+  width: 80%;
+}
+
