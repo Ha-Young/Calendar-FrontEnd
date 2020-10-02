@@ -1,16 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+//import MenuContainer from '../../containers/MenuContainer'
+import Menu from '../Menu/Menu';
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  margin: 0 auto;
+  font-weight: bold;
+
+  .contents {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+`;
 
 // TODO: Create your own header.
-export default function Header () {
+export default function Header({ clickPrevButton, clickNextButton, setWeeklyTheme, setDailyTheme }) { // 적절하지 못한 변수명.. 그리고 재 사용하게 빼기
   return (
-    <header>
-      <nav>
-        <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
-        </ul>
-      </nav>
-    </header>
+    <HeaderWrapper>
+      <header>
+        <nav>
+          <div>
+            <Menu
+              clickPrevButton={clickPrevButton}
+              clickNextButton={clickNextButton}
+              setWeeklyTheme={setWeeklyTheme}
+              setDailyTheme={setDailyTheme}
+              >
+            </Menu>
+          </div>
+        </nav>
+      </header>
+    </HeaderWrapper>
   );
 }
