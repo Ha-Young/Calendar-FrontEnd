@@ -4,13 +4,15 @@ import {
   ADD_DAY,
   OPEN_MODAL,
   CLOSE_MODAL,
-  NEW_EVENT,
+  ADD_NEW_EVENT,
 } from "./constants";
 
-export const userLogin = text => {
+export const userLogin = content => {
   return {
     type: LOG_IN,
-    text,
+    payload: {
+      content,
+    },
   };
 };
 
@@ -38,9 +40,13 @@ export const closeModal = () => {
   };
 };
 
-export const updateNewEvent = text => {
+let nextEventId = 0;
+export const addNewEvent = content => {
   return {
-    type: NEW_EVENT,
-    text,
+    type: ADD_NEW_EVENT,
+    payload: {
+      id: ++nextEventId,
+      content,
+    }
   };
 };

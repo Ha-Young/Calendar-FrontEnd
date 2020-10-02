@@ -13,12 +13,12 @@ export const handleDateReducer = (state = initialState, action) => {
     case ADD_DAY:
       return {
         ...state,
-        date: subDays(state.date, 1),
+        date: addDays(state.date, 1),
       };
     case SUB_DAY:
       return {
         ...state,
-        date: addDays(state.date, 1),
+        date: subDays(state.date, 1),
       };
     default:
       return state;

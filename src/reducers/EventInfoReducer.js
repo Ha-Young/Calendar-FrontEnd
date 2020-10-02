@@ -1,8 +1,8 @@
-import { NEW_EVENT } from "../actions/constants";
+import { ADD_NEW_EVENT } from "../actions/constants";
 
 const initialState = {
-  taskTitle: "",
-  taskDesc: "",
+  eventTitle: "",
+  eventDesc: "",
   startDay: "",
   startTime: "",
   endDay: "",
@@ -10,18 +10,16 @@ const initialState = {
 };
 
 export const eventInfoReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case NEW_EVENT:
-      return {
-        ...state,
-        taskTitle: action.value,
-        taskDesc: action.value,
-        startDay: action.value,
-        startTime: action.value,
-        endDay: action.value,
-        endTime: action.value,
-      };
-    default:
-      return state;
-  }
+  if(action.type === ADD_NEW_EVENT) {
+    return {
+      ...state,
+      eventTitle: action.value,
+      eventDesc: action.value,
+      startDay: action.value,
+      startTime: action.value,
+      endDay: action.value,
+      endTime: action.value,
+    }
+  };
+  return state;
 };

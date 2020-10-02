@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateNewEvent } from "../actions/index";
+import { addNewEvent } from "../actions/index";
 
 function MainContainer ({
   eventTitle,
@@ -47,7 +47,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateNewEvent: () => dispatch(updateNewEvent()),
+    addNewEvent: () => dispatch(addNewEvent()),
   };
 };
 
