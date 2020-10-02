@@ -1,4 +1,5 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -7,11 +8,7 @@ import EventList from '../components/EventList';
 import WeeklyCalendar from '../components/WeeklyCalendar';
 import ControlBar from '../components/ControlBar';
 import DateBox from '../components/DateBox';
-import {
-  toggleWeeklyAndDaily,
-  moveNextDay,
-  movePrevDay,
-} from '../actions';
+import * as CalendarActions from '../actions';
 
 const Container = styled.div`
   display: flex;
@@ -98,17 +95,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    toggleWeeklyAndDaily() {
-      dispatch(toggleWeeklyAndDaily());
-    },
-    moveNextDay(count) {
-      dispatch(moveNextDay(count));
-    },
-    movePrevDay(count) {
-      dispatch(movePrevDay(count));
-    },
-  };
+  return bindActionCreators(CalendarActions, dispatch);
 }
 
 CalendarContainer.propTypes = {

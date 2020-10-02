@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import App from '../components/App';
 import { authService, dataService } from '../utils/api';
 import { reduceSnapshot } from '../utils/utilFunction';
-import { setUser, setInitData } from '../actions';
+import * as UserStateActions from '../actions';
 
 function AppContainer({ isLogin, currentUserID, setUser, setInitData }) {
   const [isLoading, setIsLoading]= useState(true);
@@ -39,14 +40,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    setUser(userData) {
-      dispatch(setUser(userData));
-    },
-    setInitData(data) {
-      dispatch(setInitData(data));
-    },
-  };
+  return bindActionCreators(UserStateActions, dispatch);
 }
 
 AppContainer.propTypes = {
