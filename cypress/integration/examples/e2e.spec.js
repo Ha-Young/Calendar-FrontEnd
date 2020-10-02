@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { format, add } from 'date-fns';
 
 describe('login page', () => {
   beforeEach(() => {
@@ -6,8 +6,8 @@ describe('login page', () => {
   });
 
   it('date tag should be changed when click button', () => {
-    const currentDate = moment().format('DD');
-    const previousDate = moment().add(-1, 'days').format('DD');
+    const currentDate = format(new Date(), 'dd');
+    const previousDate = add(new Date(), { days: -1 }).format('dd');
 
     cy.get('h3').should('have.text', `${currentDate}일`);
 

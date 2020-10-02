@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import { format, getHours } from 'date-fns';
 
 import Button from '../components/Button';
 import WriteEventForm from '../components/WriteEventForm';
@@ -61,20 +61,21 @@ function CreateEventContainer({
   uid,
 }) {
   const history = useHistory();
+  const currentDate = new Date();
   const [validMessage, setValidMessage] = useState('');
+
+  const [eventData, setEventData] = useState({
+    id: nanoid(12),
+    title: '',
+    description: '',
+    startTime: getHours(currentDate),
+    endTime: getHours(currentDate),
+    date: format(currentDate, 'yyyy-MM-dd'),
+  });
 
   function handleGoBack() {
     history.push('/calendar');
   }
-
-  const [eventData, setEventData] = useState({
-    date: moment().format('YYYY-MM-DD'),
-    description: '',
-    endTime: moment().hour(),
-    startTime: moment().hour(),
-    title: '',
-    id: nanoid(12),
-  });
 
   function handleChange({ target }) {
     setEventData((prev) => {
@@ -103,7 +104,7 @@ function CreateEventContainer({
   return (
     <Container>
       {
-        !!validMessage &&
+        validMessage &&
         <Modal>
           <h3>{validMessage}</h3>
           <div>

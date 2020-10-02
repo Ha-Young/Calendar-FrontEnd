@@ -1,5 +1,4 @@
-import moment from 'moment';
-
+import mockingFirebaseData from '../__mock__/index.json';
 import {
   combineDate,
   destructDate,
@@ -8,17 +7,14 @@ import {
   reduceSnapshot,
   validateEventForm,
 } from '../utils/utilFunction';
-import mockingFirebaseData from '../__mock__/index.json';
 import {
   NONE_TITLE_MESSAGE,
   INVALID_TIME_MESSAGE,
 } from '../constants';
 
-
-
 describe('Util function test', () => {
-  const testMomentDate = moment('20200101');
-  const testStringDate = '20200101';
+  const testStringDate = '2020-01-01';
+  const testInstanceDate = new Date('2020-01-01');
   const testObjDate = {
     year: '2020',
     month: '01',
@@ -30,26 +26,22 @@ describe('Util function test', () => {
   });
 
   test('destructDate', () => {
-    expect(destructDate(testMomentDate)).toEqual(testObjDate);
+    expect(destructDate(testInstanceDate)).toEqual(testObjDate);
   });
 
   test('calculateNewDate', () => {
-    const nextDate = {
-      year: '2020',
-      month: '01',
-      date: '02',
-    };
+    const nextDate = '2020-01-02';
 
-    expect(destructDate(calculateNewDate(testObjDate, 1))).toEqual(nextDate);
+    expect(calculateNewDate(testInstanceDate, 1)).toEqual(new Date(nextDate));
   });
 
   test('getWeekData', () => {
-    const before3Days = {year: '2019', month: '12', date: '29'}
-    const before2Days = {year: '2019', month: '12', date: '30'}
-    const beforeDay = {year: '2019', month: '12', date: '31'}
-    const afterDay = {year: '2020', month: '01', date: '02'}
-    const after2Days = {year: '2020', month: '01', date: '03'}
-    const after3Days = {year: '2020', month: '01', date: '04'}
+    const before3Days = {year: '2019', month: '12', date: '29'};
+    const before2Days = {year: '2019', month: '12', date: '30'};
+    const beforeDay = {year: '2019', month: '12', date: '31'};
+    const afterDay = {year: '2020', month: '01', date: '02'};
+    const after2Days = {year: '2020', month: '01', date: '03'};
+    const after3Days = {year: '2020', month: '01', date: '04'};
 
     const weekData = [
       before3Days,
@@ -75,9 +67,9 @@ describe('Util function test', () => {
       },
       date: {
         '': ['XkrhgHtr7pRs'],
-        '2020-10-01': ["s9pJlxKMVbqm", "tuO26eRMuNU4"],
+        '2020-10-01': ['s9pJlxKMVbqm', 'tuO26eRMuNU4'],
       },
-    }
+    };
 
     expect(reduceSnapshot(snapshot)).toEqual(nomalized);
   });
@@ -98,5 +90,5 @@ describe('Util function test', () => {
     };
 
     expect(validateEventForm(invalidTimeTestForm)).toEqual(INVALID_TIME_MESSAGE);
-  })
+  });
 });
