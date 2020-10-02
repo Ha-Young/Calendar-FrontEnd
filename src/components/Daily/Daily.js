@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Daily.module.css';
 import Todo from '../Todo/Todo';
 import Timeline from '../Timeline/Timeline';
-import Date from '../CalendarItemHeader/CalendarItemHeader';
+import CalendarItemHeader from '../CalendarItemHeader/CalendarItemHeader';
 
-function Daily ({ day, date }) {
+function Daily ({ currentDisplayDay, currentDisplayDayOfWeek }) {
   return (
     <div className={styles.Outline}>
       <div className={styles.DateBox}>
-        <Date day={day} date={date} />
+        <CalendarItemHeader
+          currentDisplayDay={currentDisplayDay}
+          currentDisplayDayOfWeek={currentDisplayDayOfWeek}
+        />
       </div>
       <div className={styles.Box}>
         <Timeline />

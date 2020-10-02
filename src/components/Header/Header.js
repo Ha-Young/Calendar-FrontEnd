@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
-// TODO: Create your own header.
-export default function Header ({ today, setIsDailyClicked, setIsWeeklyClicked }) {
+export default function Header ({ onNextButtonClick, currentDisplayDate }) {
   return (
     <header>
       <div className={styles.TopMenu}>
@@ -12,8 +11,7 @@ export default function Header ({ today, setIsDailyClicked, setIsWeeklyClicked }
           <button
             className={styles.Daily}
             onClick={() => {
-              setIsDailyClicked(true);
-              setIsWeeklyClicked(false);
+
             }}>
             일별
           </button>
@@ -22,8 +20,6 @@ export default function Header ({ today, setIsDailyClicked, setIsWeeklyClicked }
           <button
             className={styles.Weekly}
             onClick={() => {
-              setIsWeeklyClicked(true);
-              setIsDailyClicked(false);
             }}>
             주별
           </button>
@@ -34,10 +30,24 @@ export default function Header ({ today, setIsDailyClicked, setIsWeeklyClicked }
             일정추가하기
           </button>
         </Link>
+
         <div className={styles.Todaybox}>
-          <button className={styles.Previous}>&lt;</button>
-          <div className={styles.Today}>{today}</div>
-          <button className={styles.Next}>&gt;</button>
+          <button
+            className={styles.Previous}
+            onClick={() => {
+            }}
+          >
+            &lt;
+          </button>
+          <div className={styles.Today}>{currentDisplayDate}</div>
+          <button
+            className={styles.Next}
+            onClick={() => {
+              onNextButtonClick();
+            }}
+          >
+            &gt;
+          </button>
         </div>
         <ul>
           {/* <li><Link to='/event/:eventId'>dailyEvent</Link></li> */}

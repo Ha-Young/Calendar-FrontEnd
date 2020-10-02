@@ -20,6 +20,21 @@
   color: gainsboro;
 }
 
+.PlusEvent {
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: top;
+  margin-top: 5px;
+  letter-spacing: 3px;
+  border: none;
+  font-size: 15px;
+  background: transparent;
+  color: gainsboro;
+}
+
 .Todaybox {
   display: inline-block;
   margin-left: 80px;
@@ -58,21 +73,6 @@
   cursor: pointer;
   background: transparent;
   font-size: 35px;
-  color: gainsboro;
-}
-
-.PlusEvent {
-  display: inline-block;
-  width: 120px;
-  height: 40px;
-  cursor: pointer;
-  text-align: center;
-  vertical-align: top;
-  margin-top: 5px;
-  letter-spacing: 3px;
-  border: none;
-  font-size: 15px;
-  background: transparent;
   color: gainsboro;
 }
 

@@ -5,13 +5,13 @@ import {
   // HashRouter as Router
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import App from './components/App/App';
+import AppContainer from './containers/AppContainer';
 import store from './store';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <AppContainer />
     </Router>,
   </Provider>,
   document.getElementById('root')
