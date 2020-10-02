@@ -8,7 +8,7 @@ import DailyCard from '../../components/DailyCard/DailyCard';
 import { getEventListByDate } from '../../reducers/events';
 
 function EventsContainer({ events, dateInfo }) {
-  const { isWeeklyMode, weekList, selectedDay }= dateInfo;
+  const { isWeeklyMode, weekList, selectedDay } = dateInfo;
   return (
     <div className={styles.EventsContainer} >
       {
