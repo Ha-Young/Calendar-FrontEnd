@@ -1,12 +1,14 @@
-// TODO: You can modify, add, remove as you need.
 import firebase from './firebase';
+const db = firebase.database();
 
-export async function saveSampleData () {
-  const database = firebase.database();
+export default async function fetchData() {
+  const dataRef =  db.ref('chalender/event');
 
-  //Note: `set` method returns a promise.
-  //Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.ref('chalender/event').set({
-    test: 'text'
-  });
+  try {
+    const snapshot = await dataRef.once('value');
+    return snapshot.val();
+
+  } catch (err) {
+    throw new Error('error in the middle of retrieving data');
+  }
 }

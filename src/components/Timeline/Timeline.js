@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Timeline.module.css';
 import { connect } from 'react-redux';
+import { addEvent, selectEvent } from '../../actions';
+import fetchData from '../../utils/api';
 
 function Timeline({ showDailyPage, ...props }) {
+  useState(() => {
+    fetchData()
+      .then(response => {
+        props.addEvent(response);
+      });
+  }, []);
 
-  const time = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5,
-    5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5,
+  const time = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5,
+    5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5,
     10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5,
     15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5,
     20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24];
@@ -58,7 +66,7 @@ function Timeline({ showDailyPage, ...props }) {
     );
   }
 
-  function DailySchedule() {
+  function DailySchedule( {event, date} ) {
     const unitTime = time.map((time, i) => {
       return (
         <div key={i} className={styles.UnitTime}> </div>
@@ -127,7 +135,7 @@ function Timeline({ showDailyPage, ...props }) {
       </div>
       <div className={styles.TimelineContainer}>
         <Time />
-        {showDailyPage ? <DailySchedule /> : <WeekSchedule />}
+        {showDailyPage ? <DailySchedule event={props.addEventReducer} date={props.updateDateReducer}/> : <WeekSchedule />}
       </div>
     </>
   );
@@ -135,8 +143,16 @@ function Timeline({ showDailyPage, ...props }) {
 
 const mapStateToProps = state => {
   return {
-    updateDateReducer: state.updateDateReducer
+    updateDateReducer: state.updateDateReducer,
+    addEventReducer: state.addEventReducer
   };
 };
 
-export default connect(mapStateToProps)(Timeline);
+const mapDispatchToProps = dispatch => {
+  return {
+    addEvent: (form) => dispatch(addEvent(form)),
+    selectEvent: () => dispatch(selectEvent()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timeline);

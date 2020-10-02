@@ -8,7 +8,6 @@ import Header from '../Header/Header';
 import Timeline from '../Timeline/Timeline';
 import AddEventPage from '../AddEventPage/AddEventPage';
 import { connect } from 'react-redux';
-import { selectEvent } from '../../actions';
 
 function App( {...props} ) {
 

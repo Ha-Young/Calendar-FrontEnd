@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styles from './AddEventPage.module.css';
 import firebase from '../../utils/firebase';
 import { connect } from 'react-redux';
-import { addEvent, selectEvent } from '../../actions'
+import { addEvent, selectEvent } from '../../actions';
+import fetchData from '../../utils/api';
 
 const database = firebase.database();
 
@@ -29,20 +30,19 @@ function AddEventPage(children) {
   async function storeAndRetrieveData(form) {
     const key = Date.now();
 
-    await database.ref('chalender/event/' + key).set({
-      ...form
-    });
-    
-    await database.ref('chalender/event').on('value', gotData, errData);
+    try {
+      await database.ref('chalender/event/' + key).set({
+        ...form
+      });
 
-    async function gotData(data) {
-      const allData = data.val();
-      children.addEvent(allData);
+    } catch (err) {
+      throw new Error('error in the middle of saving data to the firebase');
     }
 
-    function errData(err) {
-      throw new Error ('error in the middle of retrieving data');
-    }
+    fetchData()
+      .then(response => {
+        children.addEvent(response);
+      });
   }
 
   function onChange(event) {
@@ -65,8 +65,8 @@ function AddEventPage(children) {
 
     return (
       i % 2 === 0 ?
-        <option key={time} value={time}>{presentHour}시</option> :
-        <option key={time} value={time}>{presentHour}시 30분</option>
+        <option key={presentHour + ':00'} value={presentHour + ':00'}>{presentHour}시</option> :
+        <option key={presentHour + ':30'} value={presentHour + ':30'}>{presentHour}시 30분</option>
     );
   });
 
@@ -76,7 +76,7 @@ function AddEventPage(children) {
         <form>
           <input className={styles.InputTitle} type='text' placeholder='Title' name='title' value={addEventForm.title} onChange={onChange} />
           <div className={styles.InputDate}> INPUT DATE
-            <input className={styles.Date}  type='text' name='date' value={addEventForm.date} onChange={onChange} />
+            <input className={styles.Date} type='text' name='date' value={addEventForm.date} onChange={onChange} />
           </div>
           <div className={styles.Time}>
             STARTS AT
