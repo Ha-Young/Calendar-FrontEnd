@@ -1,16 +1,16 @@
 
-  .TimeLine {
+  .timeLine {
     width: 100px;
     height: 1152px;
   }
 
-  .Time {
+  .time {
     width: 70px;
     height: 48px;
     margin-left: 10px;
   }
 
-  .Time::after {
+  .time::after {
     content: '';
     border-bottom: #dadce0 1px solid;
     position: absolute;

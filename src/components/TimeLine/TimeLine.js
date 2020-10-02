@@ -5,11 +5,11 @@ const TimeLine = () => {
   const timeLines = [];
 
   for (let i = 1; i < 25; i++) {
-    timeLines.push(<div className={styles.Time}>{i}시</div>);
+    timeLines.push(<div className={styles.time}>{i}시</div>);
   }
 
   return (
-    <div className={styles.TimeLine}>
+    <div className={styles.timeLine}>
       {
         timeLines.map(timeLine => timeLine)
       }

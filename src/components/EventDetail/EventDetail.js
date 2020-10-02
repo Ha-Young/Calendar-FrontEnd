@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 const EventDetails = ({ events }) => {
   const id = '12343456';
+  
   return (
     <>
       {

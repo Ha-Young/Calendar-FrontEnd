@@ -11,13 +11,17 @@ export const AppContainer = ({ isLoggedIn, setIsLoggedIn, setCalendarType }) => 
   const [error, setError] = useState('');
 
   useEffect(() => {
-    authService.onAuthStateChanged((user) => {
-      if (user) {
-        setIsLoggedIn(user.uid, true);
-      } else {
-        setIsLoggedIn(null, false);
-      }
-    });
+    try {
+      authService.onAuthStateChanged((user) => {
+        if (user) {
+          setIsLoggedIn(user.uid, true);
+        } else {
+          setIsLoggedIn(null, false);
+        }
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
   }, []);
 
   const Logout = () => {
@@ -94,7 +98,7 @@ export const AppContainer = ({ isLoggedIn, setIsLoggedIn, setCalendarType }) => 
           </>
       }
     </>
-  )
+  );
 };
 
 const mapStateToProps = (state) => {

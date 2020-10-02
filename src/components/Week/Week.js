@@ -19,7 +19,7 @@ const Week = ({ week, onWeekdayAdd, onWeekInitSet }) => {
       fri: onWeekdayAdd(4),
       sat: onWeekdayAdd(5),
       sun: onWeekdayAdd(6)
-    })
+    });
   }, []);
 
   return (
