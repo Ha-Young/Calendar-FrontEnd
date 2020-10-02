@@ -19,7 +19,7 @@ export default function SingleEventPage({
         </span>
         <span>
           <b>{endTime}</b> 시까지
-              </span>
+        </span>
       </div>
     </>
   );

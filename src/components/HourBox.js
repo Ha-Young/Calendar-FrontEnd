@@ -69,8 +69,7 @@ export default function HourBox({
 }
 
 HourBox.propTypes = {
-  data: PropTypes.shape({
-    events: PropTypes.array,
-    hour: PropTypes.number.isRequired,
-  }),
+  events: PropTypes.array,
+  hour: PropTypes.number.isRequired,
+
 };

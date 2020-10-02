@@ -1,5 +1,6 @@
-import { SET_USER } from '../constants';
 import { createReducer } from '@reduxjs/toolkit';
+
+import { SET_USER } from '../constants';
 
 const user = createReducer({}, {
   [SET_USER]: (_, action) => action.payload,

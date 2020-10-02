@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 export default function Input({ value, onChange, focus, ...attr }) {
   const focusedEl = useRef();
@@ -18,3 +19,9 @@ export default function Input({ value, onChange, focus, ...attr }) {
     />
   );
 }
+
+Input.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  focus: PropTypes.bool,
+};

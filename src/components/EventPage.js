@@ -133,24 +133,24 @@ export default function EventPage({ eventData, uid }) {
     !currentEvent ?
       <Modal>
         <h2>잘못된 이벤트 입니다</h2>
-        <Button value='홈으로' onClick={goHome} />
+        <Button value='홈으로' onClick={goHome}/>
       </Modal>
-      :
+    :
       <InfoPage>
         <Container>
           {
             isOpenedConfirmModal &&
             <Modal>
-              <Button value='안지우기' onClick={toggleModal} />
-              <Button value='정말 지우기' onClick={confirmRemove} />
+              <Button value='안지우기' onClick={toggleModal}/>
+              <Button value='정말 지우기' onClick={confirmRemove}/>
             </Modal>
           }
           {
-            !!validationMessage &&
+            validationMessage &&
             <Modal>
               <h3>{validationMessage}</h3>
               <div>
-                <Button value='뒤로' onClick={initValidationMessage} />
+                <Button value='뒤로' onClick={initValidationMessage}/>
               </div>
             </Modal>
           }
@@ -161,7 +161,7 @@ export default function EventPage({ eventData, uid }) {
                 onChange={handleChange}
                 data={currentEventData}
               />
-              :
+            :
               <SingleEventPage
                 title={currentEventData.title}
                 description={currentEventData.description}
@@ -171,11 +171,11 @@ export default function EventPage({ eventData, uid }) {
               />
           }
           <div className='button-box'>
-            <Button value='뒤로' onClick={goBack} />
-            <Button value='업데이트' onClick={handleUpdate} />
+            <Button value='뒤로' onClick={goBack}/>
+            <Button value='업데이트' onClick={handleUpdate}/>
             {
               !isUpdating &&
-              <Button value='지우기' onClick={toggleModal} />
+              <Button value='지우기' onClick={toggleModal}/>
             }
           </div>
         </Container>

@@ -75,7 +75,7 @@ export default function Calendar({
               currentDate={currentDate}
               eventData={eventData}
             />
-            :
+          :
             <DateBox date={currentDate} eventData={eventData} />
         }
       </section>

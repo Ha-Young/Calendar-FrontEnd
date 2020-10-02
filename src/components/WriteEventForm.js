@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Input from '../components/Input';
 
@@ -79,3 +80,10 @@ export default function WriteEventForm({
     </fieldset>
   );
 }
+
+WriteEventForm.propTypes = {
+  formTitle: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  data: PropTypes.data.isRequired,
+  children: PropTypes.node,
+};

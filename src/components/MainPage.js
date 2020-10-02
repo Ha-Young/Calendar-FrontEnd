@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ClockLoader from 'react-spinners/ClockLoader';
+import PropTypes from 'prop-types';
 
 import CalendarContainer from '../container/CalendarContainer';
 import CreateEventContainer from '../container/CreateEventContainer';
@@ -25,3 +26,7 @@ export default function MainPage({ isLoading }) {
       </Switch>
   );
 }
+
+MainPage.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+};
