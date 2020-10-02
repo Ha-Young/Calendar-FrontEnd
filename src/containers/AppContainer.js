@@ -6,8 +6,8 @@ import {
   userLogOut,
   clickPrevDateButton,
   clickNextDateButton,
-  changeWeeklyView,
-  getStoredEventsData
+  changeViewType,
+  getStoredEventsData,
 } from "../actions/actionCreators";
 import App from "../components/App/App";
 
@@ -17,10 +17,10 @@ function AppContainer (props) {
     userLogOut,
     isLoggedIn,
     selectedDate,
-    isDailyView,
+    viewType,
+    changeViewType,
     clickPrevDateButton,
     clickNextDateButton,
-    changeWeeklyView,
     getStoredEventsData,
     eventList,
   } = props;
@@ -40,10 +40,10 @@ function AppContainer (props) {
       userLogOut={userLogOut}
       isLoggedIn={isLoggedIn}
       selectedDate={selectedDate}
-      isDailyView={isDailyView}
+      viewType={viewType}
+      changeViewType={changeViewType}
       clickPrevDateButton={clickPrevDateButton}
       clickNextDateButton={clickNextDateButton}
-      changeWeeklyView={changeWeeklyView}
       eventList={eventList}
     />
   );
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
     eventControl: {
       selectedDate,
       isLoggedIn,
-      isDailyView,
+      viewType,
     },
     eventList,
   } = state;
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => {
   return {
     selectedDate: selectedDate,
     isLoggedIn: isLoggedIn,
-    isDailyView: isDailyView,
+    viewType: viewType,
     eventList: eventList,
   };
 };
@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch) => {
     userLogOut: () => dispatch(userLogOut()),
     clickPrevDateButton: (days) => dispatch(clickPrevDateButton(days)),
     clickNextDateButton: (days) => dispatch(clickNextDateButton(days)),
-    changeWeeklyView: () => dispatch(changeWeeklyView()),
+    changeViewType: (viewType) => dispatch(changeViewType(viewType)),
     getStoredEventsData: (data) => dispatch(getStoredEventsData(data)),
   };
 };

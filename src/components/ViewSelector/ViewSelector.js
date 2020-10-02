@@ -1,10 +1,14 @@
 import React from "react";
 import styles from "./ViewSelector.module.css";
 
-export default function ViewSelector ({ changeView }) {
+export default function ViewSelector ({ changeViewType }) {
   const handleChange = (event) => {
-    if (event.target.value === "weekly") {
-      changeView();
+    const { value } = event.target;
+
+    if (value === "daily") {
+      changeViewType("daily");
+    } else if (value === "weekly") {
+      changeViewType("weekly");
     }
   };
 

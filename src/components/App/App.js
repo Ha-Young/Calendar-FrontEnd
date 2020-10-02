@@ -19,9 +19,9 @@ export default function App (props) {
     selectedDate,
     clickPrevDateButton,
     clickNextDateButton,
-    isDailyView,
-    changeWeeklyView,
-    eventList
+    viewType,
+    changeViewType,
+    eventList,
   } = props;
   const [userProfile, setUserProfile] = useState({});
 
@@ -56,21 +56,21 @@ export default function App (props) {
       {
         !isLoggedIn
           ? <Auth />
-          : <div className={styles.appMain}>
+          : <div className={styles.App}>
               <Header
-                changeView={changeWeeklyView}
+                changeViewType={changeViewType}
                 userName={userProfile.displayName}
               />
               <Switch>
                 <Route path="/calendar">
                   <NavButton
                     date={selectedDate}
-                    viewType={isDailyView}
+                    viewType={viewType}
                     clickPrevButton={clickPrevDateButton}
                     clickNextButton={clickNextDateButton}
                   />
                   {
-                    isDailyView
+                    viewType === "daily"
                       ? <Daily
                           date={selectedDate}
                           eventList={matchedEventList}

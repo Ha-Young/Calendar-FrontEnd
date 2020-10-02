@@ -4,9 +4,9 @@ import { authService } from "../../utils/firebase";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import styles from "./Header.module.css";
 import ViewSelector from "../ViewSelector/ViewSelector";
-import Button from "./Button";
+import Button from "../Button/Button";
 
-export default function Header ({ changeView, userName }) {
+export default function Header ({ changeViewType, userName }) {
   const handleLogOutButton = () => {
     authService.signOut();
   };
@@ -25,7 +25,7 @@ export default function Header ({ changeView, userName }) {
           <FaRegCalendarCheck size="7rem" />
           <h1>CALENDAR</h1>
         </div>
-        <ViewSelector changeView={changeView} />
+        <ViewSelector changeViewType={changeViewType} />
         <Link to="/events/new">
           <Button title="Create Event" />
         </Link>

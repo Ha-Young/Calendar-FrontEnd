@@ -2,7 +2,7 @@ import React from "react";
 import { authService, firebaseInstance } from "../../utils/firebase";
 import { MdImportContacts } from "react-icons/md";
 import styles from "./Auth.module.css";
-import Button from "../Header/Button";
+import Button from "../Button/Button";
 
 export default function Auth () {
   const handleSocialLogin = async () => {

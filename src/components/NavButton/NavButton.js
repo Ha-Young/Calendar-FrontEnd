@@ -5,13 +5,15 @@ import styles from "./NavButton.module.css";
 
 export default function NavButton ({ date, viewType, clickPrevButton, clickNextButton }) {
   const handleClick = (event) => {
-    if (event.target.value === "prev") {
-      viewType
+    const { value } = event.target;
+
+    if (viewType === "daily") {
+      value === "prev"
         ? clickPrevButton(1)
-        : clickPrevButton(7);
-    } else if (event.target.value === "next") {
-      viewType
-        ? clickNextButton(1)
+        : clickNextButton(1);
+    } else {
+      value === "prev"
+        ? clickPrevButton(7)
         : clickNextButton(7);
     }
   };

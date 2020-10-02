@@ -8,8 +8,8 @@ export default function EventDetail (props) {
   const {
     setEventId,
     matchedEvent,
-    onUpdateEvent,
-    onDeleteEvent,
+    updateEvent,
+    deleteEvent,
     errorMessage,
   } = props;
 
@@ -42,10 +42,10 @@ export default function EventDetail (props) {
   };
 
   const handleInputsChange = (event) => {
-    const { value, name } = event.target;
+    const { value, id } = event.target;
     setEventDetails({
       ...eventDetails,
-      [name]: value,
+      [id]: value,
     });
   };
 
@@ -55,7 +55,7 @@ export default function EventDetail (props) {
       return;
     }
 
-    await onUpdateEvent({
+    await updateEvent({
       id: eventId,
       createdAt: moment().toISOString(),
       ...eventDetails,
@@ -68,7 +68,7 @@ export default function EventDetail (props) {
     const confirmDelete = window.confirm("Are you sure you want to delete?");
 
     if (confirmDelete) {
-      await onDeleteEvent({
+      await deleteEvent({
         id: eventId,
         createdAt: moment().toISOString(),
         ...eventDetails,
@@ -95,33 +95,33 @@ export default function EventDetail (props) {
             <label htmlFor="eventName">Event Name</label>
             <input
               type="text"
-              name="eventName"
+              id="eventName"
               value={eventName || ""}
               onChange={handleInputsChange}
             />
             <label htmlFor="eventDescription">Event Description</label>
             <input
               type="text"
-              name="eventDescription"
+              id="eventDescription"
               value={eventDescription || ""}
               onChange={handleInputsChange}
             />
             <label htmlFor="eventDate">Event Date</label>
             <input
               type="date"
-              name="eventDate"
+              id="eventDate"
               value={eventDate || ""}
               onChange={handleInputsChange}
             />
             <input
               type="time"
-              name="startTime"
+              id="startTime"
               value={startTime || ""}
               onChange={handleInputsChange}
             />
             <input
               type="time"
-              name="endTime"
+              id="endTime"
               value={endTime || ""}
               onChange={handleInputsChange}
             />

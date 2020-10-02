@@ -8,7 +8,7 @@ import {
   USER_LOGOUT,
   CLICK_PREV_DATE_BUTTON,
   CLICK_NEXT_DATE_BUTTON,
-  CHANGE_WEEKLY_VIEW,
+  CHANGE_VIEW_TYPE,
   SHOW_ERROR_MESSAGE,
 } from "../actions/constants";
 
@@ -39,8 +39,8 @@ export const eventList = (state = [], action) => {
 
 const initialState = {
   selectedDate: moment().format("YYYY-MM-DD"),
+  viewType: "daily",
   isLoggedIn: false,
-  isDailyView: true,
   errorMessage: null,
 };
 
@@ -72,10 +72,10 @@ const eventControl = (state = initialState, action) => {
             .add(action.days, "days")
             .format("YYYY-MM-DD"),
       };
-    case CHANGE_WEEKLY_VIEW:
+    case CHANGE_VIEW_TYPE:
       return {
         ...state,
-        isDailyView: !state.isDailyView,
+        viewType: action.viewType,
       };
     case SHOW_ERROR_MESSAGE:
       return {

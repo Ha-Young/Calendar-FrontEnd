@@ -7,7 +7,7 @@ import {
   USER_LOGOUT,
   CLICK_PREV_DATE_BUTTON,
   CLICK_NEXT_DATE_BUTTON,
-  CHANGE_WEEKLY_VIEW,
+  CHANGE_VIEW_TYPE,
   SHOW_ERROR_MESSAGE,
 } from "./constants";
 
@@ -65,9 +65,10 @@ export const clickNextDateButton = (days) => {
   };
 };
 
-export const changeWeeklyView = () => {
+export const changeViewType = (viewType) => {
   return {
-    type: CHANGE_WEEKLY_VIEW,
+    type: CHANGE_VIEW_TYPE,
+    viewType,
   };
 };
 

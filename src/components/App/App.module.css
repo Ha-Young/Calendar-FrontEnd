@@ -11,7 +11,7 @@ button:focus {
   outline: 0;
 }
 
-.appMain {
+.App {
   display: flex;
   height: 100%;
 }

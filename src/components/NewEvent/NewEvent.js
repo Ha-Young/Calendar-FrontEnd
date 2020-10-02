@@ -4,7 +4,7 @@ import moment from "moment";
 import styles from "./NewEvent.module.css";
 import Modal from "../Modal/Modal";
 
-export default function NewEvent ({ onAddEvent, errorMessage }) {
+export default function NewEvent ({ addEvent, errorMessage }) {
   const history = useHistory();
   const [eventDetails, setEventDetails] = useState({
     eventName: "",
@@ -26,16 +26,16 @@ export default function NewEvent ({ onAddEvent, errorMessage }) {
   };
 
   const handleInputsChange = (event) => {
-    const { value, name } = event.target;
+    const { value, id } = event.target;
     setEventDetails({
       ...eventDetails,
-      [name]: value,
+      [id]: value,
     });
   };
 
   const handleSubmitButton = async () => {
     const id = "event" + Date.now();
-    await onAddEvent({
+    await addEvent({
       id: id,
       createdAt: moment().toISOString(),
       ...eventDetails,
@@ -63,7 +63,7 @@ export default function NewEvent ({ onAddEvent, errorMessage }) {
           <label htmlFor="eventName">Event Name</label>
           <input
             type="text"
-            name="eventName"
+            id="eventName"
             placeholder="Event Name"
             value={eventName}
             onChange={handleInputsChange}
@@ -72,7 +72,7 @@ export default function NewEvent ({ onAddEvent, errorMessage }) {
           <label htmlFor="eventDescription">Event Description</label>
           <input
             type="text"
-            name="eventDescription"
+            id="eventDescription"
             placeholder="Event Description"
             value={eventDescription}
             onChange={handleInputsChange}
@@ -81,21 +81,21 @@ export default function NewEvent ({ onAddEvent, errorMessage }) {
           <label htmlFor="eventDate">Event Date</label>
           <input
             type="date"
-            name="eventDate"
+            id="eventDate"
             value={eventDate}
             onChange={handleInputsChange}
             required
           />
           <input
             type="time"
-            name="startTime"
+            id="startTime"
             value={startTime}
             onChange={handleInputsChange}
             required
           />
           <input
             type="time"
-            name="endTime"
+            id="endTime"
             value={endTime}
             onChange={handleInputsChange}
             required

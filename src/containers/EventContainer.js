@@ -39,21 +39,22 @@ function EventContainer (props) {
       <Switch>
         <Route path="/events/new">
           <NewEvent
-            onAddEvent={addEvent}
+            addEvent={addEvent}
             errorMessage={errorMessage}
           />
         </Route>
         <Route path="/events/:eventId">
-          { isValidEventId
-            ?
-              <EventDetail
-                setEventId={(eventId) => setEventId(eventId)}
-                matchedEvent={matchedEvent}
-                onUpdateEvent={updateEvent}
-                onDeleteEvent={deleteEvent}
-                errorMessage={errorMessage}
-              />
-            : <Modal text="Sorry! This URL is not valid and cannot be loaded." />
+          {
+            isValidEventId
+              ?
+                <EventDetail
+                  setEventId={(eventId) => setEventId(eventId)}
+                  matchedEvent={matchedEvent}
+                  updateEvent={updateEvent}
+                  deleteEvent={deleteEvent}
+                  errorMessage={errorMessage}
+                />
+              : <Modal text="Sorry! This URL is not valid and cannot be loaded." />
           }
         </Route>
       </Switch>
