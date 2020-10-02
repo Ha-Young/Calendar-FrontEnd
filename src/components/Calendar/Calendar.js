@@ -10,10 +10,9 @@ const Wrapper = styled.div`
   border: 3px solid yellowgreen;
 `;
 
-export default function Calendar ({ dates, updateCalendar, updateToday }) { //MonthlyCalendar
-  
+export default function Calendar ({ dates, updateCalendar, updateToday }) {
   useEffect(() => {
-    const newToday = new Date().getDate()
+    const newToday = new Date().getDate();
     if (dates.today !== newToday) {
       updateToday(CHANGE_DAY, newToday);
     }
@@ -22,10 +21,10 @@ export default function Calendar ({ dates, updateCalendar, updateToday }) { //Mo
   return (
     <Wrapper>
       <CalendarHead
-        thisMonth={dates.thisMonth} 
+        thisMonth={dates.thisMonth}
         updateCalendar={updateCalendar}
       />
-      <CalendarBody type="weekly" dates={dates.monthlyDates} />
+      <CalendarBody type='weekly' dates={dates.monthlyDates}/>
     </Wrapper>
   );
 }

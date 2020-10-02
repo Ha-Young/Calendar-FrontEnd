@@ -25,12 +25,12 @@ export default function Schedule ({ dates, updateCalendar }) {
     <Switch>
       <Route path='/event/:event_Id' exact>
         <Modal>
-          <CreateEventContainer />
+          <CreateEventContainer/>
         </Modal>
       </Route>
       <Route path='/event/new' exact>
         <Modal>
-        <CreateEventContainer />
+          <CreateEventContainer/>
         </Modal>
       </Route>
       <Route path='/' exact>
@@ -40,7 +40,7 @@ export default function Schedule ({ dates, updateCalendar }) {
               dates={dates.weeklyDates}
               updateCalendar={updateCalendar}
             />
-            <ScheduleBody type='daily'  />    
+            <ScheduleBody type='daily'/>    
         </Wrapper>
       </Route>
       <Route path='/weekly'>
@@ -50,7 +50,7 @@ export default function Schedule ({ dates, updateCalendar }) {
             dates={dates.weeklyDates}
             updateCalendar={updateCalendar}
           />
-          <ScheduleBody type='weekly' />
+          <ScheduleBody type='weekly'/>
         </Wrapper>
       </Route>
     </Switch>

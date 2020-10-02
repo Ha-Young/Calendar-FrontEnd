@@ -15,7 +15,8 @@ export default function ArrowShapedButton ({ css, direction, onClick }) {
     <ArrowShape
       style={css}
       className={styles[direction]}
-      onClick={onClick}>
+      onClick={onClick}
+    >
     </ArrowShape>
   );
 }

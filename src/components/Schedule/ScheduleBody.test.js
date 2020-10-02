@@ -5,16 +5,16 @@ import ScheduleBody from './ScheduleBody';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('<ScheduleBody />', () => {
+describe('<ScheduleBody/>', () => {
   it('should properly render', () => {
-    const Wrapper = shallow(<ScheduleBody />);
+    const Wrapper = shallow(<ScheduleBody/>);
     expect(Wrapper.length).toBe(1);
   });
 });
 
-describe('<ScheduleBody />', () => {
+describe('<ScheduleBody/>', () => {
   it('matches snapshot', () => {
-    const wrapper = mount(<ScheduleBody />);
+    const wrapper = mount(<ScheduleBody/>);
     expect(wrapper).toMatchSnapshot();
   });
 });

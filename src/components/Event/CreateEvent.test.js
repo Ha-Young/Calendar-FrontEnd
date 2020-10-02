@@ -17,7 +17,7 @@ afterEach(() => {
 
 it('can render', () => {
   act(() => {
-    ReactDOM.render(<CreateEvent />, container);
+    ReactDOM.render(<CreateEvent/>, container);
   });
   const title = document.querySelector('h1');
   expect(title.textContent).toBe('CreateEvent');

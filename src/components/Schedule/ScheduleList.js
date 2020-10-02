@@ -16,8 +16,8 @@ const HourlySchedule = styled.div`
   border: 3px solid purple;
 `;
 
-export default function ScheduleList ({ eventInfo, today, startTime, endTime }) {
-  let path = useRouteMatch().path
+export default function ScheduleList () {
+  let path = useRouteMatch().path;
   
   function renderByType () {
     let scheduleTable;
@@ -26,7 +26,7 @@ export default function ScheduleList ({ eventInfo, today, startTime, endTime }) 
       for (let i = 0; i < 26; i++) {
         scheduleTable[i] = (
           <HourlySchedule key={i}>
-            <Link to={`/event/${i}`}><div style={{border:"3px solid pink"}}></div></Link>
+            <Link to={`/event/${i}`}><div style={{border: '3px solid pink'}}></div></Link>
             <Link to={`/event/${i}`}><div></div></Link>
             <Link to={`/event/${i}`}><div></div></Link>
             <Link to={`/event/${i}`}><div></div></Link>
@@ -43,9 +43,7 @@ export default function ScheduleList ({ eventInfo, today, startTime, endTime }) 
     for (let i = 0; i < 26; i++) {
       scheduleTable[i] = (
         <Link to={`/event/${i}`}>
-          <div key={i} style={{border: '3px solid gold', fontSize: '30px', height: '60px'}}>
-
-          </div>
+          <div key={i} style={{border: '3px solid gold', fontSize: '30px', height: '60px'}}></div>
         </Link>
       );
     }

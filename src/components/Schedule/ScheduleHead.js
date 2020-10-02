@@ -24,19 +24,19 @@ export default function ScheduleHead ({ type, dates, updateCalendar }) {
     return (
       <Wrapper style={{gridTemplateColumns: '8% 1fr 7%'}}>
         <ArrowShapedButton
-          css={{margin: '25px 0 0 25px', width: '10px', height: '10px'}} 
+          css={{margin: '25px 0 0 25px', width: '10px', height: '10px'}}
           direction='left'
           onClick={onClick.bind(null, setClickCount, clickCount, -1)}
         />
-        <CalendarBody type={type} dates={dates} />
+        <CalendarBody type={type} dates={dates}/>
         <ArrowShapedButton
-          css={{margin: '24px 0 0 15px', width: '10px', height: '10px'}} 
+          css={{margin: '24px 0 0 15px', width: '10px', height: '10px'}}
           direction='right'
           onClick={onClick.bind(null, setClickCount, clickCount, 1)}
         />
       </Wrapper>
     );
-  }, [clickCount]); 
+  }, [clickCount]);
 
   const renderDailyLayout = useCallback(() => {
     return (
@@ -49,7 +49,7 @@ export default function ScheduleHead ({ type, dates, updateCalendar }) {
   return (
     <>
       {
-        (useRouteMatch().path === "/weekly") 
+        (useRouteMatch().path === '/weekly')
         ? renderWeeklyLayout()
         : renderDailyLayout()
       }

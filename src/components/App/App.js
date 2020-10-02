@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import getMonthlyDates, { getWeeklyDates } from '../../utils/date';
-import HeaderContainer from '../../containers/HeaderContainer';
 import SideBar from '../Sidebar/SideBar';
+import HeaderContainer from '../../containers/HeaderContainer';
 import ScheduleContainer from '../../containers/ScheduleContainer';
+import { saveSampleData } from '../../utils/api';
 
 const Wrapper = styled.div`
   height: 100vh;
-  display:grid;
+  display: grid;
   grid-template-rows: 15% 1fr;
   padding-bottom: 50px;
 `;
@@ -18,11 +18,13 @@ const Main = styled.div`
   grid-template-columns: 20% 1fr;
 `;
 
-// Feel free to modify as you need.
 function App() {
-  
+  useEffect(() => {
+    saveSampleData();
+  }, []);
+
   return (
-    <Wrapper>  
+    <Wrapper>
       <HeaderContainer/>
       <Main>
         <SideBar/>
@@ -33,9 +35,3 @@ function App() {
 }
 
 export default App;
-
-
-// import { saveSampleData } from '../../utils/api';
-// useEffect(() => {
-//   saveSampleData();
-// }, []);

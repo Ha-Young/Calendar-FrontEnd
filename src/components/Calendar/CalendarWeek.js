@@ -16,7 +16,7 @@ export default function CalendarWeek ({ isHead, dates, type }) {
   }, [today]);
 
   function onClick () {
-    console.log('date clicked')
+    //Note: 구현 예정 중인 코드 입니다.
   }
 
   function renderHead () {
@@ -39,6 +39,7 @@ export default function CalendarWeek ({ isHead, dates, type }) {
         })
       );
     }
+
     return (
       dates.map((date, i) => {
         if (date === today) return <div key={i} class={date} style={{backgroundColor: 'blue'}}>{date}</div>

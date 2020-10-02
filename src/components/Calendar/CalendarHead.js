@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   padding: 0 5px 0 5px;
 `;
 
-export default function CalendarHead ({ thisMonth, updateCalendar }) { //mcalhead
+export default function CalendarHead ({ thisMonth, updateCalendar }) {
   const [clickCount, setClickCount] = useState(0);
   
   const onClick = useCallback((callback, status, change) => {
@@ -23,9 +23,9 @@ export default function CalendarHead ({ thisMonth, updateCalendar }) { //mcalhea
   
   return (
     <Wrapper>
-      <div style={{marginTop: "4px"}}>{thisMonth}</div>
-      <ArrowShapedButton css={{marginTop: "10px"}} direction="left" onClick={onClick.bind(null, setClickCount, clickCount, -1)} />
-      <ArrowShapedButton css={{marginTop: "10px"}} direction="right" onClick={onClick.bind(null, setClickCount, clickCount, 1)} />
+      <div style={{marginTop: '4px'}}>{thisMonth}</div>
+      <ArrowShapedButton css={{marginTop: '10px'}} direction='left' onClick={onClick.bind(null, setClickCount, clickCount, -1)}/>
+      <ArrowShapedButton css={{marginTop: '10px'}} direction='right' onClick={onClick.bind(null, setClickCount, clickCount, 1)}/>
     </Wrapper>
   );
 }

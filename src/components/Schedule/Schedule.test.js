@@ -7,6 +7,6 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe.skip('ScheduleLayout', () => {
   it('should show layout', () => {
-    const wrapper = shallow(<Schedule />);
+    const wrapper = shallow(<Schedule/>);
   });
 });
