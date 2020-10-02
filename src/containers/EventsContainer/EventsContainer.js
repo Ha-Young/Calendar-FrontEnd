@@ -4,14 +4,14 @@ import styles from './EventsContainer.module.css';
 
 import DailyCard from '../../components/DailyCard/DailyCard';
 
-import { getEventListByDate } from '../../reducers/index';
+import { getEventListByDate } from '../../reducers/events';
 
-function EventsContainer({ events, date }) {
+function EventsContainer({ events, dateInfo }) {
   return (
     <div className={styles.EventsContainer} >
       {
-        date.isWeeklyMode ?
-        date.weekList.map((targetDate, idx) => {
+        dateInfo.isWeeklyMode ?
+        dateInfo.weekList.map((targetDate, idx) => {
           return (
             <DailyCard
               key={idx}
@@ -22,8 +22,8 @@ function EventsContainer({ events, date }) {
         })
         :
         <DailyCard
-          date={date.selectedDay}
-          events={getEventListByDate(events, date.selectedDay)}
+          date={dateInfo.selectedDay}
+          events={getEventListByDate(events, dateInfo.selectedDay)}
         />
       }
     </div>
@@ -32,9 +32,9 @@ function EventsContainer({ events, date }) {
 
 const mapStateToProps = (state) => {
   return {
-    date: state.date,
+    dateInfo: state.dateInfo,
     events: state.events
-  }
+  };
 };
 
 export default connect(mapStateToProps, null)(EventsContainer);

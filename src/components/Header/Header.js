@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styles from './Header.module.css';
 
 // TODO: Create your own header.
-function Header({ onChange }) {
+function Header({ onChange, dateInfo }) {
   function handleChange({ target }) {
     if (target.value === 'Week') {
       return onChange(true);
@@ -29,7 +29,7 @@ function Header({ onChange }) {
             name='weekly-select'
             id='weekly-select'
             onChange={handleChange}
-            defaultValue='Week'
+            defaultValue={dateInfo.isWeeklyMode ? 'Week' : 'day'}
           >
             <option value='day'>Day</option>
             <option value='Week'>Week</option>
@@ -40,6 +40,12 @@ function Header({ onChange }) {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    dateInfo: state.dateInfo
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     onChange(value) {
@@ -48,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

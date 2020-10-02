@@ -5,7 +5,7 @@ import styles from './UpdateEventContainer.module.css';
 
 import Form from '../../components/Form/Form';
 
-import { getEventById } from '../../reducers';
+import { getEventById } from '../../reducers/events';
 import { updateEvent, deleteEvent } from '../../utils/api';
 
 function UpdateEventContainer({ getState, onSubmit, onDelete }) {
@@ -24,7 +24,12 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
         target={getState(params.eventId)}
         text='Update'
       />
-      <button onClick={handleClick} className={styles.deleteButton}>Delete</button>
+      <button
+        onClick={handleClick}
+        className={styles.deleteButton}
+      >
+        Delete
+      </button>
     </div>
   );
 }
@@ -32,7 +37,7 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
 const mapStateToProps = (state) => {
   return {
     getState(id) {
-      return getEventById(state.events, id);
+      return getEventById(state.events.byId, id);
     }
   }
 }

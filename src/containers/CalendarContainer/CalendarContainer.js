@@ -7,26 +7,26 @@ import EventContainer from '../EventsContainer/EventsContainer';
 import { readEventListOnce } from '../../utils/api';
 import { stepToDay, generateDayString, generateWeekList } from '../../utils/date';
 
-function Calendar({ onLoad, date, onBackward, onForward }) {
+function Calendar({ onLoad, dateInfo, onBackward, onForward }) {
   useEffect(() => {
     onLoad();
   }, []);
 
   function handleClickToPrevious() {
-    if (date.isWeeklyMode) {
-      const newWeekList = generateWeekList(date.weekList[0], true);
+    if (dateInfo.isWeeklyMode) {
+      const newWeekList = generateWeekList(dateInfo.weekList[0], true);
       return onBackward(newWeekList);
     }
-    const newSelectedDay = stepToDay(date.selectedDay, true);
+    const newSelectedDay = stepToDay(dateInfo.selectedDay, true);
     onBackward(newSelectedDay, true);
   }
 
   function handleClickToNext() {
-    if (date.isWeeklyMode) {
-      const newWeekList = generateWeekList(date.weekList[0], false);
+    if (dateInfo.isWeeklyMode) {
+      const newWeekList = generateWeekList(dateInfo.weekList[0], false);
       return onForward(newWeekList);
     }
-    const newSelectedDay = stepToDay(date.selectedDay, false);
+    const newSelectedDay = stepToDay(dateInfo.selectedDay, false);
     onForward(newSelectedDay, true);
   }
 
@@ -38,9 +38,20 @@ function Calendar({ onLoad, date, onBackward, onForward }) {
           <button onClick={handleClickToNext}>Next</button>
         </div>
         {
-          date.isLoading ? <div>is loading...</div>
+          dateInfo.isLoading ? <div>is loading...</div>
           :
           <>
+            <div className={styles.timeTable}>
+              {
+                Array.from({ length: 24 }).map((_, idx) => {
+                  return (
+                    <div key={idx}>
+                      {`${idx > 9 ? idx : '0' + idx}:00`}
+                    </div>
+                  );
+                })
+              }
+            </div>
             <EventContainer />
           </>
         }
@@ -51,7 +62,7 @@ function Calendar({ onLoad, date, onBackward, onForward }) {
 
 const mapStateToProps = (state) => {
   return {
-    date: state.date,
+    dateInfo: state.dateInfo,
     events: state.events
   }
 };

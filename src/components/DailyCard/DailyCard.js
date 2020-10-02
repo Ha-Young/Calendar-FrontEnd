@@ -8,14 +8,15 @@ export default function DailyCard({ date, events }) {
   const [cellList, setCellList] = useState([]);
 
   useEffect(() => {
-    if (!events) return;
-    const cellList = [];
+    if (!events.length) return;
+    console.log('Daily Card', events);
+    const newCellList = [];
 
     events.forEach((event) => {
       const startTime = parseInt(event.startTime.substring(0, 2));
       const endTime = parseInt(event.endTime.substring(0, 2));
       const duration = endTime - startTime;
-      cellList.push({
+      newCellList.push({
         id: event.id,
         title: event.title,
         top: startTime * 60,
@@ -23,7 +24,9 @@ export default function DailyCard({ date, events }) {
       });
     });
 
-    setCellList(cellList);
+    // console.log(cellList);
+
+    setCellList(newCellList);
   }, [events]);
 
   return (
