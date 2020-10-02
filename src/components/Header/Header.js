@@ -21,20 +21,11 @@ function Header({ ...props }) {
     );
   }
 
-  function GetDate() {
-    const today = new Date();
-    const date = today.getDate();
-
-    return (
-      <div className={styles.Chalender}>Chalender</div>
-    );
-  }
-
   return (
     <header className={styles.Header}>
       <Button />
       <GetYearAndMonth />
-      <GetDate />
+      <div className={styles.Chalender}>Chalender</div>
       <nav className={styles.Nav}>
         <Link to='/' onClick={props.changeToDailyMode}>DAY</Link>
         <span> | </span>
