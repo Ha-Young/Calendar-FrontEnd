@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
-function Header({
+const Header = ({
   shownDate,
   clickButton
-}) {
+}) => {
   const date = shownDate.date;
 
   const onClick = (buttonTypes) => {
@@ -54,6 +54,6 @@ function Header({
       </header>
     </>
   );
-}
+};
 
 export default Header;

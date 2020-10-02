@@ -1,4 +1,4 @@
-import { ADD_EVENT, DELETE_EVENT } from "../constants/actionTypes";
+import { ADD_EVENT } from "../constants/actionTypes";
 
 const initialState = [
   {
@@ -13,15 +13,10 @@ const initialState = [
 ];
 
 function dailyEventReducer(state = initialState, action) {
-  console.log("REDUCER 안에 EVENT", action);
-  console.log("REDUCER 안에 state", state);
-
   switch (action.type) {
     case ADD_EVENT:
-      console.log("ACTION", action.eventId);
-      if (!action.eventId) {
+      if (state.length === 0)
         return {
-          ...state,
           eventId: action.eventId,
           eventDate: action.eventDate,
           title: action.title,
@@ -29,28 +24,8 @@ function dailyEventReducer(state = initialState, action) {
           startTime: action.startTime,
           endTime: action.endTime
         }
-      }
-
-      // if (state.length === 1) {
-      //   return {
-      //     ...state[0],
-      //     eventId: action.eventId,
-      //     eventDate: action.eventDate,
-      //     title: action.title,
-      //     description: action.description,
-      //     startTime: action.startTime,
-      //     endTime: action.endTime
-      //   }
-      // }
 
       return state.concat(action);
-
-    case DELETE_EVENT:
-      return state.filter((currentState) => {
-        if (currentState.eventId !== action.eventId) {
-          return currentState;
-        }
-      });
 
     default:
       return state;

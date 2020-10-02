@@ -1,5 +1,4 @@
 import { SELECT_DAILY_MODE, SELECT_WEEKLY_MODE } from "../constants/actionTypes";
-import { addEvent, editEvent, deleteEvent } from "../actions/index";
 
 const initialState = {
   calendarMode: SELECT_DAILY_MODE
@@ -16,10 +15,10 @@ function calendarModeReducer(state = initialState, action) {
       return {
         ...state,
         calendarMode: SELECT_WEEKLY_MODE
-      }
+      };
     default:
       return state;
   }
-}
+};
 
 export default calendarModeReducer;

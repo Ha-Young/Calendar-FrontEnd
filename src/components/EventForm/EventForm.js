@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link, Route } from "react-router-dom";
-import { setEventData } from "../../utils/api";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
 import moment from "moment";
-import { readEventData } from "../../utils/api";
-
+import { setEventData } from "../../utils/api";
 import styles from "./EventForm.module.css";
-
 
 const EventForm = ({
   onAddEvent
@@ -38,8 +33,6 @@ const EventForm = ({
     eventInfo.endTime = endTime;
     eventInfo.eventId = `${date}-${startTime}`;
 
-    console.log("EVENTINFO", eventInfo);
-
     try {
       const sendEventInfoToDB = async () => {
         await setEventData(eventInfo);
@@ -51,7 +44,7 @@ const EventForm = ({
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   return (
     <form className={styles.EventForm}>
@@ -66,7 +59,6 @@ const EventForm = ({
           value={title}
           onChange={e => {
             setTitle(e.target.value);
-            console.log("title", title);
           }}
           placeholder="title"
           required
@@ -83,7 +75,6 @@ const EventForm = ({
           value={description}
           onChange={e => {
             setDescription(e.target.value);
-            console.log("des", description);
           }}
           placeholder="description"
           required />
@@ -98,7 +89,6 @@ const EventForm = ({
           value={date}
           onChange={e => {
             setDate(e.target.value)
-            console.log("date", e.target.value);
           }}
           required></input>
       </label>
@@ -139,8 +129,6 @@ const EventForm = ({
         value="Add"
         onClick={onSubmit}>
       </input>
-
-
     </form>
   );
 };
