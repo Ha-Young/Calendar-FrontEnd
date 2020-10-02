@@ -3,7 +3,7 @@ import TimeTable from "./TimeTable";
 import styles from "./Calendar.module.css";
 import TimeView from "./TimeView";
 
-export default function Weekly({
+export default function Weekly ({
   times,
   openEvent,
   isModalOpen,

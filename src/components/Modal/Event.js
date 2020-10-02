@@ -4,7 +4,7 @@ import styles from "./Modal.module.css";
 import { GrLinkNext } from "react-icons/gr";
 import "firebase/database";
 
-export default function Event({
+export default function Event ({
   handleModalClose,
   eventInfo,
   setEventInfo,

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import styles from "./Calendar.module.css";
 import format from "date-fns/format";
-import Header from "../Header/Header"
+import Header from "../Header/Header";
+import ToggleButton from "../Header/ToggleButton";
 import Daily from "./Daily";
 import Weekly from "./Weekly";
 import Modal from "../Modal/Modal";
 import Event from "../Modal/Event";
-import ToggleButton from "../Header/ToggleButton";
 import { differenceInHours } from "date-fns";
 
 export default function Calendar ({

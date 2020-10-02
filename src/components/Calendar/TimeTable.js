@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Calendar.module.css";
 
-export default function TimeTable({
+export default function TimeTable ({
   times,
   openEvent,
   eventInfo

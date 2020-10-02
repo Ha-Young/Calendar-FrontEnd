@@ -3,7 +3,7 @@ import TimeTable from "./TimeTable";
 import TimeView from "./TimeView";
 import styles from "./Calendar.module.css";
 
-export default function Daily({
+export default function Daily ({
   times,
   openEvent,
   eventArea,

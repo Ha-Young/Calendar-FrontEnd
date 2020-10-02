@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Calendar.module.css";
 
-export default function TimeView({
+export default function TimeView ({
   times,
 }) {
   return (
