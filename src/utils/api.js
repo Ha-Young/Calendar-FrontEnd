@@ -14,7 +14,7 @@ export function saveNewEvent(
     || !start
     || !finish
   ) {
-    alert("All inputs are required.");
+    alert("양식을 모두 채워주세요.");
 
     return;
   }
@@ -32,4 +32,6 @@ export function saveNewEvent(
     startTime,
     finishTime,
   });
+
+  alert("새 일정을 추가했습니다.");
 }

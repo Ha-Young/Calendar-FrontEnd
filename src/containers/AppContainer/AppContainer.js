@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import styles from "./AppContainer.module.css";
 import AppHeader from "../../components/AppHeader/AppHeader";
 import { saveNewEvent } from "../../utils/api";
@@ -40,6 +40,7 @@ function AppContainer({
   const [newEventDate, setNewEventDate] = useState("");
   const [newEventStartTime, setNewEventStartTime] = useState("");
   const [newEventFinishTime, setNewEventFinishTime] = useState("");
+  const history = useHistory();
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
@@ -66,7 +67,7 @@ function AppContainer({
 
     saveNewEvent(newEventTitle, newEventDescription, newEventDate, newEventStartTime, newEventFinishTime);
 
-    alert("새 일정을 추가했습니다.");
+    history.push("/calendar");
 
     setNewEventTitle("");
     setNewEventDescription("");
@@ -104,7 +105,6 @@ function AppContainer({
               <Form
                 buttonDescription="일정 더하기"
                 submitHandler={submitNewEventHandler}
-                redirectUrl="/calendar"
               >
                 <input type="text" name="title" placeholder="할 일" autoComplete="off" onChange={ev => setNewEventTitle(ev.target.value)} value={newEventTitle} />
                 <input type="text" name="description" placeholder="설명" autoComplete="off" onChange={ev => setNewEventDescription(ev.target.value)} value={newEventDescription} />

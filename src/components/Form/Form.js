@@ -6,7 +6,6 @@ export default function Form({
   children,
   submitHandler,
   buttonDescription,
-  redirectUrl,
 }) {
   return (
     <form
@@ -14,9 +13,7 @@ export default function Form({
       onSubmit={submitHandler}
     >
       {children}
-      <Link to={redirectUrl}>
-        <input type="submit" value={buttonDescription} />
-      </Link>
+      <input type="submit" value={buttonDescription} />
     </form>
   );
 }
