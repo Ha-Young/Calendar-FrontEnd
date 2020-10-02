@@ -1,23 +1,28 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { increaseDate, decreaseDate, updateEvent } from "../../actions/index";
-import { INCREASE_DATE, DECREASE_DATE } from "../../constants/actionTypes";
 import { receiveEventData } from "../../utils/api";
+import { INCREASE_DATE, DECREASE_DATE } from "../../constants/actionTypes";
+import { increaseDate, decreaseDate, updateEvent } from "../../actions/index";
+import UnitSelectorContainer from "../UnitSelectorContainer/UnitSelectorContainer";
 import NavigationButton from "../../components/Button/NavigationButton";
 import DateDisplay from "../../components/DateDisplay/DateDisplay";
-import UnitSelectorContainer from "../UnitSelectorContainer/UnitSelectorContainer";
 import EventCreationButton from "../../components/Button/EventCreationButton";
 import styles from "./HeaderContainer.module.scss";
 
-function HeaderContainer({ dateUnit, currentDate, onDateChange, onEventChange }) {
+function HeaderContainer({
+  dateUnit,
+  currentDate,
+  onDateChange,
+  onEventChange,
+}) {
   useEffect(() => {
-    try {
-      (async () => {
+    (async () => {
+      try {
         await receiveEventData(onEventChange);
-      })();
-    } catch (error) {
-      console.error(error);
-    }
+      } catch (error) {
+        console.warn(error);
+      }
+    })();
   }, [onEventChange]);
 
   const handleNavigationClick = (id) => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./EventCreationPage.module.scss";
 
-function EventCreationPage({ onEventCreate }) {
+function EventCreationPage({ onEventChange }) {
   const [eventTitle, setEventTitle] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [eventStartTime, setEventStartTime] = useState("");
@@ -22,7 +22,7 @@ function EventCreationPage({ onEventCreate }) {
       eventId: new Date().getTime(),
     };
 
-    onEventCreate(eventInfo);
+    onEventChange("create", eventInfo);
   };
 
   return (

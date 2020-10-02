@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./EventCreationPage.module.scss";
 
-
-function EventDetailPage({ eventInfo, onEventUpdate, onEventDelete }) {
+function EventDetailPage({ eventInfo, onEventChange }) {
   const [eventTitle, setEventTitle] = useState(eventInfo.eventTitle);
   const [eventDate, setEventDate] = useState(eventInfo.eventDate);
-  const [eventStartTime, setEventStartTime] = useState(eventInfo.eventStartTime);
+  const [eventStartTime, setEventStartTime] = useState(
+    eventInfo.eventStartTime
+  );
   const [eventEndTime, setEventEndTime] = useState(eventInfo.eventEndTime);
-  const [eventDescription, setEventDescription] = useState(eventInfo.eventDescription);
+  const [eventDescription, setEventDescription] = useState(
+    eventInfo.eventDescription
+  );
   const eventId = eventInfo.eventId;
   const history = useHistory();
 
-  const handleEventUpdate = (e) => {
+  const handleEventChange = (e) => {
+    const changeType = e.target.id;
     const eventInfo = {
       eventTitle,
       eventDate,
@@ -22,12 +26,9 @@ function EventDetailPage({ eventInfo, onEventUpdate, onEventDelete }) {
       eventId,
     };
 
-    onEventUpdate(eventInfo);
+    onEventChange(changeType, eventInfo);
   };
 
-  const handleEventDelete = () => {
-    onEventDelete(eventId);
-  };
 
   return (
     <div className={styles.SubmitForm}>
@@ -75,8 +76,12 @@ function EventDetailPage({ eventInfo, onEventUpdate, onEventDelete }) {
           required
         />
         <div>
-          <button onClick={handleEventUpdate}>이벤트 수정</button>
-          <button onClick={handleEventDelete}>이벤트 삭제</button>
+          <button onClick={handleEventChange} id="update">
+            이벤트 수정
+          </button>
+          <button onClick={handleEventChange} id="remove">
+            이벤트 삭제
+          </button>
           <button onClick={() => history.push("/calendar")}>뒤로 가기</button>
         </div>
       </form>

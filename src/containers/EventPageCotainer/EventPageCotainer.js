@@ -14,37 +14,20 @@ import {
 function EventPageCotainer({ events, onEventChange }) {
   const { eventId } = useParams();
   const history = useHistory();
-
-  console.log(events);
   const currentEventInfo = events?.filter(
     (event) => event?.eventId === Number(eventId)
   )[0];
 
-  const handleEventCreate = async (eventInfo) => {
+  const handleEventChange = async (changeType, eventInfo) => {
     try {
-      await createEventData(onEventChange, eventInfo);
+      if (changeType === "create") {
+        await createEventData(onEventChange, eventInfo);
+      } else if (changeType === "update") {
+        await updateEventData(onEventChange, eventInfo);
+      } else if (changeType === "remove")
+        await removeEventData(onEventChange, eventInfo);
     } catch (error) {
-      console.error(error);
-    }
-
-    history.push("/calendar");
-  };
-
-  const handleEventUpdate = async (eventInfo) => {
-    try {
-      await updateEventData(onEventChange, eventInfo);
-    } catch (error) {
-      console.error(error);
-    }
-
-    history.push("/calendar");
-  };
-
-  const handleEventDelete = async (eventId) => {
-    try {
-      await removeEventData(onEventChange, eventId);
-    } catch (error) {
-      console.error(error);
+      console.warn(error);
     }
 
     history.push("/calendar");
@@ -55,7 +38,7 @@ function EventPageCotainer({ events, onEventChange }) {
       {eventId === "new" ? (
         <>
           <h1>이벤트 생성하기</h1>
-          <EventCreationPage onEventCreate={handleEventCreate} />
+          <EventCreationPage onEventChange={handleEventChange} />
         </>
       ) : (
         currentEventInfo && (
@@ -63,8 +46,7 @@ function EventPageCotainer({ events, onEventChange }) {
             <h1>이벤트 상세보기</h1>
             <EventDetailPage
               eventInfo={currentEventInfo}
-              onEventUpdate={handleEventUpdate}
-              onEventDelete={handleEventDelete}
+              onEventChange={handleEventChange}
             />
           </>
         )
