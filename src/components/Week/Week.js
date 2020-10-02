@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Week.module.css';
-import TimeLine from 'components/TimeLine/TimeLine';
 import Cell from 'components/Cell/Cell';
+import TimeLine from 'components/TimeLine/TimeLine';
+import styles from './Week.module.css';
 
 const Week = ({ day }) => {
   const cells = [];

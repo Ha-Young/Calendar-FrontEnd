@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Day.module.css';
-import TimeLine from 'components/TimeLine/TimeLine';
 import Cell from 'components/Cell/Cell';
+import TimeLine from 'components/TimeLine/TimeLine';
+import styles from './Day.module.css';
 
 const Day = ({ day }) => {
   return (

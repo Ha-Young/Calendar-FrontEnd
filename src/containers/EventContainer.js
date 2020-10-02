@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import { getEvents } from 'action/action';
 import EventDetails from 'components/EventDetail/EventDetail';
-import { Route } from 'react-router-dom';
 import EventMaker from 'components/EventMaker/EventMaker';
 import { getData } from 'utils/api';
 
@@ -15,7 +15,7 @@ export const EventCantainer = ({
 
   useEffect(() => {
     if (!isSubmitEvent) return;
-    console.log(events);
+
     getData(user, getEvents, setIsSubmitEvent);
     setIsSubmitEvent(false);
   }, [isSubmitEvent]);

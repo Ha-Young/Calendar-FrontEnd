@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
-import reducer from 'reducers/reducers';
 import { createLogger } from "redux-logger";
+import reducer from 'reducers/reducers';
 
 const middleware = [];
 middleware.push(createLogger());

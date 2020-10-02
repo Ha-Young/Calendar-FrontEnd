@@ -1,6 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
-import { Route, Link, useParams } from 'react-router-dom';
+import { Route, useParams } from 'react-router-dom';
 
 const EventDetails = ({ events }) => {
   const params = useParams();

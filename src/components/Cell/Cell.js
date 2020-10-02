@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './Cell.module.css';
 import { Link } from 'react-router-dom';
+import styles from './Cell.module.css';
 
 const Cell = () => {
   const cells = [];

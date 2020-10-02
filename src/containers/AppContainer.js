@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { authService } from 'utils/firebase';
-import { App } from 'components/App/App';
 import { connect } from 'react-redux';
-import { loggin } from 'action/action';
-import {setCalendarType} from 'action/action';
+import { loggin, setCalendarType } from 'action/action';
+import { App } from 'components/App/App';
+import { authService } from 'utils/firebase';
 
 export const AppContainer = ({ isLoggedIn, setIsLoggedIn, setCalendarType }) => {
   const [email, setEmail] = useState('');
@@ -109,7 +108,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setIsLoggedIn: (user, isLoggedIn) => { dispatch(loggin(user, isLoggedIn)) },
-    setCalendarType: (calendarType) => { dispatch(setCalendarType(calendarType))}
+    setCalendarType: (calendarType) => { dispatch(setCalendarType(calendarType)) }
   };
 };
 

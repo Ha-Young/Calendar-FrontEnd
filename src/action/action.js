@@ -1,7 +1,6 @@
 import {
   LOGIN,
   GET_EVENTS,
-  REMOVE_EVENT,
   SET_DAY,
   SET_MONTH,
   SET_YEAR,
@@ -20,13 +19,6 @@ export const getEvents = events => {
   return {
     type: GET_EVENTS,
     events
-  }
-};
-
-export const removeEvent = id => {
-  return {
-    type: REMOVE_EVENT,
-    id,
   }
 };
 

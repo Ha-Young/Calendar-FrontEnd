@@ -1,9 +1,7 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styles from './Header.module.css';
-import { Link } from 'react-router-dom';
-import DateChanger from 'components/DateChanger/DateChanger';
-// TODO: Create your own header.
+
 const Header = ({ onCalendarTypeChange }) => {
   const history = useHistory();
 

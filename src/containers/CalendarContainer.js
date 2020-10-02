@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import { addDays, format } from 'date-fns';
 import { setDay, setMonth, setYear } from 'action/action';
 import DateChanger from 'components/DateChanger/DateChanger';
 import Day from 'components/Day/Day';
 import Week from 'components/Week/Week';
-import format from 'date-fns/format';
-import { addDays } from 'date-fns';
 
 export const CalendarContainer = ({ setDay, setMonth, setYear }) => {
   const [count, setCount] = useState(1);
@@ -36,10 +35,20 @@ export const CalendarContainer = ({ setDay, setMonth, setYear }) => {
 
   return (
     <>
-      <DateChanger onClick={onDateChangerClick} month={month} year={year} />
+      <DateChanger
+        onClick={onDateChangerClick}
+        month={month}
+        year={year}
+      />
       <Switch>
-        <Route exact path='/' component={() => <Week day={day} />} />
-        <Route path='/day' component={() => <Day day={day} />} />
+        <Route exact path='/'
+          component={() => <Week day={day}
+          />}
+        />
+        <Route path='/day'
+          component={() => <Day day={day}
+          />}
+        />
       </Switch>
     </>
   );
