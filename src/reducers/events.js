@@ -38,10 +38,10 @@ export const eventList = (state = [], action) => {
 };
 
 const initialState = {
-  date: moment().format("YYYY-MM-DD"),
+  todayDate: moment().format("YYYY-MM-DD"),
   isLoggedIn: false,
   isDailyView: true,
-  error: null,
+  errorMessage: null,
 };
 
 const eventControl = (state = initialState, action) => {
@@ -59,23 +59,22 @@ const eventControl = (state = initialState, action) => {
     case CLICK_PREV_DATE_BUTTON:
       return {
         ...state,
-        date: moment(state.date).subtract(action.days, "days").format("YYYY-MM-DD"),
+        todayDate: moment(state.todayDate).subtract(action.days, "days").format("YYYY-MM-DD"),
       };
     case CLICK_NEXT_DATE_BUTTON:
       return {
         ...state,
-        date: moment(state.date).add(action.days, "days").format("YYYY-MM-DD"),
+        todayDate: moment(state.todayDate).add(action.days, "days").format("YYYY-MM-DD"),
       };
     case CHANGE_WEEKLY_VIEW:
       return {
         ...state,
         isDailyView: !state.isDailyView,
       };
-    // 다시 생각해보세요 에러 메시지
     case SHOW_ERROR_MESSAGE:
       return {
         ...state,
-        error: true,
+        errorMessage: action.error,
       };
     default:
       return state;

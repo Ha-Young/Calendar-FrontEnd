@@ -8,7 +8,7 @@
 }
 
 .NewEvent h2 {
-  color: #95A5A6;
+  color: var(--main-color);
 }
 
 .NewEvent form {
@@ -23,12 +23,12 @@
 .NewEvent form input {
   height: 30px;
   border: none;
-  border-bottom: 1px solid #95A5A6;
+  border-bottom: 1px solid var(--main-color);
 }
 
 .NewEvent form label {
   margin-top: 30px;
-  color: #95A5A6;
+  color: var(--main-color);
   font-size: 14px;
   margin-bottom: 3px;
 }
@@ -37,7 +37,7 @@
   margin-top: 30px;
   height: 40px;
   border-radius: 20px;
-  background-color: #95A5A6;
+  background-color: var(--main-color);
   border: none;
   color: white;
   text-transform: uppercase;

@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./NavButton.module.css";
 import moment from "moment";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-export default function NavButton ({ clickPrevDateButton, clickNextDateButton, date, isDailyView }) {
+export default function NavButton ({ clickPrevDateButton, clickNextDateButton, todayDate, isDailyView }) {
   const handleClick = (event) => {
     if (event.target.value === "prev") {
       isDailyView
@@ -21,16 +22,16 @@ export default function NavButton ({ clickPrevDateButton, clickNextDateButton, d
         onClick={handleClick}
         value="prev"
       >
-        {`<`}
+        <FaArrowLeft size="1.2rem" />
       </button>
-      <span>
-        {moment(date).format("YYYY-MM")}
+      <span className={styles.thisMonth}>
+        {moment(todayDate).format("YYYY-MM")}
       </span>
       <button
         onClick={handleClick}
         value="next"
       >
-        {`>`}
+        <FaArrowRight size="1.2rem" />
       </button>
     </div>
   );

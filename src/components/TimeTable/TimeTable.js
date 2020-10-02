@@ -4,7 +4,7 @@ import moment from "moment";
 import styles from "./TimeTable.module.css";
 
 
-export default function TimeTable ({ date, matchedEventList }) {
+export default function TimeTable ({ todayDate, matchedEventList }) {
   const timeLine = Array(24);
 
   matchedEventList.forEach((list) => {
@@ -12,17 +12,16 @@ export default function TimeTable ({ date, matchedEventList }) {
     const endTime = Number(list.endTime.substring(0, 2));
     const duration = endTime - startTime;
 
-    for (let i = startTime; i < startTime + duration; i++) {
-      if (list.eventDate === date) {
+    for (let i = startTime; i <= startTime + duration; i++) {
+      if (list.eventDate === todayDate) {
         timeLine[i] = [list.eventName, list.id];
       }
     }
   });
 
-  // h2 주변에 div 없애기
   return (
     <div className={styles.TimeTable}>
-      <div><h2 className={styles.date}>{moment(date).format("DD")}</h2></div>
+      <div className={styles.date}>{moment(todayDate).format("DD")}</div>
       {
         [...timeLine].map((list, index) => {
           return (
@@ -33,13 +32,15 @@ export default function TimeTable ({ date, matchedEventList }) {
                 >
                   <div
                     key={index}
-                    value={list[1]}
                     className={styles.matchedTime}
                   >
                     {list[0]}
                   </div>
                 </Link>
-              : <div key={index}></div>
+              : <div
+                  key={index}
+                  className={styles.emptyTime}
+                ></div>
           );
         })
       }

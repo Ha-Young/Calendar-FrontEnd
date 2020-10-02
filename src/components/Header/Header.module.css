@@ -1,5 +1,13 @@
 .Header {
-  background-color: #95A5A6;
+  background-color: var(--main-color);
+}
+
+.Header nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 100px;
+  align-items: center;
+  height: 100vh;
 }
 
 .userLogin {
@@ -25,9 +33,9 @@
   opacity: 0.5;
 }
 
-nav {
+.calendarTitle {
   display: flex;
   flex-direction: column;
-  padding: 0 100px;
   align-items: center;
+  color: white;
 }

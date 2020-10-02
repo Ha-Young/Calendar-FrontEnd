@@ -22,7 +22,5 @@ export const updateData = async (data) => {
 };
 
 export const deleteData = async (data) => {
-  await database.ref(`/${data.id}`).remove(() => {
-    console.log("remove done...");
-  }); // 여기도 고치기
+  await database.ref(`/${data.id}`).remove();
 };

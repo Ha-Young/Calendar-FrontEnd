@@ -1,17 +1,16 @@
 import React from "react";
-import styles from "./styles.module.css";
+import styles from "./Daily.module.css";
 import TimeTable from "../TimeTable/TimeTable";
 
-export default function Daily ({ date, eventList }) {
+export default function Daily ({ todayDate, eventList }) {
   const matchedEventList = eventList.filter((list) => {
-    return list.eventDate === date;
+    return list.eventDate === todayDate;
   });
 
   return (
     <div className={styles.Daily}>
       <div className={styles.timeList}>
-        <div><h2 className={styles.time}>TIME</h2></div>
-        {/* div 없애고 싶다 */}
+        <div></div>
         <div>오전 0시</div>
         <div>오전 1시</div>
         <div>오전 2시</div>
@@ -36,9 +35,10 @@ export default function Daily ({ date, eventList }) {
         <div>오후 9시</div>
         <div>오후 10시</div>
         <div>오후 11시</div>
+        <div>오후 12시</div>
       </div>
       <TimeTable
-        date={date}
+        todayDate={todayDate}
         matchedEventList={matchedEventList}
       />
     </div>

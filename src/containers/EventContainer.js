@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -14,29 +14,49 @@ import {
 } from "../actions/actionCreators";
 import NewEvent from "../components/NewEvent/NewEvent";
 import EventDetail from "../components/EventDetail/EventDetail";
+import Modal from "../components/Modal/Modal";
 
-function EventContainer ({ eventList, error, addEvent, updateEvent, deleteEvent }) {
+function EventContainer ({ eventList, errorMessage, addEvent, updateEvent, deleteEvent }) {
   const [eventId, setEventId] = useState("");
+  const [isValidEventId, setIsValidEventId] = useState(true);
 
   const matchedEvent = eventList?.filter((list) => {
     return list?.id === eventId;
   }).pop();
 
+  useEffect(() => {
+    setIsValidEventId(checkValidEventId());
+  }, [isValidEventId]);
+
+  const checkValidEventId = () => {
+    const validEventId = eventList?.map((list) => {
+      return list.id;
+    });
+
+    return validEventId.includes(eventId);
+  };
+
   return (
     <>
       <Switch>
         <Route path="/events/new">
-          <NewEvent addEvent={addEvent} />
+          <NewEvent
+            addEvent={addEvent}
+            errorMessage={errorMessage}
+          />
         </Route>
         <Route path="/events/:eventId">
-          <EventDetail
-            setEventId={(eventId) => setEventId(eventId)}
-            matchedEvent={matchedEvent}
-            updateEvent={updateEvent}
-            deleteEvent={deleteEvent}
-          />
-          { error && error.message }
-          {/* 여기도 다시 생각해보세요! */}
+          { isValidEventId
+            ?
+              <EventDetail
+                setEventId={(eventId) => setEventId(eventId)}
+                matchedEvent={matchedEvent}
+                updateEvent={updateEvent}
+                deleteEvent={deleteEvent}
+                errorMessage={errorMessage}
+              />
+            : <Modal text="Sorry! This URL is not valid and cannot be loaded." />
+          }
         </Route>
       </Switch>
     </>
@@ -44,23 +64,22 @@ function EventContainer ({ eventList, error, addEvent, updateEvent, deleteEvent 
 }
 
 const mapStateToProps = (state) => {
-  const { eventControl: { error }, eventList } = state;
+  const { eventControl: { errorMessage }, eventList } = state;
 
   return {
     eventList: eventList,
-    error: error,
+    errorMessage: errorMessage,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addEvent: async (eventDetails) => {
-      // isLoading 처리 추후..
       try {
         await pushData(eventDetails);
         dispatch(addEvent(eventDetails));
       } catch (error) {
-        dispatch(showErrorMessage(error));
+        dispatch(showErrorMessage(error.message));
       }
     },
     updateEvent: async (eventDetails) => {
@@ -68,7 +87,7 @@ const mapDispatchToProps = (dispatch) => {
         await updateData(eventDetails);
         dispatch(updateEvent(eventDetails));
       } catch (error) {
-        dispatch(showErrorMessage(error));
+        dispatch(showErrorMessage(error.message));
       }
     },
     deleteEvent: async (eventDetails) => {
@@ -76,7 +95,7 @@ const mapDispatchToProps = (dispatch) => {
         await deleteData(eventDetails);
         dispatch(deleteEvent(eventDetails));
       } catch (error) {
-        dispatch(showErrorMessage(error));
+        dispatch(showErrorMessage(error.message));
       }
     },
   };

@@ -16,7 +16,7 @@ function AppContainer (props) {
     userLogIn,
     userLogOut,
     isLoggedIn,
-    date,
+    todayDate,
     isDailyView,
     clickPrevDateButton,
     clickNextDateButton,
@@ -39,7 +39,7 @@ function AppContainer (props) {
       userLogIn={userLogIn}
       userLogOut={userLogOut}
       isLoggedIn={isLoggedIn}
-      date={date}
+      todayDate={todayDate}
       isDailyView={isDailyView}
       clickPrevDateButton={clickPrevDateButton}
       clickNextDateButton={clickNextDateButton}
@@ -50,10 +50,10 @@ function AppContainer (props) {
 }
 
 const mapStateToProps = (state) => {
-  const { eventControl: { date, isLoggedIn, isDailyView }, eventList } = state;
+  const { eventControl: { todayDate, isLoggedIn, isDailyView }, eventList } = state;
 
   return {
-    date: date,
+    todayDate: todayDate,
     isLoggedIn: isLoggedIn,
     isDailyView: isDailyView,
     eventList: eventList,

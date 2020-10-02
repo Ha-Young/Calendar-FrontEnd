@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import styles from "./NewEvent.module.css";
 import moment from "moment";
 
-export default function NewEvent ({ addEvent }) {
+export default function NewEvent ({ addEvent, errorMessage }) {
   const history = useHistory();
   const [eventDetails, setEventDetails] = useState({
     eventName: "",
@@ -33,13 +33,19 @@ export default function NewEvent ({ addEvent }) {
     });
   };
 
-  const handleSubmitButton = () => {
+  const handleSubmitButton = async () => {
     const id = "event" + Date.now();
-    addEvent({
+    await addEvent({
       id: id,
       createdAt: moment().toISOString(),
       ...eventDetails,
     });
+
+    if (errorMessage) {
+      alert(errorMessage);
+      return;
+    }
+
     history.push("/calendar");
   };
 
