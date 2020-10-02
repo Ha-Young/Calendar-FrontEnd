@@ -7,16 +7,16 @@
 .Nav {
   position: relative;
   top: 10px;
-  left: 65%;
+  left: 58%;
   font-size: 18px;
 }
 
-.Date {
+.Chalender {
   position: relative;
   left: 35%;
   font-size: 30px;
-  width: 40px;
-  height: 30px;
+  width: 150px;
+  height: 35px;
   border: solid black;
   border-radius: 10px;
 }

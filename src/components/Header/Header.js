@@ -5,27 +5,28 @@ import Button from '../Button/Button';
 import { connect } from 'react-redux';
 import { changeToDailyMode, changeToWeeklyMode } from '../../actions';
 
-function Header( {...props} ) {
-  
+function Header({ ...props }) {
+  const updateDate = props.updateDateReducer;
+
   function GetYearAndMonth() {
-    const today = new Date();
-    const year = today.getFullYear();
-    let month = today.getMonth() + 1;
+    const year = new Date().getFullYear();
 
     return (
-      <div className={styles.Year}>{month}.{year}</div>
+      <>
+        {updateDate.shouldLoadDailyPage ?
+          <div className={styles.Year}>{updateDate.monthDaily + 1}.{year}</div> :
+          <div className={styles.Year}>{updateDate.monthWeekly+ 1}.{year}</div>
+        }
+      </>
     );
   }
 
   function GetDate() {
     const today = new Date();
-    //const year = today.getFullYear();
-    //const month = today.getMonth() + 1;
     const date = today.getDate();
-    //const day = today.getDay();
 
     return (
-      <div className={styles.Date}>{date}</div>
+      <div className={styles.Chalender}>Chalender</div>
     );
   }
 
@@ -35,7 +36,7 @@ function Header( {...props} ) {
       <GetYearAndMonth />
       <GetDate />
       <nav className={styles.Nav}>
-        <Link to='/'onClick={props.changeToDailyMode}>DAY</Link>
+        <Link to='/' onClick={props.changeToDailyMode}>DAY</Link>
         <span> | </span>
         <Link to='/week' onClick={props.changeToWeeklyMode}>WEEK</Link>
         <span> | </span>
@@ -47,7 +48,7 @@ function Header( {...props} ) {
 
 const mapStateToProps = state => {
   return {
-    changeMode: state.updateDateReducer
+    updateDateReducer: state.updateDateReducer
   };
 };
 
