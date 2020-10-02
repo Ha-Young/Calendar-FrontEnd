@@ -1,8 +1,7 @@
-import * as types from '../constants';
+import { SET_USER } from '../constants';
 
 function user(state = {}, action) {
-  if (action.type === types.SET_USER) {
-    console.log(action.payload);
+  if (action.type === SET_USER) {
     return action.payload;
   }
 
@@ -10,7 +9,7 @@ function user(state = {}, action) {
 }
 
 function isLogin(state = false, action) {
-  if (action.type === types.SET_USER && action.payload) {
+  if (action.type === SET_USER && action.payload) {
     return !state;
   }
 
