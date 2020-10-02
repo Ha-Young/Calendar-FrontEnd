@@ -12,7 +12,7 @@ import {
 
 function eventData(state = {}, action) {
   if (action.type === SET_INIT_DATA) {
-    return action.data;
+    return action.payload;
   }
 
   return state;
@@ -28,13 +28,13 @@ function isWeekly(state = false, action) {
 
 function currentDate(state = destructDate(new Date()), action) {
   if (action.type === MOVE_NEXT_DAY) {
-    const nextDate = calculateNewDate(combineDate(state), action.count);
+    const nextDate = calculateNewDate(combineDate(state), action.payload);
 
     return destructDate(nextDate);
   }
 
   if (action.type === MOVE_PREV_DAY) {
-    const nextDate = calculateNewDate(combineDate(state), -action.count);
+    const nextDate = calculateNewDate(combineDate(state), -action.payload);
 
     return destructDate(nextDate);
   }

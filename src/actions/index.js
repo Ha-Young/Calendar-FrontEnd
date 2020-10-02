@@ -1,35 +1,11 @@
 import * as types from '../constants';
+import { createAction } from '@reduxjs/toolkit'
 
-export function setUser(userData) {
-  return {
-    type: types.SET_USER,
-    userData,
-  };
-}
+export const setUser = createAction(types.SET_USER);
 
-export function toggleWeeklyAndDaily() {
-  return {
-    type: types.TOGGLE_WEEKLY_AND_DAILY,
-  };
-}
+export const toggleWeeklyAndDaily = createAction(types.TOGGLE_WEEKLY_AND_DAILY);
 
-export function moveNextDay(count) {
-  return {
-    type: types.MOVE_NEXT_DAY,
-    count,
-  };
-}
+export const moveNextDay = createAction(types.MOVE_NEXT_DAY);
+export const movePrevDay = createAction(types.MOVE_PREV_DAY);
 
-export function movePrevDay(count) {
-  return {
-    type: types.MOVE_PREV_DAY,
-    count,
-  };
-}
-
-export function setInitData(data) {
-  return {
-    type: types.SET_INIT_DATA,
-    data,
-  };
-}
+export const setInitData = createAction(types.SET_INIT_DATA);
