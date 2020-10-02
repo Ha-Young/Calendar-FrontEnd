@@ -30,32 +30,30 @@ function Calendar({ onLoad, onChange, dateInfo }) {
   }, [onChange, dateInfo]);
 
   return (
-    <>
-      <div className={styles.Calendar}>
-        <div className={styles.controller}>
-          <button name='previous' onClick={handleClick}>Previous</button>
-          <button name='next' onClick={handleClick}>Next</button>
-        </div>
-        {
-          isLoading ? <div>is loading...</div>
-          :
-          <>
-            <div className={styles.timeTable}>
-              {
-                Array.from({ length: 24 }).map((_, idx) => {
-                  return (
-                    <div key={idx}>
-                      {`${idx > 9 ? idx : '0' + idx}:00`}
-                    </div>
-                  );
-                })
-              }
-            </div>
-            <EventContainer />
-          </>
-        }
+    <div className={styles.Calendar}>
+      <div className={styles.controller}>
+        <button name='previous' onClick={handleClick}>Previous</button>
+        <button name='next' onClick={handleClick}>Next</button>
       </div>
-    </>
+      {
+        isLoading ? <div>is loading...</div>
+        :
+        <>
+          <div className={styles.timeTable}>
+            {
+              Array.from({ length: 24 }).map((_, idx) => {
+                return (
+                  <div key={idx}>
+                    {`${idx > 9 ? idx : '0' + idx}:00`}
+                  </div>
+                );
+              })
+            }
+          </div>
+          <EventContainer />
+        </>
+      }
+    </div>
   );
 }
 

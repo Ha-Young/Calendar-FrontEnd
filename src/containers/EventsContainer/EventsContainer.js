@@ -9,6 +9,7 @@ import { getEventListByDate } from '../../reducers/events';
 
 function EventsContainer({ events, dateInfo }) {
   const { isWeeklyMode, weekList, selectedDay } = dateInfo;
+
   return (
     <div className={styles.EventsContainer} >
       {
