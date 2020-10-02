@@ -22,6 +22,7 @@ import Auth from "../../Auth/Auth";
 import { START_TIME_OPTIONS, FINISH_TIME_OPTIONS } from "../../constants";
 
 function AppContainer({
+  onLoad,
   eventData,
   showDaily,
   showWeekly,
@@ -41,6 +42,10 @@ function AppContainer({
   const [newEventStartTime, setNewEventStartTime] = useState("");
   const [newEventFinishTime, setNewEventFinishTime] = useState("");
   const history = useHistory();
+
+  useEffect(() => {
+    onLoad();
+  }, []);
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
@@ -157,6 +162,13 @@ function AppContainer({
 
 const mapDispatchToProps = dispatch => {
   return {
+    onLoad() {
+      const displayDateRef = database.ref(`${auth.currentUser.uid}/`);
+
+      displayDateRef.on("value", function(snapshot) {
+        dispatch(fetchEvents(snapshot.val()));
+      });
+    },
     showDaily() {
       dispatch(showDaily());
     },
@@ -164,12 +176,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(showWeekly());
     },
     onLogin() {
-      const displayDateRef = database.ref(`${auth.currentUser.uid}/`);
-
-      displayDateRef.on("value", function(snapshot) {
-        dispatch(fetchEvents(snapshot.val()));
-      });
-
       dispatch(login());
     },
     onLogout() {
