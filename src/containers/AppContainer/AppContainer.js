@@ -61,8 +61,8 @@ function AppContainer({
     auth.signOut();
   }
 
-  function submitNewEventHandler(event) {
-    event.preventDefault();
+  function submitNewEventHandler(ev) {
+    ev.preventDefault();
 
     saveNewEvent(newEventTitle, newEventDescription, newEventDate, newEventStartTime, newEventFinishTime);
 
@@ -135,7 +135,7 @@ function AppContainer({
       {
         !isLoggedIn && <Auth onClick={onGoogleLoginClick} />
       }
-    </div >
+    </div>
   );
 }
 
