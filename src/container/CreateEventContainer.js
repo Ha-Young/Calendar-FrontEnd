@@ -57,21 +57,22 @@ const Container = styled.section`
   }
 `;
 
+const currentDate = new Date();
+const initEventForm = {
+  id: nanoid(12),
+  title: '',
+  description: '',
+  startTime: String(getHours(currentDate)),
+  endTime: String(getHours(currentDate)),
+  date: format(currentDate, 'yyyy-MM-dd'),
+};
+
 function CreateEventContainer({
   uid,
 }) {
   const history = useHistory();
-  const currentDate = new Date();
   const [validMessage, setValidMessage] = useState('');
-
-  const [eventData, setEventData] = useState({
-    id: nanoid(12),
-    title: '',
-    description: '',
-    startTime: getHours(currentDate),
-    endTime: getHours(currentDate),
-    date: format(currentDate, 'yyyy-MM-dd'),
-  });
+  const [eventData, setEventData] = useState(initEventForm);
 
   function handleGoBack() {
     history.push('/calendar');

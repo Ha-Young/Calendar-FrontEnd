@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import firebase from './firebase';
 
@@ -11,7 +11,7 @@ export function setDataToFirebase(data, uid, dataId = nanoid(12)) {
     ...data,
     id: dataId,
     creator: uid,
-    createdAt: moment().format('YYYY-MM-DD'),
+    createdAt: format(new Date(), 'yyyy-MM-dd'),
   });
 }
 

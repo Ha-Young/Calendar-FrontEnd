@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import ClockLoader from 'react-spinners/ClockLoader';
 
 import CalendarContainer from '../container/CalendarContainer';
@@ -27,7 +27,6 @@ export default function MainPage({ isLoading }) {
         <Route path='/events/:eventId'>
           <EventPageContainer />
         </Route>
-        <Redirect path='*' to='/'/>
       </Switch>
   );
 }

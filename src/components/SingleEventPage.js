@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function EventPage({
+export default function SingleEventPage({
   title,
   description,
   date,
@@ -25,10 +25,10 @@ export default function EventPage({
   );
 }
 
-EventPage.propTypes = {
+SingleEventPage.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   date: PropTypes.string,
-  startTime: PropTypes.number.isRequired,
-  endTime: PropTypes.number.isRequired,
+  startTime: PropTypes.string.isRequired,
+  endTime: PropTypes.string.isRequired,
 };

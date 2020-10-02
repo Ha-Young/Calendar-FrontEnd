@@ -12,9 +12,11 @@ export default function WeeklyCalendar({
 
   return (
     <div className='calendar'>
-      {weekData.map((date, index) => {
-        return <DateBox key={index} date={date} eventData={eventData} />
-      })}
+      {
+        weekData.map((date, index) => {
+          return <DateBox key={index} date={date} eventData={eventData}/>;
+        })
+      }
     </div>
   );
 }

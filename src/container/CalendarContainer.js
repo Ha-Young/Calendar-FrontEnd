@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import Navigation from '../components/Navigation';
+import EventList from '../components/EventList';
 import WeeklyCalendar from '../components/WeeklyCalendar';
 import ControlBar from '../components/ControlBar';
 import DateBox from '../components/DateBox';
@@ -66,7 +66,7 @@ function CalendarContainer({
 }) {
   return (
     <Container>
-      <Navigation events={eventData}/>
+      <EventList events={eventData}/>
       <section>
         <ControlBar
           onToggle={toggleWeeklyAndDaily}

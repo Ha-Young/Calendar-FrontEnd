@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import InfoPage from '../components/InfoPage';
 import WriteEventForm from '../components/WriteEventForm';
 import Modal from '../components/Modal';
+import SingleEventPage from '../components/SingleEventPage';
 import { validateEventForm } from '../utils/utilFunction';
 import {
   setDataToFirebase,
@@ -129,57 +130,56 @@ function EventPageContainer({ eventData, uid }) {
   }
 
   return (
-    currentEvent &&
-    <InfoPage>
-      <Container>
-      {
-        isOpenedConfirmModal &&
-        <Modal>
-          <Button value='안지우기' onClick={toggleModal}/>
-          <Button value='정말 지우기' onClick={confirmRemove}/>
-        </Modal>
-      }
-      {
-        !!validationMessage &&
-        <Modal>
-          <h3>{validationMessage}</h3>
-          <div>
-            <Button value='뒤로' onClick={initValidationMessage}/>
-          </div>
-        </Modal>
-      }
-      {
-        isUpdating ?
-          <WriteEventForm
-            formTitle='정보 업데이트'
-            onChange={handleChange}
-            data={currentEventData}
-          />
-        :
-          <>
-            <h1>{currentEvent.title}</h1>
-            <p>{currentEvent.description}</p>
-            <div className='time-box'>
-            <div className='event-date'>{currentEvent.date}</div>
-              <span>
-                <b>{currentEvent.startTime}</b> 시부터{' '}
-              </span>
-              <span>
-                <b>{currentEvent.endTime}</b> 시까지
-              </span>
+    !currentEvent ?
+      <Modal>
+        <h2>잘못된 이벤트 입니다</h2>
+        <Button value='홈으로' onClick={goHome} />
+      </Modal>
+    :
+      <InfoPage>
+        <Container>
+        {
+          isOpenedConfirmModal &&
+          <Modal>
+            <Button value='안지우기' onClick={toggleModal}/>
+            <Button value='정말 지우기' onClick={confirmRemove}/>
+          </Modal>
+        }
+        {
+          !!validationMessage &&
+          <Modal>
+            <h3>{validationMessage}</h3>
+            <div>
+              <Button value='뒤로' onClick={initValidationMessage}/>
             </div>
-          </>
-      }
-        <div className='button-box'>
-          <Button value='뒤로' onClick={goBack}/>
-          <Button value='업데이트' onClick={handleUpdate}/>
-          {
-            !isUpdating &&
-            <Button value='지우기' onClick={toggleModal}/>
-          }
-        </div>
-      </Container>
-    </InfoPage>
+          </Modal>
+        }
+        {
+          isUpdating ?
+            <WriteEventForm
+              formTitle='정보 업데이트'
+              onChange={handleChange}
+              data={currentEventData}
+            />
+          :
+              <SingleEventPage
+                title={currentEventData.title}
+                description={currentEventData.description}
+                date={currentEventData.date}
+                startTime={currentEventData.startTime}
+                endTime={currentEventData.endTime}
+              />
+        }
+          <div className='button-box'>
+            <Button value='뒤로' onClick={goBack}/>
+            <Button value='업데이트' onClick={handleUpdate}/>
+            {
+              !isUpdating &&
+              <Button value='지우기' onClick={toggleModal}/>
+            }
+          </div>
+        </Container>
+      </InfoPage>
   );
 }
 

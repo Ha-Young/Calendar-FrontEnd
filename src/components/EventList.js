@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import EventBox from './EventBox';
 import Button from './Button';
 
-export default function Navigation({ events }) {
+export default function EventList({ events }) {
   const history = useHistory();
 
   function handleAddEvent() {
@@ -18,13 +18,14 @@ export default function Navigation({ events }) {
       {
         events.events.map((eventId) => {
           const data = events.eventsId[eventId];
-          return <EventBox key={data.id} data={data}/>;
+
+          return <EventBox key={data.id} {...data}/>;
         })
       }
     </nav>
   );
 }
 
-Navigation.propTypes = {
+EventList.propTypes = {
   events: PropTypes.object,
 };

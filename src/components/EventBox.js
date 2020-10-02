@@ -47,12 +47,10 @@ const Wrapper = styled.div`
 `;
 
 export default function EventBox({
-  data: {
-    title,
-    description,
-    id,
-    date
-  }
+  title,
+  description,
+  id,
+  date
 }) {
   return (
     <Wrapper>
@@ -68,10 +66,8 @@ export default function EventBox({
 }
 
 EventBox.propTypes = {
-  data: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string,
-    id: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-  }),
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
 };
