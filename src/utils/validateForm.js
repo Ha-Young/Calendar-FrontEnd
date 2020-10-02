@@ -27,13 +27,11 @@
         return parseInt(str.split('-').join(''));
       }
 
-      // 날짜가 안맞는 경우
       if (startDate > endDate) {
         alert('날짜가 이상합니다..');
         return false;
       }
 
-      // 시간이 안맞는 경우 (날짜가 같은 경우에만)
       if (startDate === endDate && startTime > endTime) {
         alert(`시간이 이상한데요..`)
         return false;

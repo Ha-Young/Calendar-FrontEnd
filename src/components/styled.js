@@ -18,15 +18,19 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Work Sans', 'IBMPlexSansKR-Light', sans-serif;
   }
 
+  body {text-align: center;}
+
   a {
     text-decoration: none;
     color: black;
   }
+
+  li {
+    list-style-type: none;
+  }
 `;
 
 export const Main = styled.div`
-  /* background-color: pink; */
-
   button{
     padding: 10px;
     margin: 10px;
@@ -34,16 +38,18 @@ export const Main = styled.div`
 `;
 
 export const CalendarContainer = styled.div`
-  /* background-color: orangered; */
   min-height: 500px;
   width: 80%;
   max-width: 800px;
-  margin: 40px auto;
+  margin: 10px auto;
 `;
 
 export const Daily = styled.div`
   position: relative;
-  /* background-color: white; */
+
+  h2 {
+    margin-bottom: 20px;
+  }
 
   .timelines {
     position: absolute;
@@ -53,15 +59,13 @@ export const Daily = styled.div`
   .timeline {
     position: relative;
     border: 1px solid #d9d7d7;
-    min-height: 60px;
-    max-height: 60px;
+    min-height: 30px;
+    max-height: 30px;
   }
   .time {
     position: absolute;
     top: 0;
     left: -50px;
-    /* transform: translateY(-50%); */
-    /* background-color:white; */
     color: #595959;
     font-size: 12px;
   }
@@ -75,7 +79,6 @@ export const Daily = styled.div`
   }
   .schedule {
     position: relative;
-    top: 0px; /* 임시 */
     box-shadow: 0 0 4px black;
     padding:1em;
     flex:1;
@@ -89,10 +92,14 @@ export const Daily = styled.div`
 export const Weekly = styled.div`
   position: relative;
 
+  h2{
+    margin-bottom: 70px;
+  }
+
   .daylines {
     position: absolute;
     width: 100%;
-    height: 1440px;
+    height: 720px;
     z-index: 550;
     display: flex;
     align-items: stretch;
@@ -105,7 +112,7 @@ export const Weekly = styled.div`
   }
   .day {
     position: absolute;
-    top: -30px;
+    top: -50px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -118,8 +125,8 @@ export const Weekly = styled.div`
   .timeline {
     position: relative;
     border: 1px solid #d9d7d7;
-    min-height: 60px;
-    max-height: 60px;
+    min-height: 30px;
+    max-height: 30px;
   }
   .time {
     position: absolute;
@@ -137,15 +144,21 @@ export const Weekly = styled.div`
     z-index: 1000;
   }
   .schedule {
-    position: relative;
-    top: 0px; /* 임시 */
+    position: absolute;
     box-shadow: 0 0 4px black;
     padding:1em;
     flex:1;
+    overflow-y: auto;
 
     .scheduleDesc{
       font-size: 0.8em;
     }
+  }
+
+  .daily {
+    flex: 1;
+    height: 100%;
+    position: relative;
   }
 `;
 
@@ -189,7 +202,7 @@ export const Schedule = styled.div`
 
 export const Header = styled.div`
   box-shadow: 0px 1px 5px black;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   ul {
     display: flex;

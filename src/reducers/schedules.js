@@ -1,7 +1,11 @@
-import { RECEIVE_SCHEDULE } from '../constants/actionTypes';
 import { combineReducers } from 'redux';
+import { RECEIVE_SCHEDULE } from '../constants/actionTypes';
 
-export const byId = (state = {}, action) => {
+const initialState = {
+  schedules: []
+};
+
+export const byId = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_SCHEDULE:
       return {

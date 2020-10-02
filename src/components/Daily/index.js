@@ -1,27 +1,32 @@
-import React from 'react';
-import { format } from 'date-fns';
+import React, { useEffect } from 'react';
 import * as Styled from '../styled';
 
-export default function Daily ({ scheduleDatas, renderSchedules }) {
-  let timelines = [];
-  for (let i = 0; i < 24; i++) {
-    const time = i % 12;
-    timelines.push(
-    <div className='timeline' key={`time-${i}`}>
-      <span className='time'>{`${i >= 12 ? 'PM' : 'AM'} ${time}시`}</span>
-    </div>);
-  }
+export default function Daily ({ date, scheduleDatas, renderSchedules, updateTimespan }) {
+  useEffect(() => {
+    updateTimespan('daily');
+  }, []);
 
-  const date = format(new Date(), 'yyyy-MM-dd');
-  const schedules = renderSchedules(scheduleDatas, date);
+  function renderTimelines () {
+    let timelines = [];
+    for (let i = 0; i < 24; i++) {
+      const time = i % 12;
+      timelines.push(
+      <div className='timeline' key={`time-${i}`}>
+        <span className='time'>{`${i >= 12 ? 'PM' : 'AM'} ${time}시`}</span>
+      </div>);
+    }
+
+    return timelines;
+  }
 
   return (
     <Styled.Daily>
+      <h2>{date}</h2>
       <div className='timelines'>
-        {timelines}
+        {renderTimelines()}
       </div>
       <div className='schedules'>
-        {schedules}
+        {renderSchedules(scheduleDatas, date)}
       </div>
     </Styled.Daily>
   );

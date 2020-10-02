@@ -1,8 +1,6 @@
-import firebase from '../utils/firebase';
 import * as types from '../constants/actionTypes';
 import { schedule } from '../utils/api'
 
-// 해당 action은 api에서 파이어베이스와 통신하는 로직을 콜한다
 export const createSchedule = async newSchedule => {
   await schedule.setSchedule(newSchedule);
 };
@@ -11,5 +9,26 @@ export const receiveSchedules = (schedules) => {
   return {
     type: types.RECEIVE_SCHEDULE,
     schedules
-  }
+  };
+};
+
+export const setTimespanAction = (timespan) => {
+  return {
+    type: types.UPDATE_TIMESPAN,
+    timespan
+  };
+};
+
+export const incrementDateAction = (date) => {
+  return {
+    type: types.INCREMENT_DATE,
+    date
+  };
+};
+
+export const decrementDateAction = (date) => {
+  return {
+    type: types.DECREMENT_DATE,
+    date
+  };
 };

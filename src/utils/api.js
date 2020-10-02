@@ -1,11 +1,8 @@
-// TODO: You can modify, add, remove as you need.
 import firebase from './firebase';
 
 const database = firebase.database();
 
 export async function saveSampleData () {
-  // Note: `set` method returns a promise.
-  // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
   await database.ref('test/new').set({
     test: "I'm new"
   });

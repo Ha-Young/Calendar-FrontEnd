@@ -1,35 +1,65 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Styled from '../styled';
 
-export default function Weekly ({ scheduleDatas, renderSchedules }) {
-  const days = ['월', '화', '수', '목', '금', '토', '일'];
-  const daylines = days.map((day, i) => {
-    return (
-      <div className='dayline' key={`day-${i}`}>
-        <span className='day'>{`${day}`}</span>
-      </div>);
-  })
+export default function Weekly ({ week, scheduleDatas, renderSchedules, updateTimespan }) {
+  useEffect(() => {
+    updateTimespan('weekly');
+  }, []);
 
-  let timelines = [];
-  for (let i = 0; i < 24; i++) {
-    const time = i % 12;
-    timelines.push(
-    <div className='timeline' key={`time-${i}`}>
-      <span className='time'>{`${i >= 12 ? 'PM' : 'AM'} ${time}시`}</span>
-    </div>);
+  function renderDayline () {
+    const days = ['월', '화', '수', '목', '금', '토', '일'];
+    const daylines = days.map((day, i) => {
+      return (
+        <div className='dayline' key={`day-${i}`}>
+          <span className='day'>{`${week[i].slice(5)} ${day}`}</span>
+        </div>);
+    });
+
+    return daylines;
   }
-  const schedules = renderSchedules(scheduleDatas);
+
+  function renderTimeline () {
+    let timelines = [];
+    for (let i = 0; i < 24; i++) {
+      const time = i % 12;
+      timelines.push(
+      <div className='timeline' key={`time-${i}`}>
+        <span className='time'>{`${i >= 12 ? 'PM' : 'AM'} ${time}시`}</span>
+      </div>);
+    }
+
+    return timelines;
+  }
+
+  function renderWeeklySchedules (scheduleDatas, week) {
+    const weeklySchedules = week.map((date) => {
+      const scheduleDate = date.split('/').join('-');
+
+      if (scheduleDatas[scheduleDate]) {
+        return (
+          <div className='daily' key={date}>
+            {renderSchedules(scheduleDatas, scheduleDate)}
+          </div>
+        );
+      } else {
+      return <div className='daily' key={date}></div>;
+      }
+    });
+
+    return weeklySchedules;
+  }
 
   return (
     <Styled.Weekly>
+      <h2>{`${week[0].slice(5)} ~ ${week[week.length - 1].slice(5)}`}</h2>
       <div className='daylines'>
-        {daylines}
+        {renderDayline()}
       </div>
       <div className='timelines'>
-        {timelines}
+        {renderTimeline()}
       </div>
       <div className='schedules'>
-        {schedules}
+        {renderWeeklySchedules(scheduleDatas, week)}
       </div>
     </Styled.Weekly>
   );
