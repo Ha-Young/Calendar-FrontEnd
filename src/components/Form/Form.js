@@ -35,19 +35,19 @@ export default function Form({ onSubmit, target, text }) {
       <Link to={ROUTER.CALENDAR} className={styles.backButton}>Back</Link>
       <form onSubmit={handleFormSubmit} className={styles.Form}>
         <label>
-          <input name='title' type='text' placeholder='Title' value={inputValue.title} onChange={handleChange} />
+          <input name='title' type='text' placeholder='Title' value={inputValue.title} onChange={handleChange} required/>
         </label>
         <label>
           <input name='description' type='text' placeholder='Description' value={inputValue.description} onChange={handleChange} />
         </label>
         <label>
-          <input name='date' type='date' value={inputValue.date} onChange={handleChange} />
+          <input name='date' type='date' value={inputValue.date} onChange={handleChange} required/>
         </label>
         <label>
-          <input name='startTime' type='time' value={inputValue.startTime} onChange={handleChange} step={3600} />
+          <input name='startTime' type='time' value={inputValue.startTime} onChange={handleChange} step={3600} required/>
         </label>
         <label>
-          <input name='endTime' type='time' value={inputValue.endTime} onChange={handleChange} step={3600} />
+          <input name='endTime' type='time' value={inputValue.endTime} onChange={handleChange} step={3600} required/>
         </label>
         <input type='submit' value={text} />
       </form>
