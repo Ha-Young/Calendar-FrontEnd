@@ -16,7 +16,6 @@ export default function ScheduleBody ({ type }) {
 
   useEffect (()=>{
     scrollRef.current.addEventListener('scroll', () => {
-      console.log(1)
     })
   }, [scrollRef]);
 
