@@ -31,7 +31,7 @@ export default function Form({ onSubmit, target, text }) {
 
   return (
     <>
-      <Link to='/calendar' className={styles.backButton}>{`Back`}</Link>
+      <Link to='/calendar' className={styles.backButton}>Back</Link>
       <form onSubmit={handleFormSubmit} className={styles.Form}>
         <label>
           <input name='title' type='text' placeholder='Title' value={inputValue.title} onChange={handleChange} />

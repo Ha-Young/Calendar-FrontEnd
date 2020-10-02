@@ -5,16 +5,16 @@ import { generateRandomString } from './generateRandomString';
 const database = firebase.database();
 const eventsRef = database.ref('events/');
 
-export async function readEventListOnce() {
+export const readEventListOnce = async () => {
   try {
     const result = await eventsRef.once('value');
     return result.val();
   } catch (error) {
     throw error;
   }
-}
+};
 
-export async function writeEvent(data) {
+export const writeEvent = async (data) => {
   data.id = `event_${generateRandomString()}`;
 
   try {
@@ -25,9 +25,9 @@ export async function writeEvent(data) {
   } catch (error) {
     throw error;
   }
-}
+};
 
-export async function updateEvent(data) {
+export const updateEvent = async (data) => {
   try {
     await eventsRef.child(data.id).update(data, function (error) {
       console.warn(error);
@@ -36,12 +36,12 @@ export async function updateEvent(data) {
   } catch (error) {
     throw error;
   }
-}
+};
 
-export async function deleteEvent(id) {
+export const deleteEvent = async (id) => {
   try {
     await eventsRef.child(id).remove();
   } catch (error) {
     throw error;
   }
-}
+};

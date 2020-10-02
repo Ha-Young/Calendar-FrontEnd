@@ -8,7 +8,7 @@ import { swapCalendarViewMode } from '../../actions/index';
 // TODO: Create your own header.
 function HeaderContainer({ onChange, dateInfo }) {
   function handleChange({ target }) {
-    if (target.value === 'Week') {
+    if (target.value === 'week') {
       return onChange(true);
     }
     onChange(false);
@@ -31,10 +31,10 @@ function HeaderContainer({ onChange, dateInfo }) {
             name='weekly-select'
             id='weekly-select'
             onChange={handleChange}
-            defaultValue={dateInfo.isWeeklyMode ? 'Week' : 'day'}
+            defaultValue={dateInfo.isWeeklyMode ? 'week' : 'day'}
           >
             <option value='day'>Day</option>
-            <option value='Week'>Week</option>
+            <option value='week'>Week</option>
           </select>
         </div>
       </nav>
@@ -42,11 +42,9 @@ function HeaderContainer({ onChange, dateInfo }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    dateInfo: state.dateInfo
-  }
-}
+const mapStateToProps = ({ dateInfo }) => ({
+  dateInfo
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {

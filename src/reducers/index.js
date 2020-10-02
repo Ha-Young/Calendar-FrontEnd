@@ -5,5 +5,5 @@ import { dateInfo } from './dateInfo';
 
 export default combineReducers({
   dateInfo,
-  events,
+  events
 });

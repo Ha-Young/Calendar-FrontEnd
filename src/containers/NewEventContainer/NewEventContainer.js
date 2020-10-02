@@ -4,8 +4,8 @@ import styles from './NewEventContainer.module.css';
 
 import Form from '../../components/Form/Form';
 
-import { addToEventList } from '../../actions/index';
 import { writeEvent } from '../../utils/api';
+import { addToEventList } from '../../actions/index';
 
 function NewEventContainer({ onSubmit }) {
   return (

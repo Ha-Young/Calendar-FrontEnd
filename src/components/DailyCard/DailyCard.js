@@ -12,12 +12,14 @@ export default function DailyCard({ date, events }) {
       setCellList([]);
       return;
     }
+
     const newCellList = [];
 
     events.forEach((event) => {
       const startTime = parseInt(event.startTime.substring(0, 2));
       const endTime = parseInt(event.endTime.substring(0, 2));
       const duration = endTime - startTime;
+
       newCellList.push({
         id: event.id,
         title: event.title,
