@@ -4,7 +4,7 @@ const setNewEvent = async (uid, date, event) => {
   const newEventKey = database.ref().push().key;
   var updates = {};
   updates[`/users/${uid}/eventRefs/${date}/${newEventKey}`] = true;
-  updates[`/events/${newEventKey}`] = event;
+  updates[`/events/${newEventKey}`] = { ...event, eventId: newEventKey };
   return database.ref().update(updates);
 };
 

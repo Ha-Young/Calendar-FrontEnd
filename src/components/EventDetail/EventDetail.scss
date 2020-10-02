@@ -1,0 +1,19 @@
+@import '../../constants/styles.constants.scss';
+
+.event-detail {
+  width: 40%;
+  min-width: 420px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  font-size: 1.2rem;
+
+  div {
+    margin: 20px;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}

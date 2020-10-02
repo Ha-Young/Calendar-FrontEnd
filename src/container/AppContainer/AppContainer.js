@@ -9,6 +9,7 @@ import Header from '../../components/Header/Header';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import CalendarContainer from '../CalendarContainer/CalendarContainer';
 import NewEvent from '../../components/NewEvent/NewEvent';
+import EventDetail from '../../components/EventDetail/EventDetail';
 import SignInAndSignUp from '../../components/SignInAndSignUp/SignInAndSignUp';
 
 import { auth } from '../../firebase';
@@ -27,7 +28,6 @@ const App = ({ currentUser, setCurrentUser }) => {
 
     return unsubscribeAuth;
   }, [setCurrentUser]);
-
   return (
     <div className={styles.App}>
       {!currentUser ? (
@@ -44,6 +44,9 @@ const App = ({ currentUser, setCurrentUser }) => {
             </Route>
             <Route path='/events/new'>
               <NewEvent createdBy={currentUser.uid} />
+            </Route>
+            <Route path='/events/:eventId'>
+              <EventDetail />
             </Route>
           </Switch>
         </>

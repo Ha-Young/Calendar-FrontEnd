@@ -94,15 +94,14 @@ const Calendar = ({
       <div className='content'>
         <Timeline />
         <div className='events-field'>
-          {eventLists.length &&
-            eventLists.map(({ date, eventList }, idx) => (
-              <DailyColumn
-                key={idx}
-                date={date}
-                eventList={eventList}
-                viewMode={currentViewMode}
-              />
-            ))}
+          {eventLists.map(({ date, eventList }, idx) => (
+            <DailyColumn
+              key={idx}
+              date={date}
+              eventList={eventList}
+              viewMode={currentViewMode}
+            />
+          ))}
         </div>
       </div>
     </div>

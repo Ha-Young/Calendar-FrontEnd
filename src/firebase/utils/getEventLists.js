@@ -2,7 +2,7 @@ import { database } from '..';
 
 import convertToISOString from '../../utils/convertToISOString';
 
-const getEventById = async eventId => {
+export const getEventById = async eventId => {
   const snapShot = await database.ref(`events/${eventId}`).once('value');
   return snapShot.val();
 };
