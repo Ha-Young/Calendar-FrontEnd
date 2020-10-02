@@ -29,6 +29,7 @@ export default function WriteEventForm({
           placeholder='Title 을 입력해주세요'
           name='title'
           value={title}
+          focus={true}
         />
         Description:
         <Input
