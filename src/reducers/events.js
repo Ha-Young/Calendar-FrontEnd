@@ -4,15 +4,7 @@ import { RECEIVE_EVENTS, ADD_EVENT, UPDATE_EVENT, DELETE_EVENT } from '../action
 const byId = (state = {}, { type, events }) => {
   switch (type) {
     case RECEIVE_EVENTS:
-      return {
-        ...state,
-        ...events
-      };
     case ADD_EVENT:
-      return {
-        ...state,
-        ...events
-      };
     case UPDATE_EVENT:
       return {
         ...state,

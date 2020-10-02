@@ -37,9 +37,9 @@ export default function DailyCard({ date, events }) {
       <div className={styles.DailyCard}>
         <div className={styles.eventCard}>
           {
-            cellList.map((event) => {
+            cellList.map((event, idx) => {
               return (
-                <EventCell event={event} />
+                <EventCell key={idx} event={event} />
               );
             })
           }

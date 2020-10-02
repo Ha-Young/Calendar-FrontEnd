@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ROUTER } from '../../router';
 import { connect } from 'react-redux';
 import styles from './HeaderContainer.module.css';
 
@@ -19,7 +20,7 @@ function HeaderContainer({ onChange, dateInfo }) {
       <nav>
         <div>
           <Link
-            to='/event/new'
+            to={ROUTER.EVENT_NEW}
             className={styles.addButton}
           >
             New event

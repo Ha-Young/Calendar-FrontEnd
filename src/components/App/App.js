@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { ROUTER } from '../../router';
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
@@ -15,17 +16,17 @@ function App() {
   return (
     <div className={styles.App}>
       <Switch>
-        <Route path='/calendar' exact>
+        <Route path={ROUTER.CALENDAR} exact>
           <HeaderContainer />
           <CalendarContainer />
         </Route>
-        <Route path='/event/new'>
+        <Route path={ROUTER.EVENT_NEW}>
           <NewEventContainer />
         </Route>
-        <Route path="/event/:eventId">
+        <Route path={ROUTER.EVENT_ID}>
           <UpdateEventContainer />
         </Route>
-        <Redirect to='/calendar' />
+        <Redirect to={ROUTER.CALENDAR} />
       </Switch>
     </div>
   );

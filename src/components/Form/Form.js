@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { ROUTER } from '../../router';
 import styles from './Form.module.css';
 
 export default function Form({ onSubmit, target, text }) {
@@ -18,7 +19,7 @@ export default function Form({ onSubmit, target, text }) {
       inputValue.endTime = '24:00';
     }
     onSubmit(inputValue);
-    history.push('/calendar');
+    history.push(ROUTER.CALENDAR);
   }
 
   function handleChange(e) {
@@ -31,7 +32,7 @@ export default function Form({ onSubmit, target, text }) {
 
   return (
     <>
-      <Link to='/calendar' className={styles.backButton}>Back</Link>
+      <Link to={ROUTER.CALENDAR} className={styles.backButton}>Back</Link>
       <form onSubmit={handleFormSubmit} className={styles.Form}>
         <label>
           <input name='title' type='text' placeholder='Title' value={inputValue.title} onChange={handleChange} />
