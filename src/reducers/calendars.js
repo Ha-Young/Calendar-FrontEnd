@@ -2,10 +2,13 @@ import { addDays, subDays } from 'date-fns';
 import { PREV_PAGE, NEXT_PAGE, SET_WEEKLY_CALENDAR, SET_DAILY_CALENDAR } from '../constants/actionTypes';
 import { now } from '../utils/date';
 
+const ONE_DAY = 1;
+const ONE_WEEK = 7;
+
 const initialState = {
   currentType: {
     isDaily: true,
-    point: 1,
+    term: ONE_DAY,
   },
   date: now
 };
@@ -13,16 +16,15 @@ const initialState = {
 const changeCalendarState = (state = initialState, action) => {
   switch (action.type) {
     case PREV_PAGE: {
-      console.log(state.date);
       return {
         ...state,
-        date: subDays(state.date, state.currentType.point)
+        date: subDays(state.date, state.currentType.term)
       };
     }
     case NEXT_PAGE: {
       return {
         ...state,
-        date: addDays(state.date, state.currentType.point)
+        date: addDays(state.date, state.currentType.term)
       };
     }
     case SET_WEEKLY_CALENDAR: {
@@ -30,7 +32,7 @@ const changeCalendarState = (state = initialState, action) => {
         ...state,
         currentType: {
           isDaily: false,
-          point: 7,
+          term: ONE_WEEK,
         }
       };
     }
@@ -39,7 +41,7 @@ const changeCalendarState = (state = initialState, action) => {
         ...state,
         currentType: {
           isDaily: true,
-          point: 1,
+          term: ONE_DAY,
         }
       };
     }

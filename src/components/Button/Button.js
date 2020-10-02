@@ -6,7 +6,7 @@ const ButtonWrapper = styled.div`
   margin: 1rem;
 `;
 
-export default function Button({ children, onClick }) { // 네이밍 다시하기
+export default function Button({ children, onClick }) {
   return (
     <ButtonWrapper>
       <div onClick={onClick}>{children}</div>

@@ -16,7 +16,12 @@ const HeaderWrapper = styled.div`
 `;
 
 // TODO: Create your own header.
-export default function Header({ clickPrevButton, clickNextButton, setWeeklyTheme, setDailyTheme }) { // 적절하지 못한 변수명.. 그리고 재 사용하게 빼기
+export default function Header({
+  clickPrevButton,
+  clickNextButton,
+  setWeeklyTheme,
+  setDailyTheme
+}) {
   return (
     <HeaderWrapper>
       <header>
