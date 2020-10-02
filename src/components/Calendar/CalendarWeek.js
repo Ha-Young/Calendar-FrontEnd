@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 export default function CalendarWeek ({ isHead, dates, type }) {
   const [ today, setToday ] = useState(new Date().getDate());
 
-  useEffect (()=>{
+  useEffect (() => {
     if (today !== new Date().getDate()) setToday(new Date().getDate());
   }, [today]);
 

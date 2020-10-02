@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import ScheduleHead from './ScheduleHead';
 import ScheduleBody from './ScheduleBody';
