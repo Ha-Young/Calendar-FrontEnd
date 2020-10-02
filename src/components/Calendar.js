@@ -60,7 +60,7 @@ export default function Calendar({
 }) {
   return (
     <Container>
-      <EventList events={eventData} />
+      <EventList events={eventData}/>
       <section>
         <ControlBar
           onToggle={toggleWeeklyAndDaily}
@@ -76,7 +76,7 @@ export default function Calendar({
               eventData={eventData}
             />
           :
-            <DateBox date={currentDate} eventData={eventData} />
+            <DateBox date={currentDate} eventData={eventData}/>
         }
       </section>
     </Container>
