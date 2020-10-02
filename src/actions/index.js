@@ -1,5 +1,5 @@
 import * as types from '../constants';
-import { createAction } from '@reduxjs/toolkit'
+import { createAction } from '@reduxjs/toolkit';
 
 export const setUser = createAction(types.SET_USER);
 
