@@ -32,3 +32,17 @@ export const decrementDateAction = (date) => {
     date
   };
 };
+
+export const incrementWeekAction = (week) => {
+  return {
+    type: types.INCREMENT_WEEK,
+    week
+  };
+};
+
+export const decrementWeekAction = (week) => {
+  return {
+    type: types.DECREMENT_WEEK,
+    week
+  };
+};

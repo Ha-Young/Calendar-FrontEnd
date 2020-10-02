@@ -1,4 +1,4 @@
-import { format, addDays, startOfWeek } from 'date-fns';
+import { format, addDays, addWeeks, startOfWeek } from 'date-fns';
 import {
   UPDATE_TIMESPAN,
   INCREMENT_DATE,
@@ -11,7 +11,7 @@ const initialState = {
   timespan: '',
   date: format(new Date(), 'yyyy-MM-dd'),
   dateCounter: 0,
-  week: getWeek(),
+  week: getWeek(new Date()),
   weekCounter: 0
 }
 
@@ -23,34 +23,40 @@ export default (state = initialState, action) => {
         timespan: action.timespan
       };
     case INCREMENT_DATE:
-      const addDate = addDays(new Date(), state.dateCounter + 1);
+      const dateIncremented = addDays(new Date(), state.dateCounter + 1);
       return {
         ...state,
-        date: format(addDate, 'yyyy-MM-dd'),
+        date: format(dateIncremented, 'yyyy-MM-dd'),
         dateCounter: state.dateCounter + 1
       };
     case DECREMENT_DATE:
-      const subDate = addDays(new Date(), state.dateCounter - 1);
+      const dateDecremented = addDays(new Date(), state.dateCounter - 1);
       return {
         ...state,
-        date: format(subDate, 'yyyy-MM-dd'),
+        date: format(dateDecremented, 'yyyy-MM-dd'),
         dateCounter: state.dateCounter - 1
       };
     case INCREMENT_WEEK:
+      const weekIncremented = getWeek(addWeeks(new Date(), state.weekCounter + 1));
       return {
-        // TODO
+        ...state,
+        week: weekIncremented,
+        weekCounter: state.weekCounter + 1
       };
     case DECREMENT_WEEK:
+      const weekDecremented = getWeek(addWeeks(new Date(), state.weekCounter - 1));
       return {
-        // TODO
+        ...state,
+        week: weekDecremented,
+        weekCounter: state.weekCounter - 1
       };
     default:
       return state;
   }
 };
 
-function getWeek () {
-  const monday = startOfWeek(new Date(), {weekStartsOn: 1});
+function getWeek (date) {
+  const monday = startOfWeek(date, {weekStartsOn: 1});
   const week = [];
 
   for (let i = 0; i < 7; i++) {

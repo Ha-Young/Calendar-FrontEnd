@@ -8,7 +8,9 @@ import {
   receiveSchedules,
   setTimespanAction,
   incrementDateAction,
-  decrementDateAction } from '../../actions';
+  decrementDateAction,
+  incrementWeekAction,
+  decrementWeekAction } from '../../actions';
 import renderSchedules from '../../utils/renderSchedules';
 import * as Styled from '../../components/styled';
 
@@ -114,10 +116,10 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(decrementDateAction(date));
     },
     incrementWeek (week) {
-      // TODO
+      dispatch(incrementWeekAction(week));
     },
     decrementWeek (week) {
-      // TODO
+      dispatch(decrementWeekAction(week));
     }
   };
 };
