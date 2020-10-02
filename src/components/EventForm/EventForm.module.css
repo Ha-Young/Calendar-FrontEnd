@@ -1,0 +1,55 @@
+.EventForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 800px;
+  height: 600px;
+  margin-top: 50px;
+  background-color: rgba(218, 250, 218, 0.7);
+  border-radius: 10px;
+}
+
+.EventForm label {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  height: 50px;
+}
+
+.EventForm label div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.time {
+  display: flex;
+  flex-direction: row;
+}
+
+.EventForm input {
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.submitButton {
+  margin-top: 50px;
+  margin-left: 650px;
+  width: 10%;
+  height: 40px;
+  border-radius: 3px;
+  background-color: rgba(218, 250, 218, 1);
+}
+
+.submitButton:hover {
+  margin-top: 50px;
+  margin-left: 650px;
+  width: 10%;
+
+  border-radius: 3px;
+  background-color: green;
+  color: white;
+}
