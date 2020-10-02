@@ -1,6 +1,4 @@
 export const CHANGE_DATE_UNIT = "CHANGE_DATE_UNIT";
 export const INCREASE_DATE = "INCREASE_DATE";
 export const DECREASE_DATE = "DECREASE_DATE";
-export const ADD_EVENT = "ADD_EVENT";
 export const UPDATE_EVENT = "UPDATE_EVENT";
-export const DELETE_EVENT = "DELETE_EVENT";

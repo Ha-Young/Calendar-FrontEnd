@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { increaseDate, decreaseDate, addEvent } from "../../actions/index";
+import { increaseDate, decreaseDate, updateEvent } from "../../actions/index";
 import { INCREASE_DATE, DECREASE_DATE } from "../../constants/actionTypes";
 import { receiveEventData } from "../../utils/api";
 import NavigationButton from "../../components/Button/NavigationButton";
@@ -9,18 +9,16 @@ import UnitSelectorContainer from "../UnitSelectorContainer/UnitSelectorContaine
 import EventCreationButton from "../../components/Button/EventCreationButton";
 import styles from "./HeaderContainer.module.scss";
 
-function HeaderContainer({ dateUnit, currentDate, onDateChange, onEventAdd }) {
+function HeaderContainer({ dateUnit, currentDate, onDateChange, onEventChange }) {
   useEffect(() => {
     try {
       (async () => {
-        const eventData = await receiveEventData();
-        console.log(eventData);
-        if (eventData) onEventAdd(Object.values(eventData));
+        await receiveEventData(onEventChange);
       })();
     } catch (error) {
       console.error(error);
     }
-  }, [onEventAdd]);
+  }, [onEventChange]);
 
   const handleNavigationClick = (id) => {
     const degree = dateUnit === "일" ? 1 : 7;
@@ -62,8 +60,8 @@ function mapDispatchToProps(dispatch) {
         dispatch(decreaseDate(degree));
       }
     },
-    onEventAdd(eventInfo) {
-      dispatch(addEvent(eventInfo));
+    onEventChange(eventInfo) {
+      dispatch(updateEvent(eventInfo));
     },
   };
 }

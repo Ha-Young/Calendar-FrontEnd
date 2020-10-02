@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import styles from "./EventPageCotainer.module.scss";
 import EventCreationPage from "../../components/EventPage/EventCreationPage";
 import EventDetailPage from "../../components/EventPage/EventDetailPage";
-import { addEvent, deleteEvent, updateEvent } from "../../actions/index";
+import { updateEvent } from "../../actions/index";
 import {
   createEventData,
   updateEventData,
   removeEventData,
 } from "../../utils/api";
 
-function EventPageCotainer({
-  events,
-  onEventAdd,
-  onEventUpdate,
-  onEventDelete,
-}) {
+function EventPageCotainer({ events, onEventChange }) {
   const { eventId } = useParams();
   const history = useHistory();
 
@@ -26,10 +21,8 @@ function EventPageCotainer({
   )[0];
 
   const handleEventCreate = async (eventInfo) => {
-    onEventAdd(eventInfo);
-
     try {
-      await createEventData(eventInfo);
+      await createEventData(onEventChange, eventInfo);
     } catch (error) {
       console.error(error);
     }
@@ -38,10 +31,8 @@ function EventPageCotainer({
   };
 
   const handleEventUpdate = async (eventInfo) => {
-    onEventUpdate(eventInfo);
-
     try {
-      await updateEventData(eventInfo);
+      await updateEventData(onEventChange, eventInfo);
     } catch (error) {
       console.error(error);
     }
@@ -50,10 +41,8 @@ function EventPageCotainer({
   };
 
   const handleEventDelete = async (eventId) => {
-    onEventDelete(eventId);
-
     try {
-      await removeEventData(eventId);
+      await removeEventData(onEventChange, eventId);
     } catch (error) {
       console.error(error);
     }
@@ -85,7 +74,6 @@ function EventPageCotainer({
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     events: state.events,
   };
@@ -93,14 +81,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onEventAdd(eventInfo) {
-      dispatch(addEvent(eventInfo));
-    },
-    onEventUpdate(eventInfo) {
+    onEventChange(eventInfo) {
       dispatch(updateEvent(eventInfo));
-    },
-    onEventDelete(eventInfo) {
-      dispatch(deleteEvent(eventInfo));
     },
   };
 }

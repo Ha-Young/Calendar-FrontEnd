@@ -1,37 +1,50 @@
-// TODO: You can modify, add, remove as you need.
 import firebase from "./firebase";
 
-export async function createEventData(eventInfo) {
-  const database = firebase.database();
-  const newEventKey = eventInfo.eventId;
-
-  return database.ref("events/" + newEventKey).set(eventInfo);
-}
-
-export async function receiveEventData() {
+export async function createEventData(dispatch, eventInfo) {
   const database = firebase.database();
   const dataRef = database.ref("events/");
-  let eventData;
+  const newEventKey = eventInfo.eventId;
+
+  await database.ref("events/" + newEventKey).set(eventInfo);
 
   await dataRef.once("value", function (snapshot) {
-    eventData = snapshot.val();
+    const data = snapshot.val();
+    dispatch(Object.values(data));
   });
-
-  return eventData;
 }
 
-export async function updateEventData(eventInfo) {
+export async function updateEventData(dispatch, eventInfo) {
   const database = firebase.database();
+  const dataRef = database.ref("events/");
   const eventKey = eventInfo.eventId;
   const updates = {};
 
   updates[`events/${eventKey}`] = eventInfo;
+  await database.ref().update(updates);
 
-  return database.ref().update(updates);
+  await dataRef.once("value", function (snapshot) {
+    const data = snapshot.val();
+    dispatch(Object.values(data));
+  });
 }
 
-export async function removeEventData(eventId) {
+export async function removeEventData(dispatch, eventId) {
   const database = firebase.database();
   const dataRef = database.ref("events/" + eventId);
-  dataRef.remove();
+  await dataRef.remove();
+
+  await dataRef.once("value", function (snapshot) {
+    const data = snapshot.val();
+    dispatch(Object.values(data));
+  });
+}
+
+export async function receiveEventData(dispatch) {
+  const database = firebase.database();
+  const dataRef = database.ref("events/");
+
+  await dataRef.once("value", function (snapshot) {
+    const data = snapshot.val();
+    dispatch(Object.values(data));
+  });
 }

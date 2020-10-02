@@ -15,17 +15,7 @@ export const decreaseDate = (degree) => ({
   degree,
 });
 
-export const addEvent = (event) => ({
-  type: types.ADD_EVENT,
-  event,
-});
-
 export const updateEvent = (event) => ({
   type: types.UPDATE_EVENT,
   event,
-});
-
-export const deleteEvent = (eventId) => ({
-  type: types.DELETE_EVENT,
-  eventId,
 });
