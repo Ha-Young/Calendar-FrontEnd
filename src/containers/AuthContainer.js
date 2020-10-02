@@ -4,7 +4,7 @@ import Auth from "../components/Auth/Auth";
 import { userLogin } from "../actions";
 
 function AuthContainer ({
-  logInState,
+  isLoggedIn,
   userName,
   userEmail,
   userPhotoUrl,
@@ -12,7 +12,7 @@ function AuthContainer ({
 }) {
   return (
     <Auth
-      logInState={logInState}
+      logInState={isLoggedIn}
       userName={userName}
       userEmail={userEmail}
       userPhotoUrl={userPhotoUrl}
@@ -23,7 +23,7 @@ function AuthContainer ({
 
 const mapStateToProps = state => {
   return {
-    logInState: state.logIn.isLogIn,
+    isLoggedIn: state.logIn.isLoggedIn,
     userName: state.logIn.name,
     userEmail: state.logIn.email,
     userPhotoUrl: state.logIn.photo,
