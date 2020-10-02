@@ -40,14 +40,15 @@ function EventPageCotainer({ events, onEventChange }) {
           <EventCreationPage onEventChange={handleEventChange} />
         </>
       ) : (
-        currentEventInfo &&
-        <>
-          <h1>이벤트 상세보기</h1>
-          <EventDetailPage
-            eventInfo={currentEventInfo}
-            onEventChange={handleEventChange}
-          />
-        </>
+        currentEventInfo && (
+          <>
+            <h1>이벤트 상세보기</h1>
+            <EventDetailPage
+              eventInfo={currentEventInfo}
+              onEventChange={handleEventChange}
+            />
+          </>
+        )
       )}
     </div>
   );
