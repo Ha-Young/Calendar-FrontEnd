@@ -66,6 +66,8 @@ function AppContainer({
 
     saveNewEvent(newEventTitle, newEventDescription, newEventDate, newEventStartTime, newEventFinishTime);
 
+    alert("새 일정을 추가했습니다.");
+
     setNewEventTitle("");
     setNewEventDescription("");
     setNewEventDate("");
