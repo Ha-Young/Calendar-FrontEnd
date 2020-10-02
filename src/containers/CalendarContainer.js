@@ -2,7 +2,7 @@ import Calendar from '../components/Calendar/Calendar';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({
-  dates: state.dates.handleMonthlyDates
+  dates: state.dates.monthlyDates
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -16,10 +16,10 @@ const HourlySchedule = styled.div`
   border: 3px solid purple;
 `;
 
-
-export default function ScheduleList ({ eventInfo }) {
+export default function ScheduleList ({ eventInfo, today, startTime, endTime }) {
   let path = useRouteMatch().path
-
+  
+  console.log(eventInfo, today, startTime, endTime, 'prop');
   function renderByType () {
     let scheduleTable;
     if (path === '/weekly') {
@@ -41,10 +41,15 @@ export default function ScheduleList ({ eventInfo }) {
     }
     
     scheduleTable = [];
-      for (let i = 0; i < 26; i++) {
-        scheduleTable[i] = <Link to={`/event/${i}`}><HourlySchedule key={i} /></Link>
-      }
-      return scheduleTable;
+    for (let i = 0; i < 26; i++) {
+      
+      scheduleTable[i] = (
+        <Link to={`/event/${i}`}>
+          <div key={i} style={{border: '3px solid gold', fontSize: '30px', height: '60px'}}></div>
+        </Link>
+      );
+    }
+    return scheduleTable;
   }
   
   return (

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import getMonthlyDates, { getWeeklyDates } from '../utils/date';
 import { CHANGE_MONTH, CHANGE_WEEK, CHANGE_DAY } from '../constants/actionTypes';
 
-const handleMonthlyDates = (state = getMonthlyDates(), action) => {
+const monthlyDates = (state = getMonthlyDates(), action) => {
   switch (action.type) {
     case CHANGE_MONTH:
       return {
@@ -20,7 +20,7 @@ const handleMonthlyDates = (state = getMonthlyDates(), action) => {
   }
 };
 
-const handleWeeklyDates = (state = getWeeklyDates(), action) => {
+const weeklyDates = (state = getWeeklyDates(), action) => {
   switch (action.type) {
     case CHANGE_WEEK:
       return {
@@ -39,6 +39,6 @@ const handleWeeklyDates = (state = getWeeklyDates(), action) => {
 };
 
 export default combineReducers({
-  handleMonthlyDates,
-  handleWeeklyDates
+  monthlyDates,
+  weeklyDates
 });

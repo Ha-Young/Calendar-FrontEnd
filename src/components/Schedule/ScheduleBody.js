@@ -30,7 +30,7 @@ export default function ScheduleBody ({ type }) {
         </Wrapper>
       );    
     }
-
+    
     return (
       <Wrapper ref={scrollRef} style={{gridTemplateColumns: '15% 1fr'}}>
         <ScheduleTimeline />

@@ -10,8 +10,9 @@ const mapDispatchToProps = (dispatch) => {
       const actionType = e.target.eventChange.value;
       const eventInfo = {
         id: {
-          mainId: e.target.title.value,
+          mainId: e.target.eventStart.value.toString().substring(6,8), 
           subId: e.target.eventStart.value,
+          title: e.target.title.value,
         },
         detail: {
           eventTitle: e.target.title.value,
@@ -26,4 +27,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(null, mapDispatchToProps)(CreateEvent);
-

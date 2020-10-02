@@ -2,13 +2,12 @@ import Schedule from '../components/Schedule/Schedule';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({
-  dates: state.dates.handleWeeklyDates
+  dates: state.dates.weeklyDates
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     updateCalendar: function (type, change) {
-      console.log(type, change, 'dispatch')
       dispatch({type, change});
     }
   };
