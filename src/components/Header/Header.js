@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 const Head = styled.div`
   border: 3px solid blue;
-  display: grid;
-  grid-template-columns: 20% 1fr;
+  padding-left: 270px;
 `;
 
 const MainTitle = styled.div`
@@ -15,7 +14,6 @@ const MainTitle = styled.div`
 export default function Header ({ thisMonth }) {
   return (
     <Head>
-      <div></div>
       <MainTitle>{thisMonth}</MainTitle>
     </Head>
   );

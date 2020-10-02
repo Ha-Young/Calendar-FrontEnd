@@ -21,10 +21,9 @@ export default function ScheduleBody ({ type }) {
   function renderByType () {
     if (type === 'weekly') {
       return (
-        <Wrapper ref={scrollRef} style={{gridTemplateColumns: '8% 1fr 6.8%'}}>
+        <Wrapper ref={scrollRef} style={{gridTemplateColumns: '8% 1fr',marginRight: '75px'}}>
           <ScheduleTimeline/>
           <ScheduleListContainer/>
-          <div></div>
         </Wrapper>
       );
     }
