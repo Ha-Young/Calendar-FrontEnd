@@ -14,7 +14,9 @@ export function saveNewEvent(
     || !start
     || !finish
   ) {
-    throw new Error("All inputs are required.")
+    alert("All inputs are required.");
+
+    return;
   }
 
   const dateArray = date.split("-");
