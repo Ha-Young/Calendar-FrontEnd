@@ -7,8 +7,11 @@ import * as dayjs from "dayjs";
 export default function Day({
   date,
   dayOfWeek,
+  eventData,
 }) {
   const dayToPrint = dayjs(date).format("D");
+  const dayArray = date.slice(0, 10).split("-");
+  const thisDayData = eventData[dayArray[0]][dayArray[1]][dayArray[2]];
 
   return (
     <div className={styles.Day}>

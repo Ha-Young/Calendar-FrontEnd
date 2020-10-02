@@ -12,13 +12,15 @@ import {
   SHOW_PREVIOUS_WEEK,
   SHOW_NEXT_WEEK,
   FETCH_EVENTS,
+  SHOW_EVENT_DETAILS,
 } from "../constants";
 
 const initialState = {
   viewMode: VIEWMODE_DAILY,
   isLoggedIn: false,
   displayDate: dayjs().format(),
-  eventData: {},
+  eventData: null,
+  eventDetails: null,
 };
 
 const viewMode = (state = initialState.viewMode, action) => {
@@ -80,9 +82,19 @@ const eventData = (state = initialState.eventData, action) => {
   }
 }
 
+const eventDetails = (state = initialState.eventDetails, action) => {
+  switch (action.type) {
+    case SHOW_EVENT_DETAILS:
+      return state = action.details;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   viewMode,
   isLoggedIn,
   displayDate,
   eventData,
+  eventDetails,
 });

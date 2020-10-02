@@ -62,3 +62,5 @@ export const TIME_INDEX = {
   "오후 11시": "23",
   "오후 11시59분": "24"
 };
+
+export const SHOW_EVENT_DETAILS = "SHOW_EVENT_DETAILS";

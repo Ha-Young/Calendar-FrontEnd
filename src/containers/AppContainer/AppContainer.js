@@ -15,6 +15,7 @@ import {
   showPreviousWeek,
   showNextWeek,
   fetchEvents,
+  showEventDetails,
 } from "../../actions";
 import Form from "../../components/Form/Form";
 import { auth, database, provider } from "../../utils/firebase";
@@ -46,7 +47,7 @@ function AppContainer({
   useEffect(() => {
     if (!auth.currentUser) return;
     onLoad();
-  }, []);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
@@ -194,6 +195,9 @@ const mapDispatchToProps = dispatch => {
     onNextWeekClick() {
       dispatch(showNextWeek());
     },
+    onEventClick() {
+      dispatch(showEventDetails());
+    }
   };
 };
 
@@ -203,6 +207,7 @@ const mapStateToProps = state => {
     isLoggedIn: state.isLoggedIn,
     displayDate: state.displayDate,
     eventData: state.eventData,
+    eventDetails: state.eventDetails,
   };
 };
 

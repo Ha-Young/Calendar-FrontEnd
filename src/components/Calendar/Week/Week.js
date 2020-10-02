@@ -2,7 +2,11 @@ import React from "react";
 import Day from "../Day/Day";
 import * as dayjs from "dayjs";
 
-export default function Week({ date, dayOfWeek }) {
+export default function Week({
+  date,
+  dayOfWeek,
+  eventData,
+}) {
   const days = [date];
   let decrementer = dayOfWeek;
   let incrementer = dayOfWeek;
@@ -34,6 +38,7 @@ export default function Week({ date, dayOfWeek }) {
               key={day}
               date={day}
               dayOfWeek={index}
+              eventData={eventData}
             />
           );
         })
