@@ -72,7 +72,7 @@ export default function DateBox({ date, eventData }) {
   const currentDate = moment(combineDate(date)).format('YYYY-MM-DD');
   const currentDateEventList = filterEvent(currentDate, eventData);
 
-  const hours = Array(24).fill(null).map((_, hour) => {
+  const hours24 = Array(24).fill(null).map((_, hour) => {
     const events = currentDateEventList.filter((event) => {
       return isInEvent(hour, event.startTime, event.endTime);
     });
@@ -87,8 +87,14 @@ export default function DateBox({ date, eventData }) {
     <Container>
       <h3>{date.date}일</h3>
       {
-        hours.map((hourData) => {
-          return <HourBox key={hourData.hour} data={hourData}/>;
+        hours24.map((hourData) => {
+          return (
+            <HourBox
+              key={hourData.hour}
+              hour={hourData.hour}
+              events={hourData.events}
+            />
+          );
         })
       }
     </Container>

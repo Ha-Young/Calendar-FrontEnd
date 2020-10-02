@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { nanoid } from 'nanoid';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format, getHours } from 'date-fns';
