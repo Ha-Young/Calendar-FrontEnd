@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 
 import './EventsField.scss';
-import DailyView from '../DailyView/DailyView';
+import DailyColumn from '../DailyColumn/DailyColumn';
 
 export default function EventsField({ viewMode, date }) {
   const [dates, setDates] = useState([]);
@@ -24,8 +24,8 @@ export default function EventsField({ viewMode, date }) {
 
   return (
     <div className='events-field'>
-      {dates.map((day, idx) => (
-        <DailyView key={idx} date={day} events={[]} />
+      {dates.map((date, idx) => (
+        <DailyColumn key={idx} date={date} />
       ))}
     </div>
   );

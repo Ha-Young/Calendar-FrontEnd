@@ -1,14 +1,10 @@
-import moment from 'moment';
-
 import { CELL_HEIGHT } from '../constants/calendar.constants';
 
 const getEventBlockStyle = (start, end) => {
-  const startHour = moment(start).hour();
-  const endHour = moment(end).hour();
-  const duration = endHour - startHour;
+  const duration = end - start;
 
   return {
-    top: `${CELL_HEIGHT * startHour}px`,
+    top: `${CELL_HEIGHT * start}px`,
     height: `${CELL_HEIGHT * duration}px`,
     zIndex: `${start + 1}`,
   };

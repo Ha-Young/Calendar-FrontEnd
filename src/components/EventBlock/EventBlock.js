@@ -5,12 +5,12 @@ import getEventBlockStyle from '../../utils/getEventBlockStyle';
 
 export default function EventBlock({
   viewMode,
-  event: { title, description, start, end },
+  content: { title, description, start, end },
 }) {
   return (
     <div
       className={`${viewMode} event-block`}
-      style={getEventBlockStyle(start, end)}
+      style={getEventBlockStyle(start.slice(-2), end.slice(-2))}
     >
       <div className='title'>{title}</div>
       <div className='description'>{description}</div>
