@@ -65,7 +65,21 @@ function AppContainer({
   function submitNewEventHandler(ev) {
     ev.preventDefault();
 
+    if (
+      !newEventTitle
+      || !newEventDescription
+      || !newEventDate
+      || !newEventStartTime
+      || !newEventFinishTime
+    ) {
+      alert("양식을 모두 채워주세요.");
+
+      return;
+    }
+
     saveNewEvent(newEventTitle, newEventDescription, newEventDate, newEventStartTime, newEventFinishTime);
+
+    alert("새 일정을 추가했습니다.");
 
     history.push("/calendar");
 

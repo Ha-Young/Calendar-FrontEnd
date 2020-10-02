@@ -8,17 +8,6 @@ export function saveNewEvent(
   start,
   finish,
 ) {
-  if (!title
-    || !description
-    || !date
-    || !start
-    || !finish
-  ) {
-    alert("양식을 모두 채워주세요.");
-
-    return;
-  }
-
   const dateArray = date.split("-");
   const year = dateArray[0];
   const month = dateArray[1];
@@ -32,6 +21,4 @@ export function saveNewEvent(
     startTime,
     finishTime,
   });
-
-  alert("새 일정을 추가했습니다.");
 }
