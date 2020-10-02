@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import * as dayjs from "dayjs";
 import styles from "./AppHeader.module.css";
-import { VIEWMODE_DAILY, VIEWMODE_WEEKLY, DAILY, WEEKLY } from "../../constants";
+import { VIEWMODE_DAILY, DAILY, WEEKLY } from "../../constants";
 
 export default function AppHeader({
   viewMode,
@@ -45,7 +45,7 @@ export default function AppHeader({
           <button
             type="text"
             className={styles.next}
-            onClick={viewMode === VIEWMODE_DAILY ? onNextDayClick : onPreviousWeekClick}
+            onClick={viewMode === VIEWMODE_DAILY ? onNextDayClick : onNextWeekClick}
           >
             다음
           </button>
