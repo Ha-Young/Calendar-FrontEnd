@@ -38,7 +38,7 @@ export default function Weekly ({ week, scheduleDatas, renderSchedules, updateTi
       if (scheduleDatas[scheduleDate]) {
         return (
           <div className='daily' key={date}>
-            {renderSchedules(scheduleDatas, scheduleDate)}
+            {renderSchedules(scheduleDatas, scheduleDate, true)}
           </div>
         );
       } else {

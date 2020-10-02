@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function renderSchedules (scheduleDatas, date) {
+export default function renderSchedules (scheduleDatas, date, isWeekly) {
   const schedules = [];
 
   const datas = scheduleDatas[date];
@@ -21,14 +21,19 @@ export default function renderSchedules (scheduleDatas, date) {
       backgroundColor: schedule.color || '#cbf542'
     };
 
+    function getMousePosition (e) {
+      console.log(e.clientX);
+      console.log(e.clientY);
+    }
+
     const element =
-      <div className='schedule' key={`schedule-${schedule.name}`} style={style}>
-        <Link to={`event/${key}`}>
-          <span className='scheduleName'>{schedule.name}</span>
-          <br/>
-          <span className='scheduleDesc'>{schedule.desc}</span>
-        </Link>
-      </div>;
+      <Link to={`/main/${isWeekly ? 'weekly' : 'daily'}/${key}`}  onClick={getMousePosition}>
+        <div className='schedule' style={style} key={`schedule-${schedule.name}`}>
+            <span className='scheduleName'>{schedule.name}</span>
+            <br/>
+            <span className='scheduleDesc'>{schedule.desc}</span>
+        </div>
+      </Link>
 
     schedules.push(element);
 

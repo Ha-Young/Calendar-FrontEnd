@@ -42,6 +42,7 @@ export const CalendarContainer = styled.div`
   width: 80%;
   max-width: 800px;
   margin: 10px auto;
+  margin-bottom: 100px;
 `;
 
 export const Daily = styled.div`
@@ -55,6 +56,7 @@ export const Daily = styled.div`
     position: absolute;
     width: 100%;
     z-index: 500;
+    margin-bottom: 100px;
   }
   .timeline {
     position: relative;
@@ -121,6 +123,7 @@ export const Weekly = styled.div`
     position: absolute;
     width: 100%;
     z-index: 500;
+    margin-bottom: 100px;
   }
   .timeline {
     position: relative;
@@ -157,7 +160,6 @@ export const Weekly = styled.div`
 
   .daily {
     flex: 1;
-    height: 100%;
     position: relative;
   }
 `;
@@ -198,6 +200,28 @@ export const Schedule = styled.div`
       padding: 10px;
     }
   }
+`;
+
+export const Modal = styled.div`
+  background-color: red;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  min-height: 500px;
+`;
+
+export const Overlay = styled.div`
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.8;
+
 `;
 
 export const Header = styled.div`

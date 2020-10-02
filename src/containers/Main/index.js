@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Daily from '../../components/Daily';
 import Weekly from '../../components/Weekly';
+import Modal from '../../components/Modal';
 import { schedule } from '../../utils/api';
 import {
   receiveSchedules,
@@ -72,7 +73,7 @@ function Main ({
       }
 
       <Styled.CalendarContainer>
-        <Route path='/main/daily'>
+        <Route path='/main/daily/'>
           <Daily
             date={date}
             scheduleDatas={schedules.byId}
@@ -80,13 +81,16 @@ function Main ({
             updateTimespan={v => setTimespan(v)}
           />
         </Route>
-        <Route path='/main/weekly'>
+        <Route path='/main/weekly/'>
           <Weekly
             week={week}
             scheduleDatas={schedules.byId}
             renderSchedules={renderSchedules}
             updateTimespan={v => setTimespan(v)}
           />
+        </Route>
+        <Route path='/main/:timespan/:scheduleId'>
+          <Modal />
         </Route>
       </Styled.CalendarContainer>
     </Styled.Main>);
