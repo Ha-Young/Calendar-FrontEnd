@@ -28,7 +28,7 @@ export default function getMonthlyDates (changeMonth) {
     if (date === thisMonthLastDate && eachWeek.length !== 7) {
       while (eachWeek.length < 7) {
         eachWeek.push(nextMonthFirstDate);
-        nextMonthFirstDate++
+        nextMonthFirstDate++;
       }
     }
 
