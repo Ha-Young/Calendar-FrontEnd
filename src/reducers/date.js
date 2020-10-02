@@ -3,7 +3,6 @@ import getMonthlyDates, { getWeeklyDates } from '../utils/date';
 import { CHANGE_MONTH, CHANGE_WEEK, CHANGE_DAY } from '../constants/actionTypes';
 
 const handleMonthlyDates = (state = getMonthlyDates(), action) => {
-  console.log(state, 'month')
   switch (action.type) {
     case CHANGE_MONTH:
       return {
@@ -22,7 +21,6 @@ const handleMonthlyDates = (state = getMonthlyDates(), action) => {
 };
 
 const handleWeeklyDates = (state = getWeeklyDates(), action) => {
-  console.log(state, 'week')
   switch (action.type) {
     case CHANGE_WEEK:
       return {
