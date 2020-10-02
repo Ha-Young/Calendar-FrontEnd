@@ -44,6 +44,8 @@ function AppContainer({
   const history = useHistory();
 
   useEffect(() => {
+    if (!auth.currentUser) return;
+    console.log("loaded")
     onLoad();
   }, []);
 
@@ -166,6 +168,7 @@ const mapDispatchToProps = dispatch => {
       const displayDateRef = database.ref(`${auth.currentUser.uid}/`);
 
       displayDateRef.on("value", function(snapshot) {
+        console.log("data fetched");
         dispatch(fetchEvents(snapshot.val()));
       });
     },
