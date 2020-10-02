@@ -54,7 +54,7 @@ ul {
   padding-left: 0;
 }
 
-button {
+button :global {
   background: transparent;
   cursor: pointer;
   border: none;

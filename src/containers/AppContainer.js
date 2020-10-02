@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { authService } from '../utils/firebase';
-import { App } from '../components/App/App';
+import { authService } from 'utils/firebase';
+import { App } from 'components/App/App';
 import { connect } from 'react-redux';
-import { loggin } from '../action/action';
+import { loggin } from 'action/action';
+import {setCalendarType} from 'action/action';
 
-export const AppContainer = ({ isLoggedIn, setIsLoggedIn }) => {
+export const AppContainer = ({ isLoggedIn, setIsLoggedIn, setCalendarType }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isNewAccount, setIsNewAccount] = useState(false);
@@ -90,7 +91,7 @@ export const AppContainer = ({ isLoggedIn, setIsLoggedIn }) => {
           <>
             <div>{email}</div>
             <button onClick={Logout}>Logout</button>
-            <App />
+            <App onCalendarTypeChange={setCalendarType} />
           </>
       }
     </>
@@ -100,13 +101,15 @@ export const AppContainer = ({ isLoggedIn, setIsLoggedIn }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    isLoggedIn: state.isLogin
+    isLoggedIn: state.isLogin,
+    calendarType: state.calendarType
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setIsLoggedIn: (user, isLoggedIn) => { dispatch(loggin(user, isLoggedIn)) }
+    setIsLoggedIn: (user, isLoggedIn) => { dispatch(loggin(user, isLoggedIn)) },
+    setCalendarType: (calendarType) => { dispatch(setCalendarType(calendarType))}
   };
 };
 

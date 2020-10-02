@@ -3,9 +3,9 @@ import {
   GET_EVENTS,
   REMOVE_EVENT,
   SET_DAY,
-  SET_DAYS,
   SET_MONTH,
-  SET_YEAR
+  SET_YEAR,
+  SET_CALENDAR_TYPE
 } from 'constants/actionTypes';
 
 export const loggin = (user, isLogin) => {
@@ -37,13 +37,6 @@ export const setDay = count => {
   }
 };
 
-export const setDays = counts => {
-  return {
-    type: SET_DAYS,
-    days: counts
-  }
-};
-
 export const setMonth = count => {
   return {
     type: SET_MONTH,
@@ -55,5 +48,12 @@ export const setYear = count => {
   return {
     type: SET_YEAR,
     year: count
+  }
+};
+
+export const setCalendarType = calendarType => {
+  return {
+    type: SET_CALENDAR_TYPE,
+    calendarType: calendarType
   }
 };

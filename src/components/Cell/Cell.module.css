@@ -9,4 +9,11 @@
   width: 100%;
   height: 48px; 
   line-height: 50px;
+  opacity: 0;
+  background-color: gray;
+}
+
+.cell:hover {
+  opacity: 1;
+  transition: 1s ease-in;
 }

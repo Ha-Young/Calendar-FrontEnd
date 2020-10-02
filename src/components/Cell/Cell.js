@@ -8,7 +8,7 @@ const Cell = () => {
   for (let i = 0; i < 24; i++) {
     cells.push(
       <Link to='/events/:eventId'>
-        <div className={styles.cell}>{i}</div>
+        <div className={styles.cell}></div>
       </Link>)
   }
 

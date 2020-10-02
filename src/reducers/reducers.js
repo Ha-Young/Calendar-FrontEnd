@@ -3,30 +3,16 @@ import {
   GET_EVENTS,
   REMOVE_EVENT,
   SET_DAY,
-  SET_DAYS,
   SET_MONTH,
-  SET_YEAR
+  SET_YEAR,
+  SET_CALENDAR_TYPE
 } from '../constants/actionTypes';
 
-import format from 'date-fns/format';
-
-const year = format(new Date(), 'yyyy');
-const month = format(new Date(), 'MM');
-const day = format(new Date(), 'dd');
-
 const initialState = {
-  day: day,
-  days: {
-    mon: day,
-    tue: day,
-    wen: day,
-    thu: day,
-    fri: day,
-    sat: day,
-    sun: day
-  },
-  month: month,
-  year: year
+  calendarType: 'WEEK',
+  day: new Date().getDate(),
+  month: new Date().getMonth(),
+  year: new Date().getFullYear()
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,12 +23,12 @@ const reducer = (state = initialState, action) => {
       return [state.filter(event => event.id !== action.id)];
     case SET_DAY:
       return { ...state, day: action.day }; //val
-    case SET_DAYS:
-      return { ...state, days: action.days }; //obj
     case SET_MONTH:
       return { ...state, month: action.month };//val
     case SET_YEAR:
       return { ...state, year: action.year };//val
+    case SET_CALENDAR_TYPE:
+      return { ...state, calendarType: action.calendarType };//val
     case LOGIN:
       return { ...state, isLogin: action.isLogin, user: action.user };
     default:

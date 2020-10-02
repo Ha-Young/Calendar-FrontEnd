@@ -4,12 +4,12 @@ import React from 'react';
 // For example, what is it? what are benefits?
 import EventContainer from 'containers/EventContainer';
 import CalendarContainer from 'containers/CalendarContainer';
-import Header from '../Header/Header';
+import Header from 'components/Header/Header';
 
-export const App = () => {
+export const App = ({onCalendarTypeChange}) => {
   return (
     <>
-      <Header />
+      <Header onCalendarTypeChange={onCalendarTypeChange} />
       <CalendarContainer />
       <EventContainer />
     </>

@@ -4,33 +4,34 @@ import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import DateChanger from 'components/DateChanger/DateChanger';
 // TODO: Create your own header.
-const Header = () => {
+const Header = ({ onCalendarTypeChange }) => {
   const history = useHistory();
-  const pathName = history.location.pathname;
 
   const onChange = (event) => {
     switch (event.target.value) {
       case 'WEEK':
         history.push('/');
+        onCalendarTypeChange('WEEK');
         break;
       case 'DAY':
         history.push('/day');
+        onCalendarTypeChange('DAY');
         break;
     }
   };
 
   return (
-    <header className={styles.header}>
+    <header>
       <nav>
-        <div className={styles.Selector}>
+        <div className={styles.selector}>
           <select onChange={onChange}>
-            <option value='WEEK'>{pathName === '/' ? 'WEEK' : 'DAY'}</option>
-            <option value='DAY'>{pathName !== '/' ? 'WEEK' : 'DAY'}</option>
+            <option value='WEEK'>WEEK</option>
+            <option value='DAY'>DAY</option>
           </select>
         </div>
-          <Link to='/events/new'>
-            <button className={styles.AddEventButton}>add event</button>
-          </Link>
+        <Link to='/events/new'>
+          <button>add event</button>
+        </Link>
       </nav>
     </header>
   );
