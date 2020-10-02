@@ -1,9 +1,7 @@
 
-//나중에 유즈메모 사용가능할듯
 export default function getMonthlyDates (changeMonth) {
-  //12월 > 1월 갈때, 1월 > 12월 갈때 년도 바뀌는 로직 추가해야함
   if (!changeMonth) changeMonth = 0;
-  const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];  
+  const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const today = new Date();
   const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + changeMonth, 1).getDay();
   const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + changeMonth + 1, 0).getDate();
@@ -14,16 +12,16 @@ export default function getMonthlyDates (changeMonth) {
   let eachWeek = [];
   let isExcuted = false;
   
-  for (let date = 1; date < thisMonthLastDate + 1; date++) {  
+  for (let date = 1; date < thisMonthLastDate + 1; date++) {
     if (thisMonthFirstDay && !isExcuted) {
-      let count = thisMonthFirstDay;  
+      let count = thisMonthFirstDay;
       isExcuted = true;
 
       while (count) {
         eachWeek.push(prevMonthLastDate - count + 1);
         count--;
-      }      
-    }  
+      }
+    }
 
     if (eachWeek.length < 7) eachWeek.push(date);
     
@@ -43,14 +41,13 @@ export default function getMonthlyDates (changeMonth) {
   return {
     today: today.getDate(),
     title: monthes[today.getMonth()],
-    thisMonth: monthes[today.getMonth() + changeMonth], 
+    thisMonth: monthes[today.getMonth() + changeMonth],
     monthlyDates,
   };
 }
 
 export function getWeeklyDates (changeWeek) {
-  //주 바꾸다 달 바뀌면 같이 바뀌는 로직
-  const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];  
+  const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const today = new Date();
   const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
   const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
@@ -61,16 +58,16 @@ export function getWeeklyDates (changeWeek) {
   let eachWeek = [];
   let isExcuted = false;
   
-  for (let date = 1; date < thisMonthLastDate + 1; date++) {  
+  for (let date = 1; date < thisMonthLastDate + 1; date++) {
     if (thisMonthFirstDay && !isExcuted) {
-      let count = thisMonthFirstDay;  
+      let count = thisMonthFirstDay;
       isExcuted = true;
 
       while (count) {
         eachWeek.push(prevMonthLastDate - count + 1);
         count--;
-      }      
-    }  
+      }
+    }
 
     if (eachWeek.length < 7) eachWeek.push(date);
     
