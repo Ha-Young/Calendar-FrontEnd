@@ -52,7 +52,6 @@ export default function AppHeader({
           </button>
           </>
       }
-
       <h2 className={styles.month}>{`${dayjs(displayDate).format("M")}월`}</h2>
       <select className={styles.viewSelector} onChange={onChange}>
         <option value={DAILY}>하루씩 보기</option>
