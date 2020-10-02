@@ -3,11 +3,15 @@ import React from 'react';
 import styles from './CustomTimeInput.module.scss';
 import { TIMELINE_12_SET } from '../../constants/calendar.constants';
 
-export default function CustomTimeInput({ startHandler, endHandler }) {
+export default function CustomTimeInput({ value, startHandler, endHandler }) {
   return (
     <div className={styles.CustomTimeInput}>
       <label>Start</label>
-      <select name='start' onChange={ev => startHandler(ev.target.value)}>
+      <select
+        name='start'
+        value={value.startHour}
+        onChange={ev => startHandler(ev.target.value)}
+      >
         {TIMELINE_12_SET.map((hour, idx) => (
           <option key={idx} value={idx}>
             {hour}
@@ -15,7 +19,11 @@ export default function CustomTimeInput({ startHandler, endHandler }) {
         ))}
       </select>
       <label>End</label>
-      <select name='end' onChange={ev => endHandler(ev.target.value)}>
+      <select
+        name='end'
+        value={value.endHour}
+        onChange={ev => endHandler(ev.target.value)}
+      >
         {TIMELINE_12_SET.map((hour, idx) => (
           <option key={idx} value={idx}>
             {hour}

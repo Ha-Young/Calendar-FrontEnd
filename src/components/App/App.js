@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { setCurrentUser } from '../../redux/user/user.actions';
@@ -30,25 +30,24 @@ const App = ({ currentUser, setCurrentUser }) => {
 
   return (
     <div className={styles.App}>
-      <Header />
-      <Switch>
-        <Route exact path='/'>
-          {currentUser ? <UserProfile /> : <div>당근캘린더</div>}
-        </Route>
-        <Route path='/calendar'>
-          {currentUser ? <Calendar /> : <Redirect to='/signin' />}
-        </Route>
-        <Route path='/events/new'>
-          {currentUser ? (
-            <NewEvent currentUser={currentUser} />
-          ) : (
-            <Redirect to='/signin' />
-          )}
-        </Route>
-        <Route path='/signin'>
-          {currentUser ? <Redirect to='/' /> : <SignInAndSignUp />}
-        </Route>
-      </Switch>
+      {!currentUser ? (
+        <SignInAndSignUp />
+      ) : (
+        <>
+          <Header />
+          <Switch>
+            <Route exact path='/'>
+              <UserProfile user={currentUser} />
+            </Route>
+            <Route path='/calendar'>
+              <Calendar />
+            </Route>
+            <Route path='/events/new'>
+              <NewEvent createdBy={currentUser.uid} />
+            </Route>
+          </Switch>
+        </>
+      )}
     </div>
   );
 };

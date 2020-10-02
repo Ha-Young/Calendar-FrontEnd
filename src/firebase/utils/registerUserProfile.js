@@ -6,6 +6,7 @@ const registerUserProfile = async userAuth => {
   let snapShot = await userRef.once('value');
 
   if (!snapShot.exists()) {
+    console.log(userAuth, '신규등록');
     try {
       const { uid, email, displayName, photoURL } = userAuth;
       const createdAt = moment().format('LLL');

@@ -12,13 +12,13 @@ const Header = ({ currentUser }) => {
       <nav>
         <ul>
           <li>
-            <Link to='/events/new'>NEW</Link>
-          </li>
-          <li>
             <Link to='/'>Home</Link>
           </li>
           <li>
             <Link to='/calendar'>Calendar</Link>
+          </li>
+          <li>
+            <Link to='/events/new'>New Event</Link>
           </li>
           {currentUser ? (
             <li onClick={() => auth.signOut()}>Sign Out</li>

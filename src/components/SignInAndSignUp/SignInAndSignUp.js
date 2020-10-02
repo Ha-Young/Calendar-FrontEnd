@@ -7,7 +7,8 @@ import SignUp from '../../components/SignUp/SignUp';
 export default function SignInAndSignUp() {
   return (
     <>
-      <h2 className={styles.title}>Sign In & Sign Up</h2>
+      <h3 className={styles.calendarName}>CARROT CALENDAR</h3>
+      <h1 className={styles.title}>Sign In & Sign Up</h1>
       <div className={styles.container}>
         <SignIn />
         <SignUp />

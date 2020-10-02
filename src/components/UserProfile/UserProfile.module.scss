@@ -1,9 +1,15 @@
+.UserProfile {
+  h1 {
+    margin-top: 50px;
+  }
+}
+
 .profile {
   height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px auto;
+  margin: 0 auto;
 }
 
 .photo {
@@ -13,5 +19,5 @@
 
 .detail {
   text-align: left;
-  margin: 50px;
+  margin: 0 50px;
 }

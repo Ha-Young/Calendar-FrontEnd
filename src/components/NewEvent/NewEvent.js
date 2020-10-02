@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
 import styles from './NewEvent.module.scss';
@@ -7,9 +8,9 @@ import CustomTimeInput from '../CustomTimeInput/CustomTimeInput';
 import CustomButton from '../CustomButton/CustomButton';
 
 import convertToISOString from '../../utils/convertToISOString';
-import setEventByDate from '../../firebase/utils/setEventByCurrentUser';
+import setNewEvent from '../../firebase/utils/setNewEvent';
 
-export default function NewEvent({ currentUser, initDate, initStartHour }) {
+const NewEvent = ({ createdBy, history, location }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
@@ -18,8 +19,18 @@ export default function NewEvent({ currentUser, initDate, initStartHour }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setDate(convertToISOString.Dates(initDate || moment()));
-  }, [initDate]);
+    if (location.state) {
+      const { initDate, initHour } = location.state;
+      setDate(initDate);
+      setStartHour(initHour);
+      setEndHour(initHour + 1);
+    } else {
+      const now = moment();
+      setDate(convertToISOString.Dates(now));
+      setStartHour(now.hour());
+      setEndHour(now.hour() + 1);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     setError(null);
@@ -33,14 +44,20 @@ export default function NewEvent({ currentUser, initDate, initStartHour }) {
       return;
     }
 
-    const result = await setEventByDate(currentUser.uid, date, {
-      title,
-      description,
-      start: convertToISOString.combine(date, startHour + ''),
-      endHour: convertToISOString.combine(date, endHour + ''),
-    });
+    try {
+      await setNewEvent(createdBy, date, {
+        createdBy,
+        title,
+        description,
+        start: convertToISOString.combine(date, startHour + ''),
+        end: convertToISOString.combine(date, endHour + ''),
+      });
+    } catch (error) {
+      console.warn('New Event Error', error);
+      setError(error.message);
+    }
 
-    console.log(result.val());
+    history.push('/calendar');
   };
 
   return (
@@ -69,6 +86,7 @@ export default function NewEvent({ currentUser, initDate, initStartHour }) {
           required
         />
         <CustomTimeInput
+          value={{ startHour, endHour }}
           startHandler={setStartHour}
           endHandler={setEndHour}
           required
@@ -80,4 +98,6 @@ export default function NewEvent({ currentUser, initDate, initStartHour }) {
       {error && <span className={styles.error}>{`😡 ${error}`}</span>}
     </div>
   );
-}
+};
+
+export default withRouter(NewEvent);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import moment from 'moment';
 import { FcPrevious, FcNext } from 'react-icons/fc';
 import { connect } from 'react-redux';
@@ -12,7 +12,7 @@ import {
 
 import './Calendar.scss';
 import Timeline from '../Timeline/Timeline';
-import CalendarField from '../CalendarField/CalendarField';
+import EventsField from '../EventsField/EventsField';
 
 import {
   VIEW_MODES,
@@ -28,15 +28,15 @@ const Calendar = ({
   moveToPrevPage,
   moveToNextPage,
 }) => {
-  const setDateToday = () => {
+  const setDateToday = useCallback(() => {
     const today = moment().startOf('day');
     setDate(today);
-  };
+  }, [setDate]);
 
   useEffect(() => {
     setCurrentViewMode(VIEW_MODES.WEEKLY);
     setDateToday();
-  }, []);
+  }, [setCurrentViewMode, setDateToday]);
 
   return (
     <div className='calendar-container'>
@@ -64,7 +64,7 @@ const Calendar = ({
       </div>
       <div className='content'>
         <Timeline />
-        <CalendarField viewMode={currentViewMode} date={date} />
+        <EventsField viewMode={currentViewMode} date={date} />
       </div>
     </div>
   );

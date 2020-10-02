@@ -7,7 +7,6 @@ import CustomButton from '../CustomButton/CustomButton';
 import { auth } from '../../firebase';
 
 export default function SignUp() {
-  const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -22,13 +21,8 @@ export default function SignUp() {
     }
 
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await user.updateProfile({ displayName });
+      await auth.createUserWithEmailAndPassword(email, password);
 
-      setDisplayName('');
       setEmail('');
       setPassword('');
       setConfirmPassword('');
@@ -40,20 +34,12 @@ export default function SignUp() {
 
   useEffect(() => {
     setError(null);
-  }, [displayName, email, password, confirmPassword]);
+  }, [email, password, confirmPassword]);
 
   return (
     <div className={styles.SignUp}>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <CustomInput
-          type='text'
-          name='displayName'
-          label='Display Name'
-          value={displayName}
-          onChange={ev => setDisplayName(ev.target.value)}
-          required
-        />
         <CustomInput
           type='text'
           name='email'
