@@ -12,7 +12,6 @@ import {
   SHOW_PREVIOUS_WEEK,
   SHOW_NEXT_WEEK,
   FETCH_EVENTS,
-  SHOW_EVENT_DETAILS,
 } from "../constants";
 
 const initialState = {

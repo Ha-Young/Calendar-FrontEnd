@@ -15,7 +15,6 @@ import {
   showPreviousWeek,
   showNextWeek,
   fetchEvents,
-  showEventDetails,
 } from "../../actions";
 import Form from "../../components/Form/Form";
 import { auth, database, provider } from "../../utils/firebase";
@@ -169,6 +168,7 @@ function AppContainer({
 
                   return (
                     <Event
+                      key={eachEventId}
                       eventId={eachEventId}
                       eventDetails={eachEventDetails}
                     />
