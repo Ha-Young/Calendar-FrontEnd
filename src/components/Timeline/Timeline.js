@@ -4,9 +4,11 @@ import fetchData from '../../utils/api';
 import TimeBar from './Timebar';
 import DailyDayAndDate from './DailyDayAndDate';
 import WeekDaysAndDate from './WeekDaysAndDate';
+import CheckDailyEvent from './CheckDailyEvent';
+import ChangeTimeToTimeIndex from './ChangeTimeToTimeIndex';
 import { connect } from 'react-redux';
 import { addEvent, selectEvent } from '../../actions';
-import { time, week } from '../../constants';
+import { monthDays, time, week } from '../../constants';
 
 function Timeline({ showDailyPage, ...props }) {
   useEffect(() => {
@@ -18,49 +20,10 @@ function Timeline({ showDailyPage, ...props }) {
 
   const updateDate = props.updateDateReducer;
   const addedEvent = props.addEventReducer;
-  const year = new Date().getFullYear();
 
   function DailySchedulePage() {
-    const todayEventTime = [];
-    const eventTimeIndexArray = [];
-    let newDateFormat;
-    let startTime;
-    let endTime;
-
-    for (let keys in addedEvent) {
-      let date = addedEvent[keys].date.split('-');
-      if (String(updateDate.date).length === 1) {
-        newDateFormat = '0' + updateDate.date;
-      }
-
-      const hasEventOnThisDailyPage = (
-        date[0] === String(year) &&
-        date[1] === String(updateDate.monthDaily + 1) &&
-        date[2] === newDateFormat
-      );
-
-      if (hasEventOnThisDailyPage) {
-        let timeArray = [addedEvent[keys].startTime, addedEvent[keys].endTime];
-        todayEventTime.push(timeArray);
-      }
-    }
-
-    for (let i = 0; i < todayEventTime.length; i++) {
-      if (todayEventTime[i][0].includes('30')) {
-        startTime = Number(todayEventTime[i][0].slice(0, 2)) + 0.5;
-      } else startTime = Number(todayEventTime[i][0].slice(0, 2));
-
-      if (todayEventTime[i][1].includes('30')) {
-        endTime = Number(todayEventTime[i][1].slice(0, 2)) + 0.5;
-      } else endTime = Number(todayEventTime[i][1].slice(0, 2));
-
-      let eventTimeIndex = time.indexOf(startTime);
-
-      for (let i = 0; i < time.indexOf(endTime) - time.indexOf(startTime); i++) {
-        eventTimeIndexArray.push(eventTimeIndex);
-        eventTimeIndex++;
-      }
-    }
+    const todayEventTime = CheckDailyEvent(addedEvent, updateDate);
+    const eventTimeIndexArray = ChangeTimeToTimeIndex(todayEventTime);
 
     const unitTime = time.map((time, i) => {
       let eventChecking = 'UnitTime';
@@ -82,15 +45,76 @@ function Timeline({ showDailyPage, ...props }) {
   }
 
   function WeeklySchedulePage() {
+    const eventOfThisWeek = {};
     const day = updateDate.day;
-    const unitTime = time.map((time) => {
-      return (
-        <div key={time} className={styles.UnitTime}></div>
-      );
-    });
+
+    for (let keys in addedEvent) {
+      const date = addedEvent[keys].date.split('-');
+      if (updateDate.monday > updateDate.monthWeekly - 7) {
+        if (Number(date[1]) === updateDate.monthWeekly + 1 || Number(date[1]) === updateDate.monthWeekly + 2) {
+          if (Number(date[2]) >= updateDate.monday || Number(date[2]) < 7 - (updateDate.monthWeekly - updateDate.monday)) {
+            if (!eventOfThisWeek.hasOwnProperty(date[2])) {
+              const newArray = [];
+              newArray.push(addedEvent[keys]);
+              eventOfThisWeek[date[2]] = newArray;
+            } else {
+              eventOfThisWeek[date[2]].push(addedEvent[keys]);
+            }
+          }
+        }
+      }
+      else if ((Number(date[1]) === updateDate.monthWeekly + 1) &&
+        (Number(date[2]) >= updateDate.monday || Number(date[2]) < updateDate.monday + 7)) {
+        if (!eventOfThisWeek.hasOwnProperty(date[2])) {
+          const newArray = [];
+          newArray.push(addedEvent[keys]);
+          eventOfThisWeek[date[2]] = newArray;
+        } else {
+          eventOfThisWeek[date[2]].push(addedEvent[keys]);
+        }
+      }
+    }
+
+    let currentDate = updateDate.monday;
 
     const weeklySchedule = week.map((week, i) => {
       const todayCheking = (day === i + 1 || day - 1 === i) ? 'TodayWeekScheduleBox' : 'WeekScheduleBox';
+      const monthWeekly = updateDate.monthWeekly;
+      let eventTimeOfEachDay = [];
+
+      if (i !== 0) currentDate++;
+      if (currentDate > monthDays[monthWeekly]) {
+        currentDate = 1;
+      }
+      if (String(currentDate).length === 1) {
+        currentDate = '0' + currentDate;
+      }
+
+      for (let keys in eventOfThisWeek) {
+        if (keys === currentDate) {
+          if (eventOfThisWeek[keys].length > 0) {
+            for (let i = 0; i < eventOfThisWeek[keys].length; i++) {
+              let timeArray = [eventOfThisWeek[keys][i].startTime, eventOfThisWeek[keys][i].endTime];
+              eventTimeOfEachDay.push(timeArray);
+            }
+          }
+        }
+      }
+
+      const eventTimeIndexOfEachDay = ChangeTimeToTimeIndex(eventTimeOfEachDay);
+      const unitTime = time.map((time, i) => {
+        let eventChecking = 'UnitTime';
+
+        if (eventTimeIndexOfEachDay[0] === i) {
+          eventChecking = 'EventUnitTime';
+          eventTimeIndexOfEachDay.shift();
+        }
+
+        return (
+          <div key={time} className={styles[eventChecking]}></div>
+        );
+      });
+
       return (
         <div key={week} className={styles[todayCheking]}>
           {unitTime}
