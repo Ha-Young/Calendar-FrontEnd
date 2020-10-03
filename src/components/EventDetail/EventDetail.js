@@ -12,7 +12,6 @@ const EventDetail = ({ createdBy, location }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const submitEditEvent = async event => {
-    console.log(event);
     const { eventId, title, description, date, startHour, endHour } = event;
 
     try {

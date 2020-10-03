@@ -83,8 +83,8 @@ export default function EventForm({ children, onSubmit, initValue, disabled }) {
           disabled={disabled}
         />
         <CustomTimeInput
-          startHour={event.startHour}
-          endHour={event.endHour}
+          startHour={+event.startHour}
+          endHour={+event.endHour}
           handleChange={handleChange}
           disabled={disabled}
           required
