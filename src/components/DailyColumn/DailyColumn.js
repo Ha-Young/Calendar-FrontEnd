@@ -1,17 +1,21 @@
 import React from 'react';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 import './DailyColumn.scss';
-import DailyTitleBlock from '../DailyTitleBlock/DailyTitleBlock';
 import EventBlock from '../EventBlock/EventBlock';
 
 import { TIMELINE_NUM_SET } from '../../constants/calendar.constants';
 import convertToISOString from '../../utils/convertToISOString';
 
 export default function DailyColumn({ viewMode, date, eventList }) {
+  const isToday = moment().isSame(date, 'day');
   return (
     <div className='daily-container'>
-      <DailyTitleBlock date={date} />
+      <div className={`day-block${isToday ? ' isToday' : ''}`}>
+        <div className='day-of-week'>{date.format('ddd')}</div>
+        <div className='day'>{date.format('D')}</div>
+      </div>
       <div className='events-container'>
         {eventList.map((event, idx) => (
           <EventBlock key={idx} viewMode={viewMode} content={event} />
@@ -23,8 +27,9 @@ export default function DailyColumn({ viewMode, date, eventList }) {
           to={{
             pathname: '/events/new',
             state: {
-              initDate: convertToISOString.Dates(date),
-              initHour: hour,
+              date: convertToISOString.Dates(date),
+              startHour: hour,
+              endHour: hour + 1,
             },
           }}
         >

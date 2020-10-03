@@ -1,13 +1,14 @@
 @import '../../constants/styles.constants.scss';
 
 @mixin shrinkLabel {
-  top: -14px;
-  font-size: 12px;
+  top: -22px;
+  font-size: 1rem;
 }
 
 .group {
   position: relative;
   color: $main-color;
+  font-size: 1.4rem;
 
   input {
     background: none;
@@ -17,7 +18,7 @@
     border: none;
     border-radius: 0;
     border-bottom: 1px solid $main-color;
-    margin: 30px 0;
+    margin: 60px 0;
     font-size: inherit;
     font-family: inherit;
 
@@ -26,6 +27,18 @@
     }
 
     &:focus ~ label {
+      @include shrinkLabel();
+    }
+
+    &:disabled {
+      outline: none;
+      border-bottom: 1px solid $white;
+      color: $main-color;
+      border-radius: 0;
+      appearance: none;
+    }
+
+    &:disabled ~ label {
       @include shrinkLabel();
     }
   }
@@ -40,7 +53,7 @@
     top: 10px;
 
     pointer-events: none;
-    font-size: 16px;
+    font-size: 1.4rem;
 
     transition: 300ms ease all;
   }

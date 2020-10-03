@@ -46,7 +46,7 @@ const App = ({ currentUser, setCurrentUser }) => {
               <NewEvent createdBy={currentUser.uid} />
             </Route>
             <Route path='/events/:eventId'>
-              <EventDetail />
+              <EventDetail createdBy={currentUser.uid} />
             </Route>
           </Switch>
         </>

@@ -1,7 +1,5 @@
-@import '../../constants/styles.constants.scss';
-
 .NewEvent {
-  width: 70%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -9,14 +7,4 @@
   h2 {
     text-align: left;
   }
-}
-
-.buttons {
-  margin-top: 50px;
-}
-
-.error {
-  margin: 20px;
-  color: $red;
-  font-size: 1.2rem;
 }

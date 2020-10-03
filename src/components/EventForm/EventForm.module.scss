@@ -1,7 +1,7 @@
 @import '../../constants/styles.constants.scss';
 
-.event-detail {
-  width: 50%;
+.EventForm {
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -12,6 +12,11 @@
 }
 
 .buttons {
-  display: flex;
-  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.error {
+  margin: 20px;
+  color: $red;
+  font-size: 1.4rem;
 }
