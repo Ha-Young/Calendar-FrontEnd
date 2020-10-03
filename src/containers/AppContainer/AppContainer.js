@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 import styles from "./AppContainer.module.css";
 import AppHeader from "../../components/AppHeader/AppHeader";
-import { saveNewEvent } from "../../utils/api";
 import Calendar from "../../components/Calendar/Calendar";
 import { connect } from "react-redux";
 import {
@@ -16,13 +15,13 @@ import {
   showNextWeek,
   fetchEvents,
 } from "../../actions";
-import Form from "../../components/Form/Form";
 import { auth, database, provider } from "../../utils/firebase";
 import Auth from "../../Auth/Auth";
 import Event from "../../components/Event/Event";
 import EventDetails from "../../components/EventDetails/EventDetails";
+import NewEventForm from "../../components/NewEventForm/NewEventForm";
 import EditForm from "../../components/EditForm/EditForm";
-import { START_TIME_OPTIONS, FINISH_TIME_OPTIONS } from "../../constants";
+import { mockData } from "../../utils/mockData";
 
 function AppContainer({
   onLoad,
@@ -41,12 +40,7 @@ function AppContainer({
   removeListener,
 }) {
   const dayIndex = displayDate.slice(0, 10);
-  const [eventTitle, setEventTitle] = useState("");
-  const [eventDescription, setEventDescription] = useState("");
-  const [eventDate, setEventDate] = useState("");
-  const [eventStartTime, setEventStartTime] = useState("");
-  const [eventFinishTime, setEventFinishTime] = useState("");
-  const history = useHistory();
+  const thisDayEvents = mockData[dayIndex];
 
   useEffect(() => {
     if (!auth.currentUser) return;
@@ -75,69 +69,6 @@ function AppContainer({
     auth.signOut();
   }
 
-  function submitNewEventHandler(ev) {
-    ev.preventDefault();
-
-    if (
-      !eventTitle
-      || !eventDescription
-      || !eventDate
-      || !eventStartTime
-      || !eventFinishTime
-    ) {
-      alert("양식을 모두 채워주세요.");
-
-      return;
-    }
-
-    saveNewEvent(eventTitle, eventDescription, eventDate, eventStartTime, eventFinishTime);
-
-    alert("새 일정을 추가했습니다.");
-
-    history.push("/calendar");
-
-    setEventTitle("");
-    setEventDescription("");
-    setEventDate("");
-    setEventStartTime("");
-    setEventFinishTime("");
-  }
-
-  const mockData = {
-    "2020-10-02": {
-      "-MIiQiBbtvyT2BwLhkdW": {
-        "description": "어제",
-        "finishTime": "07",
-        "startTime": "04",
-        "title": "어제"
-      }
-    },
-    "2020-10-03": {
-      "-MIiQ0KwVZwxQmE-qG2u": {
-        "description": "test",
-        "finishTime": "18",
-        "startTime": "12",
-        "title": "test"
-      },
-      "-MIiQejb47RVcszGOgVh": {
-        "description": "second",
-        "finishTime": "08",
-        "startTime": "03",
-        "title": "second"
-      }
-    },
-    "2020-10-04": {
-      "-MIiQkMeRJ7WzXL1151Q": {
-        "description": "내일",
-        "finishTime": "10",
-        "startTime": "03",
-        "title": "내일"
-      }
-    }
-  };
-
-  const thisDayEvents = mockData[dayIndex];
-
   return (
     <div className={styles.AppContainer}>
       {
@@ -163,6 +94,7 @@ function AppContainer({
               {
                 thisDayEvents
                 && Object.entries(thisDayEvents).map(eachEvent => {
+                  console.log(eachEvent);
                   const [eachEventId, eachEventDetails] = eachEvent;
 
                   return (
@@ -177,34 +109,7 @@ function AppContainer({
               <button onClick={logout}>나가기</button>
             </Route>
             <Route exact path="/events/new">
-              <Form
-                buttonDescription="일정 더하기"
-                submitHandler={submitNewEventHandler}
-              >
-                <input type="text" name="title" placeholder="할 일" autoComplete="off" onChange={ev => setEventTitle(ev.target.value)} value={eventTitle} />
-                <input type="text" name="description" placeholder="설명" autoComplete="off" onChange={ev => setEventDescription(ev.target.value)} value={eventDescription} />
-                <input type="date" name="date" onChange={ev => setEventDate(ev.target.value)} value={eventDate} />
-                <select onChange={ev => setEventStartTime(ev.target.value)} value={eventStartTime}>
-                  <option>{"시작 시간"}</option>
-                  {
-                    START_TIME_OPTIONS.map(option => {
-                      return (
-                        <option key={option}>{`${option}부터`}</option>
-                      );
-                    })
-                  }
-                </select>
-                <select onChange={ev => setEventFinishTime(ev.target.value)} value={eventFinishTime}>
-                  <option>{"끝나는 시간"}</option>
-                  {
-                    FINISH_TIME_OPTIONS.map(option => {
-                      return (
-                        <option key={option}>{`${option}까지`}</option>
-                      );
-                    })
-                  }
-                </select>
-              </Form>
+              <NewEventForm />
             </Route>
             <Route exact path="/events/:eventId">
               <EventDetails date={dayIndex} events={thisDayEvents} />

@@ -14,15 +14,7 @@ import {
   FETCH_EVENTS,
 } from "../constants";
 
-const initialState = {
-  viewMode: VIEWMODE_DAILY,
-  isLoggedIn: false,
-  displayDate: dayjs().format(),
-  eventData: null,
-  eventDetails: null,
-};
-
-const viewMode = (state = initialState.viewMode, action) => {
+const viewMode = (state = VIEWMODE_DAILY, action) => {
   switch (action.type) {
     case SHOW_DAILY:
       return state = VIEWMODE_DAILY;
@@ -33,7 +25,7 @@ const viewMode = (state = initialState.viewMode, action) => {
   }
 };
 
-const isLoggedIn = (state = initialState.isLoggedIn, action) => {
+const isLoggedIn = (state = false, action) => {
   switch (action.type) {
     case LOGIN:
       return state = true;
@@ -44,7 +36,7 @@ const isLoggedIn = (state = initialState.isLoggedIn, action) => {
   }
 };
 
-const displayDate = (state = initialState.displayDate, action) => {
+const displayDate = (state = dayjs().format(), action) => {
   let previousDate = state.slice(0, 10).split("-");
   let newDate;
 
@@ -72,7 +64,7 @@ const displayDate = (state = initialState.displayDate, action) => {
   }
 };
 
-const eventData = (state = initialState.eventData, action) => {
+const eventData = (state = null, action) => {
   switch (action.type) {
     case FETCH_EVENTS:
       return state = action.data;
