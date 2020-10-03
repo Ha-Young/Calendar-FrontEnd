@@ -1,12 +1,27 @@
-// TODO: You can modify, add, remove as you need.
 import firebase from './firebase';
 
-export async function saveSampleData () {
-  const database = firebase.database();
+const database = firebase.database();
+const databaseRef = firebase.database().ref();
 
-  // Note: `set` method returns a promise.
-  // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.ref('test/123').set({
-    test: 'text'
-  });
-}
+export const schedule = {
+  getSchedules: async (callback) => {
+    try {
+      await database.ref('schedule').once('value', (data) => {
+        const result = data.val();
+        callback(result);
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  },
+  setSchedule: async (schedule) => {
+    try {
+      await databaseRef.child(`schedule/${schedule.startDate}`).push().set({
+        ...schedule
+      });
+
+    } catch (err) {
+      console.error(err);
+    }
+  }
+};
