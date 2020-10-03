@@ -21,6 +21,7 @@ import { auth, database, provider } from "../../utils/firebase";
 import Auth from "../../Auth/Auth";
 import Event from "../../components/Event/Event";
 import EventDetails from "../../components/EventDetails/EventDetails";
+import EditForm from "../../components/EditForm/EditForm";
 import { START_TIME_OPTIONS, FINISH_TIME_OPTIONS } from "../../constants";
 
 function AppContainer({
@@ -37,7 +38,9 @@ function AppContainer({
   onNextDayClick,
   onPreviousWeekClick,
   onNextWeekClick,
+  removeListener,
 }) {
+  const dayIndex = displayDate.slice(0, 10);
   const [eventTitle, setEventTitle] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventDate, setEventDate] = useState("");
@@ -47,8 +50,10 @@ function AppContainer({
 
   useEffect(() => {
     if (!auth.currentUser) return;
-    onLoad();
-  }, []);
+    onLoad(dayIndex);
+
+    return removeListener(dayIndex);
+  }, [isLoggedIn, displayDate]);
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
@@ -131,7 +136,6 @@ function AppContainer({
     }
   };
 
-  const dayIndex = displayDate.slice(0, 10);
   const thisDayEvents = mockData[dayIndex];
 
   return (
@@ -157,7 +161,8 @@ function AppContainer({
                 date={displayDate}
               />
               {
-                Object.entries(thisDayEvents).map(eachEvent => {
+                thisDayEvents
+                && Object.entries(thisDayEvents).map(eachEvent => {
                   const [eachEventId, eachEventDetails] = eachEvent;
 
                   return (
@@ -202,7 +207,10 @@ function AppContainer({
               </Form>
             </Route>
             <Route exact path="/events/:eventId">
-              <EventDetails events={thisDayEvents} />
+              <EventDetails date={dayIndex} events={thisDayEvents} />
+            </Route>
+            <Route exact path="/events/:eventId/edit">
+              <EditForm eventData={thisDayEvents} />
             </Route>
           </Switch>
         </>
@@ -216,8 +224,8 @@ function AppContainer({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoad() {
-      const displayDateRef = database.ref(`${auth.currentUser.uid}/`);
+    onLoad(date) {
+      const displayDateRef = database.ref(`${auth.currentUser.uid}/${date}`);
 
       displayDateRef.on("value", function(snapshot) {
         dispatch(fetchEvents(snapshot.val()));
@@ -246,6 +254,13 @@ const mapDispatchToProps = dispatch => {
     },
     onNextWeekClick() {
       dispatch(showNextWeek());
+    },
+    removeListener: (date) => {
+      const displayDateRef = database.ref(`${auth.currentUser.uid}/${date}`);
+
+      displayDateRef.off("value", function(snapshot) {
+        dispatch(fetchEvents(snapshot.val()));
+      });
     },
   };
 };
