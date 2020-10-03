@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import { ROUTER } from '../../router';
 import { connect } from 'react-redux';
@@ -10,20 +11,20 @@ import { updateEvent, deleteEvent } from '../../utils/api';
 import { getEventById } from '../../reducers/events';
 import { updateToEventList, deleteTargetEvent } from '../../actions/index';
 
-function UpdateEventContainer({ getState, onSubmit, onDelete }) {
+function UpdateEventContainer({ onSearch, onSubmit, onDelete }) {
   const history = useHistory();
   const { params } = useRouteMatch();
 
-  function handleClick() {
+  const handleClick = useCallback(function () {
     onDelete(params.eventId);
     history.push(ROUTER.CALENDAR);
-  }
+  }, [onDelete, history]);
 
   return (
     <div className={styles.UpdateEventContainer}>
       <Form
         onSubmit={onSubmit}
-        target={getState(params.eventId)}
+        target={onSearch(params.eventId)}
         text='Update'
       />
       <button
@@ -38,7 +39,7 @@ function UpdateEventContainer({ getState, onSubmit, onDelete }) {
 
 const mapStateToProps = ({ events }) => {
   return {
-    getState(id) {
+    onSearch(id) {
       return getEventById(events.byId, id);
     }
   };
@@ -66,3 +67,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateEventContainer);
+
+UpdateEventContainer.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
+};

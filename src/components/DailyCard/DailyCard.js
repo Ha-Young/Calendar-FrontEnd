@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './DailyCard.module.css';
 
 import EventCell from '../EventCell/EventCell';
@@ -33,24 +34,25 @@ export default function DailyCard({ date, events }) {
   }, [events]);
 
   return (
-    <>
-      <div className={styles.DailyCard}>
-        <div className={styles.eventCard}>
-          {
-            cellList.map((event, idx) => {
-              return (
-                <EventCell key={idx} event={event} />
-              );
-            })
-          }
-        </div>
-        <div className={styles.date}>{date}</div>
+    <div className={styles.DailyCard}>
+      <div className={styles.eventCard}>
         {
-          Array.from({ length: 24 }).map((_, idx) => {
-            return (<TimeCell key={idx} />);
+          cellList.map((event, idx) => {
+            return (<EventCell key={idx} event={event} />);
           })
         }
       </div>
-    </>
+      <div className={styles.date}>{date}</div>
+      {
+        Array.from({ length: 24 }).map((_, idx) => {
+          return (<TimeCell key={idx} />);
+        })
+      }
+    </div>
   );
 }
+
+DailyCard.propTypes = {
+  date: PropTypes.string.isRequired,
+  events: PropTypes.array.isRequired
+};
