@@ -2,11 +2,6 @@ import { database } from '..';
 
 import convertToISOString from '../../utils/convertToISOString';
 
-export const getEventById = async eventId => {
-  const snapShot = await database.ref(`events/${eventId}`).once('value');
-  return snapShot.val();
-};
-
 export const getEventLists = async (uid, dates) => {
   const eventLists = [];
 

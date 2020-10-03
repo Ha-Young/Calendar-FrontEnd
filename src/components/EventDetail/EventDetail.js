@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import moment from 'moment';
 
 import './EventDetail.scss';
 import EventForm from '../EventForm/EventForm';
 import CustomButton from '../CustomButton/CustomButton';
 
 import convertToISOString from '../../utils/convertToISOString';
-import { getEventById } from '../../firebase/utils/eventList';
 import { updateEvent } from '../../firebase/utils/event';
 
-const EventDetail = ({ createdBy, history, location, match }) => {
+const EventDetail = ({ createdBy, location }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const submitEditEvent = async event => {
-    const { title, description, date, startHour, endHour } = event;
+    console.log(event);
+    const { eventId, title, description, date, startHour, endHour } = event;
 
     try {
-      await updateEvent(createdBy, date, {
+      await updateEvent(createdBy, date, eventId, {
         title,
         description,
         start: convertToISOString.combine(date, startHour + ''),
@@ -25,7 +26,7 @@ const EventDetail = ({ createdBy, history, location, match }) => {
       console.warn('New Event Error', error);
     }
 
-    history.push('/calendar');
+    setIsEditing(false);
   };
 
   return (
@@ -34,12 +35,19 @@ const EventDetail = ({ createdBy, history, location, match }) => {
       <EventForm
         initValue={location.state}
         onSubmit={submitEditEvent}
-        disabled
-      />
-      <div className='buttons'>
-        <CustomButton>수정</CustomButton>
-        <CustomButton>삭제</CustomButton>
-      </div>
+        disabled={!isEditing}
+      >
+        {isEditing && <CustomButton type='submit'>수정 완료</CustomButton>}
+      </EventForm>
+
+      {!isEditing && (
+        <div className='buttons'>
+          <CustomButton type='button' onClick={() => setIsEditing(true)}>
+            수정
+          </CustomButton>
+          <CustomButton type='button'>삭제</CustomButton>
+        </div>
+      )}
     </div>
   );
 };
