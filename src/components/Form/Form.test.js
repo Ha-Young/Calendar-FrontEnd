@@ -4,6 +4,7 @@ import { renderWithProviders } from '../../utils/test-utils';
 import Form from './Form';
 
 test('works form submit action', () => {
+  const CREAT = 'Create';
   const INPUT_VALUE = {
     id: 'event_1234',
     date: '2020-05-26',
@@ -21,13 +22,14 @@ test('works form submit action', () => {
       <Form
         onSubmit={onSubmit}
         target={INPUT_VALUE}
-        text='Create'
+        text={CREAT}
       />
     );
 
   expect(Object.values(result)).toEqual([]);
 
-  fireEvent.submit(getByText('Create'));
+  fireEvent.submit(getByText(CREAT));
+
   expect(result.id).toEqual(INPUT_VALUE.id);
   expect(result.date).toEqual(INPUT_VALUE.date);
   expect(result.startTime).toEqual(INPUT_VALUE.startTime);
