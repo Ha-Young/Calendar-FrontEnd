@@ -10,22 +10,15 @@ export const setBaseDate = baseDate => ({
   payload: baseDate,
 });
 
-export const setDatesShown = baseDate => ({
-  type: types.SET_DATES_SHOWN,
-  payload: baseDate,
-});
-
 export const setEventLists = eventLists => ({
   type: types.SET_EVENT_LISTS,
   payload: eventLists,
 });
 
-export const moveToNextPage = baseDate => ({
+export const moveToNextPage = () => ({
   type: types.MOVE_TO_NEXT_PAGE,
-  payload: baseDate,
 });
 
-export const moveToPrevPage = baseDate => ({
+export const moveToPrevPage = () => ({
   type: types.MOVE_TO_PREV_PAGE,
-  payload: baseDate,
 });

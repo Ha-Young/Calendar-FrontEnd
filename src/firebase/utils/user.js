@@ -1,7 +1,7 @@
 import { database } from '..';
 import moment from 'moment';
 
-const registerUserProfile = async userAuth => {
+export const registerUserProfile = async userAuth => {
   const userRef = database.ref(`users/${userAuth.uid}`);
   let snapShot = await userRef.once('value');
 
@@ -27,5 +27,3 @@ const registerUserProfile = async userAuth => {
 
   return snapShot;
 };
-
-export default registerUserProfile;

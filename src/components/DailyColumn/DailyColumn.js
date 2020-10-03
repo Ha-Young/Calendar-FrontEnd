@@ -8,13 +8,13 @@ import EventBlock from '../EventBlock/EventBlock';
 import { TIMELINE_NUM_SET } from '../../constants/calendar.constants';
 import convertToISOString from '../../utils/convertToISOString';
 
-export default function DailyColumn({ date, eventList, viewMode }) {
+export default function DailyColumn({ viewMode, date, eventList }) {
   return (
     <div className='daily-container'>
       <DailyTitleBlock date={date} />
       <div className='events-container'>
         {eventList.map((event, idx) => (
-          <EventBlock key={idx} viewMode={viewMode.title} content={event} />
+          <EventBlock key={idx} viewMode={viewMode} content={event} />
         ))}
       </div>
       {TIMELINE_NUM_SET.map(hour => (

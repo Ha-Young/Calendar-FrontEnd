@@ -8,7 +8,7 @@ import CustomTimeInput from '../CustomTimeInput/CustomTimeInput';
 import CustomButton from '../CustomButton/CustomButton';
 
 import convertToISOString from '../../utils/convertToISOString';
-import setNewEvent from '../../firebase/utils/setNewEvent';
+import { setNewEvent } from '../../firebase/utils/event';
 
 const NewEvent = ({ createdBy, history, location }) => {
   const [title, setTitle] = useState('');

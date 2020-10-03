@@ -13,7 +13,7 @@ import EventDetail from '../../components/EventDetail/EventDetail';
 import SignInAndSignUp from '../../components/SignInAndSignUp/SignInAndSignUp';
 
 import { auth } from '../../firebase';
-import registerUserProfile from '../../firebase/utils/registerUserProfile';
+import { registerUserProfile } from '../../firebase/utils/user';
 
 const App = ({ currentUser, setCurrentUser }) => {
   useEffect(() => {

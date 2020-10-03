@@ -11,7 +11,7 @@ export default function EventBlock({
   return (
     <Link to={`/events/${eventId}`}>
       <div
-        className={`${viewMode} event-block`}
+        className={`${viewMode.toLowerCase()} event-block`}
         style={getEventBlockStyle(start.slice(-2), end.slice(-2))}
       >
         <div className='title'>{title}</div>

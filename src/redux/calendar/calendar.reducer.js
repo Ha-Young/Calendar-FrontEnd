@@ -21,10 +21,9 @@ const calendarReducer = (state = initialState, { type, payload }) => {
         datesShown: getDatesShown(state.baseDate, payload.gap),
       };
     case types.SET_BASE_DATE:
-      return { ...state, baseDate: payload };
-    case types.SET_DATES_SHOWN:
       return {
         ...state,
+        baseDate: payload,
         datesShown: getDatesShown(payload, state.currentViewMode.gap),
       };
     case types.SET_EVENT_LISTS:
@@ -33,14 +32,20 @@ const calendarReducer = (state = initialState, { type, payload }) => {
         eventLists: payload,
       };
     case types.MOVE_TO_NEXT_PAGE:
-      newBaseDate = moment(payload).add(state.currentViewMode.gap, 'days');
+      newBaseDate = moment(state.baseDate).add(
+        state.currentViewMode.gap,
+        'days'
+      );
       return {
         ...state,
         baseDate: newBaseDate,
         datesShown: getDatesShown(newBaseDate, state.currentViewMode.gap),
       };
     case types.MOVE_TO_PREV_PAGE:
-      newBaseDate = moment(payload).subtract(state.currentViewMode.gap, 'days');
+      newBaseDate = moment(state.baseDate).subtract(
+        state.currentViewMode.gap,
+        'days'
+      );
       return {
         ...state,
         baseDate: newBaseDate,
