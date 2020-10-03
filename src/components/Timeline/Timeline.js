@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Timeline.module.css';
 import fetchData from '../../utils/api';
 import TimeBar from './Timebar';
@@ -9,7 +9,7 @@ import { addEvent, selectEvent } from '../../actions';
 import { time, week } from '../../constants';
 
 function Timeline({ showDailyPage, ...props }) {
-  useState(() => {
+  useEffect(() => {
     fetchData()
       .then(response => {
         props.addEvent(response);
