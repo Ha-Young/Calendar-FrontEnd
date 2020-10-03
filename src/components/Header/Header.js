@@ -2,23 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
-export default function Header ({ onNextButtonClick, currentDisplayDate }) {
+export default function Header ({ onNextButtonClick, currentDisplayToday }) {
   return (
     <header>
       <div className={styles.TopMenu}>
         <Link to='/'></Link>
         <Link to='/calendar'>
           <button
-            className={styles.Daily}
+            className={styles.DailyButton}
             onClick={() => {
-
             }}>
             일별
           </button>
         </Link>
         <Link to='/weekly'>
           <button
-            className={styles.Weekly}
+            className={styles.WeeklyButton}
             onClick={() => {
             }}>
             주별
@@ -39,7 +38,7 @@ export default function Header ({ onNextButtonClick, currentDisplayDate }) {
           >
             &lt;
           </button>
-          <div className={styles.Today}>{currentDisplayDate}</div>
+          <div className={styles.Today}>{currentDisplayToday}</div>
           <button
             className={styles.Next}
             onClick={() => {

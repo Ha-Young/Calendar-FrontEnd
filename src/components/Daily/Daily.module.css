@@ -1,4 +1,4 @@
-.Outline {
+.DailyOutline {
   overflow: scroll;
   overflow-x: hidden;
   margin: 0 auto;
@@ -13,7 +13,7 @@
   margin: 0 auto;
 }
 
-.Box {
+.EventDisplayBox {
   display: flex;
   flex-direction: row;
   width: 800px;

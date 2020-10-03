@@ -5,7 +5,7 @@ const timeRange = new Array(23).fill(0);
 
 function Todo () {
   return (
-    <div className={styles.Todoline}>
+    <div className={styles.TodoOutline}>
       {
         timeRange.map((index) => {
           return (<div className={styles.Todo} key={index}></div>);

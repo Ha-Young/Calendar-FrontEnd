@@ -4,16 +4,16 @@ import Todo from '../Todo/Todo';
 import Timeline from '../Timeline/Timeline';
 import CalendarItemHeader from '../CalendarItemHeader/CalendarItemHeader';
 
-function Daily ({ currentDisplayDay, currentDisplayDayOfWeek }) {
+function Daily ({ currentDisplayDate, currentDisplayDay }) {
   return (
-    <div className={styles.Outline}>
+    <div className={styles.DailyOutline}>
       <div className={styles.DateBox}>
         <CalendarItemHeader
-          currentDisplayDay={currentDisplayDay}
-          currentDisplayDayOfWeek={currentDisplayDayOfWeek}
+          date={currentDisplayDate}
+          day={currentDisplayDay}
         />
       </div>
-      <div className={styles.Box}>
+      <div className={styles.EventDisplayBox}>
         <Timeline />
         <Todo />
       </div>

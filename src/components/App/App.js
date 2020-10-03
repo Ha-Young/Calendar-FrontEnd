@@ -8,7 +8,7 @@ import Weekly from '../Weekly/Weekly';
 import Event from '../Events/Event';
 
 // Feel free to modify as you need.
-function App ({ handleNextButtonClick, currentDisplayDate, currentDisplayDay, currentDisplayDayOfWeek }) {
+function App ({ handleNextButtonClick, currentDisplayToday, currentDisplayDate, currentDisplayDay }) {
   useEffect(() => {
     saveSampleData();
   }, []);
@@ -17,20 +17,20 @@ function App ({ handleNextButtonClick, currentDisplayDate, currentDisplayDay, cu
     <div className={styles.App}>
       <Header
         onNextButtonClick={handleNextButtonClick}
-        currentDisplayDate={currentDisplayDate}
+        currentDisplayToday={currentDisplayToday}
       />
 
       <Switch>
         <Route exact path='/' exact>
           <Daily
+            currentDisplayDate={currentDisplayDate}
             currentDisplayDay={currentDisplayDay}
-            currentDisplayDayOfWeek={currentDisplayDayOfWeek}
           />
         </Route>
         <Route path='/calendar'>
           <Daily
+            currentDisplayDate={currentDisplayDate}
             currentDisplayDay={currentDisplayDay}
-            currentDisplayDayOfWeek={currentDisplayDayOfWeek}
           />
         </Route>
         <Route exact path='/weekly'>

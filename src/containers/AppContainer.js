@@ -1,25 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import App from '../components/App/App';
-import { format, formatRelative } from 'date-fns';
+import { format } from 'date-fns';
 import { UPDATE_CURRENT_DATE } from '../constants/ActionTypes';
 
-function AppContainer ({ handleNextButtonClick, currentDisplayDate, currentDisplayDay, currentDisplayDayOfWeek }) {
+function AppContainer ({ handleNextButtonClick, handlePreviousButtonClick, currentDisplayToday, currentDisplayDate, currentDisplayDay }) {
   return (
     <App
       handleNextButtonClick={handleNextButtonClick}
+      currentDisplayToday={currentDisplayToday}
       currentDisplayDate={currentDisplayDate}
       currentDisplayDay={currentDisplayDay}
-      currentDisplayDayOfWeek={currentDisplayDayOfWeek}
     />
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    currentDisplayDate: format(state.currentDate, 'yyyy/MM/dd'),
-    currentDisplayDayOfWeek: format(state.currentDate, 'EEEE'),
-    currentDisplayDay: format(state.currentDate, 'dd')
+    currentDisplayToday: format(state.currentDate, 'yyyy/MM/dd'),
+    currentDisplayDate: format(state.currentDate, 'dd'),
+    currentDisplayDay: format(state.currentDate, 'EEEE')
   };
 };
 
@@ -31,6 +31,12 @@ const mapDispatchToProps = (dispatch) => {
         direction: 1
       });
     }
+    // handlePreviousButtonClick () {
+    //   dispatch({
+    //     type: UPDATE_CURRENT_DATE,
+    //     direction: -1
+    //   });
+    // }
   }
 };
 

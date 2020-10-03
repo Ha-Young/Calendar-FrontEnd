@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './CalendarItemHeader.module.css';
 
-function CalendarItemHeader ({ currentDisplayDay, currentDisplayDayOfWeek }) {
+function CalendarItemHeader ({ date, day }) {
   return (
-    <div className={styles.Date}>
-      <div className={styles.Dayofweek}>{currentDisplayDayOfWeek}</div>
-      <div className={styles.Day}>{currentDisplayDay}</div>
+    <div className={styles.DateDisplayBox}>
+      <div className={styles.Day}>{day}</div>
+      <div className={styles.Date}>{date}</div>
     </div>
   );
 }
