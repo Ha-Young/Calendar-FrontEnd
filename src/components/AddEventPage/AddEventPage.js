@@ -8,7 +8,7 @@ import { time } from '../../constants';
 
 const database = firebase.database();
 
-function AddEventPage(children) {
+function AddEventPage(props) {
   const [addEventForm, setAddEventForm] = useState({
     title: '',
     date: '2020-10-02',
@@ -36,7 +36,7 @@ function AddEventPage(children) {
 
     fetchData()
       .then(response => {
-        children.addEvent(response);
+        props.addEvent(response);
       });
   }
 

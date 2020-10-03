@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './Timeline.module.css';
 import fetchData from '../../utils/api';
-import TimeBar from './Time';
+import TimeBar from './Timebar';
+import DailyDayAndDate from './DailyDayAndDate';
 import { connect } from 'react-redux';
 import { addEvent, selectEvent } from '../../actions';
 import { time, week, monthDays } from '../../constants';
@@ -15,31 +16,6 @@ function Timeline({ showDailyPage, ...props }) {
   }, []);
 
   const updateDate = props.updateDateReducer;
-  const addedEvent = props.addEventReducer;
-
-  function DailyDayAndDate() {
-    const date = updateDate.date;
-    const month = updateDate.monthDaily + 1;
-    let day = updateDate.day;
-
-    if (day < 0) {
-      while (day < 0) {
-        day += 7;
-      }
-    }
-
-    if (day >= 7) {
-      day = day % 7;
-    }
-
-    return (
-      <div className={styles.DailyDayAndDate}>
-        <span className={styles.Month}>{month}월</span>
-        <span className={styles.Date}>{date}일</span>
-        <span className={styles.Day}>{week[day]}</span>
-      </div>
-    );
-  }
 
   function DailySchedulePage() {
     const unitTime = time.map((time) => {
