@@ -35,7 +35,7 @@ export default function SignUp() {
   };
 
   const handleChange = ev => {
-    const { type: name, value } = ev.target;
+    const { name, value } = ev.target;
 
     setInputValue(prev => ({
       ...prev,
