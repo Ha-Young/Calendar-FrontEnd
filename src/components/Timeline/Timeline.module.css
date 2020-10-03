@@ -24,6 +24,13 @@
   height: 30px;
 }
 
+.EventUnitTime {
+  position: relative;
+  border: 1.5px solid rgb(158, 158, 153);
+  height: 30px;
+  background-color: pink;
+}
+
 .DailyScheduleBox {
   position: relative;
   width: 80%;
