@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { monthDays } from '../constants';
 
 const date = new Date().getDate();
-const dayIndex = new Date().getDay() - 1;
+const day = new Date().getDay();
 let currentMondayDate = (new Date().getDate()) - (new Date().getDay() - 1);
 let monthWeekly = new Date().getMonth();
 
@@ -14,7 +14,7 @@ if (currentMondayDate <= 0) {
 const initialDayAndDate = {
   shouldLoadDailyPage: true,
   date: date,
-  day: dayIndex,
+  day: day,
   monday: currentMondayDate,
   monthDaily: new Date().getMonth(),
   monthWeekly: monthWeekly
