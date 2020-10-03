@@ -1,9 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { renderWithProviders } from '../../utils/test-utils';
 import App from './App';
 
-xtest('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders initial loading page', () => {
+  const { getByText, unmount } = renderWithProviders(<App />);
+  expect(getByText(/is loading.../i)).toBeInTheDocument();
+
+  unmount();
 });
