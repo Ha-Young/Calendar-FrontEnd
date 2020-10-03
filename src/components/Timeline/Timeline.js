@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Timeline.module.css';
 import { connect } from 'react-redux';
 import { addEvent, selectEvent } from '../../actions';
 import fetchData from '../../utils/api';
+import { time, week, monthDays } from '../../constants';
 
 function Timeline({ showDailyPage, ...props }) {
   useState(() => {
@@ -12,14 +13,6 @@ function Timeline({ showDailyPage, ...props }) {
       });
   }, []);
 
-  const time = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5,
-    5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5,
-    10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5,
-    15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5,
-    20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24];
-
-  const week = ['MON', 'TUES', 'WED', 'THUR', 'FRI', 'SAT', 'SUN'];
-  const monthDays = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const updateDate = props.updateDateReducer;
 
   function Time() {

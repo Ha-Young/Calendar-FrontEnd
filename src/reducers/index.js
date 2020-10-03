@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
+import { monthDays } from '../constants';
 
 const date = new Date().getDate();
 const dayIndex = new Date().getDay() - 1;
-const monthDays = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 let currentMondayDate = (new Date().getDate()) - (new Date().getDay() - 1);
-let monthWeekly= new Date().getMonth();
+let monthWeekly = new Date().getMonth();
 
 if (currentMondayDate <= 0) {
   currentMondayDate = monthDays[new Date().getMonth() - 1] + currentMondayDate;
