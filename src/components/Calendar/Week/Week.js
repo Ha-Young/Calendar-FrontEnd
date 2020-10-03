@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Day from "../Day/Day";
 import dateFormatter from "../../../utils/dateFormatter";
 
@@ -6,6 +6,28 @@ export default function Week({
   date,
   dayOfWeek,
 }) {
+  const days = useMemo(() => {
+    return createWeekArray(date, dayOfWeek);
+  }, [date]);
+
+  return (
+    <>
+      {
+        days.map((day, index) => {
+          return (
+            <Day
+              key={day}
+              date={day}
+              dayOfWeek={index}
+            />
+          );
+        })
+      }
+    </>
+  );
+}
+
+function createWeekArray(date, dayOfWeek) {
   const days = [date];
   let decrementer = dayOfWeek;
   let incrementer = dayOfWeek;
@@ -28,19 +50,5 @@ export default function Week({
     incrementer++;
   }
 
-  return (
-    <>
-      {
-        days.map((day, index) => {
-          return (
-            <Day
-              key={day}
-              date={day}
-              dayOfWeek={index}
-            />
-          );
-        })
-      }
-    </>
-  );
+  return days;
 }
