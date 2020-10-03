@@ -70,7 +70,7 @@ const displayDate = (state = initialState.displayDate, action) => {
     default:
       return state;
   }
-}
+};
 
 const eventData = (state = initialState.eventData, action) => {
   switch (action.type) {
@@ -79,7 +79,7 @@ const eventData = (state = initialState.eventData, action) => {
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   viewMode,
