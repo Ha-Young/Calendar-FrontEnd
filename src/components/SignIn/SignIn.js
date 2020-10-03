@@ -8,17 +8,21 @@ import CustomButton from '../CustomButton/CustomButton';
 import { auth, signInWithGoogle } from '../../firebase';
 
 export default function SignIn() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [inputValue, setInputValue] = useState({
+    email: '',
+    password: '',
+  });
   const [error, setError] = useState(null);
 
   const handleSubmit = async ev => {
     ev.preventDefault();
 
     try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setEmail('');
-      setPassword('');
+      await auth.signInWithEmailAndPassword(
+        inputValue.email,
+        inputValue.password
+      );
+      setInputValue({ email: '', password: '' });
     } catch (error) {
       console.warn('Sign In Error', error);
       setError(error.message);
@@ -26,13 +30,12 @@ export default function SignIn() {
   };
 
   const handleChange = ev => {
-    const { value, type } = ev.target;
+    const { type, value } = ev.target;
 
-    if (type === 'email') {
-      setEmail(value);
-    } else if (type === 'password') {
-      setPassword(value);
-    }
+    setInputValue(prev => ({
+      ...prev,
+      [type]: value,
+    }));
 
     setError(null);
   };
@@ -44,14 +47,14 @@ export default function SignIn() {
         <CustomInput
           type='email'
           label='Email'
-          value={email}
+          value={inputValue.email}
           handleChange={handleChange}
           required
         />
         <CustomInput
           type='password'
           label='Password'
-          value={password}
+          value={inputValue.password}
           handleChange={handleChange}
           required
         />

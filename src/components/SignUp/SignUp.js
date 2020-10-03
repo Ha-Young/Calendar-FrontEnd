@@ -7,13 +7,17 @@ import CustomButton from '../CustomButton/CustomButton';
 import { auth } from '../../firebase';
 
 export default function SignUp() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [inputValue, setInputValue] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
   const [error, setError] = useState(null);
 
   const handleSubmit = async ev => {
     ev.preventDefault();
+
+    const { email, password, confirmPassword } = inputValue;
 
     if (password !== confirmPassword) {
       setError('패스워드가 일치하지 않습니다.');
@@ -23,45 +27,50 @@ export default function SignUp() {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
 
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
+      setInputValue({ email: '', password: '', confirmPassword: '' });
     } catch (error) {
       console.warn('Sign Up Error', error);
       setError(error.message);
     }
   };
 
-  useEffect(() => {
+  const handleChange = ev => {
+    const { type: name, value } = ev.target;
+
+    setInputValue(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+
     setError(null);
-  }, [email, password, confirmPassword]);
+  };
 
   return (
     <div className={styles.SignUp}>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <CustomInput
-          type='text'
           name='email'
+          type='text'
           label='Email'
-          value={email}
-          onChange={ev => setEmail(ev.target.value)}
+          value={inputValue.email}
+          handleChange={handleChange}
           required
         />
         <CustomInput
-          type='password'
           name='password'
+          type='password'
           label='Password'
-          value={password}
-          onChange={ev => setPassword(ev.target.value)}
+          value={inputValue.password}
+          handleChange={handleChange}
           required
         />
         <CustomInput
-          type='password'
           name='confirmPassword'
+          type='password'
           label='Confirm Password'
-          value={confirmPassword}
-          onChange={ev => setConfirmPassword(ev.target.value)}
+          value={inputValue.confirmPassword}
+          handleChange={handleChange}
           required
         />
         <CustomButton type='submit'>Sign Up</CustomButton>
