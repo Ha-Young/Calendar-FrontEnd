@@ -4,5 +4,5 @@ export const time = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5,
     15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5,
     20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24];
 
-export const week = ['MON', 'TUES', 'WED', 'THUR', 'FRI', 'SAT', 'SUN'];
+export const week = ['SUN', 'MON', 'TUES', 'WED', 'THUR', 'FRI', 'SAT'];
 export const monthDays = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
