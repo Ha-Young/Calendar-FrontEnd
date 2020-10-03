@@ -46,7 +46,7 @@ const EventModalWrapper = styled.div`
   }
 
   .contents-wrap {
-    font-size: 20px
+    font-size: 20px;
   }
 `;
 
@@ -63,6 +63,7 @@ export default function EventModal({ onSubmit }) {
 
   const handleSubmit = function (ev) {
     ev.preventDefault();
+
     onSubmit({
       eventTitle,
       eventDescription,
