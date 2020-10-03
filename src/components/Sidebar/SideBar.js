@@ -15,9 +15,9 @@ export default function SideBar () {
   return (
     <Wrapper>
       <div className='sidebar_button'>
-          <Link to='/' exact><Button>daily</Button></Link>
-          <Link to='/weekly' exact><Button>weekly</Button></Link>
-          <Link to='/event/new' exact><Button>create</Button></Link>
+        <Link to='/' exact><Button>daily</Button></Link>
+        <Link to='/weekly' exact><Button>weekly</Button></Link>
+        <Link to='/event/new' exact><Button>create</Button></Link>
       </div>
       <CalendarContainer/>
       <div></div>

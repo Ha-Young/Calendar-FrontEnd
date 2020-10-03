@@ -1,7 +1,7 @@
 
 export default function getMonthlyDates (changeMonth) {
   if (!changeMonth) changeMonth = 0;
-  const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const today = new Date();
   const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth() + changeMonth, 1).getDay();
   const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + changeMonth + 1, 0).getDate();
@@ -47,7 +47,7 @@ export default function getMonthlyDates (changeMonth) {
 }
 
 export function getWeeklyDates (changeWeek) {
-  const monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const today = new Date();
   const thisMonthFirstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
   const thisMonthLastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
