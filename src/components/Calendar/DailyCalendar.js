@@ -22,15 +22,9 @@ function DailyCalender({ currentDate, events }) {
         <h3>{`${month}월 ${day}일`}</h3>
         <div className={styles.CalenderBarWrap}>
           {nodeForMap.map((node, index) => {
-            const event = getEventInCurrentTime(eventsInCurrentDate, index);
+            const events = getEventInCurrentTime(eventsInCurrentDate, index);
 
-            return (
-              <CalenderBar
-                eventId={event ? event.eventId : null}
-                eventTitle={event ? event.eventTitle : null}
-                key={index}
-              />
-            );
+            return <CalenderBar events={events ? events : null} key={index} />;
           })}
         </div>
       </div>

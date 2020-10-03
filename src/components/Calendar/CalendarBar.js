@@ -1,26 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import styles from "./CalendarBar.module.scss";
 import CalendarEventBar from "./CalendarEventBar";
+import styles from "./CalendarBar.module.scss";
 
-function CalendarBar({ eventTitle, eventId }) {
+function CalendarBar({ events }) {
   return (
-    <>
-      <div className={styles.DailyCalendarBar}>
-        {eventTitle && (
-          <Link to={`/events/${eventId}`} style={{ textDecoration: "none" }}>
-            <CalendarEventBar eventId={eventId} eventTitle={eventTitle} />
-          </Link>
-        )}
-      </div>
-    </>
+    <div className={styles.DailyCalendarBar}>
+      {events &&
+        events.map((event) => {
+          const { eventId, eventTitle } = event;
+
+          return <CalendarEventBar eventId={eventId} eventTitle={eventTitle} />;
+        })}
+    </div>
   );
 }
 
 CalendarBar.propTypes = {
-  eventTitle: PropTypes.string,
-  eventId: PropTypes.number,
+  events: PropTypes.array,
 };
 
 export default CalendarBar;

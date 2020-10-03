@@ -1,16 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import styles from "./CalendarEventBar.module.scss";
 
-function CalendarEventBar({ eventTitle }) {
+function CalendarEventBar({ eventId, eventTitle }) {
   return (
-    <div className={styles.CalendarEventBar}>
+    <Link
+      className={styles.CalendarEventBar}
+      key={eventId}
+      to={`/events/${eventId}`}
+      style={{ textDecoration: "none" }}
+    >
       <h3>{eventTitle}</h3>
-    </div>
+    </Link>
   );
 }
 
 CalendarEventBar.propTypes = {
+  eventId: PropTypes.number.isRequired,
   eventTitle: PropTypes.string.isRequired,
 };
 
