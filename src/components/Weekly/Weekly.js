@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import PropTypes from "prop-types";
 import styles from "./Weekly.module.css";
 import TimeTable from "../TimeTable/TimeTable";
 
@@ -52,3 +53,8 @@ export default function Weekly ({ week, eventList }) {
     </div>
   );
 }
+
+Weekly.propTypes = {
+  week: PropTypes.array.isRequired,
+  eventList: PropTypes.array.isRequired,
+};

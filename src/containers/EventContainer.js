@@ -6,6 +6,7 @@ import { addEvent, updateEvent, deleteEvent, showErrorMessage } from "../actions
 import NewEvent from "../components/NewEvent/NewEvent";
 import EventDetail from "../components/EventDetail/EventDetail";
 import Modal from "../components/Modal/Modal";
+import PropTypes from "prop-types";
 
 function EventContainer (props) {
   const {
@@ -106,3 +107,11 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (EventContainer);
+
+EventContainer.propTypes = {
+  eventList: PropTypes.array.isRequired,
+  errorMessage: PropTypes.string,
+  addEvent: PropTypes.func.isRequired,
+  updateEvent: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
+};

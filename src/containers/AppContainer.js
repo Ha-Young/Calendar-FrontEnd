@@ -10,6 +10,7 @@ import {
   getStoredEventsData,
 } from "../actions/actionCreators";
 import App from "../components/App/App";
+import PropTypes from "prop-types";
 
 function AppContainer (props) {
   const {
@@ -79,3 +80,16 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (AppContainer);
+
+AppContainer.propTypes = {
+  userLogIn: PropTypes.func.isRequired,
+  userLogOut: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  selectedDate: PropTypes.string.isRequired,
+  viewType: PropTypes.string.isRequired,
+  changeViewType: PropTypes.func.isRequired,
+  clickPrevDateButton: PropTypes.func.isRequired,
+  clickNextDateButton: PropTypes.func.isRequired,
+  getStoredEventsData: PropTypes.func.isRequired,
+  eventList: PropTypes.array.isRequired,
+};

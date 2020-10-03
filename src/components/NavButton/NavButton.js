@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import PropTypes from "prop-types";
 import styles from "./NavButton.module.css";
 
 export default function NavButton ({ date, viewType, clickPrevButton, clickNextButton }) {
@@ -38,3 +39,10 @@ export default function NavButton ({ date, viewType, clickPrevButton, clickNextB
     </div>
   );
 }
+
+NavButton.propTypes = {
+  date: PropTypes.string.isRequired,
+  viewType: PropTypes.string.isRequired,
+  clickPrevButton: PropTypes.func.isRequired,
+  clickNextButton: PropTypes.func.isRequired,
+};

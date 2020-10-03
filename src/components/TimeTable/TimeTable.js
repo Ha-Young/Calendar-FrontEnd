@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import PropTypes from "prop-types";
 import styles from "./TimeTable.module.css";
 
 export default function TimeTable ({ date, eventList }) {
@@ -41,3 +42,8 @@ export default function TimeTable ({ date, eventList }) {
     </div>
   );
 }
+
+TimeTable.propTypes = {
+  date: PropTypes.string.isRequired,
+  eventList: PropTypes.array.isRequired,
+};

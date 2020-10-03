@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./Daily.module.css";
 import TimeTable from "../TimeTable/TimeTable";
 
@@ -40,3 +41,8 @@ export default function Daily ({ date, eventList }) {
     </div>
   );
 }
+
+Daily.propTypes = {
+  date: PropTypes.string.isRequired,
+  eventList: PropTypes.array.isRequired,
+};

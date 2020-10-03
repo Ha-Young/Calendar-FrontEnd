@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import moment from "moment";
+import PropTypes from "prop-types";
 import styles from "./EventDetail.module.css";
 import Modal from "../Modal/Modal";
 
@@ -149,3 +150,11 @@ export default function EventDetail (props) {
     </>
   );
 }
+
+EventDetail.propTypes = {
+  setEventId: PropTypes.func.isRequired,
+  matchedEvent: PropTypes.object,
+  updateEvent: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
+};

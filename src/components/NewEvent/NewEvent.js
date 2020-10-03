@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
+import PropTypes from "prop-types";
 import styles from "./NewEvent.module.css";
 import Modal from "../Modal/Modal";
 
@@ -118,3 +119,8 @@ export default function NewEvent ({ addEvent, errorMessage }) {
     </>
   );
 }
+
+NewEvent.propTypes = {
+  addEvent: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
+};

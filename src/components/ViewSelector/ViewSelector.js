@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./ViewSelector.module.css";
 
 export default function ViewSelector ({ changeViewType }) {
@@ -23,3 +24,7 @@ export default function ViewSelector ({ changeViewType }) {
     </select>
   );
 }
+
+ViewSelector.propTypes = {
+  changeViewType: PropTypes.func.isRequired,
+};

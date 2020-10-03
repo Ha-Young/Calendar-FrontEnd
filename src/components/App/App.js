@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { authService } from "../../utils/firebase";
 import moment from "moment";
+import PropTypes from "prop-types";
 import styles from "./App.module.css";
 
 import EventContainer from "../../containers/EventContainer";
@@ -91,3 +92,15 @@ export default function App (props) {
     </>
   );
 }
+
+App.propTypes = {
+  userLogIn: PropTypes.func.isRequired,
+  userLogOut: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  selectedDate: PropTypes.string.isRequired,
+  clickPrevDateButton: PropTypes.func.isRequired,
+  clickNextDateButton: PropTypes.func.isRequired,
+  viewType: PropTypes.string.isRequired,
+  changeViewType: PropTypes.func.isRequired,
+  eventList: PropTypes.array.isRequired,
+};

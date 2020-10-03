@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { authService } from "../../utils/firebase";
 import { FaRegCalendarCheck } from "react-icons/fa";
+import PropTypes from "prop-types";
 import styles from "./Header.module.css";
 import ViewSelector from "../ViewSelector/ViewSelector";
 import Button from "../Button/Button";
@@ -33,3 +34,8 @@ export default function Header ({ changeViewType, userName }) {
     </header>
   );
 }
+
+Header.propTypes = {
+  changeViewType: PropTypes.func.isRequired,
+  userName: PropTypes.string,
+};

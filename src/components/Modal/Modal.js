@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import PropTypes from "prop-types";
 import styles from "./Modal.module.css";
 
 export default function Modal ({ text }) {
@@ -26,3 +27,7 @@ export default function Modal ({ text }) {
     </div>
   );
 }
+
+Modal.propTypes = {
+  text: PropTypes.string.isRequired,
+};
