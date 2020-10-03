@@ -17,7 +17,7 @@ const HourlySchedule = styled.div`
 `;
 
 export default function ScheduleList () {
-  let path = useRouteMatch().path;
+  const path = useRouteMatch().path;
   
   function renderByType () {
     let scheduleTable;

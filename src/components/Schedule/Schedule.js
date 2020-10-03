@@ -13,12 +13,6 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 
-const Main = styled.div`
-  display: grid;
-  grid-template-columns: 35% 1fr;
-  overflow: hidden;
-`;
-
 export default function Schedule ({ dates, updateCalendar }) {
   
   return (
@@ -35,12 +29,12 @@ export default function Schedule ({ dates, updateCalendar }) {
       </Route>
       <Route path='/' exact>
         <Wrapper>
-            <ScheduleHead
-              type='daily'
-              dates={dates.weeklyDates}
-              updateCalendar={updateCalendar}
-            />
-            <ScheduleBody type='daily'/>    
+          <ScheduleHead
+            type='daily'
+            dates={dates.weeklyDates}
+            updateCalendar={updateCalendar}
+          />
+          <ScheduleBody type='daily'/>
         </Wrapper>
       </Route>
       <Route path='/weekly'>

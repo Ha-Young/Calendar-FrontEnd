@@ -41,7 +41,7 @@ export default function ScheduleHead ({ type, dates, updateCalendar }) {
   const renderDailyLayout = useCallback(() => {
     return (
       <Wrapper style={{gridTemplateColumns: '1fr'}}>
-        <CalendarBody type={type} dates={dates} />
+        <CalendarBody type={type} dates={dates}/>
       </Wrapper>
     );
   });
