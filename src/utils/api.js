@@ -15,7 +15,7 @@ export function saveNewEvent(
   const startTime = TIME_INDEX[start.slice(0, -2)];
   const finishTime = TIME_INDEX[finish.slice(0, -2)];
 
-  database.ref(`${auth.currentUser.uid}/${year}/${month}/${day}`).push({
+  database.ref(`${auth.currentUser.uid}/${year}-${month}-${day}`).push({
     title,
     description,
     startTime,

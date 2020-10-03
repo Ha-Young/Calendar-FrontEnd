@@ -38,11 +38,11 @@ function AppContainer({
   onPreviousWeekClick,
   onNextWeekClick,
 }) {
-  const [newEventTitle, setNewEventTitle] = useState("");
-  const [newEventDescription, setNewEventDescription] = useState("");
-  const [newEventDate, setNewEventDate] = useState("");
-  const [newEventStartTime, setNewEventStartTime] = useState("");
-  const [newEventFinishTime, setNewEventFinishTime] = useState("");
+  const [eventTitle, setEventTitle] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
+  const [eventDate, setEventDate] = useState("");
+  const [eventStartTime, setEventStartTime] = useState("");
+  const [eventFinishTime, setEventFinishTime] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -74,71 +74,65 @@ function AppContainer({
     ev.preventDefault();
 
     if (
-      !newEventTitle
-      || !newEventDescription
-      || !newEventDate
-      || !newEventStartTime
-      || !newEventFinishTime
+      !eventTitle
+      || !eventDescription
+      || !eventDate
+      || !eventStartTime
+      || !eventFinishTime
     ) {
       alert("양식을 모두 채워주세요.");
 
       return;
     }
 
-    saveNewEvent(newEventTitle, newEventDescription, newEventDate, newEventStartTime, newEventFinishTime);
+    saveNewEvent(eventTitle, eventDescription, eventDate, eventStartTime, eventFinishTime);
 
     alert("새 일정을 추가했습니다.");
 
     history.push("/calendar");
 
-    setNewEventTitle("");
-    setNewEventDescription("");
-    setNewEventDate("");
-    setNewEventStartTime("");
-    setNewEventFinishTime("");
+    setEventTitle("");
+    setEventDescription("");
+    setEventDate("");
+    setEventStartTime("");
+    setEventFinishTime("");
   }
 
   const mockData = {
-    "2020": {
-      "09": {
-        "03": {
-          "-MIeKmgtk7cUWzjXRLpv": {
-            "description": "한 자릿수 달",
-            "finishTime": "19",
-            "startTime": "01",
-            "title": "9월"
-          }
-        }
+    "2020-10-02": {
+      "-MIiQiBbtvyT2BwLhkdW": {
+        "description": "어제",
+        "finishTime": "07",
+        "startTime": "04",
+        "title": "어제"
+      }
+    },
+    "2020-10-03": {
+      "-MIiQ0KwVZwxQmE-qG2u": {
+        "description": "test",
+        "finishTime": "18",
+        "startTime": "12",
+        "title": "test"
       },
-      "10": {
-        "02": {
-          "-MIbjmYwMRwO-_VstH41": {
-            "description": "redirect test",
-            "finishTime": "15",
-            "startTime": "11",
-            "title": "redirect"
-          },
-        },
-        "03": {
-          "-MIbiXeN1CzWbl2YQZBq": {
-            "description": "QZBq",
-            "finishTime": "10",
-            "startTime": "02",
-            "title": "QZBq"
-          },
-          "-MIbwWeyHPO-pDMCL_i1": {
-            "description": "L_i1",
-            "finishTime": "06",
-            "startTime": "03",
-            "title": "L_i1"
-          }
-        }
+      "-MIiQejb47RVcszGOgVh": {
+        "description": "second",
+        "finishTime": "08",
+        "startTime": "03",
+        "title": "second"
+      }
+    },
+    "2020-10-04": {
+      "-MIiQkMeRJ7WzXL1151Q": {
+        "description": "내일",
+        "finishTime": "10",
+        "startTime": "03",
+        "title": "내일"
       }
     }
   };
 
-  const dayArray = displayDate.slice(0, 10).split("-");
-  const thisDayEvents = mockData[dayArray[0]][dayArray[1]][dayArray[2]];
+  const dayIndex = displayDate.slice(0, 10);
+  const thisDayEvents = mockData[dayIndex];
 
   return (
     <div className={styles.AppContainer}>
@@ -182,10 +176,10 @@ function AppContainer({
                 buttonDescription="일정 더하기"
                 submitHandler={submitNewEventHandler}
               >
-                <input type="text" name="title" placeholder="할 일" autoComplete="off" onChange={ev => setNewEventTitle(ev.target.value)} value={newEventTitle} />
-                <input type="text" name="description" placeholder="설명" autoComplete="off" onChange={ev => setNewEventDescription(ev.target.value)} value={newEventDescription} />
-                <input type="date" name="date" onChange={ev => setNewEventDate(ev.target.value)} value={newEventDate} />
-                <select onChange={ev => setNewEventStartTime(ev.target.value)} value={newEventStartTime}>
+                <input type="text" name="title" placeholder="할 일" autoComplete="off" onChange={ev => setEventTitle(ev.target.value)} value={eventTitle} />
+                <input type="text" name="description" placeholder="설명" autoComplete="off" onChange={ev => setEventDescription(ev.target.value)} value={eventDescription} />
+                <input type="date" name="date" onChange={ev => setEventDate(ev.target.value)} value={eventDate} />
+                <select onChange={ev => setEventStartTime(ev.target.value)} value={eventStartTime}>
                   <option>{"시작 시간"}</option>
                   {
                     START_TIME_OPTIONS.map(option => {
@@ -195,7 +189,7 @@ function AppContainer({
                     })
                   }
                 </select>
-                <select onChange={ev => setNewEventFinishTime(ev.target.value)} value={newEventFinishTime}>
+                <select onChange={ev => setEventFinishTime(ev.target.value)} value={eventFinishTime}>
                   <option>{"끝나는 시간"}</option>
                   {
                     FINISH_TIME_OPTIONS.map(option => {
