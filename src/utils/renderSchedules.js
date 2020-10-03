@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {} from '../actions';
 
 export default function renderSchedules (scheduleDatas, date, isWeekly) {
   const schedules = [];
@@ -9,26 +10,27 @@ export default function renderSchedules (scheduleDatas, date, isWeekly) {
     return;
   }
 
-  let counter = Object.values(datas).length;
+  let zIndexOrder = Object.values(datas).length;
   for (let [key, schedule] of Object.entries(datas)) {
     const scheduleTop = calculateScheduleTop(schedule);
     const scheduleHeight = calculateScheduleHeight(schedule);
 
     const style = {
-      zIndex: counter * 500,
+      zIndex: zIndexOrder * 500,
       top: scheduleTop,
+      width: '100%',
       height: scheduleHeight,
-      backgroundColor: schedule.color || '#cbf542'
+      backgroundColor: schedule.color || '#cbf542',
+      overflow: 'auto'
     };
 
-    function getMousePosition (e) {
-      console.log(e.clientX);
-      console.log(e.clientY);
-    }
-
     const element =
-      <Link to={`/main/${isWeekly ? 'weekly' : 'daily'}/${key}`}  onClick={getMousePosition}>
-        <div className='schedule' style={style} key={`schedule-${schedule.name}`}>
+      <Link
+        to={`/main/${isWeekly ? 'weekly' : 'daily'}/${key}`}
+        onClick={() => handleClick(date, key)}
+        key={`schedule-${schedule.name}`}
+      >
+        <div className='schedule' style={style} >
             <span className='scheduleName'>{schedule.name}</span>
             <br/>
             <span className='scheduleDesc'>{schedule.desc}</span>
@@ -37,7 +39,7 @@ export default function renderSchedules (scheduleDatas, date, isWeekly) {
 
     schedules.push(element);
 
-    counter--;
+    zIndexOrder--;
   }
 
   function calculateScheduleTop (schedule) {
@@ -57,6 +59,16 @@ export default function renderSchedules (scheduleDatas, date, isWeekly) {
     }
 
     return parseInt(hour) * 30 + parseInt(minute) / 2 - calculateScheduleTop(schedule);
+  }
+
+  function handleClick (date, key) {
+    // 각 스케줄이 클릭되었을 때 실행된다
+    console.log(date, key);
+    // 날짜와 스케줄 키를 가지고 검색을 해야겠지요..
+    // 어디에서? 스토어에 있는 스테이트에서!
+    // 그럼 액션을 보내야한다.
+    // 액션 이름은..무슨 액션이냐면..하나를 가져오는거니까
+    // getSchedule
   }
 
   return schedules;

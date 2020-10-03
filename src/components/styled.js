@@ -76,7 +76,7 @@ export const Daily = styled.div`
     position: absolute;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     z-index: 1000;
   }
   .schedule {
@@ -143,7 +143,7 @@ export const Weekly = styled.div`
     position: absolute;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     z-index: 1000;
   }
   .schedule {

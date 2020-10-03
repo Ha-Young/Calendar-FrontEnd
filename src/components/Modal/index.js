@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom';
 import * as Styled from '../styled';
 
 export default function Modal () {
-  const { scheduleId } = useParams();
-  console.log(scheduleId);
 
   return (
     <>
