@@ -20,7 +20,7 @@ export const dailyCalendarType = type => ({
   peyLoad: type
 });
 
-export const addNewEvent = (title, description, startDate, endDate) => ({ // loca, color
+export const addNewEvent = (title, description, startDate, endDate) => ({
   type: types.ADD_EVENT,
   payLoad: {
     title: title,
