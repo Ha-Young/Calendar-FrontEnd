@@ -37,7 +37,7 @@ function AppContainer({
   onNextDayClick,
   onPreviousWeekClick,
   onNextWeekClick,
-  removeListener,
+  onDismount,
 }) {
   const dayIndex = displayDate.slice(0, 10);
   const thisDayEvents = mockData[dayIndex];
@@ -46,7 +46,9 @@ function AppContainer({
     if (!auth.currentUser) return;
     onLoad(dayIndex);
 
-    return removeListener(dayIndex);
+    return () => {
+      onDismount(dayIndex);
+    };
   }, [isLoggedIn, displayDate]);
 
   useEffect(() => {
@@ -94,7 +96,6 @@ function AppContainer({
               {
                 thisDayEvents
                 && Object.entries(thisDayEvents).map(eachEvent => {
-                  console.log(eachEvent);
                   const [eachEventId, eachEventDetails] = eachEvent;
 
                   return (
@@ -128,13 +129,14 @@ function AppContainer({
 }
 
 const mapDispatchToProps = dispatch => {
+  function dispatchFetchEventsAction(snapshot) {
+    dispatch(fetchEvents(snapshot.val()));
+  }
+
   return {
     onLoad(date) {
       const displayDateRef = database.ref(`${auth.currentUser.uid}/${date}`);
-
-      displayDateRef.on("value", function(snapshot) {
-        dispatch(fetchEvents(snapshot.val()));
-      });
+      displayDateRef.on("value", dispatchFetchEventsAction);
     },
     showDaily() {
       dispatch(showDaily());
@@ -160,12 +162,9 @@ const mapDispatchToProps = dispatch => {
     onNextWeekClick() {
       dispatch(showNextWeek());
     },
-    removeListener: (date) => {
+    onDismount(date) {
       const displayDateRef = database.ref(`${auth.currentUser.uid}/${date}`);
-
-      displayDateRef.off("value", function(snapshot) {
-        dispatch(fetchEvents(snapshot.val()));
-      });
+      displayDateRef.off("value", dispatchFetchEventsAction);
     },
   };
 };
