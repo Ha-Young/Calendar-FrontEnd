@@ -3,6 +3,10 @@ import { fireEvent } from '@testing-library/react';
 import { renderWithProviders } from '../../utils/test-utils';
 import Form from './Form';
 
+afterEach(() => {
+  jest.resetAllMocks();
+});
+
 test('works form submit action', () => {
   const CREAT = 'Create';
   const INPUT_VALUE = {
