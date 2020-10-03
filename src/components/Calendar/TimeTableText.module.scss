@@ -1,11 +1,11 @@
 .TimeTableText {
   display: flex;
-  height: 1200px;
   flex-direction: column;
-  text-align: left;
   position: relative;
-  top: 2.2%;
+  height: 1200px;
+  top:  45px;
   right: 0.5%;
+  text-align: left;
 
   span {
     display: inline-block;

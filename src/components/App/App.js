@@ -13,12 +13,8 @@ function App() {
       <Reset />
       <HeaderContainer />
       <Main>
-        <Route path="/calendar">
-          <CalendarContainer />
-        </Route>
-        <Route path="/events/:eventId">
-          <EventPageCotainer />
-        </Route>
+        <Route path="/calendar" component={CalendarContainer} />
+        <Route path="/events/:eventId" component={EventPageCotainer} />
         <Redirect to="/calendar" />
       </Main>
     </div>

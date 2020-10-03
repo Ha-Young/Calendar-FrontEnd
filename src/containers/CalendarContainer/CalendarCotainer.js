@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import DailyCalendar from "../../components/Calendar/DailyCalendar";
 import WeeklyCalendar from "../../components/Calendar/WeeklyCalendar";
+import TimeTableText from "../../components/Calendar/TimeTableText";
 import getCurrentWeek from "../../utils/getCurrentWeek";
 import styles from "./CalendarContainer.module.scss";
 
 function CalendarContainer({ dateUnit, currentDate, events }) {
   return (
     <div className={styles.CalendarContainer}>
+      <TimeTableText />
       {dateUnit === "일" ? (
         <DailyCalendar currentDate={currentDate} events={events} />
       ) : (
