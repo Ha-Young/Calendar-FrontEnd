@@ -7,7 +7,7 @@ function DailyDayAndDate(props) {
   const updateDate = props.updateDateReducer;
   const date = updateDate.date;
   const month = updateDate.monthDaily + 1;
-  let day = updateDate.day;
+  let day = updateDate.day - 1;
 
   if (day < 0) {
     while (day < 0) {
