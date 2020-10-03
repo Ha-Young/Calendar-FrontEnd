@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 import * as dayjs from "dayjs";
+import dateFormatter from "../utils/dateFormatter";
+import createStringifiedNewDate from "../utils/createStringifiedNewDate";
 import {
   VIEWMODE_DAILY,
   VIEWMODE_WEEKLY,
@@ -42,23 +44,21 @@ const displayDate = (state = dayjs().format(), action) => {
 
   switch (action.type) {
     case SHOW_PREVIOUS_DAY:
-      newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) - 1}`].join("-");
-      return state = dayjs(newDate).format();
+      return state = dateFormatter(createStringifiedNewDate(previousDate, SHOW_PREVIOUS_DAY));
     case SHOW_NEXT_DAY:
-      newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) + 1}`].join("-");
-      return state = dayjs(newDate).format();
+      return state = dateFormatter(createStringifiedNewDate(previousDate, SHOW_NEXT_DAY));
     case SHOW_PREVIOUS_WEEK:
       for (let i = 0; i < 7; i++) {
-        newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) - 1}`].join("-");
-        previousDate = dayjs(newDate).format().slice(0, 10).split("-");
+        newDate = createStringifiedNewDate(previousDate, SHOW_PREVIOUS_WEEK);
+        previousDate = dateFormatter(newDate).slice(0, 10).split("-");
       }
-      return state = dayjs(newDate).format();
+      return state = dateFormatter(newDate);
     case SHOW_NEXT_WEEK:
       for (let i = 0; i < 7; i++) {
-        newDate = [previousDate[0], previousDate[1], `${Number(previousDate[2]) + 1}`].join("-");
-        previousDate = dayjs(newDate).format().slice(0, 10).split("-");
+        newDate = createStringifiedNewDate(previousDate, SHOW_NEXT_WEEK);
+        previousDate = dateFormatter(newDate).slice(0, 10).split("-");
       }
-      return state = dayjs(newDate).format();
+      return state = dateFormatter(newDate);
     default:
       return state;
   }

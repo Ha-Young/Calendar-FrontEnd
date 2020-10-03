@@ -2,13 +2,13 @@ import React from "react";
 import Hour from "./Hour/Hour";
 import styles from "./Day.module.css";
 import { TIME, KOR_DAY_OF_WEEK } from "../../../constants";
-import * as dayjs from "dayjs";
+import dateFormatter from "../../../utils/dateFormatter";
 
 export default function Day({
   date,
   dayOfWeek,
 }) {
-  const dayToPrint = dayjs(date).format("D");
+  const dayToPrint = dateFormatter(date, "D");
 
   return (
     <div className={styles.Day}>
