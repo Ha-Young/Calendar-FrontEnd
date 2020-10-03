@@ -10,7 +10,13 @@ function CalendarBar({ events }) {
         events.map((event) => {
           const { eventId, eventTitle } = event;
 
-          return <CalendarEventBar eventId={eventId} eventTitle={eventTitle} />;
+          return (
+            <CalendarEventBar
+              key={eventId}
+              eventId={eventId}
+              eventTitle={eventTitle}
+            />
+          );
         })}
     </div>
   );
