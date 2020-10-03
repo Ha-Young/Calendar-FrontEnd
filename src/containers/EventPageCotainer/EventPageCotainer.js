@@ -3,28 +3,28 @@ import { connect } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./EventPageCotainer.module.scss";
-import EventCreationPage from "../../components/EventPage/EventCreationPage";
-import EventDetailPage from "../../components/EventPage/EventDetailPage";
-import { updateEvent } from "../../actions/index";
+import EventHandlingPage from "../../components/EventPage/EventHandlingPage";
+import { CREATE, UPDATE, DELETE } from "../../constants/dataChangeTypes";
 import {
   createEventData,
   updateEventData,
-  removeEventData,
+  deleteEventData,
 } from "../../utils/api";
 
-function EventPageCotainer({ events, onEventChange }) {
+function EventPageCotainer({ events }) {
   const { eventId } = useParams();
   const history = useHistory();
-  const currentEventInfo = events?.[eventId];
+  const eventInfo = events?.[eventId];
 
   const handleEventChange = async (changeType, eventInfo) => {
     try {
-      if (changeType === "create") {
-        await createEventData(onEventChange, eventInfo);
-      } else if (changeType === "update") {
-        await updateEventData(onEventChange, eventInfo);
-      } else if (changeType === "remove")
-        await removeEventData(onEventChange, eventInfo);
+      if (changeType === CREATE) {
+        await createEventData(eventInfo);
+      } else if (changeType === UPDATE) {
+        await updateEventData(eventInfo);
+      } else if (changeType === DELETE) {
+        await deleteEventData(eventId);
+      }
     } catch (error) {
       console.warn(error);
     }
@@ -34,22 +34,11 @@ function EventPageCotainer({ events, onEventChange }) {
 
   return (
     <div className={styles.EventPage}>
-      {eventId === "new" ? (
-        <>
-          <h1>이벤트 생성하기</h1>
-          <EventCreationPage onEventChange={handleEventChange} />
-        </>
-      ) : (
-        currentEventInfo && (
-          <>
-            <h1>이벤트 상세보기</h1>
-            <EventDetailPage
-              eventInfo={currentEventInfo}
-              onEventChange={handleEventChange}
-            />
-          </>
-        )
-      )}
+      <h1>이벤트 {eventId === "new" ? "생성" : "수정"}하기</h1>
+      <EventHandlingPage
+        eventInfo={eventInfo}
+        onEventChange={handleEventChange}
+      />
     </div>
   );
 }
@@ -60,16 +49,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onEventChange(eventInfo) {
-      dispatch(updateEvent(eventInfo));
-    },
-  };
-}
-
 EventPageCotainer.propTypes = {
-  onEventChange: PropTypes.func.isRequired,
   events: PropTypes.shape({
     eventDate: PropTypes.string,
     eventDescription: PropTypes.string,
@@ -80,4 +60,4 @@ EventPageCotainer.propTypes = {
   }),
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventPageCotainer);
+export default connect(mapStateToProps)(EventPageCotainer);
