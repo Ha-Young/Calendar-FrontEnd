@@ -82,19 +82,9 @@ const eventData = (state = initialState.eventData, action) => {
   }
 }
 
-const eventDetails = (state = initialState.eventDetails, action) => {
-  switch (action.type) {
-    case SHOW_EVENT_DETAILS:
-      return state = action.details;
-    default:
-      return state;
-  }
-}
-
 export default combineReducers({
   viewMode,
   isLoggedIn,
   displayDate,
   eventData,
-  eventDetails,
 });

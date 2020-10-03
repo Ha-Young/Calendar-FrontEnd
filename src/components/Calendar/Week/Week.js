@@ -5,7 +5,6 @@ import * as dayjs from "dayjs";
 export default function Week({
   date,
   dayOfWeek,
-  eventData,
 }) {
   const days = [date];
   let decrementer = dayOfWeek;
@@ -38,7 +37,6 @@ export default function Week({
               key={day}
               date={day}
               dayOfWeek={index}
-              eventData={eventData}
             />
           );
         })

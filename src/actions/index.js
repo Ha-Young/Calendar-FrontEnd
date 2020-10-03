@@ -36,8 +36,3 @@ export const fetchEvents = data => ({
   type: types.FETCH_EVENTS,
   data,
 });
-
-export const showEventDetails = details => ({
-  type: types.SHOW_EVENT_DETAILS,
-  details,
-});

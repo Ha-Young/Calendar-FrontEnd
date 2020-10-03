@@ -20,6 +20,8 @@ import {
 import Form from "../../components/Form/Form";
 import { auth, database, provider } from "../../utils/firebase";
 import Auth from "../../Auth/Auth";
+import Event from "../../components/Event/Event";
+import EventDetails from "../../components/EventDetails/EventDetails";
 import { START_TIME_OPTIONS, FINISH_TIME_OPTIONS } from "../../constants";
 
 function AppContainer({
@@ -47,7 +49,7 @@ function AppContainer({
   useEffect(() => {
     if (!auth.currentUser) return;
     onLoad();
-  }, [isLoggedIn]);
+  }, []);
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
@@ -97,6 +99,48 @@ function AppContainer({
     setNewEventFinishTime("");
   }
 
+  const mockData = {
+    "2020": {
+      "09": {
+        "03": {
+          "-MIeKmgtk7cUWzjXRLpv": {
+            "description": "한 자릿수 달",
+            "finishTime": "19",
+            "startTime": "01",
+            "title": "9월"
+          }
+        }
+      },
+      "10": {
+        "02": {
+          "-MIbjmYwMRwO-_VstH41": {
+            "description": "redirect test",
+            "finishTime": "15",
+            "startTime": "11",
+            "title": "redirect"
+          },
+        },
+        "03": {
+          "-MIbiXeN1CzWbl2YQZBq": {
+            "description": "QZBq",
+            "finishTime": "10",
+            "startTime": "02",
+            "title": "QZBq"
+          },
+          "-MIbwWeyHPO-pDMCL_i1": {
+            "description": "L_i1",
+            "finishTime": "06",
+            "startTime": "03",
+            "title": "L_i1"
+          }
+        }
+      }
+    }
+  };
+
+  const dayArray = displayDate.slice(0, 10).split("-");
+  const thisDayEvents = mockData[dayArray[0]][dayArray[1]][dayArray[2]];
+
   return (
     <div className={styles.AppContainer}>
       {
@@ -118,8 +162,19 @@ function AppContainer({
               <Calendar
                 viewMode={viewMode}
                 date={displayDate}
-                eventData={eventData}
               />
+              {
+                Object.entries(thisDayEvents).map(eachEvent => {
+                  const [eachEventId, eachEventDetails] = eachEvent;
+
+                  return (
+                    <Event
+                      eventId={eachEventId}
+                      eventDetails={eachEventDetails}
+                    />
+                  );
+                })
+              }
               <button onClick={logout}>나가기</button>
             </Route>
             <Route exact path="/events/new">
@@ -151,6 +206,9 @@ function AppContainer({
                   }
                 </select>
               </Form>
+            </Route>
+            <Route exact path="/events/:eventId">
+              <EventDetails events={thisDayEvents} />
             </Route>
           </Switch>
         </>
@@ -195,9 +253,6 @@ const mapDispatchToProps = dispatch => {
     onNextWeekClick() {
       dispatch(showNextWeek());
     },
-    onEventClick() {
-      dispatch(showEventDetails());
-    }
   };
 };
 
@@ -207,7 +262,6 @@ const mapStateToProps = state => {
     isLoggedIn: state.isLoggedIn,
     displayDate: state.displayDate,
     eventData: state.eventData,
-    eventDetails: state.eventDetails,
   };
 };
 
