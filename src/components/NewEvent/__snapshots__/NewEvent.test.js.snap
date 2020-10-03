@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <div
+    class="NewEvent"
+  >
+    <h2>
+      Create Events
+    </h2>
+    <form>
+      <label
+        for="eventName"
+      >
+        Event Name
+      </label>
+      <input
+        id="eventName"
+        placeholder="Event Name"
+        required=""
+        type="text"
+        value=""
+      />
+      <label
+        for="eventDescription"
+      >
+        Event Description
+      </label>
+      <input
+        id="eventDescription"
+        placeholder="Event Description"
+        required=""
+        type="text"
+        value=""
+      />
+      <label
+        for="eventDate"
+      >
+        Event Date
+      </label>
+      <input
+        id="eventDate"
+        required=""
+        type="date"
+        value=""
+      />
+      <input
+        id="startTime"
+        required=""
+        type="time"
+        value=""
+      />
+      <input
+        id="endTime"
+        required=""
+        type="time"
+        value=""
+      />
+      <button
+        class="submitButton"
+        disabled=""
+      >
+        Submit
+      </button>
+      <button
+        class="cancelButton"
+      >
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>
+`;
