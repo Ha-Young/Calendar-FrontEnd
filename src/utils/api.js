@@ -1,12 +1,25 @@
+
 import firebase from './firebase';
 import 'firebase/database';
 
-export async function saveSampleData () {
+export async function saveData (savePath, saveObj) {
   const database = firebase.database();
+  let result;
 
-  await database.ref("test/123").set({
-    test: "text"
+  result = await database.ref(savePath).push(saveObj, function (err) {
+    if (err) {
+      result = {
+        resultCode: "ERROR",
+        errorMessage: "업로드에 실패했습니다. 다시 시도해 주세요",
+      };
+    } else {
+      result = {
+        resultCode: "SUCCESS",
+      };
+    }
   });
+
+  return result;
 }
 
 export async function getData(query) {

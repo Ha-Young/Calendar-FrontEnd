@@ -1,10 +1,10 @@
-.DetailTitleWrapper {
+.EventTitleWrapper {
   font-size: 12px;
   margin-left: 10px;
   margin-top: 5px;
 }
 
-.DetailDescriptionWrapper {
+.EventDescriptionWrapper {
   margin-left: 10px;
   margin-top: 2px;
   color: #4f4f4f;

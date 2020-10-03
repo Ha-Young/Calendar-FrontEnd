@@ -21,10 +21,10 @@ export const changeDetails = () => {
     type: DETAIL_CHANGED,
   };
 };
-export const setData = data => {
+export const setData = (data, mode) => {
   return {
     type: FETCH_DATA,
-    dateState: data.dateState,
-    detailsList: data.detailsList,
+    mode: mode,
+    detailsList: data,
   };
 };

@@ -9,7 +9,7 @@ const initialState = {
   },
 };
 
-const details = (state = initialState, action) => {
+const eventPageReducer = (state = initialState, action) => {
   switch (action.type) {
     case DETAIL_OPEN:
       return {
@@ -39,4 +39,4 @@ const details = (state = initialState, action) => {
   }
 };
 
-export default details;
+export default eventPageReducer;

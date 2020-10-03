@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { saveSampleData, getData } from '../utils/api';
+import { getData } from '../utils/api';
 import { FETCH_DATA } from '../constants/ActionType';
 import CalendarContainer from '../containers/CalendarContainer';
-import DetailsContainer from '../containers/DetailsContainer';
 import Header from './Header/Header';
 import styled from 'styled-components';
 
@@ -34,8 +33,7 @@ const App = ({ dateState, needToFecthing, fetchData }) => {
         if (data === null) {
           data = {
             type: FETCH_DATA,
-            dateState: {},
-            detailsList: {},
+            detailsList: [],
           };
         }
 
@@ -49,7 +47,6 @@ const App = ({ dateState, needToFecthing, fetchData }) => {
       <Header />
       <BodyWrapper>
         <CalendarContainer />
-        <DetailsContainer />
       </BodyWrapper>
     </AppWrapper>
   );

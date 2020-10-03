@@ -13,7 +13,7 @@ const ScheduleModeWeek = ({ dateState }) => {
       </div>
       <div className={styles.TimeWrapper}>
         <TimeBar />
-        {days.map((_, i) => <ScheduleItem key={i} dayIndex={i}/>)}
+        {days.map((_, i) => <ScheduleItem key={i} weekIndex={i} dateState={dateState}/>)}
       </div>
     </div>
   );

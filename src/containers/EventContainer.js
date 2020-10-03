@@ -1,14 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import randomColorPicker from '../utils/randomColorPicker';
-import Event from '../components/Event/Event';
+import EventCell from '../components/EventCell/EventCell';
 
-const EventContainer = ({ detailsList, dayIndex }) => {
-  if (!detailsList[dayIndex]) return null;
+const EventContainer = ({ detailsList, weekIndex }) => {
+  detailsList = Object.entries(detailsList);
 
-  return detailsList[dayIndex].map((details, i) => <Event key={i} details={details} bgColor={randomColorPicker()}/>);
+  return detailsList.map(details => {
+    const parsedWeekIndex = Number(details[0]);
+
+    if (parsedWeekIndex === weekIndex) {
+      const dayDetails = Object.values(details[1]);
+
+      return dayDetails.map((details, i) => {
+
+        return <EventCell key={i} details={details} bgColor={randomColorPicker}/>;
+      });
+    }
+
+    return null;
+  });
 };
-
 const mapStateToProps = state => {
   return {
     detailsList: state.eventDataReducer.detailsList,

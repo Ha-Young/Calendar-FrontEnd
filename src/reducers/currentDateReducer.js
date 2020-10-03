@@ -19,7 +19,6 @@ const newDateStateFromPager = (state, direction, mode) => {
 
   return setDateState(dateObj);
 };
-
 const date = (state = initialState, action) => {
   switch (action.type) {
     case PAGE_NEXT:
