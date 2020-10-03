@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
-export default function Header ({ onNextButtonClick, currentDisplayToday }) {
+export default function Header ({ onNextButtonClick, onPreviousButtonClick, currentDisplayToday }) {
   return (
     <header>
       <div className={styles.TopMenu}>
@@ -34,6 +34,7 @@ export default function Header ({ onNextButtonClick, currentDisplayToday }) {
           <button
             className={styles.Previous}
             onClick={() => {
+              onPreviousButtonClick();
             }}
           >
             &lt;

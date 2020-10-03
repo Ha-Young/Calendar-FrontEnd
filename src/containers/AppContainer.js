@@ -8,6 +8,7 @@ function AppContainer ({ handleNextButtonClick, handlePreviousButtonClick, curre
   return (
     <App
       handleNextButtonClick={handleNextButtonClick}
+      handlePreviousButtonClick={handlePreviousButtonClick}
       currentDisplayToday={currentDisplayToday}
       currentDisplayDate={currentDisplayDate}
       currentDisplayDay={currentDisplayDay}
@@ -25,18 +26,18 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleNextButtonClick () {
+    handleNextButtonClick: () => {
       dispatch({
         type: UPDATE_CURRENT_DATE,
         direction: 1
-      });
+      })
+    },
+    handlePreviousButtonClick: () => {
+      dispatch({
+        type: UPDATE_CURRENT_DATE,
+        direction: -1
+      })
     }
-    // handlePreviousButtonClick () {
-    //   dispatch({
-    //     type: UPDATE_CURRENT_DATE,
-    //     direction: -1
-    //   });
-    // }
   }
 };
 

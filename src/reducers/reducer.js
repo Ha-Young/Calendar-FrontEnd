@@ -14,6 +14,11 @@ function reducer (state = initialState, action) {
           view: 'daily',
           currentDate: addDays(state.currentDate, 1)
         };
+      } else if (state.view === 'daily' && action.direction === -1) {
+        return {
+          view: 'daily',
+          currentDate: addDays(state.currentDate, -1)
+        }
       }
     default:
       return state;
