@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styles from './Timeline.module.css';
+import fetchData from '../../utils/api';
+import TimeBar from './Time';
 import { connect } from 'react-redux';
 import { addEvent, selectEvent } from '../../actions';
-import fetchData from '../../utils/api';
 import { time, week, monthDays } from '../../constants';
 
 function Timeline({ showDailyPage, ...props }) {
@@ -14,27 +15,7 @@ function Timeline({ showDailyPage, ...props }) {
   }, []);
 
   const updateDate = props.updateDateReducer;
-
-  function Time() {
-    const hour = time.filter(time => Number.isInteger(time) === true);
-    const hourUnit = hour.map((hour) => {
-      let presentHour = hour;
-
-      if ((hour + '').length === 1) {
-        presentHour = '0' + hour;
-      }
-
-      return (
-        <div key={hour} className={styles.Hour}>{presentHour}:00</div>
-      );
-    });
-
-    return (
-      <div className={styles.Time}>
-        {hourUnit}
-      </div>
-    );
-  }
+  const addedEvent = props.addEventReducer;
 
   function DailyDayAndDate() {
     const date = updateDate.date;
@@ -128,7 +109,7 @@ function Timeline({ showDailyPage, ...props }) {
         {showDailyPage ? <DailyDayAndDate /> : <WeekDaysAndDate />}
       </div>
       <div className={styles.TimelineContainer}>
-        <Time />
+        <TimeBar />
         {showDailyPage ? <DailySchedulePage /> : <WeeklySchedulePage />}
       </div>
     </>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './AddEventPage.module.css';
 import firebase from '../../utils/firebase';
+import fetchData from '../../utils/api';
 import { connect } from 'react-redux';
 import { addEvent, selectEvent } from '../../actions';
-import fetchData from '../../utils/api';
 import { time } from '../../constants';
 
 const database = firebase.database();
