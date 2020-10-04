@@ -15,16 +15,14 @@ export default function DayList({ today }) {
   const dateOfToday = today.slice(0, 10);
 
   return (
-    <>
-      <EntryWrapper>
-        {dateOfToday}
-        {onedayLength.map(hour =>
-          <Hour
-            key={hour}
-            value={hour}
-          />
-        )}
-      </EntryWrapper>
-    </>
+    <EntryWrapper>
+      {dateOfToday}
+      {onedayLength.map(hour =>
+        <Hour
+          key={hour}
+          value={hour}
+        />
+      )}
+    </EntryWrapper>
   );
 }

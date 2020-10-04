@@ -3,7 +3,7 @@ import firebase from './firebase';
 
 const database = firebase.database();
 
-export async function getEventData() {
+export function getEventData() {
   database.ref('Events/').on('value', snapshot => {
     try {
       const eventList = snapshot.val();

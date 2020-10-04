@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import EventModal from '../components/EventModal/EventModal';
 import { saveEventData } from '../utils/api';
 
-const newEventContainer = ({ onSubmit }) => {
+const NewEventContainer = ({ onSubmit }) => {
   return (
     <EventModal onSubmit={onSubmit}/>
   );
@@ -17,4 +17,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(newEventContainer);
+export default connect(null, mapDispatchToProps)(NewEventContainer);

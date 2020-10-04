@@ -12,7 +12,7 @@ export default function Menu({
   return (
     <div>
       <div>title</div>
-      <Button onClick={clickPrevButton}>Frev</Button>
+      <Button onClick={clickPrevButton}>Prev</Button>
       <Button onClick={clickNextButton}>Next</Button>
       <Link to='/event/new'>
         <Button>Add New Event</Button>

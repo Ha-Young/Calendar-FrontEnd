@@ -7,7 +7,7 @@ import styles from './App.module.css';
 import { getEventData } from '../../utils/api';
 import HeaderContainer  from '../../containers/HeaderContainer';
 import CalendarContainer  from '../../containers/CalendarContainer';
-import NewEventContainers from '../../containers/NewEventContainers';
+import NewEventContainer from '../../containers/NewEventContainers';
 
 // Feel free to modify as you need.
 function App() {
@@ -24,7 +24,7 @@ function App() {
           <CalendarContainer/>
         </Route>
         <Route path='/event/new'>
-          <NewEventContainers/>
+          <NewEventContainer/>
         </Route>
         <Redirect to='/'/>
       </Switch>

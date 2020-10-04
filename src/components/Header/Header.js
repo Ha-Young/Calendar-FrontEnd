@@ -25,15 +25,13 @@ export default function Header({
     <HeaderWrapper>
       <header>
         <nav>
-          <div>
-            <Menu
-              clickPrevButton={clickPrevButton}
-              clickNextButton={clickNextButton}
-              setWeeklyTheme={setWeeklyTheme}
-              setDailyTheme={setDailyTheme}
-              >
-            </Menu>
-          </div>
+          <Menu
+            clickPrevButton={clickPrevButton}
+            clickNextButton={clickNextButton}
+            setWeeklyTheme={setWeeklyTheme}
+            setDailyTheme={setDailyTheme}
+            >
+          </Menu>
         </nav>
       </header>
     </HeaderWrapper>
