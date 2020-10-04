@@ -50,7 +50,7 @@ function Main ({
     }
   }
 
-  return(
+  return (
     <Styled.Main>
       {
         timespan !== '' &&
@@ -90,15 +90,16 @@ function Main ({
           <Modal />
         </Route>
       </Styled.CalendarContainer>
-    </Styled.Main>);
+    </Styled.Main>
+  );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ utils: { week, date }, schedules }) => {
   return {
-    week: state.utils.week,
-    date: state.utils.date,
-    timespan: state.utils.timespan,
-    schedules: state.schedules
+    week,
+    date,
+    timespan,
+    schedules
   }
 };
 

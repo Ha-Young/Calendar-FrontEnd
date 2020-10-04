@@ -5,12 +5,10 @@ export const createSchedule = async newSchedule => {
   await schedule.setSchedule(newSchedule);
 };
 
-export const receiveSchedules = (schedules) => {
-  return {
-    type: types.RECEIVE_SCHEDULE,
-    schedules
-  };
-};
+export const receiveSchedules = (schedules) => ({
+  type: types.RECEIVE_SCHEDULE,
+  schedules
+});
 
 export const setTimespanAction = (timespan) => {
   return {

@@ -24,27 +24,24 @@ export default function Weekly ({ week, scheduleDatas, updateTimespan }) {
     for (let i = 0; i < 24; i++) {
       const time = i % 12;
       timelines.push(
-      <div className='timeline' key={`time-${i}`}>
-        <span className='time'>{`${i >= 12 ? 'PM' : 'AM'} ${time}시`}</span>
-      </div>);
+        <div className='timeline' key={`time-${i}`}>
+          <span className='time'>{`${i >= 12 ? 'PM' : 'AM'} ${time}시`}</span>
+        </div>
+      );
     }
 
     return timelines;
   }
 
-  function renderWeeklySchedules (scheduleDatas, week) {
+  function renderWeeklySchedules (schedules, week) {
     const weeklySchedules = week.map((date) => {
       const scheduleDate = date.split('/').join('-');
 
-      if (scheduleDatas[scheduleDate]) {
-        return (
-          <div className='daily' key={date}>
-            {renderSchedules(scheduleDatas, scheduleDate, true)}
-          </div>
-        );
-      } else {
-      return <div className='daily' key={date}></div>;
-      }
+      return (
+        <div className='daily' key={date}>
+          {schedules[scheduleDate] && renderSchedules(schedules, scheduleDate, true)}
+        </div>
+      );
     });
 
     return weeklySchedules;

@@ -1,16 +1,14 @@
 
   export default function validateForm (scheduleData) {
-    let isFormValidate = false;
-
     for (let input of Object.keys(scheduleData)) {
       if (scheduleData[input] === '') {
         alert(`${input} 를 채워주세요!`);
-        return isFormValidate;
+        return false;
       }
     }
 
     if (!validateTimings()) {
-      return isFormValidate;
+      return false;
     }
 
     function validateTimings () {
@@ -40,5 +38,5 @@
       return true;
     }
 
-    return isFormValidate = true;
+    return true;
   }

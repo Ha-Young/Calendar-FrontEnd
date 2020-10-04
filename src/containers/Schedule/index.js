@@ -17,19 +17,20 @@ function Schedule ({ onSubmit }) {
 
   const [scheduleData, setScheduleData] = useState(initialState);
 
-  function handleChange (e) {
+  function handleInputChange ({ target: { name, value } }) {
     setScheduleData({
       ...scheduleData,
-      [e.target.name]: e.target.value
+      [name] : value
     });
   }
 
   const handleColorClick = (e) => {
     e.preventDefault();
+
     setScheduleData({
       ...scheduleData,
       color: e.target.value
-    })
+    });
   };
 
   function handleSubmit (e) {
@@ -61,54 +62,54 @@ function Schedule ({ onSubmit }) {
       <h1>Write down your schedule!</h1>
       <form>
         <div className="name">
-          <label htmlFor="">Schedule name</label>
+          <label>Schedule name</label>
           <input
             type="text"
             name="name"
             value={scheduleData.name}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
         <div className="desc">
-          <label htmlFor="">Schedule description</label>
+          <label>Schedule description</label>
           <input
             type="text"
             name="desc"
             value={scheduleData.desc}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
         <div className="start-time">
-          <label htmlFor="">Start Date and time</label>
+          <label>Start Date and time</label>
           <input
             type="date"
             name="startDate"
             value={scheduleData.startDate}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <input
             type="time"
             name="startTime"
             value={scheduleData.startTime}
-            onChange={handleChange} />
+            onChange={handleInputChange} />
         </div>
         <div className="end-time">
-          <label htmlFor="">End Date and time</label>
+          <label>End Date and time</label>
           <input
             type="date"
             name="endDate"
             value={scheduleData.endDate}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <input
             type="time"
             name="endTime"
             value={scheduleData.endTime}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
         </div>
         <div className="color">
-          <label htmlFor="">Type of schedule</label>
+          <label>Type of schedule</label>
           {colors}
         </div>
         <button type="submit" onClick={handleSubmit}>register</button>

@@ -12,9 +12,10 @@ export default function Daily ({ date, scheduleDatas, updateTimespan }) {
     for (let i = 0; i < 24; i++) {
       const time = i % 12;
       timelines.push(
-      <div className='timeline' key={`time-${i}`}>
-        <span className='time'>{`${i >= 12 ? 'PM' : 'AM'} ${time}시`}</span>
-      </div>);
+        <div className='timeline' key={`time-${i}`}>
+          <span className='time'>{`${i >= 12 ? 'PM' : 'AM'} ${time}시`}</span>
+        </div>
+      );
     }
 
     return timelines;

@@ -4,14 +4,19 @@ import {} from '../actions';
 
 export default function renderSchedules (scheduleDatas, date, isWeekly) {
   const schedules = [];
+  const PIXEL_RATE = {
+    perDay = 720,
+    perHour = 30,
+    perMinute = 0.5
+  };
 
-  const datas = scheduleDatas[date];
-  if (!datas) {
+  const dailySchedules = scheduleDatas[date];
+  if (!dailySchedules) {
     return;
   }
 
-  let zIndexOrder = Object.values(datas).length;
-  for (let [key, schedule] of Object.entries(datas)) {
+  let zIndexOrder = Object.values(dailySchedules).length;
+  for (let [key, schedule] of Object.entries(dailySchedules)) {
     const scheduleTop = calculateScheduleTop(schedule);
     const scheduleHeight = calculateScheduleHeight(schedule);
 
@@ -46,19 +51,19 @@ export default function renderSchedules (scheduleDatas, date, isWeekly) {
     if (schedule.startTime === '') return 0;
 
     const [hour, minute] = schedule.startTime.split(':');
-    return parseInt(hour) * 30 + parseInt(minute) / 2;
+    return parseInt(hour) * PIXEL_RATE.perHour + parseInt(minute) / PIXEL_RATE.perMinute;
   }
 
   function calculateScheduleHeight (schedule) {
-    if (schedule.endTime === '') return 30;
+    if (schedule.endTime === '') return PIXEL_RATE.perHour;
 
     const [hour, minute] = schedule.endTime.split(':');
 
     if (schedule.endTime < schedule.startTime) {
-      return 720 - calculateScheduleTop(schedule);
+      return PIXEL_RATE.perDay - calculateScheduleTop(schedule);
     }
 
-    return parseInt(hour) * 30 + parseInt(minute) / 2 - calculateScheduleTop(schedule);
+    return parseInt(hour) * PIXEL_RATE.perHour + parseInt(minute) / PIXEL_RATE.perMinute - calculateScheduleTop(schedule);
   }
 
   function handleClick (date, key) {
