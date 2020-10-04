@@ -11,7 +11,7 @@ const DailyCalendar = ({
 
   const onClick = (event) => {
     onTimeTableEntryClick(event);
-  }
+  };
 
   let startTimeIndex;
   let endTimeIndex;
