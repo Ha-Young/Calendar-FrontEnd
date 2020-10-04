@@ -25,7 +25,7 @@ const allIds = (state = [], { type, payload }) => {
       return Object.keys(payload.event);
     case DELETE_EVENT:
       const copiedState = state.slice();
-      return copiedState.filter((id) => id !== payload.event);
+      return copiedState.filter((id) => id !== payload.id);
     default:
       return state;
   }
