@@ -43,7 +43,6 @@ function AppContainer({
   onNextWeekClick,
   onDismount,
 }) {
-  console.log(isLoggedIn);
   const dayIndex = displayDate.slice(0, 10);
   const thisDayEvents = mockData[dayIndex];
 

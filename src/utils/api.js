@@ -8,7 +8,6 @@ export function saveNewEvent(
   start,
   finish,
 ) {
-  console.log(date);
   const startTime = TIME_INDEX[start.slice(0, -2)];
   const finishTime = TIME_INDEX[finish.slice(0, -2)];
 
