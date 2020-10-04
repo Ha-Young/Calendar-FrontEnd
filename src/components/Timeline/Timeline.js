@@ -16,9 +16,9 @@ function Timeline({ showDailyPage, addEvent, ...props }) {
   }, []);
 
   async function delay() {
+    //어디서 선언해야하는지 좀더 문서를 읽고 고민해본 다음 옮기겠습니다. redux를 쓰면 action파일에다가 fetch하라는 것 같은데, 잘 이해를 못했습니다.
     try {
       const result = await fetchData();
-      console.log(result)
       addEvent(result);
     }
     catch {
