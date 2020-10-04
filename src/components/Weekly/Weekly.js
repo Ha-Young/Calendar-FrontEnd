@@ -4,29 +4,33 @@ import Todo from '../Todo/Todo';
 import Timeline from '../Timeline/Timeline';
 import CalendarItemHeader from '../CalendarItemHeader/CalendarItemHeader';
 
-const timeRange = new Array(7).fill(0);
+const sevenDays = [
+  'Sunday', 'Monday', 'Tuesday',
+  'Wednesday', 'Thursday', 'Friday',
+  'Saturday'
+];
 
 function Weekly () {
   return (
     <div className={styles.WeeklyOutline}>
       <div className={styles.SevenDays}>
         {
-          timeRange.map((item, index) => {
+          sevenDays.map((item, index) => {
             return (
-              <CalendarItemHeader key={index} />
-            )
+              <CalendarItemHeader key={item} day={item} />
+            );
           })
         }
       </div>
       <div className={styles.TimeTable}>
         <Timeline />
         {
-          timeRange.map((item, index) => {
+          sevenDays.map((item, index) => {
             return (
-              <div className={styles.box} key={index}>
+              <div className={styles.box} key={item}>
                 <Todo />
               </div>
-            )
+            );
           })
         }
       </div>

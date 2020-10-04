@@ -4,8 +4,8 @@ import styles from './Event.module.css';
 function PlusEvent () {
   const [eventTitle, setEventTitle] = useState('');
   const [eventDetail, setEventDetail] = useState('');
-  const [eventStart, setEventStart] = useState('');
-  const [eventEnd, setEventEnd] = useState('');
+  const [eventStartDay, setEventStartDay] = useState('');
+  const [eventEndDay, setEventEndDay] = useState('');
 
   return (
     <div className={styles.EventOutline}>
@@ -36,24 +36,24 @@ function PlusEvent () {
           />
         </div>
 
-        <div className={styles.EventStart}>
+        <div className={styles.EventStartDay}>
           <input
-            id='event-start'
+            id='event-startday'
             type='datetime-local'
-            value={eventStart}
+            value={eventStartDay}
             onChange={(ev) =>
-              setEventStart(ev.target.value)
+              setEventStartDay(ev.target.value)
             }
           />
         </div>
 
-        <div className={styles.EventEnd}>
+        <div className={styles.EventEndDay}>
           <input
-            id='event-end'
+            id='event-endDay'
             type='datetime-local'
-            value={eventEnd}
+            value={eventEndDay}
             onChange={(ev) =>
-              setEventEnd(ev.target.value)
+              setEventEndDay(ev.target.value)
             }
           />
         </div>

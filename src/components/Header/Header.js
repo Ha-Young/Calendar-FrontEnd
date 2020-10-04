@@ -2,30 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
-export default function Header ({ onNextButtonClick, onPreviousButtonClick, currentDisplayToday }) {
+export default function Header ({
+  onNextButtonClick,
+  onPreviousButtonClick,
+  onWeeklyButtonClick,
+  onDailyButtonClick,
+  currentDisplayToday
+}) {
   return (
     <header>
       <div className={styles.TopMenu}>
-        <Link to='/'></Link>
+        <Link to='/'/>
         <Link to='/calendar'>
           <button
             className={styles.DailyButton}
-            onClick={() => {
-            }}>
+            onClick={onDailyButtonClick}>
             일별
           </button>
         </Link>
         <Link to='/weekly'>
           <button
             className={styles.WeeklyButton}
-            onClick={() => {
-            }}>
+            onClick={onWeeklyButtonClick}>
             주별
           </button>
         </Link>
         <Link to='/events'>
           <button
-            className={styles.PlusEvent}>
+            className={styles.PlusEventButton}>
             일정추가하기
           </button>
         </Link>
@@ -33,18 +37,14 @@ export default function Header ({ onNextButtonClick, onPreviousButtonClick, curr
         <div className={styles.Todaybox}>
           <button
             className={styles.Previous}
-            onClick={() => {
-              onPreviousButtonClick();
-            }}
+            onClick={onPreviousButtonClick}
           >
             &lt;
           </button>
           <div className={styles.Today}>{currentDisplayToday}</div>
           <button
             className={styles.Next}
-            onClick={() => {
-              onNextButtonClick();
-            }}
+            onClick={onNextButtonClick}
           >
             &gt;
           </button>

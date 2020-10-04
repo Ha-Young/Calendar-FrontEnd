@@ -7,16 +7,22 @@ import Daily from '../Daily/Daily';
 import Weekly from '../Weekly/Weekly';
 import Event from '../Events/Event';
 // Feel free to modify as you need.
-function App ({ handleNextButtonClick, handlePreviousButtonClick, currentDisplayToday, currentDisplayDate, currentDisplayDay }) {
-  useEffect(() => {
-    saveSampleData();
-  }, []);
-
+function App ({
+  handleNextButtonClick,
+  handlePreviousButtonClick,
+  handleWeeklyButtonClick,
+  handleDailyButtonClick,
+  currentDisplayToday,
+  currentDisplayDate,
+  currentDisplayDay
+}) {
   return (
     <div className={styles.App}>
       <Header
         onNextButtonClick={handleNextButtonClick}
         onPreviousButtonClick={handlePreviousButtonClick}
+        onWeeklyButtonClick={handleWeeklyButtonClick}
+        onDailyButtonClick={handleDailyButtonClick}
         currentDisplayToday={currentDisplayToday}
       />
 

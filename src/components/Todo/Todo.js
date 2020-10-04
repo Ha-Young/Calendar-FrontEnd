@@ -7,9 +7,7 @@ function Todo () {
   return (
     <div className={styles.TodoOutline}>
       {
-        timeRange.map((index) => {
-          return (<div className={styles.Todo} key={index}></div>);
-        })
+        timeRange.map((index) => <div className={styles.Todo} key={index} />)
       }
     </div>
   );

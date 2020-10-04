@@ -1,4 +1,4 @@
-import { UPDATE_CURRENT_DATE } from '../constants/ActionTypes';
+import * as ActionTypes from '../constants/ActionTypes';
 import { addDays } from 'date-fns';
 
 const initialState = {
@@ -8,18 +8,28 @@ const initialState = {
 
 function reducer (state = initialState, action) {
   switch (action.type) {
-    case UPDATE_CURRENT_DATE:
+    case ActionTypes.UPDATE_CURRENT_DATE:
       if (state.view === 'daily' && action.direction === 1) {
         return {
           view: 'daily',
-          currentDate: addDays(state.currentDate, 1)
+          currentDate: addDays(state.currentDate, action.direction)
         };
       } else if (state.view === 'daily' && action.direction === -1) {
         return {
           view: 'daily',
-          currentDate: addDays(state.currentDate, -1)
-        }
+          currentDate: addDays(state.currentDate, action.direction)
+        };
       }
+    case ActionTypes.CHANGE_DISPLAY_VIEW_WEEKLY:
+      return {
+        view: 'weekly',
+        currentDate: new Date()
+      };
+    case ActionTypes.CHANGE_DISPLAY_VIEW_DAILY:
+      return {
+        view: 'daily',
+        currentDate: new Date()
+      };
     default:
       return state;
   }
