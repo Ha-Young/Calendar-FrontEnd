@@ -18,7 +18,7 @@ const eventPageReducer = (state = initialState, action) => {
         focusedItemIndex: {
           dayIndex: state.focusedItemIndex.dayIndex,
           timeIndex: state.focusedItemIndex.timeIndex,
-        }
+        },
       };
     case DETAIL_CLOSE:
       return {

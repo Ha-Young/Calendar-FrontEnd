@@ -50,6 +50,6 @@ const App = ({ dateState, needToFecthing, fetchData }) => {
       </BodyWrapper>
     </AppWrapper>
   );
-}
+};
 
 export default App;

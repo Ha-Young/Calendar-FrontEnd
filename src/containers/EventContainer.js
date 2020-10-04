@@ -26,9 +26,5 @@ const mapStateToProps = state => {
     detailsList: state.eventDataReducer.detailsList,
   };
 };
-const mapDispatchToProps = dispatch => {
-  return {
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventContainer);
+export default connect(mapStateToProps, null)(EventContainer);

@@ -3,11 +3,13 @@ import ModeButtonContainer from '../../containers/ModeButtonContainer';
 import PagerContainer from '../../containers/PagerContainer';
 import styles from './Header.module.css';
 
-export default function Header() {
+const Header = () => {
   return (
     <header className={styles.Header}>
       <PagerContainer />
       <ModeButtonContainer />
     </header>
   );
-}
+};
+
+export default Header;

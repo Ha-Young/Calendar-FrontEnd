@@ -7,12 +7,7 @@ import styles from './Calendar.module.css';
 const Calendar = ({ mode, dateState }) => {
   return (
     <div className={styles.Calendar}>
-      {
-        mode === MODE_WEEK ?
-        <ScheduleModeWeek dateState={dateState}/>
-        :
-        <ScheduleModeDay />
-      }
+      {mode === MODE_WEEK ? <ScheduleModeWeek dateState={dateState}/> : <ScheduleModeDay />}
     </div>
   );
 };

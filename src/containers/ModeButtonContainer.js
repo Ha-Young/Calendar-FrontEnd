@@ -6,7 +6,7 @@ const mapDispatchToProps = dispatch => {
   return {
     changeMode: mode => {
       dispatch(changeMode(mode));
-    }
+    },
   };
 };
 

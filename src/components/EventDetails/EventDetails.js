@@ -6,7 +6,6 @@ import DateInfo from '../DateInfo/DateInfo';
 import styles from './EventDetails.module.css';
 import styled from 'styled-components';
 
-
 const EventDetailsWrapper = styled.div`
   width: 100%;
   height: 100vh;

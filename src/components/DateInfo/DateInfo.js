@@ -9,12 +9,9 @@ const DateInfo = ({ dateState , mode }) => {
     <div className={styles.DateInfo}>
       <span>{ year }년</span>
       {
-          mode === MODE_WEEK &&
-            (betweenState === -1 ?
-              <span>{ month }월 - { month + 1 }월</span> :
-              betweenState === 1 ?
-                <span>{ month + 1 }월 - { month + 2 }월</span> :
-                <span>{ month + 1 }월</span>)
+        mode === MODE_WEEK &&
+          (betweenState === -1 ? <span>{ month }월 - { month + 1 }월</span> :
+            betweenState === 1 ? <span>{ month + 1 }월 - { month + 2 }월</span> : <span>{ month + 1 }월</span>)
       }
       {mode === MODE_DAY && <span>{ month }월 { date }일</span>}
     </div>
