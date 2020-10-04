@@ -23,10 +23,6 @@ import NewEventForm from "../../components/NewEventForm/NewEventForm";
 import EditForm from "../../components/EditForm/EditForm";
 import { mockData } from "../../utils/mockData";
 
-// mock -> real
-// isLoggedIn initial state false..
-// fetch data async?
-
 function AppContainer({
   onLoad,
   eventData,
@@ -45,9 +41,6 @@ function AppContainer({
 }) {
   const dayIndex = displayDate.slice(0, 10);
   const thisDayEvents = mockData[dayIndex];
-
-  // let thisDayEvents;
-  // if (eventData) thisDayEvents = eventData[dayIndex];
 
   useEffect(() => {
     if (!auth.currentUser) return;
