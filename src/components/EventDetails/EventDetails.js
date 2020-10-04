@@ -1,10 +1,11 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { removeEvent } from "../../utils/api";
+import { Link, useParams, useHistory } from "react-router-dom";
+import { auth, database } from "../../utils/firebase";
 import styles from "./EventDetails.module.css";
 
 export default function EventDetails({ date, events }) {
   const { eventId } = useParams();
+  const history = useHistory();
   const {
     title,
     description,
@@ -14,6 +15,14 @@ export default function EventDetails({ date, events }) {
   let [year, month, day] = date.split("-");
 
   if (day[0] === "0") day = day[1];
+
+  function removeEvent(date, eventId) {
+    database.ref(`${auth.currentUser.uid}/${date}/${eventId}`).remove();
+
+    alert("일정을 지웠습니다.");
+
+    history.push("/calendar");
+  }
 
   return (
     <div className={styles.EventDetails}>
@@ -27,5 +36,3 @@ export default function EventDetails({ date, events }) {
     </div>
   );
 }
-
-

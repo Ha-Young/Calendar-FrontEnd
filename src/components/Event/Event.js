@@ -6,11 +6,7 @@ export default function Event({
   eventId,
   eventDetails,
 }) {
-  const {
-    title,
-    startTime,
-    finishTime,
-  } = eventDetails;
+  const { title } = eventDetails;
 
   return (
     <Link to={`/events/${eventId}`}>

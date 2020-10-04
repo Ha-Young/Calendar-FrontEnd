@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as dayjs from "dayjs";
 import styles from "./AppHeader.module.css";
 import { VIEWMODE_DAILY, DAILY, WEEKLY } from "../../constants";
 import dateFormatter from "../../utils/dateFormatter";

@@ -8,6 +8,7 @@ export function saveNewEvent(
   start,
   finish,
 ) {
+  console.log(date);
   const startTime = TIME_INDEX[start.slice(0, -2)];
   const finishTime = TIME_INDEX[finish.slice(0, -2)];
 
@@ -36,8 +37,4 @@ export function editEvent(
     startTime,
     finishTime,
   });
-}
-
-export function removeEvent(date, eventId) {
-  database.ref(`${auth.currentUser.uid}/${date}/${eventId}`).remove();
 }

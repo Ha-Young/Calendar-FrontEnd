@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import * as dayjs from "dayjs";
 import dateFormatter from "../utils/dateFormatter";
 import createStringifiedNewDate from "../utils/createStringifiedNewDate";
+import { auth } from "../utils/firebase";
 import {
   VIEWMODE_DAILY,
   VIEWMODE_WEEKLY,
@@ -27,7 +28,7 @@ const viewMode = (state = VIEWMODE_DAILY, action) => {
   }
 };
 
-const isLoggedIn = (state = false, action) => {
+const isLoggedIn = (state = !!auth.currentUser, action) => {
   switch (action.type) {
     case LOGIN:
       return state = true;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Form from "../Form/Form";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { START_TIME_OPTIONS, FINISH_TIME_OPTIONS } from "../../constants";
 import { saveNewEvent } from "../../utils/api";
 
