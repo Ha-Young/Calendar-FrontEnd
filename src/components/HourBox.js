@@ -41,13 +41,12 @@ export default function HourBox({
                   })
                 }
               </ul>
-              <Button value='뒤로' onClick={toggleModal}/>
+              <Button buttonText='뒤로' onClick={toggleModal}/>
             </>
           }
         </Modal>
       }
       <div
-        key={hour}
         className={`hour-box ${hasEvents ? 'paint' : ''}`}
         onClick={toggleModal}
       >
@@ -69,7 +68,11 @@ export default function HourBox({
 }
 
 HourBox.propTypes = {
-  events: PropTypes.array,
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
   hour: PropTypes.number.isRequired,
-
 };

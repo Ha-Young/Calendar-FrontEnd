@@ -7,8 +7,8 @@ import { format, getHours } from 'date-fns';
 import Button from '../components/Button';
 import WriteEventForm from '../components/WriteEventForm';
 import Modal from '../components/Modal';
-import { setDataToFirebase } from '../utils/api';
-import { validateEventForm } from '../utils/utilFunction';
+import { postDataToFirebase } from '../utils/api';
+import { validateEventData } from '../utils/utilFunction';
 
 const Container = styled.section`
   display: flex;
@@ -24,12 +24,12 @@ const Container = styled.section`
     margin: auto;
     border: 1px solid ${({ theme }) => theme.blue};
     border-radius: 10px;
-    background: white;
+    background: ${({theme}) => theme.white};
 
     legend {
       font-size: 40px;
       font-weight: 200;
-      background: white;
+      background: ${({theme}) => theme.white};
       border-radius: 15px;
       padding: 10px 40px;
       border: 1px solid ${({ theme }) => theme.blue};
@@ -70,8 +70,9 @@ export default function CreateEventContainer({
   const history = useHistory();
   const [validMessage, setValidMessage] = useState('');
   const [eventData, setEventData] = useState(initEventForm);
+  const [errMessage, setErrMessage] = useState('');
 
-  function handleGoBack() {
+  function handleCancelButtonClick() {
     history.push('/calendar');
   }
 
@@ -85,13 +86,16 @@ export default function CreateEventContainer({
   }
 
   function createEvent() {
-    const validMessage = validateEventForm(eventData);
+    const validMessage = validateEventData(eventData);
 
     if (validMessage) {
       setValidMessage(validMessage);
     } else {
-      setDataToFirebase(eventData, uid);
-      handleGoBack();
+      postDataToFirebase({
+        data: { eventData, uid },
+        success: () => handleCancelButtonClick(),
+        fail: (errMessage) => setErrMessage(errMessage),
+      });
     }
   }
 
@@ -100,31 +104,34 @@ export default function CreateEventContainer({
   }
 
   return (
-    <Container>
-      {
-        validMessage &&
-        <Modal>
-          <h3>{validMessage}</h3>
-          <div>
-            <Button value='뒤로' onClick={initValidMessage} />
-          </div>
-        </Modal>
-      }
-      <WriteEventForm
-        formTitle='이벤트 만들기'
-        onChange={handleChange}
-        data={eventData}
-      >
-        <Button
-          value='취소'
-          onClick={handleGoBack}
-        />
-        <Button
-          value='이벤트 만들기'
-          onClick={createEvent}
-        />
-      </WriteEventForm>
-    </Container>
+    errMessage ?
+      <p>{errMessage}</p>
+    :
+      <Container>
+        {
+          validMessage &&
+          <Modal>
+            <h3>{validMessage}</h3>
+            <div>
+              <Button buttonText='뒤로' onClick={initValidMessage} />
+            </div>
+          </Modal>
+        }
+        <WriteEventForm
+          formTitle='이벤트 만들기'
+          onChange={handleChange}
+          data={eventData}
+        >
+          <Button
+            buttonText='취소'
+            onClick={handleCancelButtonClick}
+          />
+          <Button
+            buttonText='이벤트 만들기'
+            onClick={createEvent}
+          />
+        </WriteEventForm>
+      </Container>
   );
 }
 

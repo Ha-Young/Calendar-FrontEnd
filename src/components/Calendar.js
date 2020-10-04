@@ -86,8 +86,21 @@ export default function Calendar({
 Calendar.propTypes = {
   isWeekly: PropTypes.bool.isRequired,
   currentDate: PropTypes.object.isRequired,
-  eventData: PropTypes.object,
   toggleWeeklyAndDaily: PropTypes.func.isRequired,
   moveNextDay: PropTypes.func.isRequired,
   movePrevDay: PropTypes.func.isRequired,
+  eventData: PropTypes.shape({
+    date: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
+    events: PropTypes.arrayOf(PropTypes.string),
+    eventsId: PropTypes.objectOf(PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      creator: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      endTime: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      startTime: PropTypes.string,
+      title: PropTypes.string.isRequired,
+    })),
+  }),
 };

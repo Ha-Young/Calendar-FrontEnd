@@ -14,7 +14,7 @@ export default function EventList({ events }) {
 
   return (
     <nav>
-      <Button onClick={handleAddEvent} value='이벤트 만들기'/>
+      <Button onClick={handleAddEvent} buttonText='이벤트 만들기'/>
       {
         events.events.map((eventId) => {
           const data = events.eventsId[eventId];

@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   section {
     height: 20%;
     width: 70%;
-    background: white;
+    background: ${({theme}) => theme.white};
     border-radius:10px;
     display: flex;
     align-items: center;

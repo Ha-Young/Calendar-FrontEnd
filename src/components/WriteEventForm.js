@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Input from '../components/Input';
+import { HourOption } from './Option';
 
 export default function WriteEventForm({
   formTitle,
@@ -17,26 +18,25 @@ export default function WriteEventForm({
     title,
   } = data;
 
-  const hours24 = Array(24).fill(null);
-
   return (
     <fieldset>
       <legend>
         {formTitle}
       </legend>
       <div>
-        Title:
-        <Input
-          type='text'
-          onChange={onChange}
-          placeholder='Title 을 입력해주세요'
-          name='title'
-          value={title}
-          focus={true}
-        />
+        <label htmlFor='title'>Title</label>
+          <Input
+            id='title'
+            type='text'
+            onChange={onChange}
+            placeholder='Title 을 입력해주세요'
+            name='title'
+            value={title}
+            focus={true}
+          />
         Description:
         <Input
-          type='text-area'
+          type='textarea'
           onChange={onChange}
           placeholder='Description 을 입력해주세요'
           name='description'
@@ -55,11 +55,7 @@ export default function WriteEventForm({
           onChange={onChange}
           value={startTime}
         >
-          {
-            hours24.map((_, index) => {
-              return <option key={index} value={index}>{index}시</option>;
-            })
-          }
+          <HourOption />
         </select>
         EndTime:
         <select
@@ -67,11 +63,7 @@ export default function WriteEventForm({
           onChange={onChange}
           value={endTime}
         >
-          {
-            hours24.map((_, index) => {
-              return <option key={index} value={index}>{index}시</option>;
-            })
-          }
+          <HourOption />
         </select>
         <div>
           {children}
@@ -84,6 +76,6 @@ export default function WriteEventForm({
 WriteEventForm.propTypes = {
   formTitle: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  data: PropTypes.data.isRequired,
+  data: PropTypes.object.isRequired,
   children: PropTypes.node,
 };

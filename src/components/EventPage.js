@@ -8,9 +8,9 @@ import InfoPage from '../components/InfoPage';
 import WriteEventForm from '../components/WriteEventForm';
 import Modal from '../components/Modal';
 import SingleEventPage from '../components/SingleEventPage';
-import { validateEventForm } from '../utils/utilFunction';
+import { validateEventData } from '../utils/utilFunction';
 import {
-  setDataToFirebase,
+  postDataToFirebase,
   deleteDataFromFirebase
 } from '../utils/api';
 
@@ -104,11 +104,11 @@ export default function EventPage({ eventData, uid }) {
 
   function handleUpdate() {
     if (isUpdating) {
-      const validMessage = validateEventForm(currentEventData);
+      const validMessage = validateEventData(currentEventData);
       if (validMessage) {
         setValidationMessage(validationMessage);
       } else {
-        setDataToFirebase(currentEventData, uid, currentEventId);
+        postDataToFirebase(currentEventData, uid, currentEventId);
         goHome();
       }
     } else {
@@ -133,7 +133,7 @@ export default function EventPage({ eventData, uid }) {
     !currentEvent ?
       <Modal>
         <h2>잘못된 이벤트 입니다</h2>
-        <Button value='홈으로' onClick={goHome}/>
+        <Button buttonText='홈으로' onClick={goHome}/>
       </Modal>
     :
       <InfoPage>
@@ -141,8 +141,8 @@ export default function EventPage({ eventData, uid }) {
           {
             isOpenedConfirmModal &&
             <Modal>
-              <Button value='안지우기' onClick={toggleModal}/>
-              <Button value='정말 지우기' onClick={confirmRemove}/>
+              <Button buttonText='안지우기' onClick={toggleModal}/>
+              <Button buttonText='정말 지우기' onClick={confirmRemove}/>
             </Modal>
           }
           {
@@ -150,7 +150,7 @@ export default function EventPage({ eventData, uid }) {
             <Modal>
               <h3>{validationMessage}</h3>
               <div>
-                <Button value='뒤로' onClick={initValidationMessage}/>
+                <Button buttonText='뒤로' onClick={initValidationMessage}/>
               </div>
             </Modal>
           }
@@ -171,11 +171,11 @@ export default function EventPage({ eventData, uid }) {
               />
           }
           <div className='button-box'>
-            <Button value='뒤로' onClick={goBack}/>
-            <Button value='업데이트' onClick={handleUpdate}/>
+            <Button buttonText='뒤로' onClick={goBack}/>
+            <Button buttonText='업데이트' onClick={handleUpdate}/>
             {
               !isUpdating &&
-              <Button value='지우기' onClick={toggleModal}/>
+              <Button buttonText='지우기' onClick={toggleModal}/>
             }
           </div>
         </Container>
@@ -184,6 +184,19 @@ export default function EventPage({ eventData, uid }) {
 }
 
 EventPage.propTypes = {
-  eventData: PropTypes.object,
   uid: PropTypes.string,
+  eventData: PropTypes.shape({
+    date: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
+    events: PropTypes.arrayOf(PropTypes.string),
+    eventsId: PropTypes.objectOf(PropTypes.shape({
+      createdAt: PropTypes.string.isRequired,
+      creator: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      endTime: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      startTime: PropTypes.string,
+      title: PropTypes.string.isRequired,
+    })),
+  }),
 };

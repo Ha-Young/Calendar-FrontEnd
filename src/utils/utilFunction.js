@@ -64,12 +64,12 @@ export function reduceSnapshot(snapshot) {
   return result;
 }
 
-export function validateEventForm(form) {
+export function validateEventData(event) {
   const {
     title,
     startTime,
     endTime,
-  } = form;
+  } = event;
 
   let message = '';
 

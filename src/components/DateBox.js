@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 import HourBox from './HourBox';
 import { combineDate } from '../utils/utilFunction';
@@ -35,7 +35,7 @@ const Container = styled.div`
       &:hover {
         width: 100%;
         background: ${({theme}) => theme.yellow};
-        color: white;
+        color: ${({theme}) => theme.white};
         cursor: pointer;
       }
     }
@@ -44,7 +44,7 @@ const Container = styled.div`
   .paint {
     background: ${({theme}) => theme.blue};
     border-radius: 10px;
-    color: white;
+    color: ${({theme}) => theme.white};
     transition: all 0.3s;
 
     &:hover {
@@ -69,7 +69,7 @@ function isInEvent(hour, start, end) {
 }
 
 export default function DateBox({ date, eventData }) {
-  const currentDate = moment(combineDate(date)).format('YYYY-MM-DD');
+  const currentDate = format(new Date(combineDate(date)), 'yyyy-MM-dd');
   const currentDateEventList = filterEvent(currentDate, eventData);
 
   const hours24 = Array(24).fill(null).map((_, hour) => {

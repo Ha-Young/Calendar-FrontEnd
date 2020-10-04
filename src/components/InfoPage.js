@@ -11,7 +11,7 @@ const Container = styled.section`
   background: ${({ theme }) => theme.blue};
 
   .contents {
-    background: white;
+    background: ${({theme}) => theme.white};
     border-radius: 10px;
     width: 60%;
     height: 70%;

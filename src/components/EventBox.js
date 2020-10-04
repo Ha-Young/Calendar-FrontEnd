@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   }
 
   article {
-    color: white;
+    color: ${({theme}) => theme.white};
     width: 100%;
 
     h5 {
@@ -69,5 +69,5 @@ EventBox.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   id: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
 };
