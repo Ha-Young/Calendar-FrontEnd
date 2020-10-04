@@ -9,17 +9,17 @@ import Timeline from '../Timeline/Timeline';
 import AddEventPage from '../AddEventPage/AddEventPage';
 import { connect } from 'react-redux';
 
-function App( {...props} ) {
+function App( {updateDateReducer} ) {
 
   return (
     <div className={styles.App}>
       <Header />
       <Switch>
         <Route path='/' exact>
-          <Timeline showDailyPage={props.updateDateReducer.shouldLoadDailyPage} />
+          <Timeline showDailyPage={updateDateReducer.shouldLoadDailyPage} />
         </Route>
         <Route path='/week'>
-          <Timeline showDailyPage={props.updateDateReducer.shouldLoadDailyPage} />
+          <Timeline showDailyPage={updateDateReducer.shouldLoadDailyPage} />
         </Route>
         <Route path='/event/new'>
           <AddEventPage />

@@ -5,8 +5,8 @@ import Button from '../Button/Button';
 import { connect } from 'react-redux';
 import { changeToDailyMode, changeToWeeklyMode } from '../../actions';
 
-function Header({ ...props }) {
-  const updateDate = props.updateDateReducer;
+function Header( { updateDateReducer, changeToDailyMode, changeToWeeklyMode } ) {
+  const updateDate = updateDateReducer;
 
   function GetYearAndMonth() {
     const year = new Date().getFullYear();
@@ -27,9 +27,9 @@ function Header({ ...props }) {
       <GetYearAndMonth />
       <div className={styles.Chalender}>Chalender</div>
       <nav className={styles.Nav}>
-        <Link to='/' onClick={props.changeToDailyMode}>DAY</Link>
+        <Link to='/' onClick={changeToDailyMode}>DAY</Link>
         <span> | </span>
-        <Link to='/week' onClick={props.changeToWeeklyMode}>WEEK</Link>
+        <Link to='/week' onClick={changeToWeeklyMode}>WEEK</Link>
         <span> | </span>
         <Link to='/event/new'>ADD EVENT</Link>
       </nav>

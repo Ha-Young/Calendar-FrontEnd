@@ -3,12 +3,12 @@ import styles from './Button.module.css';
 import { connect } from 'react-redux';
 import { gotoNext, gotoPrev } from '../../actions'
 
-function Button( children ) {
+function Button( {gotoPrev, gotoNext} ) {
 
   return (
     <div className={styles.ButtonBox}>
-      <button className={styles.Button} onClick={children.gotoPrev}> {'<'} </button>
-      <button className={styles.Button} onClick={children.gotoNext}> {'>'} </button>
+      <button className={styles.Button} onClick={gotoPrev}> {'<'} </button>
+      <button className={styles.Button} onClick={gotoNext}> {'>'} </button>
     </div>
   );
 }

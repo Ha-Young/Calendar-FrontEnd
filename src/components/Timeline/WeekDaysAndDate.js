@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import { week } from '../../constants';
 import { monthDays } from '../../constants';
 
-function WeekDaysAndDate(props) {
-    const updateDate = props.updateDateReducer;
-    const day = updateDate.day;
-    const monthWeekly = updateDate.monthWeekly;
-    let monday = updateDate.monday;
+function WeekDaysAndDate( { updateDateReducer } ) {
+    const day = updateDateReducer.day;
+    const monthWeekly = updateDateReducer.monthWeekly;
+    let monday = updateDateReducer.monday;
 
     return (
       week.map((week, i) => {

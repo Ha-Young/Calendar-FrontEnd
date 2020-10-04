@@ -9,9 +9,11 @@ import { time } from '../../constants';
 const database = firebase.database();
 
 function AddEventPage(props) {
+  
+  const today = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`
   const [addEventForm, setAddEventForm] = useState({
     title: '',
-    date: '2020-10-02',
+    date: today,
     startTime: '00',
     endTime: '00',
     description: ''

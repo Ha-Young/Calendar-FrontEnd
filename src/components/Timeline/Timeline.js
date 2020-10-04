@@ -10,13 +10,21 @@ import { connect } from 'react-redux';
 import { addEvent, selectEvent } from '../../actions';
 import { monthDays, time, week } from '../../constants';
 
-function Timeline({ showDailyPage, ...props }) {
+function Timeline({ showDailyPage, addEvent, ...props }) {
   useEffect(() => {
-    fetchData()
-      .then(response => {
-        props.addEvent(response);
-      });
+    delay();
   }, []);
+
+  async function delay() {
+    try {
+      const result = await fetchData();
+      console.log(result)
+      addEvent(result);
+    }
+    catch {
+      throw new Error ('error');
+    }
+  }
 
   const updateDate = props.updateDateReducer;
   const addedEvent = props.addEventReducer;
