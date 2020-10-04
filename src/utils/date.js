@@ -2,6 +2,9 @@ const DAY_LIST = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const DAY_STEP = 86400000;
 const WEEK_STEP = 691200000;
 
+const generateTimeFormat = (value) =>
+  (`${value > 9 ? value : '0' + value}:00`);
+
 const generateDay = (target) => {
   const current = target ? new Date(target) : new Date();
   return current.toISOString().substring(0, 10);
@@ -46,5 +49,6 @@ export {
   stepToDay,
   generateDay,
   generateDayString,
-  generateWeekList
+  generateWeekList,
+  generateTimeFormat
 };

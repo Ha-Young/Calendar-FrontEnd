@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useRouteMatch, useHistory } from 'react-router-dom';
-import { ROUTER } from '../../router';
+import { ROUTERS } from '../../router';
 import { connect } from 'react-redux';
 import styles from './UpdateEventContainer.module.css';
 
@@ -11,24 +11,24 @@ import { updateEvent, deleteEvent } from '../../utils/api';
 import { getEventById } from '../../reducers/events';
 import { updateToEventList, deleteTargetEvent } from '../../actions/index';
 
-function UpdateEventContainer({ onSearch, onSubmit, onDelete }) {
+function UpdateEventContainer({ events, onSubmit, onDelete }) {
   const history = useHistory();
   const { params } = useRouteMatch();
 
-  const handleClick = useCallback(function () {
+  const handleDeleteClick = useCallback(function () {
     onDelete(params.eventId);
-    history.push(ROUTER.CALENDAR);
+    history.push(ROUTERS.CALENDAR);
   }, [onDelete, history]);
 
   return (
     <div className={styles.UpdateEventContainer}>
       <Form
         onSubmit={onSubmit}
-        target={onSearch(params.eventId)}
+        initialValues={getEventById(events, params.eventId)}
         text='Update'
       />
       <button
-        onClick={handleClick}
+        onClick={handleDeleteClick}
         className={styles.deleteButton}
       >
         Delete
@@ -39,9 +39,7 @@ function UpdateEventContainer({ onSearch, onSubmit, onDelete }) {
 
 const mapStateToProps = ({ events }) => {
   return {
-    onSearch(id) {
-      return getEventById(events.byId, id);
-    }
+    events: events.byId
   };
 };
 
@@ -69,7 +67,16 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateEventContainer);
 
 UpdateEventContainer.propTypes = {
-  onSearch: PropTypes.func.isRequired,
+  events: PropTypes.shape({
+    [PropTypes.string.isRequired] : PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      startTime: PropTypes.string.isRequired,
+      endTime: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })
+  }),
   onSubmit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ROUTER } from '../../router';
+import { ROUTERS } from '../../router';
 import styles from './EventCell.module.css';
 
 export default function EventCell({ event }) {
@@ -10,7 +10,7 @@ export default function EventCell({ event }) {
   return (
     <Link
       key={id}
-      to={ROUTER.EVENT + `/${id}`}
+      to={`${ROUTERS.EVENT}/${id}`}
       className={styles.EventCell}
       style={{
         top,

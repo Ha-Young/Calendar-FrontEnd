@@ -3,7 +3,7 @@ const EVENT = '/event';
 const EVENT_NEW = '/event/new';
 const EVENT_ID = '/event/:eventId';
 
-export const ROUTER = {
+export const ROUTERS = {
   CALENDAR,
   EVENT,
   EVENT_NEW,

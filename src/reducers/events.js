@@ -1,33 +1,31 @@
 import { combineReducers } from 'redux';
 import { RECEIVE_EVENTS, ADD_EVENT, UPDATE_EVENT, DELETE_EVENT } from '../actions';
 
-const byId = (state = {}, { type, events }) => {
+const byId = (state = {}, { type, payload }) => {
   switch (type) {
     case RECEIVE_EVENTS:
     case ADD_EVENT:
     case UPDATE_EVENT:
       return {
         ...state,
-        ...events
+        ...payload.event
       };
     case DELETE_EVENT:
       const copiedState = Object.assign({}, state);
-      delete copiedState[events];
+      delete copiedState[payload];
       return copiedState;
     default:
       return state;
   }
 };
 
-const allIds = (state = [], { type, events }) => {
+const allIds = (state = [], { type, payload }) => {
   switch (type) {
     case RECEIVE_EVENTS:
-      const newState = [];
-      for (const key in events) newState.push(key);
-      return newState;
+      return Object.keys(payload.event);
     case DELETE_EVENT:
       const copiedState = state.slice();
-      return copiedState.filter((id) => id !== events);
+      return copiedState.filter((id) => id !== payload.event);
     default:
       return state;
   }

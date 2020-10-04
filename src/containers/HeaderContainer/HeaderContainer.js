@@ -1,19 +1,19 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ROUTER } from '../../router';
+import { ROUTERS } from '../../router';
 import { connect } from 'react-redux';
 import styles from './HeaderContainer.module.css';
 
+import { VIEW } from '../../constants/viewMode';
 import { swapCalendarViewMode } from '../../actions/index';
 
-// TODO: Create your own header.
 function HeaderContainer({ onChange, dateInfo }) {
-  const handleChange = useCallback(function ({ target }) {
-    if (target.value === 'week') {
-      return onChange(true);
+  const handleViewModeChange = useCallback(function ({ target }) {
+    if (target.value === VIEW.WEEKLY_MODE) {
+      return onChange(VIEW.WEEKLY_MODE);
     }
-    onChange(false);
+    onChange(VIEW.DAILY_MODE);
   }, [onChange]);
 
   return (
@@ -21,7 +21,7 @@ function HeaderContainer({ onChange, dateInfo }) {
       <nav>
         <div>
           <Link
-            to={ROUTER.EVENT_NEW}
+            to={ROUTERS.EVENT_NEW}
             className={styles.addButton}
           >
             New event
@@ -30,13 +30,13 @@ function HeaderContainer({ onChange, dateInfo }) {
         <div>Calendar</div>
         <div>
           <select
-            name='weekly-select'
-            id='weekly-select'
-            onChange={handleChange}
-            defaultValue={dateInfo.isWeeklyMode ? 'week' : 'day'}
+            name='view-select'
+            id='view-select'
+            onChange={handleViewModeChange}
+            defaultValue={dateInfo.viewMode === VIEW.WEEKLY_MODE ? VIEW.WEEKLY_MODE : VIEW.DAILY_MODE}
           >
-            <option value='day'>Day</option>
-            <option value='week'>Week</option>
+            <option value={VIEW.DAILY_MODE}>Daily</option>
+            <option value={VIEW.WEEKLY_MODE}>Weekly</option>
           </select>
         </div>
       </nav>
@@ -65,7 +65,7 @@ HeaderContainer.propTypes = {
     current: PropTypes.string.isRequired,
     selectedDay: PropTypes.string.isRequired,
     weekList: PropTypes.array.isRequired,
-    isWeeklyMode: PropTypes.bool.isRequired,
+    viewMode: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired
   })
 };

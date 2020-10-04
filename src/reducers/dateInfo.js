@@ -1,26 +1,27 @@
 import { generateDay, generateDayString, generateWeekList } from '../utils/date';
 import { LOAD_ENDED, CHANGE_CALENDAR_VIEW_MODE, CHANGE_TARGET_DATE } from '../actions/index';
+import { VIEW } from '../constants/viewMode';
 
-const dateInfoInitState = {
+const initialState = {
   dayStringify: generateDayString(),
   current: generateDay(),
   selectedDay: generateDay(),
   weekList: generateWeekList(),
-  isWeeklyMode: true,
+  viewMode: VIEW.WEEKLY_MODE,
   isLoading: true
 };
 
-export const dateInfo = (state = dateInfoInitState, { type, payload }) => {
+export const dateInfo = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_ENDED:
       return {
         ...state,
-        isLoading: payload
+        isLoading: payload.loadState
       };
     case CHANGE_CALENDAR_VIEW_MODE:
       return {
         ...state,
-        isWeeklyMode: payload
+        viewMode: payload.viewMode
       };
     case CHANGE_TARGET_DATE:
       if (payload.isADay) {

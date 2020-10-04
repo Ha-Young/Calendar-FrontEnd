@@ -14,20 +14,18 @@ export default function DailyCard({ date, events }) {
       return;
     }
 
-    const newCellList = [];
     const POSITION_RANGE = 60;
-
-    events.forEach((event) => {
+    const newCellList = events.map((event) => {
       const startTime = parseInt(event.startTime.substring(0, 2));
       const endTime = parseInt(event.endTime.substring(0, 2));
       const duration = endTime - startTime;
 
-      newCellList.push({
+      return {
         id: event.id,
         title: event.title,
         top: startTime * POSITION_RANGE,
         height: duration * POSITION_RANGE,
-      });
+      };
     });
 
     setCellList(newCellList);
@@ -54,5 +52,14 @@ export default function DailyCard({ date, events }) {
 
 DailyCard.propTypes = {
   date: PropTypes.string.isRequired,
-  events: PropTypes.array.isRequired
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      startTime: PropTypes.string.isRequired,
+      endTime: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })
+  ),
 };

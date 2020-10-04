@@ -5,28 +5,28 @@ import styles from './CalendarContainer.module.css';
 
 import EventContainer from '../EventsContainer/EventsContainer';
 
-import { readEventListOnce } from '../../utils/api';
-import { stepToDay, generateWeekList } from '../../utils/date';
+import { VIEW } from '../../constants/viewMode';
+import { readEventList } from '../../utils/api';
+import { stepToDay, generateWeekList, generateTimeFormat } from '../../utils/date';
 import { changeTargetDate, setLoadedState, receiveEventList } from '../../actions/index';
 
 function Calendar({ onLoad, onChange, dateInfo }) {
-  const { isWeeklyMode, weekList, selectedDay, isLoading } = dateInfo;
+  const { viewMode, weekList, selectedDay, isLoading } = dateInfo;
 
   useEffect(() => {
     onLoad();
   }, []);
 
   const handleClick = useCallback(function ({ target }) {
-    let isPrevious = false;
-    if (target.name === 'previous') isPrevious = true;
+    const isPrevious = target.name === 'previous' ? true : false;
 
-    if (isWeeklyMode) {
+    if (viewMode === VIEW.WEEKLY_MODE) {
       const newWeekList = generateWeekList(weekList[0], isPrevious);
       return onChange(newWeekList);
     }
 
     const newSelectedDay = stepToDay(selectedDay, isPrevious);
-    onChange(newSelectedDay, !isWeeklyMode);
+    onChange(newSelectedDay, true);
   }, [onChange, dateInfo]);
 
   return (
@@ -44,7 +44,7 @@ function Calendar({ onLoad, onChange, dateInfo }) {
               Array.from({ length: 24 }).map((_, idx) => {
                 return (
                   <div key={idx}>
-                    {`${idx > 9 ? idx : '0' + idx}:00`}
+                    {generateTimeFormat(idx)}
                   </div>
                 );
               })
@@ -65,7 +65,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     async onLoad() {
       try {
-        const result = await readEventListOnce();
+        const result = await readEventList();
         dispatch(setLoadedState());
         dispatch(receiveEventList(result));
       } catch (error) {
@@ -88,7 +88,7 @@ Calendar.propTypes = {
     current: PropTypes.string.isRequired,
     selectedDay: PropTypes.string.isRequired,
     weekList: PropTypes.array.isRequired,
-    isWeeklyMode: PropTypes.bool.isRequired,
+    viewMode: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired
   })
 };
