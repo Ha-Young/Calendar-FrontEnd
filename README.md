@@ -4,16 +4,21 @@
 
 **React + React Router + Redux**를 복합적으로 이용해 Single Page Application 스타일의 Google Calendar를 만들어 보는 과제입니다. 그리고 Firebase를 이용해 사용자 데이터를 저장하도록 합니다.
 
-## How to start
+_✅ 아래 README 내용을 상세히 읽고 시작하세요. (특히, Tips 필독!)_
 
-### Package installation & Running local server
+## Installation
 
 ```sh
 npm install
+```
+
+## Development
+
+```sh
 npm start
 ```
 
-### Prerequisites
+## Prerequisites
 
 이번 과제에서는 Firebase를 사용하셔야 합니다. 아래 단계를 순차적으로 따라하시거나, [Firebase Database 공식 가이드](https://firebase.google.com/docs/database/web/start)를 참고하여 `/src/utils/firebase` 파일을 적절히 수정한 후 시작하세요.
 
@@ -21,22 +26,25 @@ npm start
 - [ ] [Firebase Console](https://console.firebase.google.com)로 이동하세요.
 - [ ] 새 프로젝트를 생성하세요.
 - [ ] Database 서비스 중, **Realtime Database**를 생성하세요. 주의) 🚨 Cloud Firestore가 아닙니다.
-- [ ] 프로젝트 설정에서 본인의 config 정보를 이용하여 `/src/utils/firebase`를 수정하세요.
+- [ ] **프로젝트 설정에서 본인의 config 정보를 이용하여 `/src/utils/firebase`를 수정하세요.**
 
 작업을 진행하시면서 Firebase 관련 정보는 아래 링크에서 찾아보세요.
 
 - [Firebase Database 가이드](https://firebase.google.com/docs/database/web/start)
 - [Firebase Database API Doc](https://firebase.google.com/docs/reference/js/firebase.database)
 - **Firebase Database에 저장하는 데이터의 구조에 대해 신중하게 결정하고 시작하시기 바랍니다. 참고: [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)**
-- **Firebase Database에 저장하는 날짜 및 시간 정보는 ISO 형식으로 저장하시기 바랍니다.** (ISO 형식에 대해서도 조사해보세요.)
+- **Firebase Database에 저장하는 날짜 및 시간 정보는 ISO 형식으로 저장하시기 바랍니다.**
 
 ## Tips
 
-1. 리덕스는 처음부터 설정하고 시작하기를 권장합니다. (actions, reducers, components, containers 등의 디렉토리 구조)
-2. 컨테이너는 우선 최상위에 하나를 두고 시작하시되, 작업하면서 필요하면 추가적으로 만드세요.
-3. 처음부터 컨테이너나 컴포넌트 트리를 다 계획하고 시작하는 방향은 비효율적이고 시간이 오래 걸릴 확률이 많습니다. 현재 수준에서는 절대 초반 계획대로 되지 않을테니, 작업하면서 결정하세요.
+1. 리덕스는 처음부터 설정하고 시작하기를 권장합니다. (actions, reducers, constants, components, containers 등의 디렉토리 구조)
+
+- [Directory Structure Example](https://github.com/reduxjs/redux/tree/master/examples/shopping-cart/src)
+
+2. 컨테이너는 우선 최상위에 하나만 두고 시작하시되, 추후 필요할 경우 추가적으로 만들어 사용하세요.
+3. 처음부터 컨테이너나 컴포넌트 트리를 다 계획하고 시작하는 방향은 비효율적이고 시간이 오래 걸릴 확률이 많습니다. 현재 수준에서는 절대 첫 계획대로 되지 않을테니, 작업하면서 결정하세요.
 4. Firebase 데이터 구조, Redux State 구조만 생각하고 바로 뛰어드시길 권장합니다.
-5. Redux Middleware는 Redux-logger 하나만 우선 쓰시길 권장합니다.
+5. [Redux-logger](https://github.com/LogRocket/redux-logger)를 Redux Middleware로 설정하여 쓰시길 권장합니다. 그 외의 Redux Middleware는 아직 사용하지 마세요.
 
 ## TODO
 
@@ -78,7 +86,7 @@ npm start
 - [ ] 모든 이벤트는 시작일과 종료일이 같아야 합니다.
 - [ ] 모든 이벤트는 1시간 단위로 시간을 조정할 수 있습니다.
 
-#### `/events/<EVENT_ID>` 이벤트 상세 페이지
+### `/events/<EVENT_ID>` 이벤트 상세 페이지
 
 - [ ] `<EVENT_ID>`에 해당하는 이벤트의 상세 정보를 보여주어야 합니다.
   - 이벤트 제목
@@ -89,7 +97,7 @@ npm start
 - [ ] 사용자는 이벤트를 삭제할 수 있어야 합니다.
 - [ ] 만약 유효하지 않은 `<EVENT_ID>`로 접근한다면 유효하지 않은 이벤트라는 정보를 표시해주어야 합니다.
 
-## Advanced TODO
+## Advanced
 
 ### Component Unit Test
 
