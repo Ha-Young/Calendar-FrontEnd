@@ -37,13 +37,10 @@ npm start
 
 ## Tips
 
-1. 리덕스는 처음부터 설정하고 시작하기를 권장합니다. (actions, reducers, constants, components, containers 등의 디렉토리 구조)
-
-- [Directory Structure Example](https://github.com/reduxjs/redux/tree/master/examples/shopping-cart/src)
-
+1. 리덕스는 처음부터 설정하고 시작하기를 권장합니다. ex) [Sample Directory Structure](https://github.com/reduxjs/redux/tree/master/examples/shopping-cart/src)
 2. 컨테이너는 우선 최상위에 하나만 두고 시작하시되, 추후 필요할 경우 추가적으로 만들어 사용하세요.
 3. 처음부터 컨테이너나 컴포넌트 트리를 다 계획하고 시작하는 방향은 비효율적이고 시간이 오래 걸릴 확률이 많습니다. 현재 수준에서는 절대 첫 계획대로 되지 않을테니, 작업하면서 결정하세요.
-4. Firebase 데이터 구조, Redux State 구조만 생각하고 바로 뛰어드시길 권장합니다.
+4. Firebase 데이터 구조, Redux State 구조만 결정하고 바로 뛰어드시길 권장합니다. ex) [Redux State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape), [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)
 5. [Redux-logger](https://github.com/LogRocket/redux-logger)를 Redux Middleware로 설정하여 쓰시길 권장합니다. 그 외의 Redux Middleware는 아직 사용하지 마세요.
 
 ## TODO
