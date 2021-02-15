@@ -1,4 +1,4 @@
-// TODO: You can modify, add, remove as you need.
+// TODO: Go to `./firebase.js` and update your firebase config.
 import firebase from "./firebase";
 
 export async function saveSampleData() {

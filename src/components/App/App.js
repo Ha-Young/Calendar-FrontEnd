@@ -5,12 +5,10 @@ import { Route, Switch } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
-import { saveSampleData } from "../../utils/api";
 
-// Feel free to modify as you need.
-function App() {
+function App({ onInitialLoad }) {
   useEffect(() => {
-    saveSampleData();
+    onInitialLoad();
   }, []);
 
   return (

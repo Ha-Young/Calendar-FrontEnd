@@ -37,11 +37,12 @@ npm start
 
 ## Tips
 
-1. 리덕스는 처음부터 설정하고 시작하기를 권장합니다. ex) [Sample Directory Structure](https://github.com/reduxjs/redux/tree/master/examples/shopping-cart/src)
-2. 컨테이너는 우선 최상위에 하나만 두고 시작하시되, 추후 필요할 경우 추가적으로 만들어 사용하세요.
-3. 처음부터 컨테이너나 컴포넌트 트리를 다 계획하고 시작하는 방향은 비효율적이고 시간이 오래 걸릴 확률이 많습니다. 현재 수준에서는 절대 첫 계획대로 되지 않을테니, 작업하면서 결정하세요.
-4. Firebase 데이터 구조, Redux State 구조만 결정하고 바로 뛰어드시길 권장합니다. ex) [Redux State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape), [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)
-5. [Redux-logger](https://github.com/LogRocket/redux-logger)를 Redux Middleware로 설정하여 쓰시길 권장합니다. 그 외의 Redux Middleware는 아직 사용하지 마세요.
+1. Container component는 우선 최상위에 하나만 두고 시작하시되, 추후 필요할 경우 추가적으로 만들어 사용하세요. (필요할 경우는 언제일까요?)
+2. 처음부터 컨테이너나 컴포넌트 트리를 다 계획하고 시작하는 방향은 비효율적이고 시간이 오래 걸릴 확률이 많습니다. 현재 수준에서는 절대 첫 계획대로 되지 않을테니, 작업하면서 결정하세요.
+3. Firebase 데이터 구조, Redux State 구조만 결정하고 바로 뛰어드시길 권장합니다. ex) [Redux State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape), [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)
+4. 설정되어 있는 [Redux-logger](https://github.com/LogRocket/redux-logger) 외의 Redux Middleware는 아직 사용하지 마세요.
+
+> ⏰ 꼭 읽어보세요. [Redux Style Guide](https://redux.js.org/style-guide/style-guide)
 
 ## TODO
 
@@ -79,9 +80,11 @@ npm start
   - 이벤트 시작 날짜 및 시간
   - 이벤트 종료 날짜 및 시간
 - [ ] 위 정보는 모두 필수 정보입니다. 최대한 상식 선에서 스스로 유효성 검사를 실행해 주시기 바랍니다.
-- [ ] 사용자가 Form을 성공적으로 제출 혹은 저장했을 경우, 메인 달력 페이지로 이동해야 합니다.
-- [ ] 모든 이벤트는 시작일과 종료일이 같아야 합니다.
-- [ ] 모든 이벤트는 1시간 단위로 시간을 조정할 수 있습니다.
+- [ ] 이벤트가 성공적으로 생성되었을 경우, 메인 달력 페이지로 이동해야 합니다.
+- [ ] 모든 이벤트는 시작 날짜와 종료 날짜가 같아야 합니다.
+- [ ] 모든 이벤트는 1시간 단위로만 길이를 조정할 수 있습니다.
+- [ ] 이벤트는 1시 00분, 2시 00분 등 정시에만 시작하거나 끝날 수 있습니다.
+- [ ] 같은 시간에 중복된 이벤트는 있을 수 없습니다.
 
 ### `/events/<EVENT_ID>` 이벤트 상세 페이지
 
