@@ -4,13 +4,13 @@ import "firebase/database";
 
 // TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyCg7LdWWFq-pWBsykO-2w5I-bcZP5dvAlo",
+  authDomain: "calendar-viewer-1d702.firebaseapp.com",
+  databaseURL: "https://calendar-viewer-1d702-default-rtdb.firebaseio.com",
+  projectId: "calendar-viewer-1d702",
+  storageBucket: "calendar-viewer-1d702.appspot.com",
+  messagingSenderId: "992537971735",
+  appId: "1:992537971735:web:900d54177dc245835e2052"
 };
 
 firebase.initializeApp(firebaseConfig);
