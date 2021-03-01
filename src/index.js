@@ -8,6 +8,7 @@ import {
   BrowserRouter as Router,
   // HashRouter as Router
 } from "react-router-dom";
+import api from "./api/index";
 import App from "./containers/App";
 
 const middleware = [];
