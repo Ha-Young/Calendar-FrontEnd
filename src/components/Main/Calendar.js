@@ -1,4 +1,5 @@
 import React from 'react';
+import './calendar.css';
 
 export default function Calendar () {
   const date = new Date();
@@ -27,32 +28,33 @@ export default function Calendar () {
   const dates = prevDates.concat(thisDates, nextDates);
   const calendarDates = dates.map(date => {
     return (
-      <div>{date}</div>
+      <div class='date'>{date}</div>
     )
   });
 
   return (
-    <div className="calendar">
-      <div className="header">
-        <div className="year-month">{thisYear}년 {thisMonth}월</div>
-          <div className="nav">
-            <button className="nav-btn go-prev">&lt;</button>
-            <button className="nav-btn go-today">Today</button>
-            <button className="nav-btn go-next">&gt;</button>
+    <div className='calendar'>
+      <div className='header'>
+        <div className='year-month'>{thisYear}년 {thisMonth}월</div>
+          <div className='nav'>
+            <button className='nav-btn go-prev'>&lt;</button>
+            <button className='nav-btn go-today'>Today</button>
+            <button className='nav-btn go-next'>&gt;</button>
         </div>
       </div>
-      <div className="main">
-        <div className="days">
-          <div className="day">일</div>
-          <div className="day">월</div>
-          <div className="day">화</div>
-          <div className="day">수</div>
-          <div className="day">목</div>
-          <div className="day">금</div>
-          <div className="day">토</div>
-          {calendarDates}
+      <div className='main'>
+        <div className='days'>
+          <div className='day'>일</div>
+          <div className='day'>월</div>
+          <div className='day'>화</div>
+          <div className='day'>수</div>
+          <div className='day'>목</div>
+          <div className='day'>금</div>
+          <div className='day'>토</div>
         </div>
-      <div className="dates"></div>
+      <div className='dates'>
+        {calendarDates}
+      </div>
       </div>
     </div>
   )
