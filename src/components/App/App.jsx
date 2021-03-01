@@ -4,7 +4,12 @@ import { Route, Switch } from "react-router-dom";
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
+
 import Header from "../Header/Header";
+import Event from "../Event/Event";
+import Calendar from "../Calendar/Calendar";
+import Weekly from "../Weekly/Weekly";
+import Daily from "../Daily/Daily";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
@@ -16,10 +21,22 @@ function App({ onInitialLoad }) {
       <Header />
       <Switch>
         <Route path="/" exact>
-          <div>Main</div>
+          <Calendar />
         </Route>
         <Route path="/event">
-          <div>Event</div>
+          <Event />
+        </Route>
+        <Route path="/calendar">
+          <Calendar />
+        </Route>
+        <Route path="/weekly">
+          <Weekly />
+        </Route>
+        <Route path="/daily">
+          <Daily />
+        </Route>
+        <Route>
+          {/* not found */}
         </Route>
       </Switch>
     </div>

@@ -5,3 +5,7 @@
   ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/constants/ActionTypes.js
 
  */
+
+export const GET_CALENDAR_VIEWER_SUCCESS = "GET_CALENDAR_VIEWER_SUCCESS";
+export const GET_CALENDAR_VIEWER_FIALURE = "GET_CALENDAR_VIEWER_FIALURE";
+

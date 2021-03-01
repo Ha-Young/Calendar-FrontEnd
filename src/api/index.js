@@ -8,5 +8,7 @@ export async function saveSampleData() {
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
   await database.ref("test/123").set({
     test: "text",
+    id: "안녕!",
+    good: "호에에에엥"
   });
 }
