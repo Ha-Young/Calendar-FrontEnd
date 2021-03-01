@@ -42,7 +42,7 @@ npm start
 3. Firebase 데이터 구조, Redux State 구조만 결정하고 바로 뛰어드시길 권장합니다. ex) [Redux State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape), [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)
 4. 설정되어 있는 [Redux-logger](https://github.com/LogRocket/redux-logger) 외의 Redux Middleware는 아직 사용하지 마세요.
 
-> ⏰ 꼭 읽어보세요. [Redux Style Guide](https://redux.js.org/style-guide/style-guide)
+> ⏰ [Redux Style Guide](https://redux.js.org/style-guide/style-guide)를 꼭 읽어보시고, Priority A & B에 해당하는 내용들을 지키도록 노력하세요.
 
 ## TODO
 
