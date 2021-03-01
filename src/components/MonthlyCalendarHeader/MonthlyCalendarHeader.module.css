@@ -1,0 +1,4 @@
+.monthly-calendar-header {
+  display: flex;
+  justify-content: space-evenly;
+}

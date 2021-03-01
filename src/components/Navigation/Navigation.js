@@ -5,7 +5,7 @@ import styles from "./Navigation.module.css";
 const Navigation = function () {
   return (
     <nav>
-      <ul className={styles["navigation"]}>
+      <ul className={styles["navigation-list"]}>
         <li className={styles["navigation-tab"]}>
           <NavLink exact to="/calendar">Calendar</NavLink>
         </li>
