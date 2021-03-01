@@ -1,16 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import Logo from "./Logo";
+
+const Wrapper = styled.header`
+  position: absolute;
+  top: 1em;
+  left: 1em;
+`;
 
 // TODO: Create your own header.
-export default function Header () {
+const Header = () => {
   return (
-    <header>
+    <Wrapper>
       <nav>
+        <Logo />
         <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/weekly">weekly</Link></li>
+          <li><Link to="/daily">daily</Link></li>
         </ul>
       </nav>
-    </header>
+    </Wrapper>
   );
 }
+
+export default Header;
