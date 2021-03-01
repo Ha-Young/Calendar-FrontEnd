@@ -2,15 +2,14 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-// TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyB2eOak4H8L6Zubk_76y7rQfP-0qu_25d0",
+  authDomain: "kingcalendar.firebaseapp.com",
+  databaseURL: "https://kingcalendar-default-rtdb.firebaseio.com",
+  projectId: "kingcalendar",
+  storageBucket: "kingcalendar.appspot.com",
+  messagingSenderId: "120802554404",
+  appId: "1:120802554404:web:18e0e3bfa02ee30f679eb1"
 };
 
 firebase.initializeApp(firebaseConfig);
