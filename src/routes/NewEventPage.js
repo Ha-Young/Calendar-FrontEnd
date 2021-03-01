@@ -1,10 +1,10 @@
 import React from "react";
 import { today } from "../utils/date";
 
-const EventPage = () => {
+const NewEventPage = () => {
   return (
     <div>{today}</div>
   );
 };
 
-export default EventPage;
+export default NewEventPage;

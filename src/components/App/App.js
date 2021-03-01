@@ -3,18 +3,14 @@ import React, { useEffect } from "react";
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
-import Header from "../Header/Header";
+import HeaderContainer from "../../containers/HeaderContainer";
 import AppRouter from "../AppRouter/AppRouter";
 
-const App = ({ onInitialLoad, changeCalendarType, something }) => {
-  useEffect(() => {
-    onInitialLoad();
-  }, []);
-
+const App = () => {
   return (
     <div className={styles.App}>
-      <Header />
-      <AppRouter changeCalendarType={changeCalendarType} />
+      <HeaderContainer />
+      <AppRouter />
     </div>
   );
 };

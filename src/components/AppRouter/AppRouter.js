@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import CalendarPage from "../../routes/CalendarPage";
-import EventPage from "../../routes/EventPage";
+import CalenderPageContainer from "../../containers/CalenderPageContainer";
+import NewEventPage from "../../routes/NewEventPage";
 
-const AppRouter = ({ changeCalendarType }) => {
+const AppRouter = () => {
   return (
     <Switch>
       <Route path="/" exact>
-        <CalendarPage onClickTypeButton={changeCalendarType} />
+        <CalenderPageContainer />
       </Route>
       <Route path="/events/new">
-        <EventPage />
+        <NewEventPage />
       </Route>
       <Route path="/events/:eventId">
         <div>Event/eventId</div>

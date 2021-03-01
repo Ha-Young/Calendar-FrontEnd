@@ -12,11 +12,10 @@ export async function saveSampleData() {
 }
 
 export async function loadSampleData() {
-  const database = firebase.database().ref("test/123");
+  const database = firebase.database().ref("userId/");
   // Note: `set` method returns a promise.
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.on("value", (snapshot) => {
-    const data = snapshot.val();
-    console.log(data);
-  });
+  const data = await database.once("value");
+
+  return data.val();
 }

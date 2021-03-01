@@ -8,7 +8,7 @@ import {
   BrowserRouter as Router,
   // HashRouter as Router
 } from "react-router-dom";
-import AppContainer from "./containers/AppContainer";
+import App from "./components/App/App";
 
 const middleware = [];
 
@@ -21,7 +21,7 @@ const store = createStore(reducer, applyMiddleware(...middleware));
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <AppContainer />
+      <App />
     </Router>
   </Provider>,
   document.getElementById("root")
