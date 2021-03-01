@@ -1,9 +1,8 @@
 import React from "react";
-import { NavLink } from 'react-router-dom';
-import { Route, Switch } from "react-router-dom";
+import { NavLink, Route, Switch } from "react-router-dom";
 import Event from "../Event/Event";
 
-function Events() {
+const Events = function () {
   //redux state에 이거 array 같은거 하나 저장시켜줘야할듯?
   const events = ["a", "b", "c"];
 
@@ -30,6 +29,6 @@ function Events() {
       </Switch>
     </div >
   );
-}
+};
 
 export default Events;

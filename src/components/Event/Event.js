@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-function Event() {
+const Event = function () {
   let { eventId } = useParams();
 
   console.log(eventId);
@@ -10,6 +10,6 @@ function Event() {
       {eventId}
     </div>
   );
-}
+};
 
 export default Event;

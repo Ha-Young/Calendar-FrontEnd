@@ -1,20 +1,12 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import HeaderStyles from "./Header.module.css";
+import React from "react";
+import Navigation from "../Navigation/Navigation";
 
-export default function Header() {
+const Header = function () {
   return (
     <header>
-      <nav>
-        <ul className={HeaderStyles["navigation"]}>
-          <li className={HeaderStyles["navigation-tab"]}>
-            <NavLink exact to="/calendar">Calendar</NavLink>
-          </li>
-          <li className={HeaderStyles["navigation-tab"]}>
-            <NavLink to="/events">Events</NavLink>
-          </li>
-        </ul>
-      </nav>
+      <Navigation />
     </header>
   );
-}
+};
+
+export default Header;
