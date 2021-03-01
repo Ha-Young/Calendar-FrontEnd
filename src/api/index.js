@@ -6,7 +6,17 @@ export async function saveSampleData() {
 
   // Note: `set` method returns a promise.
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.ref("test/123").set({
-    test: "text",
+  await database.ref("userId/").update({
+    "help": "ref",
+  });
+}
+
+export async function loadSampleData() {
+  const database = firebase.database().ref("test/123");
+  // Note: `set` method returns a promise.
+  // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
+  await database.on("value", (snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
   });
 }

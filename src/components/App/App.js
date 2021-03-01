@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
+import AppRouter from "../AppRouter/AppRouter";
 
-function App({ onInitialLoad }) {
+const App = ({ onInitialLoad, changeCalendarType, something }) => {
   useEffect(() => {
     onInitialLoad();
   }, []);
@@ -14,16 +14,9 @@ function App({ onInitialLoad }) {
   return (
     <div className={styles.App}>
       <Header />
-      <Switch>
-        <Route path="/" exact>
-          <div>Main</div>
-        </Route>
-        <Route path="/event">
-          <div>Event</div>
-        </Route>
-      </Switch>
+      <AppRouter changeCalendarType={changeCalendarType} />
     </div>
   );
-}
+};
 
 export default App;
