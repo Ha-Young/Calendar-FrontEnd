@@ -1,0 +1,31 @@
+.navigation {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.navigation-tab {
+  margin-left: 18px;
+  transition: opacity 1s linear;
+  cursor: pointer;
+}
+
+.navigation-tab:hover {
+  opacity: 0.5;
+}
+
+.navigation-tab a {
+  text-decoration: none;
+  color: black;
+}
+
+.active {
+  font-weight: bold;
+}

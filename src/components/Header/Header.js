@@ -1,14 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import HeaderStyles from "./Header.module.css";
 
-// TODO: Create your own header.
-export default function Header () {
+export default function Header() {
   return (
     <header>
       <nav>
-        <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
+        <ul className={HeaderStyles["navigation"]}>
+          <li className={HeaderStyles["navigation-tab"]}>
+            <NavLink exact to="/calendar">Calendar</NavLink>
+          </li>
+          <li className={HeaderStyles["navigation-tab"]}>
+            <NavLink to="/events">Events</NavLink>
+          </li>
         </ul>
       </nav>
     </header>
