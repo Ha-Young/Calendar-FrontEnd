@@ -22,11 +22,11 @@ npm start
 
 이번 과제에서는 Firebase를 사용하셔야 합니다. 아래 단계를 순차적으로 따라하시거나, [Firebase Database 공식 가이드](https://firebase.google.com/docs/database/web/start)를 참고하여 `/src/api/firebase` 파일을 적절히 수정한 후 시작하세요.
 
-- [ ] 우선 [Firebase 웹사이트](https://firebase.google.com/)를 방문하여 로그인 및 회원가입을 완료하세요.
-- [ ] [Firebase Console](https://console.firebase.google.com)로 이동하세요.
-- [ ] 새 프로젝트를 생성하세요.
-- [ ] Database 서비스 중, **Realtime Database**를 생성하세요. 주의) 🚨 Cloud Firestore가 아닙니다.
-- [ ] **프로젝트 설정에서 본인의 config 정보를 이용하여 `/src/api/firebase`를 수정하세요.**
+- [x] 우선 [Firebase 웹사이트](https://firebase.google.com/)를 방문하여 로그인 및 회원가입을 완료하세요.
+- [x] [Firebase Console](https://console.firebase.google.com)로 이동하세요.
+- [x] 새 프로젝트를 생성하세요.
+- [x] Database 서비스 중, **Realtime Database**를 생성하세요. 주의) 🚨 Cloud Firestore가 아닙니다.
+- [x] **프로젝트 설정에서 본인의 config 정보를 이용하여 `/src/api/firebase`를 수정하세요.**
 
 작업을 진행하시면서 Firebase 관련 정보는 아래 링크에서 찾아보세요.
 
@@ -110,3 +110,13 @@ Firebase를 이용하여 로그인 기능을 쉽게 구현할 수 있습니다. 
 ### Firebase Hosting
 
 Firebase를 이용하여 호스팅 또한 쉽게 할 수 있습니다. [Firebase Hosting 문서](https://firebase.google.com/docs/hosting)를 읽고 본인의 작업 결과물을 웹에 배포해보세요.
+
+# 추가적인 내용들
+
+## what is connect
+
+[connect함수 대신 hook 쓰기](https://velog.io/@kim6515516/useSelector%EC%83%81%ED%83%9C%EC%A1%B0%ED%9A%8C-useDispatch%EC%95%A1%EC%85%98-%EB%94%94%EC%8A%A4%ED%8C%A8%EC%B9%98)
+
+[connect가 가장 잘 설명되어 있음](https://react.vlpt.us/redux/09-connect.html)
+
+[https://medium.com/@ca3rot/%EC%95%84%EB%A7%88-%EC%9D%B4%EA%B2%8C-%EC%A0%9C%EC%9D%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EC%89%AC%EC%9A%B8%EA%B1%B8%EC%9A%94-react-redux-%ED%94%8C%EB%A1%9C%EC%9A%B0%EC%9D%98-%EC%9D%B4%ED%95%B4-1585e911a0a6]
