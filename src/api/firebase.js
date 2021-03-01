@@ -4,13 +4,13 @@ import "firebase/database";
 
 // TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyAqY_qvyU9E0m8D0S8ZdXk9VL8tlv4ssIc",
+  authDomain: "mocking-calendar-viewer.firebaseapp.com",
+  databaseURL: "https://mocking-calendar-viewer-default-rtdb.firebaseio.com",
+  projectId: "mocking-calendar-viewer",
+  storageBucket: "mocking-calendar-viewer.appspot.com",
+  messagingSenderId: "470682663037",
+  appId: "1:470682663037:web:51096121bf5d8d0d3a9914",
 };
 
 firebase.initializeApp(firebaseConfig);
