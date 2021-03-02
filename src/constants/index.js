@@ -1,0 +1,1 @@
+export const DAY_COLUMN_NUMBER = 35;

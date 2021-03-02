@@ -7,8 +7,8 @@ export default function Header () {
     <header>
       <nav>
         <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
+          <li><Link to='/'>Month</Link></li>
+          <li><Link to='/event'>Week</Link></li>
         </ul>
       </nav>
     </header>

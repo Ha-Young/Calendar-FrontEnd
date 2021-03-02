@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
-console.log(process.env);
+
 // TODO: Enter your own config object
 const env = process.env;
 const firebaseConfig = {
