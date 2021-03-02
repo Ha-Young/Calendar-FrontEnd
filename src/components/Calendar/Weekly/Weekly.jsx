@@ -10,7 +10,17 @@ import moment from "moment";
 export default function Weekly() {
   const [weekly, setWeekly] = useState([]);
   const [weeklyValue, setWeeklyValue] = useState(moment());
-  console.log(weeklyValue);
+
+  const result = [];
+
+  function handleClickDateBox(e) {
+    console.log(e.target.getAttribute("data-id"));
+  }
+
+  for (let i = 0; i < 24; i++) {
+    result.push(i);
+  }
+
   useEffect(() => {
     setWeekly(buildWeekly(weeklyValue));
   }, [weeklyValue]);
@@ -38,35 +48,22 @@ export default function Weekly() {
                   <div className={styles["day-box"]}>
                     {day.format("D").toString()}
                   </div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
-                  <div className={styles["day-box"]}>테스트</div>
+                  {result.map((value) => {
+                    return (
+                      <div
+                        onClick={(e) => handleClickDateBox(e)}
+                        data-id={`${day.format("YYMMDD")}_${value}`}
+                        key={value}
+                        className={styles["day-box"]}
+                      >
+                      </div>
+                    );
+                  })}
                 </div>
               ))}
             </div>
           ))}
-      </div>
+        </div>
       </section>
     </div>
   );

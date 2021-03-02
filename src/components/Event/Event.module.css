@@ -1,0 +1,20 @@
+.date-boxs {
+  display: flex;
+  justify-content: center;
+}
+
+.date-box {
+  margin: 0 1em;
+}
+
+.text-box {
+  width: 500px;
+  height: 500px;
+}
+
+.submit {
+  display: block;
+  width: 3em;
+  height: 3em;
+  margin: 2em auto;
+}

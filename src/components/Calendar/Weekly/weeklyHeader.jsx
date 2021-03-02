@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../Calendar.module.css";
+import styles from "./Weekly.module.css";
 
 export default function CalendarHeader({ value, setValue }) {
   function currentMonthName() {

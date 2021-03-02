@@ -17,6 +17,9 @@ export default function Header () {
           <li className={styles["navigation-item"]}>
             <NavLink exact to="/daily">daily</NavLink>
           </li>
+          <li className={styles["navigation-item"]}>
+            <NavLink exact to="/event/new">event</NavLink>
+          </li>
         </ul>
       </nav>
     </header>
