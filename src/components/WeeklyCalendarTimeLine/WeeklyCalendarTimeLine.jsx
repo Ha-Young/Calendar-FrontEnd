@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./WeeklyCalendarBody.module.css";
+import styles from "./WeeklyCalendarTimeLine.module.css";
 
 const createTimeLineItem = () => {
   const items = [];
@@ -12,22 +12,14 @@ const createTimeLineItem = () => {
   return items;
 }
 
-const createCalendarItem = () => {
-  const items = [];
-  for (let i = 0; i < 24; i++) {
-    items.push(<div key={i} className={styles.calendarItem} data-timeindex={i}></div>);
-  }
-  return items;
-}
-
-export default function WeeklyCalendarBody({ selectedDate }) {
+export default function WeeklyCalendarTimeLine() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.timeLineWrapper}>
+        <div className={styles.timeZone}>
+          GMT+09
+        </div>
         {createTimeLineItem()}
-      </div>
-      <div className={styles.calendarItemWrapper}>
-        {createCalendarItem()}
       </div>
     </div>
   );

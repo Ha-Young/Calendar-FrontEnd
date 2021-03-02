@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./WeeklyCalendar.module.css";
-import WeeklyCalendarHeader from "../WeeklyCalendarHeader/WeeklyCalendarHeader";
-import WeeklyCalendarBody from "../WeeklyCalendarBody/WeeklyCalendarBody";
+import WeeklyCalendarContents from "../WeeklyCalendarContents/WeeklyCalendarContents";
+import WeeklyCalendarTimeLine from "../WeeklyCalendarTimeLine/WeeklyCalendarTimeLine";
 
 export default function WeeklyCalendar({ selectedDate }) {
   return (
     <div className={styles.calendarWrapper}>
-      <WeeklyCalendarHeader selectedDate={selectedDate} />
-      <WeeklyCalendarBody selectedDate={selectedDate} />
+      <WeeklyCalendarTimeLine selectedDate={selectedDate} />
+      <WeeklyCalendarContents selectedDate={selectedDate} />
     </div>
   );
 }
