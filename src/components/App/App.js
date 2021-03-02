@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
@@ -6,24 +6,22 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
+import NewEvent from "../Events/NewEvent";
+import Events from "../Events/Events";
 
-function App({ onInitialLoad }) {
-  useEffect(() => {
-    onInitialLoad();
-  }, []);
-
+function App({ writeUserData, getUserData }) {
   return (
     <div className={styles.App}>
       <Header />
       <Switch>
         <Route path="/calendar">
-          <Calendar />
+          <Calendar getUserData={getUserData} />
         </Route>
         <Route exact path="/event">
-          <div>Event</div>
+          <Events getUserData={getUserData} />
         </Route>
         <Route exact path="/event/new">
-          <div>NEW EVENT</div>
+          <NewEvent writeUserData={writeUserData} />
         </Route>
         <Route exact path="/event/:eventId">
           <div>EVENT DETAIL</div>

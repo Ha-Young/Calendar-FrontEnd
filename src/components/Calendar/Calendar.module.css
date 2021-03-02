@@ -68,3 +68,7 @@
   width: 100%;
   height: 25px;
 }
+
+.haveEvent {
+  border: 1px solid tomato;
+}

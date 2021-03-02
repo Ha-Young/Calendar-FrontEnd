@@ -6,7 +6,7 @@ import { getFutureDate, getPastDate } from "../../utils/calander-utils";
 import DailyBody from "./DailyBody";
 import CALENDAR from "../../constants/calendar";
 
-export default function Calendar() {
+export default function Calendar({ getUserData }) {
   const [today, setToday] = useState(new Date());
   const [isDaily, setIsDaily] = useState(false);
 
@@ -40,8 +40,8 @@ export default function Calendar() {
       </div>
       <table className={styles.table}>
         {isDaily
-          ? <DailyBody today={today} />
-          : <WeeklyBody today={today} />
+          ? <DailyBody today={today} getUserData={getUserData} />
+          : <WeeklyBody today={today} getUserData={getUserData} />
         }
       </table>
     </>

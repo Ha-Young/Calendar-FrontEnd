@@ -1,11 +1,3 @@
-export function getNextWeek(date) {
-  return getFutureDate(date, 7);
-}
-
-export function getLastWeek(date) {
-  return getPastDate(date, 7);
-}
-
 export function getPastDate(date, num) {
   const result = new Date(date);
   result.setDate(date.getDate() - num);

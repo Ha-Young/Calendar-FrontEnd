@@ -1,0 +1,15 @@
+.flexCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.eventForm {
+  width: 500px;
+}
+
+.eventFormContainer {
+  border: 1px solid grey;
+}
+
