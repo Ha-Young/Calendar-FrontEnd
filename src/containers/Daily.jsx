@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { directionConst } from "constants/constants";
 import { getDate } from "utils/utilFunction";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
-import DailyMain from "./DailyMain";
+import DailySchedule from "../components/DailySchedule/DailySchedule";
+import { connect } from "react-redux";
 
 const Daily = (props) => {
   const [date, setDate] = useState(getDate(0));
@@ -29,9 +30,17 @@ const Daily = (props) => {
         onClick={setNewDate}
         text={date.month + "월 " + date.date + "일" + date.day}
       />
-      <DailyMain />
+      <DailySchedule />
     </>
   );
 };
 
-export default Daily;
+const mapStateToProps = (state) => ({
+  something: "Mapping redux state to App component props.",
+});
+
+const mapDispatchToProps = () => ({
+  // This function is passed to App component.
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Daily);

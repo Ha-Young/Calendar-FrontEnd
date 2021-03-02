@@ -9,8 +9,35 @@
 
  */
 
-const initialState = "Create your state structure!";
+import { ACTION } from "constants/actionTypes";
 
-export default function reducer(state = initialState) {
+const initialState = {};
+
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case ACTION.ADD_EVENT:
+      return;
+
+    case ACTION.DELETE_EVENT:
+      return;
+
+    case ACTION.EDIT_EVENT_TITLE:
+      return { ...state, title: action.title };
+
+    case ACTION.EDIT_EVENT_DESCRIPTION:
+      return { ...state, description: action.description };
+
+    case ACTION.EDIT_EVENT_DATE:
+      return { ...state, date: action.date };
+
+    case ACTION.EDIT_EVENT_START_TIME:
+      return { ...state, startTime: action.startTime };
+
+    case ACTION.EDIT_EVENT_END_TIME:
+      return { ...state, endTime: action.endTime };
+
+    default:
+      return state;
+  }
   return state;
 }

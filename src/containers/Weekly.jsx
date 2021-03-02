@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { dateConst, directionConst } from "constants/constants";
 import { getWeek, getWeekOfMonth } from "utils/utilFunction";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
-import WeeklyMain from "./WeeklyMain";
+import WeeklySchedule from "../components/WeeklySchedule/WeeklySchedule";
+import { connect } from "react-redux";
 
 const Weekly = (props) => {
   const [week, setWeek] = useState(getWeek(0));
@@ -31,9 +32,17 @@ const Weekly = (props) => {
         onClick={setNewWeek}
         text={weekOfMonth.month + "월 " + weekOfMonth.week + "주차"}
       />
-      <WeeklyMain week={week} />
+      <WeeklySchedule week={week} />
     </>
   );
 };
 
-export default Weekly;
+const mapStateToProps = (state) => ({
+  something: "Mapping redux state to App component props.",
+});
+
+const mapDispatchToProps = () => ({
+  // This function is passed to App component.
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Weekly);

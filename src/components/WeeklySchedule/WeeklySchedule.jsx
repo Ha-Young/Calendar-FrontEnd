@@ -1,6 +1,6 @@
 import React from "react";
 import { dateConst } from "constants/constants";
-import styles from "./WeeklyMain.module.css";
+import styles from "./WeeklySchedule.module.css";
 
 const WeeklyMain = ({ week }) => {
   return (

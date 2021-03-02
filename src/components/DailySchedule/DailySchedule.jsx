@@ -1,8 +1,8 @@
 import React from "react";
 import { dateConst } from "constants/constants";
-import styles from "./DailyMain.module.css";
+import styles from "./DailySchedule.module.css";
 
-const DailyMain = ({ day }) => {
+const DailySchedule = ({ day }) => {
   return (
     <section className={styles.container}>
       <div className={styles.timeContainer}>
@@ -21,4 +21,4 @@ const DailyMain = ({ day }) => {
   );
 };
 
-export default DailyMain;
+export default DailySchedule;

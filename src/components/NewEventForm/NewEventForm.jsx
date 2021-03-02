@@ -1,13 +1,14 @@
 import { dateConst } from "constants/constants";
 import React, { useState } from "react";
 
-// import styles from "./NewEvent.module.css";
+// import styles from "./NewEventForm.module.css";
 
 const NewEvent = (props) => {
   const [event, setEvent] = useState({});
 
   const onSubmit = (event) => {
     event.preventDefault();
+    // send to database
     console.log(event.target.value);
   };
 
