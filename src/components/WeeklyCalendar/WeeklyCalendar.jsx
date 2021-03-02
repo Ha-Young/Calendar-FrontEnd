@@ -7,7 +7,7 @@ export default function WeeklyCalendar({ selectedWeek }) {
   return (
     <div className={styles.calendarWrapper}>
       <WeeklyCalendarTimeLine />
-      <WeeklyCalendarContents selectedDate={selectedWeek} />
+      <WeeklyCalendarContents selectedWeek={selectedWeek} />
     </div>
   );
 }

@@ -11,37 +11,27 @@ const createCalendarItem = () => {
   return items;
 }
 
+const createCalendar = (week) => {
+  const days = week.map((day, index) => {
+    return (
+    <div key={index} className={styles.calendarItemWrapper}>
+      <div className={styles.calendarItem}>
+        <div>{day.weekdayShort}</div>
+        <div>{day.day}</div>
+      </div>
+      {createCalendarItem()}
+    </div>
+    );
+    
+  })
+
+  return days;
+}
+
 export default function WeeklyCalendarContents({ selectedWeek }) {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.calendarItemWrapper}>
-        <div className={styles.calendarItem}></div>
-        {createCalendarItem()}
-      </div>
-      <div className={styles.calendarItemWrapper}>
-        <div className={styles.calendarItem}></div>
-        {createCalendarItem()}
-      </div>
-      <div className={styles.calendarItemWrapper}>
-        <div className={styles.calendarItem}></div>
-        {createCalendarItem()}
-      </div>
-      <div className={styles.calendarItemWrapper}>
-        <div className={styles.calendarItem}></div>
-        {createCalendarItem()}
-      </div>
-      <div className={styles.calendarItemWrapper}>
-        <div className={styles.calendarItem}></div>
-        {createCalendarItem()}
-      </div>
-      <div className={styles.calendarItemWrapper}>
-        <div className={styles.calendarItem}></div>
-        {createCalendarItem()}
-      </div>
-      <div className={styles.calendarItemWrapper}>
-        <div className={styles.calendarItem}></div>
-        {createCalendarItem()}
-      </div>
+      {selectedWeek && createCalendar(selectedWeek)}
     </div>
   );
 }

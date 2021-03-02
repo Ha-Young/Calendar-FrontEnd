@@ -12,43 +12,54 @@
 import * as types from "../constants/actionTypes";
 import { DateTime } from 'luxon';
 
+const initialDay = DateTime.now();
 const initialState = {
-  selectedDate: "",
-  selectedWeek: [],
+  selectedDate: initialDay,
+  selectedWeek: calculateWeek(initialDay),
   selectedEventId: "",
   viewSelector: "",
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case types.SELECT_DAY:
+    case types.SELECT_DAY: {
       const newDate = formatDate(action.payload.selectedDate);
       return {
         ...state,
         selectedDate: newDate,
         selectedWeek: calculateWeek(newDate),
       };
-    case types.NEXT_BUTTON_CLICKED:
+    }
+
+    case types.NEXT_BUTTON_CLICKED: {
       // TODO daily, weekly에 따라 로직 분기처리 필요함!
+      const newDate = state.selectedDate.plus({ days: 1 });
       return {
         ...state,
-        selectedDate: state.selectedDate.plus({ days: 1 }),
+        selectedDate: newDate,
+        selectedWeek: calculateWeek(newDate),
       };
-    case types.PREV_BUTTON_CLICKED:
+    }
+
+    case types.PREV_BUTTON_CLICKED: {
+      const newDate = state.selectedDate.minus({ days: 1 });
       return {
         ...state,
-        selectedDate: state.selectedDate.minus({ days: 1 }),
+        selectedDate: newDate,
+        selectedWeek: calculateWeek(newDate),
       };
+    }
+
     default:
       return state;
   } 
 }
 
-const formatDate = (date) => {
+function formatDate(date) {
   return DateTime.fromJSDate(date);
 }
 
-const calculateWeek = (date) => {
+function calculateWeek(date) {
   const weekYear = date.weekYear;
   const weekNumber = date.weekNumber;
   const selectedWeek = [];
