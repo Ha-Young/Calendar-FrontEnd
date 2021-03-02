@@ -11,8 +11,11 @@ const CalendarUpperContainer = styled.div`
 
   .calendar__upper {
     &__month {
+      display: flex;
+      justify-content: center;
+      align-items:center;
       width: 25%;
-      height: 100%;
+      height: 4.2rem;
     }
 
     &__days {

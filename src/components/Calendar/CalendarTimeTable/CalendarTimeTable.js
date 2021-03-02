@@ -7,7 +7,7 @@ import ContentLayout from './ContentLayout/ContentLayout';
 const CalendarTimeTableStyle = styled.div`
   display: flex;
   text-align: start;
-  max-height: 400px;
+  max-height: 370px;
   font-size: 20px;
   padding-right: 3px;
   margin-right: 3px;
