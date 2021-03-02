@@ -12,7 +12,7 @@ import styles from "./App.module.css";
 
 const { Header, Footer, Content, Sider } = Layout;
 
-function App({ onInitialLoad, viewOption, changeViewOption, currentDate, changeCurrentDate }) {
+function App({ onInitialLoad, viewOption, changeViewOption, currentDate, changeCurrentDate, moveAddEventPage }) {
   useEffect(() => {
     onInitialLoad();
   }, []);
@@ -29,7 +29,11 @@ function App({ onInitialLoad, viewOption, changeViewOption, currentDate, changeC
         <Content className={styles.content}>
           <Switch>
             <Route path="/calendar">
-              <Schedule viewOption={viewOption} currentDate={currentDate}/>
+              <Schedule
+                viewOption={viewOption}
+                currentDate={currentDate}
+                onScheduleAddBtnClick={moveAddEventPage}
+              />
             </Route>
             <Route path="/events">
               <Events />

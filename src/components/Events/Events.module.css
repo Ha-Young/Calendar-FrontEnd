@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  min-width: 600px;
+  height: 100%;
+  min-height: 600px;
+  background-color: white;
+  padding-right: 10px;
+  overflow: scroll;
+  border: #d9d9d9 .5px solid;
+  -webkit-box-shadow: 5px 5px 20px 10px #d9d9d9;
+  -moz-box-shadow: 5px 5px 20px 10px #d9d9d9;
+  box-shadow: 5px 5px 20px 10px #d9d9d9;
+}

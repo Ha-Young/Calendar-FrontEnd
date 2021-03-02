@@ -1,0 +1,39 @@
+.scheduleAddBtnWrapper {
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scheduleAddBtn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1a73e8;
+}
+
+.scheduleAddBtn:hover {
+  background-color: #e6f7ff;
+  border-color: #1a73e8;
+}
+
+.scheduleAddBtn svg {
+  font-size: 40px;
+  color: white;
+  transition: color 0.2s linear, transform 0.2s linear;
+}
+
+.scheduleAddBtn:hover svg {
+  color: #d9d9d9;
+  transform: rotate(90deg);
+}
+
+.scheduleAddBtn:active svg {
+  color: #d9d9d9;
+}
+
+.scheduleAddBtn:focus svg {
+  color: #d9d9d9;
+}
