@@ -1,20 +1,23 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { makeSundayDate } from '../../utils';
 
 const WeeklyCalendar = () => {
+  const [todayDate, setTodayDate] = useState(new Date());
   const days = ['일', '월', '화', '수', '목', '금', '토'];
-  const date = new Date();
-  const thisDay = date.getDay();
-  const thisDate = date.getDate();
   const times = [];
   const events = [];
+  let sundayDate = makeSundayDate(todayDate);
+
+  for (let i = 0; i < 25; i++) {
+    times.push(i);
+  }
 
   for (let i = 0; i < 24; i++) {
-    times.push(i);
     events.push(i);
   }
 
   const timeList = times.map((time, index) => {
+
     return (
       <div className='timeable'>
         <div className='time' key={index}>{time}</div>
@@ -23,6 +26,7 @@ const WeeklyCalendar = () => {
   });
 
   const eventList = events.map((event, index) => {
+
     return (
       <div className='eventTable'>
         <div className='event' key={index}>event</div>
@@ -31,10 +35,17 @@ const WeeklyCalendar = () => {
   });
 
   const daysList = days.map((day, index) => {
+    let startDate = sundayDate.getDate();
+
+    sundayDate.setDate(++startDate);
+
     return (
       <div className='week-day' key={index}>
-        <div>{day}</div>
-        <div>{eventList}</div>
+        <div>
+          <div>{day}</div>
+          <div>{startDate - 1}</div>
+        </div>
+        <div className='event-wrapper'>{eventList}</div>
       </div>
     )
   });
@@ -44,7 +55,9 @@ const WeeklyCalendar = () => {
       <div className='days'>
         <div>
           <div>TimeTable</div>
-          {timeList}
+          <div className='time-table-wrapper'>
+            {timeList}
+          </div>
         </div>
         {daysList}
       </div>

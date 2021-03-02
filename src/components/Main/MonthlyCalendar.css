@@ -85,9 +85,20 @@
 }
 
 .time {
-  margin: 10px 0;
+  height: 50px;
+  padding-bottom: 0.5px;
+}
+
+.event-wrapper {
+  border-top: 1px solid black;
+}
+
+.week-day:last-child .event-wrapper {
+  border-right: 1px solid black;
 }
 
 .event {
-  margin: 10px 0;
+  height: 50px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
 }
