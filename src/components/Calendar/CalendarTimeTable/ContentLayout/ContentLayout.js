@@ -11,14 +11,18 @@ const ContentLayoutContainer = styled.div`
 `;
 
 const ContentLayout = () => {
+  function getOneHourArray() {
+    const oneHourArray = [];
+    for (let i = 0; i < 25; i++) {
+      oneHourArray.push(<OneHour></OneHour>)
+    }
+
+    return oneHourArray;
+  }
+
   return (
     <ContentLayoutContainer>
-      <OneHour></OneHour>
-      <OneHour></OneHour>
-      <OneHour></OneHour>
-      <OneHour></OneHour>
-      <OneHour></OneHour>
-      <OneHour></OneHour>
+      {getOneHourArray()}
     </ContentLayoutContainer>
   );
 };

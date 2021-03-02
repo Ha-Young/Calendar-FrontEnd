@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 import CalendarUpperDays from './CalendarUpperDays/CalendarUpperDays';
 
-const CalendarUpperStyle = styled.div`
+const CalendarUpperContainer = styled.div`
   display: flex;
   height: 30%;
+  margin-top: 7px;
   margin-right: 17px;
 
   .calendar__upper {
@@ -18,7 +19,7 @@ const CalendarUpperStyle = styled.div`
       display: flex;
       justify-content: space-around;
       width: 75%;
-      background-color: red;
+      height: 100%;
     }
   }
 `;
@@ -26,10 +27,10 @@ const CalendarUpperStyle = styled.div`
 const CalendarUpper = () => {
 
   return (
-    <CalendarUpperStyle>
+    <CalendarUpperContainer>
       <div className="calendar__upper__month">Apr 3rd</div>
       <CalendarUpperDays></CalendarUpperDays>
-    </CalendarUpperStyle>
+    </CalendarUpperContainer>
   );
 };
 
