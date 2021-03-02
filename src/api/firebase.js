@@ -4,13 +4,13 @@ import "firebase/database";
 
 // TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyCTrcxnv_n2XTO9Lm00saqMJg5V1Hxz3gE",
+  authDomain: "vaco-calendar-viewer.firebaseapp.com",
+  databaseURL: "https://vaco-calendar-viewer-default-rtdb.firebaseio.com",
+  projectId: "vaco-calendar-viewer",
+  storageBucket: "vaco-calendar-viewer.appspot.com",
+  messagingSenderId: "338122815300",
+  appId: "1:338122815300:web:3c938fbd45f80b55c40911",
 };
 
 firebase.initializeApp(firebaseConfig);

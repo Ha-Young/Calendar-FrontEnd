@@ -1,0 +1,11 @@
+.days {
+  margin: 20px;
+}
+
+.day {
+  float: left;
+  padding: 10px 50px;
+  height: 500px;
+  background-color: #efefee;
+  border: 2px solid ghostwhite;
+}

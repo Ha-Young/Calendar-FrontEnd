@@ -9,8 +9,24 @@
 
  */
 
-const initialState = "Create your state structure!";
+const initialState = {
+  events: {},
+  record: {},
 
-export default function reducer(state = initialState) {
-  return state;
+};
+
+export default function reducer(state = initialState, action) {
+  const newState = { ...state };
+
+  switch (action.type) {
+    case "CHANGE_VALUE":
+      let tmp = action.changeTarget;
+      newState.record[action.changeTarget] = action.value;
+      break;
+    case "SAVE_RECORD":
+      newState.events = newState.record;
+      break;
+  }
+
+  return newState;
 }
