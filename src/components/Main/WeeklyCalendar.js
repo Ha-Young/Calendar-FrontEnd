@@ -1,8 +1,10 @@
 import React from 'react';
 import { makeSundayDate } from '../../utils';
 import styles from './WeeklyCalendar.module.css';
+import { useRouteMatch, Link } from 'react-router-dom';
 
 const WeeklyCalendar = ({ children }) => {
+  const { url } = useRouteMatch();
   const todayDate = new Date();
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   const timeCells = [];
@@ -41,10 +43,16 @@ const WeeklyCalendar = ({ children }) => {
           </div>
           <div className={styles.eventWrapper} key={index}>
             {eventCells.map((item, index) => {
+              const keyId = index + (startDate - 1);
+
               return (
-                <div key={index + (startDate - 1)}>
-                  <div className={styles.event}>
-                  </div>
+                <div key={keyId}>
+                  <Link to={`${url}/${keyId}`}>
+                    <div
+                      className={styles.event}
+                    >
+                    </div>
+                  </Link>
                 </div>
                 )
               })
@@ -57,12 +65,12 @@ const WeeklyCalendar = ({ children }) => {
     daysList = (
       <div className={styles.weekDay}>
         <div className={styles.dayDateWrapper}>
-          <div>
+          <div className={styles.dayDate}>
             <div>{days[todayDate.getDay()]}</div>
             <div>{todayDate.getDate()}</div>
           </div>
         </div>
-        <div className={styles.eventWrapper} >
+        <div className={styles.eventWrapper}>
           {eventCells.map((item, index) => {
             return (
               <div key={todayDate.getDate() + index}>
@@ -79,6 +87,11 @@ const WeeklyCalendar = ({ children }) => {
 
   return (
     <div className={styles.calendar}>
+      <div>
+        <button>&lt;</button>
+        <button>Today</button>
+        <button>&gt;</button>
+      </div>
       <div className={styles.days}>
         <div>
           <div className={styles.timeTableTitle}>TimeTable</div>

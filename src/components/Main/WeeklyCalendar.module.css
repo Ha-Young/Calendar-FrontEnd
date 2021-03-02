@@ -12,8 +12,17 @@
   height: 50px;
 }
 
+.dayDate {
+  position: relative;
+  right: 35px;
+}
+
 .eventWrapper {
   border-top: 1px solid black;
+}
+
+.eventWrapper:hover {
+  cursor: pointer;
 }
 
 .event {

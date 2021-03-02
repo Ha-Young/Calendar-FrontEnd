@@ -24,12 +24,6 @@
   align-items: center;
 }
 
-.nav {
-  display: flex;
-  border: 1px solid #333333;
-  border-radius: 5px;
-}
-
 .days {
   display: flex;
   margin: 25px 0 10px;

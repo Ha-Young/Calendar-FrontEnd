@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 // For example, what is it? what are benefits?
 import styles from './App.module.css';
 import Header from '../Header/Header';
+import Modal from '../Modal/Modal';
 import MonthlyCalendar from '../Main/MonthlyCalendar';
 import WeeklyCalendar from '../Main/WeeklyCalendar';
 import DailyCalendar from '../Main/DailyCalendar';
@@ -21,11 +22,14 @@ function App({ onInitialLoad }) {
         <Route exact path='/'>
           <MonthlyCalendar />
         </Route>
-        <Route path='/weeklycalendar'>
+        <Route exact path='/weeklycalendar'>
           <WeeklyCalendar />
         </Route>
         <Route path='/dailycalendar'>
           <DailyCalendar />
+        </Route>
+        <Route exact path='/weeklycalendar/:keyId'>
+          <Modal />
         </Route>
       </Switch>
     </div>

@@ -44,7 +44,7 @@ const MonthlyCalendar = () => {
     <div className={styles.calendar}>
       <div className={styles.header}>
         <div>{thisYear}년 {thisMonth}월</div>
-          <div className={styles.nav}>
+          <div>
             <button>&lt;</button>
             <button>Today</button>
             <button>&gt;</button>
