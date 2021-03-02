@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import DateSelector from "../DateSelector/DateSelector";
 import styles from "./Header.module.css";
 
 function Header ({ isDay, toggleDay }) {
@@ -22,6 +23,7 @@ function Header ({ isDay, toggleDay }) {
           </Link>
         </ul>
       </nav>
+      <DateSelector />
       <button onClick={handleClick}>{viewType}</button>
     </header>
   );
