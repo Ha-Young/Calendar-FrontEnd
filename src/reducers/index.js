@@ -10,9 +10,9 @@
  */
 import { combineReducers } from "redux";
 import calendarDate from "./calendarDate";
-// import eventData from ".eventData";
+import eventData from "./eventData";
 
 export default combineReducers({
   calendarDate,
-  // eventData,
+  eventData,
 });

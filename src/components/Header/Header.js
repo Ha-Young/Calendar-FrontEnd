@@ -5,8 +5,8 @@ import { viewMode } from "../../constants/viewMode";
 // TODO: Create your own header.
 
 const Header = ({ onClickButton }) => {
-  const handleClickDayButton = () => onClickButton(viewMode.DAILYMODE);
-  const handleClickWeekButton = () => onClickButton(viewMode.WEEKLIYMODE);
+  const handleClickDayButton = () => onClickButton(viewMode.DAILYMODE.isDaily);
+  const handleClickWeekButton = () => onClickButton(viewMode.WEEKLYMODE.isDaily);
 
   return (
     <header>

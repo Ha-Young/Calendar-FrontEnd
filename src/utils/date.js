@@ -1,5 +1,5 @@
 import { startOfWeek, endOfWeek, eachDayOfInterval, formatISO } from "date-fns";
-
+import { viewMode } from "../constants/viewMode";
 export const today = new Date();
 
 export const getWeek = (today) => {
@@ -17,8 +17,10 @@ export const getDay = (today) => {
   return [formatISO(today).slice(0, 10)];
 };
 
-export const setCalendarData = (cb, info) => {
-  const date = cb(...info);
+export const setCalendarData = (cb, isDailyCalendar, currentDate) => {
+  const calendarGap = isDailyCalendar ? viewMode.DAILYMODE.gap : viewMode.WEEKLYMODE.gap;
+
+  const date = cb(currentDate, calendarGap);
   const daily = getDay(date);
   const weekly = getWeek(date);
 
@@ -28,3 +30,13 @@ export const setCalendarData = (cb, info) => {
     weekly,
   };
 };
+
+export const hours = new Array(24).fill(0).map((_, index) => index); // 상수 지정
+
+export const generateUrlByDate = (currentDate, startTime) => {
+  const date = formatISO(currentDate).slice(0, 10);
+  const time = startTime;
+
+  return `${date}/${time}`;
+};
+

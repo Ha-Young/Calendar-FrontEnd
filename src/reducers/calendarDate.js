@@ -1,10 +1,8 @@
-import { DAILY_GAP } from "../constants/viewMode";
 import { getWeek, getDay, today } from "../utils/date";
 import * as types from "../constants/actionTypes";
 
 const initialState = {
   isDaily: true,
-  gap: DAILY_GAP,
   date: today,
   daily: getDay(today),
   weekly: getWeek(today),
@@ -15,10 +13,10 @@ export const calendarDate = (state = initialState, actions) => {
     case types.CHANGE_CALENDAR_TYPE: {
       return {
         ...state,
-        ...actions.payLoad,
+        isDaily: actions.payLoad,
       };
     }
-    case types.CHANGE_CALENDAR_PAGE: { // 합치기
+    case types.CHANGE_CALENDAR_PAGE: {
       return {
         ...state,
         ...actions.payLoad,
@@ -30,8 +28,6 @@ export const calendarDate = (state = initialState, actions) => {
 };
 
 export default calendarDate;
-
-
 
 // export const interval = (state = DAILY_INTERVAL, actions) => {
 //   switch (actions.type) {

@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { addDays, subDays } from "date-fns";
-import { setCalendarData } from "../utils/date";
+import { setCalendarData } from "../../utils/date";
 
-const CalendarPage = ({ onLoad, onClickButton, calendarList, calendarInfo }) => { // toglebutton으로 바꾸기..
+const CalendarPage = ({ onLoad, onClickButton, calendarList, isDailyCalendar, date }) => { // toglebutton으로 바꾸기..
   useEffect(() => {
     onLoad();
   }, []);
-
+  
   const handlePrevButton = () => { // 나누는게 나은가..? usecallback 사용하기
-    const newCalendarDate = setCalendarData(subDays, calendarInfo);
+    const newCalendarDate = setCalendarData(subDays, isDailyCalendar, date);
 
     onClickButton({
       ...newCalendarDate,
@@ -16,7 +16,7 @@ const CalendarPage = ({ onLoad, onClickButton, calendarList, calendarInfo }) => 
   };
 
   const handleNextButton = () => {
-    const newCalendarDate = setCalendarData(addDays, calendarInfo);
+    const newCalendarDate = setCalendarData(addDays, isDailyCalendar, date);
 
     onClickButton({
       ...newCalendarDate,

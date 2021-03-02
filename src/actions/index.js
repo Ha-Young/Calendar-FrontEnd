@@ -22,12 +22,22 @@ export const changeCalendarPage = (payLoad) => ({
 //   payLoad,
 // });
 
-export const successFetchingCalendarData = (payLoad) => ({
+export const fetchCalendarDataSuccess = (payLoad) => ({
   type: types.GET_CALENDAR_DATA_SUCCESS,
   payLoad,
 });
 
-export const failFetchingCalendarData = (payLoad) => ({
-  type: types.GET_CALENDAR_DATA_FAILURE,
+export const fetchCalendarDataFail = (payLoad) => ({
+  type: types.GET_CALENDAR_DATA_FAIL,
+  payLoad,
+});
+
+export const sendEventData = (payLoad) => ({
+  type: types.SEND_EVENT_DATA,
+  payLoad,
+});
+
+export const sendEventDataSuccess = (payLoad) => ({
+  type: types.SEND_EVENT_DATA,
   payLoad,
 });

@@ -1,8 +1,8 @@
-export const DAILY_GAP = 1;
+const DAILY_GAP = 1;
 const WEEKLY_GAP = 7;
 
 export const viewMode = {
-  WEEKLIYMODE: {
+  WEEKLYMODE: {
     gap: WEEKLY_GAP,
     isDaily: false,
   },
