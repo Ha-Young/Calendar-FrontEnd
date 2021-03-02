@@ -10,7 +10,7 @@ import WeeklyCalendar from "../WeeklyCalendar/WeeklyCalendar";
 import SideBar from "../SideBar/SideBar";
 import CreateEvent from "../CreateEvent/CreateEvent";
 
-function App({ selectDay, selectedDate }) {
+function App({ selectDay, selectedDate, selectedWeek }) {
   // useEffect(() => {
   //   onInitialLoad();
   // }, []);
@@ -24,7 +24,7 @@ function App({ selectDay, selectedDate }) {
             <DailyCalendar selectedDate={selectedDate} />
           </Route>
           <Route path="/calendar/weekly">
-            <WeeklyCalendar selectedDate={selectedDate} />
+            <WeeklyCalendar selectedWeek={selectedWeek} />
           </Route>
           <Route path="/events/new">
             <CreateEvent />
