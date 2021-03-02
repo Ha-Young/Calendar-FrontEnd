@@ -95,10 +95,13 @@ function getWeeks(date, { firstDayOfWeek = 0, forceSixRows = false } = {}) {
   return weeks;
 }
 
-const dayCalculator = () => {
-  console.log(new Date(2020, 12 -1, 10));
-  console.log(getWeeks(new Date(2020, 12 -1, 10)));
-  console.log(format(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+const dayCalculator = (date) => {
+  //console.log(new Date(2020, 12 -1, 10));
+  //console.log(getWeeks(new Date(2020, 12 -1, 10)));
+  //console.log(format(new Date(2014, 1, 11), 'MM/dd/yyyy'));
+  if (!date) return;
+
+  return getWeeks(date);
 }
 
 export default dayCalculator;

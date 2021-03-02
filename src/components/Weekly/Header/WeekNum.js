@@ -41,7 +41,7 @@ const WeekNum = () => {
     <Wrapper>
       {dayNum.map(num => {
         return (
-          <div>
+          <div key={num}>
             <p>{num}</p>
           </div>
         );

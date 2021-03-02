@@ -17,8 +17,8 @@ const days = new Array(DAY).fill(undefined).map((v,idx) => idx);
 const DayLine = () => {
   return (
     <Wrapper>
-      {days.map(() => {
-        return <EventLine />;
+      {days.map(v => {
+        return <EventLine key={v} />;
       })}
     </Wrapper>
   );

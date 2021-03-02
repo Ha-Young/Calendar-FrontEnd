@@ -9,7 +9,11 @@
 
  */
 
-const initialState = "Create your state structure!";
+import moment from "moment";
+
+const today = moment().format('dd');
+
+const initialState = {};
 
 export default function reducer(state = initialState) {
   return state;

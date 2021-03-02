@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import moment from "moment";
 
 const Wrapper = styled.div`
   padding-left: 0.5em;
@@ -37,17 +38,24 @@ const Wrapper = styled.div`
   }
 `;
 
-const dayStr = "SUN";
-const dayNum = 0;
+const dayStr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 const Day = () => {
+  const todayStr = moment().format('d');
+  const todayNum = moment().format('DD');
+
+  function day() {
+    return Number(todayNum.toString());
+  }
+
+  //const prevDay = moment().day(todayStr -1).format('DD');
   return (
     <Wrapper>
       <div className="day-str">
-        <p>{dayStr}</p>
+        <p>{dayStr[todayStr]}</p>
       </div>
       <div className="day-num">
-        <p>{dayNum}</p>
+        <p>{day()}</p>
       </div>
     </Wrapper>
   );

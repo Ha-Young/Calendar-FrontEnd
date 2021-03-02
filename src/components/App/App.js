@@ -8,7 +8,7 @@ import GlobalStyles from "./GlobalStyles";
 import AppHeader from "../Header/AppHeader";
 import Weekly from "../Weekly/Weekly";
 import Daily from "../Daily/Daily";
-import dayCalculator from "../../utils/dayCalculater";
+import dayCalculater from "../../utils/dayCalculater";
 
 const Wrapper = styled.div`
 `;
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 const App = ({ onInitialLoad }) => {
   useEffect(() => {
     onInitialLoad();
-    dayCalculator();
+    dayCalculater();
   }, []);
 
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import Calendar from "../../shared/Calendar";
 import DayLine from "./DayLine";
 import TimeLine from "./TimeLine";

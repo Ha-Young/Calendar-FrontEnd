@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import moment from "moment";
 import WeekStr from "./WeekStr";
 import WeekNum from "./WeekNum";
 
@@ -16,6 +17,9 @@ const Header = styled.header`
 `;
 
 const WeekHeader = () => {
+  const [getMoment, setMoment] = useState(moment());
+  const today = getMoment.format('y');
+  console.log(today);
   return (
     <Header>
       <WeekStr />
