@@ -4,7 +4,7 @@
 }
 
 .weekDay {
-  width: calc(100% / 7);
+  width: 100%;
   text-align: center;
 }
 

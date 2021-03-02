@@ -62,30 +62,26 @@ const WeeklyCalendar = ({ children }) => {
       )
     });
   } else {
-    daysList = days.map((day, index) => {
-      return (
-        <div className={styles.weekDay} key={index}>
-          <div className={styles.dayDateWrapper}>
-            {index === 3 &&
-              <div>
-                <div>{days[todayDate.getDay()]}</div>
-                <div>{todayDate.getDate()}</div>
-              </div>
-            }
-          </div>
-          <div className={styles.eventWrapper} key={index}>
-            {eventCells.map((event, index) => {
-              return (
-                <div className='eventTable'>
-                  <div className={styles.event} key={index}>event</div>
-                </div>
-                )
-              })
-            }
+    daysList = (
+      <div className={styles.weekDay}>
+        <div className={styles.dayDateWrapper}>
+          <div>
+            <div>{days[todayDate.getDay()]}</div>
+            <div>{todayDate.getDate()}</div>
           </div>
         </div>
-      )
-    })
+        <div className={styles.eventWrapper} >
+          {eventCells.map((event, index) => {
+            return (
+              <div className='eventTable'>
+                <div className={styles.event} key={index}>event</div>
+              </div>
+              )
+            })
+          }
+        </div>
+      </div>
+    )
   }
 
 
@@ -94,7 +90,7 @@ const WeeklyCalendar = ({ children }) => {
       <div className={styles.days}>
         <div>
           <div className={styles.timeTableTitle}>TimeTable</div>
-          <div>
+          <div className={'time-table-wrapper'}>
             {timeList}
           </div>
         </div>
