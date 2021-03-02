@@ -47,6 +47,11 @@
   text-align: center;
 }
 
+.week-day {
+  width: calc(100% / 7);
+  text-align: center;
+}
+
 .dates {
   display: flex;
   flex-flow: row wrap;
@@ -80,5 +85,9 @@
 }
 
 .time {
+  margin: 10px 0;
+}
+
+.event {
   margin: 10px 0;
 }
