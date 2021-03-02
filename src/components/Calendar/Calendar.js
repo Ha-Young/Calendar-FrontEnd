@@ -2,78 +2,20 @@ import React from 'react';
 import './Calendar.scss';
 
 import CalendarUpper from './CalendarUpper/CalendarUpper';
+import CalendarTimeTable from './CalendarTimeTable/CalendarTimeTable';
+
+// width 값은 여기서 동일하게 가진다.
+// height 값도 통일해주자
+// border 값도 통일
+
+// Redux = 지금 상태가 week 인지 daily인지
 
 const Calendar = () => {
   return (
     <div className="calendar">
       <CalendarUpper></CalendarUpper>
       <hr></hr>
-      <div className="calendar__timeline" id="test">
-        <div className="calendar__timeline__time">
-          <div className="time">00:00 ~ 01:00</div>
-          <div className="time">01:00 ~ 02:00</div>
-          <div className="time">02:00 ~ 03:00</div>
-          <div className="time">04:00 ~ 05:00</div>
-          <div className="time">05:00 ~ 06:00</div>
-          <div className="time">06:00 ~ 07:00</div>
-        </div>
-        <div className="calendar__timeline__contexts">
-          <div className="onehour">
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-          </div>
-          <div className="onehour">
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-          </div>
-          <div className="onehour">
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-          </div>
-          <div className="onehour">
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-          </div>
-          <div className="onehour">
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-          </div>
-          <div className="onehour">
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-            <div className="context">style</div>
-          </div>
-        </div>
-      </div>
+      <CalendarTimeTable></CalendarTimeTable>
     </div>
   );
 };

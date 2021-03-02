@@ -27,7 +27,7 @@ const CalendarUpper = () => {
 
   return (
     <CalendarUpperStyle>
-      <div className="calendar__upper__month"></div>
+      <div className="calendar__upper__month">Apr 3rd</div>
       <CalendarUpperDays></CalendarUpperDays>
     </CalendarUpperStyle>
   );
