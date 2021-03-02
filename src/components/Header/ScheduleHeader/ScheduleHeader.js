@@ -6,15 +6,26 @@ import styles from "./ScheduleHeader.module.css";
 
 const ScheduleHeader = function ({
   date,
-  onPreButtonClick,
-  onNextButtonClick
+  isWeeklySchedule,
+  updateLastWeek,
+  updateNextWeek,
+  updatePrevDay,
+  updateNextDay
 }) {
+  function onPrevButtonClick() {
+    isWeeklySchedule ? updateLastWeek() : updatePrevDay();
+  }
+
+  function onNextButtonClick() {
+    isWeeklySchedule ? updateNextWeek() : updateNextDay();
+  }
+
   return (
     <div className={styles["schedule-header"]}>
       <Button
         className={styles["prev-button"]}
         children="<"
-        onClick={onPreButtonClick}
+        onClick={onPrevButtonClick}
       />
       <Button
         className={styles["next-button"]}
@@ -23,7 +34,7 @@ const ScheduleHeader = function ({
       />
       <Title
         className={styles["date-title"]}
-        children={generateDateString(date)}
+        children={generateDateString(isWeeklySchedule, date)}
       />
     </div>
   );

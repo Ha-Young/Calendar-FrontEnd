@@ -13,7 +13,9 @@ const App = function ({
   date,
   onInitialLoad,
   updateNextWeek,
-  updateLastWeek
+  updateLastWeek,
+  updateNextDay,
+  updatePrevDay
 }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,8 +40,11 @@ const App = function ({
     <div className={styles.App}>
       <Header
         date={date}
+        isWeeklySchedule={isWeeklySchedule}
         updateLastWeek={updateLastWeek}
         updateNextWeek={updateNextWeek}
+        updateNextDay={updateNextDay}
+        updatePrevDay={updatePrevDay}
       />
       {isInitialized
         ? (<Main

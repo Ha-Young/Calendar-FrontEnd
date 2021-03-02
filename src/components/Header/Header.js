@@ -11,16 +11,24 @@ import Navigation from "./Navigation/Navigation";
 //Worth to think about it
 const Header = function ({
   date,
+  isWeeklySchedule,
   updateLastWeek,
-  updateNextWeek
+  updateNextWeek,
+  updatePrevDay,
+  updateNextDay
 }) {
+
+
   return (
     <header className={styles["header"]}>
       <Navigation />
       <ScheduleHeader
         date={date}
-        onPreButtonClick={updateLastWeek}
-        onNextButtonClick={updateNextWeek}
+        isWeeklySchedule={isWeeklySchedule}
+        updateLastWeek={updateLastWeek}
+        updateNextWeek={updateNextWeek}
+        updateNextDay={updateNextDay}
+        updatePrevDay={updatePrevDay}
       />
     </header>
   );

@@ -11,7 +11,8 @@ import * as types from "../constants/actionTypes";
  */
 const initialState = {
   date: new Date(),
-  isWeeklySchedule: false
+  isWeeklySchedule: false,
+  events: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -24,12 +25,22 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         date: new Date(year, month, dateNumber - 7)
-      }
+      };
     case types.UPDATE_NEXT_WEEK:
       return {
         ...state,
         date: new Date(year, month, dateNumber + 7)
-      }
+      };
+    case types.UPDATE_PREV_DAY:
+      return {
+        ...state,
+        date: new Date(year, month, dateNumber - 1)
+      };
+    case types.UPDATE_NEXT_DAY:
+      return {
+        ...state,
+        date: new Date(year, month, dateNumber + 1)
+      };
   }
   return state;
 }

@@ -7,6 +7,7 @@ const mapStateToProps = function (state) {
   return {
     date: state.date,
     isWeeklySchedule: state.isWeeklySchedule,
+    events: state.events,
   };
 };
 
@@ -18,13 +19,20 @@ const mapDispatchToProps = function (dispatch) {
     updateNextWeek: () => {
       dispatch({
         type: types.UPDATE_NEXT_WEEK,
-        payload: {
-
-        }
       });
     },
     updateLastWeek: () => {
       dispatch({ type: types.UPDATE_LAST_WEEK });
+    },
+    updateNextDay: () => {
+      dispatch({
+        type: types.UPDATE_NEXT_DAY,
+      });
+    },
+    updatePrevDay: () => {
+      dispatch({
+        type: types.UPDATE_PREV_DAY,
+      });
     }
   }
 };

@@ -66,7 +66,7 @@ export function generateWeekArray(date) {
   return weekArray;
 }
 
-export function generateDateString(date) {
+export function generateDateString(isWeek, date) {
   const year = date.getFullYear();
   const month = date.getMonth();
   const dateNumber = date.getDate();
@@ -77,13 +77,17 @@ export function generateDateString(date) {
   const prevMonth = month - 1 < 0 ? MONTH_LIST.length - 1 : month - 1;
   const nextMonth = month + 1 > MONTH_LIST.length - 1 ? 0 : month + 1;
 
-  if (dateNumber - day < 1) {
-    return `${year}년 ${MONTH_LIST[prevMonth]} - ${MONTH_LIST[month]}`;
-  } else if (dateNumber + 6 - day > totalDays) {
-    return `${year}년 ${MONTH_LIST[month]} - ${MONTH_LIST[nextMonth]}`;
+  if (!isWeek) {
+    return `${MONTH_LIST[month]} ${dateNumber}, ${year}`;
   }
 
-  return `${year}년 ${MONTH_LIST[month]}`;
+  if (dateNumber - day < 1) {
+    return `${MONTH_LIST[prevMonth]} - ${MONTH_LIST[month]}, ${year}`;
+  } else if (dateNumber + 6 - day > totalDays) {
+    return `${MONTH_LIST[month]} - ${MONTH_LIST[nextMonth]}, ${year}`;
+  }
+
+  return `${MONTH_LIST[month]}, ${year}`;
 }
 
 export function generateTimeList() {
