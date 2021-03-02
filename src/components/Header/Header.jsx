@@ -20,7 +20,7 @@ export default function Header() {
           <Link to="/events/new">New Event</Link>
         </button>
         <button>
-          <Link to="/events/:eventId">Event Detail</Link>
+          <Link to="/profile">Profile</Link>
         </button>
       </nav>
     </header>

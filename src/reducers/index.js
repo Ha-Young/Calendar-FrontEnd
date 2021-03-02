@@ -11,12 +11,26 @@
 
 import { ACTION } from "constants/actionTypes";
 
-const initialState = {};
+export const addEvent = (newEvent) => {
+  return {
+    type: ACTION.ADD_EVENT,
+    newEvent,
+  };
+};
+
+const initialState = {
+  userState: true,
+  events: [],
+  currentEvents: [],
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case ACTION.ADD_EVENT:
-      return;
+      return {
+        ...state,
+        events: [...state.events, { ...action.newEvent, id: new Date() }],
+      };
 
     case ACTION.DELETE_EVENT:
       return;
@@ -39,5 +53,4 @@ export default function reducer(state = initialState, action) {
     default:
       return state;
   }
-  return state;
 }

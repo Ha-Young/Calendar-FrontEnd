@@ -1,12 +1,12 @@
-import styles from "./AppRouter.module.css";
-import Header from "components/Header/Header";
-import Home from "components/Home/Home";
-import Daily from "containers/Daily";
-import Weekly from "containers/Weekly";
-import NewEvent from "components/NewEvent/NewEvent";
-import EventDetail from "components/EventDetail/EventDetail";
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+
+import Header from "components/Header/Header";
+import Weekly from "containers/Weekly";
+import Daily from "containers/Daily";
+import HandleEvent from "containers/HandleEvent";
+import EventDetail from "components/EventDetail/EventDetail";
 import Login from "components/Login/Login";
 
 const AppRouter = ({ isLoggedIn }) => {
@@ -14,15 +14,19 @@ const AppRouter = ({ isLoggedIn }) => {
     <Switch>
       <>
         {isLoggedIn ? (
-          <div className={styles.App}>
+          <section>
             <Header />
-            <Route exact path="/" component={NewEvent} />
+            <Route exact path="/" component={Weekly} />
             <Route exact path="/daily" component={Daily} />
             <Route exact path="/weekly" component={Weekly} />
             <Route exact path="/events/:eventId" component={EventDetail} />
-            <Route exact path="/events/new" component={NewEvent} />
+            <Route exact path="/events/:eventId/edit">
+              <HandleEvent /*{prop Event}*/ />
+            </Route>
+            <Route exact path="/events/new" component={HandleEvent} />
+            <Route exact path="/profile" />
             <Redirect from="/calender" to="/" />
-          </div>
+          </section>
         ) : (
           <Route exact path="/">
             <Login />
@@ -33,4 +37,8 @@ const AppRouter = ({ isLoggedIn }) => {
   );
 };
 
-export default AppRouter;
+const mapStateToProps = (state) => {
+  return state;
+};
+
+export default connect(mapStateToProps)(AppRouter);

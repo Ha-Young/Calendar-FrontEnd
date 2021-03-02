@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import styles from "./App.module.css";
 import { authService } from "api/firebaseService";
-import AppRouter from "components/AppRouter/AppRouter";
+import AppRouter from "containers/AppRouter";
 
 function App({ onInitialLoad }) {
   const [init, setInit] = useState(false);
@@ -19,9 +19,8 @@ function App({ onInitialLoad }) {
   }, []);
 
   useEffect(() => {
-    console.log(onInitialLoad);
     onInitialLoad();
-  }, []);
+  }, [onInitialLoad]);
 
   return (
     <>

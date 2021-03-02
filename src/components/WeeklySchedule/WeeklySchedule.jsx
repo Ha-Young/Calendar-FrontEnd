@@ -2,7 +2,7 @@ import React from "react";
 import { dateConst } from "constants/constants";
 import styles from "./WeeklySchedule.module.css";
 
-const WeeklyMain = ({ week }) => {
+const WeeklyScedule = ({ week }) => {
   return (
     <section className={styles.container}>
       <div className={styles.timeContainer}>
@@ -30,4 +30,4 @@ const WeeklyMain = ({ week }) => {
   );
 };
 
-export default WeeklyMain;
+export default WeeklyScedule;

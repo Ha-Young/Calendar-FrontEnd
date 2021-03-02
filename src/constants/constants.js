@@ -19,6 +19,14 @@ export const directionConst = {
   PREV: "PREV",
 };
 
+export const inputConst = {
+  TITLE: "title",
+  DESCRIPTION: "description",
+  DATE: "date",
+  START_TIME: "startTime",
+  END_TIME: "endTime",
+};
+
 // export const GAP_FROM_SUNDAY = {
 //   Sun: 0 * MS_OF_DAY,
 //   Mon: 1 * MS_OF_DAY,
