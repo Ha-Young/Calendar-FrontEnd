@@ -29,7 +29,7 @@ function App({ onInitialLoad, viewOption, changeViewOption, currentDate, changeC
         <Content className={styles.content}>
           <Switch>
             <Route path="/calendar">
-              <Schedule viewOption={viewOption}/>
+              <Schedule viewOption={viewOption} currentDate={currentDate}/>
             </Route>
             <Route path="/events">
               <Events />

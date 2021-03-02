@@ -2,15 +2,16 @@ import React from "react";
 
 import { VIEW_OPTION } from "../../constants/stateTypes";
 import DailySchedule from "../DailySchedule";
+import TimeColumn from "../TimeColumn";
 import WeeklySchedule from "../WeeklySchedule";
 import styles from "./Schedule.module.css";
 
-
-function Schedule({ viewOption }) {
+function Schedule({ viewOption, currentDate }) {
   return (
     <div className={styles.wrapper}>
-      {viewOption === VIEW_OPTION.DAILY && <DailySchedule />}
-      {viewOption === VIEW_OPTION.WEEKLY && <WeeklySchedule />}
+      <TimeColumn />
+      {viewOption === VIEW_OPTION.DAILY && <DailySchedule date={currentDate}/>}
+      {viewOption === VIEW_OPTION.WEEKLY && <WeeklySchedule currentDate={currentDate}/>}
     </div>
   );
 }
