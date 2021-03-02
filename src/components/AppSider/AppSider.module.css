@@ -1,7 +1,6 @@
 .appSider {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100%;
 }
@@ -11,7 +10,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 3vh;
+  margin-top: 150px;
+  padding-bottom: 20px;
 }
 
 .userImg {
@@ -19,4 +19,10 @@
   height: 80px;
   border-radius: 50%;
   margin-bottom: 30px;
+}
+
+.appTitle {
+  margin-top: 70px;
+  font-size: 30px;
+  font-style: italic;
 }

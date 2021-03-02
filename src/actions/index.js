@@ -15,3 +15,8 @@ export const changeViewOption = viewOption => ({
   type: types.CHANGE_VIEW_OPTION,
   payload: viewOption,
 });
+
+export const changeDate = date => ({
+  type: types.CHANGE_DATE,
+  payload: date,
+});

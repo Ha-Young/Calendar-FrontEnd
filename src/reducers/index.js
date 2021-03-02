@@ -18,18 +18,28 @@
   };
  */
 
-import { CHANGE_VIEW_OPTION } from "../constants/actionTypes";
+import { CHANGE_DATE, CHANGE_VIEW_OPTION } from "../constants/actionTypes";
 import { VIEW_OPTION } from "../constants/stateTypes";
+import { getCurrentDateStr } from "../utils/date";
 
 const initialState = {
   viewOption: VIEW_OPTION.DAILY,
+  currentDate: getCurrentDateStr(),
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_VIEW_OPTION:
-      state.viewOption = action.payload;
-      return state;
+      return {
+        ...state,
+        viewOption: action.payload,
+      };
+
+    case CHANGE_DATE:
+      return {
+        ...state,
+        currentDate: action.payload,
+      };
 
     default:
       return state;

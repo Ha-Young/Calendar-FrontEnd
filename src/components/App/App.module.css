@@ -13,7 +13,14 @@
 }
 
 .sidebar {
+  width: 500px;
   background-color: #DBCDAD;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer {

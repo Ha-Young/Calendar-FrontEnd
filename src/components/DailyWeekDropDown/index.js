@@ -3,6 +3,7 @@ import { Dropdown, Menu } from "antd";
 import React, { useState } from "react";
 
 import { VIEW_OPTION } from '../../constants/stateTypes';
+import { toUpperFirstChar } from '../../utils/common';
 
 const MENU_KEYS = [VIEW_OPTION.DAILY, VIEW_OPTION.WEEKLY];
 const MENU_ICONS = {
@@ -10,10 +11,6 @@ const MENU_ICONS = {
   [MENU_KEYS[1]]: <OneToOneOutlined />,
 };
 
-function toUpperIndexZero(str) {
-  return str[0].toUpperCase()
-  + str.slice(1, str.length);
-}
 
 function DailyWeekDropDown({ onChange, defaultKey=MENU_KEYS[0] }) {
   const [selectedKey, setSelectedKey] = useState(defaultKey);
@@ -44,7 +41,7 @@ function DailyWeekDropDown({ onChange, defaultKey=MENU_KEYS[0] }) {
       }
     >
       {MENU_ICONS[selectedKey]}
-      {toUpperIndexZero(selectedKey)}
+      {toUpperFirstChar(selectedKey)}
     </Dropdown.Button>
   );
 }
