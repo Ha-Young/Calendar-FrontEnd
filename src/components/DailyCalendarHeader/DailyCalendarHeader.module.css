@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  height: 50px;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.timeZone {
+  width: 100px;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 5px;
+}

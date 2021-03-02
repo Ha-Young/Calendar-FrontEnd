@@ -9,8 +9,28 @@
 
  */
 
-const initialState = "Create your state structure!";
+import * as types from "../constants/actionTypes";
+import { DateTime } from 'luxon';
 
-export default function reducer(state = initialState) {
-  return state;
+const initialState = {
+  selectedDate: "",
+  selectedWeek: "",
+  selectedEventId: "",
+  viewSelector: "",
+};
+
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case types.SELECT_DAY:
+      return {
+        ...state,
+        selectedDate: formatDate(action.payload.selectedDate),
+      };
+    default:
+      return state;
+  } 
+}
+
+const formatDate = (date) => {
+  return DateTime.fromJSDate(date);
 }

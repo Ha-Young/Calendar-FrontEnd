@@ -1,7 +1,10 @@
-/*
+import * as types from "../constants/actionTypes";
 
-  Action Creators
+let nextTodoId = 0
 
-  ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/actions/index.js
-
- */
+export const selectDay = date => ({
+  type: types.SELECT_DAY,
+  payload: {
+    selectedDate: date,
+  },
+})

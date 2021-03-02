@@ -5,7 +5,7 @@ export async function saveSampleData() {
 
   // Note: `set` method returns a promise.
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.ref("test/123").set({
-    test: "text",
+  await database.ref("test/124").set({
+    test: "김-희찬입니다.",
   });
 }
