@@ -1,5 +1,5 @@
 .wrapper {
-  width: 90%;
+  width: 60%;
   height: 90%;
 }
 
@@ -20,4 +20,12 @@
   position: absolute;
   top: -10px;
   left: -30px;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 10%;
 }

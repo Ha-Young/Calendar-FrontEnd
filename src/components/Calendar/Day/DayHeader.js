@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import * as Aioutline from "react-icons/ai";
-import styles from "./Calendar.module.css";
+import styles from "./Day.module.css";
 import { addDay, subDay, formatDate } from "../../../utils/utils";
 
 // TODO: Create your own header.
-export default function CalendarHeader() {
+export default function DayHeader() {
   const [day, setDay] = useState(new Date());
 
   function onClickAddDate(day) {

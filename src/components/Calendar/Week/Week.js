@@ -1,11 +1,11 @@
 import React from "react";
-import CalendarHeader from "../SharedHeader/CalendarHeader";
+import WeekHeader from "../Week/WeekHeader";
 import styles from "./Week.module.css";
 
 export default function Week() {
   return (
     <div className={styles.wrapper}>
-      <CalendarHeader />
+      <WeekHeader />
     </div>
   );
 }
