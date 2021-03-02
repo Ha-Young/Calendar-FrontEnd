@@ -3,13 +3,13 @@ import "firebase/auth";
 import "firebase/database";
 
 const SETTING = {
-  API_KEY: process.env.API_KEY,
-  AUTH_DOMAIN: process.env.AUTH_DOMAIN,
-  DATA_BASE_URL: process.env.DATA_BASE_URL,
-  PROJECT_ID: "vanilla-calendar-96dfa",
-  STORAGE_BUCKET: process.env.STORAGE_BUCKET,
-  MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID,
-  APP_ID: process.env.APP_ID,
+  API_KEY: process.env.REACT_APP_API_KEY,
+  AUTH_DOMAIN: process.env.REACT_APP_AUTH_DOMAIN,
+  DATA_BASE_URL: process.env.REACT_APP_DATA_BASE_URL,
+  PROJECT_ID: process.env.REACT_APP_PROJECT_ID,
+  STORAGE_BUCKET: process.env.REACT_APP_STORAGE_BUCKET,
+  MESSAGING_SENDER_ID: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  APP_ID: process.env.REACT_APP_APP_ID,
 }
 
 // TODO: Enter your own config object

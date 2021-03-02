@@ -46,7 +46,7 @@ npm start
 
 ## TODO
 
-- [ ] 우선 다음과 같이 페이지를 구성하세요. 필요하다면 React Router의 `HashRouter`를 사용하셔도 괜찮습니다.
+- [x] 우선 다음과 같이 페이지를 구성하세요. 필요하다면 React Router의 `HashRouter`를 사용하셔도 괜찮습니다.
   - `/calendar`: 메인 달력 페이지
   - `/events/new`: 이벤트 생성 페이지
   - `/events/:eventId`: 이벤트 상세 페이지
