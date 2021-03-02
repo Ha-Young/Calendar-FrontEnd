@@ -9,20 +9,27 @@ import * as types from "../constants/actionTypes";
   - Don't optimize pre-maturely!
 
  */
-
-const date = new Date();
-
 const initialState = {
-  dateObject: {
-    year: date.getFullYear(),
-    month: date.getMonth(),
-    date: date.getDate(),
-    day: date.getDay(),
-  },
-
+  date: new Date(),
   isWeeklySchedule: true
 };
 
 export default function reducer(state = initialState, action) {
+  const year = state.date.getFullYear();
+  const month = state.date.getMonth();
+  const dateNumber = state.date.getDate();
+
+  switch (action.type) {
+    case types.UPDATE_LAST_WEEK:
+      return {
+        ...state,
+        date: new Date(year, month, dateNumber - 7)
+      }
+    case types.UPDATE_NEXT_WEEK:
+      return {
+        ...state,
+        date: new Date(year, month, dateNumber + 7)
+      }
+  }
   return state;
 }

@@ -1,15 +1,27 @@
 import React from "react";
-import { generateDate } from "../../utils/calendarUtils";
+import { generateDateString } from "../../utils/calendarUtils";
 import Button from "../Button/Button";
 import Title from "../Title/Title";
 import styles from "./ScheduleHeader.module.css";
 
-const ScheduleHeader = function ({ dateObject }) {
+const ScheduleHeader = function ({
+  date,
+  onPreButtonClick,
+  onNextButtonClick
+}) {
   return (
     <div className={styles["calendar-button-and-title"]}>
-      <Button className="prevButton" children="<" />
-      <Button className="prevButton" children=">" />
-      <Title children={generateDate(dateObject.year, dateObject.month)} />
+      <Button
+        className="prevButton"
+        children="<"
+        onClick={onPreButtonClick}
+      />
+      <Button
+        className="nextButton"
+        children=">"
+        onClick={onNextButtonClick}
+      />
+      <Title children={generateDateString(date)} />
     </div>
   );
 };

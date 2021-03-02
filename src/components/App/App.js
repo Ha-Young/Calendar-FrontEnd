@@ -8,7 +8,13 @@ import Header from "../Header/Header";
 import { onAuthStateChanged } from "../../api/index";
 import Main from "../Main/Main";
 
-const App = function ({ isWeeklySchedule, dateObject, onInitialLoad }) {
+const App = function ({
+  isWeeklySchedule,
+  date,
+  onInitialLoad,
+  updateNextWeek,
+  updateLastWeek
+}) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -30,11 +36,15 @@ const App = function ({ isWeeklySchedule, dateObject, onInitialLoad }) {
 
   return (
     <div className={styles.App}>
-      <Header dateObject={dateObject} />
+      <Header
+        date={date}
+        updateLastWeek={updateLastWeek}
+        updateNextWeek={updateNextWeek}
+      />
       {isInitialized
         ? (<Main
           isWeeklySchedule={isWeeklySchedule}
-          dateObject={dateObject}
+          date={date}
           isLoggedIn={isLoggedIn}
         />)
         : "Loading..."}

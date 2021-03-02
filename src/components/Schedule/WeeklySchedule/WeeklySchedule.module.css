@@ -1,4 +1,6 @@
 .weekly-schedule {
+  display: flex;
+  flex-flow: column;
   width:100vw;
   height: 90vh;
 }

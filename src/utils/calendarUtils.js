@@ -1,6 +1,7 @@
 import {
   REGULAR_DAYS_OF_MONTH,
-  LEAP_YEAR_DAYS_OF_MONTH
+  LEAP_YEAR_DAYS_OF_MONTH,
+  MONTH_LIST
 } from "../constants/calendarConstants";
 
 export function checkLeapyear(year) {
@@ -50,18 +51,47 @@ export function generateCalendarArray(year, month) {
   return calendarArray;
 }
 
-export function generateWeekArray(year, month, date, day) {
-  const standardDate = new Date(year, month, date - day);
+export function generateWeekArray(date) {
   const weekArray = [];
 
   for (let i = 0; i < 7; i++) {
-    //console.log(standardDate);
-    weekArray.push(standardDate.getDate() + i);
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDay();
+    const dateNumber = date.getDate();
+    const newDate = new Date(year, month, dateNumber - day + i);
+    weekArray.push(newDate.getDate());
   }
 
   return weekArray;
 }
 
-export function generateDate(year, month) {
-  return `${year}년 ${month}월 `;
+export function generateDateString(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const dateNumber = date.getDate();
+  const day = date.getDay();
+  const totalDays = checkLeapyear(year)
+    ? LEAP_YEAR_DAYS_OF_MONTH[month]
+    : REGULAR_DAYS_OF_MONTH[month];
+  const prevMonth = month - 1 < 0 ? MONTH_LIST.length - 1 : month - 1;
+  const nextMonth = month + 1 > MONTH_LIST.length - 1 ? 0 : month + 1;
+
+  if (dateNumber - day < 1) {
+    return `${year}년 ${MONTH_LIST[prevMonth]} - ${MONTH_LIST[month]}`;
+  } else if (dateNumber + 6 - day > totalDays) {
+    return `${year}년 ${MONTH_LIST[month]} - ${MONTH_LIST[nextMonth]}`;
+  }
+
+  return `${year}년 ${MONTH_LIST[month]}`;
+}
+
+export function generateTimeList() {
+  const TimeList = [];
+
+  for (let i = 0; i < 24; i++) {
+    TimeList.push(i);
+  }
+
+  return TimeList;
 }

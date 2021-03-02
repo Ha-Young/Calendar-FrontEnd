@@ -3,13 +3,12 @@ import styles from "./Header.module.css";
 import { generateWeekArray } from "../../../../utils/calendarUtils";
 import { DAY_LIST } from "../../../../constants/calendarConstants";
 
-const Header = function ({ dateObject }) {
-  const { year, month, date, day } = dateObject;
-  //console.log(dateObject);
-  const weekArray = generateWeekArray(year, month, date, day);
+const Header = function ({ date }) {
+  const weekArray = generateWeekArray(date);
 
   return (
     <div className={styles["header"]}>
+      <div className={styles["time-header"]}>Times</div>
       {weekArray.map((date, i) =>
       (
         <div className={styles["day-header"]} key={`Day${i}`}>

@@ -5,20 +5,20 @@ import Schedule from "../Schedule/Schedule";
 import Events from "../Events/Events";
 import Auth from "../Auth/Auth";
 
-const Main = function ({ isWeeklySchedule, dateObject, isLoggedIn }) {
+const Main = function ({ isWeeklySchedule, date, isLoggedIn }) {
   return (
     <Switch>
       {isLoggedIn
         ? (
           <>
             <Route exact path="/" >
-              <Schedule isWeeklySchedule={isWeeklySchedule} dateObject={dateObject} />
+              <Schedule isWeeklySchedule={isWeeklySchedule} date={date} />
             </Route>
             <Route exact path="/events">
               <Events />
             </Route>
             <Route exact path="/calendar">
-              <Schedule isWeeklySchedule={isWeeklySchedule} dateObject={dateObject} />
+              <Schedule isWeeklySchedule={isWeeklySchedule} date={date} />
             </Route>
             <Route exact path="/profile" >
               <Profile />

@@ -1,0 +1,11 @@
+.time-cell {
+  position: relative;
+  height: 40px;
+}
+
+.time-description {
+  position: absolute;
+  top: -25px;
+  left: 2vw;
+  color: gray;
+}
