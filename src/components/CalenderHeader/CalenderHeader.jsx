@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./CalenderHeader.module.css";
 
-const WeeklyHeader = ({ onClick, text }) => {
+const WeeklyHeader = ({ onClick, currentPage }) => {
   return (
     <section className={styles.headerContainer}>
       <FontAwesomeIcon
@@ -15,7 +15,7 @@ const WeeklyHeader = ({ onClick, text }) => {
         className={(styles.prev_icon, styles.icon)}
         icon={faChevronCircleLeft}
       />
-      <span className={styles.currentState}>{text}</span>
+      <span className={styles.currentState}>{currentPage}</span>
       <FontAwesomeIcon
         onClick={() => onClick(directionConst.NEXT)}
         className={(styles.next_icon, styles.icon)}

@@ -19,10 +19,10 @@ if (process.env.NODE_ENV !== "production") {
 const store = createStore(reducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
+  <Router>
+    <Provider store={store}>
       <App />
-    </Router>
-  </Provider>,
+    </Provider>
+  </Router>,
   document.getElementById("root")
 );

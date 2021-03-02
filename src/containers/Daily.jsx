@@ -28,7 +28,7 @@ const Daily = (props) => {
     <>
       <CalenderHeader
         onClick={setNewDate}
-        text={date.month + "월 " + date.date + "일" + date.day}
+        currentPage={date.month + "월 " + date.date + "일" + date.day}
       />
       <DailySchedule />
     </>

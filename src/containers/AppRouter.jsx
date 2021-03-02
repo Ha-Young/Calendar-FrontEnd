@@ -11,29 +11,46 @@ import Login from "components/Login/Login";
 
 const AppRouter = ({ isLoggedIn }) => {
   return (
-    <Switch>
-      <>
-        {isLoggedIn ? (
-          <section>
-            <Header />
-            <Route exact path="/" component={Weekly} />
-            <Route exact path="/daily" component={Daily} />
-            <Route exact path="/weekly" component={Weekly} />
-            <Route exact path="/events/:eventId" component={EventDetail} />
+    <>
+      {isLoggedIn ? (
+        <section>
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Weekly />
+            </Route>
+
+            <Route path="/daily">
+              <Daily />
+            </Route>
+
+            <Route path="/weekly">
+              <Weekly />
+            </Route>
+
+            <Route path="/events/new">
+              <HandleEvent />
+            </Route>
+
+            <Route path="/events/:eventId">
+              <EventDetail />
+            </Route>
+
             <Route exact path="/events/:eventId/edit">
               <HandleEvent /*{prop Event}*/ />
             </Route>
-            <Route exact path="/events/new" component={HandleEvent} />
-            <Route exact path="/profile" />
+
+            <Route exact path="/profile"></Route>
+
             <Redirect from="/calender" to="/" />
-          </section>
-        ) : (
-          <Route exact path="/">
-            <Login />
-          </Route>
-        )}
-      </>
-    </Switch>
+          </Switch>
+        </section>
+      ) : (
+        <Route exact path="/">
+          <Login />
+        </Route>
+      )}
+    </>
   );
 };
 

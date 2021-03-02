@@ -30,7 +30,7 @@ const Weekly = (props) => {
     <>
       <CalenderHeader
         onClick={setNewWeek}
-        text={weekOfMonth.month + "월 " + weekOfMonth.week + "주차"}
+        currentPage={weekOfMonth.month + "월 " + weekOfMonth.week + "주차"}
       />
       <WeeklySchedule week={week} />
     </>

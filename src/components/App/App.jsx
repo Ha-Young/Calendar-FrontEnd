@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 // import styles from "./App.module.css";
 import { authService } from "api/firebaseService";
 import AppRouter from "containers/AppRouter";
+import Footer from "components/Footer/Footer";
+import Loading from "components/Loading/Loading";
 
 function App({ onInitialLoad }) {
   const [init, setInit] = useState(false);
@@ -24,8 +26,14 @@ function App({ onInitialLoad }) {
 
   return (
     <>
-      {init ? <AppRouter isLoggedIn={isLoggedIn} /> : "Initializing..."}
-      <footer>&copy; {new Date().getFullYear()} Vanilla Calender</footer>
+      {init ? (
+        <>
+          <AppRouter isLoggedIn={isLoggedIn} />
+          <Footer />
+        </>
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }

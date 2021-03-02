@@ -22,7 +22,7 @@ export const getWeekOfMonth = (count = 0) => {
 };
 
 export const getDate = (ref = 0) => {
-  const momentDate = moment().day(ref);
+  const momentDate = moment().add(ref, "days");
   return {
     month: momentDate.format("MM"),
     date: momentDate.format("DD"),
