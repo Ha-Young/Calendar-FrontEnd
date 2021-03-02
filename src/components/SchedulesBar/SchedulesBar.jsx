@@ -16,7 +16,10 @@ function SchedulesBar({ date, fromDate }) {
       />
       {hourList.map((v) => {
         return (
-          <li key={v}></li>
+          <li
+            key={v}
+            onClick={() => console.log(v, theDate)}
+          />
         );
       })}
     </div>
