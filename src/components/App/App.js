@@ -6,13 +6,11 @@ import styled from "styled-components";
 // For example, what is it? what are benefits?
 import GlobalStyles from "./GlobalStyles";
 import AppHeader from "../Header/AppHeader";
-import Month from "../Monthly/Monthly";
 import Weekly from "../Weekly/Weekly";
 import Daily from "../Daily/Daily";
 import dayCalculator from "../../utils/dayCalculater";
 
 const Wrapper = styled.div`
-  padding: 1em;
 `;
 
 const App = ({ onInitialLoad }) => {

@@ -1,4 +1,8 @@
 const convertTime = time => {
+  if (time === 0) {
+    return;
+  }
+
   if (time < 12) {
     return time + " AM";
   }

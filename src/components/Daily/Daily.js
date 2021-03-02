@@ -1,15 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 import Calendar from "../../shared/Calendar";
-import Timeline from "./Timeline";
-
-const Wrapper = styled.div`
-`;
+import TimeLine from "./TimeLine";
+import EventLine from "./EventLine";
 
 const Daily = () => {
   return (
     <Calendar>
-      <Timeline />
+      <TimeLine />
+      <EventLine />
     </Calendar>
   );
 }

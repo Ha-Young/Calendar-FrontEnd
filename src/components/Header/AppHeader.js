@@ -5,12 +5,17 @@ import Logo from "./Logo";
 import Nav from "./Nav/Nav";
 
 const Header = styled.header`
+  position: fixed;
   display: flex;
+  width: 100%;
+  height: 6em;
+  margin-left: 1em;
 
   nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    background-color: #FFFFFF;
 
     .flexBox {
       display: flex;
