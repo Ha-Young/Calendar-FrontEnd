@@ -1,18 +1,22 @@
 import React from "react";
 
+import { getHourList } from "../../utils/date";
+import TheDate from "../TheDate/TheDate";
 import styles from "./SchedulesBar.module.css";
 
-function SchedulesBar() {
-  const HOUR = 24;
-  const hours = Array.from({length: HOUR}, (v, i) => i);
+function SchedulesBar({ date, fromDate }) {
+  const hourList = getHourList();
+  const theDate = date.clone().add(fromDate, "days");
 
   return (
-    <div
-      className={styles.SchedulesBar}
-    >
-      {hours.map((v) => {
+    <div className={styles.schedulesBar}>
+      <TheDate
+        className={styles.theDate}
+        date={theDate}
+      />
+      {hourList.map((v) => {
         return (
-          <li key={v}>{v}</li>
+          <li key={v}></li>
         );
       })}
     </div>

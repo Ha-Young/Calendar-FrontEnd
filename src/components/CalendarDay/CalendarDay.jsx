@@ -1,7 +1,7 @@
 import React from "react";
-import HoursBar from "../HoursBar/HoursBar";
-import SchedulesBar from "../SchedulesBar/SchedulesBar";
 
+import HoursBar from "../HoursBar/HoursBar";
+import SchedulesBar from "../../containers/ScheduleBar";
 import styles from "./CalendarDay.module.css";
 
 function CalendarDay() {

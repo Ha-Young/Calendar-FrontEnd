@@ -9,10 +9,11 @@
 
  */
 import { combineReducers } from "redux";
+import moment from "moment";
 
-import { TOGGLE_DAY } from "../constants/actionTypes";
+import { TOGGLE_DAY, PRE_DATE, NEXT_DATE } from "../constants/actionTypes";
 
-function isDay(state = true, action) {
+function isDaily(state = true, action) {
   switch (action.type) {
     case TOGGLE_DAY:
       return !state;
@@ -21,6 +22,18 @@ function isDay(state = true, action) {
   }
 }
 
+function date(state = moment(), action) {
+  switch (action.type) {
+    case PRE_DATE:
+      return state.clone().subtract(1, "days");
+    case NEXT_DATE:
+      return state.clone().add(1, "days");
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
-  isDay,
+  isDaily,
+  date,
 });

@@ -1,14 +1,14 @@
 import React from "react";
 
+import { getHourList } from "../../utils/date";
 import styles from "./HoursBar.module.css";
 
 function HoursBar() {
-  const HOUR = 24;
-  const hours = Array.from({length: HOUR}, (v, i) => i);
+  const hourList = getHourList();
 
   return (
     <div className={styles.HoursBar}>
-      {hours.map((v) => {
+      {hourList.map((v) => {
         const time = v < 10 ? `0${v}` : v;
 
         return (

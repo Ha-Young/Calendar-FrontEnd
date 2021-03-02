@@ -3,10 +3,10 @@ import React from "react";
 import CalendarDay from "../CalendarDay/CalendarDay";
 import CalendarWeek from "../CalendarWeek/CalendarWeek";
 
-function Calendar({ isDay }) {
+function Calendar({ isDaily }) {
   return (
     <>
-      {isDay
+      {isDaily
         ? <CalendarDay></CalendarDay>
         : <CalendarWeek></CalendarWeek>
       }

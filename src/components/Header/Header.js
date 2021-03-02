@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import DateSelector from "../DateSelector/DateSelector";
+import DateSelector from "../../containers/DateSelector";
 import styles from "./Header.module.css";
 
-function Header ({ isDay, toggleDay }) {
-  const viewType = isDay ? "일간" : "주간";
+function Header ({ isDaily, toggleDay }) {
+  const viewType = isDaily ? "일간" : "주간";
 
   function handleClick() {
     toggleDay();

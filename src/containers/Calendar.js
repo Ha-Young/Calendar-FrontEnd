@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import Calendar from "../components/Calendar/Calendar";
 
 const mapStateToProps = (state) => ({
-  isDay: state.isDay,
+  isDaily: state.isDaily,
 });
 
 // const mapDispatchToProps = (dispatch) => ({

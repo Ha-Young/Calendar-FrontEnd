@@ -1,15 +1,11 @@
 import React from "react";
 
-function DateSelector() {
-  const now = new Date();
-
-  console.log(now.getFullYear());
-
+function DateSelector({ date, preDate, nextDate }) {
   return (
     <div>
-      <button>이전</button>
-      <text></text>
-      <button>다음</button>
+      <button onClick={preDate}>이전</button>
+      <text>{date}</text>
+      <button onClick={nextDate}>다음</button>
     </div>
   );
 }

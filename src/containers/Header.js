@@ -3,7 +3,7 @@ import { toggleDay } from "../actions";
 import Header from "../components/Header/Header";
 
 const mapStateToProps = (state) => ({
-  isDay: state.isDay,
+  isDaily: state.isDaily,
 });
 
 const mapDispatchToProps = (dispatch) => ({
