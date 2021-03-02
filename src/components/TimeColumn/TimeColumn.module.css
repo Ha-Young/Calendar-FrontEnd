@@ -1,0 +1,17 @@
+.timeColumnWrapper {
+  padding-top: 100px;
+  overflow: visible;
+}
+
+.timeRowWrapper {
+  width: 48px;
+  height: 48px;
+  text-align: right;
+}
+
+.timeText {
+  position: relative;
+  top: -13px;
+  color: #70757a;
+  font-size: 10px;
+}
