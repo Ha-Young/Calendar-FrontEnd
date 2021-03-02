@@ -1,0 +1,13 @@
+.SchedulesBar {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 50px;
+  list-style: none;
+  row-gap: 2px;
+}
+
+.SchedulesBar li {
+  padding: 5px;
+  background: white;
+}

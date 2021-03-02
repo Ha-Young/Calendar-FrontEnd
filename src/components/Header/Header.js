@@ -1,16 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// TODO: Create your own header.
-export default function Header () {
+import styles from "./Header.module.css";
+
+function Header ({ isDay, toggleDay }) {
+  const viewType = isDay ? "일간" : "주간";
+
+  function handleClick() {
+    toggleDay();
+  }
+
   return (
-    <header>
+    <header className={styles.Header}>
       <nav>
         <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
+          <Link to="/calendar">
+            <button>달력</button>
+          </Link>
+          <Link to="/events">
+            <button>글쓰기</button>
+          </Link>
         </ul>
       </nav>
+      <button onClick={handleClick}>{viewType}</button>
     </header>
   );
 }
+
+export default Header;

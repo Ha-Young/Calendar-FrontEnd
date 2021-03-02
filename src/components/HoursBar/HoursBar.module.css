@@ -1,0 +1,22 @@
+.HoursBar {
+  display: grid;
+  width: 100%;
+  padding-right: 2px;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 50px;
+  list-style: none;
+  row-gap: 2px;
+}
+
+.HoursBar li {
+  position: relative;
+  background: white;
+}
+
+.HoursBar li label {
+  position: absolute;
+  left: 50%;
+  padding: 5px;
+  background: white;
+  transform: translateX(-50%) translateY(-50%);
+}

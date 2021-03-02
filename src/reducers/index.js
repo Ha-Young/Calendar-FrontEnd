@@ -8,9 +8,19 @@
   - Don't optimize pre-maturely!
 
  */
+import { combineReducers } from "redux";
 
-const initialState = "Create your state structure!";
+import { TOGGLE_DAY } from "../constants/actionTypes";
 
-export default function reducer(state = initialState) {
-  return state;
+function isDay(state = true, action) {
+  switch (action.type) {
+    case TOGGLE_DAY:
+      return !state;
+    default:
+      return state;
+  }
 }
+
+export default combineReducers({
+  isDay,
+});
