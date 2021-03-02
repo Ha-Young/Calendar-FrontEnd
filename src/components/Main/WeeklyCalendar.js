@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeSundayDate } from '../../utils';
 import styles from './WeeklyCalendar.module.css';
 import { useRouteMatch, Link } from 'react-router-dom';
 
 const WeeklyCalendar = ({ children }) => {
+  const [todayDate, setTodayDate] = useState(new Date());
   const { url } = useRouteMatch();
-  const todayDate = new Date();
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   const timeCells = [];
   const eventCells = [];
@@ -18,6 +18,22 @@ const WeeklyCalendar = ({ children }) => {
 
   for (let j = 0; j < 24; j++) {
     eventCells.push(j);
+  }
+
+  const handlePrevClick = () => {
+    const date = todayDate.getDate();
+    let prevDate = new Date();
+    prevDate.setDate(date - 7);
+
+    setTodayDate(prevDate);
+  }
+
+  const handleNextClick = () => {
+    const date = todayDate.getDate();
+    let nextDate = new Date();
+    nextDate.setDate(date + 7);
+
+    setTodayDate(nextDate);
   }
 
   const timeList = timeCells.map((time, index) => {
@@ -91,9 +107,9 @@ const WeeklyCalendar = ({ children }) => {
   return (
     <div className={styles.calendar}>
       <div>
-        <button>&lt;</button>
+        <button onClick={handlePrevClick}>&lt;</button>
         <button>Today</button>
-        <button>&gt;</button>
+        <button onClick={handleNextClick}>&gt;</button>
       </div>
       <div className={styles.days}>
         <div>
