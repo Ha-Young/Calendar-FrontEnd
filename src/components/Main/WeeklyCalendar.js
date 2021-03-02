@@ -27,15 +27,6 @@ const WeeklyCalendar = ({ children }) => {
     )
   });
 
-  // eventCells.map((event, index) => {
-
-  //   return (
-  //     <div className='eventTable'>
-  //       <div className='event' key={index}>event</div>
-  //     </div>
-  //   )
-  // });
-
   if (!children) {
     daysList = days.map((day, index) => {
       let startDate = sundayDate.getDate();
@@ -83,7 +74,6 @@ const WeeklyCalendar = ({ children }) => {
       </div>
     )
   }
-
 
   return (
     <div className={styles.calendar}>
