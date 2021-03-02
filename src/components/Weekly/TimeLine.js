@@ -24,6 +24,7 @@ const Wrapper = styled.div`
     height: 4em;
     width: 1em;
     border-bottom: 1px solid #ABABAB;
+    border-right: 1px solid #ABABAB;
   }
 `;
 
@@ -35,7 +36,7 @@ const TimeLine = () => {
     <Wrapper>
       {times.map(time => {
         return (
-          <div className="flex-box">
+          <div key={time} className="flex-box">
             <div className="time">
               <p>{convertTime(time)}</p>
             </div>

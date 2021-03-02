@@ -6,5 +6,5 @@ export default styled.div`
   align-items: center;
   width: 100%;
   height: auto;
-  padding: 10em 1em 3em 1em;
+  padding: 10em 0em 3em;
 `;

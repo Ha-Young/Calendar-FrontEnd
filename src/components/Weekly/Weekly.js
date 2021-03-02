@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import Calendar from "../../shared/Calendar";
-import EventLine from "../Daily/EventLine";
+import DayLine from "./DayLine";
 import TimeLine from "./TimeLine";
+import WeekHeader from "./WeekHeader";
 
 const Weekly = () => {
   return (
     <Calendar>
+      <WeekHeader />
       <TimeLine />
-      <EventLine />
+      <DayLine />
     </Calendar>
   );
 }
