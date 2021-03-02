@@ -1,49 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
+import { format, getDate, getDay, getMonth, getYear, sub, add } from "date-fns";
 import styles from "./Calendar.module.css";
 import DayBox from "./DayBox";
 import Column from "./TimeTableColumn";
 
-export default function Calender({ weekData, today }) {
+export default function Calender({ currentWeek, currentDay, setCurrentWeek, setCurrentDay, event }) {
   const history = useHistory();
   const param = useParams();
-  const [isWeek, setIsWeek] = useState(param.dateUnit === "week");
+  const [isWeekMode, setIsWeekMode] = useState(param.dateUnit === "week");
 
-  // const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  // const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  useEffect(() => {
+    const dateUnit = isWeekMode ? "week" : "day";
+    const currentDayString = format(currentDay,"yyyy-MM-dd");
 
-  const fakeWeekData = [
-    {
-      date: 8,
-      dayOfWeek: "Monday"
-    },
-    {
-      date: 9,
-      dayOfWeek: "Tuesday"
-    },
-    {
-      date: 10,
-      dayOfWeek: "Wednesday"
-    },
-    {
-      date: 11,
-      dayOfWeek: "Thursday"
-    },
-    {
-      date: 12,
-      dayOfWeek: "Friday"
-    },
-    {
-      date: 13,
-      dayOfWeek: "Saturday"
-    },
-    {
-      date: 14,
-      dayOfWeek: "Sunday"
-    },
-  ];
-  // 이거 나중에 고쳐라ㅏㅏㅏㅏㅏ
+    if (isWeekMode) {
+      history.push(`/calendar/${dateUnit}`);
+    } else {
+      history.push(`/calendar/${dateUnit}/${currentDayString}`);
+    }
+  }, [isWeekMode, currentDay]);
 
+  useEffect(() => {
+    setCurrentWeek(currentDay);
+  }, [currentDay]);
+  
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  
+  const currentWeekData = currentWeek.length 
+    ? currentWeek.map((val) => {
+      return {
+        date: getDate(val),
+        dayOfWeek: daysOfWeek[getDay(val)],
+        formatString: format(val, "yyyy-MM-dd"),
+      }
+    }) 
+    : null;
+  
+  const currentMonth = isWeekMode ? month[getMonth(currentWeek[0])] : month[getMonth(currentDay)];
+  const currentYear = isWeekMode ? getYear(currentWeek[0]) : getYear(currentDay);
 
   const time = [];
   for (let i = 0; i <= 24; i++) {
@@ -60,9 +56,60 @@ export default function Calender({ weekData, today }) {
       return;
     }
 
-    setIsWeek(dateUnit === "week");
-    history.push(`/calendar/${dateUnit}`);
+    setIsWeekMode(dateUnit === "week");
   }
+
+  const handlePrevButtonClick = (e) => {
+    if (isWeekMode) {
+      setCurrentWeek(sub(currentWeek[0], { weeks: 1 }));
+    } else {
+      setCurrentDay(sub(currentDay, { days: 1 }));
+    }
+  }
+
+  const handleNextButtonClick = (e) => {
+    if (isWeekMode) {
+      setCurrentWeek(add(currentWeek[0], { weeks: 1 }));
+    } else {
+      setCurrentDay(add(currentDay, { days: 1 }));
+    }
+  }
+
+  const handleDayBoxClick = (e) => {
+    const dateString = e.currentTarget.href.slice(-10);
+
+    const year = Number(dateString.slice(0, 4));
+    const month = Number(dateString.slice(5, 7));
+    const day = Number(dateString.slice(8));
+
+    setCurrentDay(new Date(year, month - 1, day));
+  }
+
+  const dayBoxes = currentWeekData 
+    ? currentWeekData.map((val, i) => {
+      const dayBoxes = isWeekMode
+        ? (<DayBox 
+          key={i}
+          title={val.date} 
+          description={val.dayOfWeek}
+          hasActiveToggle={!isWeekMode}
+        />)
+        : (<NavLink 
+            key={i}
+            to={`/calendar/day/${val.formatString}`}
+            activeClassName={styles.active}
+            onClick={handleDayBoxClick}
+          >
+          <DayBox 
+            title={val.date} 
+            description={val.dayOfWeek}
+            hasActiveToggle={!isWeekMode}
+          />
+        </NavLink>);
+
+      return (dayBoxes);
+    })
+    : null;
 
   return (
     <div className={styles.Calendar}>
@@ -70,55 +117,33 @@ export default function Calender({ weekData, today }) {
       <select 
         name="DateUnit"
         onChange={handleDateUnitChange}
-        
       >
         <option value="">DateUnit</option>
         <option value="week">Week</option>
         <option value="day">Day</option>
       </select>
-
-        {isWeek
-          ?
-          <div className={styles.WeekButtonBox}>
-            <button className={styles.PrevWeek}>Prev Week</button>
-            <button className={styles.NextWeek}>Next Week</button>
-          </div>
-
-          :
-          <div className={styles.DayButtonBox}>
-            <button className={styles.PrevDay}>Prev Day</button>
-            <button className={styles.NextDay}>Next Day</button>
-          </div>
-        }
+        <div className={styles.MoveButtonBox}>
+          <button 
+            className={styles.PrevButton}
+            onClick={handlePrevButtonClick}
+          >
+            {isWeekMode ? "Prev week" : "Prev day"}
+          </button>
+          <button 
+            className={styles.NextButton}
+            onClick={handleNextButtonClick}
+          >
+            {isWeekMode ? "Next week" : "Next day"}
+          </button>
+        </div>
       </div>
       <div className={styles.DaysBox}>
-        <DayBox 
-          title={"Mar"}
-          description={"2021"}
+        {currentWeek.length && <DayBox 
+          title={currentMonth}
+          description={currentYear}
           hasActiveToggle={false}
-        />
-        {fakeWeekData.map((val, i) => {
-          const dayBoxes = isWeek
-            ? (<DayBox 
-              key={i}
-              title={val.date} 
-              description={val.dayOfWeek}
-              hasActiveToggle={!isWeek}
-            />)
-            : (<NavLink 
-              key={i}
-              to={`/calendar/day/${val.dayOfWeek}`}
-              activeClassName={styles.active}
-            >
-              <DayBox 
-                title={val.date} 
-                description={val.dayOfWeek}
-                hasActiveToggle={!isWeek}
-              />
-            </NavLink>);
-
-          return (dayBoxes);
-        })}
+        />}
+        {dayBoxes}
       </div>
       <div className={styles.TimeTableBox}>
         <div className={styles.TimeDisplayBox}>
@@ -133,15 +158,23 @@ export default function Calender({ weekData, today }) {
             );
           })}
         </div>
-        <div className={styles.TimeTable}>
-          <Column />
-          <Column />
-          <Column />
-          <Column />
-          <Column />
-          <Column />
-          <Column />
-        </div>
+        {isWeekMode 
+          ? (
+            <div className={styles.TimeTable}>
+              <Column />
+              <Column />
+              <Column />
+              <Column />
+              <Column />
+              <Column />
+              <Column />
+            </div>
+            )
+          : (
+            <div className={styles.TimeTable}>
+              <Column />
+            </div>
+            )}
       </div>
     </div>
   );

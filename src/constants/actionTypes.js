@@ -6,4 +6,5 @@
 
  */
 
-export const SET_TODAY_DATE = "SET_TODAY_DATE";
+export const SET_CURRENT_DAY = "SET_CURRENT_DAY";
+export const SET_CURRENT_WEEK = "SET_CURRENT_WEEK";

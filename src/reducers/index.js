@@ -9,12 +9,9 @@
 
  */
 
-const initialState = {
-  date: {
-    today: new Date(),
-  }
-};
+import { combineReducers } from "redux";
+import date from "./date";
 
-export default function reducer(state = initialState) {
-  return state;
-}
+export default combineReducers({
+  date,
+});

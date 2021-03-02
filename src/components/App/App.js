@@ -5,7 +5,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
-import Calendar from "../Calendar/Calendar";
+import Calendar from "../../containers/Calendar";
+import NewEvent from "../Events/NewEvent";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
@@ -19,8 +20,8 @@ function App({ onInitialLoad }) {
         <Route path="/calendar/:dateUnit">
           <Calendar />
         </Route>
-        <Route path="/event">
-          <div>Event</div>
+        <Route path="/events/new">
+          <NewEvent />
         </Route>
         <Redirect path="*" to="/calendar/week" />
       </Switch>

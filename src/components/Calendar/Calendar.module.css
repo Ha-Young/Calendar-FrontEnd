@@ -17,10 +17,6 @@
   flex-flow: nowrap row;
 }
 
-/* .DaysBox > a:first-of-type > span {
-  border-left: none;
-} */
-
 a.active > span {
   color: white;;
   background-color: #3dad9b;
@@ -37,7 +33,7 @@ a {
 
 .TimeDisplayBox {
   width: 100px;
-  background-color: #686a75;
+  background-color: #4c5067;
 }
 
 .TimeDisplay {
@@ -52,7 +48,7 @@ a {
 .TimeTable {
   display: flex;
   flex-grow: 1;
-  background-color: #505565;
+  background-color: #666d84;
 }
 
 /* border #4e505a

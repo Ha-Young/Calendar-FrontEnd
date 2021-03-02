@@ -1,25 +1,24 @@
 import { connect } from "react-redux";
 import Calendar from "../components/Calendar/Calendar";
-import { setIsWeek } from "../actions/index";
-
-// isWeek, weekData, today
+import { setCurrentWeek, setCurrentDay } from "../actions/index";
+import getWeek from "../util/getWeekFromDate";
 
 const mapStateToProps = (state) => ({
-  something: "Mapping redux state to App component props.",
-
-  isWeek: state.Calendar.isWeek,
-  today: state.Calendar.today,
-  weekData: state.Calendar.weekData,
+  currentDay: state.date.currentDay,
+  currentWeek: state.date.currentWeek,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onInitialLoad: () => {
-    saveSampleData();
+const mapDispatchToProps = (dispatch) => ({  
+  setCurrentWeek: (date) => {
+    dispatch(
+      setCurrentWeek(
+        getWeek(date)
+      )
+    );
   },
 
-  onChangeDateUnit: (e) => {
-    console.log(e.currentTarget)
-    dispatch(setIsWeek())
+  setCurrentDay : (date) => {
+    dispatch(setCurrentDay(date));
   }
 });
 
