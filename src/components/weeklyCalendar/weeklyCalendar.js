@@ -1,5 +1,5 @@
 import React from 'react';
-import './weeklyCalendar.css';
+import './weeklyCalendar.scss';
 
 const WeeklyCalendar = () => {
   return (
