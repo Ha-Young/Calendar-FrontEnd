@@ -5,12 +5,18 @@ import { useRouteMatch, Link } from 'react-router-dom';
 
 const WeeklyCalendar = ({ children }) => {
   const [todayDate, setTodayDate] = useState(new Date());
+  const currentDate = new Date();
+  const date = todayDate.getDate();
+  const year = todayDate.getFullYear();
+  const month = todayDate.getMonth();
   const { url } = useRouteMatch();
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   const timeCells = [];
   const eventCells = [];
   let sundayDate = makeSundayDate(todayDate);
   let daysList;
+  let prevMonth;
+  let nextMonth;
 
   for (let i = 0; i < 25; i++) {
     timeCells.push(i);
@@ -21,19 +27,37 @@ const WeeklyCalendar = ({ children }) => {
   }
 
   const handlePrevClick = () => {
-    const date = todayDate.getDate();
-    let prevDate = new Date();
-    prevDate.setDate(date - 7);
+    if (children) {
+      currentDate.setDate(date - 1);
 
-    setTodayDate(prevDate);
+      setTodayDate(currentDate);
+      return;
+    }
+
+    if (month !== prevMonth) {
+      currentDate.setMonth(month);
+    }
+
+    currentDate.setDate(date - 7);
+    prevMonth = month;
+    setTodayDate(currentDate);
   }
 
   const handleNextClick = () => {
-    const date = todayDate.getDate();
-    let nextDate = new Date();
-    nextDate.setDate(date + 7);
+    if (children) {
+      currentDate.setDate(date + 1);
 
-    setTodayDate(nextDate);
+      setTodayDate(currentDate);
+      return;
+    }
+
+    if (month !== nextMonth) {
+      currentDate.setMonth(month);
+    }
+
+    currentDate.setDate(date + 7);
+    nextMonth = month;
+    setTodayDate(currentDate);
   }
 
   const timeList = timeCells.map((time, index) => {
@@ -107,9 +131,14 @@ const WeeklyCalendar = ({ children }) => {
   return (
     <div className={styles.calendar}>
       <div>
-        <button onClick={handlePrevClick}>&lt;</button>
-        <button>Today</button>
-        <button onClick={handleNextClick}>&gt;</button>
+        <div>
+          {year}년 {month + 1}월
+        </div>
+        <div>
+          <button onClick={handlePrevClick}>&lt;</button>
+          <button>Today</button>
+          <button onClick={handleNextClick}>&gt;</button>
+        </div>
       </div>
       <div className={styles.days}>
         <div>
