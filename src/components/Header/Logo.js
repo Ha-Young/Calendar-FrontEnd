@@ -6,14 +6,15 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 0.5em;
 
   p {
     margin: 0.2em 0 0 0.2em;
-    font-size: 2.5em;
+    font-size: 1.5em;
   }
 
   img {
-    width: 4em;
+    width: 2.8em;
   }
 `;
 

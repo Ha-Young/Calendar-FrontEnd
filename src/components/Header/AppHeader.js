@@ -1,16 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Control from "./Control/Control";
 import Logo from "./Logo";
+import Nav from "./Nav/Nav";
 
 const Header = styled.header`
   display: flex;
 
   nav {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .flexBox {
+      display: flex;
+      justify-content: space-between;
+      width: 35em;
+    }
+
+    .right {
+      width: 20em;
+    }
   }
 `;
 
@@ -19,13 +29,11 @@ const AppHeader = () => {
   return (
     <Header>
       <nav>
-        <Logo />
-        <Control />
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/weekly">weekly</Link></li>
-          <li><Link to="/daily">daily</Link></li>
-        </ul>
+        <div className="flexBox">
+          <Logo />
+          <Control />
+        </div>
+        <Nav />
       </nav>
     </Header>
   );

@@ -9,6 +9,7 @@ import AppHeader from "../Header/AppHeader";
 import Month from "../Monthly/Monthly";
 import Weekly from "../Weekly/Weekly";
 import Daily from "../Daily/Daily";
+import dayCalculator from "../../utils/dayCalculater";
 
 const Wrapper = styled.div`
   padding: 1em;
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
 const App = ({ onInitialLoad }) => {
   useEffect(() => {
     onInitialLoad();
+    dayCalculator();
   }, []);
 
   return (
@@ -26,7 +28,7 @@ const App = ({ onInitialLoad }) => {
 
       <Switch>
         <Route path="/" exact>
-          <Month />
+          <Daily />
         </Route>
         <Route path="/weekly">
           <Weekly />
