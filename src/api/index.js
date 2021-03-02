@@ -9,3 +9,16 @@ export async function saveSampleData() {
     test: "김-희찬입니다.",
   });
 }
+
+export async function saveData(data, date) {
+  const newEvent = {...data};
+  const database = firebase.database();
+  const newEventKey = firebase.database().ref().child('dailyEvents/' + date).push().key;
+  const updates = {};
+  
+  newEvent["uid"] = newEventKey;
+  updates["events/" + newEventKey] = newEvent;
+  updates["dailyEvents/" + date + "/" + newEventKey] = true;
+
+  return await database.ref().update(updates);
+}

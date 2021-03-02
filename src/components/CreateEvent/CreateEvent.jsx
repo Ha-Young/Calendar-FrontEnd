@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { DateTime } from "luxon";
 import styles from "./CreateEvent.module.css";
+import { saveData } from "../../api";
 
 // TODO onchange에 setState걸어놔서 사용자가 뭐 입력할때마다 리랜더링됨. 디바운스 적용하면 좋을듯?? 아닌가?
 // 디바운스 짧게 안하면 submit하기전에 업데이트 안돼서 누락될수도 잇겟다.
@@ -13,10 +15,21 @@ export default function CreateEvent() {
   const history = useHistory();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    history.push("/calendar/daily")
-  }
+    e.preventDefault();
+    // TODO 데이터 쏘기 전에 form에서 input validation 필요함.
+    const newEvent = {
+      title: title,
+      description: description,
+      startDateTime: startDateTime,
+      endDateTime: endDateTime,
+    };
+    const date = startDateTime.slice(0, 10);
 
+    // TODO err 핸들링 추가
+    saveData(newEvent, date).then(() => {
+      // history.push("/calendar/daily");
+    });
+  }
   return (
     <div className={styles.wrapper}>
       <form onSubmit={(e) => handleSubmit(e)}>
