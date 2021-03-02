@@ -6,10 +6,8 @@ export default function Header () {
   return (
     <header>
       <nav>
-        <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
-        </ul>
+        <button><Link to='/'>Home</Link></button>
+        <button><Link to='/weeklycalendar'>Week</Link></button>
       </nav>
     </header>
   );

@@ -1,6 +1,8 @@
 .calendar {
+  position: relative;
   width: 600px;
-  margin: 50px;
+  margin: 0 auto;
+  top: 150px;
 }
 
 .header {
@@ -54,9 +56,29 @@
 }
 
 .date {
-  width: calc(100% / 7);
+  width: calc(100% / 11);
   padding: 15px;
-  text-align: right;
+  text-align: center;
   border-bottom: 1px solid #333333;
   border-left: 1px solid #333333;
+}
+
+.day:nth-child(7n + 1),
+.date:nth-child(7n + 1) {
+  color: #D13E3E;
+}
+
+.day:nth-child(7n),
+.date:nth-child(7n) {
+  color: #396EE2;
+}
+
+.times {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.time {
+  margin: 20px 0;
 }
