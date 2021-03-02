@@ -1,27 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import WeekStr from "./WeekStr";
-import WeekNum from "./WeekNum";
+import Day from "./Day"
 
 const Header = styled.header`
   position: fixed;
   top: 6.05em;
-  height: 5.5em;
+  height: 5em;
   width: 120%;
   padding: 2em;
   padding-left: 15em;
-  background-color: #FFFFFF;
   margin-left: 17em;
+  background-color: #FFFFFF;
   z-index: 55;
 `;
 
-const WeekHeader = () => {
+const DayHeader = () => {
   return (
     <Header>
-      <WeekStr />
-      <WeekNum />
+      <Day />
     </Header>
   );
 }
 
-export default WeekHeader;
+export default DayHeader;

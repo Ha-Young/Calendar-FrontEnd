@@ -1,4 +1,3 @@
-import { da } from "date-fns/locale";
 import React from "react";
 import styled from "styled-components";
 
@@ -10,7 +9,7 @@ const Wrapper = styled.div`
   padding-left: 0.2em;
   padding-top: 0.5em;
   font-size: 2em;
-  
+
   div {
     display: flex;
     justify-content: center;
@@ -18,7 +17,7 @@ const Wrapper = styled.div`
     width: 2em;
     height: 2em;
     border-radius: 50%;
-    
+
     p {
       margin-top: 0.2em;
       color: #ABABAB;
@@ -37,7 +36,7 @@ const Wrapper = styled.div`
 
 const dayNum = [1, 2, 3, 4, 5, 6, 7];
 
-const DayNum = () => {
+const WeekNum = () => {
   return (
     <Wrapper>
       {dayNum.map(num => {
@@ -51,4 +50,4 @@ const DayNum = () => {
   );
 }
 
-export default DayNum;
+export default WeekNum;

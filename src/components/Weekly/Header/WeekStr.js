@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 const dayStr = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-const DayStr = () => {
+const WeekStr = () => {
   return (
     <Wrapper>
       {dayStr.map(day => {
@@ -26,4 +26,4 @@ const DayStr = () => {
   );
 }
 
-export default DayStr;
+export default WeekStr;

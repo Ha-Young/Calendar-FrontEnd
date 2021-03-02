@@ -35,7 +35,7 @@ const TimeLine = () => {
     <Wrapper>
       {times.map(time => {
         return (
-          <div className="flex-box">
+          <div key={time} className="flex-box">
             <div className="time">
               <p>{convertTime(time)}</p>
             </div>
