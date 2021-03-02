@@ -18,10 +18,10 @@ function App({ onInitialLoad }) {
         <Route path="/calendar" exact>
           <div>Main</div>
         </Route>
-        <Route path="/event/new">
+        <Route path="/events/new">
           <div>New Event</div>
         </Route>
-        <Route path="/event/:eventId">
+        <Route path="/events/:eventId">
           <div>Event Detail</div>
         </Route>
         <Route path="/event">
