@@ -1,0 +1,46 @@
+@import url("../../assets/styles/reset.css");
+
+.Calender {
+  width: 800px;;
+  height: 600px;
+  background-color: #FFF8E1;
+}
+
+.headerContainer {
+  width: 800px;;
+  height: 50px;
+  background-color: #DCEDC8
+}
+
+.tableContainer {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  width: 800px;
+  height: 550px;
+  background-color: #F1F8E9;
+}
+
+.tableIndex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  height: 50px;
+  background-color: #FFE0B2
+}
+
+.monthTable {
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+  grid-template-rows: repeat(5, 90px);
+  width: 700px;;
+  height: 450px;
+  background-color: #FFF8E1;
+}
+
+.monthTable div {
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}

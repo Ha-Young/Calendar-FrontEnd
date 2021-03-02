@@ -8,9 +8,47 @@
   - Don't optimize pre-maturely!
 
  */
+import { combineReducers } from "redux";
 
-const initialState = "Create your state structure!";
+const initialYear = new Date().getFullYear();
 
-export default function reducer(state = initialState) {
-  return state;
+const changeYear = (state = initialYear, action) => {
+  switch (action.type) {
+    case "INCREASE_YEAR":
+      return state + 1;
+    case "DECREASE_YEAR":
+      if (state === 0) {
+        return new Date().getFullYear();
+      }
+
+      return state - 1;
+    default:
+      return state;
+  }
 }
+
+const initialMonth = new Date().getMonth() + 1;
+
+const changeMonth = (state = initialMonth, action) => {
+  switch (action.type) {
+    case "INCREASE_MONTH":
+      if (state === 12) {
+        return 1;
+      }
+
+      return state + 1;
+    case "DECREASE_MONTH":
+      if (state === 1) {
+        return 12;
+      }
+
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({
+  changeYear,
+  changeMonth
+});

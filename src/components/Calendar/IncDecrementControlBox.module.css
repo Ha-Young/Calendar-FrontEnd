@@ -1,0 +1,18 @@
+@import url("../../assets/styles/reset.css");
+
+.IncDecrementControlBox {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width:  150px;
+  height: 30px;
+  font: normal bold 20px sans-serif
+}
+
+.leftArrow {
+  font-size: 30px;
+}
+
+.rightArrow {
+  font-size: 30px;
+}
