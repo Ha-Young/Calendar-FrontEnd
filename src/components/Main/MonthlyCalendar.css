@@ -2,7 +2,7 @@
   position: relative;
   width: 600px;
   margin: 0 auto;
-  top: 150px;
+  top: 50px;
 }
 
 .header {
@@ -85,7 +85,7 @@
 }
 
 .time {
-  height: 50px;
+  height: 30px;
   padding-bottom: 0.5px;
 }
 
@@ -98,7 +98,15 @@
 }
 
 .event {
-  height: 50px;
+  height: 30px;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
+}
+
+.day-date-wrapper {
+  height: 50px;
+}
+
+.time-table-title {
+  height: 50px;
 }

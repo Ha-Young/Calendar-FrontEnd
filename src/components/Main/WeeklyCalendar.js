@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeSundayDate } from '../../utils';
 
-const WeeklyCalendar = () => {
-  const [todayDate, setTodayDate] = useState(new Date());
+const WeeklyCalendar = ({ children }) => {
+  const todayDate = new Date();
   const days = ['일', '월', '화', '수', '목', '금', '토'];
-  const times = [];
-  const events = [];
+  const timeCells = [];
+  const eventCells = [];
   let sundayDate = makeSundayDate(todayDate);
+  let daysList;
 
   for (let i = 0; i < 25; i++) {
-    times.push(i);
+    timeCells.push(i);
   }
 
-  for (let i = 0; i < 24; i++) {
-    events.push(i);
+  for (let j = 0; j < 24; j++) {
+    eventCells.push(j);
   }
 
-  const timeList = times.map((time, index) => {
+  const timeList = timeCells.map((time, index) => {
 
     return (
       <div className='timeable'>
@@ -25,7 +26,7 @@ const WeeklyCalendar = () => {
     )
   });
 
-  const eventList = events.map((event, index) => {
+  const eventList = eventCells.map((event, index) => {
 
     return (
       <div className='eventTable'>
@@ -34,27 +35,40 @@ const WeeklyCalendar = () => {
     )
   });
 
-  const daysList = days.map((day, index) => {
-    let startDate = sundayDate.getDate();
+  if (!children) {
+    daysList = days.map((day, index) => {
+      let startDate = sundayDate.getDate();
 
-    sundayDate.setDate(++startDate);
+      sundayDate.setDate(++startDate);
 
-    return (
-      <div className='week-day' key={index}>
-        <div>
-          <div>{day}</div>
-          <div>{startDate - 1}</div>
+      return (
+        <div className='week-day' key={index}>
+          <div className='day-date-wrapper'>
+            <div>{day}</div>
+            <div>{startDate - 1}</div>
+          </div>
+          <div className='event-wrapper' key={index}>{eventList}</div>
         </div>
-        <div className='event-wrapper'>{eventList}</div>
-      </div>
-    )
-  });
+      )
+    });
+  } else {
+    daysList = days.map((day, index) => {
+      return (
+        <div className='week-day' key={index}>
+          <div className='day-date-wrapper'>
+          </div>
+          <div className='event-wrapper' key={index}>{eventList}</div>
+        </div>
+      )
+    })
+  }
+
 
   return (
     <div className='calendar'>
       <div className='days'>
         <div>
-          <div>TimeTable</div>
+          <div className='time-table-title'>TimeTable</div>
           <div className='time-table-wrapper'>
             {timeList}
           </div>

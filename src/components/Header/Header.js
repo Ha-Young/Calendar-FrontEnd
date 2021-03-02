@@ -8,6 +8,7 @@ export default function Header () {
       <nav>
         <button><Link to='/'>Home</Link></button>
         <button><Link to='/weeklycalendar'>Week</Link></button>
+        <button><Link to='/dailycalendar'>Daily</Link></button>
       </nav>
     </header>
   );

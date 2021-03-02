@@ -7,6 +7,7 @@ import styles from './App.module.css';
 import Header from '../Header/Header';
 import MonthlyCalendar from '../Main/MonthlyCalendar';
 import WeeklyCalendar from '../Main/WeeklyCalendar';
+import DailyCalendar from '../Main/DailyCalendar';
 
 function App({ onInitialLoad }) {
   useEffect(() => {
@@ -17,11 +18,14 @@ function App({ onInitialLoad }) {
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route path='/' exact>
+        <Route exact path='/'>
           <MonthlyCalendar />
         </Route>
         <Route path='/weeklycalendar'>
           <WeeklyCalendar />
+        </Route>
+        <Route path='/dailycalendar'>
+          <DailyCalendar />
         </Route>
       </Switch>
     </div>
