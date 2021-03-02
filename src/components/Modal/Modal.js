@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './Modal.module.css';
 
 const Modal = () => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   let startOptionList = [];
   let endOptionList = [];
 
@@ -40,16 +42,20 @@ const Modal = () => {
       <div className={styles.titleWrapper}>
         <input
           type='text'
-          value='title'
-          onChange={() => {}}
+          maxLength='20'
+          value={title}
+          placeholder='title'
+          onChange={(e) => setTitle(e.target.value)}
           className={styles.titleInput}
         />
       </div>
       <div className={styles.descriptionWrapper}>
         <input
           type='text'
-          value='description'
-          onChange={() => {}}
+          maxLength='20'
+          value={description}
+          placeholder='description'
+          onChange={(e) => setDescription(e.target.value)}
           className={styles.descriptionInput}
         />
       </div>

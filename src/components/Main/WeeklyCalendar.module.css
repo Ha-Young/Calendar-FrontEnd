@@ -9,6 +9,9 @@
 }
 
 .dayDateWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 50px;
 }
 
@@ -43,7 +46,9 @@
   margin: 25px 0 10px;
 }
 
-.timeTableTitle {
+.timeTableWrapper {
+  display: flex;
+  align-items: center;
   height: 50px;
 }
 

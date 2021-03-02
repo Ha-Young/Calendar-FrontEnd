@@ -1,7 +1,7 @@
 .modalWrapper {
   position: relative;
-  top: 100px;
-  left: 370px;
+  top: 150px;
+  margin: auto;
   border: 1px solid black;
   width: 360px;
   height: 390px;
@@ -14,6 +14,7 @@
 .titleInput {
   width: 300px;
   height: 30px;
+  text-align: center;
 }
 
 .descriptionWrapper {
@@ -23,6 +24,7 @@
 .descriptionInput {
   width: 300px;
   height: 100px;
+  text-align: center;
 }
 
 .dateSelectWrapper {

@@ -94,7 +94,11 @@ const WeeklyCalendar = ({ children }) => {
       </div>
       <div className={styles.days}>
         <div>
-          <div className={styles.timeTableTitle}>TimeTable</div>
+          <div className={styles.timeTableWrapper}>
+            <div>
+              timeTable
+            </div>
+          </div>
           <div>
             {timeList}
           </div>
