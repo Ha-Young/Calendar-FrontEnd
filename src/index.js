@@ -8,7 +8,7 @@ import {
   BrowserRouter as Router,
   // HashRouter as Router
 } from "react-router-dom";
-import App from "./containers/App";
+import App from "containers/App";
 
 const middleware = [];
 
@@ -19,10 +19,10 @@ if (process.env.NODE_ENV !== "production") {
 const store = createStore(reducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
-  <Router>
-    <Provider store={store}>
+  <Provider store={store}>
+    <Router>
       <App />
-    </Provider>
-  </Router>,
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );

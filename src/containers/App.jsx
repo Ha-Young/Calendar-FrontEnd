@@ -4,8 +4,10 @@ import { authService } from "api/firebaseService";
 import AppRouter from "containers/AppRouter";
 import Footer from "components/Footer/Footer";
 import Loading from "components/Loading/Loading";
+import { connect } from "react-redux";
+import { saveSampleData } from "api";
 
-function App({ onInitialLoad }) {
+const App = ({ onInitialLoad }) => {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -21,6 +23,7 @@ function App({ onInitialLoad }) {
   }, []);
 
   useEffect(() => {
+    console.log(onInitialLoad);
     onInitialLoad();
   }, [onInitialLoad]);
 
@@ -36,6 +39,17 @@ function App({ onInitialLoad }) {
       )}
     </>
   );
-}
+};
 
-export default App;
+const mapStateToProps = (state) => ({
+  something: "Mapping redux state to App component props.",
+});
+
+const mapDispatchToProps = () => ({
+  // // This function is passed to App component.
+  onInitialLoad: () => {
+    saveSampleData();
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

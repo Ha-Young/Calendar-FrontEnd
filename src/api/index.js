@@ -1,12 +1,22 @@
-// TODO: Go to `./firebase.js` and update your firebase config.
-import { firebaseInstance } from "./firebaseService";
+import { authService, firebaseInstance } from "./firebaseService";
+import { mockEvent } from "utils/mock.js";
 
 export async function saveSampleData() {
   const database = firebaseInstance.database();
 
-  // Note: `set` method returns a promise.
-  // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
   await database.ref("test/123").set({
     test: "text",
   });
+
+  await database.ref(`/event/${authService.currentUser.uid}`).set(mockEvent);
+
+  await database
+    .ref(`/event/${authService.currentUser.uid}`)
+    .on("value", (snapshot) => console.log(snapshot.val()));
 }
+
+export const getCurrentEventList = async () => {};
+
+export const addNewEvent = async () => {};
+
+export const updateEventList = async () => {};

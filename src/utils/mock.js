@@ -1,20 +1,28 @@
-const mockEvent = {
-  key: {
-    NSDasWKe462kLqKkneDAjk2: {
-      user: "SeongjuSeo",
-      title: "event1",
-      description: "description mockkkk1",
-      date: "2021/03/01",
-      startTime: "19",
-      endTime: "22",
-    },
-    NSdkjfBNDDAjk2: {
-      user: "YoonSu",
-      title: "event2",
-      description: "description mockkkk2",
-      date: "2021/03/02",
-      startTime: "12",
-      endTime: "15",
-    },
+import moment from "moment";
+
+export const mockEvent = [
+  {
+    id: "adlksjfal",
+    title: "read book",
+    description: "read book so long long time",
+    date: moment().format("YYYY-MM-DD"),
+    startTime: 10,
+    endTime: 19,
   },
-};
+  {
+    id: "aewq32561",
+    title: "coding",
+    description: "do or die",
+    date: moment().day(0).format("YYYY-MM-DD"),
+    startTime: 2,
+    endTime: 5,
+  },
+  {
+    id: "kjk31kn",
+    title: "play boardgame",
+    description: "win or die",
+    date: moment().day(8).format("YYYY-MM-DD"),
+    startTime: 5,
+    endTime: 9,
+  },
+];
