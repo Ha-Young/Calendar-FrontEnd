@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import TimePicker from "../../components/TimePicker/TimePicker";
 import ColorPicker, { useColor } from "react-color-palette";
-import DatePicker from "react-datepicker";
 import styles from "./NewEventPage.module.css";
 import { validateText, validateTime } from "../../utils/vailidation";
+import { currentDay, today } from "../../utils/date";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const initialFormState = {
   title: "",
   description: "",
-  date: new Date(),
+  date: currentDay(today),
   startTime: "",
   endTime: "",
 };
@@ -20,33 +19,27 @@ const NewEventPage = ({ onSubmit }) => {
   const [newEventData, setNewEventData] = useState({
     title: "",
     description: "",
-    date: new Date(),
+    date: currentDay(today),
     startTime: "",
     endTime: "",
   });
   const [color, setColor] = useColor(null);
-  
-  const handleInputChange = ({ 
-    target: { 
-      name, 
+
+  const handleInputChange = ({
+    target: {
+      name,
       value,
-    }, 
+    },
   }) => {
+    console.log(value);
     setNewEventData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleDateChange = (date) => {
-    setNewEventData((prev) => ({
-      ...prev,
-      date,
-    }));
-  };
-
   const validateData = (eventData) => {
-    if 
+    if
     (
       !validateText(eventData.title) ||
       !validateText(eventData.description) ||
@@ -66,10 +59,12 @@ const NewEventPage = ({ onSubmit }) => {
       setErrorMessage("error"); // 에러메시지 처리... 이것도 리덕스에서...?
       return;
     }
+    const hexColor = color.hex;
 
     onSubmit({
       ...newEventData,
-      color,
+      id: newEventData.date,
+      color: hexColor,
     });
 
     setNewEventData(initialFormState);
@@ -77,50 +72,57 @@ const NewEventPage = ({ onSubmit }) => {
 
   return (
     <div className={styles.NewEventPage}>
-      <form onSubmit={handleSubmit}> 
+      <form onSubmit={handleSubmit}>
         <div className={styles.column}>
-          <input 
-            className={styles.input} 
-            name="title" 
-            type="text" 
+          <input
+            className={styles.input}
+            name="title"
+            type="text"
+            onChange={handleInputChange}
             value={newEventData.title}
-            onChange={handleInputChange}
           />
-          <input 
-            className={styles.input} 
-            name="description" 
-            type="text" 
-            value={newEventData.description}
+          <input
+            className={styles.input}
+            name="description"
+            type="text"
             onChange={handleInputChange}
+            value={newEventData.description}
           />
         </div>
         <div className={styles[`same-type`]}>
-          <DatePicker 
-            className={styles.input} 
+          <input
+            className={styles.input}
             name="date"
-            selected={newEventData.date} 
-            onChange={handleDateChange}
-          />
-          <TimePicker 
-            name="startTime" 
-            selected={newEventData.startTime}
+            type="date"
             onChange={handleInputChange}
+            value={newEventData.date}
           />
-          <TimePicker 
+          <input
+            className={styles.input}
+            name="startTime"
+            type="time"
+            step="3600"
+            onChange={handleInputChange}
+            value={newEventData.startTime}
+          />
+          <input
+            className={styles.input}
             name="endTime"
-            selected={newEventData.endTime}
+            type="time"
+            step="3600"
             onChange={handleInputChange}
+            value={newEventData.endTime}
           />
         </div>
         <div className={styles.center}>
-          <ColorPicker 
-            width={200} 
-            height={100} 
-            color={color} 
-            onChange={setColor} 
-            white 
-            hideHEX 
-            hideRGB 
+          <ColorPicker
+            width={200}
+            height={100}
+            color={color}
+            onChange={setColor}
+            white
+            hideHEX
+            hideRGB
             hideHSB
           />
         </div>

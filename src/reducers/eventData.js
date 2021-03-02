@@ -3,10 +3,20 @@ import * as types from "../constants/actionTypes";
 
 export const byId = (state = {}, actions) => {
   switch (actions.type) {
-    case types.GET_CALENDAR_DATA_SUCCESS: {     
+    case types.GET_CALENDAR_DATA_SUCCESS: {
+      const { payLoad: { events } } = actions;
+
       return {
         ...state,
-        ...actions.payLoad.events,
+        ...Object.values(events).reduce((acc, val) => {
+          if (!acc.hasOwnProperty(val.id)) {
+            acc[val.id] = [];
+          }
+
+          acc[val.id].push(val);
+
+          return acc;
+        }, {}),
       }
     }
     default:
@@ -14,13 +24,18 @@ export const byId = (state = {}, actions) => {
   }
 };
 
-export const allIds = (state =[], actions) => {
+export const allIds = (state = [], actions) => {
   switch (actions.type) {
-    case types.GET_CALENDAR_DATA_SUCCESS: {      
-      return Object.keys(actions.payLoad.events);
-    }
-    case types.SEND_EVENT_DATA_SUCCESS: {
-      
+    case types.GET_CALENDAR_DATA_SUCCESS: {
+      const { payLoad: { events } } = actions;
+
+      return Object.values(events).reduce((acc, event) => {
+        if (!acc.includes(event.id)) {
+          acc.push(event.id);
+        }
+
+        return acc;
+      }, []);
     }
     default:
       return state;
@@ -29,7 +44,7 @@ export const allIds = (state =[], actions) => {
 
 export const isLoading = (state = true, actions) => {
   switch (actions.type) {
-    case types.GET_CALENDAR_DATA_SUCCESS: {      
+    case types.GET_CALENDAR_DATA_SUCCESS: {
       return actions.payLoad.isLoading;
     }
     default:
@@ -39,12 +54,18 @@ export const isLoading = (state = true, actions) => {
 
 export const errorMessage = (state = "", actions) => {
   switch (actions.type) {
-    case types.GET_CALENDAR_DATA_SUCCESS: {      
+    case types.GET_CALENDAR_DATA_SUCCESS: {
       return actions.payLoad.errorMessage;
     }
     default:
       return state;
   }
+};
+
+const getEventById = (state, id) => state.byId[id];
+
+export const getVisibleEventsByCurrentDates = (state, currentDates) => {
+  return currentDates.map(id => getEventById(state, id));
 };
 
 export default combineReducers({
@@ -53,42 +74,3 @@ export default combineReducers({
   isLoading,
   errorMessage,
 });
-
-const datelist = {
-  // isLoading: true,
-  // isError: false,
-  // calender: {
-  //   byId: {
-  //     "2021/10/20": {
-  //       id: "2021/10/20",
-  //       events: ["event1", "event2"],
-  //     },
-  //     "2021/10/21": {
-  //       id: "2021/10/21",
-  //       events: ["event3", "event4"],
-  //     },
-  //     "2021/10/22": {
-  //       id: "2021/10/22",
-  //       events: ["event5", "event6"],
-  //     },
-  //     "2021/10/23": {
-  //       id: "2021/10/23",
-  //       events: [],
-  //     },
-  //   },
-  //   allIds: ["2021/10/20", "2021/10/21", "2021/10/22", "2021/10/23"],
-  // },
-  // events: {
-  //   byId: {
-  //     "event1": {
-  //       id: "event1",
-  //       title: "happy",
-  //       description: "we will make cake",
-  //       start: "2:00",
-  //       end: "4:00",
-  //       color: "pink",
-  //     },
-  //   },
-  //   allIds: ["event1", "event2", "event3", "event4", "event5", "event6"],
-  // },
-};

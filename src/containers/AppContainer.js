@@ -1,12 +1,13 @@
 import { connect } from "react-redux";
 import { getEventsData, saveEventData } from "../api";
-import { 
-  changeCalendarType, 
-  changeCalendarPage, 
-  fetchCalendarDataSuccess, 
-  fetchCalendarDataFail 
+import {
+  changeCalendarType,
+  changeCalendarPage,
+  fetchCalendarDataSuccess,
+  fetchCalendarDataFail
 } from "../actions/index";
 import App from "../components/App/App";
+import { getVisibleEventsByCurrentDates } from "../reducers/eventData";
 
 const mapDispatchToProps = (dispatch) => ({
   handleChangeCalendarType(info) {
@@ -19,14 +20,14 @@ const mapDispatchToProps = (dispatch) => ({
     try {
       const data = await getEventsData();
 
-      dispatch(fetchCalendarDataSuccess({ 
-        isLoading: false, 
-        errorMessage: "", 
+      dispatch(fetchCalendarDataSuccess({
+        isLoading: false,
+        errorMessage: "",
         events: data,
       }));
     } catch(error) {
       dispatch(fetchCalendarDataFail({  // 인덴팅
-        isLoading: false, 
+        isLoading: false,
         errorMessage: error.message,
       }));
     }
@@ -40,8 +41,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const mapStateToProps = ({ calendarDate }) => ({
-  calendarList: calendarDate.isDaily ? calendarDate.daily : calendarDate.weekly,
+const mapStateToProps = ({ calendarDate, eventData }) => ({
+  calendarList: calendarDate.isDaily
+    ? getVisibleEventsByCurrentDates(eventData, calendarDate.daily)
+    : getVisibleEventsByCurrentDates(eventData, calendarDate.weekly),
   isDailyCalendar: calendarDate.isDaily,
   currentDate: calendarDate.date,
 });

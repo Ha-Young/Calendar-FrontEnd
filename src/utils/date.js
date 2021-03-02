@@ -17,6 +17,8 @@ export const getDay = (today) => {
   return [formatISO(today).slice(0, 10)];
 };
 
+export const currentDay = (today) => formatISO(today).slice(0, 10);
+
 export const setCalendarData = (cb, isDailyCalendar, currentDate) => {
   const calendarGap = isDailyCalendar ? viewMode.DAILYMODE.gap : viewMode.WEEKLYMODE.gap;
 
@@ -32,11 +34,4 @@ export const setCalendarData = (cb, isDailyCalendar, currentDate) => {
 };
 
 export const hours = new Array(24).fill(0).map((_, index) => index); // 상수 지정
-
-export const generateUrlByDate = (currentDate, startTime) => {
-  const date = formatISO(currentDate).slice(0, 10);
-  const time = startTime;
-
-  return `${date}/${time}`;
-};
 
