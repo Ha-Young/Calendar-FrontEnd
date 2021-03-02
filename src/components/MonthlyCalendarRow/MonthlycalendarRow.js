@@ -1,12 +1,12 @@
 import React from "react";
+import MonthlyCalendarDay from "../MonthlyCalendarDay/MonthlyCalendarDay";
 
-const MonthlyCalendarRow = function ({ id }) {
-  if (id === 0) {
-    //1일짜리 요일 구해서 -i구해두기
-  }
-
+const MonthlyCalendarRow = function ({ days }) {
   return (
     <div>
+      {days.map((day, i) =>
+        <MonthlyCalendarDay key={`day${i}`} day={day} />
+      )}
     </div>
   );
 };

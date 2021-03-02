@@ -8,7 +8,7 @@ const MonthlyCalendar = function () {
   return (
     <div className={styles["monthly-calendar"]}>
       <MonthlyCalendarHeader />
-      <MonthlyCalendarPresentation />
+      <MonthlyCalendarPresentation year={new Date().getFullYear()} month={new Date().getMonth()} />
     </div>
   );
 };
