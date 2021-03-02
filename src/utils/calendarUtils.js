@@ -29,24 +29,39 @@ export function getLastDayOfMonth(year, month, daysOfMonth) {
 }
 
 //day = 요일, date = 날짜
-export function getCalendarArray(year, month) {
+export function generateCalendarArray(year, month) {
   const firstDayOfMonth = getFirstDayOfMonth(year, month);
-  const array = [];
+  const calendarArray = [];
 
   let daysOfCalendarPage = getNumberOfWeeksOfMonth(year, month);
-
+  let row = [];
 
   for (let i = 0; i < daysOfCalendarPage; i++) {
-    let row = [];
 
     const date = new Date(year, month, i - firstDayOfMonth + 1);
     row.push(date.getDate());
 
     if (i % 7 === 6) {
-      array.push(row);
+      calendarArray.push(row);
       row = [];
     }
   }
 
-  return array;
+  return calendarArray;
+}
+
+export function generateWeekArray(year, month, date, day) {
+  const standardDate = new Date(year, month, date - day);
+  const weekArray = [];
+
+  for (let i = 0; i < 7; i++) {
+    //console.log(standardDate);
+    weekArray.push(standardDate.getDate() + i);
+  }
+
+  return weekArray;
+}
+
+export function generateDate(year, month) {
+  return `${year}년 ${month}월 `;
 }

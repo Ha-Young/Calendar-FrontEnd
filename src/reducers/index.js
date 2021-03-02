@@ -1,3 +1,4 @@
+import * as types from "../constants/actionTypes";
 /*
 
   Reducers
@@ -9,8 +10,19 @@
 
  */
 
-const initialState = "Create your state structure!";
+const date = new Date();
 
-export default function reducer(state = initialState) {
+const initialState = {
+  dateObject: {
+    year: date.getFullYear(),
+    month: date.getMonth(),
+    date: date.getDate(),
+    day: date.getDay(),
+  },
+
+  isWeeklySchedule: true
+};
+
+export default function reducer(state = initialState, action) {
   return state;
 }

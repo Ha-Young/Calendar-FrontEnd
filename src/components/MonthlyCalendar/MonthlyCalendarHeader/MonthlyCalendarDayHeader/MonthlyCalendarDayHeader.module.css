@@ -1,0 +1,6 @@
+.monthly-calendar-day-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14vw;
+}

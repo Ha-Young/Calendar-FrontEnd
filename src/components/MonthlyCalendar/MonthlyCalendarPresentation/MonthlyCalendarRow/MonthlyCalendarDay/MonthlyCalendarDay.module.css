@@ -1,0 +1,9 @@
+.monthly-calendar-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14vw;
+  height: 10vh;
+  padding: 20px 40px;
+  border: 1px solid black;
+}

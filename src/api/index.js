@@ -50,6 +50,5 @@ export function GoogleProvider(handleError) {
 }
 
 export function onAuthStateChanged(callback) {
-  // const auth = firebase.auth();
   auth.onAuthStateChanged(callback);
 }

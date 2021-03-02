@@ -2,15 +2,27 @@ import { connect } from "react-redux";
 import App from "../components/App/App";
 import { saveSampleData } from "../api";
 
-const mapStateToProps = (state) => ({
-  something: "Mapping redux state to App component props.",
-});
+const mapStateToProps = function (state) {
+  return {
+    dateObject: {
+      year: state.dateObject.year,
+      month: state.dateObject.month,
+      date: state.dateObject.date,
+      day: state.dateObject.day
+    },
+    isWeeklySchedule: state.isWeeklySchedule,
+  };
+};
 
-const mapDispatchToProps = () => ({
-  // This function is passed to App component.
-  onInitialLoad: () => {
-    saveSampleData();
-  },
-});
+const mapDispatchToProps = function (dispatch) {
+  return {
+    onInitialLoad: () => {
+      saveSampleData();
+    },
+    // checkLoggedIn: () => {
+    //   dispatch({ type: CHECK_LOGGED_IN })
+    // }
+  }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
