@@ -3,7 +3,7 @@ import React from "react";
 const Title = function ({ children }) {
   return (
     <div>
-      {children}
+      <h2>{children}</h2>
     </div>
   );
 };

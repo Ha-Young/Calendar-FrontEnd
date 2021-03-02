@@ -17,3 +17,14 @@
   align-items: center;
   width: 12vw;
 }
+
+.date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
+  height: 40px;
+  width: 40px;
+  border: 3px solid black;
+  border-radius: 5px;
+}

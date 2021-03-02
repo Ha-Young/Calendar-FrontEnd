@@ -1,6 +1,7 @@
 import React from "react";
-import ScheduleHeader from "../ScheduleHeader/ScheduleHeader";
-import Navigation from "../Navigation/Navigation";
+import styles from "./Header.module.css";
+import ScheduleHeader from "./ScheduleHeader/ScheduleHeader";
+import Navigation from "./Navigation/Navigation";
 
 //이렇게 건내주면 header의 재사용성이 떨어지지않을까?
 //depth를 생각해서 container를 사용하라 하셨었는데
@@ -14,7 +15,7 @@ const Header = function ({
   updateNextWeek
 }) {
   return (
-    <header>
+    <header className={styles["header"]}>
       <Navigation />
       <ScheduleHeader
         date={date}

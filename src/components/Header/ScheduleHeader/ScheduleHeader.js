@@ -1,7 +1,7 @@
 import React from "react";
-import { generateDateString } from "../../utils/calendarUtils";
-import Button from "../Button/Button";
-import Title from "../Title/Title";
+import { generateDateString } from "../../../utils/calendarUtils";
+import Button from "../../Button/Button";
+import Title from "../../Title/Title";
 import styles from "./ScheduleHeader.module.css";
 
 const ScheduleHeader = function ({
@@ -10,18 +10,21 @@ const ScheduleHeader = function ({
   onNextButtonClick
 }) {
   return (
-    <div className={styles["calendar-button-and-title"]}>
+    <div className={styles["schedule-header"]}>
       <Button
-        className="prevButton"
+        className={styles["prev-button"]}
         children="<"
         onClick={onPreButtonClick}
       />
       <Button
-        className="nextButton"
+        className={styles["next-button"]}
         children=">"
         onClick={onNextButtonClick}
       />
-      <Title children={generateDateString(date)} />
+      <Title
+        className={styles["date-title"]}
+        children={generateDateString(date)}
+      />
     </div>
   );
 };

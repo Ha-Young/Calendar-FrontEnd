@@ -11,7 +11,7 @@ import * as types from "../constants/actionTypes";
  */
 const initialState = {
   date: new Date(),
-  isWeeklySchedule: true
+  isWeeklySchedule: false
 };
 
 export default function reducer(state = initialState, action) {
