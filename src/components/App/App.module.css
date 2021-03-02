@@ -1,3 +1,26 @@
-.App {
+.app {
   text-align: center;
+}
+
+.header {
+  display: flex;
+  height: 64px;
+  background-color: #B39C7D;
+}
+
+.main {
+  height: calc(100vh - 64px - 30px);
+}
+
+.sidebar {
+  background-color: #DBCDAD;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height : 30px;
+  background-color: #806854;
 }

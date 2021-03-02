@@ -2,6 +2,12 @@
 
   Action Types
 
-  ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/constants/ActionTypes.js
+  export const ADD_TO_CART = 'ADD_TO_CART'
+  export const CHECKOUT_REQUEST = 'CHECKOUT_REQUEST'
+  export const CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS'
+  export const CHECKOUT_FAILURE = 'CHECKOUT_FAILURE'
+  export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
 
  */
+
+export const CHANGE_VIEW_OPTION = 'CHANGE_VIEW_OPTION';

@@ -1,13 +1,18 @@
 import { connect } from "react-redux";
-import App from "../components/App/App";
-import { saveSampleData } from "../api";
 
-const mapStateToProps = (state) => ({
-  something: "Mapping redux state to App component props.",
+import { changeViewOption } from "../actions";
+import { saveSampleData } from "../api";
+import App from "../components/App";
+
+const mapStateToProps = state => ({
+  viewOption: state.viewOption,
 });
 
-const mapDispatchToProps = () => ({
-  // This function is passed to App component.
+const mapDispatchToProps = dispatch => ({
+  changeViewOption: viewOption => {
+    dispatch(changeViewOption(viewOption));
+  },
+
   onInitialLoad: () => {
     saveSampleData();
   },
