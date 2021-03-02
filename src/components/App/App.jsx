@@ -8,13 +8,13 @@ import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Event from "../Event/Event";
 import Calendar from "../Calendar/Calendar";
-import Weekly from "../Weekly/Weekly";
-import Daily from "../Daily/Daily";
+import Weekly from "../Calendar/Weekly/Weekly";
+import Daily from "../Calendar/Daily/Daily";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
     onInitialLoad();
-  }, []);
+  }, [onInitialLoad]);
 
   return (
     <div className={styles.App}>

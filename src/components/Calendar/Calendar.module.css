@@ -1,12 +1,54 @@
 .calendar .day {
   position: relative;
   width: calc(100% / 7);
-  height: 44px;
+  height: 10em;
   display: inline-block;
   background-color: white;
   margin: 0;
-  padding: 0;
+  padding-top: 1em;
+  border: 1px solid rgb(100, 100, 100);
   box-sizing: border-box;
   z-index: 1;
   text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5em;
+}
+
+.current {
+  width: 100px;
+  margin: 0 3em;
+}
+
+.previous, .next {
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.weeks .day-week {
+  width: calc(100% / 7);
+  height: 2em;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid rgb(100, 100, 100);
+}
+
+.sidebar {
+  width: 3em;
+  height: 3em;
+  margin: 0 1em;
+}
+
+.sidebar:first-child {
+  margin-top: 5em;
 }
