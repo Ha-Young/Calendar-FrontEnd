@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+.DayBox {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+  padding: 10px;
+  border-left: 0.5px solid #4e505a;
+  color: #717483;
+  background-color: #3b3f4b;
+}
+
+.Title {
+  font-size: 2rem;
+}
+
+.NonToggleTitle {
+  color: white;
+  font-size: 2rem;
+}
+
+.NonToggleDescription {
+  color: white;
+}
+

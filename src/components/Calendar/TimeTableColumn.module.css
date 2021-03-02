@@ -1,0 +1,21 @@
+.Column {
+  flex-grow: 1;
+  margin-top: 25px;
+}
+
+.Cell {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 0.5px solid #bcbcc7;
+  border-right: 0.5px solid #bcbcc7;
+  background-color: #e8e7ec;
+}
+
+.Cell:hover {
+  background-color: #dddce0;
+}
+
+.Cell:first-child {
+  border-top: 0.5px solid #bcbcc7;
+}

@@ -1,0 +1,59 @@
+.Calendar {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+}
+
+.ControlBox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.DaysBox {
+  display: flex;
+  flex-flow: nowrap row;
+}
+
+/* .DaysBox > a:first-of-type > span {
+  border-left: none;
+} */
+
+a.active > span {
+  color: white;;
+  background-color: #3dad9b;
+}
+
+a {
+  text-decoration: none;
+}
+
+.TimeTableBox {
+  display: flex;
+  width: 100%;
+}
+
+.TimeDisplayBox {
+  width: 100px;
+  background-color: #686a75;
+}
+
+.TimeDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.TimeTable {
+  display: flex;
+  flex-grow: 1;
+  background-color: #505565;
+}
+
+/* border #4e505a
+background #3b3f4b */

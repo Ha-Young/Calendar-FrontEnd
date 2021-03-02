@@ -7,7 +7,7 @@ export default function Header () {
     <header>
       <nav>
         <ul>
-          <li><Link to='/'>Menu 1</Link></li>
+          <li><Link to='/calendar'>Menu 1</Link></li>
           <li><Link to='/event'>Menu 2</Link></li>
         </ul>
       </nav>
