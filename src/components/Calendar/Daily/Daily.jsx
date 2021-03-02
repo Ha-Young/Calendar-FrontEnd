@@ -21,7 +21,6 @@ export default function Daily({ history }) {
       history.push(`/event/${eventQuery}`);
     } else {
       console.log(e.target.getAttribute("data-id"));
-
       history.push("/event/new");
     }
   }
@@ -46,7 +45,7 @@ export default function Daily({ history }) {
           {result.map((value) => (
             <div
               onClick={(e) => handleClickDateBox(e)}
-              // data-event={false} // 인자로 이벤트 유무를 체크
+              data-event={false} // 인자로 이벤트 유무를 체크
               data-id={`${dateID}_${value}`}
               key={value}
               className={styles["day-box"]}

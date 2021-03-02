@@ -22,7 +22,7 @@ function App({ onInitialLoad }) {
       <Switch>
         <Route path="/" exact component={Calendar} />
         <Route path="/event/new" component={Event} />
-        <Route exact path="/event:id" component={Event} />
+        <Route exact path="/event/:id" component={Event} />
         <Route path="/calendar" component={Calendar} />
         <Route path="/weekly" component={Weekly} />
         <Route path="/daily" component={Daily} />
