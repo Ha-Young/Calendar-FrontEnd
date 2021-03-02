@@ -1,0 +1,11 @@
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#ff9ff3",
+    "titleBar.inactiveBackground": "#ff9ff3"
+  },
+  "explorer.compactFolders": false,
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  }
+}

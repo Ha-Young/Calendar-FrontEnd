@@ -1,0 +1,35 @@
+.container {
+  width: 94vw;
+  margin: 0 auto;
+  margin-top: 1vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tableHeader {
+  height: 60px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeContainer {
+  text-align: right;
+  width: 7%;
+}
+
+.eventContainer {
+  text-align: right;
+  width: 100%;
+}
+
+.date {
+  margin: 0;
+}
+
+.eachTime {
+  height: 35px;
+}
