@@ -1,0 +1,16 @@
+.header {
+  width: 80%;
+}
+
+.header ul {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+}
+
+.header li {
+  font-size: 18px;
+  font-weight: 800;
+}

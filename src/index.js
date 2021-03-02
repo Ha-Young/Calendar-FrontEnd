@@ -9,6 +9,7 @@ import {
   // HashRouter as Router
 } from "react-router-dom";
 import App from "./containers/App";
+import "./index.css";
 
 const middleware = [];
 

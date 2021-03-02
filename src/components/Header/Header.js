@@ -1,14 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 // TODO: Create your own header.
-export default function Header () {
+export default function Header() {
   return (
-    <header>
+    <header className={`${styles.header}`}>
       <nav>
         <ul>
-          <li><Link to='/'>Menu 1</Link></li>
-          <li><Link to='/event'>Menu 2</Link></li>
+          <li>
+            <Link to="/Day">Day</Link>
+          </li>
+          <li>
+            <Link to="/Week">Week</Link>
+          </li>
+          <li>
+            <Link to="/Month">Month</Link>
+          </li>
+          <li>
+            <Link to="/Event">Event</Link>
+          </li>
         </ul>
       </nav>
     </header>

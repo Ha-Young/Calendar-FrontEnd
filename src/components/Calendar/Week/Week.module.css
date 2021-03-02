@@ -1,0 +1,23 @@
+.wrapper {
+  width: 90%;
+  height: 90%;
+}
+
+.boardWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90%;
+}
+
+.cell {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px grey solid;
+}
+
+.spanWrapper {
+  position: absolute;
+  top: -10px;
+  left: -30px;
+}
