@@ -1,5 +1,5 @@
 import React from 'react';
-import './MonthlyCalendar.css';
+import styles from './MonthlyCalendar.module.css';
 
 const date = new Date();
 const thisYear = date.getFullYear();
@@ -28,7 +28,7 @@ const MonthlyCalendar = () => {
 
   const daysList = days.map((day, index) => {
     return (
-      <div className='day' key={index}>{day}</div>
+      <div className={styles.day} key={index}>{day}</div>
     )
   });
 
@@ -36,25 +36,25 @@ const MonthlyCalendar = () => {
 
   const datesList = dates.map((date, index) => {
     return (
-      <div className='date' key={index}>{date}</div>
+      <div className={styles.date} key={index}>{date}</div>
     )
   });
 
   return (
-    <div className='calendar'>
-      <div className='header'>
-        <div className='year-month'>{thisYear}년 {thisMonth}월</div>
-          <div className='nav'>
-            <button className='nav-btn go-prev'>&lt;</button>
-            <button className='nav-btn go-today'>Today</button>
-            <button className='nav-btn go-next'>&gt;</button>
+    <div className={styles.calendar}>
+      <div className={styles.header}>
+        <div>{thisYear}년 {thisMonth}월</div>
+          <div className={styles.nav}>
+            <button>&lt;</button>
+            <button>Today</button>
+            <button>&gt;</button>
           </div>
         </div>
-      <div className='main'>
-        <div className='days'>
+      <div>
+        <div className={styles.days}>
           {daysList}
         </div>
-        <div className='dates'>
+        <div className={styles.dates}>
           {datesList}
         </div>
       </div>

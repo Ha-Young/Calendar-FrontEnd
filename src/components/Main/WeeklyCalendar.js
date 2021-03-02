@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeSundayDate } from '../../utils';
+import styles from './WeeklyCalendar.module.css';
 
 const WeeklyCalendar = ({ children }) => {
   const todayDate = new Date();
@@ -20,20 +21,20 @@ const WeeklyCalendar = ({ children }) => {
   const timeList = timeCells.map((time, index) => {
 
     return (
-      <div className='timeable'>
-        <div className='time' key={index}>{time}</div>
+      <div>
+        <div className={styles.time} key={index}>{time}</div>
       </div>
     )
   });
 
-  const eventList = eventCells.map((event, index) => {
+  // eventCells.map((event, index) => {
 
-    return (
-      <div className='eventTable'>
-        <div className='event' key={index}>event</div>
-      </div>
-    )
-  });
+  //   return (
+  //     <div className='eventTable'>
+  //       <div className='event' key={index}>event</div>
+  //     </div>
+  //   )
+  // });
 
   if (!children) {
     daysList = days.map((day, index) => {
@@ -42,20 +43,29 @@ const WeeklyCalendar = ({ children }) => {
       sundayDate.setDate(++startDate);
 
       return (
-        <div className='week-day' key={index}>
-          <div className='day-date-wrapper'>
+        <div className={styles.weekDay} key={index}>
+          <div className={styles.dayDateWrapper}>
             <div>{day}</div>
             <div>{startDate - 1}</div>
           </div>
-          <div className='event-wrapper' key={index}>{eventList}</div>
+          <div className={styles.eventWrapper} key={index}>
+            {eventCells.map((event, index) => {
+              return (
+                <div className='eventTable'>
+                  <div className={styles.event} key={index + (startDate - 1)}>event</div>
+                </div>
+                )
+              })
+            }
+          </div>
         </div>
       )
     });
   } else {
     daysList = days.map((day, index) => {
       return (
-        <div className='week-day' key={index}>
-          <div className='day-date-wrapper'>
+        <div className={styles.weekDay} key={index}>
+          <div className={styles.dayDateWrapper}>
             {index === 3 &&
               <div>
                 <div>{days[todayDate.getDay()]}</div>
@@ -63,7 +73,16 @@ const WeeklyCalendar = ({ children }) => {
               </div>
             }
           </div>
-          <div className='event-wrapper' key={index}>{eventList}</div>
+          <div className={styles.eventWrapper} key={index}>
+            {eventCells.map((event, index) => {
+              return (
+                <div className='eventTable'>
+                  <div className={styles.event} key={index}>event</div>
+                </div>
+                )
+              })
+            }
+          </div>
         </div>
       )
     })
@@ -71,11 +90,11 @@ const WeeklyCalendar = ({ children }) => {
 
 
   return (
-    <div className='calendar'>
-      <div className='days'>
+    <div className={styles.calendar}>
+      <div className={styles.days}>
         <div>
-          <div className='time-table-title'>TimeTable</div>
-          <div className='time-table-wrapper'>
+          <div className={styles.timeTableTitle}>TimeTable</div>
+          <div>
             {timeList}
           </div>
         </div>

@@ -1,0 +1,43 @@
+.time {
+  height: 30px;
+  padding-bottom: 0.5px;
+}
+
+.weekDay {
+  width: calc(100% / 7);
+  text-align: center;
+}
+
+.dayDateWrapper {
+  height: 50px;
+}
+
+.eventWrapper {
+  border-top: 1px solid black;
+}
+
+.event {
+  height: 30px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.calendar {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  top: 50px;
+}
+
+.days {
+  display: flex;
+  margin: 25px 0 10px;
+}
+
+.timeTableTitle {
+  height: 50px;
+}
+
+.weekDay:last-child .eventWrapper {
+  border-right: 1px solid black;
+}

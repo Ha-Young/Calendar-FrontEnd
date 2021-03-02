@@ -1,0 +1,54 @@
+.day {
+  width: calc(100% / 7);
+  text-align: center;
+}
+
+.date {
+  width: calc(100% / 11);
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #333333;
+}
+
+.calendar {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  top: 50px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  border: 1px solid #333333;
+  border-radius: 5px;
+}
+
+.days {
+  display: flex;
+  margin: 25px 0 10px;
+}
+
+.dates {
+  display: flex;
+  flex-flow: row wrap;
+  height: 500px;
+  border-top: 1px solid #333333;
+  border-right: 1px solid #333333;
+}
+
+.day:nth-child(7n + 1),
+.date:nth-child(7n + 1) {
+  color: #D13E3E;
+}
+
+.day:nth-child(7n),
+.date:nth-child(7n) {
+  color: #396EE2;
+}
