@@ -22,11 +22,11 @@ npm start
 
 이번 과제에서는 Firebase를 사용하셔야 합니다. 아래 단계를 순차적으로 따라하시거나, [Firebase Database 공식 가이드](https://firebase.google.com/docs/database/web/start)를 참고하여 `/src/api/firebase` 파일을 적절히 수정한 후 시작하세요.
 
-- [ ] 우선 [Firebase 웹사이트](https://firebase.google.com/)를 방문하여 로그인 및 회원가입을 완료하세요.
-- [ ] [Firebase Console](https://console.firebase.google.com)로 이동하세요.
-- [ ] 새 프로젝트를 생성하세요.
-- [ ] Database 서비스 중, **Realtime Database**를 생성하세요. 주의) 🚨 Cloud Firestore가 아닙니다.
-- [ ] **프로젝트 설정에서 본인의 config 정보를 이용하여 `/src/api/firebase`를 수정하세요.**
+- [x] 우선 [Firebase 웹사이트](https://firebase.google.com/)를 방문하여 로그인 및 회원가입을 완료하세요.
+- [x] [Firebase Console](https://console.firebase.google.com)로 이동하세요.
+- [x] 새 프로젝트를 생성하세요.
+- [x] Database 서비스 중, **Realtime Database**를 생성하세요. 주의) 🚨 Cloud Firestore가 아닙니다.
+- [x] **프로젝트 설정에서 본인의 config 정보를 이용하여 `/src/api/firebase`를 수정하세요.**
 
 작업을 진행하시면서 Firebase 관련 정보는 아래 링크에서 찾아보세요.
 
@@ -40,7 +40,7 @@ npm start
 1. Container component는 우선 최상위에 하나만 두고 시작하시되, 추후 필요할 경우 추가적으로 만들어 사용하세요. (필요할 경우는 언제일까요?)
 2. 처음부터 컨테이너나 컴포넌트 트리를 다 계획하고 시작하는 방향은 비효율적이고 시간이 오래 걸릴 확률이 많습니다. 현재 수준에서는 절대 첫 계획대로 되지 않을테니, 작업하면서 결정하세요.
 3. Firebase 데이터 구조, Redux State 구조만 결정하고 바로 뛰어드시길 권장합니다. ex) [Redux State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape), [Firebase Database 구조 설계 가이드](https://firebase.google.com/docs/database/web/structure-data)
-4. 설정되어 있는 [Redux-logger](https://github.com/LogRocket/redux-logger) 외의 Redux Middleware는 아직 사용하지 마세요.
+4. 설정되어 있는 [Redux-logger](https://githunotib.com/LogRocket/redux-logger) 외의 Redux Middleware는 아직 사용하지 마세요.
 
 > ⏰ [Redux Style Guide](https://redux.js.org/style-guide/style-guide)를 꼭 읽어보시고, Priority A & B에 해당하는 내용들을 지키도록 노력하세요.
 

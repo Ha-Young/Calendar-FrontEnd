@@ -1,0 +1,17 @@
+.monthly_day {
+  width: 100%;
+  height: 3vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: bisque;
+}
+
+.monthly_date {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(5vw, 15vw));
+  grid-auto-rows: 10vh;
+  column-gap: 5px;
+  row-gap: 5px;
+  background-color: burlywood;
+}

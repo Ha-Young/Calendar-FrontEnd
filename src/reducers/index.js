@@ -9,8 +9,30 @@
 
  */
 
-const initialState = "Create your state structure!";
+// const initialState = "Create your state structure!";
 
-export default function reducer(state = initialState) {
-  return state;
+// export default function reducer(state = initialState) {
+//   return state;
+// }
+import { combineReducers } from "redux";
+import { startOfMonth, endOfMonth, format } from "date-fns";
+import { GET_MONTH } from "../constants/actionTypes";
+
+const initialToday = new Date();
+
+const initialState = {
+  year: format(initialToday, "yyyy"),
+  month: format(initialToday, "MMMM"),
+  date: format(initialToday, "dd")
+};
+
+const getData = (state = {}, action) {
+  switch (action.type) {
+    case GET_MONTH:
+      
+  }
 }
+
+export default combineReducers({
+  initialState
+});
