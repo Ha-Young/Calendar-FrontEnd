@@ -1,16 +1,17 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
-
+console.log(process.env);
 // TODO: Enter your own config object
+const env = process.env;
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: env.REACT_APP_API_KEY,
+  authDomain: env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: env.REACT_APP_DATBASE_URL,
+  projectId: env.REACT_APP_PROJECT_ID,
+  storageBucket: env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: env.REACT_APP_APP_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
