@@ -4,9 +4,14 @@ import React from 'react';
 const WeeklyCalendar = () => {
   const days = ['일', '월', '화', '수', '목', '금', '토', '일'];
   const times = [];
+  const eventCell = [];
 
   for (let i = 0; i < 24; i++) {
     times.push(i);
+
+    if (i < 7) {
+      eventCell.push(i);
+    }
   }
 
   const daysList = days.map((day, index) => {
@@ -17,7 +22,10 @@ const WeeklyCalendar = () => {
 
   const timeList = times.map((time, index) => {
     return (
-      <div className='time' key={index}>{time}</div>
+      <div className='dayEvent'>
+        <div className='time' key={index}>{time}</div>
+        <div>event</div>
+      </div>
     )
   });
 

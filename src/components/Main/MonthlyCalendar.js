@@ -48,15 +48,15 @@ const MonthlyCalendar = () => {
             <button className='nav-btn go-prev'>&lt;</button>
             <button className='nav-btn go-today'>Today</button>
             <button className='nav-btn go-next'>&gt;</button>
+          </div>
         </div>
-      </div>
       <div className='main'>
         <div className='days'>
           {daysList}
         </div>
-      <div className='dates'>
-        {datesList}
-      </div>
+        <div className='dates'>
+          {datesList}
+        </div>
       </div>
     </div>
   )
