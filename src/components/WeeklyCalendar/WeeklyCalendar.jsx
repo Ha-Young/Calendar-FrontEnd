@@ -3,10 +3,10 @@ import styles from "./WeeklyCalendar.module.css";
 import WeeklyCalendarTimeLine from "../WeeklyCalendarTimeLine/WeeklyCalendarTimeLine";
 import WeeklyCalendarContents from "../WeeklyCalendarContents/WeeklyCalendarContents";
 
-export default function WeeklyCalendar({ selectedDate, selectedWeek }) {
+export default function WeeklyCalendar({ selectedWeek }) {
   return (
     <div className={styles.calendarWrapper}>
-      <WeeklyCalendarTimeLine selectedDate={selectedDate} />
+      <WeeklyCalendarTimeLine />
       <WeeklyCalendarContents selectedDate={selectedWeek} />
     </div>
   );

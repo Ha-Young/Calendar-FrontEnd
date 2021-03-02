@@ -14,7 +14,7 @@ import { DateTime } from 'luxon';
 
 const initialState = {
   selectedDate: "",
-  selectedWeek: "",
+  selectedWeek: [],
   selectedEventId: "",
   viewSelector: "",
 };
@@ -22,11 +22,14 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.SELECT_DAY:
+      const newDate = formatDate(action.payload.selectedDate);
       return {
         ...state,
-        selectedDate: formatDate(action.payload.selectedDate),
+        selectedDate: newDate,
+        selectedWeek: calculateWeek(newDate),
       };
     case types.NEXT_BUTTON_CLICKED:
+      // TODO daily, weekly에 따라 로직 분기처리 필요함!
       return {
         ...state,
         selectedDate: state.selectedDate.plus({ days: 1 }),
@@ -43,4 +46,16 @@ export default function reducer(state = initialState, action) {
 
 const formatDate = (date) => {
   return DateTime.fromJSDate(date);
+}
+
+const calculateWeek = (date) => {
+  const weekYear = date.weekYear;
+  const weekNumber = date.weekNumber;
+  const selectedWeek = [];
+
+  for (let i = 1; i <= 7; i++) {
+    selectedWeek.push(DateTime.fromObject({ weekYear: weekYear, weekNumber: weekNumber, weekday: i }));
+  }
+
+  return selectedWeek;
 }
