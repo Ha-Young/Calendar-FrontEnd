@@ -56,6 +56,12 @@ const WeeklyCalendar = ({ children }) => {
       return (
         <div className='week-day' key={index}>
           <div className='day-date-wrapper'>
+            {index === 3 &&
+              <div>
+                <div>{days[todayDate.getDay()]}</div>
+                <div>{todayDate.getDate()}</div>
+              </div>
+            }
           </div>
           <div className='event-wrapper' key={index}>{eventList}</div>
         </div>

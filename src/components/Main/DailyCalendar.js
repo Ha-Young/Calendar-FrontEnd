@@ -3,7 +3,6 @@ import WeekelyCalendar from './WeeklyCalendar';
 
 
 const DailyCalendar = () => {
-  const date = new Date();
 
   return (
     <WeekelyCalendar>
