@@ -25,10 +25,13 @@ function App({ onInitialLoad }) {
         <Route exact path='/weeklycalendar'>
           <WeeklyCalendar />
         </Route>
-        <Route path='/dailycalendar'>
+        <Route exact path='/dailycalendar'>
           <DailyCalendar />
         </Route>
         <Route exact path='/weeklycalendar/:keyId'>
+          <Modal />
+        </Route>
+        <Route path='/dailycalendar/:keyId'>
           <Modal />
         </Route>
       </Switch>

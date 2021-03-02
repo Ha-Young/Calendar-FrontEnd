@@ -50,8 +50,7 @@ const WeeklyCalendar = ({ children }) => {
                   <Link to={`${url}/${keyId}`}>
                     <div
                       className={styles.event}
-                    >
-                    </div>
+                    />
                   </Link>
                 </div>
                 )
@@ -72,10 +71,14 @@ const WeeklyCalendar = ({ children }) => {
         </div>
         <div className={styles.eventWrapper}>
           {eventCells.map((item, index) => {
+            const keyId = todayDate.getDate() + index;
+
             return (
-              <div key={todayDate.getDate() + index}>
-                <div className={styles.event}>
-                </div>
+              <div key={keyId}>
+                <Link to={`/dailycalendar/${keyId}`}>
+                  <div className={styles.event}
+                  />
+                </Link>
               </div>
               )
             })
