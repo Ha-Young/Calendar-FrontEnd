@@ -1,28 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Control from "./Control/Control";
 import Logo from "./Logo";
 
-const Wrapper = styled.header`
-  position: absolute;
-  top: 1em;
-  left: 1em;
+const Header = styled.header`
+  display: flex;
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 // TODO: Create your own header.
-const Header = () => {
+const AppHeader = () => {
   return (
-    <Wrapper>
+    <Header>
       <nav>
         <Logo />
+        <Control />
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/weekly">weekly</Link></li>
           <li><Link to="/daily">daily</Link></li>
         </ul>
       </nav>
-    </Wrapper>
+    </Header>
   );
 }
 
-export default Header;
+export default AppHeader;

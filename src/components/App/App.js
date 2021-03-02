@@ -5,12 +5,13 @@ import styled from "styled-components";
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
 import GlobalStyles from "./GlobalStyles";
-import Header from "../Header/Header";
+import AppHeader from "../Header/AppHeader";
 import Month from "../Monthly/Monthly";
 import Weekly from "../Weekly/Weekly";
 import Daily from "../Daily/Daily";
 
 const Wrapper = styled.div`
+  padding: 1em;
 `;
 
 const App = ({ onInitialLoad }) => {
@@ -21,7 +22,7 @@ const App = ({ onInitialLoad }) => {
   return (
     <Wrapper>
       <GlobalStyles />
-      <Header />
+      <AppHeader />
 
       <Switch>
         <Route path="/" exact>

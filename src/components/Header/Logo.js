@@ -8,7 +8,8 @@ const Wrapper = styled.div`
   align-items: center;
 
   p {
-    font-size: 3em;
+    margin: 0.2em 0 0 0.2em;
+    font-size: 2.5em;
   }
 
   img {
@@ -19,8 +20,8 @@ const Wrapper = styled.div`
 const Logo = () => {
   return (
     <Wrapper>
-      <p>Calendar</p>
       <img src={logoPng} alt="logo.png" />
+      <p>Calendar</p>
     </Wrapper>
   );
 }
