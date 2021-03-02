@@ -1,0 +1,70 @@
+/* common */
+
+.todayDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Weekly */
+
+.table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.th, .td {
+  width: 10rem;
+  height: 50px;
+}
+
+.weeklyEventTd {
+  height: 100%;
+  width: 10rem;
+  border: 1px solid #ddd;
+}
+
+.eachHour:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.eachHour {
+  width: 10rem;
+  max-width: 100%;
+  height: 25px;
+  color: grey;
+}
+
+.eachHour:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.hoursSideBar {
+  max-width: 50px;
+}
+
+/* Daily */
+
+.dailyTbody {
+  width: 50%;
+}
+
+.dailyTr {
+  width: 100%;
+}
+
+.dailyEventTd {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.dailyHourDiv {
+  width: 100%;
+  height: 25px;
+}
