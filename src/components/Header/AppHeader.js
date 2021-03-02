@@ -10,6 +10,7 @@ const Header = styled.header`
   width: 100%;
   height: 6em;
   margin-left: 1em;
+  border-bottom: 1px solid #ABABAB;
 
   nav {
     display: flex;

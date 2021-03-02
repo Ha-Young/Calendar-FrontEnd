@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   height: 10em;
   background-color: #EEEEEE;
   border: 0.1em solid gray;
+  z-index: 99;
 
   li {
     font-size: 1.5em;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Calendar from "../../shared/Calendar";
 import DayLine from "./DayLine";
 import TimeLine from "./TimeLine";
-import WeekHeader from "./WeekHeader";
+import WeekHeader from "./Header/WeekHeader";
 
 const Weekly = () => {
   return (
