@@ -16,6 +16,7 @@ const WeeklyCalendar = ({ children }) => {
   let sundayDate = makeSundayDate(todayDate);
   let daysList;
   let prevMonth;
+  let preYear;
   let nextMonth;
 
   for (let i = 0; i < 25; i++) {
@@ -38,8 +39,13 @@ const WeeklyCalendar = ({ children }) => {
       currentDate.setMonth(month);
     }
 
+    if (year !== preYear) {
+      currentDate.setFullYear(year);
+    }
+
     currentDate.setDate(date - 7);
     prevMonth = month;
+    preYear = year;
     setTodayDate(currentDate);
   }
 
@@ -55,8 +61,13 @@ const WeeklyCalendar = ({ children }) => {
       currentDate.setMonth(month);
     }
 
+    if (year !== nextYyear) {
+      currentDate.setFullYear(year);
+    }
+
     currentDate.setDate(date + 7);
     nextMonth = month;
+    nextYear = year;
     setTodayDate(currentDate);
   }
 
