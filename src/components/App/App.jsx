@@ -20,24 +20,12 @@ function App({ onInitialLoad }) {
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route path="/" exact>
-          <Calendar />
-        </Route>
-        <Route path="/event/new">
-          <Event />
-        </Route>
-        <Route exact path="/event:id">
-          <Event />
-        </Route>
-        <Route path="/calendar">
-          <Calendar />
-        </Route>
-        <Route path="/weekly">
-          <Weekly />
-        </Route>
-        <Route path="/daily">
-          <Daily />
-        </Route>
+        <Route path="/" exact component={Calendar} />
+        <Route path="/event/new" component={Event} />
+        <Route exact path="/event:id" component={Event} />
+        <Route path="/calendar" component={Calendar} />
+        <Route path="/weekly" component={Weekly} />
+        <Route path="/daily" component={Daily} />
         <Route>
           {/* not found */}
         </Route>

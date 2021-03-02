@@ -6,9 +6,8 @@ import Header from "./DailyHeader";
 import TimeSidebar from "../SidebarTime";
 
 import moment from "moment";
-import { Link } from "react-router-dom";
 
-export default function Daily() {
+export default function Daily({ history }) {
   const [day, setDay] = useState("");
   const [dayValue, setDayValue] = useState(moment());
 
@@ -16,12 +15,14 @@ export default function Daily() {
   const result = [];
 
   function handleClickDateBox(e) {
-    if (e.target.getAttribute("data-event")) {
-      // 이벤트가 있으므로 이벤트 상세 페이지
+    if (e.target.hasAttribute("data-event")) {
+      const eventQuery = e.target.getAttribute("data-id");
+
+      history.push(`/event/${eventQuery}`);
     } else {
       console.log(e.target.getAttribute("data-id"));
-      // 이벤트가 없으므로 반응 없음
-      // <Link to="/event/new" />
+
+      history.push("/event/new");
     }
   }
 
@@ -45,7 +46,7 @@ export default function Daily() {
           {result.map((value) => (
             <div
               onClick={(e) => handleClickDateBox(e)}
-              data-event={false} // 인자로 이벤트 유무를 체크
+              // data-event={false} // 인자로 이벤트 유무를 체크
               data-id={`${dateID}_${value}`}
               key={value}
               className={styles["day-box"]}
