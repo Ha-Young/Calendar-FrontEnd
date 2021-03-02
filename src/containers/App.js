@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import App from "../components/App/App.jsx";
 import { saveSampleData } from "../api";
-import { selectDay } from "../actions/index";
+import { selectDay, nextButtonClicked, prevButtonClicked } from "../actions/index";
 
 // const mapDispatchToProps = () => ({
 //   // This function is passed to App component.
@@ -18,6 +18,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   selectDay,
+  nextButtonClicked,
+  prevButtonClicked,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,4 +1,15 @@
 .wrapper {
+  display: flex;
   border: 1px solid black;
   margin: 5px;
+  align-items: center;
+  height: 50px;
+}
+
+.navItemWrapper {
+  width: 150px;
+}
+
+.navButtonWrapper {
+  width: 30px;
 }

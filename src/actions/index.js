@@ -7,4 +7,12 @@ export const selectDay = date => ({
   payload: {
     selectedDate: date,
   },
-})
+});
+
+export const nextButtonClicked = () => ({
+  type: types.NEXT_BUTTON_CLICKED,
+});
+
+export const prevButtonClicked = () => ({
+  type: types.PREV_BUTTON_CLICKED,
+});

@@ -26,6 +26,16 @@ export default function reducer(state = initialState, action) {
         ...state,
         selectedDate: formatDate(action.payload.selectedDate),
       };
+    case types.NEXT_BUTTON_CLICKED:
+      return {
+        ...state,
+        selectedDate: state.selectedDate.plus({ days: 1 }),
+      };
+    case types.PREV_BUTTON_CLICKED:
+      return {
+        ...state,
+        selectedDate: state.selectedDate.minus({ days: 1 }),
+      };
     default:
       return state;
   } 
