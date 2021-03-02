@@ -3,7 +3,7 @@ import './Background.scss';
 
 const Background = ({ id, children }) => {
   return (
-    <div class="background" id={id}>
+    <div className="background" id={id}>
       {children}
     </div>
   );

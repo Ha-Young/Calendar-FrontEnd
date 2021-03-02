@@ -20,16 +20,17 @@ const TimeLayoutContainer = styled.header`
 const TimeLayout = () => {
 
   function makeOneHourString(index) {
-    const hour = index / 10 < 1 ? `0${index}` : index;
+    const fromHour = index / 10 < 1 ? `0${index}` : index;
+    const nextHour = index + 1;
     const middle = '~';
-    const minuite = '00';
+    const toHour = nextHour / 10 < 1 ? `0${nextHour}` : nextHour;
 
-    return (hour + middle + minuite);
+    return (fromHour + middle + toHour);
   }
 
   function getContentArray() {
     const contentArray = [];
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 24; i++) {
       contentArray.push(<Content key={i} className={"time"} textContent={makeOneHourString(i)} />)
     }
 

@@ -14,19 +14,21 @@ const OneDay = styled.div`
   }
 `;
 
-const CalendarUpperDays = () => {
-  // 둥글게 찍어낸 날짜랑 요일을 나타낸다
-
+const CalendarUpperDays = ({ dateArr }) => {
   function getDayArray() {
     const dayArray = [];
-    for (let i = 0; i < 7; i++) {
+    
+    dateArr.map((el, index) => {
       dayArray.push(
-        <OneDay>
-          <RoundShape textContext={i+8}></RoundShape>
-          <div className="date">date</div>
+        <OneDay key={index}>
+          <RoundShape textContext={el.day}></RoundShape>
+          <div className="date">{el.date}</div>
         </OneDay>
       )
-    }
+    })
+
+      
+    
 
     return dayArray;
   }

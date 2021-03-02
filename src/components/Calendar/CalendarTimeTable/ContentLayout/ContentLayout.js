@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import OneHour from './OneHour/OneHour';
@@ -10,11 +10,16 @@ const ContentLayoutContainer = styled.div`
   height: 100%;
 `;
 
-const ContentLayout = () => {
+const ContentLayout = ({ dateArr }) => {
+  // firebase 데이터 가져오기 가져오는 갯수만큼 onehour안에 그려줌 ㅇㅇ
+  useEffect(() => {
+
+  }, []);
+
   function getOneHourArray() {
     const oneHourArray = [];
-    for (let i = 0; i < 25; i++) {
-      oneHourArray.push(<OneHour></OneHour>)
+    for (let i = 0; i < 24; i++) {
+      oneHourArray.push(<OneHour key={i} scheduleData={''}></OneHour>)
     }
 
     return oneHourArray;

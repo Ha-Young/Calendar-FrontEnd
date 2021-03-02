@@ -13,16 +13,17 @@ const OneHourContainer = styled.div`
   .context {
     width: 100%;
     border-right: solid 1px red;
+    background-color: green;
   }
 `;
 
-const OneHour = () => {
+const OneHour = ({ scheduleData }) => {
 
   function getContextArrary() {
     const contextArray = [];
     // for문의 제한 횟수는 변수
     for (let i = 0; i < 7; i++) {
-      contextArray.push(<Content className={"context"} textContent={"style"}></Content>)
+      contextArray.push(<Content key={i} className={"context"} textContent={"style"}></Content>)
     }
 
     return contextArray;

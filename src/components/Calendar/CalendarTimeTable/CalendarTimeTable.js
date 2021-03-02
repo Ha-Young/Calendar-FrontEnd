@@ -29,11 +29,11 @@ const CalendarTimeTableStyle = styled.div`
   }
 `;
 
-const CalendarTimeTable = () => {
+const CalendarTimeTable = ({ dateArr }) => {
   return (
     <CalendarTimeTableStyle className="calendar__timeline">
       <TimeLayout></TimeLayout>
-      <ContentLayout></ContentLayout>
+      <ContentLayout dateArr={dateArr}></ContentLayout>
     </CalendarTimeTableStyle>
   )
 }

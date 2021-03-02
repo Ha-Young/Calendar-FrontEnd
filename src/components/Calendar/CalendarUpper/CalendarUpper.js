@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 
 import CalendarUpperDays from './CalendarUpperDays/CalendarUpperDays';
+import { changeMonthFormat } from '../../../utils/dateUtil';
 
 const CalendarUpperContainer = styled.div`
   display: flex;
@@ -12,10 +14,11 @@ const CalendarUpperContainer = styled.div`
   .calendar__upper {
     &__month {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items:center;
       width: 25%;
-      height: 4.2rem;
+      height: 4.5rem;
     }
 
     &__days {
@@ -27,12 +30,16 @@ const CalendarUpperContainer = styled.div`
   }
 `;
 
-const CalendarUpper = () => {
-
+const CalendarUpper = ({ dateArr }) => {
+  const year = dateArr[0].year;
+  const month = dateArr[0].monthAlphaBet;
   return (
     <CalendarUpperContainer>
-      <div className="calendar__upper__month">Apr 3rd</div>
-      <CalendarUpperDays></CalendarUpperDays>
+      <div className="calendar__upper__month">
+        <div>{year}</div>
+        <div>{month}</div>
+      </div>
+      <CalendarUpperDays dateArr={dateArr}></CalendarUpperDays>
     </CalendarUpperContainer>
   );
 };

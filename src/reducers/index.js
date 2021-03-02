@@ -9,8 +9,30 @@
 
  */
 
-const initialState = "Create your state structure!";
+const initialState = {
+  currentDate: '',
+  currentWeek: '',
+  calendarMode: ''
+};
 
-export default function reducer(state = initialState) {
-  return state;
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case ('SET_CURRENT_DATE'): 
+      return {
+        ...state,
+        currentDate: action.currentDate
+      }
+    case ('SET_CURRENT_WEEK'):
+      return {
+        ...state,
+        currentWeek: action.currentWeek
+      }
+    case ('CHANGE_CALENDAR_MODE'):
+      return {
+        ...state,
+        calendarMode: action.calendarMode
+      }
+    default:
+      return state;
+  }
 }
