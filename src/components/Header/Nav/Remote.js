@@ -16,6 +16,6 @@ const Remote = () => {
       <Filter />
     </Wrapper>
   );
-}
+};
 
 export default Remote;

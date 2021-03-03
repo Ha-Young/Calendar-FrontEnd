@@ -15,11 +15,6 @@ const HeaderNav = styled.div`
     font-size: 1.4em;
     margin-right: 0.2em;
   }
-
-  &:hover {
-    background-color: #EEEEEE;
-    cursor: pointer;
-  }
 `;
 
 const Nav = ({ day, week, page }) => {

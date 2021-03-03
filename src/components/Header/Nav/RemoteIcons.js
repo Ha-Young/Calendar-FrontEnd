@@ -47,6 +47,6 @@ const RemoteIcons = () => {
       </div>
     </Wrapper>
   );
-}
+};
 
 export default RemoteIcons;

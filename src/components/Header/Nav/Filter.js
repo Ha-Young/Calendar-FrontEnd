@@ -26,7 +26,7 @@ const Filter = ({ page }) => {
       {isClicked && <FilterModal />}
     </Wrapper>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   page: state.currentPage,

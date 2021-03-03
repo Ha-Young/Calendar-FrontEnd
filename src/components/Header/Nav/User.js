@@ -44,6 +44,6 @@ const User = () => {
       </div>
     </Wrapper>
   );
-}
+};
 
 export default User;

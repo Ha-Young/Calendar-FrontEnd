@@ -26,6 +26,9 @@ const initialState = {
   countOfDay: 0,
   countOfWeek: 0,
   activedDay: "",
+  events: {
+
+  },
 };
 
 export default function reducer(state = initialState, action) {

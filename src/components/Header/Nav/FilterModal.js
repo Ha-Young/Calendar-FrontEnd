@@ -27,6 +27,6 @@ const FilterModal = () => {
       </ul>
     </Wrapper>
   );
-}
+};
 
 export default FilterModal;

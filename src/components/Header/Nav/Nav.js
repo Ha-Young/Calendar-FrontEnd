@@ -16,6 +16,6 @@ const Nav = () => {
       <User />
     </Wrapper>
   );
-}
+};
 
 export default Nav;
