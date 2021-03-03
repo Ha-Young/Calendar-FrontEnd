@@ -16,6 +16,7 @@ const initialDay = DateTime.now();
 const initialState = {
   selectedDate: initialDay,
   selectedWeek: calculateWeek(initialDay),
+  events: [],
   selectedEventId: "",
   viewSelector: "",
 };
@@ -50,9 +51,16 @@ export default function reducer(state = initialState, action) {
       };
     }
 
+    case types.LOAD_EVENTS_OF_SELECTED_DATE: {
+      return {
+        ...state,
+        events: action.payload.events,
+      };
+    }
+
     default:
       return state;
-  } 
+  }
 }
 
 function formatDate(date) {

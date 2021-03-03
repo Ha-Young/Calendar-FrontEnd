@@ -10,13 +10,13 @@ import WeeklyCalendar from "../WeeklyCalendar/WeeklyCalendar";
 import SideBar from "../SideBar/SideBar";
 import CreateEvent from "../CreateEvent/CreateEvent";
 
-function App({ selectDay, nextButtonClicked, prevButtonClicked, selectedDate, selectedWeek }) {
-  // useEffect(() => { 
+function App({ selectDay, nextButtonClicked, prevButtonClicked, loadEvents, selectedDate, selectedWeek, events }) {
+  // useEffect(() => {
   //   onInitialLoad();
   // }, []);
   return (
     <div className={styles.App}>
-      <Header nextButtonClicked={nextButtonClicked} prevButtonClicked={prevButtonClicked}/>
+      <Header nextButtonClicked={nextButtonClicked} prevButtonClicked={prevButtonClicked} />
       <div className={styles.bodyWrapper}>
         <SideBar selectDay={selectDay} />
         <Switch>
@@ -24,7 +24,7 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, selectedDate, se
             <DailyCalendar selectedDate={selectedDate} />
           </Route>
           <Route path="/calendar/weekly">
-            <WeeklyCalendar selectedWeek={selectedWeek} />
+            <WeeklyCalendar selectedWeek={selectedWeek} loadEvents={loadEvents} events={events} />
           </Route>
           <Route path="/events/new">
             <CreateEvent />
@@ -37,7 +37,6 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, selectedDate, se
           </Route>
         </Switch>
       </div>
-      
     </div>
   );
 }

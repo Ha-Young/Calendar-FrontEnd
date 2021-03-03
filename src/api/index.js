@@ -11,14 +11,30 @@ export async function saveSampleData() {
 }
 
 export async function saveData(data, date) {
-  const newEvent = {...data};
+  const newEvent = { ...data };
   const database = firebase.database();
-  const newEventKey = firebase.database().ref().child('dailyEvents/' + date).push().key;
-  const updates = {};
-  
-  newEvent["uid"] = newEventKey;
-  updates["events/" + newEventKey] = newEvent;
-  updates["dailyEvents/" + date + "/" + newEventKey] = true;
+  const newEventKey = firebase.database().ref().child('test/' + date).push().key;
 
-  return await database.ref().update(updates);
+  newEvent["uid"] = newEventKey;
+
+  database.ref('test/' + date + "/" + newEventKey).set(newEvent);
+}
+
+export async function readDailyData(date) {
+  const database = firebase.database();
+
+  const response = await database.ref("test/" + date).once("value").then(result => result.val());
+  return response;
+}
+
+export async function readWeeklyData(dateList) {
+  const database = firebase.database();
+
+  const promises = dateList.map(date => {
+    return database.ref("test/" + date).once("value").then(result => result.val());
+  });
+
+  const response = Promise.all(promises).then(response => response);
+
+  return response;
 }

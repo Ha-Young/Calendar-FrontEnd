@@ -16,3 +16,10 @@ export const nextButtonClicked = () => ({
 export const prevButtonClicked = () => ({
   type: types.PREV_BUTTON_CLICKED,
 });
+
+export const loadEvents = (events) => ({
+  type: types.LOAD_EVENTS_OF_SELECTED_DATE,
+  payload: {
+    events: events,
+  }
+});
