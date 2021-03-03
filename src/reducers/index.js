@@ -41,6 +41,12 @@ export default function reducer(state = initialState, action) {
         ...state,
         date: new Date(year, month, dateNumber + 1)
       };
+    case types.CHANGE_SCHEDULE_TYPE:
+      const isWeeklySchedule = action.payload === "week" ? true : false;
+      return {
+        ...state,
+        isWeeklySchedule
+      }
   }
   return state;
 }

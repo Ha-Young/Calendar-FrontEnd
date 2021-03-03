@@ -1,31 +1,74 @@
+nav{
+  position:fixed;
+  top:20px;
+  left:20px;
+  border:2px solid #333;
+  border-radius:21px;
+  min-width:40px;
+  min-height:40px;
+  overflow:hidden;
+}
+
+nav input{
+  display:none;
+}
+
+nav input:checked ~ label span:last-child{
+  display:none;
+}
+
+nav input:not(:checked) ~ label span:first-child{
+  display:none;
+}
+
+nav label{
+  display:block;
+  position:absolute;
+  right:0px;
+  top:0px;
+  user-select:none;
+  width:41px;
+  height:41px;
+  text-align:center;
+  line-height:40px;
+  background:#333;
+  color:white;
+  border-bottom-left-radius:20px;
+  cursor:pointer;
+}
+
 .navigation-list {
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
+  overflow:hidden;
+  width:0;
+  height:0;
+  padding:0;
+  margin:0;
+  transition:width 0.5s, height 0.5s;
+  list-style:none;
 }
 
-.navigation-tab {
-  margin-left: 18px;
-  transition: opacity 1s linear;
-  cursor: pointer;
+nav input:checked ~ .navigation-list{
+  width:200px;
+  height:60px;
 }
 
-.navigation-tab:hover {
-  opacity: 0.5;
+.navigation-tab a{
+  color:#333;
+  text-transform:uppercase;
+  text-decoration:none;
+  font-family:'Roboto', sans-serif;
+  display:block;
+  width:200px;
+  height:30px;
+  line-height:30px;
+  letter-spacing:2px;
+  text-align:center;
+  transition:color 0.5s, background 0.5s;
 }
 
-.navigation-tab a {
-  text-decoration: none;
-  color: black;
-}
-
-.active {
-  font-weight: bold;
+.navigation-tab a:hover{
+  background:#333;
+  color:white;
 }

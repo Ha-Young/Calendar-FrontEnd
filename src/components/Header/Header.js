@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
-import ScheduleHeader from "./ScheduleHeader/ScheduleHeader";
+import ScheduleHeader from "../../containers/ScheduleHeader";
 import Navigation from "./Navigation/Navigation";
 
 //이렇게 건내주면 header의 재사용성이 떨어지지않을까?
@@ -9,27 +9,11 @@ import Navigation from "./Navigation/Navigation";
 //Header를 독립적으로 사용할수 있지않을까?
 //지금으로썬 Header가 본인이 쓰지도 않는 prop을 너무 많이 받는다.
 //Worth to think about it
-const Header = function ({
-  date,
-  isWeeklySchedule,
-  updateLastWeek,
-  updateNextWeek,
-  updatePrevDay,
-  updateNextDay
-}) {
-
-
+const Header = function () {
   return (
     <header className={styles["header"]}>
       <Navigation />
-      <ScheduleHeader
-        date={date}
-        isWeeklySchedule={isWeeklySchedule}
-        updateLastWeek={updateLastWeek}
-        updateNextWeek={updateNextWeek}
-        updateNextDay={updateNextDay}
-        updatePrevDay={updatePrevDay}
-      />
+      <ScheduleHeader />
     </header>
   );
 };

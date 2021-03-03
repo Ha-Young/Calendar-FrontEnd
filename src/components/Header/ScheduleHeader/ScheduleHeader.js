@@ -2,6 +2,7 @@ import React from "react";
 import { generateDateString } from "../../../utils/calendarUtils";
 import Button from "../../Button/Button";
 import Title from "../../Title/Title";
+import Dropdown from "../../Dropdown/Dropdown";
 import styles from "./ScheduleHeader.module.css";
 
 const ScheduleHeader = function ({
@@ -10,8 +11,12 @@ const ScheduleHeader = function ({
   updateLastWeek,
   updateNextWeek,
   updatePrevDay,
-  updateNextDay
+  updateNextDay,
+  changeScheduleType,
 }) {
+  const title = generateDateString(isWeeklySchedule, date);
+  const list = ["day", "week"];
+
   function onPrevButtonClick() {
     isWeeklySchedule ? updateLastWeek() : updatePrevDay();
   }
@@ -34,10 +39,15 @@ const ScheduleHeader = function ({
       />
       <Title
         className={styles["date-title"]}
-        children={generateDateString(isWeeklySchedule, date)}
+        children={title}
+      />
+      <Dropdown
+        chooseItem={changeScheduleType}
+        list={list}
       />
     </div>
   );
 };
 
 export default ScheduleHeader;
+

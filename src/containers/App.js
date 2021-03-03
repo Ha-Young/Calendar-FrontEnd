@@ -16,24 +16,24 @@ const mapDispatchToProps = function (dispatch) {
     onInitialLoad: () => {
       saveSampleData();
     },
-    updateNextWeek: () => {
-      dispatch({
-        type: types.UPDATE_NEXT_WEEK,
-      });
-    },
-    updateLastWeek: () => {
-      dispatch({ type: types.UPDATE_LAST_WEEK });
-    },
-    updateNextDay: () => {
-      dispatch({
-        type: types.UPDATE_NEXT_DAY,
-      });
-    },
-    updatePrevDay: () => {
-      dispatch({
-        type: types.UPDATE_PREV_DAY,
-      });
-    }
+    // updateNextWeek: () => {
+    //   dispatch({
+    //     type: types.UPDATE_NEXT_WEEK,
+    //   });
+    // },
+    // updateLastWeek: () => {
+    //   dispatch({ type: types.UPDATE_LAST_WEEK });
+    // },
+    // updateNextDay: () => {
+    //   dispatch({
+    //     type: types.UPDATE_NEXT_DAY,
+    //   });
+    // },
+    // updatePrevDay: () => {
+    //   dispatch({
+    //     type: types.UPDATE_PREV_DAY,
+    //   });
+    // }
   }
 };
 

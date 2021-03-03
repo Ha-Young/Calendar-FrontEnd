@@ -7,15 +7,13 @@ import Header from "../Header/Header";
 
 import { onAuthStateChanged } from "../../api/index";
 import Main from "../Main/Main";
+import { Route } from "react-router-dom";
+import Auth from "../Auth/Auth";
 
 const App = function ({
   isWeeklySchedule,
   date,
-  onInitialLoad,
-  updateNextWeek,
-  updateLastWeek,
-  updateNextDay,
-  updatePrevDay
+  onInitialLoad
 }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,23 +35,29 @@ const App = function ({
   }, [onInitialLoad]);
 
   return (
-    <div className={styles.App}>
-      <Header
-        date={date}
-        isWeeklySchedule={isWeeklySchedule}
-        updateLastWeek={updateLastWeek}
-        updateNextWeek={updateNextWeek}
-        updateNextDay={updateNextDay}
-        updatePrevDay={updatePrevDay}
-      />
-      {isInitialized
-        ? (<Main
-          isWeeklySchedule={isWeeklySchedule}
-          date={date}
-          isLoggedIn={isLoggedIn}
-        />)
-        : "Loading..."}
-    </div>
+    <>
+      {isInitialized && (
+        <div className={styles.App}>
+          {isLoggedIn
+            ? (
+              <>
+                <Header />
+                <Main
+                  isWeeklySchedule={isWeeklySchedule}
+                  date={date}
+                  isLoggedIn={isLoggedIn}
+                />
+              </>
+            )
+            : (
+              <Route exact path="/" >
+                <Auth />
+              </Route>
+            )
+          }
+        </div>
+      )}
+    </>
   );
 };
 
