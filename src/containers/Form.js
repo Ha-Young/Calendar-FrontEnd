@@ -9,7 +9,6 @@ const mapDispatchToProps = (dispatch) => {
         type: "SAVE_RECORD",
         content: content,
       });
-      saveNewRecord(content);
     },
   }
 }

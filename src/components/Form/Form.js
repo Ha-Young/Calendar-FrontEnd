@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { saveNewRecord } from "../../api";
 import "./style.css";
 
 function Form ({ onEventSubmit }) {
   const [content, setContent] = useState({title: "", description: "", startDate: "", startHour: "", endHour: ""});
-  const [submitting, setSubmitting] = useState(false);
 
   function handleChange(event) {
     const prop = event.target.className;
@@ -17,14 +15,10 @@ function Form ({ onEventSubmit }) {
     });
   }
 
-  useEffect(() => {
-    onEventSubmit(content);
-  }, [submitting]);
-
   return (
     <form className="input-container" onSubmit={(e) => { 
-      e.stopPropagation();
-      setSubmitting(!submitting);
+      e.preventDefault();
+      onEventSubmit(content);
      }}>
       <div>새로운 이벤트</div>
       <input type="text" className="title" placeholder="제목" onChange={handleChange}/>
