@@ -4,24 +4,22 @@ import styles from "./Day.module.css";
 import { addDay, subDay, formatDate } from "../../../utils/utils";
 
 // TODO: Create your own header.
-export default function DayHeader() {
-  const [day, setDay] = useState(new Date());
-
-  function onClickAddDate(day) {
-    const nextDay = addDay(day);
-    setDay(nextDay);
-  }
-
-  function onClickSubDate(day) {
-    const nextDay = subDay(day);
-    setDay(nextDay);
-  }
-
+export default function DayHeader({ now, onPrevClick, onNextClick }) {
   return (
     <div className={`${styles.headerWrapper}`}>
-      <Aioutline.AiOutlineLeft onClick={() => onClickSubDate(day)} />
-      <h1>{formatDate(day)}</h1>
-      <Aioutline.AiOutlineRight onClick={() => onClickAddDate(day)} />
+      <Aioutline.AiFillLeftCircle
+        fontSize={"30px"}
+        onClick={() => {
+          onPrevClick();
+        }}
+      />
+      <h1 className={`${styles.font}`}>{formatDate(now)}</h1>
+      <Aioutline.AiFillRightCircle
+        fontSize={"30px"}
+        onClick={() => {
+          onNextClick();
+        }}
+      />
     </div>
   );
 }

@@ -16,16 +16,43 @@
   border-bottom: 1px grey solid;
 }
 
-.spanWrapper {
-  position: absolute;
-  top: -10px;
-  left: -30px;
-}
-
 .headerWrapper {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
   height: 10%;
+  margin-bottom: 10px;
+}
+
+.rowWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 90%;
+  background-color: lightsteelblue;
+}
+
+.weekCell {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px lightslategrey solid;
+}
+
+.timeGrid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  height: 90%;
+  top: 140px;
+  left: 10px;
+
+  font-weight: 300;
+  font-size: 15px;
+  color: lightslategrey;
 }

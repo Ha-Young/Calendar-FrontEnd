@@ -46,4 +46,12 @@
   border-radius: 100%;
   box-shadow: inset 0px 0px 0px 3px lightblue;
   border: 1px solid white;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.25) 1px,
+    transparent 1px,
+    transparent 6px
+  );
+  background-size: 4px 4px;
 }
