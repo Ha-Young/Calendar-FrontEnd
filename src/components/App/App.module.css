@@ -1,3 +1,15 @@
 .App {
   text-align: center;
 }
+
+* {
+  margin: 0;
+}
+
+body {
+  text-rendering: geometricPrecision;
+}
+
+ul {
+  list-style: none;
+}

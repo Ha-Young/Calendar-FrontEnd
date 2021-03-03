@@ -9,8 +9,11 @@
 
  */
 
-const initialState = "Create your state structure!";
+const initialState = {
+  today: new Date(),
+  current: new Date(),
+};
 
 export default function reducer(state = initialState) {
-  return state;
+  return {...state};
 }

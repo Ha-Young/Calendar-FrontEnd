@@ -1,0 +1,32 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
+
+.weekContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 80px;
+}
+
+.week > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

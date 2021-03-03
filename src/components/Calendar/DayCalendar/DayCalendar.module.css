@@ -1,0 +1,16 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: 80px;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

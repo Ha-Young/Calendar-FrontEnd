@@ -1,0 +1,11 @@
+.timeContainer {
+  display: grid;
+  grid-auto-rows: 48px;
+}
+
+.timeRow {
+  position: relative;
+  top: -6px;
+  color: #54595e;
+  font-size: 10px;
+}

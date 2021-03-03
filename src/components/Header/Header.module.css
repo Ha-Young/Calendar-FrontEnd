@@ -1,0 +1,40 @@
+.Header {
+  display: flex;
+  justify-content: center;
+}
+
+.Header nav {
+  display: flex;
+  align-items: center;
+}
+
+.Header nav button {
+  margin: 5px;
+  width: 70px;
+  height: 30px;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+.date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.date button {
+  background-color: inherit;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  outline: none;
+}
+
+.date button:hover {
+  background-color: #f6f6f6;
+  border-radius: 50%;
+}
