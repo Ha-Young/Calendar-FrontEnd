@@ -12,6 +12,8 @@ export default combineReducers({
 });
 
 export function getVisibleEventsEachDay(dateState, eventsState) {
+  console.log('getVisibleEventsEachDay', dateState, eventsState);
+
   const result = {};
 
   const mappedList = dateState.visibleId.map(dateId =>

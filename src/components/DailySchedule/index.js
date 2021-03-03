@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import React from "react";
 
-import { getDayOfTheWeek, getOnlyDays, getTimeList } from "../../utils/date";
+import { getDayOfTheWeek, getOnlyDay, getTimeList } from "../../utils/date";
 import styles from "./DailySchedule.module.css";
 import { getBorderStyle,getHilightStyle } from './helper';
 
@@ -22,7 +22,7 @@ function DailySchedule({ date, diffForCurrentDate = 0, eventList }) {
           {getDayOfTheWeek(date)}
         </span>
         <span className={cx('dayOfMonth')}>
-          {getOnlyDays(date)}
+          {getOnlyDay(date)}
         </span>
       </div>
       {timeList.map(time => (

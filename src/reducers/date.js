@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 
 import { CHANGE_DATE, CHANGE_VIEW_OPTION, CREATE_EVNETS,  RECEIVE_EVENTS } from "../constants/actionTypes";
 import { VIEW_OPTION } from "../constants/stateTypes";
-import { getCurrentDateStr, getWeekDaysBasedOnDate } from "../utils/date";
+import { getCurrentDateStr, getWeekDateListBasedOnDate } from "../utils/date";
 
 const initialStatus_byId = {
   "2021-03-03": {
@@ -78,7 +78,9 @@ export function getEventsOnDate(state, id) {
 
 function getVisibleId({ currentDate, viewOption }) {
   if (viewOption === VIEW_OPTION.WEEKLY) {
-    return getWeekDaysBasedOnDate(currentDate);
+    const weekDateListWithCalcDay = getWeekDateListBasedOnDate(currentDate);
+    const weekDateListOnlyDay = weekDateListWithCalcDay.map(({ date }) => date);
+    return weekDateListOnlyDay;
   }
 
   return [currentDate];

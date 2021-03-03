@@ -1,10 +1,11 @@
 import React from "react";
 
-import { getWeekDaysBasedOnDate } from "../../utils/date";
+import { getWeekDateListBasedOnDate } from "../../utils/date";
 import DailySchedule from "../DailySchedule";
 
 function WeeklySchedule({ currentDate, eventListEachDay }) {
-  const weekList = getWeekDaysBasedOnDate(currentDate);
+  console.log(eventListEachDay);
+  const weekList = getWeekDateListBasedOnDate(currentDate);
   return (
     <>
       {
