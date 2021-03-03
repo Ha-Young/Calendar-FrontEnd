@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 
 import { changeDate, changeViewOption } from "../actions";
+import { createEvent } from "../actions/events";
 import { saveSampleData } from "../api";
 import App from "../components/App";
 
@@ -15,6 +16,9 @@ const mapDispatchToProps = dispatch => ({
   },
   changeCurrentDate: newDate => {
     dispatch(changeDate(newDate));
+  },
+  createEvent: newEvent => {
+    dispatch(createEvent(newEvent));
   },
   onInitialLoad: () => {
     saveSampleData();

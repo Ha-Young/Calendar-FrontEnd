@@ -12,3 +12,4 @@
 
 export const CHANGE_VIEW_OPTION = 'CHANGE_VIEW_OPTION';
 export const CHANGE_DATE = 'CHANGE_DATE';
+export const CREATE_EVNETS = 'CREATE_EVENTS';

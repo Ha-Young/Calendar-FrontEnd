@@ -12,8 +12,18 @@ import styles from "./App.module.css";
 
 const { Header, Footer, Content, Sider } = Layout;
 
-function App({ onInitialLoad, viewOption, changeViewOption, currentDate, changeCurrentDate, moveAddEventPage }) {
+function App(
+  {
+    onInitialLoad,
+    viewOption,
+    changeViewOption,
+    currentDate,
+    changeCurrentDate,
+    moveAddEventPage,
+    createEvent,
+  }) {
   useEffect(() => {
+    console.log('init');
     onInitialLoad();
   }, []);
 
@@ -36,7 +46,7 @@ function App({ onInitialLoad, viewOption, changeViewOption, currentDate, changeC
               />
             </Route>
             <Route path="/events">
-              <Events />
+              <Events createEvent={createEvent}/>
             </Route>
             <Redirect from="/" exact to="/calendar" />
           </Switch>
