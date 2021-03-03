@@ -18,7 +18,7 @@ function App({ onInitialLoad }) {
       <Header />
       <Switch>
         <Route exact path="/calendar" component={DayCalendar} />
-        <Route path="/calendar/week" component={WeekCalendar} />
+        <Route path="/calendar/:unit" component={WeekCalendar} />
         <Route path="/events/new">
           <div>New Event</div>
         </Route>

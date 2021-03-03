@@ -1,19 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { nextDate, prevDate } from '../../actions';
 import { MOVE_DATE, PERIOD_UNIT } from '../../constants/button';
 import { getCurrentDate } from '../../utils/getDate';
 import styles from "./Header.module.css";
 
-// TODO: Create your own header.
-function Header ({ currentDate }) {
+function Header ({
+   currentDate,
+   onPrevButtonClick,
+   onNextButtonClick,
+ }) {
   return (
     <header className={styles.Header}>
-      <div className={styles.date}>
-        <button>{MOVE_DATE.PRE}</button>
-        <button>{MOVE_DATE.NEXT}</button>
-        <h2>{currentDate}</h2>
+      <div className={styles.moveDate}>
+        <button onClick={() => onPrevButtonClick(currentDate)}>
+          {MOVE_DATE.PREV}
+        </button>
+        <button onClick={() => onNextButtonClick(currentDate)}>
+          {MOVE_DATE.NEXT}
+        </button>
       </div>
+      <h2 className={styles.date}>{currentDate}</h2>
       <nav>
         <Link to='/'>
           <button>{PERIOD_UNIT.DAY}</button>
@@ -27,9 +35,16 @@ function Header ({ currentDate }) {
 }
 
 function mapStateToProps(state) {
-  const currentDate = getCurrentDate(state.current)
+  const currentDate = getCurrentDate(state.currentDay);
 
   return { currentDate };
 }
 
-export default connect(mapStateToProps, null)(Header);
+function mapDispatchToProps(dispatch) {
+  return {
+    onPrevButtonClick: () => dispatch(prevDate()),
+    onNextButtonClick: () => dispatch(nextDate()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

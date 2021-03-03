@@ -9,11 +9,45 @@
 
  */
 
+import { DAY, NEXT_DATE, PREV_DATE, WEEK } from "../constants/actionTypes";
+import { getCurrentWeek, getTomorrow, getYesterday } from "../utils/getDate";
+
 const initialState = {
   today: new Date(),
-  current: new Date(),
+  currentDay: new Date(),
+  currentWeek: getCurrentWeek(new Date()),
+  period: DAY,
 };
 
-export default function reducer(state = initialState) {
-  return {...state};
+export default function reducer(state = initialState, action) {
+  const copy = {...state};
+
+  switch (action.type) {
+    case PREV_DATE:
+      if (copy.period === DAY) {
+        copy.currentDay = getYesterday(copy.currentDay);
+      } else {
+        for (let i = 0; i < 7; i += 1) {
+          copy.currentDay = getYesterday(copy.currentDay);
+        }
+      }
+      return copy;
+    case NEXT_DATE:
+      if (copy.period === DAY) {
+        copy.currentDay = getTomorrow(copy.currentDay);
+      } else {
+        for (let i = 0; i < 7; i += 1) {
+          copy.currentDay = getTomorrow(copy.currentDay);
+        }
+      }
+      return copy;
+    case DAY:
+      copy.period = DAY;
+      return copy;
+    case WEEK:
+      copy.period = action.unit;
+      return copy;
+    default:
+      return state;
+  }
 }

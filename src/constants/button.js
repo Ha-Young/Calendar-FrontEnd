@@ -1,5 +1,5 @@
 export const MOVE_DATE = {
-  PRE: "〈",
+  PREV: "〈",
   NEXT: "〉",
 };
 

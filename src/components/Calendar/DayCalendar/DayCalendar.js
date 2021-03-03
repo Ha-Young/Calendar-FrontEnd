@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ScheduleContainer from "../ScheduleContainer/ScheduleContainer";
 import TimeContainer from "../TimeContainer/TimeContainer";
 import styles from "./DayCalendar.module.css";
 import { getCurrentDay } from "../../../utils/getDate";
 import { connect } from "react-redux";
+import { periodUnit } from "../../../actions";
 
 
-function DayCalendar({ day: { string, number } }) {
+function DayCalendar({ day: { string, number }, onLoad }) {
+  useEffect(() => {
+    onLoad();
+  }, []);
+
   return (
     <div>
       <div className={styles.top}>
@@ -24,8 +29,14 @@ function DayCalendar({ day: { string, number } }) {
   );
 }
 
-function mapStateToProps({ current }) {
-  return { day: getCurrentDay(current) };
+function mapStateToProps({ currentDay }) {
+  return { day: getCurrentDay(currentDay) };
 }
 
-export default connect(mapStateToProps, null)(DayCalendar);
+function mapDispatchToProps(dispatch) {
+  return {
+    onLoad: () => dispatch(periodUnit()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DayCalendar);

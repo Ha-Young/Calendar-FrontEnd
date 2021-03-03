@@ -28,3 +28,25 @@ export function getCurrentWeek(date) {
 
   return week.map(day => getCurrentDay(day));
 }
+
+export function getYesterday(date) {
+  const today = new Date(date);
+
+  today.setDate(today.getDate() - 1);
+
+  return today;
+}
+
+export function getTomorrow(date) {
+  const today = new Date(date);
+
+  today.setDate(today.getDate() + 1);
+
+  return today;
+}
+
+export function getPrevWeek(date) {
+}
+
+export function getNextWeek(date) {
+}
