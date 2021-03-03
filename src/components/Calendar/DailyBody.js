@@ -16,6 +16,7 @@ export default function DailyBody({ today, isSideBarOn = true }) {
     userRef.on("value", (snapshot) => {
       const events = snapshot.val();
       const result = {};
+      
       for (const date in events) {
         result[date] = events[date];
       }

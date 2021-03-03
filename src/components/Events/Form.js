@@ -1,74 +1,58 @@
 import React from "react";
-
 import styles from "./Events.module.css";
 
-export default function Form(props) {
-  const {
-    // date,
-    // title,
-    // detail,
-    // startAt,
-    // endAt,
-    // onDateChange,
-    // onTitleChange,
-    // onDetailChange,
-    // onStartAtChange,
-    // onEndAtChange,
-    // onSubmit,
-    inputValues,
-    onChangeInputValues,
-   } = props;
+export default function Form({ onSubmit, inputValues, onChangeInputValues}) {
+  const { date, title, detail, startAt, endAt } = inputValues;
 
   return (
     <form
-      // onSubmit={onSubmit} 
+      onSubmit={onSubmit} 
       className={`${styles.eventForm} ${styles.flexCenter}`}>
       <label>
         DATE:
         <input 
           type="date"
-          id="date" 
-          // value={date}
-          // onChange={(e) => onDateChange(e.target.value)}
+          name="date" 
+          value={date}
           onChange={onChangeInputValues}
         />
       </label>
-      {/* <label>
-        EVENT TITLE:
+      <label>
+        TITLE:
         <input 
           type="text"
-          id="title" 
+          name="title" 
           value={title} 
-          onChange={(e) => onTitleChange(e.target.value)} 
+          onChange={onChangeInputValues}
         />
       </label>
       <label>
-        EVENT DETAIL:
+        DETAIL:
         <input 
           type="text"
-          id="detail"
+          name="detail"
           value={detail} 
-          onChange={(e) => onDetailChange(e.target.value)}
+          onChange={onChangeInputValues}
         />
       </label>
       <label>
-        EVENT START AT:
+        START AT:
         <input 
           type="time" 
-          id="startAT" 
+          name="startAt" 
           value={startAt} 
-          onChange={(e) => onStartAtChange(e.target.value)} 
+          onChange={onChangeInputValues}
         />
       </label>
       <label>
-        EVENT END AT:
+        END AT:
         <input 
           type="time"
-          id="endAt" 
+          name="endAt" 
           value={endAt} 
-          onChange={(e) => onEndAtChange(e.target.value)}
+          onChange={onChangeInputValues}
         />
-      </label> */}
+      </label>
       <input type="submit" />
     </form>
   );
