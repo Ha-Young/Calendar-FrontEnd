@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 
 import { submitEvent } from "../actions/index";
+import { sortEvent } from "../reducers/events";
 import EventForm from "../components/EventForm/EventForm";
 
 const mapStateToProps = (state) => ({
@@ -8,7 +9,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (event) => dispatch(submitEvent(event)),
+  onSubmit: (event) => {
+    const sorted = sortEvent(event);
+
+    return dispatch(submitEvent(sorted));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventForm);

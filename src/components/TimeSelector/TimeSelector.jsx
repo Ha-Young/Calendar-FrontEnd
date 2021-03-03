@@ -4,39 +4,25 @@ import {
   FaAngleRight,
 } from "react-icons/fa"
 
+import { PREV, NEXT } from "../../constants/constants";
 import styles from "./TimeSelector.module.css";
 
 function TimeSelector({ time, onChange}) {
-  function handleClick(e) {
-    e.preventDefault();
+  function handlePrevClick() {
+    onChange(time.clone().add(-1, "hours"));
+  }
 
-    switch (e.target.dataset.id) {
-      case "prev":
-        if (time.format("H") === "0") {
-          break;
-        }
-
-        onChange(time.clone().add(-1, "hours"));
-        break;
-      case "next":
-        if (time.format("H") === "23") {
-          break;
-        }
-
-        onChange(time.clone().add(1, "hours"));
-        break;
-      default:
-        throw new Error({message: "TimeSelector"});
-    }
+  function handleNextClick() {
+    onChange(time.clone().add(1, "hours"));
   }
 
   return (
     <span className={styles.timeSelector}>
-      <button data-id="prev" onClick={handleClick}>
+      <button data-id={PREV} onClick={handlePrevClick}>
         <FaAngleLeft />
       </button>
       <span>{time.format("HH시")}</span>
-      <button data-id="next" onClick={handleClick}>
+      <button data-id={NEXT} onClick={handleNextClick}>
         <FaAngleRight />
       </button>
     </span>

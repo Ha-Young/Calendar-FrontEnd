@@ -4,6 +4,7 @@ import TheDate from "../TheDate/TheDate";
 import styles from "./EventForm.module.css";
 import TimeSelector from "../TimeSelector/TimeSelector";
 import WithLabel from "../WithLabel/WithLabel";
+import { START, END } from "../../constants/constants";
 
 function EventForm({ date, onSubmit }) {
   const titleRef = useRef(null);
@@ -13,10 +14,18 @@ function EventForm({ date, onSubmit }) {
 
   function handleTimeChange({ id, time }) {
     switch (id) {
-      case "START":
+      case START:
+        if (time.format("H") === end.format("H")) {
+          break;
+        }
+
         setStart(time);
         break;
-      case "END":
+      case END:
+        if (time.format("H") === start.format("H")) {
+          break;
+        }
+
         setEnd(time);
         break;
       default:
@@ -45,11 +54,11 @@ function EventForm({ date, onSubmit }) {
         <span className={styles.timeSelectorContainer}>
           <TimeSelector
             time={start}
-            onChange={(time) => handleTimeChange({id: "START", time})}
+            onChange={(time) => handleTimeChange({id: START, time})}
           />
           <TimeSelector
             time={end}
-            onChange={(time) => handleTimeChange({id: "END", time})}
+            onChange={(time) => handleTimeChange({id: END, time})}
           />
         </span>
       </div>
