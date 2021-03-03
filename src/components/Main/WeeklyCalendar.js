@@ -78,7 +78,7 @@ const WeeklyCalendar = ({ events }) => {
               endTime = event.endTime;
 
               if ((time >= event.startTime && time <= event.endTime)
-              && Number(event.keyId.split('-')[2]) === (startDate - 1)) {
+                && Number(event.keyId.split('-')[2]) === (startDate - 1)) {
                 return (
                   <div key={keyId}>
                     <Link to={`${url}/${keyId}`}>
