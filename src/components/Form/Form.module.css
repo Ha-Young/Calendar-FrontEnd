@@ -1,0 +1,36 @@
+form {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(235, 241, 241);
+  color: rgb(87, 87, 87);
+  font-weight: 600;
+  font-size: 2.5vw;
+  padding-top: 10vh;
+}
+
+label {
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  padding: 5vw;
+}
+
+input {
+  all: unset;
+  border-bottom: rgb(111, 158, 167) solid 0.5px;
+  position: absolute;
+  width: 50vw;
+  right: 20%;
+}
+
+button {
+  all: unset;
+  width: 20vw;
+  align-self: center;
+  font-size: larger;
+  border-radius: 2vw;
+  padding: 2vw;
+  background-color: rgb(180, 182, 181);
+}

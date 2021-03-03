@@ -15,24 +15,38 @@
 //   return state;
 // }
 import { combineReducers } from "redux";
-import { startOfMonth, endOfMonth, format } from "date-fns";
-import { GET_MONTH } from "../constants/actionTypes";
+import { format } from "date-fns";
+import { EVENT_SUBMIT, TODAY } from "../constants/actionTypes";
 
 const initialToday = new Date();
 
 const initialState = {
   year: format(initialToday, "yyyy"),
   month: format(initialToday, "MMMM"),
-  date: format(initialToday, "dd")
+  date: format(initialToday, "dd"),
 };
 
-const getData = (state = {}, action) {
+console.log(initialState)
+
+const today = (state = initialState, action) => {
   switch (action.type) {
-    case GET_MONTH:
-      
+    case TODAY:
+      return state;
+    default:
+      return state;
+  }
+}
+
+const form = (state = {}, action) =>{
+  switch (action.type) {
+    case EVENT_SUBMIT:
+      return 1;
+    default:
+      return state;
   }
 }
 
 export default combineReducers({
-  initialState
+  today,
+  form,
 });

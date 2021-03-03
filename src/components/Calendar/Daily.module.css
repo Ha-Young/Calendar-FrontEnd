@@ -1,0 +1,37 @@
+.daily_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(235, 245, 245);
+}
+
+.daily_container h1 {
+  margin: 1vw auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.daily_time {
+  display: flex;
+  height: 5vh;
+  border-bottom: gray solid 1px;
+  padding: 1.5vw;
+}
+
+.daily_time div:nth-child(1) {
+  flex-basis: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2vw;
+}
+
+.daily_time div:nth-child(2) {
+  justify-self: flex-end;
+  align-self: center;
+  flex-basis: 85%;
+  background-color: rgb(119, 201, 153);
+}

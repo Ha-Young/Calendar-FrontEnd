@@ -1,3 +1,15 @@
+body {
+  all: unset;
+}
+
 .App {
+  width: 100vw;
+  height: 100vh;
   text-align: center;
+  padding: 2vw;
+  box-sizing: border-box;
+}
+
+a {
+  all: unset;
 }

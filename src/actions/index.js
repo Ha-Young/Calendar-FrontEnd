@@ -12,7 +12,11 @@ export const connectDB = (data) => ({
   data,
 });
 
-export const getMonth = (calendar) => ({
-  type: types.GET_MONTH,
-  calendar,
+export const onSubmit = (form) => ({
+  type: types.EVENT_SUBMIT,
+  form,
+});
+
+export const loadToday = () => ({
+  type: types.TODAY,
 });
