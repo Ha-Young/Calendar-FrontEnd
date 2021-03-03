@@ -1,43 +1,6 @@
 .wrapper {
-  width: 60%;
-  height: 90%;
-}
-
-.dayGridWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
-  height: 100%;
-}
-
-.cell {
-  width: 100%;
-  height: 100%;
-  border-bottom: 1px lightslategrey solid;
-}
-
-.timeGrid {
-  position: absolute;
+  width: 60%;
   height: 90%;
-  top: 170px;
-  left: 10;
-
-  font-weight: 300;
-  font-size: 18px;
-  color: lightslategrey;
-}
-
-.headerWrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 10%;
-  margin-bottom: 10px;
-}
-
-.font {
-  font-weight: 700;
-  font-size: 50px;
 }

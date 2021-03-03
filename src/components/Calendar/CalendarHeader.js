@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Aioutline from "react-icons/ai";
-import styles from "./Day.module.css";
-import { addDay, subDay, formatDate } from "../../../utils/utils";
+import styles from "./Calendar.module.css";
+import { formatDate, formatWeek } from "../../utils/utils";
 
 // TODO: Create your own header.
-export default function DayHeader({ now, onPrevClick, onNextClick }) {
+export default function CalendarHeader({
+  now,
+  onPrevClick,
+  onNextClick,
+  isDayCalendarShown,
+}) {
+  console.log(isDayCalendarShown);
+
   return (
     <div className={`${styles.headerWrapper}`}>
       <Aioutline.AiFillLeftCircle
@@ -13,7 +20,9 @@ export default function DayHeader({ now, onPrevClick, onNextClick }) {
           onPrevClick();
         }}
       />
-      <h1 className={`${styles.font}`}>{formatDate(now)}</h1>
+      <h1 className={`${styles.font}`}>
+        {isDayCalendarShown ? formatDate(now) : formatWeek(now)}
+      </h1>
       <Aioutline.AiFillRightCircle
         fontSize={"30px"}
         onClick={() => {

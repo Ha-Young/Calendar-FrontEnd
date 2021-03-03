@@ -7,7 +7,12 @@ import {
 
 import { addDay, subDay, addWeek, subWeek } from "../utils/utils";
 
-const initialState = { currentTime: new Date(), isDayCalendarShown: true };
+const initialState = {
+  byDays: [],
+  events: [],
+  currentTime: new Date(),
+  isDayCalendarShown: true,
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -38,6 +43,12 @@ export default function reducer(state = initialState, action) {
         ...state,
         isDayCalendarShown: false,
       };
+
+    // case ADD_EVENT:
+    //   return {
+    //     ...state,
+    //     events: [...state.events, action.event],
+    //   };
 
     default:
       return state;

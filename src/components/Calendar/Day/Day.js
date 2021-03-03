@@ -1,20 +1,26 @@
 import React from "react";
-import DayHeader from "./DayHeader";
-import DayGrid from "../Day/DayGrid";
-import styles from "./Day.module.css";
-import TimeGrid from "./TimeGrid";
-import WeekRow from "../Week/WeekRow";
 
-export default function Day({ now, onPrevClick, onNextClick }) {
+import HoursColumn from "../HoursColumn";
+import DaysInWeekRow from "../DaysInWeekRow";
+import CalendarHeader from "../CalendarHeader";
+
+import styles from "./Day.module.css";
+
+export default function Day({
+  now,
+  onPrevClick,
+  onNextClick,
+  isDayCalendarShown,
+}) {
   return (
     <div className={styles.wrapper}>
-      <DayHeader
+      <CalendarHeader
         now={now}
         onPrevClick={onPrevClick}
         onNextClick={onNextClick}
+        isDayCalendarShown={isDayCalendarShown}
       />
-      <WeekRow now={now} />
-      <TimeGrid />
+      <DaysInWeekRow now={now} isDayCalendarShown={isDayCalendarShown} />
     </div>
   );
 }

@@ -1,58 +1,6 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
   width: 90%;
   height: 90%;
-}
-
-.boardWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 90%;
-}
-
-.cell {
-  position: relative;
-  width: 100%;
-  border-bottom: 1px grey solid;
-}
-
-.headerWrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 10%;
-  margin-bottom: 10px;
-}
-
-.rowWrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 90%;
-  background-color: lightsteelblue;
-}
-
-.weekCell {
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  height: 100%;
-  border-bottom: 1px lightslategrey solid;
-}
-
-.timeGrid {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
-  height: 90%;
-  top: 140px;
-  left: 10px;
-
-  font-weight: 300;
-  font-size: 15px;
-  color: lightslategrey;
 }

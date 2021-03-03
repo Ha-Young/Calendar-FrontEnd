@@ -1,8 +1,7 @@
 import React from "react";
-import styles from "./Day.module.css";
-import DayCell from "./DayCell";
+import styles from "./Calendar.module.css";
 
-export default function DayGrid() {
+export default function HoursColumn() {
   const hours = [
     "00",
     "01",
@@ -32,12 +31,10 @@ export default function DayGrid() {
   ];
 
   return (
-    <>
-      <div className={`${styles.dayGridWrapper}`}>
-        {hours.map((value, index) => {
-          return <DayCell value={value} key={index} />;
-        })}
-      </div>
-    </>
+    <div className={`${styles.HoursColumn}`}>
+      {hours.map((value, index) => {
+        return <div key={index}>{value}</div>;
+      })}
+    </div>
   );
 }

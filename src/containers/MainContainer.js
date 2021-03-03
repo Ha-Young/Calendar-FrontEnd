@@ -24,6 +24,15 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeWeekMode: () => dispatch({ type: TO_WEEK_CALENDAR }),
   onPrevClick: () => dispatch({ type: PREV }),
   onNextClick: () => dispatch({ type: NEXT }),
+  onAddEvent: (userInputEvent) => {
+    console.log("onAddEvent is", userInputEvent);
+    const { eventTitle, RangePicker, eventDescription } = userInputEvent;
+    console.log(eventTitle, RangePicker, eventDescription);
+    const eventStart = RangePicker[0].format("YYYY/MM/DD HH");
+    const eventEnd = RangePicker[1].format("YYYY/MM/DD HH");
+    const event = { eventTitle, eventDescription, eventStart, eventEnd };
+    console.log("final event is", event);
+  },
 });
 
 const MainContainer = ({
@@ -32,6 +41,7 @@ const MainContainer = ({
   onPrevClick,
   onChangeDayMode,
   onChangeWeekMode,
+  onAddEvent,
 }) => {
   console.log(state);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -61,11 +71,13 @@ const MainContainer = ({
           isModalVisible={isModalVisible}
           handleOk={() => handleOk()}
           handleCancel={() => handleCancel()}
+          onAddEvent={onAddEvent}
         />
         <Switch>
           <Route path="/Day" exact>
             <Day
               now={state.calendar.currentTime}
+              isDayCalendarShown={state.calendar.isDayCalendarShown}
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
             />
@@ -73,6 +85,7 @@ const MainContainer = ({
           <Route path="/Week">
             <Week
               now={state.calendar.currentTime}
+              isDayCalendarShown={state.calendar.isDayCalendarShown}
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
             />

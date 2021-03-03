@@ -37,7 +37,7 @@ export function subWeek(dateObj) {
 }
 
 export function formatDate(dateObj) {
-  return format(dateObj, "MM/dd");
+  return format(dateObj, "MM/dd/yyyy");
 }
 
 export function formatWeek(dateObj) {

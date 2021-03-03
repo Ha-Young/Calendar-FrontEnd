@@ -4,7 +4,7 @@ import styles from "./Sidebar.module.css";
 export default function UpcomingEvent() {
   return (
     <>
-      <h3 className={`${styles.white}`}>Upcoming Events</h3>
+      <h3 className={`${styles.font}`}>Upcoming Events</h3>
       <ul>
         <li>----------------------</li>
         <li>buy something</li>
