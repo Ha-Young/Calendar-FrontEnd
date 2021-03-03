@@ -15,20 +15,20 @@ import { DateTime } from 'luxon';
 const initialDay = DateTime.now();
 const initialState = {
   selectedDate: initialDay,
-  selectedWeek: calculateWeek(initialDay),
   events: [],
   selectedEventId: "",
   viewSelector: "",
 };
 
 export default function reducer(state = initialState, action) {
+  console.log('reducer')
+  console.log(action)
   switch (action.type) {
     case types.SELECT_DAY: {
       const newDate = formatDate(action.payload.selectedDate);
       return {
         ...state,
         selectedDate: newDate,
-        selectedWeek: calculateWeek(newDate),
       };
     }
 
@@ -38,7 +38,6 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         selectedDate: newDate,
-        selectedWeek: calculateWeek(newDate),
       };
     }
 
@@ -47,7 +46,6 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         selectedDate: newDate,
-        selectedWeek: calculateWeek(newDate),
       };
     }
 
@@ -67,7 +65,8 @@ function formatDate(date) {
   return DateTime.fromJSDate(date);
 }
 
-function calculateWeek(date) {
+// TODO util 만들어서 빼기.
+export function calculateWeek(date) {
   const weekYear = date.weekYear;
   const weekNumber = date.weekNumber;
   const selectedWeek = [];

@@ -9,8 +9,10 @@ import DailyCalendar from "../DailyCalendar/DailyCalendar";
 import WeeklyCalendar from "../WeeklyCalendar/WeeklyCalendar";
 import SideBar from "../SideBar/SideBar";
 import CreateEvent from "../CreateEvent/CreateEvent";
+import Calendar from "../Calendar/Calendar";
 
-function App({ selectDay, nextButtonClicked, prevButtonClicked, loadEvents, selectedDate, selectedWeek, events }) {
+function App({ selectDay, nextButtonClicked, prevButtonClicked, loadEvents, selectedDate, events }) {
+  console.log('app render')
   // useEffect(() => {
   //   onInitialLoad();
   // }, []);
@@ -24,13 +26,16 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, loadEvents, sele
             <DailyCalendar selectedDate={selectedDate} />
           </Route>
           <Route path="/calendar/weekly">
-            <WeeklyCalendar selectedWeek={selectedWeek} loadEvents={loadEvents} events={events} />
+            <WeeklyCalendar loadEvents={loadEvents} events={events} />
           </Route>
           <Route path="/events/new">
             <CreateEvent />
           </Route>
           <Route path="/events/:eventId">
             <div>이벤트 상세 페이지</div>
+          </Route>
+          <Route path="/calendar">
+            <Calendar selectedDate={selectedDate} loadEvents={loadEvents} events={events} />
           </Route>
           <Route>
             <Redirect to="/calendar/daily" />

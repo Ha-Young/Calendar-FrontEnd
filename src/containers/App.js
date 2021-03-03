@@ -11,7 +11,6 @@ import { selectDay, nextButtonClicked, prevButtonClicked, loadEvents } from "../
 // });
 const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
-  selectedWeek: state.selectedWeek,
   selectedEventId: state.selectedEventId,
   viewSelector: state.viewSelector,
   events: state.events,
