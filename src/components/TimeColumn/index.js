@@ -9,6 +9,8 @@ function TimeColumn() {
 
   return (
     <div className={styles.timeColumnWrapper}>
+      <div className={styles.emptyArea} />
+      <div className={styles.spanArea} />
       {timeList.map(time => (
         <div key={time} className={styles.timeRowWrapper}>
           <span className={styles.timeText}>{getTimeAMPM(time)}</span>

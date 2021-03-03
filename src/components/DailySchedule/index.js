@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import React from "react";
 
 import { getDayOfTheWeek, getOnlyDay, getTimeList } from "../../utils/date";
+import EventSticker from '../EventSticker';
 import styles from "./DailySchedule.module.css";
 import { getBorderStyle,getHilightStyle } from './helper';
 
@@ -25,10 +26,15 @@ function DailySchedule({ date, diffForCurrentDate = 0, eventList }) {
           {getOnlyDay(date)}
         </span>
       </div>
+      <div className={cx('spanArea')} />
       {timeList.map(time => (
         <div key={time} className={cx('dateRow', borderStyle)}>
         </div>)
       )}
+
+      {eventList.map(event => {
+        return <EventSticker key={event.id} event={event} />;
+      })}
     </div>
   );
 }

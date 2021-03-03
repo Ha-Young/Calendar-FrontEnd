@@ -1,6 +1,5 @@
 .timeColumnWrapper {
-  padding-top: 100px;
-  overflow: visible;
+  position: relative;
 }
 
 .timeRowWrapper {
@@ -14,4 +13,17 @@
   top: -13px;
   color: #70757a;
   font-size: 10px;
+}
+
+.emptyArea {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 90px;
+  background-color: white;
+}
+
+.spanArea {
+  height: 10px;
 }

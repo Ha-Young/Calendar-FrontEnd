@@ -55,7 +55,7 @@ function byId(state = initialStatus_byId, action) {
   }
 }
 
-const initialStatus_allIds = ["2021-03-01_12:2", "2021-03-03_12:2", "2020-03-04_13:4"];
+const initialStatus_allIds = ["2021-03-01_12:2", "2021-03-03_12:2", "2020-03-04_13:4", "2021-03-04_18:3"];
 
 function allIds(state = initialStatus_allIds, action) {
   switch(action.type) {
