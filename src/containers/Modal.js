@@ -1,4 +1,4 @@
-import WeeklyCalendar from '../components/Main/WeeklyCalendar';
+import Modal from '../components/Modal/Modal';
 import { connect } from 'react-redux';
 import {
   addtitle,
@@ -7,10 +7,6 @@ import {
   addenddate
 } from '../Redux/action';
 
-const mapStateToProps = (state) => ({
-  ...state
-});
-
 const mapDispatchToProps = {
   addtitle,
   adddescription,
@@ -18,4 +14,4 @@ const mapDispatchToProps = {
   addenddate
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WeeklyCalendar);
+export default connect(null, mapDispatchToProps)(Modal);

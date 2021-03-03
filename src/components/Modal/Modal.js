@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import styles from './Modal.module.css';
 
-const Modal = () => {
+const Modal = ({
+  addtitle,
+  adddescription,
+  addstartdate,
+  addenddate
+  }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [startTime, setStartTime] = useState(0);
+  const [endTime, setEndTime] = useState(1);
   let startOptionList = [];
   let endOptionList = [];
 
@@ -37,6 +44,14 @@ const Modal = () => {
     )
   });
 
+  const handleSelectChange = (e) => {
+    if (e.target.name === 'startTime') {
+      setStartTime(e.target.value);
+    } else {
+      setEndTime(e.target.value);
+    }
+  }
+
   return (
     <div className={styles.modalWrapper}>
       <div className={styles.titleWrapper}>
@@ -63,7 +78,9 @@ const Modal = () => {
         <div>
           <select
             name='startTime'
+            value={Number(startTime)}
             className={styles.startTimeSelect}
+            onChange={(e) => handleSelectChange(e)}
           >
             {startOptionList}
           </select>
@@ -71,7 +88,9 @@ const Modal = () => {
         <div>
           <select
             name='endTime'
+            value={endTime}
             className={styles.endTimeSelect}
+            onChange={(e) => handleSelectChange(e)}
           >
             {endOptionList}
           </select>

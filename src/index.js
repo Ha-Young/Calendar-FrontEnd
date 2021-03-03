@@ -2,13 +2,12 @@ import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
-import reducer from './reducers';
+import reducer from './Redux/reducer';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 import App from './containers/App';
-import store from './Redux/store';
 
 const middleware = [];
 

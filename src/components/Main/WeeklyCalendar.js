@@ -3,7 +3,12 @@ import { makeSundayDate } from '../../utils';
 import styles from './WeeklyCalendar.module.css';
 import { useRouteMatch, Link } from 'react-router-dom';
 
-const WeeklyCalendar = ({ children }) => {
+const WeeklyCalendar = ({
+  children,
+  addtitle,
+  addstartdate,
+  addenddate
+  }) => {
   const [todayDate, setTodayDate] = useState(new Date());
   const currentDate = new Date();
   const date = todayDate.getDate();
@@ -32,13 +37,9 @@ const WeeklyCalendar = ({ children }) => {
       return;
     }
 
-    if (month !== prevMonth) {
-      currentDate.setMonth(month);
-    }
+    if (month !== prevMonth) currentDate.setMonth(month);
 
-    if (year !== prevYear) {
-      currentDate.setFullYear(year);
-    }
+    if (year !== prevYear) currentDate.setFullYear(year);
 
     currentDate.setDate(date - 7);
     prevMonth = month;
@@ -54,13 +55,10 @@ const WeeklyCalendar = ({ children }) => {
       return;
     }
 
-    if (month !== nextMonth) {
-      currentDate.setMonth(month);
-    }
+    if (month !== nextMonth) currentDate.setMonth(month);
 
-    if (year !== nextYear) {
-      currentDate.setFullYear(year);
-    }
+    if (year !== nextYear) currentDate.setFullYear(year);
+
 
     currentDate.setDate(date + 7);
     nextMonth = month;

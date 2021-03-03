@@ -5,9 +5,9 @@ import { Route, Switch } from 'react-router-dom';
 // For example, what is it? what are benefits?
 import styles from './App.module.css';
 import Header from '../Header/Header';
-import Modal from '../Modal/Modal';
+import Modal from '../../containers/Modal';
 import MonthlyCalendar from '../Main/MonthlyCalendar';
-import WeeklyCalendar from '../Main/WeeklyCalendar';
+import WeeklyCalendar from '../../containers/WeeklyCalendar';
 import DailyCalendar from '../Main/DailyCalendar';
 
 function App({ onInitialLoad }) {
