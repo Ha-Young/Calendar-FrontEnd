@@ -16,7 +16,7 @@ export default function DailyBody({ today, isSideBarOn = true }) {
     userRef.on("value", (snapshot) => {
       const events = snapshot.val();
       const result = {};
-      
+
       for (const date in events) {
         result[date] = events[date];
       }
@@ -34,6 +34,7 @@ export default function DailyBody({ today, isSideBarOn = true }) {
         {hoursDiv.map((each, index) => {
           let haveEvent = false;
           let haveText = "";
+          
           for (const key in allEvents) {
             const startHour = allEvents[key]["startAt"];
             const endHour = allEvents[key]["endAt"];

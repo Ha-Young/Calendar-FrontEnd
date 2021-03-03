@@ -13,7 +13,7 @@ export async function saveSampleData() {
 
 // what if startAt + endAt end up 2 digit
 export function writeUserData(userId = "guest", date, title, detail, startAt, endAt) {
-  firebase.database().ref(`users/${userId}/${date}/${startAt+endAt}`).set({
+  firebase.database().ref(`users/${userId}/${date}/${startAt + endAt}`).set({
     date,
     userId,
     title,
@@ -50,7 +50,6 @@ export async function getAllUserData(userId = "guest") {  // date default value 
 }
 
 export function deleteTargetData(userId = "guest", date, startAt, endAt) {
-  console.log(userId, date, startAt, endAt);
   const userRef = firebase.database().ref(`users/${userId}/${date}/${startAt+endAt}`);
   userRef.remove();
 }

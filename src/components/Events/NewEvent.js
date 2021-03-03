@@ -3,6 +3,7 @@ import Form from "./Form";
 import styles from "./Events.module.css";
 import { useLocation } from "react-router-dom";
 import { getOnlyHours, makeOClock } from "../../utils/event";
+import { deleteTargetData } from "../../api";
 
 export default function NewEvent({ writeUserData }) {
   const location = useLocation();
@@ -16,7 +17,7 @@ export default function NewEvent({ writeUserData }) {
   }
 
   // refactor: time;
-  
+
   if (location.state) {
     initialInputValues = {
       ...location.state,
@@ -32,11 +33,20 @@ export default function NewEvent({ writeUserData }) {
 
     const {
       date, 
-      title, 
+      title,
       detail,
       startAt,
       endAt,
     } = inputValues;
+
+    if (location.state) {
+      deleteTargetData(
+        "guest", 
+        initialInputValues.date,
+        getOnlyHours(initialInputValues.startAt), 
+        getOnlyHours(initialInputValues.endAt)
+      );
+    }
 
     writeUserData("guest", date, title, detail, getOnlyHours(startAt), getOnlyHours(endAt));
   }

@@ -8,6 +8,9 @@ export default function Form({ onSubmit, inputValues, onChangeInputValues}) {
     <form
       onSubmit={onSubmit} 
       className={`${styles.eventForm} ${styles.flexCenter}`}>
+
+      {/* inpu can be HOC? */}
+      
       <label>
         DATE:
         <input 
