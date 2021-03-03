@@ -6,7 +6,7 @@ const BoardSideBar = () => {
   return (
     <div className={styles.bar}>
       {hours.map((item) => (
-        <div className={styles.block}>{item}</div>
+        <div key={item} className={styles.block}>{item}</div>
       ))}
     </div>
   );

@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Board.module.css";
 
-const BoardHeader = ({ children }) => {
+const BoardHeader = ({ nav, children }) => {
   return (
     <div className={styles.navigation}>
-      {children}
+      
     </div>
   );
 };

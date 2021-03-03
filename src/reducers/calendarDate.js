@@ -2,7 +2,7 @@ import { getWeek, getDay, today } from "../utils/date";
 import * as types from "../constants/actionTypes";
 
 const initialState = {
-  isDaily: true,
+  isDaily: false,
   date: today,
   daily: getDay(today),
   weekly: getWeek(today),

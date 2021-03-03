@@ -62,9 +62,14 @@ export const errorMessage = (state = "", actions) => {
   }
 };
 
-const getEventById = (state, id) => state.byId[id];
+export const getEventById = (state, id) => state.byId[id];
 
-export const getVisibleEventsByCurrentDates = (state, currentDates) => {
+export const getEventsByCurrentDates = (state, currentDates) => {
+  // return currentDates.reduce((acc, val) => {
+  //   acc[val] = getEventById(state, val);
+
+  //   return acc;
+  // }, {});
   return currentDates.map(id => getEventById(state, id));
 };
 

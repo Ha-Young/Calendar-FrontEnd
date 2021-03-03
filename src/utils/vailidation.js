@@ -7,7 +7,6 @@ export const validateText = (text) => {
 };
 
 export const validateTime = (start, end) => {
-  console.log(start, end);
   if (start >= end) return false;
   
   return true;

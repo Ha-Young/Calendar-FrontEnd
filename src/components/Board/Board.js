@@ -5,19 +5,15 @@ import Bar from "../Bar/Bar";
 import styles from "./Board.module.css";
 import { hours } from "../../utils/date";
 
-const Board = ({ content }) => {
+const Board = ({ headerData, content }) => {
   return (
     <div className={styles.wrapper}>
-      <BoardHeader />
+      <BoardHeader nav={headerData} />
       <div className={styles.content}>
         <BoardSideBar />
-        <Bar content={hours} />
-        <Bar content={hours} />
-        <Bar content={hours} />
-        <Bar content={hours} />
-        <Bar content={hours} />
-        <Bar content={hours} />
-        <Bar content={hours} />
+        {content?.map((data, index) => (
+          <Bar key={index} content={data} length={hours} />
+        ))}
       </div>
     </div>
   );

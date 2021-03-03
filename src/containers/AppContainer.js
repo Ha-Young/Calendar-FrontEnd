@@ -7,7 +7,7 @@ import {
   fetchCalendarDataFail
 } from "../actions/index";
 import App from "../components/App/App";
-import { getVisibleEventsByCurrentDates } from "../reducers/eventData";
+import { getEventsByCurrentDates } from "../reducers/eventData";
 
 const mapDispatchToProps = (dispatch) => ({
   handleChangeCalendarType(info) {
@@ -42,9 +42,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = ({ calendarDate, eventData }) => ({
-  calendarList: calendarDate.isDaily
-    ? getVisibleEventsByCurrentDates(eventData, calendarDate.daily)
-    : getVisibleEventsByCurrentDates(eventData, calendarDate.weekly),
+  eventList: calendarDate.isDaily
+    ? getEventsByCurrentDates(eventData, calendarDate.daily)
+    : getEventsByCurrentDates(eventData, calendarDate.weekly),
+  dateList: calendarDate.isDaily
+    ? calendarDate.daily
+    : calendarDate.weekly,
   isDailyCalendar: calendarDate.isDaily,
   currentDate: calendarDate.date,
 });

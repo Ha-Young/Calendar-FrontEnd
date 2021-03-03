@@ -5,4 +5,5 @@
   height: 70px;
   background: white;
   border-bottom: 1px solid #EEEEEE;
+  z-index: 10;
 }

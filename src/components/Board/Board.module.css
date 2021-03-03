@@ -4,6 +4,7 @@
   height: 100px;
   background: white;
   border-bottom: 1px solid #EEEEEE;
+  z-index: 10;
 }
 
 .content {
@@ -14,9 +15,10 @@
 }
 
 .bar {
-  margin-left: 2px;
+  margin-left: 4px;
+  margin-right: 3px;
   flex-direction: column;
-  color: #BBBBBB;
+  color: #ADADAD;
 }
 
 .block {

@@ -1,11 +1,15 @@
 import React from "react";
 import styles from "./Bar.module.css";
+import Card from "../Card/Card";
 
-const Bar = ({ content }) => {
+const Bar = ({ length, content }) => {
   return (
     <div className={styles.wrapper}>
-      {content?.map((item) => (
-        <div className={styles.block} value={item}></div>
+      {length?.map((item) => (
+        <div key={item} className={styles.block} value={item} />
+      ))}
+      {content?.map((data) => (
+        data && <Card content={data} key={data.path} /> 
       ))}
     </div>
   );

@@ -2,6 +2,11 @@ import { startOfWeek, endOfWeek, eachDayOfInterval, formatISO, format } from "da
 import { viewMode } from "../constants/viewMode";
 export const today = new Date();
 
+export const hours = new Array(24).fill(0).map((_, index) => 
+  index < 10 ? `0${index}:00` : `${index}:00`); // 상수 지정
+
+export const currentDay = (today) => formatISO(today).slice(0, 10);
+
 export const getWeek = (today) => {
   const week = eachDayOfInterval({
     start: startOfWeek(today),
@@ -9,15 +14,13 @@ export const getWeek = (today) => {
   });
 
   return week.map((day) => {
-    return formatISO(day).slice(0, 10);
+    return currentDay(day);
   });
 };
 
 export const getDay = (today) => {
-  return [formatISO(today).slice(0, 10)];
+  return [currentDay(today)];
 };
-
-export const currentDay = (today) => formatISO(today).slice(0, 10);
 
 export const setCalendarData = (cb, isDailyCalendar, currentDate) => {
   const calendarGap = isDailyCalendar ? viewMode.DAILYMODE.gap : viewMode.WEEKLYMODE.gap;
@@ -34,6 +37,3 @@ export const setCalendarData = (cb, isDailyCalendar, currentDate) => {
 };
 
 export const generateTitleDate = (date) => format(date, "PP");
-
-export const hours = new Array(24).fill(0).map((_, index) => index); // 상수 지정
-

@@ -7,10 +7,12 @@ import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import NewEventPage from "../../routes/NewEventPage/NewEventPage";
 import CalendarPage from "../../routes/CalendarPage/CalendarPage";
+import EventDetailPageContainer from "../../containers/EventDetailPageContainer";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 const App = ({
-  calendarList,
+  eventList,
+  dateList,
   isDailyCalendar,
   currentDate,
   handleChangeCalendarType,
@@ -31,14 +33,15 @@ const App = ({
         <Route path="/" exact>
           <CalendarPage 
             onLoad={loadEventData}
-            calendarList={calendarList}
+            eventList={eventList}
+            dateList={dateList}
           />
         </Route>
         <Route path="/events/new">
           <NewEventPage onSubmit={saveNewEventData} />
         </Route>
-        <Route path="/events/:eventId">
-          <div>Event/eventId</div>
+        <Route path="/events/:event">
+          <EventDetailPageContainer />
         </Route>
         <Redirect path="*" to="/" />
       </Switch>
