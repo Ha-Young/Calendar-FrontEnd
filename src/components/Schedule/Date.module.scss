@@ -1,0 +1,35 @@
+.Dates {
+  margin: 0 0 0 40px;
+  padding: 0 0 0.5em 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dddddd;
+
+  li {
+    width: 100%;
+
+    span {
+      display: block;
+      text-align: center;
+    }
+
+    .number {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 0.3em auto;
+      font-size: 1.3em;
+      line-height: 2em;
+    }
+
+    .today {
+      background: #B721FF;
+      border-radius: 50%;
+      color: #ffffff;
+    }
+
+    .day {
+      font-size: 0.9em;
+    }
+  }
+}

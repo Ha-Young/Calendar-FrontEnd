@@ -1,0 +1,27 @@
+.NewEvent {
+  p {
+    margin: 1em 0;
+    padding: 0;
+    font-size: 1.7em;
+    font-weight: bold;
+  }
+
+  .Title {
+    input {
+      border: 1px solid transparent;
+      border-bottom: 1px solid black;
+    }
+  }
+
+  .Buttons {
+    text-align: center;
+
+    button {
+      margin: 0 0.5em 0 0;
+
+      & :last-child {
+        margin: 0;
+      }
+    }
+  }
+}

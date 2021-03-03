@@ -1,3 +1,6 @@
+import { combineReducers } from "redux";
+import { subDate, addDate, getCurrentWeek, getLastWeek, getNextWeek } from "../utils/SetDate";
+
 /*
 
   Reducers
@@ -9,8 +12,51 @@
 
  */
 
-const initialState = "Create your state structure!";
+const today = new Date();
 
-export default function reducer(state = initialState) {
-  return state;
+const initialState = {
+  calendarMode: "daily",
+  today: today,
+  selectedDate: today,
+  week: getCurrentWeek(today),
+};
+
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case "CHANGE_DAILY_MODE":
+      return {
+        ...state,
+        calendarMode: "daily"
+      }
+    case "CHANGE_WEEKLY_MODE":
+      return {
+        ...state,
+        calendarMode: "weekly",
+        week: getCurrentWeek(state.selectedDate),
+      }
+    case "GO_PREV_DATE":
+      return {
+        ...state,
+        selectedDate: subDate(state.selectedDate, 1),
+      }
+    case "GO_NEXT_DATE":
+      return {
+        ...state,
+        selectedDate: addDate(state.selectedDate, 1),
+      }
+    case "GO_LAST_WEEK":
+      return {
+        ...state,
+        week: getLastWeek(state.week),
+        selectedDate: subDate(state.selectedDate, 7),
+      }
+    case "GO_NEXT_WEEK":
+      return {
+        ...state,
+        week: getNextWeek(state.week),
+        selectedDate: addDate(state.selectedDate, 7),
+      }
+    default:
+      return state;
+  }
 }

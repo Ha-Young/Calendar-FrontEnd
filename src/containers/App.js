@@ -1,16 +1,19 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
+import { changeToDailyMode, changeToWeeklyMode } from "../actions";
 import { saveSampleData } from "../api";
 
 const mapStateToProps = (state) => ({
-  something: "Mapping redux state to App component props.",
+  selectedDate: state.selectedDate,
+  calendarMode: state.calendarMode,
 });
 
-const mapDispatchToProps = () => ({
-  // This function is passed to App component.
-  onInitialLoad: () => {
-    saveSampleData();
-  },
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onInitialLoad: () => {
+      //saveSampleData();
+    },
+  }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

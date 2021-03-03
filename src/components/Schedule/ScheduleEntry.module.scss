@@ -1,0 +1,16 @@
+.Date {
+  width: 100%;
+  position: relative;
+
+  & > div {
+    box-sizing: border-box;
+    border-right: 1px solid #dddddd;
+
+    div {
+      height: 50px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #dddddd;
+      font-size: 0.8em;
+    }
+  }
+}
