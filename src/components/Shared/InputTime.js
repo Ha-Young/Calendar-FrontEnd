@@ -11,7 +11,7 @@ const makeTimeOptions = (array, start, end) => {
     } else {
       time = `${i}:00`;
     }
-    array.push(<option key={`time-${i}`} value={i}>{time}</option>);
+    array.push(<option key={`time-${i}`} value={time}>{time}</option>);
   }
 };
 

@@ -15,7 +15,7 @@ const EventBox = styled.span`
 `
 
 const EventInfo = styled.ul`
-  padding: 0.3em !important;
+  padding: 10px !important;
 
   li {
     width: 100%;
@@ -49,13 +49,15 @@ export default function ScheduleEvent({ event }) {
       pathname: `/event/event-${event.date}-${event.startTime}-${event.endTime}`,
       state: { event }
     }}>
-      <EventBox startTime={Number(event.startTime)} endTime={Number(event.endTime)}>
+      <EventBox startTime={parseInt(event.startTime)} endTime={parseInt(event.endTime)}>
         <EventInfo>
           <li className="title">{event.title}</li>
-          <li className="location">
-            <IoLocationSharp className="icon" />
-            {event.location}
-          </li>
+          {event.location !== "" && (
+            <li className="location">
+              <IoLocationSharp className="icon" />
+              {event.location}
+            </li>
+          )}
           <li className="time">
             <IoTimeSharp className="icon"/>
             {event.startTime} - {event.endTime}
