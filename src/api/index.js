@@ -6,7 +6,7 @@ export async function saveSampleData() {
 
   // Note: `set` method returns a promise.
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  const a =[1, 2, 3];
+  const a = [1, 2, 3];
   await database.ref("test/123").set({
     test: a,
     test2: a,

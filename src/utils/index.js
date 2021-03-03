@@ -16,14 +16,6 @@ export const getDatesForMonthly = (year, month) => {
   return dates;
 }
 
-export const getFullDateToString = (dateObj) => {
-  const year = dateObj.getFullYear();
-  const month = getTwoDigitsString(dateObj.getMonth() + 1);
-  const date = getTwoDigitsString(dateObj.getDate());
-
-  return `${year}-${month}-${date}`;
-}
-
 export const getDatesForWeekly = (year, month, date) => {
   const dates = [];
   const realMonth = month - 1;
@@ -36,3 +28,20 @@ export const getDatesForWeekly = (year, month, date) => {
 
   return dates;
 }
+
+export const getFullDateToString = (dateObj) => {
+  const year = dateObj.getFullYear();
+  const month = getTwoDigitsString(dateObj.getMonth() + 1);
+  const date = getTwoDigitsString(dateObj.getDate());
+
+  return `${year}-${month}-${date}`;
+}
+
+
+export const getFromStringDateTo = {
+  year: (stringDate) => new Date(stringDate).getFullYear(),
+  month: (stringDate) => new Date(stringDate).getMonth() + 1,
+  date: (stringDate) => new Date(stringDate).getDate(),
+  day: (stringDate) => new Date(stringDate).getDay(),
+  hour: (stringDate) => new Date(stringDate).getHours(),
+};

@@ -5,8 +5,10 @@ import { Route, Switch } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
-import Monthly from "../Monthly/Monthly";
+import Daily from "../Daily/Daily";
 import Weekly from "../Weekly/Weekly";
+import EventDetails from "../EventDetails/EventDetails";
+import Modal from "../shared/Modal";
 
 function App(props) {
 
@@ -15,10 +17,15 @@ function App(props) {
       <Header />
       <Switch>
         <Route path="/" exact>
-          <Monthly />
+          <Daily />
+        </Route>
+        <Route path="/weekly">
+          <Weekly />
         </Route>
         <Route path="/event">
-          <Weekly />
+        <Modal>
+          <EventDetails dispatches={props.actToCalendar}/>
+        </Modal>
         </Route>
       </Switch>
     </div>

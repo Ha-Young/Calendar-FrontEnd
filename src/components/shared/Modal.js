@@ -1,4 +1,5 @@
-export default function Modal({ children }) {
+import React from "react";
+export default function ({ children }) {
   return (
     <div>
     <>
