@@ -7,7 +7,9 @@ import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Event from "../Event/Event";
 
-function App({ onInitialLoad, something }) {
+function App({ onInitialLoad, currentDay }) {
+  const { year, month, date } = currentDay;
+
   useEffect(() => {
     onInitialLoad();
   }, []);
@@ -15,6 +17,7 @@ function App({ onInitialLoad, something }) {
   return (
     <div className={styles.App}>
       <Header />
+      <h3>{year} / {month} / {date}</h3>
       <Switch>
         <Route path="/" exact>
           <div>Main</div>

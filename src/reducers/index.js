@@ -16,7 +16,7 @@
 // }
 import { combineReducers } from "redux";
 import { format } from "date-fns";
-import { EVENT_SUBMIT, TODAY } from "../constants/actionTypes";
+import { CREATE_EVENT, GET_DATE } from "../constants/actionTypes";
 
 const initialToday = new Date();
 
@@ -26,27 +26,25 @@ const initialState = {
   date: format(initialToday, "dd"),
 };
 
-console.log(initialState)
-
-const today = (state = initialState, action) => {
+const currentDay = (state = initialState, action) => {
   switch (action.type) {
-    case TODAY:
+    case GET_DATE:
       return state;
     default:
       return state;
   }
-}
+};
 
-const form = (state = {}, action) =>{
+const events = (state = [], action) =>{
   switch (action.type) {
-    case EVENT_SUBMIT:
-      return 1;
+    case CREATE_EVENT:
+      return state.concat(action.events);
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
-  today,
-  form,
+  currentDay,
+  events,
 });

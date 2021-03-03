@@ -1,9 +1,17 @@
 import { connect } from "react-redux";
 import CreateEvent from "../components/CreateEvent/CreateEvent";
-import { loadToday } from "../actions";
+import { createEvent } from "../actions";
 
 const mapStateToProps = (state) => ({
-  state
+  events: state.events,
 });
 
-export default connect(mapStateToProps, null)(CreateEvent);
+const mapDispatchToProps = (dispatch) => ({
+  // This function is passed to App component.
+  onSubmit: (value) => {
+    dispatch(createEvent(value));
+  },
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent);

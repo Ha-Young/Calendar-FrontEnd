@@ -12,11 +12,11 @@ export const connectDB = (data) => ({
   data,
 });
 
-export const onSubmit = (form) => ({
-  type: types.EVENT_SUBMIT,
-  form,
+export const createEvent = (events) => ({
+  type: types.CREATE_EVENT,
+  events,
 });
 
-export const loadToday = () => ({
-  type: types.TODAY,
+export const loadDate = () => ({
+  type: types.GET_DATE,
 });

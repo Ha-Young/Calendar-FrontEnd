@@ -6,5 +6,5 @@
 
  */
 export const CONNECT_DB = "CONNECT_DB";
-export const EVENT_SUBMIT = "EVENT_SUBMIT";
-export const TODAY = "TODAY";
+export const CREATE_EVENT = "CREATE_EVENT";
+export const GET_DATE = "GET_DATE";

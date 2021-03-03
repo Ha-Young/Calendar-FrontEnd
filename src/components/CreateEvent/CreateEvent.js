@@ -1,9 +1,9 @@
 import React from "react";
+import Form from "../Form/Form";
 
-export default function CreateEvent() {
+export default function CreateEvent({ events, onSubmit }) {
+  console.log(events)
   return (
-    <div>
-      prev Events
-    </div>
+    <Form onSubmit={onSubmit} />
   );
 }

@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import styles from "./Form.module.css";
 
-export default function Form(props) {
-  console.log(props);
-
-  const [values, setValues] = useState({
-    title: "hi",
-    desc: "aa",
-    start: "11",
-    end: "14",
-  });
+export default function Form({ onSubmit }) {
+  const initialState = {
+    title: "",
+    description: "",
+    start: "",
+    end: "",
+  };
+  const [values, setValues] = useState(initialState);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
-  }
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(values);
-  }
+    onSubmit(values);
+    setValues(initialState);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -37,16 +37,15 @@ export default function Form(props) {
         <input
           name="description"
           type="text"
-          value={values.desc}
+          value={values.description}
           onChange={handleChange}
         />
       </label>
       <label>
         Start time :
         <input
-          name="startTime"
+          name="start"
           type="text"
-          value="11"
           value={values.start}
           onChange={handleChange}
         />
@@ -54,7 +53,7 @@ export default function Form(props) {
       <label>
         End time :
         <input
-          name="endTime"
+          name="end"
           type="text"
           value={values.end}
           onChange={handleChange}
