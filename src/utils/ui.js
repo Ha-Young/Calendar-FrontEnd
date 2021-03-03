@@ -8,6 +8,6 @@ export const generateCardLocation = (top) => {
 
 export const extractUrl = (url) => {
   const [ date, path ] = url.split("=");
-
+  console.log(url);
   return { date, path };
 };

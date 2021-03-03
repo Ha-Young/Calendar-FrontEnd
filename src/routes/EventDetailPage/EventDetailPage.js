@@ -6,8 +6,9 @@ import { extractUrl } from "../../utils/ui";
 const EventDetailPage = ({ getEvents }) => {
   const params = useParams();
   const { date, path } = extractUrl(params.event);
+  const currentEvent = getEvents(date, path);
+  console.log(...currentEvent);
 
-  console.log(getEvents(date))
   return (
     <div className={styles.wrapper}>
 

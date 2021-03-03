@@ -16,19 +16,19 @@ const Card = ({ content }) => {
   const cardLocation = generateCardLocation(startTime);
 
   return (
-    <Link to={`/events/${date}/${path}`}>
-      <div 
-        className={styles.card} 
-        style={{ 
-          background: color, 
-          height: `${cardLength}px`, 
+    <Link to={`/events/${date}=${path}`}>
+      <div
+        className={styles.card}
+        style={{
+          background: color,
+          height: `${cardLength}px`,
           top: `${cardLocation}px`
         }}
       >
         {title}
       </div>
     </Link>
-    
+
   );
 };
 

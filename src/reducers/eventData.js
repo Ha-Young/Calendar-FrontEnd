@@ -64,6 +64,9 @@ export const errorMessage = (state = "", actions) => {
 
 export const getEventById = (state, id) => state.byId[id];
 
+export const getEventByPath = (state, id, path) =>
+  getEventById(state, id).filter((event) => event.path === path);
+
 export const getEventsByCurrentDates = (state, currentDates) => {
   // return currentDates.reduce((acc, val) => {
   //   acc[val] = getEventById(state, val);

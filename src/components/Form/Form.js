@@ -12,16 +12,18 @@ const initialFormState = {
   endTime: "",
 };
 
-const NewEventPage = ({ onSubmit }) => {
+const Form = ({ onSubmit, initialState }) => {
   const [errorMessage, setErrorMessage] = useState("");
-  const [newEventData, setNewEventData] = useState({
-    title: "",
-    description: "",
-    id: currentDay(today),
-    startTime: "",
-    endTime: "",
-  });
-  const [color, setColor] = useColor(null);
+  const [newEventData, setNewEventData] = useState(
+    initialState
+      ? initialState
+      : initialFormState
+  );
+  const [color, setColor] = useColor(
+    initialState
+      ? initialState.color
+      : null
+  );
 
   const handleInputChange = ({
     target: {
@@ -129,4 +131,4 @@ const NewEventPage = ({ onSubmit }) => {
   );
 };
 
-export default NewEventPage;
+export default Form;
