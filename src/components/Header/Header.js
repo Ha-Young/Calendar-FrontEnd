@@ -1,24 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { viewMode } from "../../constants/viewMode";
+import { generateTitleDate } from "../../utils/date";
+import { addDays, subDays } from "date-fns";
+import { setCalendarData } from "../../utils/date";
+import styles from "./Header.module.css";
 
 // TODO: Create your own header.
 
-const Header = ({ onClickButton }) => {
+const Header = ({ onClickButton, onToggle, currentDate, type }) => {
   const handleClickDayButton = () => onClickButton(viewMode.DAILYMODE.isDaily);
   const handleClickWeekButton = () => onClickButton(viewMode.WEEKLYMODE.isDaily);
 
+  const handlePrevButton = () => { // 나누는게 나은가..? usecallback 사용하기
+    const newCalendarDate = setCalendarData(subDays, type, currentDate);
+
+    onToggle({
+      ...newCalendarDate,
+    });
+  };
+
+  const handleNextButton = () => {
+    const newCalendarDate = setCalendarData(addDays, type, currentDate);
+
+    onToggle({
+      ...newCalendarDate,
+    });
+  };
+
+  const titleDate = generateTitleDate(currentDate); // week일때 안움직이게 currentDate로 유지..
+  
   return (
-    <header>
-      <nav>
-        <ul>
-          <li><Link to="/">Calendar</Link></li>
-          <li><Link to="/events/new">New Event</Link></li>
-        </ul>
-        <button value="day" onClick={handleClickDayButton}>day</button>
-        <button value="week" onClick={handleClickWeekButton}>week</button>
-      </nav>
-    </header>
+    <div className={styles.navigation}>
+      {titleDate}
+      <button value="day" onClick={handleClickDayButton}>day</button>
+      <button value="week" onClick={handleClickWeekButton}>week</button>
+      <button value="prev" onClick={handlePrevButton}>prev</button>
+      <button value="next" onClick={handleNextButton}>next</button>
+    </div>
   );
 };
 

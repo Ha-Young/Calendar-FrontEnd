@@ -31,7 +31,6 @@ const NewEventPage = ({ onSubmit }) => {
       value,
     },
   }) => {
-    console.log(value);
     setNewEventData((prev) => ({
       ...prev,
       [name]: value,
@@ -71,7 +70,7 @@ const NewEventPage = ({ onSubmit }) => {
   };
 
   return (
-    <div className={styles.NewEventPage}>
+    <div className={styles.wrapper}>
       <form onSubmit={handleSubmit}>
         <div className={styles.column}>
           <input

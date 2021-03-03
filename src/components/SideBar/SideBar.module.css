@@ -1,0 +1,7 @@
+.wrapper {
+  position: fixed;
+  width: 230px;
+  height: 100%;
+  margin-top: 70px;
+  background: #F5F5F5;
+}

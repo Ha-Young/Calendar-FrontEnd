@@ -4,6 +4,7 @@ import React from "react";
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
+import SideBar from "../SideBar/SideBar";
 import NewEventPage from "../../routes/NewEventPage/NewEventPage";
 import CalendarPage from "../../routes/CalendarPage/CalendarPage";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -19,15 +20,18 @@ const App = ({
 }) => {
   return (
     <div className={styles.App}>
-      <Header onClickButton={handleChangeCalendarType} />
+      <Header 
+        onClickButton={handleChangeCalendarType} 
+        onToggle={handleChangeCalendarPage}
+        type={isDailyCalendar}
+        currentDate={currentDate}
+      />
+      <SideBar />
       <Switch>
         <Route path="/" exact>
           <CalendarPage 
             onLoad={loadEventData}
-            onClickButton={handleChangeCalendarPage}
             calendarList={calendarList}
-            isDailyCalendar={isDailyCalendar}
-            date={currentDate}
           />
         </Route>
         <Route path="/events/new">

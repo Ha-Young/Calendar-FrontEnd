@@ -1,0 +1,12 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50px;
+  border-right: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.wrapper {
+  width: 100%;
+}

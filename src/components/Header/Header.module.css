@@ -1,0 +1,8 @@
+.navigation {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #EEEEEE;
+}

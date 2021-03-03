@@ -1,4 +1,4 @@
-import { startOfWeek, endOfWeek, eachDayOfInterval, formatISO } from "date-fns";
+import { startOfWeek, endOfWeek, eachDayOfInterval, formatISO, format } from "date-fns";
 import { viewMode } from "../constants/viewMode";
 export const today = new Date();
 
@@ -32,6 +32,8 @@ export const setCalendarData = (cb, isDailyCalendar, currentDate) => {
     weekly,
   };
 };
+
+export const generateTitleDate = (date) => format(date, "PP");
 
 export const hours = new Array(24).fill(0).map((_, index) => index); // 상수 지정
 
