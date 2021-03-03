@@ -9,7 +9,6 @@
 
   & > div{
     width: 100%;
-    margin: 0 0.5em;
     box-sizing: border-box;
 
     label {
@@ -21,6 +20,7 @@
     input,
     textarea {
       width: 100%;
+      box-sizing: border-box;
     }
   }
 }

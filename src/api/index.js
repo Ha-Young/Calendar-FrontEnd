@@ -14,7 +14,7 @@ const data = firebase.database();
 //   });
 // }
 
-export const createEvent = async ({ title, date, startTime, endTime, location, description = "" }) => {
+export const createEvent = async ({ title, date, startTime, endTime, location = "", description = "" }) => {
   await data.ref(`events/${date}/${startTime}`).set({
     title,
     date,

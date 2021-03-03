@@ -8,23 +8,45 @@ import InputTime from "../Shared/InputTime";
 import Textarea from "../Shared/Textarea";
 import { createEvent, updateEvent } from "../../api/index";
 
+import { CgAsterisk } from "react-icons/cg";
 import styles from "./EventEdit.module.scss";
 
+const validationTextList = {
+  startTimeError: "시작 시간은 종료 시간보다 빨라야 합니다.",
+  requiredError: "필수값을 모두 입력해주세요."
+};
+
 export default function EventEdit({ eventMode }) {
-  const [ currentEvent, setCurrentEvent ] = useState({});
-  let oldEvent = useRef();
+  const [ validationText, setValidationText ] = useState("");
+  const [ currentEvent, setCurrentEvent ] = useState({
+    title: "",
+    date: "",
+    startTime: "",
+    endTime: "",
+    location: "",
+    description: "",
+  });
 
   const history = useHistory();
   const location = useLocation();
+  let oldEvent = useRef();
 
   useEffect(() => {
     if (eventMode === "update") {
       const event = location.state.event;
       oldEvent.current = event;
       setCurrentEvent(event);
-      console.log(oldEvent.current);
+    } else {
+      setCurrentEvent({
+        title: "",
+        date: "",
+        startTime: "",
+        endTime: "",
+        location: "",
+        description: "",
+      });
     }
-  }, []);
+  }, [eventMode]);
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -35,6 +57,16 @@ export default function EventEdit({ eventMode }) {
   };
 
   const saveEvent = async () => {
+    if (currentEvent.startTime > currentEvent.endTime) {
+      setValidationText(validationTextList.startTimeError);
+      return;
+    }
+
+    if (currentEvent.title === "" || currentEvent.date === "" || currentEvent.startTime === "" || currentEvent.endTime === "") {
+      setValidationText(validationTextList.requiredError);
+      return;
+    }
+
     if (eventMode === "update") {
       await updateEvent(oldEvent.current.date, oldEvent.current.startTime, currentEvent);
     } else {
@@ -45,26 +77,29 @@ export default function EventEdit({ eventMode }) {
 
   return (
     <div className={styles.NewEvent}>
-      <p>{eventMode === "create" ? "NEW EVENT" : "EDIT EVENT"}</p>
+      <div className={styles.header}>
+        <p className={styles.eventMode}>{eventMode === "create" ? "NEW EVENT" : "EDIT EVENT"}</p>
+        <p className={styles.validationGuide}><CgAsterisk className={styles.asterisk}/> 필수값</p>
+      </div>
       <Container className={styles.Title}>
         <div>
-          <label>Event Title</label>
-          <InputText name="title" handleChange={handleChange} value={currentEvent.title}/>
+          <label>Event Title <CgAsterisk className={styles.asterisk}/></label>
+          <InputText name="title" handleChange={handleChange} value={currentEvent.title} required={true}/>
         </div>
       </Container>
       <Container className={styles.Date}>
         <div>
-          <label>Date</label>
+          <label>Date <CgAsterisk className={styles.asterisk}/></label>
           <InputDate name="date" handleChange={handleChange} value={currentEvent.date}/>
         </div>
       </Container>
       <Container className={styles.Time}>
         <div>
-          <label>Start Time</label>
+          <label>Start Time <CgAsterisk className={styles.asterisk}/></label>
           <InputTime name="startTime" isStartTime={true} handleChange={handleChange} value={currentEvent.startTime}/>
         </div>
         <div>
-          <label>End Time</label>
+          <label>End Time <CgAsterisk className={styles.asterisk}/></label>
           <InputTime name="endTime" isEndTime={true} handleChange={handleChange} value={currentEvent.endTime}/>
         </div>
       </Container>
@@ -80,6 +115,7 @@ export default function EventEdit({ eventMode }) {
           <Textarea name="description" handleChange={handleChange} value={currentEvent.description}/>
         </div>
       </Container>
+      <p className={styles.validationText}>{validationText}</p>
       <div className={styles.Buttons}>
         <button type="button" onClick={() => history.goBack()}>BACK</button>
         <button type="button" onClick={saveEvent}>

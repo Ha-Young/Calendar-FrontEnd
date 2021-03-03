@@ -5,7 +5,13 @@ const endTimeOptions = [];
 
 const makeTimeOptions = (array, start, end) => {
   for (let i = start; i <= end; i++) {
-    array.push(<option key={`time-${i}`} value={i}>{i}</option>);
+    let time;
+    if (i < 10) {
+      time = `0${i}:00`;
+    } else {
+      time = `${i}:00`;
+    }
+    array.push(<option key={`time-${i}`} value={i}>{time}</option>);
   }
 };
 

@@ -32,6 +32,11 @@ export const goNextWeek = () => ({
   type: types.GO_NEXT_WEEK,
 });
 
+export const setSelectedDate = (date) => ({
+  type: types.SET_SELECTED_DATE,
+  date,
+});
+
 export const setCreateEventMode = () => ({
   type: types.SET_CREATE_EVENT_MODE,
 });

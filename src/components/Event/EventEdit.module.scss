@@ -1,9 +1,30 @@
 .NewEvent {
-  p {
-    margin: 1em 0;
+  .asterisk {
+    color: red;
+    width: 20px;
+    height: 20px;
+    vertical-align: text-bottom;
+  }
+  .header {
+    margin: 1em;
+
+    .eventMode {
+      margin: 0 0 0.5em 0;
+      padding: 0 0 0.5em 0;
+      font-size: 1.7em;
+      font-weight: bold;
+      border-bottom: 1px solid #313131;
+    }
+    .validationGuide {
+      text-align: right;
+      font-size: 0.8em;
+    }
+  }
+
+  .validateGuide {
+    margin: 0;
     padding: 0;
-    font-size: 1.7em;
-    font-weight: bold;
+    text-align: right;
   }
 
   .Title {
@@ -11,6 +32,12 @@
       border: 1px solid transparent;
       border-bottom: 1px solid black;
     }
+  }
+
+  .validationText {
+    margin: 1em;
+    font-size: 0.8em;
+    color: red;
   }
 
   .Buttons {

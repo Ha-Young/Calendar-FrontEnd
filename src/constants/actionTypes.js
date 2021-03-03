@@ -13,6 +13,7 @@ export const GO_PREV_DATE = "GO_PREV_DATE";
 export const GO_NEXT_DATE = "GO_NEXT_DATE";
 export const GO_LAST_WEEK = "GO_LAST_WEEK";
 export const GO_NEXT_WEEK = "GO_NEXT_WEEK";
+export const SET_SELECTED_DATE = "SET_SELECTED_DATE";
 
 export const SET_CREATE_EVENT_MODE = "SET_CREATE_EVENT_MODE";
 export const SET_UPDATE_EVENT_MODE = "SET_UPDATE_EVENT_MODE";
