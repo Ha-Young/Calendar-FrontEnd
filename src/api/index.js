@@ -38,3 +38,8 @@ export const getEvents = async (date) => {
 
   return result;
 }
+
+export const removeEvents = async (date, startTime) => {
+  await data.ref(`events/${date}/${startTime}`).set(null);
+  console.log("delete..");
+}

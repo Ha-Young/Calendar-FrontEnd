@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Event from "./Event";
+import ScheduleEvent from "./ScheduleEvent";
 import { getEvents } from "../../api/index";
 import styles from "./ScheduleEntry.module.scss";
 
@@ -30,7 +30,7 @@ export default function Schedule({ eventDate }) {
       </div>
       {(events && events.length !== 0) && (
         events.map((event) => {
-          return (<Event key={`${event.startTime}-${event.endTime}`} event={event} />)
+          return (<ScheduleEvent key={`${event.startTime}-${event.endTime}`} event={event} />)
         })
       )}
     </div>

@@ -1,0 +1,28 @@
+.EventView {
+  padding: 1em;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 0.7em 0;
+    }
+    .title {
+      padding: 0 0 0.2em 0;
+      font-size: 2em;
+      border-bottom: 1px solid #313131;
+    }
+  }
+
+  .Buttons {
+    text-align: center;
+
+    button {
+      margin: 0 0.5em 0 0;
+
+      & :last-child {
+        margin: 0;
+      }
+    }
+  }
+}

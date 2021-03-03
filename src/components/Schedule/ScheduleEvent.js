@@ -15,6 +15,7 @@ const EventBox = styled.span`
 
 const EventInfo = styled.ul`
   padding: 1em !important;
+
   li {
     margin: 0 0 0.3em 0;
   }
@@ -36,9 +37,12 @@ const EventInfo = styled.ul`
   }
 `
 
-export default function Event({ event }) {
+export default function ScheduleEvent({ event }) {
   return (
-    <Link to="/event/event_id">
+    <Link to={{
+      pathname: `/event/event-${event.date}-${event.startTime}-${event.endTime}`,
+      state: { event: event }
+    }}>
       <EventBox startTime={Number(event.startTime)} endTime={Number(event.endTime)}>
         <EventInfo>
           <li className="title">{event.title}</li>

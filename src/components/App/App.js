@@ -7,7 +7,8 @@ import styles from "./App.module.scss";
 import Header from "../Header/Header";
 import Weekly from "../Schedule/Weekly";
 import Daily from "../Schedule/Daily";
-import NewEvent from "../Event/NewEvent";
+import EventEdit from "../Event/EventEdit";
+import EventView from "../Event/EventView";
 
 function App({ selectedDate, onInitialLoad }) {
   useEffect(() => {
@@ -26,8 +27,11 @@ function App({ selectedDate, onInitialLoad }) {
         <Route path="/schedule">
           <Weekly />
         </Route>
-        <Route path="/event">
-          <NewEvent />
+        <Route path="/event" exact>
+          <EventEdit />
+        </Route>
+        <Route path="/event/:event_id">
+          <EventView />
         </Route>
         <Route>
           <Daily />

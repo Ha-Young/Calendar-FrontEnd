@@ -8,9 +8,9 @@ import InputTime from "../Shared/InputTime";
 import Textarea from "../Shared/Textarea";
 import { createEvent } from "../../api/index";
 
-import styles from "./NewEvent.module.scss";
+import styles from "./EventEdit.module.scss";
 
-export default function NewEvent() {
+export default function EventEdit() {
   const result = {};
   const history = useHistory();
 
