@@ -26,6 +26,6 @@ export default function Calendar () {
           <DayTable />
         </div>
       </div>
-   </>
+    </>
   );
 }

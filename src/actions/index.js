@@ -23,9 +23,15 @@ const decreaseMonth = () => ({
   type: types.DECREASE_MONTH
 });
 
+const submitEventInfo = (eventInfo) => ({
+  type: types.SUBMIT_EVENTINFO,
+  eventInfo
+});
+
 export {
   increaseYear,
   decreaseYear,
   increaseMonth,
-  decreaseMonth
+  decreaseMonth,
+  submitEventInfo
 };

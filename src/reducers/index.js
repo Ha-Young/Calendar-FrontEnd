@@ -48,7 +48,18 @@ const changeMonth = (state = initialMonth, action) => {
   }
 }
 
+const eventInfo = (state = [], action) => {
+  console.log(action)
+  switch (action.type) {
+    case "SUBMIT_EVENTINFO":
+      return [...state, action.type];
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   changeYear,
-  changeMonth
+  changeMonth,
+  eventInfo
 });
