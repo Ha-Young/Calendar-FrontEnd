@@ -45,7 +45,7 @@ export function makeNewEvent(event) {
       date,
       startDate,
       endDate,
-      length: diffHours,
+      timeLength: diffHours,
     },
   };
 }

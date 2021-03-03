@@ -10,7 +10,7 @@ const initialStatus_byId = {
     date: "2021-03-03",
     startDate: "2021-03-03_12",
     endDate: "2021-03-03_14",
-    length: 2,
+    timeLength: 2,
   },
   "2021-03-01_12:2": {
     id: "2021-03-01_12:2",
@@ -19,16 +19,25 @@ const initialStatus_byId = {
     date: "2021-03-01",
     startDate: "2021-03-01_12",
     endDate: "2021-03-01_14",
-    length: 2,
+    timeLength: 2,
   },
-  "2020-03-04_13:4": {
-    id: "2020-03-04_13:4",
+  "2021-03-04_13:4": {
+    id: "2021-03-04_13:4",
     title: "밥먹기2",
     description: "밥먹기2",
     date: "2021-03-04",
     startDate: "2021-03-04_13",
     endDate: "2020-03-04_17",
-    length: 2,
+    timeLength: 4,
+  },
+  "2021-03-04_18:3": {
+    id: "2021-03-04_18:3",
+    title: "집에가기",
+    description: "집에가기",
+    date: "2021-03-04",
+    startDate: "2021-03-04_18",
+    endDate: "2020-03-04_21",
+    timeLength: 3,
   },
 };
 
@@ -63,3 +72,7 @@ export default combineReducers({
   byId,
   allIds,
 });
+
+export function getEvent(state, id) {
+  return state.byId[id];
+}
