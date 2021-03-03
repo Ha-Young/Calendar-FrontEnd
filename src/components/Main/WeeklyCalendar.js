@@ -63,25 +63,29 @@ const WeeklyCalendar = ({ events }) => {
     let startDate = sundayDate.getDate();
 
     sundayDate.setDate(++startDate);
+    const currentDate = startDate - 1;
+
     return (
       <div className={styles.weekDay} key={index}>
         <div className={styles.dayDateWrapper}>
           <div>{day}</div>
-          <div>{startDate - 1}</div>
+          <div>{currentDate}</div>
         </div>
         <div className={styles.eventWrapper} key={index}>
           {eventCells.map((item, time) => {
-            const keyId = makeWeekFullDate(year, month, startDate, time);
+            const fullDate = makeWeekFullDate(year, month, startDate, time);
 
             for (const event of events) {
+              const eventDay = Number(event.keyId.split('-')[2]);
               startTime = event.startTime;
               endTime = event.endTime;
 
-              if ((time >= event.startTime && time <= event.endTime)
-                && Number(event.keyId.split('-')[2]) === (startDate - 1)) {
+              if ((time >= event.startTime && time < event.endTime)
+                && eventDay === (currentDate)) {
+
                 return (
-                  <div key={keyId}>
-                    <Link to={`${url}/${keyId}`}>
+                  <div key={fullDate}>
+                    <Link to={`${url}/${fullDate}`}>
                       <div className={styles.scheduledEvent} />
                     </Link>
                   </div>
@@ -90,8 +94,8 @@ const WeeklyCalendar = ({ events }) => {
             }
 
             return (
-              <div key={keyId}>
-                <Link to={`${url}/${keyId}`}>
+              <div key={fullDate}>
+                <Link to={`${url}/${fullDate}`}>
                   <div className={styles.event} />
                 </Link>
               </div>
