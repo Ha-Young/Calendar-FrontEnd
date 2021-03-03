@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
-import MonthContainer from "../MonthContainer/MonthContainer";
+import Monthly from "../Monthly/Monthly";
+import Weekly from "../Weekly/Weekly";
 
 function App(props) {
 
@@ -14,10 +15,10 @@ function App(props) {
       <Header />
       <Switch>
         <Route path="/" exact>
-          <MonthContainer />
+          <Monthly />
         </Route>
         <Route path="/event">
-          <div>Event</div>
+          <Weekly />
         </Route>
       </Switch>
     </div>
