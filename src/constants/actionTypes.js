@@ -1,15 +1,4 @@
-/*
-
-  Action Types
-
-  export const ADD_TO_CART = 'ADD_TO_CART'
-  export const CHECKOUT_REQUEST = 'CHECKOUT_REQUEST'
-  export const CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS'
-  export const CHECKOUT_FAILURE = 'CHECKOUT_FAILURE'
-  export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
-
- */
-
 export const CHANGE_VIEW_OPTION = 'CHANGE_VIEW_OPTION';
 export const CHANGE_DATE = 'CHANGE_DATE';
 export const CREATE_EVNETS = 'CREATE_EVENTS';
+export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
