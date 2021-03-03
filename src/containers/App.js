@@ -1,7 +1,13 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
 import { saveSampleData } from "../api";
-import { changeCalendarMode, setCurrentDate, setCurrentWeek } from "../actions";
+import { changeCalendarMode, moveOneDay, moveOneWeek, setCurrentDate, setCurrentWeek } from "../actions";
+import { DAILY_MODE } from "../constants/dateFormats";
+
+const mapStateToProps = (state) => ({
+  currentDate: state.currentDate,
+  calendarMode: state.calendarMode
+})
 
 const mapDispatchToProps = (dispatch) => ({
   onInitialLoad: () => {
@@ -13,6 +19,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setCurrentWeek(currentWeek));
     dispatch(changeCalendarMode(calendarMode));
   },
+  moveDate: (calendarMode, currentDate) => {
+    if (calendarMode === DAILY_MODE) return (isforWard) => dispatch(moveOneDay(isforWard, currentDate));
+
+    return (isforWard) => dispatch(moveOneWeek(isforWard, currentDate));
+  }
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -5,38 +5,43 @@ import { Route, Switch } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import moment from 'moment';
+import { DAILY_MODE, YYYYMD } from "../../constants/dateFormats";
 
 import Header from "../../containers/Header";
 import Calendar from '../../containers/Calendar';
 import Background from '../publicComponent/Background/Background';
-import { DAILY_MODE } from "../../constants/dateFormats";
+import DateNavigator from '../DateNavigator/DateNavigator';
+import { LEFT, RIGHT } from "../../constants/constants";
+import { getThisWeekSunAndSat } from "../../utils/dateUtil";
 
-function App({ initStore }) {
+function App({ currentDate, calendarMode, initStore, moveDate }) {
   
   useEffect(() => {
-    const currentDate = moment().format('YYYY-M-D');
-    const currentWeekSunday = moment().day(0).format('YYYY-M-D');
-    const currentWeekSaturday = moment().day(6).format('YYYY-M-D');
-    const currentWeek = currentWeekSunday + '/' + currentWeekSaturday;
+    const currentDate = moment().format(YYYYMD);
+    const currentWeek = getThisWeekSunAndSat(currentDate);
     const initCalendarMode = DAILY_MODE;
     initStore(currentDate, currentWeek, initCalendarMode);
   }, []);
 
   return (
     <Background>
-      <div className={styles.App}>
-        <Header />
-        <Switch>
-          <Route path="/" exact>
-            <Calendar />
-          </Route>
-          <Route path="/event" exact>
-            <div>Event 상세</div>
-          </Route>
-          <Route path="/event/new" exact>
-            <div>New</div>
-          </Route>
-        </Switch>
+      <div className={styles.AppContainer}>
+        <DateNavigator direction={LEFT} onClick={moveDate(calendarMode, currentDate)} />
+        <div className={styles.App}>
+          <Header />
+          <Switch>
+            <Route path="/" exact>
+              <Calendar />
+            </Route>
+            <Route path="/event" exact>
+              <div>Event 상세</div>
+            </Route>
+            <Route path="/event/new" exact>
+              <div>New</div>
+            </Route>
+          </Switch>
+        </div>
+        <DateNavigator direction={RIGHT} onClick={moveDate(calendarMode, currentDate)} />
       </div>
     </Background>
   );

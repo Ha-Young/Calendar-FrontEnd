@@ -5,7 +5,7 @@
   ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/actions/index.js
 
  */
-import { SET_CURRENT_DATE, SET_CURRENT_WEEK, CHANGE_CALENDAR_MODE } from '../constants/actionTypes';
+import { SET_CURRENT_DATE, SET_CURRENT_WEEK, CHANGE_CALENDAR_MODE, FORWARD_ONE_DAY, BACKWARD_ONE_DAY, FORWARD_ONE_WEEK, BACKWARD_ONE_WEEK } from '../constants/actionTypes';
 
 export const setCurrentDate = (currentDate) => ({
   type: SET_CURRENT_DATE,
@@ -21,3 +21,13 @@ export const changeCalendarMode = (calendarMode) => ({
   type: CHANGE_CALENDAR_MODE,
   calendarMode
 });
+
+export const moveOneDay = (isForWard, currentDate) => ({
+  type: isForWard ? FORWARD_ONE_DAY : BACKWARD_ONE_DAY,
+  currentDate
+})
+
+export const moveOneWeek = (isForWard, currentDate) => ({
+  type: isForWard ? FORWARD_ONE_WEEK : BACKWARD_ONE_WEEK,
+  currentDate
+})
