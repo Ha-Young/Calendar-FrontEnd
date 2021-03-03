@@ -31,8 +31,9 @@ const CalendarUpperContainer = styled.div`
 `;
 
 const CalendarUpper = ({ dateArr }) => {
-  const year = dateArr[0].year;
-  const month = dateArr[0].monthAlphaBet;
+  console.log(dateArr);
+  const year = dateArr.length ? dateArr[0].year : '';
+  const month = dateArr.length ? dateArr[0].monthAlphaBet : '';
   return (
     <CalendarUpperContainer>
       <div className="calendar__upper__month">

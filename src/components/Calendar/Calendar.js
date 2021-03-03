@@ -1,39 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Calendar.scss';
 
 import CalendarUpper from './CalendarUpper/CalendarUpper';
 import CalendarTimeTable from './CalendarTimeTable/CalendarTimeTable';
 import { dateInfoToObject, dateInfoToObjectArr } from '../../utils/dateUtil';
+import { DAILY_MODE } from '../../constants/dateFormats';
+import { getAllEventsByDates } from '../../api';
 
-// width 값은 여기서 동일하게 가진다.
-// height 값도 통일해주자
-// border 값도 통일
-
-// Redux = 지금 상태가 week 인지 daily인지
-
-const Calendar = ({ currentDate, currentWeek, calendarMode }) => {
+const Calendar = ({ currentDate, currentWeek, calendarMode, scheduleData, dispatchScheduleData }) => {
   function getDateArr() {
     // 이걸로 그려야하는 날짜의 갯수를 정한다.
-    const dateArr = [];
-    if (calendarMode === 'daily') {
-      dateArr.push(dateInfoToObject(currentDate));
-      return dateArr;
+    console.log(calendarMode);
+    if (calendarMode === DAILY_MODE) {
+      console.log(" come in!! DAILY");
+      return [dateInfoToObject(currentDate)];
     }
 
-    const weekDateArr = dateInfoToObjectArr(currentDate);
-    weekDateArr.forEach(el => {
-      dateArr.push(el);
-    });
-
-    return dateArr;
+    return dateInfoToObjectArr(currentDate);
   }
   const dateArr = getDateArr();
+
+  useEffect(() => {
+    const dateArray = getDateArr();
+    console.log('dateArr : ', dateArray);
+    console.log(calendarMode);
+
+    function eventCallBack(value) {
+      console.log('in callback: ', value);
+      dispatchScheduleData(value);
+    }
+
+    // 여기서 firebase에서 데이터를 가져온다.
+    calendarMode.length && getAllEventsByDates(dateArray, eventCallBack);
+  }, [calendarMode]);
 
   return (
     <div className="calendar">
       <CalendarUpper dateArr={dateArr}></CalendarUpper>
       <hr></hr>
-      <CalendarTimeTable dateArr={dateArr}></CalendarTimeTable>
+      <CalendarTimeTable dateArr={dateArr} scheduleData={scheduleData}></CalendarTimeTable>
     </div>
   );
 };

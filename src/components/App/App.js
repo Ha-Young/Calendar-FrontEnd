@@ -14,13 +14,14 @@ import DateNavigator from '../DateNavigator/DateNavigator';
 import { LEFT, RIGHT } from "../../constants/constants";
 import { getThisWeekSunAndSat } from "../../utils/dateUtil";
 
-function App({ currentDate, calendarMode, initStore, moveDate }) {
+function App({ currentDate, calendarMode, initStore, moveDate, onInitialLoad }) {
   
   useEffect(() => {
     const currentDate = moment().format(YYYYMD);
     const currentWeek = getThisWeekSunAndSat(currentDate);
     const initCalendarMode = DAILY_MODE;
     initStore(currentDate, currentWeek, initCalendarMode);
+    //onInitialLoad();
   }, []);
 
   return (

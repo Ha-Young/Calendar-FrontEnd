@@ -29,11 +29,23 @@ const CalendarTimeTableStyle = styled.div`
   }
 `;
 
-const CalendarTimeTable = ({ dateArr }) => {
+const CalendarTimeTable = ({ dateArr, scheduleData = [] }) => {
+  console.log('CalendarTimeTable', scheduleData);
+  // TODO: content Layout을 scheduleData 길이에 따라 1번 혹은 7번 쪼개야한다.
+
+  function getOneDayLayoutArray() {
+    return scheduleData.map((el, index) => {
+      // TODO: LayOut 이름 바꾸기
+      return (
+        <ContentLayout key={index} todayData={el}></ContentLayout>
+      );
+    });
+  }
+
   return (
     <CalendarTimeTableStyle className="calendar__timeline">
       <TimeLayout></TimeLayout>
-      <ContentLayout dateArr={dateArr}></ContentLayout>
+      {getOneDayLayoutArray()}
     </CalendarTimeTableStyle>
   )
 }

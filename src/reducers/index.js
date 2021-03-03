@@ -8,14 +8,15 @@
   - Don't optimize pre-maturely!
 
  */
-import { SET_CURRENT_DATE, SET_CURRENT_WEEK, CHANGE_CALENDAR_MODE, FORWARD_ONE_DAY, BACKWARD_ONE_DAY, FORWARD_ONE_WEEK, BACKWARD_ONE_WEEK } from '../constants/actionTypes';
+import { SET_CURRENT_DATE, SET_CURRENT_WEEK, CHANGE_CALENDAR_MODE, FORWARD_ONE_DAY, BACKWARD_ONE_DAY, FORWARD_ONE_WEEK, BACKWARD_ONE_WEEK, SET_SCHEDULE_DATA } from '../constants/actionTypes';
 import { DAYS, WEEKS } from '../constants/dateFormats';
 import { getThisWeekSunAndSat, moveDays } from '../utils/dateUtil';
 
 const initialState = {
   currentDate: '',
   currentWeek: '',
-  calendarMode: ''
+  calendarMode: '',
+  scheduleData: []
 };
 
 const FORWARD_ONE = 1;
@@ -66,6 +67,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         currentDate: movedDay,
         currentWeek: getThisWeekSunAndSat(movedDay)
+      }
+    case SET_SCHEDULE_DATA: 
+      return {
+        ...state,
+        scheduleData: action.scheduleData
       }
     default:
       return state;
