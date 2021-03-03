@@ -1,21 +1,21 @@
-import WeeklyCalendar from '../components/Main/WeeklyCalendar';
-import { connect } from 'react-redux';
-import {
-  addtitle,
-  adddescription,
-  addstartdate,
-  addenddate
-} from '../Redux/action';
+// import WeeklyCalendar from '../components/Main/WeeklyCalendar';
+// import { connect } from 'react-redux';
+// import {
+//   addtitle,
+//   adddescription,
+//   addstartdate,
+//   addenddate
+// } from '../Redux/action';
 
-const mapStateToProps = (state) => ({
-  ...state
-});
+// const mapStateToProps = (state) => ({
+//   ...state
+// });
 
-const mapDispatchToProps = {
-  addtitle,
-  adddescription,
-  addstartdate,
-  addenddate
-}
+// const mapDispatchToProps = {
+//   addtitle,
+//   adddescription,
+//   addstartdate,
+//   addenddate
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WeeklyCalendar);
+// export default connect(mapStateToProps, mapDispatchToProps)(WeeklyCalendar);

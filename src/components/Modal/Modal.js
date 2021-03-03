@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './Modal.module.css';
 
-const Modal = ({
-  addtitle,
-  adddescription,
-  addstartdate,
-  addenddate
-  }) => {
+const Modal = ({ addsubmitdata }) => {
+  const { keyId } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startTime, setStartTime] = useState(0);
@@ -52,58 +49,72 @@ const Modal = ({
     }
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    addsubmitdata(
+      keyId,
+      title,
+      description,
+      startTime,
+      endTime
+    );
+  }
+
   return (
-    <div className={styles.modalWrapper}>
-      <div className={styles.titleWrapper}>
-        <input
-          type='text'
-          maxLength='20'
-          value={title}
-          placeholder='title'
-          onChange={(e) => setTitle(e.target.value)}
-          className={styles.titleInput}
-        />
-      </div>
-      <div className={styles.descriptionWrapper}>
-        <input
-          type='text'
-          maxLength='20'
-          value={description}
-          placeholder='description'
-          onChange={(e) => setDescription(e.target.value)}
-          className={styles.descriptionInput}
-        />
-      </div>
-      <div className={styles.dateSelectWrapper}>
-        <div>
-          <select
-            name='startTime'
-            value={Number(startTime)}
-            className={styles.startTimeSelect}
-            onChange={(e) => handleSelectChange(e)}
-          >
-            {startOptionList}
-          </select>
+    <form onSubmit={(e) => handleSubmit(e)}>
+      <div className={styles.modalWrapper}>
+        <div className={styles.titleWrapper}>
+          <input
+            type='text'
+            maxLength='20'
+            value={title}
+            placeholder='title'
+            onChange={(e) => setTitle(e.target.value)}
+            className={styles.titleInput}
+          />
         </div>
-        <div>
-          <select
-            name='endTime'
-            value={endTime}
-            className={styles.endTimeSelect}
-            onChange={(e) => handleSelectChange(e)}
-          >
-            {endOptionList}
-          </select>
+        <div className={styles.descriptionWrapper}>
+          <input
+            type='text'
+            maxLength='20'
+            value={description}
+            placeholder='description'
+            onChange={(e) => setDescription(e.target.value)}
+            className={styles.descriptionInput}
+          />
+        </div>
+        <div className={styles.dateSelectWrapper}>
+          <div>
+            <select
+              name='startTime'
+              value={Number(startTime)}
+              className={styles.startTimeSelect}
+              onChange={(e) => handleSelectChange(e)}
+            >
+              {startOptionList}
+            </select>
+          </div>
+          <div>
+            <select
+              name='endTime'
+              value={endTime}
+              className={styles.endTimeSelect}
+              onChange={(e) => handleSelectChange(e)}
+            >
+              {endOptionList}
+            </select>
+          </div>
+        </div>
+        <div className={styles.submitWrapper}>
+          <input
+            type='submit'
+            value='submit'
+            className={styles.submitButton}
+          />
         </div>
       </div>
-      <div className={styles.submitWrapper}>
-        <input
-          type='submit'
-          value='submit'
-          className={styles.submitButton}
-        />
-      </div>
-    </div>
+    </form>
   )
 }
 

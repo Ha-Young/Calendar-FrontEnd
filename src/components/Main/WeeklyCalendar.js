@@ -3,12 +3,7 @@ import { makeSundayDate } from '../../utils';
 import styles from './WeeklyCalendar.module.css';
 import { useRouteMatch, Link } from 'react-router-dom';
 
-const WeeklyCalendar = ({
-  children,
-  addtitle,
-  addstartdate,
-  addenddate
-  }) => {
+const WeeklyCalendar = ({ children }) => {
   const [todayDate, setTodayDate] = useState(new Date());
   const currentDate = new Date();
   const date = todayDate.getDate();

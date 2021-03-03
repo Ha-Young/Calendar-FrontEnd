@@ -1,17 +1,5 @@
 import Modal from '../components/Modal/Modal';
 import { connect } from 'react-redux';
-import {
-  addtitle,
-  adddescription,
-  addstartdate,
-  addenddate
-} from '../Redux/action';
+import { addsubmitdata } from '../Redux/action';
 
-const mapDispatchToProps = {
-  addtitle,
-  adddescription,
-  addstartdate,
-  addenddate
-}
-
-export default connect(null, mapDispatchToProps)(Modal);
+export default connect(null, { addsubmitdata })(Modal);
