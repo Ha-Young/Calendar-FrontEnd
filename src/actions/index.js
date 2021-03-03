@@ -1,17 +1,32 @@
 import { ACTION } from "constants/actionTypes";
-import { generateKey, getDateByRef } from "utils/utilFunction";
+import {
+  generateKey,
+  getDateByRef,
+  getDateISOByRef,
+  getDaysOfWeek,
+} from "utils/utilFunction";
 
-const setInitialize = (eventList, userState) => {
-  if (!eventList) {
+const setInitialize = (initialEvent, userId) => {
+  if (!Object.keys(initialEvent).length) {
     return {
       type: ACTION.NO_EVENT,
     };
   }
 
+  const today = getDateISOByRef(0);
+  const dailyEvent = {};
+
+  for (const [key, value] of Object.entries(initialEvent)) {
+    if (value.date === today) {
+      dailyEvent[key] = value;
+    }
+  }
+
   return {
     type: ACTION.SET_INITIALIZE,
-    eventList,
-    userState,
+    weeklyEvent: initialEvent,
+    dailyEvent,
+    userId,
   };
 };
 
@@ -29,15 +44,17 @@ const showNextDay = (dateCount) => {
   };
 };
 
-const showPreviousWeek = () => {
+const showPreviousWeek = (weekCount) => {
   return {
     type: ACTION.SHOW_PREVIOUS_WEEK,
+    currentWeekDays: getDaysOfWeek(weekCount),
   };
 };
 
-const showNextWeek = () => {
+const showNextWeek = (weekCount) => {
   return {
     type: ACTION.SHOW_NEXT_WEEK,
+    currentWeekDays: getDaysOfWeek(weekCount),
   };
 };
 

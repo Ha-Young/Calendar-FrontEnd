@@ -6,7 +6,6 @@ import Loading from "components/Loading/Loading";
 import { authService } from "api/firebaseService";
 import { initializeApp } from "api";
 import { actionCreators } from "actions";
-import { getThisWeek } from "utils/utilFunction";
 
 const App = ({ onLoggedIn, state }) => {
   const [ready, setReady] = useState(false);
@@ -15,11 +14,10 @@ const App = ({ onLoggedIn, state }) => {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        initializeApp((dailyEvent) => {
-          onLoggedIn(dailyEvent, true);
+        initializeApp((initialEvent) => {
+          onLoggedIn(initialEvent, authService.currentUser.uid);
           setIsLoggedIn(true);
           setReady(true);
-          getThisWeek();
         });
       } else {
         setIsLoggedIn(false);
@@ -47,8 +45,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoggedIn: (dailyEvent, userState) => {
-    dispatch(actionCreators.setInitialize(dailyEvent, userState));
+  onLoggedIn: (initialEvent, userId) => {
+    dispatch(actionCreators.setInitialize(initialEvent, userId));
   },
 });
 

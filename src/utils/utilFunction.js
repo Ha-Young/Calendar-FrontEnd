@@ -21,7 +21,7 @@ export const getWeekOfMonth = (count = 0) => {
   return monthAndWeek;
 };
 export const getWeekOfMonthByDate = (date = "") => {
-  return Math.ceil(moment(date).day(0).date() / 7);
+  return Math.ceil(moment(date).day(0).date() / 7).toString();
 };
 
 export const getThisWeek = () => {
@@ -49,7 +49,7 @@ export const parseDate = (date = "") => {
   return {
     year: moment(date).day(0).format("YYYY"),
     month: moment(date).day(0).format("MM"),
-    weekOfMonth: getWeekOfMonthByDate(date).toString(),
+    weekOfMonth: getWeekOfMonthByDate(date),
   };
 };
 

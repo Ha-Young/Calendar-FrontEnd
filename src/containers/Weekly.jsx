@@ -4,25 +4,32 @@ import { getDaysOfWeek, getWeekOfMonth } from "utils/utilFunction";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
 import WeeklySchedule from "../components/WeeklySchedule/WeeklySchedule";
 import { connect } from "react-redux";
+import { actionCreators } from "actions";
 
-const Weekly = (props) => {
-  const [daysOfWeek, setDaysOfWeek] = useState(getDaysOfWeek(0));
+const Weekly = ({
+  currentWeekDays,
+  currentWeekOfMonth,
+  showPreviousWeek,
+  showNextWeek,
+}) => {
   const [weekCount, setWeekCount] = useState(0);
   const [weekOfMonth, setWeekOfMonth] = useState(getWeekOfMonth(0));
+  // console.log(daysOfWeek);
 
   const setNewWeek = (direction) => {
     let currentWeekCount = weekCount;
 
     if (direction === directionConst.PREV) {
       currentWeekCount = currentWeekCount - dateConst.DAY_OF_WEEK;
+      showPreviousWeek(currentWeekCount);
     }
 
     if (direction === directionConst.NEXT) {
       currentWeekCount = currentWeekCount + dateConst.DAY_OF_WEEK;
+      showNextWeek(currentWeekCount);
     }
 
     setWeekCount(currentWeekCount);
-    setDaysOfWeek(getDaysOfWeek(currentWeekCount));
     setWeekOfMonth(getWeekOfMonth(currentWeekCount));
   };
 
@@ -32,13 +39,23 @@ const Weekly = (props) => {
         onClick={setNewWeek}
         currentPeriod={weekOfMonth.month + "월 " + weekOfMonth.week + "주차"}
       />
-      <WeeklySchedule week={daysOfWeek} />
+      <WeeklySchedule week={currentWeekDays} />
     </>
   );
 };
 
-const mapStateToProps = (state) => ({
-  something: "Mapping redux state to App component props.",
-});
+const mapStateToProps = (state) => {
+  const { currentWeekDays, currentWeekOfMonth } = state;
+  return { currentWeekDays };
+};
 
-export default connect(mapStateToProps)(Weekly);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showPreviousWeek: (weekCount) =>
+      dispatch(actionCreators.showPreviousWeek(weekCount)),
+    showNextWeek: (weekCount) =>
+      dispatch(actionCreators.showNextWeek(weekCount)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Weekly);

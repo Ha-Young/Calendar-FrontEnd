@@ -7,7 +7,6 @@ import { actionCreators } from "actions";
 
 const Daily = ({ currentDate, showPreviousDay, showNextDay }) => {
   const [dateCount, setDateCount] = useState(0);
-  console.log(currentDate);
 
   const setNewDate = (direction) => {
     let currentDateCount = dateCount;
@@ -43,6 +42,7 @@ const Daily = ({ currentDate, showPreviousDay, showNextDay }) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
   const { currentDate } = state;
   return { currentDate };
 };
