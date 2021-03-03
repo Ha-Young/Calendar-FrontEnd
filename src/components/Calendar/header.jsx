@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Calendar.module.css";
 
-export default function CalendarHeader({ value, setValue }) {
+export default function CalendarHeader({ value, setValue, TypeOfTime }) {
   function currentMonthName() {
     return value.format("MMMM");
   }
@@ -11,11 +11,11 @@ export default function CalendarHeader({ value, setValue }) {
   }
 
   function previousMonth() {
-    return value.clone().subtract(1, "month");
+    return value.clone().subtract(1, TypeOfTime);
   }
 
   function nextMonth() {
-    return value.clone().add(1, "month");
+    return value.clone().add(1, TypeOfTime);
   }
 
   return (

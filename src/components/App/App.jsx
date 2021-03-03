@@ -7,7 +7,6 @@ import styles from "./App.module.css";
 
 import Header from "../Header/Header";
 import Event from "../Event/Event";
-import Calendar from "../Calendar/Calendar";
 import Weekly from "../Calendar/Weekly/Weekly";
 import Daily from "../Calendar/Daily/Daily";
 
@@ -20,10 +19,9 @@ function App({ onInitialLoad }) {
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route path="/" exact component={Calendar} />
+        <Route path="/" exact component={Weekly} />
         <Route path="/event/new" component={Event} />
         <Route exact path="/event/:id" component={Event} />
-        <Route path="/calendar" component={Calendar} />
         <Route path="/weekly" component={Weekly} />
         <Route path="/daily" component={Daily} />
         <Route>

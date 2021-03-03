@@ -9,9 +9,6 @@ export default function Header () {
       <nav>
         <ul className={styles.navigation}>
           <li className={styles["navigation-item"]}>
-            <NavLink exact to="/calendar">Calendar</NavLink>
-          </li>
-          <li className={styles["navigation-item"]}>
             <NavLink exact to="/weekly">Weely</NavLink>
           </li>
           <li className={styles["navigation-item"]}>
