@@ -1,6 +1,6 @@
 import moment from "moment";
 
-import { DATE_FORMAT } from "../constants/common";
+import { DATE_FORMAT, DATE_FORMAT_WITH_HOUR } from "../constants/common";
 
 // Todo. constant로?
 const HOUR = 24;
@@ -68,4 +68,8 @@ export function checkIsSameDay(date, anotherDate, dateFormat) {
     moment(anotherDate, dateFormat),
     "day"
   );
+}
+
+export function getHour(date, dateFormat = DATE_FORMAT_WITH_HOUR) {
+  return moment(date, dateFormat).hour();
 }

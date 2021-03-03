@@ -1,6 +1,5 @@
 .dateColumn {
   position: relative;
-  padding-top: 100px;
   width: 100%;
 }
 
@@ -17,14 +16,19 @@
 }
 
 .dayInfo {
-  position: absolute;
+  position: sticky;
   top: 0;
   width: 100%;
-  height: 100px;
+  height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: white;;
+}
+
+.spanArea {
+  height: 10px;
 }
 
 .dayOfTheWeek {
