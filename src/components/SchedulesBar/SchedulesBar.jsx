@@ -6,18 +6,22 @@ import styles from "./SchedulesBar.module.css";
 
 function SchedulesBar({ date, dayDiff }) {
   const hourList = getHourList();
-  const theDay = date.clone().add(dayDiff, "days");
+  const presentDate = date.clone().add(dayDiff, "days");
+  const mainDate = dayDiff === 0 ? true : false;
 
   return (
     <div className={styles.schedulesBar}>
       <div className={styles.dateBox}>
-        <TheDate date={theDay} />
+        <TheDate
+          date={presentDate}
+          today={mainDate}
+        />
       </div>
       {hourList.map((v) => {
         return (
           <li
             key={v}
-            onClick={() => console.log(v, theDay)}
+            onClick={() => console.log(v, presentDate)}
           />
         );
       })}

@@ -1,0 +1,22 @@
+.timeSelector {
+  display: inline-flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.timeSelector button {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeSelector span {
+  display: flex;
+  width: 40px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}

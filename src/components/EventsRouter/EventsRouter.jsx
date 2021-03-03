@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-function Events() {
+import EventForm from "../../containers/EventForm";
+
+function EventsRouter() {
   return (
     <Switch>
-      <Route path="/events/new" exact>
-        <div>Events page</div>
-      </Route>
+      <Route path="/events/new" exact component={EventForm} />
       <Route path="/events/:eventId">
         <div>event id</div>
       </Route>
@@ -17,4 +17,4 @@ function Events() {
   );
 }
 
-export default Events;
+export default EventsRouter;

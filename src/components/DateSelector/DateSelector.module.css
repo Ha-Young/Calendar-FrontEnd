@@ -4,6 +4,10 @@
   align-content: center;
 }
 
+.dateSelector button {
+  border-radius: 10px;
+}
+
 .dateSelector span {
   padding: 5px;
 }

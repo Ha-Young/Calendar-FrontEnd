@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
+
 import { toggleDay } from "../actions";
-import Header from "../components/Header/Header";
+import Header from "../components/Header/Header.jsx";
 
 const mapStateToProps = (state) => ({
   isDaily: state.isDaily,

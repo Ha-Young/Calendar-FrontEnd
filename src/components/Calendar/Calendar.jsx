@@ -1,7 +1,7 @@
 import React from "react";
 
 import Daily from "../Daily/Daily";
-import Weekly from "../Weekly/Weekly";
+import Weekly from "../../containers/Weekly";
 
 function Calendar({ isDaily }) {
   return isDaily

@@ -5,20 +5,20 @@ import { Redirect, Route, Switch } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../../containers/Header";
-import Event from "../Events/Events"
+import EventsRouter from "../EventsRouter/EventsRouter"
 import Calendar from "../../containers/Calendar";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
     onInitialLoad();
-  }, []);
+  }, [onInitialLoad]);
 
   return (
     <div className={styles.App}>
       <Header />
       <Switch>
         <Route path="/calendar" exact component={Calendar} />
-        <Route path="/events" component={Event} />
+        <Route path="/events" component={EventsRouter} />
         <Route>
           <Redirect to="/calendar" />
         </Route>

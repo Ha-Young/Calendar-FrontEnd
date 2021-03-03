@@ -1,0 +1,13 @@
+.withLabel {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.withLabel label {
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  transform: translateX(-100%) translateY(-50%);
+}

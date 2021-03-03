@@ -8,7 +8,7 @@ function Daily() {
   return (
     <div className={styles.daily}>
       <HoursBar />
-      <SchedulesBar />
+      <SchedulesBar dayDiff={0} />
     </div>
   );
 }

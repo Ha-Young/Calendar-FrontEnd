@@ -1,12 +1,17 @@
 .App {
   box-sizing: border-box;
   text-align: center;
+  color: #5B6C5D;
 }
 
 .App button {
+  display: flex;
+  color: #5B6C5D;
   border: 2px solid #B5D6D6;
   border-radius: 5px;
   background: white;
+  justify-content: center;
+  align-items: center;
   transition: all 0.3s;
 }
 
@@ -15,5 +20,21 @@
 }
 
 .App button:hover {
+  color: white;
   background: #B5D6D6;
+}
+
+.App label {
+  color: #5B6C5D;
+}
+
+.App input, textarea {
+  border: 2px solid #B5D6D6;
+  border-radius: 5px;
+  resize: none;
+  transition: all 0.3s;
+}
+
+.App input:hover, textarea:hover {
+  background-color: #b5d6d628;
 }

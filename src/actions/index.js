@@ -13,3 +13,8 @@ export const prevDate = () => ({type: actionTypes.PREV_DATE});
 export const nextDate = () => ({type: actionTypes.NEXT_DATE});
 export const prevWeek = () => ({type: actionTypes.PREV_WEEK});
 export const nextWeek = () => ({type: actionTypes.NEXT_WEEK});
+
+export const submitEvent = (event) => ({
+  type: actionTypes.SUBMIT_EVENT,
+  payload: event,
+});

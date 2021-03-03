@@ -8,10 +8,10 @@ function TheDate({ date, today = false }) {
   const days = getDays(date);
 
   return (
-    <div className={styles.theDate}>
+    <span className={styles.theDate}>
       <div>{dayOfTheWeek}</div>
-      <div className={styles.days}>{days}</div>
-    </div>
+      <div className={today ? styles.today : styles.days}>{days}</div>
+    </span>
   );
 }
 
