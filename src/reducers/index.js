@@ -10,56 +10,30 @@
  */
 import { combineReducers } from "redux";
 
-const initialYear = new Date().getFullYear();
-
-const changeYear = (state = initialYear, action) => {
-  switch (action.type) {
-    case "INCREASE_YEAR":
-      return state + 1;
-    case "DECREASE_YEAR":
-      if (state === 0) {
-        return new Date().getFullYear();
-      }
-
-      return state - 1;
-    default:
-      return state;
-  }
-}
-
-const initialMonth = new Date().getMonth() + 1;
-
-const changeMonth = (state = initialMonth, action) => {
-  switch (action.type) {
-    case "INCREASE_MONTH":
-      if (state === 12) {
-        return 1;
-      }
-
-      return state + 1;
-    case "DECREASE_MONTH":
-      if (state === 1) {
-        return 12;
-      }
-
-      return state - 1;
-    default:
-      return state;
-  }
-}
+const initialStateOfEventInfo = [{
+  "event-description": "",
+  "event-end-date": 4,
+  "event-end-hour": 2,
+  "event-end-month": 3,
+  "event-end-year": 2021,
+  "event-start-date": 4,
+  "event-start-hour": 1,
+  "event-start-month": 3,
+  "event-start-year": 2021,
+  "event-title": ""
+}];
 
 const eventInfo = (state = [], action) => {
+  console.log("Reducer-eventInfo");
   console.log(action)
   switch (action.type) {
     case "SUBMIT_EVENTINFO":
-      return [...state, action.type];
+      return [...state, action.eventInfo];
     default:
       return state;
   }
 }
 
 export default combineReducers({
-  changeYear,
-  changeMonth,
   eventInfo
 });

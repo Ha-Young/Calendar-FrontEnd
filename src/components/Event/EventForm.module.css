@@ -8,6 +8,7 @@
   width: 70vw;
   height: 60vh;
   background-color: #FFF8E1;
+  font-weight: bold;
 }
 
 .eventInput > div {
@@ -22,12 +23,20 @@ input {
   all: unset;
   border-bottom: 1px solid black;
 }
+
 .timeInputContainer {
   display: flex;
-  justify-content: center;
-  width: 90%;
-
+  justify-content: space-between;
+  width: 100%;
 }
+
 .timeInputContainer input {
-  width: 10%;
+  width: 15%;;
+}
+
+.submitButton {
+  all: unset;
+  width: 15%;
+  height: 5%;
+  background-color: #FFE0B2;
 }

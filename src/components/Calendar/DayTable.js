@@ -2,7 +2,9 @@ import React from "react";
 import styles from "./DayTable.module.css";
 import { Link } from "react-router-dom";
 
-export default function DayTable () {
+export default function DayTable ({ eventInfo }) {
+  console.log("hello")
+  console.log(eventInfo)
   const time = [
     {time: "0 AM", id: "0-AM"},
     {time: "1 AM", id: "1-AM"},
@@ -33,7 +35,7 @@ export default function DayTable () {
     return (
       <>
         <div key={item.id}>{item.time}</div>
-        <div onClick={(ev) => console.log(ev.target.innerText)}> TODO </div>
+        <div> {eventInfo[0]} </div>
       </>
     );
   });

@@ -2,7 +2,20 @@ import React, { useState } from "react";
 import styles from "./EventForm.module.css";
 
 export default function EventForm ({ onEventInfoSubmit }) {
-  const [eventInfo, setEventIfo] = useState({});
+  const initialEventInfo = {
+    "event-title": "",
+    "event-description": "",
+    "event-start-year": new Date().getFullYear(),
+    "event-start-month": new Date().getMonth() + 1,
+    "event-start-date": new Date().getDate(),
+    "event-start-hour": new Date().getHours(),
+    "event-end-year": new Date().getFullYear(),
+    "event-end-month": new Date().getMonth() + 1,
+    "event-end-date": new Date().getDate(),
+    "event-end-hour": new Date().getHours() + 1,
+  }
+
+  const [eventInfo, setEventIfo] = useState(initialEventInfo);
 
   const handleChange = (ev) => {
     const { name, value } = ev.target;
@@ -18,12 +31,24 @@ export default function EventForm ({ onEventInfoSubmit }) {
     <>
       <form onSubmit={handleSubmit} className={styles.eventInput}>
         <div>
-          일정 이름
-          <input type="text" name="event-name" onChange={handleChange} />
+          일정 제목
+          <input
+            type="text"
+            name="event-title"
+            placeholder="일정 제목을 입력하세요."
+            autoComplete="off"
+            onChange={handleChange}
+          />
         </div>
         <div>
           일정 내용
-          <input type="text" name="event-description" onChange={handleChange} />
+          <input
+            type="text"
+            name="event-description"
+            placeholder="일정 내용을 입력하세요."
+            autoComplete="off"
+            onChange={handleChange}
+          />
         </div>
         <div>
           일정 시작 시간
@@ -32,7 +57,6 @@ export default function EventForm ({ onEventInfoSubmit }) {
               type="number"
               name="event-start-year"
               value={eventInfo["event-start-year"]}
-              placeholder="2022"
               onChange={handleChange}
             />
               년
@@ -40,7 +64,8 @@ export default function EventForm ({ onEventInfoSubmit }) {
               type="number"
               name="event-start-month"
               value={eventInfo["event-start-month"]}
-              placeholder="3"
+              max="12"
+              min="1"
               onChange={handleChange}
             />
               월
@@ -48,7 +73,8 @@ export default function EventForm ({ onEventInfoSubmit }) {
               type="number"
               name="event-start-date"
               value={eventInfo["event-start-date"]}
-              placeholder="11"
+              max="31"
+              min="1"
               onChange={handleChange}
             />
               일
@@ -56,7 +82,8 @@ export default function EventForm ({ onEventInfoSubmit }) {
               type="number"
               name="event-start-hour"
               value={eventInfo["event-start-hour"]}
-              placeholder="8"
+              max="23"
+              min="0"
               onChange={handleChange}
             />
               시
@@ -69,7 +96,6 @@ export default function EventForm ({ onEventInfoSubmit }) {
               type="number"
               name="event-end-year"
               value={eventInfo["event-end-year"]}
-              placeholder="2021"
               onChange={handleChange}
             />
               년
@@ -77,7 +103,8 @@ export default function EventForm ({ onEventInfoSubmit }) {
               type="number"
               name="event-end-month"
               value={eventInfo["event-end-month"]}
-              placeholder="3"
+              max="12"
+              min="1"
               onChange={handleChange}
             />
               월
@@ -85,7 +112,8 @@ export default function EventForm ({ onEventInfoSubmit }) {
               type="number"
               name="event-end-date"
               value={eventInfo["event-end-date"]}
-              placeholder="11"
+              max="31"
+              min="1"
               onChange={handleChange}
             />
               일
@@ -93,13 +121,18 @@ export default function EventForm ({ onEventInfoSubmit }) {
               type="number"
               name="event-end-hour"
               value={eventInfo["event-end-hour"]}
-              placeholder="8"
+              max="23"
+              min="0"
               onChange={handleChange}
             />
               시
           </div>
         </div>
-        <input type="submit" value="등록"/>
+        <input
+          className={styles.submitButton}
+          type="submit"
+          value="등록"
+        />
       </form>
     </>
   );

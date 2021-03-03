@@ -21,7 +21,7 @@ function App({ onInitialLoad, eventInfo, onEventInfoSubmit }) {
           <div>Main</div>
         </Route>
         <Route path="/calendar" exact>
-          <Calendar />
+          <Calendar eventInfo={eventInfo} />
         </Route>
         <Route path="/event">
           <Event onEventInfoSubmit={onEventInfoSubmit} />
