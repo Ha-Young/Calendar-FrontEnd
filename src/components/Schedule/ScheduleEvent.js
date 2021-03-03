@@ -6,21 +6,27 @@ import styled from "styled-components";
 
 const EventBox = styled.span`
   width: 100%;
-  height: ${props => (props.endTime - props.startTime) * 50}px;
+  height: ${props => (props.endTime - props.startTime) * 70}px;
   position: absolute;
-  top: ${props => props.startTime * 50}px;
+  top: ${props => props.startTime * 70}px;
   background: #B721FF;
   color: #ffffff;
+  overflow: hidden;
 `
 
 const EventInfo = styled.ul`
-  padding: 1em !important;
+  padding: 0.3em !important;
 
   li {
+    width: 100%;
+    height: 1.3em;
     margin: 0 0 0.3em 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .title {
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
   .location {
     font-size: 0.7em;
@@ -41,7 +47,7 @@ export default function ScheduleEvent({ event }) {
   return (
     <Link to={{
       pathname: `/event/event-${event.date}-${event.startTime}-${event.endTime}`,
-      state: { event: event }
+      state: { event }
     }}>
       <EventBox startTime={Number(event.startTime)} endTime={Number(event.endTime)}>
         <EventInfo>

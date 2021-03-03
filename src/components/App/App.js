@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
@@ -10,31 +10,29 @@ import Daily from "../Schedule/Daily";
 import EventEdit from "../Event/EventEdit";
 import EventView from "../Event/EventView";
 
-function App({ selectedDate, onInitialLoad }) {
-  useEffect(() => {
-    onInitialLoad();
-  }, []);
-
+function App({ selectedDate, eventMode, setCreateEventMode, setUpdateEventMode }) {
   return (
     <div className={styles.App}>
-      <Header
-        selectedDate={selectedDate}
-      />
+      <Header selectedDate={selectedDate} setCreateEventMode={setCreateEventMode}/>
       <Switch>
         <Route path="/" exact>
-          <Daily />
+          <Daily/>
         </Route>
         <Route path="/schedule">
           <Weekly />
         </Route>
         <Route path="/event" exact>
-          <EventEdit />
+          <EventEdit
+            eventMode={eventMode}
+            setCreateEventMode={setCreateEventMode}
+            setUpdateEventMode={setUpdateEventMode}
+          />
         </Route>
         <Route path="/event/:event_id">
-          <EventView />
+          <EventView setUpdateEventMode={setUpdateEventMode}/>
         </Route>
         <Route>
-          <Daily />
+          <Daily/>
         </Route>
       </Switch>
     </div>

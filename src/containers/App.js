@@ -1,17 +1,19 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { changeToDailyMode, changeToWeeklyMode } from "../actions";
-import { saveSampleData } from "../api";
+import { setCreateEventMode, setUpdateEventMode } from "../actions";
 
 const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
-  calendarMode: state.calendarMode,
+  eventMode: state.eventMode
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onInitialLoad: () => {
-      //saveSampleData();
+    setCreateEventMode() {
+      dispatch(setCreateEventMode());
+    },
+    setUpdateEventMode() {
+      dispatch(setUpdateEventMode());
     },
   }
 };

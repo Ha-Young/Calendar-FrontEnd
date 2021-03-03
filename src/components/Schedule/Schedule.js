@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ScheduleEvent from "./ScheduleEvent";
 import { getEvents } from "../../api/index";
-import styles from "./ScheduleEntry.module.scss";
+import styles from "./Schedule.module.scss";
 
 const eventBoxes = [...Array(24).keys()];
 

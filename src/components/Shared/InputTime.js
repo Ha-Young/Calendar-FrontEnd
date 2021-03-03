@@ -12,9 +12,9 @@ const makeTimeOptions = (array, start, end) => {
 makeTimeOptions(startTimeOptions, 0, 23);
 makeTimeOptions(endTimeOptions, 1, 24);
 
-export default function InputTime({ name, handleChange, isStartTime, isEndTime}) {
+export default function InputTime({ name, value, handleChange, isStartTime, isEndTime}) {
   return (
-    <select key={name} name={name} onChange={handleChange}>
+    <select key={name} name={name} onChange={handleChange} value={value}>
       {isStartTime && startTimeOptions}
       {isEndTime && endTimeOptions}
     </select>

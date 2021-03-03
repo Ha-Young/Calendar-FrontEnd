@@ -1,4 +1,3 @@
-import { combineReducers } from "redux";
 import { subDate, addDate, getCurrentWeek, getLastWeek, getNextWeek } from "../utils/SetDate";
 
 /*
@@ -19,16 +18,18 @@ const initialState = {
   today: today,
   selectedDate: today,
   week: getCurrentWeek(today),
+  eventMode: "create",
+  currentEvent: null,
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case "CHANGE_DAILY_MODE":
+    case "SET_DAILY_CALENDAR_MODE":
       return {
         ...state,
         calendarMode: "daily"
       }
-    case "CHANGE_WEEKLY_MODE":
+    case "SET_WEEKLY_CALENDAR_MODE":
       return {
         ...state,
         calendarMode: "weekly",
@@ -55,6 +56,16 @@ export default function reducer(state = initialState, action) {
         ...state,
         week: getNextWeek(state.week),
         selectedDate: addDate(state.selectedDate, 7),
+      }
+    case "SET_CREATE_EVENT_MODE":
+      return {
+        ...state,
+        eventMode: "create",
+      }
+    case "SET_UPDATE_EVENT_MODE":
+      return {
+        ...state,
+        eventMode: "update",
       }
     default:
       return state;

@@ -1,25 +1,28 @@
 import React from "react";
-import { Route, useLocation, useHistory } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 
-import Container from "../Shared/Container";
-import { removeEvents } from "../../api/index";
+import { removeEvent } from "../../api/index";
 import styles from "./EventView.module.scss";
 
-export default function EventView() {
+export default function EventView({ setUpdateEventMode }) {
   const history = useHistory();
   const location = useLocation();
   const event = location.state.event;
 
   const deleteEvents = async () => {
-    await removeEvents(event.date, event.startTime);
+    await removeEvent(event.date, event.startTime);
     console.log("remove...");
     history.push("/");
-  }
+  };
+
+  const handleEditEvent = () => {
+    setUpdateEventMode();
+  };
 
   return (
-    <div className={styles.ViewEvent}>
+    <div className={styles.EventView}>
       <ul>
-        <li className={styles.title}>{event.title}</li>
+        <li className={styles.itle}>{event.title}</li>
         <li>{event.date}</li>
         <li>
           <p>{event.startTime}</p>
@@ -29,7 +32,12 @@ export default function EventView() {
         <li>{event.description}</li>
       </ul>
       <div className={styles.Buttons}>
-        <button type="button">EDIT</button>
+        <Link to={{
+          pathname: "/event",
+          state: { event }
+        }}>
+          <button type="button" onClick={handleEditEvent}>EDIT</button>
+        </Link>
         <button type="button" onClick={deleteEvents}>DELETE</button>
       </div>
     </div>

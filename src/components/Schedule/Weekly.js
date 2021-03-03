@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Calendar from "./Calendar";
-import { goLastWeek, goNextWeek, changeToWeeklyMode } from "../../actions";
+import { goLastWeek, goNextWeek, setWeeklyCalendarMode } from "../../actions";
 
-const Weekly = ({ calendarMode, changeToWeeklyMode, today, selectedDate, week, goLastWeek, goNextWeek }) => {
+const Weekly = ({ calendarMode, setWeeklyCalendarMode, today, selectedDate, week, goLastWeek, goNextWeek }) => {
   useEffect(() => {
     if (calendarMode === "daily") {
-      changeToWeeklyMode();
+      setWeeklyCalendarMode();
     }
   }, []);
 
@@ -37,8 +37,8 @@ const mapDispatchToProps = (dispatch) => {
     goNextWeek() {
       dispatch(goNextWeek());
     },
-    changeToWeeklyMode() {
-      dispatch(changeToWeeklyMode());
+    setWeeklyCalendarMode() {
+      dispatch(setWeeklyCalendarMode());
     },
   };
 };
