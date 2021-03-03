@@ -5,9 +5,9 @@ export function getHilightStyle(diffForCurrentDate) {
 export function getBorderStyle(diffForCurrentDate) {
   let style;
 
-  if(diffForCurrentDate < 0) {
+  if (diffForCurrentDate < 0) {
     style = "rightBorder";
-  } else if(diffForCurrentDate > 0) {
+  } else if (diffForCurrentDate > 0) {
     style = "leftBorder";
   }
 

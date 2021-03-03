@@ -1,18 +1,18 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-import EventsAdd from "../EventsAdd";
-import EventsDetail from "../EventsDetail";
+import EventCreate from "../EventCreate";
+import EventsDetail from "../EventDetail";
 import styles from "./Events.module.css";
 
-function Events() {
+function Events({ createEvent }) {
   const location = useLocation();
   const subPath = location.pathname.split('events/')[1];
 
   return (
     <div className={styles.wrapper}>
       {subPath === "new"
-        ? <EventsAdd />
+        ? <EventCreate onCreate={createEvent}/>
         : <EventsDetail eventId={subPath}/>}
     </div>
   );

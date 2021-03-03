@@ -11,6 +11,10 @@ export function getCurrentDateStr(format = DATE_FORMAT) {
   return moment().format(format);
 }
 
+export function getCurrentMoment() {
+  return moment();
+}
+
 export function getCalcDay(date, calcDay) {
   if (calcDay >= 0) {
     return moment(date).add(calcDay, 'day').format(DATE_FORMAT);
@@ -35,4 +39,16 @@ export function getDayOfTheWeek(date) {
 
 export function getOnlyDays(date) {
   return moment(date).format("DD");
+}
+
+export function getDiffHour(startMoment, endMoment) {
+  return Math.ceil(moment.duration(endMoment.diff(startMoment)).asHours());
+}
+
+export function checkIsSameDate(date, anotherDate, dateFormat) {
+  return moment(date, dateFormat).isSame(moment(anotherDate, dateFormat));
+}
+
+export function checkIsSameDay(date, anotherDate, dateFormat) {
+  return moment(date, dateFormat).isSame(moment(anotherDate, dateFormat), 'day');
 }
