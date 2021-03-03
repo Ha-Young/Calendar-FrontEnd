@@ -18,9 +18,9 @@
 }
 
 .timeGrid {
-  position: fixed;
+  position: absolute;
   height: 90%;
-  top: 140px;
+  top: 170px;
   left: 10;
 
   font-weight: 300;

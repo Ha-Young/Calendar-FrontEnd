@@ -1,7 +1,7 @@
 .wrapper {
   position: absolute;
   top: 700px;
-  right: 10px;
+  right: 200px;
   font-size: 60px;
   color: #1979fe;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.7));
