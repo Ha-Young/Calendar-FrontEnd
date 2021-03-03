@@ -1,0 +1,20 @@
+@import url("../../assets/styles/reset.css");
+
+.DayTable {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  grid-template-rows: repeat(24, 30px);
+  overflow: scroll;
+  width: 70vw;
+  height: 50vh;
+  background-color: #FFF8E1;
+}
+
+.DayTable div {
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.link {
+  text-decoration: none;
+}
