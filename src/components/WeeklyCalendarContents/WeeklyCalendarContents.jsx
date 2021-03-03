@@ -43,13 +43,6 @@ export default function WeeklyCalendarContents({ selectedWeek, loadEvents, event
     readData();
   }, [selectedWeek]);
 
-  useEffect(() => {
-    console.log(document.querySelector(`div[data-dayindex="1"]`).classList);
-    // events.map((dailyEvent, dayIndex) => {
-    //   document.querySelector(`div[data-dayindex=${dayIndex}]`).className
-    // })
-  }, [events]);
-
   return (
     <div className={styles.wrapper}>
       {selectedWeek && createCalendar(selectedWeek)}
