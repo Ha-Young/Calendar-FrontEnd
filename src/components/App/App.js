@@ -5,19 +5,16 @@ import { Route, Switch } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
-import Month from "../Month/Month";
+import MonthContainer from "../MonthContainer/MonthContainer";
 
-function App({ onInitialLoad }) {
-  useEffect(() => {
-    onInitialLoad();
-  }, []);
+function App(props) {
 
   return (
     <div className={styles.App}>
       <Header />
       <Switch>
         <Route path="/" exact>
-          <Month />
+          <MonthContainer />
         </Route>
         <Route path="/event">
           <div>Event</div>
