@@ -9,12 +9,31 @@
 
  */
 
-import moment from "moment";
+import { MOVE_NEXT_DAY, MOVE_PREV_DAY, RESET_DAY } from "../constants/actionTypes";
 
-const today = moment().format('dd');
 
-const initialState = {};
+const initialState = {
+  count: 0,
+};
 
-export default function reducer(state = initialState) {
-  return state;
-}
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case MOVE_NEXT_DAY:
+      return {
+        ...state,
+        count: state.count + 1
+      };
+    case MOVE_PREV_DAY:
+      return {
+        ...state,
+        count: state.count - 1
+      };
+    case RESET_DAY:
+      return {
+        ...state,
+        count: initialState.count
+      };
+    default:
+      return state;
+  }
+};

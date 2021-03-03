@@ -11,13 +11,13 @@ export async function saveSampleData() {
     hello: "hi",
     text: "dummy",
   });
-}
+};
 
 export async function updateSample() {
   const database = firebase.database();
 
   await database.ref("test").child("123").update({test: "Change?"});
-}
+};
 
 export async function addSample() {
   const database= firebase.database();
@@ -29,7 +29,7 @@ export async function addSample() {
   updates["/test/123/" + newKey] = "value";
 
   await database.ref().update(updates);
-}
+};
 
 export async function addfolder() {
   const databaseRef = firebase.database().ref();
@@ -38,4 +38,4 @@ export async function addfolder() {
     const data = snapShot.val();
     console.log(data);
   });
-}
+};

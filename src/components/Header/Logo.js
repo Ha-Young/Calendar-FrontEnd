@@ -25,6 +25,6 @@ const Logo = () => {
       <p>Calendar</p>
     </Wrapper>
   );
-}
+};
 
 export default Logo;

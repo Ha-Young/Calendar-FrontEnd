@@ -24,6 +24,6 @@ const WeekStr = () => {
       })}
     </Wrapper>
   );
-}
+};
 
 export default WeekStr;

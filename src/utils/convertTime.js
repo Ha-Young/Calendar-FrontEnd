@@ -14,6 +14,6 @@ const convertTime = time => {
   if (time > 12) {
     return (time - 12) + " PM";
   }
-}
+};
 
 export default convertTime;

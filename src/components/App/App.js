@@ -8,35 +8,33 @@ import GlobalStyles from "./GlobalStyles";
 import AppHeader from "../Header/AppHeader";
 import Weekly from "../Weekly/Weekly";
 import Daily from "../Daily/Daily";
-import dayCalculater from "../../utils/dayCalculater";
 
 const Wrapper = styled.div`
 `;
 
-const App = ({ onInitialLoad }) => {
+const App = ({ onInitialLoad, count, getNextDay, getPrevDay, resetDay }) => {
   useEffect(() => {
     onInitialLoad();
-    dayCalculater();
   }, []);
 
   return (
     <Wrapper>
       <GlobalStyles />
-      <AppHeader />
+      <AppHeader nextDay={getNextDay} prevDay={getPrevDay} resetDay={resetDay} />
 
       <Switch>
         <Route path="/" exact>
-          <Daily />
+          <Daily count={count} />
         </Route>
         <Route path="/weekly">
           <Weekly />
         </Route>
         <Route path="/daily">
-          <Daily />
+          <Daily count={count} />
         </Route>
       </Switch>
     </Wrapper>
   );
-}
+};
 
 export default App;

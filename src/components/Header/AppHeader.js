@@ -31,18 +31,18 @@ const Header = styled.header`
 `;
 
 // TODO: Create your own header.
-const AppHeader = () => {
+const AppHeader = ({ nextDay, prevDay, resetDay }) => {
   return (
     <Header>
       <nav>
         <div className="flexBox">
           <Logo />
-          <Control />
+          <Control nextDay={nextDay} prevDay={prevDay} resetDay={resetDay} />
         </div>
         <Nav />
       </nav>
     </Header>
   );
-}
+};
 
 export default AppHeader;

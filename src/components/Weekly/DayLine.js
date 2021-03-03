@@ -22,6 +22,6 @@ const DayLine = () => {
       })}
     </Wrapper>
   );
-}
+};
 
 export default DayLine;

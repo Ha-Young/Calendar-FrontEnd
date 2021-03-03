@@ -3,7 +3,6 @@ import styled from "styled-components";
 import RightArrowButton from "./RightArrowButton";
 import LeftArrowButton from "./LeftArrowButton";
 import Today from "./Today";
-
 import Nav from "./Nav";
 
 const HeaderControl = styled.div`
@@ -13,17 +12,17 @@ const HeaderControl = styled.div`
   width: 18em;
 `;
 
-const Control = () => {
+const Control = ({ nextDay, prevDay, resetDay }) => {
   return (
     <HeaderControl>
-      <Today />
+      <Today resetDay={resetDay} />
       <div>
-        <LeftArrowButton />
-        <RightArrowButton />
+        <LeftArrowButton prevDay={prevDay} />
+        <RightArrowButton nextDay={nextDay} />
       </div>
       <Nav />
     </HeaderControl>
   );
-}
+};
 
 export default Control;

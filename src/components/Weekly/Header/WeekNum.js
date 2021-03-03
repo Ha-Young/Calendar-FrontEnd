@@ -48,6 +48,6 @@ const WeekNum = () => {
       })}
     </Wrapper>
   );
-}
+};
 
 export default WeekNum;

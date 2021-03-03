@@ -28,6 +28,6 @@ const Nav = () => {
       <FontAwesomeIcon icon={faCaretDown} />
     </HeaderNav>
   );
-}
+};
 
 export default Nav;

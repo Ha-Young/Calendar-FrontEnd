@@ -29,6 +29,6 @@ const EventLine = () => {
       })}
     </Wrapper>
   );
-}
+};
 
 export default EventLine;

@@ -45,6 +45,6 @@ const TimeLine = () => {
       })}
     </Wrapper>
   );
-}
+};
 
 export default TimeLine;

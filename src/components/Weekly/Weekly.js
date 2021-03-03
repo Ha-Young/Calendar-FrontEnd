@@ -12,6 +12,6 @@ const Weekly = () => {
       <DayLine />
     </Calendar>
   );
-}
+};
 
 export default Weekly;

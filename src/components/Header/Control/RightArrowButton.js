@@ -3,12 +3,12 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Button from "../../../shared/ArrowBtn";
 
-const RightArrowButton = () => {
+const RightArrowButton = ({ nextDay }) => {
   return (
-    <Button>
+    <Button onClick={nextDay}>
       <FontAwesomeIcon icon={faChevronRight} />
     </Button>
   );
-}
+};
 
 export default RightArrowButton;
