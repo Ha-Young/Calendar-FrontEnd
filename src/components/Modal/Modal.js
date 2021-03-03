@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import styles from './Modal.module.css';
+import { TIME_UNTIL_ELEVEN, TIME_UNTIL_TWELVE } from '../../constant';
 
 const Modal = ({ addsubmitdata }) => {
+  const history = useHistory();
   const { keyId } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -11,11 +13,11 @@ const Modal = ({ addsubmitdata }) => {
   let startOptionList = [];
   let endOptionList = [];
 
-  for (let i = 0; i < 24; i++) {
+  for (let i = 0; i < TIME_UNTIL_ELEVEN; i++) {
     startOptionList.push(i);
   }
 
-  for (let i = 1; i < 25; i++) {
+  for (let i = 1; i < TIME_UNTIL_TWELVE; i++) {
     endOptionList.push(i);
   }
 
@@ -47,19 +49,21 @@ const Modal = ({ addsubmitdata }) => {
     } else {
       setEndTime(e.target.value);
     }
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addsubmitdata(
+    addsubmitdata({
       keyId,
       title,
       description,
       startTime,
       endTime
-    );
-  }
+    });
+
+    history.goBack();
+  };
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
@@ -116,6 +120,6 @@ const Modal = ({ addsubmitdata }) => {
       </div>
     </form>
   )
-}
+};
 
 export default Modal;

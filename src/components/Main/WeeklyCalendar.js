@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeSundayDate, setLastWeek, setNextWeek } from '../../utils';
+import { makeSundayDate, setLastWeek, setNextWeek, makeWeekFullDate } from '../../utils';
 import styles from './WeeklyCalendar.module.css';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { TIME_TABLE, SCHEDULE_BOX } from '../../constant';
@@ -11,7 +11,7 @@ const WeeklyCalendar = () => {
   const year = todayDate.getFullYear();
   const month = todayDate.getMonth();
   const { url } = useRouteMatch();
-  const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
   const timeCells = [];
   const eventCells = [];
   let sundayDate = makeSundayDate(todayDate);
@@ -56,7 +56,7 @@ const WeeklyCalendar = () => {
     )
   });
 
-  daysList = DAYS.map((day, index) => {
+  daysList = days.map((day, index) => {
     let startDate = sundayDate.getDate();
 
     sundayDate.setDate(++startDate);
@@ -67,15 +67,13 @@ const WeeklyCalendar = () => {
           <div>{startDate - 1}</div>
         </div>
         <div className={styles.eventWrapper} key={index}>
-          {eventCells.map((item, index) => {
-            const keyId = index + (startDate - 1);
+          {eventCells.map((item, time) => {
+            const keyId = makeWeekFullDate(year, month, startDate, time);
 
             return (
               <div key={keyId}>
                 <Link to={`${url}/${keyId}`}>
-                  <div
-                    className={styles.event}
-                  />
+                  <div className={styles.event} />
                 </Link>
               </div>
               )

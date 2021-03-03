@@ -1,39 +1,17 @@
 import { ADD_SUBMIT_DATA } from "./actionTypes";
 
-const initialState = {
-  title: {
-  },
-  description: {
-  },
-  startdate: {
-  },
-  enddate: {
-  }
-};
-
-export default function reducer(state = initialState, action) {
+const reducer = (state = { events: [] }, action) => {
 
   switch(action.type) {
     case ADD_SUBMIT_DATA:
       return {
-        title: {
-          ...state.title,
-          [action.id]: action.title
-        },
-        description: {
-          ...state.description,
-          [action.id]: action.description
-        },
-        startdate: {
-          ...state.startdate,
-          [action.id]: action.startdate
-        },
-        enddate: {
-          ...state.enddate,
-          [action.id]: action.enddate
-        }
-      }
+        ...state,
+        [action.schedule.keyId]: { ...action.schedule },
+        events: [...state.events, action.schedule]
+      };
     default:
-      return state;
+      return {...state};
   }
-}
+};
+
+export default reducer;

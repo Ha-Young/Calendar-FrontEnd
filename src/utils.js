@@ -14,3 +14,7 @@ export const setLastWeek = (dateObj, date) => {
 export const setNextWeek = (dateObj, date) => {
   dateObj.setDate(date + 7);
 }
+
+export const makeWeekFullDate = (year, month, startDate, time) => {
+  return `${year}-${month + 1}-${startDate - 1}-${time}`;
+}

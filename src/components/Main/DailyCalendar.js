@@ -59,8 +59,7 @@ const DailyCalendar = () => {
           return (
             <div key={keyId}>
               <Link to={`/dailycalendar/${keyId}`}>
-                <div className={styles.event}
-                />
+                <div className={styles.event} />
               </Link>
             </div>
             )
