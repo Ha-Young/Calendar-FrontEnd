@@ -1,6 +1,7 @@
 import {
   SUBMIT_EVENT,
 } from "../constants/actionTypes";
+import { getKeyFormat } from "../utils/date";
 
 export default function events(state = {byId: {}, allIds: []}, action) {
   const payload = action.payload;
@@ -37,7 +38,8 @@ export function sortEvent(payload) {
   });
 }
 
-export function constructData(event) {
-  return {
-  };
+export function getEvent(date) {
+  const id = getKeyFormat(date);
+
+  return {};
 }

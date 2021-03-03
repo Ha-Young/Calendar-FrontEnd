@@ -17,6 +17,10 @@ export function calculateDate(date, fromDate) {
   return date.clone().add(fromDate, "days");
 }
 
+export function getKeyFormat(date) {
+  return date.format("YYYY-MM-DD");
+}
+
 export function getDayOfTheWeek(date) {
   switch (date.day()) {
     case 0:

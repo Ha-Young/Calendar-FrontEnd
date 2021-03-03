@@ -21,7 +21,7 @@ function TimeSelector({ time, onChange}) {
       <button data-id={PREV} onClick={handlePrevClick}>
         <FaAngleLeft />
       </button>
-      <span>{time.format("HH시")}</span>
+      <span>{time.format("H시")}</span>
       <button data-id={NEXT} onClick={handleNextClick}>
         <FaAngleRight />
       </button>
