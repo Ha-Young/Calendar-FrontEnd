@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../Calendar/Weekly/Weekly.module.css";
+import styles from "./Calendar.module.css";
 
 export default function Calendar1({ day, dayID, onClickDate }) {
   const result = [];

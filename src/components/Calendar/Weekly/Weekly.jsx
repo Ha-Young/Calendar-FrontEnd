@@ -27,7 +27,7 @@ export default function Weekly() {
       <Header
         value={weeklyValue}
         setValue={setWeeklyValue}
-        TypeOfTime="weekly"
+        TypeOfTime="week"
       />
       <section className={styles.contents}>
         <TimeSidebar />

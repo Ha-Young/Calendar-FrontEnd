@@ -22,7 +22,7 @@ export default function CalendarHeader({ value, setValue, TypeOfTime }) {
     <div className={styles.header}>
       <button
         className={styles.previous}
-        onClick={() => !setValue(previousMonth())}
+        onClick={() => setValue(previousMonth())}
       >
         {String.fromCharCode(171)}
       </button>
