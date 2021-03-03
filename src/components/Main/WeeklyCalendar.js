@@ -58,7 +58,7 @@ const WeeklyCalendar = ({ children }) => {
       currentDate.setMonth(month);
     }
 
-    if (year !== nextYvggear) {
+    if (year !== nextYear) {
       currentDate.setFullYear(year);
     }
 

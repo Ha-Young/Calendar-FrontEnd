@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = () => ({
-  // This function is passed to App component.
+
   onInitialLoad: () => {
     saveSampleData();
   },
