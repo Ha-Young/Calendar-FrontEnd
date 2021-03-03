@@ -1,3 +1,3 @@
-export function letItDispatch(value, dispatch) {
-  dispatch(value);
+export function letDispatch(value, dispatch) {
+  console.log(dispatch(value));
 }

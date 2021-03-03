@@ -9,4 +9,7 @@ export const setCalendarFor = {
   fromToHour: (hour) => ({type: calendar.SET_FROM_TO_HOUR, payload: hour}),
 };
 
-export const setUserEventFor = (userEvent) => ({type: userEvent.SET_EVENT});
+export const setUserEvent = (event) => ({
+  type: userEvent.SET_EVENT,
+  payload: event,
+});

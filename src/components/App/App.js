@@ -24,7 +24,7 @@ function App(props) {
         </Route>
         <Route path="/event">
         <Modal>
-          <EventDetails getState={props.selectorToCalendar} dispatches={props.actToCalendar}/>
+          <EventDetails getState={props.selectorToCalendar} dispatches={props.dispatchBundle}/>
         </Modal>
         </Route>
       </Switch>
