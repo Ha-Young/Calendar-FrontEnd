@@ -1,7 +1,7 @@
 import moment from "moment";
 import { dateConst } from "constants/constants";
 
-export const getWeek = (ref = 0) => {
+export const getDaysOfWeek = (ref = 0) => {
   const thisWeek = [];
 
   for (let i = ref; i < ref + dateConst.DAY_OF_WEEK; i++) {
@@ -20,16 +20,23 @@ export const getWeekOfMonth = (count = 0) => {
 
   return monthAndWeek;
 };
+export const getWeekOfMonthByDate = (date = "") => {
+  return Math.ceil(moment(date).day(0).date() / 7);
+};
 
 export const getThisWeek = () => {
-  console.log(Math.ceil(moment().day(0).date() / 7));
+  return Math.ceil(moment().day(0).date() / 7);
 };
 
 export const getToday = () => {
   return moment().format("YYYY-MM-DD");
 };
 
-export const getDate = (ref = 0) => {
+export const getDateISOByRef = (ref = 0) => {
+  return moment().add(ref, "days").format("YYYY-MM-DD");
+};
+
+export const getDateByRef = (ref = 0) => {
   const momentDate = moment().add(ref, "days");
   return {
     month: momentDate.format("MM"),
@@ -40,9 +47,9 @@ export const getDate = (ref = 0) => {
 
 export const parseDate = (date = "") => {
   return {
-    year: moment(date).format("YYYY"),
-    month: moment(date).format("MM"),
-    weekOfMonth: Math.ceil(moment(date).day(0).date() / 7).toString(),
+    year: moment(date).day(0).format("YYYY"),
+    month: moment(date).day(0).format("MM"),
+    weekOfMonth: getWeekOfMonthByDate(date).toString(),
   };
 };
 

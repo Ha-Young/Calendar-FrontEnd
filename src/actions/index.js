@@ -1,5 +1,5 @@
 import { ACTION } from "constants/actionTypes";
-import { generateKey } from "utils/utilFunction";
+import { generateKey, getDateByRef } from "utils/utilFunction";
 
 const setInitialize = (eventList, userState) => {
   if (!eventList) {
@@ -12,6 +12,32 @@ const setInitialize = (eventList, userState) => {
     type: ACTION.SET_INITIALIZE,
     eventList,
     userState,
+  };
+};
+
+const showPreviousDay = (dateCount) => {
+  return {
+    type: ACTION.SHOW_PREVIOUS_DAY,
+    currentDate: getDateByRef(dateCount),
+  };
+};
+
+const showNextDay = (dateCount) => {
+  return {
+    type: ACTION.SHOW_NEXT_DAY,
+    currentDate: getDateByRef(dateCount),
+  };
+};
+
+const showPreviousWeek = () => {
+  return {
+    type: ACTION.SHOW_PREVIOUS_WEEK,
+  };
+};
+
+const showNextWeek = () => {
+  return {
+    type: ACTION.SHOW_NEXT_WEEK,
   };
 };
 
@@ -45,6 +71,10 @@ const editEvent = (obj) => {
 
 export const actionCreators = {
   setInitialize,
+  showPreviousDay,
+  showNextDay,
+  showPreviousWeek,
+  showNextWeek,
   addEvent,
   deleteEvent,
   editEvent,

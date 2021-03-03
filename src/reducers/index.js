@@ -1,10 +1,12 @@
 import { ACTION } from "constants/actionTypes";
-import { getWeek, getToday } from "utils/utilFunction";
+import { getDaysOfWeek, getDateByRef } from "utils/utilFunction";
 
 const initialState = {
   userState: false,
-  events: [],
-  currentPeriod: "",
+  currentWeek: getDaysOfWeek(0),
+  weeklyEvent: [],
+  currentDate: getDateByRef(0),
+  dailyEvent: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -16,6 +18,24 @@ export default function reducer(state = initialState, action) {
         userState: action.userState,
       };
 
+    case ACTION.SHOW_PREVIOUS_DAY:
+      return {
+        ...state,
+        currentDate: action.currentDate,
+      };
+
+    case ACTION.SHOW_NEXT_DAY:
+      return {
+        ...state,
+        currentDate: action.currentDate,
+      };
+
+    case ACTION.SHOW_PREVIOUS_WEEK:
+      return state;
+
+    case ACTION.SHOW_NEXT_WEEK:
+      return state;
+
     case ACTION.ADD_EVENT:
       return {
         ...state,
@@ -23,13 +43,13 @@ export default function reducer(state = initialState, action) {
       };
 
     case ACTION.DELETE_EVENT:
-      return;
+      return state;
 
     case ACTION.EDIT_EVENT:
       return { ...state, title: action.title };
 
     case ACTION.NO_EVENT:
-      return;
+      return state;
 
     default:
       return state;

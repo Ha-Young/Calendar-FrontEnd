@@ -1,27 +1,28 @@
 import React, { useState } from "react";
 import { directionConst } from "constants/constants";
-import { getDate } from "utils/utilFunction";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
 import DailySchedule from "../components/DailySchedule/DailySchedule";
 import { connect } from "react-redux";
+import { actionCreators } from "actions";
 
-const Daily = (props) => {
-  const [date, setDate] = useState(getDate(0));
+const Daily = ({ currentDate, showPreviousDay, showNextDay }) => {
   const [dateCount, setDateCount] = useState(0);
+  console.log(currentDate);
 
   const setNewDate = (direction) => {
     let currentDateCount = dateCount;
 
     if (direction === directionConst.PREV) {
       currentDateCount--;
+      showPreviousDay(currentDateCount);
     }
 
     if (direction === directionConst.NEXT) {
       currentDateCount++;
+      showNextDay(currentDateCount);
     }
 
     setDateCount(currentDateCount);
-    setDate(getDate(currentDateCount));
   };
 
   return (
@@ -29,11 +30,11 @@ const Daily = (props) => {
       <CalenderHeader
         onClick={setNewDate}
         currentPeriod={
-          date.month +
+          currentDate.month +
           "월 " +
-          date.date +
+          currentDate.date +
           "일 " +
-          date.day.toUpperCase().slice(0, 3)
+          currentDate.day.toUpperCase().slice(0, 3)
         }
       />
       <DailySchedule />
@@ -41,8 +42,18 @@ const Daily = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  something: "Mapping redux state to App component props.",
-});
+const mapStateToProps = (state) => {
+  const { currentDate } = state;
+  return { currentDate };
+};
 
-export default connect(mapStateToProps)(Daily);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showPreviousDay: (dateCount) =>
+      dispatch(actionCreators.showPreviousDay(dateCount)),
+    showNextDay: (dateCount) =>
+      dispatch(actionCreators.showPreviousDay(dateCount)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Daily);

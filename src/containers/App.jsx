@@ -4,7 +4,7 @@ import AppRouter from "containers/AppRouter";
 import Footer from "components/Footer/Footer";
 import Loading from "components/Loading/Loading";
 import { authService } from "api/firebaseService";
-import { fetchUserEvent, testFirebase } from "api";
+import { initializeApp } from "api";
 import { actionCreators } from "actions";
 import { getThisWeek } from "utils/utilFunction";
 
@@ -15,11 +15,10 @@ const App = ({ onLoggedIn, state }) => {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        fetchUserEvent((eventList) => {
-          onLoggedIn(eventList, true);
+        initializeApp((dailyEvent) => {
+          onLoggedIn(dailyEvent, true);
           setIsLoggedIn(true);
           setReady(true);
-          // testFirebase();
           getThisWeek();
         });
       } else {
@@ -48,8 +47,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoggedIn: (eventList, userState) => {
-    dispatch(actionCreators.setInitialize(eventList, userState));
+  onLoggedIn: (dailyEvent, userState) => {
+    dispatch(actionCreators.setInitialize(dailyEvent, userState));
   },
 });
 

@@ -4,11 +4,9 @@ import { getToday, parseDate } from "utils/utilFunction";
 
 const database = firebaseInstance.database();
 
-export async function fetchUserEvent(callback) {
-  if (!callback || typeof callback !== "function") {
-    return;
-  }
+export async function fetchDailyEvent(callback) {}
 
+export async function initializeApp(callback) {
   const userId = authService.currentUser.uid;
   const { year, month, weekOfMonth } = parseDate(getToday());
 
