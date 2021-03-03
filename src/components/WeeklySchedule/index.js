@@ -1,22 +1,23 @@
 import React from "react";
 
-import { getCalcDay } from "../../utils/date";
+import { getWeekDaysBasedOnDate } from "../../utils/date";
 import DailySchedule from "../DailySchedule";
 
-function WeeklySchedule({ currentDate }) {
-  const weekCalcDays = [-3,-2,-1,0,1,2,3];
-
+function WeeklySchedule({ currentDate, eventListEachDay }) {
+  const weekList = getWeekDaysBasedOnDate(currentDate);
   return (
     <>
       {
-        weekCalcDays.map(calcDay => {
-          const date = getCalcDay(currentDate, calcDay);
-
-          return (<DailySchedule
-            key={date}
-            date={date}
-            diffForCurrentDate={calcDay}
-          />);
+        weekList.map(({ date, calcDay }) => {
+          const eventList = eventListEachDay[date];
+          return (
+            <DailySchedule
+              key={date}
+              date={date}
+              diffForCurrentDate={calcDay}
+              eventList={eventList}
+            />
+          );
         })
       }
     </>
