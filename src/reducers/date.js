@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
 
-import { CREATE_EVNETS, RECEIVE_EVENTS } from "../constants/actionTypes";
+import { CHANGE_DATE, CREATE_EVNETS,  RECEIVE_EVENTS } from "../constants/actionTypes";
+import { VIEW_OPTION } from "../constants/stateTypes";
+import { getCurrentDateStr, getWeekDaysBasedOnDate } from "../utils/date";
 
 const initialStatus_byId = {
   "2021-03-03": {
@@ -11,9 +13,9 @@ const initialStatus_byId = {
     id: "2021-03-01",
     events: ["2021-03-01_12:2"],
   },
-  "2020-03-04": {
-    id: "2020-03-04",
-    events: ["2020-03-04_13:4"],
+  "2021-03-04": {
+    id: "2021-03-04",
+    events: ["2021-03-04_13:4", "2021-03-04_18:3"],
   },
 };
 
@@ -44,12 +46,33 @@ function byId(state = initialStatus_byId, action) {
   }
 }
 
-// function visibleId(state = [], action) {
-//   switch(action.type) {
-//   }
-// }
+function visibleId(state = [getCurrentDateStr()], action) {
+  switch(action.type) {
+    case CHANGE_DATE:
+      const newVisibleId = getVisibleId({ ...action.payload });
+      return newVisibleId;
+    default:
+      return state;
+  }
+}
 
 export default combineReducers({
   byId,
-  // visibleId
+  visibleId,
 });
+
+export function getEventsOnDate(state, id) {
+  if (state.byId[id] && state.byId[id].events) {
+    return state.byId[id].events;
+  }
+
+  return [];
+}
+
+function getVisibleId({ currentDate, viewOption }) {
+  if (viewOption === VIEW_OPTION.WEEKLY) {
+    return getWeekDaysBasedOnDate(currentDate);
+  }
+
+  return [currentDate];
+}
