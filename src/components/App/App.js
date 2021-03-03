@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
@@ -24,7 +24,7 @@ function App(props) {
         </Route>
         <Route path="/event">
         <Modal>
-          <EventDetails dispatches={props.actToCalendar}/>
+          <EventDetails getState={props.selectorToCalendar} dispatches={props.actToCalendar}/>
         </Modal>
         </Route>
       </Switch>

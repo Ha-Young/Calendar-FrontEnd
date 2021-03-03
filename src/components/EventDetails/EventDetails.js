@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { MAX_MIN_DATE } from "../../constants"
 import { letItDispatch } from "../../utils/eventHandlers";
-import { getFromStringDateTo } from "../../utils";
-export default function EventDetails({dispatches}) {
+export default function EventDetails({getState, dispatches}) {
   const {
     setYear,
     setMonth,
@@ -10,6 +9,7 @@ export default function EventDetails({dispatches}) {
     setFromHour,
     setToHour,
   } = dispatches;
+
   const [content, setContent] = useState("");
 
   return (
@@ -28,7 +28,7 @@ export default function EventDetails({dispatches}) {
             type="number"
             min={MAX_MIN_DATE.YEAR.MIN}
             max={MAX_MIN_DATE.YEAR.MAX}
-            value={""}
+            value={getState("year")}
             onChange={(e) => letItDispatch(Number(e.target.value), setYear)}
           />
         </label>
@@ -39,7 +39,7 @@ export default function EventDetails({dispatches}) {
             type="number"
             min={MAX_MIN_DATE.MONTH.MIN}
             max={MAX_MIN_DATE.MONTH.MAX}
-            value={""}
+            value={getState("month")}
             onChange={(e) => letItDispatch(Number(e.target.value), setMonth)}
           />
         </label>
@@ -50,7 +50,7 @@ export default function EventDetails({dispatches}) {
             type="number"
             min={MAX_MIN_DATE.DATE.MIN}
             max={MAX_MIN_DATE.DATE.MAX}
-            value={""}
+            value={getState("date")}
             onChange={(e) => letItDispatch(Number(e.target.value), setDate)}
           />
         </label>
@@ -62,7 +62,7 @@ export default function EventDetails({dispatches}) {
           type="number"
           min={MAX_MIN_DATE.HOUR.MIN}
           max={MAX_MIN_DATE.HOUR.MAX}
-          value={""}
+          value={getState("fromHour")}
           onChange={(e) => letItDispatch(Number(e.target.value), setFromHour)}
         />
       </label>
@@ -73,7 +73,7 @@ export default function EventDetails({dispatches}) {
           type="number"
           min={MAX_MIN_DATE.HOUR.MIN}
           max={MAX_MIN_DATE.HOUR.MAX}
-          value={""}
+          value={getState("toHour")}
           onChange={(e) => letItDispatch(Number(e.target.value), setToHour)}
         />
       </label>

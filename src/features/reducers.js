@@ -1,5 +1,5 @@
 import { calendar } from "../constants/actionTypes";
-import { setCalendar } from "../utils/supportReduce";
+import { setCalendar } from "../utils/reducerSuppotor";
 import { CALENDAR_STATE_KEY } from "../constants";
 const current = new Date();
 const initiateState = {

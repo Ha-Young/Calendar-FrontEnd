@@ -14,3 +14,5 @@
    SET_TO_HOUR: "SET_TO_HOUR",
    SET_FROM_TO_HOUR: "SET_FROM_TO_HOUR",
  };
+
+ export const userEvent = {SET_EVENT: "SET_EVENT"};

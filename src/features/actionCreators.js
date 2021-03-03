@@ -1,4 +1,4 @@
-import { calendar } from "../constants/actionTypes";
+import { calendar, userEvent } from "../constants/actionTypes";
 
 export const setCalendarFor = {
   year: (year) => ({type: calendar.SET_YEAR, payload: year}),
@@ -8,3 +8,5 @@ export const setCalendarFor = {
   toHour: (hour) => ({type: calendar.SET_TO_HOUR, payload: hour}),
   fromToHour: (hour) => ({type: calendar.SET_FROM_TO_HOUR, payload: hour}),
 };
+
+export const setUserEventFor = (userEvent) => ({type: userEvent.SET_EVENT});
