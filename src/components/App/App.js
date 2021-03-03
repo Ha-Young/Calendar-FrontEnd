@@ -1,7 +1,4 @@
 import React from "react";
-// TODO: We are using CSS Modules here.
-// Do your own research about CSS Modules.
-// For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
@@ -22,8 +19,8 @@ const App = ({
 }) => {
   return (
     <div className={styles.App}>
-      <Header 
-        onClickButton={handleChangeCalendarType} 
+      <Header
+        onClickButton={handleChangeCalendarType}
         onToggle={handleChangeCalendarPage}
         type={isDailyCalendar}
         currentDate={currentDate}
@@ -31,7 +28,7 @@ const App = ({
       <SideBar />
       <Switch>
         <Route path="/" exact>
-          <CalendarPage 
+          <CalendarPage
             onLoad={loadEventData}
             eventList={eventList}
             dateList={dateList}

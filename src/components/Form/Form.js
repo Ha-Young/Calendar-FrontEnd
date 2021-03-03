@@ -1,29 +1,14 @@
 import React, { useState } from "react";
 import ColorPicker, { useColor } from "react-color-palette";
-import styles from "./NewEventPage.module.css";
+import styles from "./Form.module.css";
 import { validateText, validateTime } from "../../utils/vailidation";
-import { currentDay, today } from "../../utils/date";
+import { useHistory } from "react-router";
 
-const initialFormState = {
-  title: "",
-  description: "",
-  id: currentDay(today),
-  startTime: "",
-  endTime: "",
-};
-
-const Form = ({ onSubmit, initialState }) => {
+const Form = ({ onSubmit, initialState, children }) => {
   const [errorMessage, setErrorMessage] = useState("");
-  const [newEventData, setNewEventData] = useState(
-    initialState
-      ? initialState
-      : initialFormState
-  );
-  const [color, setColor] = useColor(
-    initialState
-      ? initialState.color
-      : null
-  );
+  const [newEventData, setNewEventData] = useState(initialState);
+  const [color, setColor] = useColor(initialState.color);
+  const history = useHistory();
 
   const handleInputChange = ({
     target: {
@@ -55,9 +40,10 @@ const Form = ({ onSubmit, initialState }) => {
     setErrorMessage("");
 
     if (!validateData(newEventData)) {
-      setErrorMessage("error"); // 에러메시지 처리... 이것도 리덕스에서...?
+      setErrorMessage("error");
       return;
     }
+
     const hexColor = color.hex;
 
     onSubmit({
@@ -65,7 +51,7 @@ const Form = ({ onSubmit, initialState }) => {
       color: hexColor,
     });
 
-    setNewEventData(initialFormState);
+    history.goBack();
   };
 
   return (
@@ -127,6 +113,7 @@ const Form = ({ onSubmit, initialState }) => {
         {errorMessage}
         <button type="submit">Submit!</button>
       </form>
+      {children}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { generateCardHeight, generateCardLocation } from "../../utils/ui";
 const Card = ({ content }) => {
   const {
     color,
-    date,
+    id,
     endTime,
     path,
     startTime,
@@ -16,7 +16,7 @@ const Card = ({ content }) => {
   const cardLocation = generateCardLocation(startTime);
 
   return (
-    <Link to={`/events/${date}=${path}`}>
+    <Link to={`/events/${id}=${path}`}>
       <div
         className={styles.card}
         style={{
