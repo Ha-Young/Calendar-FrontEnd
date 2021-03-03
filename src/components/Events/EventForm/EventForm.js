@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "./EventForm.module.css";
 
-const EventForm = function () {
+const EventForm = function ({ setIsSchedule }) {
   const [title, setTitle] = useState("");
   const [startDateString, setStartDateString] = useState("");
   const [endDateString, setEndDateString] = useState("");
   const [description, setDescription] = useState("");
+  let location = useLocation();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -15,6 +17,10 @@ const EventForm = function () {
     // (Calendar도 event들어간거 update해줘야됨)
 
   }
+
+  useEffect(() => {
+    setIsSchedule(location.pathname);
+  }, []);
 
   return (
     <form className={styles["event-form"]} onSubmit={handleSubmit}>

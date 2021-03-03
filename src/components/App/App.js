@@ -12,8 +12,10 @@ import Auth from "../Auth/Auth";
 
 const App = function ({
   isWeeklySchedule,
+  isSchedule,
   date,
-  onInitialLoad
+  onInitialLoad,
+  setIsSchedule
 }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,11 +43,12 @@ const App = function ({
           {isLoggedIn
             ? (
               <>
-                <Header />
+                <Header isSchedule={isSchedule} />
                 <Main
                   isWeeklySchedule={isWeeklySchedule}
                   date={date}
                   isLoggedIn={isLoggedIn}
+                  setIsSchedule={setIsSchedule}
                 />
               </>
             )

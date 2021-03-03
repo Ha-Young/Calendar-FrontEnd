@@ -7,6 +7,7 @@ const mapStateToProps = function (state) {
   return {
     date: state.date,
     isWeeklySchedule: state.isWeeklySchedule,
+    isSchedule: state.isSchedule,
     events: state.events,
   };
 };
@@ -16,6 +17,12 @@ const mapDispatchToProps = function (dispatch) {
     onInitialLoad: () => {
       saveSampleData();
     },
+    setIsSchedule: path => {
+      dispatch({
+        type: types.SET_IS_SCHEDULE,
+        payload: path
+      });
+    }
     // updateNextWeek: () => {
     //   dispatch({
     //     type: types.UPDATE_NEXT_WEEK,

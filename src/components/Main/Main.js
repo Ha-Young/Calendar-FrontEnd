@@ -5,22 +5,22 @@ import Schedule from "../Schedule/Schedule";
 import Events from "../Events/Events";
 import EventForm from "../Events/EventForm/EventForm";
 
-const Main = function ({ isWeeklySchedule, date }) {
+const Main = function ({ isWeeklySchedule, date, setIsSchedule }) {
   return (
     <Switch>
       {(
         <>
-          <Route exact path="/" >
-            <Schedule isWeeklySchedule={isWeeklySchedule} date={date} />
+          <Route exact path="/">
+            <Schedule isWeeklySchedule={isWeeklySchedule} date={date} setIsSchedule={setIsSchedule} />
           </Route>
           <Route exact path="/events">
             <Events />
           </Route>
           <Route exact path="/events/new">
-            <EventForm />
+            <EventForm setIsSchedule={setIsSchedule} />
           </Route>
           <Route exact path="/calendar">
-            <Schedule isWeeklySchedule={isWeeklySchedule} date={date} />
+            <Schedule isWeeklySchedule={isWeeklySchedule} date={date} setIsSchedule={setIsSchedule} />
           </Route>
           <Route exact path="/profile" >
             <Profile />

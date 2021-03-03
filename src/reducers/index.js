@@ -12,6 +12,7 @@ import * as types from "../constants/actionTypes";
 const initialState = {
   date: new Date(),
   isWeeklySchedule: false,
+  isSchedule: true,
   events: {},
 };
 
@@ -46,7 +47,23 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         isWeeklySchedule
-      }
+      };
+    case types.SET_IS_SCHEDULE:
+      const isSchedule = action.payload.includes("calendar") ? true : false;
+      return {
+        ...state,
+        isSchedule
+      };
+    //이거 나중에 고쳐야됨
+    case types.ADD_EVENT:
+      return {
+        ...state,
+        events: {
+          ...state.events,
+          event: action.payload
+        }
+      };
+    default:
+      return state;
   }
-  return state;
 }
