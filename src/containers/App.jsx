@@ -1,35 +1,37 @@
 import React, { useState, useEffect } from "react";
-// import styles from "./App.module.css";
-import { authService } from "api/firebaseService";
+import { connect } from "react-redux";
 import AppRouter from "containers/AppRouter";
 import Footer from "components/Footer/Footer";
 import Loading from "components/Loading/Loading";
-import { connect } from "react-redux";
-import { saveSampleData } from "api";
+import { authService } from "api/firebaseService";
+import { fetchUserEvent, testFirebase } from "api";
+import { actionCreators } from "actions";
+import { getThisWeek } from "utils/utilFunction";
 
-const App = ({ onInitialLoad }) => {
-  const [init, setInit] = useState(false);
+const App = ({ onLoggedIn, state }) => {
+  const [ready, setReady] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setIsLoggedIn(true);
+        fetchUserEvent((eventList) => {
+          onLoggedIn(eventList, true);
+          setIsLoggedIn(true);
+          setReady(true);
+          // testFirebase();
+          getThisWeek();
+        });
       } else {
         setIsLoggedIn(false);
+        setReady(true);
       }
-      setInit(true);
     });
-  }, []);
-
-  useEffect(() => {
-    console.log(onInitialLoad);
-    onInitialLoad();
-  }, [onInitialLoad]);
+  }, [onLoggedIn]);
 
   return (
     <>
-      {init ? (
+      {ready ? (
         <>
           <AppRouter isLoggedIn={isLoggedIn} />
           <Footer />
@@ -42,13 +44,12 @@ const App = ({ onInitialLoad }) => {
 };
 
 const mapStateToProps = (state) => ({
-  something: "Mapping redux state to App component props.",
+  state,
 });
 
-const mapDispatchToProps = () => ({
-  // // This function is passed to App component.
-  onInitialLoad: () => {
-    saveSampleData();
+const mapDispatchToProps = (dispatch) => ({
+  onLoggedIn: (eventList, userState) => {
+    dispatch(actionCreators.setInitialize(eventList, userState));
   },
 });
 

@@ -12,13 +12,21 @@ export const getWeek = (ref = 0) => {
 };
 
 export const getWeekOfMonth = (count = 0) => {
-  const ref = moment().utc(true).day(count);
+  const target = moment().day(count);
   const monthAndWeek = {};
-  const weekOfMonth = ref.week() - moment(ref).startOf("month").week();
-  monthAndWeek.month = ref.format("MM");
+  const weekOfMonth = Math.ceil(target.date() / 7);
+  monthAndWeek.month = target.format("MM");
   monthAndWeek.week = weekOfMonth;
 
   return monthAndWeek;
+};
+
+export const getThisWeek = () => {
+  console.log(Math.ceil(moment().day(0).date() / 7));
+};
+
+export const getToday = () => {
+  return moment().format("YYYY-MM-DD");
 };
 
 export const getDate = (ref = 0) => {
@@ -28,4 +36,24 @@ export const getDate = (ref = 0) => {
     date: momentDate.format("DD"),
     day: momentDate.format("dddd"),
   };
+};
+
+export const parseDate = (date = "") => {
+  return {
+    year: moment(date).format("YYYY"),
+    month: moment(date).format("MM"),
+    weekOfMonth: Math.ceil(moment(date).day(0).date() / 7).toString(),
+  };
+};
+
+export const generateKey = (ref = 0) => {
+  let key = new Date().getTime().toString();
+  const fullLength = 20;
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+  for (let i = key.length; i < fullLength; i++) {
+    key += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  return key;
 };

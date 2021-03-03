@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./CalenderHeader.module.css";
 
-const WeeklyHeader = ({ onClick, currentPage }) => {
+const CalenderHeader = ({ onClick, currentPeriod }) => {
   return (
     <section className={styles.headerContainer}>
       <FontAwesomeIcon
@@ -15,7 +15,7 @@ const WeeklyHeader = ({ onClick, currentPage }) => {
         className={(styles.prev_icon, styles.icon)}
         icon={faChevronCircleLeft}
       />
-      <span className={styles.currentState}>{currentPage}</span>
+      <span className={styles.currentPeriod}>{currentPeriod}</span>
       <FontAwesomeIcon
         onClick={() => onClick(directionConst.NEXT)}
         className={(styles.next_icon, styles.icon)}
@@ -25,4 +25,4 @@ const WeeklyHeader = ({ onClick, currentPage }) => {
   );
 };
 
-export default WeeklyHeader;
+export default CalenderHeader;

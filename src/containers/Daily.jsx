@@ -28,7 +28,13 @@ const Daily = (props) => {
     <>
       <CalenderHeader
         onClick={setNewDate}
-        currentPage={date.month + "월 " + date.date + "일" + date.day}
+        currentPeriod={
+          date.month +
+          "월 " +
+          date.date +
+          "일 " +
+          date.day.toUpperCase().slice(0, 3)
+        }
       />
       <DailySchedule />
     </>
@@ -39,8 +45,4 @@ const mapStateToProps = (state) => ({
   something: "Mapping redux state to App component props.",
 });
 
-const mapDispatchToProps = () => ({
-  // This function is passed to App component.
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Daily);
+export default connect(mapStateToProps)(Daily);

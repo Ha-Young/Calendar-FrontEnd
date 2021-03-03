@@ -8,6 +8,7 @@ import Daily from "containers/Daily";
 import HandleEvent from "containers/HandleEvent";
 import EventDetail from "components/EventDetail/EventDetail";
 import Login from "components/Login/Login";
+import { typeConst } from "constants/constants";
 
 const AppRouter = ({ isLoggedIn }) => {
   return (
@@ -29,7 +30,7 @@ const AppRouter = ({ isLoggedIn }) => {
             </Route>
 
             <Route path="/events/new">
-              <HandleEvent />
+              <HandleEvent type={typeConst.ADD} />
             </Route>
 
             <Route path="/events/:eventId">
@@ -37,7 +38,7 @@ const AppRouter = ({ isLoggedIn }) => {
             </Route>
 
             <Route exact path="/events/:eventId/edit">
-              <HandleEvent /*{prop Event}*/ />
+              <HandleEvent type={typeConst.EDIT} />
             </Route>
 
             <Route exact path="/profile"></Route>
@@ -46,16 +47,19 @@ const AppRouter = ({ isLoggedIn }) => {
           </Switch>
         </section>
       ) : (
-        <Route exact path="/">
-          <Login />
-        </Route>
+        <Switch>
+          <Route path="/">
+            <Login />
+          </Route>
+          <Redirect from="*" to="/" />
+        </Switch>
       )}
     </>
   );
 };
 
 const mapStateToProps = (state) => {
-  return state;
+  return state || {};
 };
 
 export default connect(mapStateToProps)(AppRouter);

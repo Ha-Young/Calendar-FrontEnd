@@ -1,22 +1,61 @@
 import { authService, firebaseInstance } from "./firebaseService";
 import { mockEvent } from "utils/mock.js";
+import { getToday, parseDate } from "utils/utilFunction";
 
-export async function saveSampleData() {
-  const database = firebaseInstance.database();
+const database = firebaseInstance.database();
 
-  await database.ref("test/123").set({
-    test: "text",
-  });
+export async function fetchUserEvent(callback) {
+  if (!callback || typeof callback !== "function") {
+    return;
+  }
 
-  await database.ref(`/event/${authService.currentUser.uid}`).set(mockEvent);
+  const userId = authService.currentUser.uid;
+  const { year, month, weekOfMonth } = parseDate(getToday());
 
   await database
-    .ref(`/event/${authService.currentUser.uid}`)
-    .on("value", (snapshot) => console.log(snapshot.val()));
+    .ref(`/events/${userId}/${year}/${month}/${weekOfMonth}`)
+    .on("value", (snapshot) => {
+      if (snapshot) {
+        callback(snapshot.val());
+      } else {
+        return;
+      }
+    });
 }
 
-export const getCurrentEventList = async () => {};
+export async function setNewEvent(newEvent) {
+  const { id, date } = newEvent;
+  const userId = authService.currentUser.uid;
+  const { year, month, weekOfMonth } = parseDate(date);
 
-export const addNewEvent = async () => {};
+  await database
+    .ref(`/events/${userId}/${year}/${month}/${weekOfMonth}`)
+    .update({ [id]: newEvent });
 
-export const updateEventList = async () => {};
+  // await database.ref(`/dates/${year}/${month}/${weekOfMonth}`).update(newEvent);
+
+  // await database.ref(`/users/${authService.currentUser.uid}`).set(newEvent);
+}
+
+const getCurrentEventList = async () => {};
+
+export const updateEventList = async (updatedEvent) => {
+  await database
+    .ref(`/events/${authService.currentUser.uid}`)
+    .set(updatedEvent);
+};
+
+export const testFirebase = async () => {
+  const { id, date } = mockEvent[0];
+  const userId = authService.currentUser.uid;
+  const { year, month, weekOfMonth } = parseDate(date);
+  // await database.ref(`/events/${userId}`).update({ [id]: mockEvent[0] });
+  // await database.ref(`/events/${userId}/ddd`).update({ [id]: mockEvent[0] });
+  // await database.ref(`/dates/${year}/${month}/${weekOfMonth}`).set(id + "sdd");
+
+  await database.ref(`/events`).on("value", (snapshot) => {
+    console.log(snapshot.val());
+    console.log("??");
+  });
+  // await database.ref(`/users/${userId}`).set();
+};

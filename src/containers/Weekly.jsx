@@ -30,7 +30,7 @@ const Weekly = (props) => {
     <>
       <CalenderHeader
         onClick={setNewWeek}
-        currentPage={weekOfMonth.month + "월 " + weekOfMonth.week + "주차"}
+        currentPeriod={weekOfMonth.month + "월 " + weekOfMonth.week + "주차"}
       />
       <WeeklySchedule week={week} />
     </>
@@ -41,8 +41,4 @@ const mapStateToProps = (state) => ({
   something: "Mapping redux state to App component props.",
 });
 
-const mapDispatchToProps = () => ({
-  // This function is passed to App component.
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Weekly);
+export default connect(mapStateToProps)(Weekly);

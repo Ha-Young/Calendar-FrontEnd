@@ -1,12 +1,6 @@
-/*
-
-  Action Types
-
-  ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/constants/ActionTypes.js
-
- */
 export const ACTION = {
-  SHOW_PREVIOUS_MONTH: "SHOW_PREVIOUS_MONTH",
+  SET_INITIALIZE: "SET_INITIALIZE",
+  NO_EVENT: "NO_EVENT",
 
   SHOW_WEEKLY: "SHOW_WEEKLY",
   SHOW_NEXT_WEEK: "SHOW_NEXT_WEEK",
@@ -20,7 +14,7 @@ export const ACTION = {
   DELETE_EVENT: "DELETE_EVENT",
   EDIT_EVENT: "EDIT_EVENT",
 
-  EDIT_PROFILE: "EDIT_PROFILE",
   USER_LOGIN: "USER_LOGIN",
   USER_LOGOUT: "USER_LOGOUT",
+  EDIT_PROFILE: "EDIT_PROFILE",
 };

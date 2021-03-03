@@ -1,17 +1,31 @@
-/*
-
-  Action Creators
-
-  ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/actions/index.js
-
- */
-
 import { ACTION } from "constants/actionTypes";
+import { generateKey } from "utils/utilFunction";
 
-const addEvent = (obj) => {
+const setInitialize = (eventList, userState) => {
+  if (!eventList) {
+    return {
+      type: ACTION.NO_EVENT,
+    };
+  }
+
+  return {
+    type: ACTION.SET_INITIALIZE,
+    eventList,
+    userState,
+  };
+};
+
+const addEvent = (newEvent = {}) => {
+  if (!Object.keys(newEvent).length) {
+    return;
+  }
+
+  const id = generateKey();
+
   return {
     type: ACTION.ADD_EVENT,
-    obj,
+    id,
+    newEvent,
   };
 };
 
@@ -30,6 +44,7 @@ const editEvent = (obj) => {
 };
 
 export const actionCreators = {
+  setInitialize,
   addEvent,
   deleteEvent,
   editEvent,
