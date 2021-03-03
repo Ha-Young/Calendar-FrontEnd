@@ -14,6 +14,7 @@
   width: 70px;
   height: 30px;
   background-color: white;
+  border-radius: 5px;
   outline: none;
   cursor: pointer;
 }
@@ -32,9 +33,9 @@
 }
 
 .moveDate button {
+  margin: 10px;
   background-color: inherit;
   border: none;
-  margin: 10px;
   cursor: pointer;
   outline: none;
 }

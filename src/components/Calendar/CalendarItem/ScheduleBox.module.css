@@ -1,4 +1,9 @@
-.scheduleRow {
+.ScheduleBox {
   border-top: #c9ccd3 1px solid;
   border-left: #c9ccd3 1px solid;
+  transition: all 0.3s linear;
+}
+
+.ScheduleBox:hover {
+  background-color: #eceff3;
 }

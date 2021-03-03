@@ -1,18 +1,27 @@
 import React from "react";
 import styles from "./ScheduleBox.module.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 function ScheduleBox({ id }) {
   return (
-    <div
-      role="button"
-      className={styles.scheduleRow}
-      id={id}
-    />
+    <Link to={`/events/new`}>
+      <div
+        role="button"
+        className={styles.ScheduleBox}
+        id={id}
+        onClick={() => {console.log(id)}}
+      />
+    </Link>
   );
 }
 
-export default ScheduleBox;
+function mapStateToProps() {}
+
+function mapDispatchToProps() {}
+
+export default connect(null, null)(ScheduleBox);
 
 ScheduleBox.propTypes = {
   id: PropTypes.shape({

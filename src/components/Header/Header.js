@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { nextDate, prevDate } from '../../actions';
-import { MOVE_DATE, PERIOD_UNIT } from '../../constants/button';
+import { MOVE_DATE, PERIOD_UNIT } from '../../constants/headerButton';
 import { getCurrentDate } from '../../utils/getDate';
 import styles from "./Header.module.css";
 
