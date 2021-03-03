@@ -11,6 +11,7 @@ const firebaseConfig = {
   storageBucket: "vaco-calendar-viewer.appspot.com",
   messagingSenderId: "338122815300",
   appId: "1:338122815300:web:3c938fbd45f80b55c40911",
+  measurementId: "G-CBW8EEZ8M1"
 };
 
 firebase.initializeApp(firebaseConfig);

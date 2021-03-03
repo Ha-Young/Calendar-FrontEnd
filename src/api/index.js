@@ -1,14 +1,14 @@
 // TODO: Go to `./firebase.js` and update your firebase config.
 import firebase from "./firebase";
 
-export async function saveSampleData() {
+export async function saveNewRecord(content) {
   const database = firebase.database();
 
-  // Note: `set` method returns a promise.
-  // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.ref("test/456").set({
-    test: "text",
+  await database.ref("events/").push({
+    title: content.title,
+    description: content.description,
+    startDate: content.startDate,
+    startHour: content.startHour,
+    endHour: content.endHour
   });
-
-
 }

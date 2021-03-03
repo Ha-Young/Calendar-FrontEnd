@@ -1,0 +1,10 @@
+.arrow-container {
+  display: flex;
+  justify-content: space-between;
+  width: 18%;
+}
+
+.arrow {
+  background-color: lightgreen;
+  margin: 0% 3%;
+}

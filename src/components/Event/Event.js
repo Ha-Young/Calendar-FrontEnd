@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import Form from "../Form/Form";
+import Form from "../../containers/Form";
 
 export default function Event() {
   return (

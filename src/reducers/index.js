@@ -1,3 +1,5 @@
+import { saveNewRecord } from "../api";
+
 /*
 
   Reducers
@@ -19,12 +21,10 @@ export default function reducer(state = initialState, action) {
   const newState = { ...state };
 
   switch (action.type) {
-    case "CHANGE_VALUE":
-      let tmp = action.changeTarget;
-      newState.record[action.changeTarget] = action.value;
-      break;
     case "SAVE_RECORD":
-      newState.events = newState.record;
+      saveNewRecord(action.content);
+      break;
+    default:
       break;
   }
 

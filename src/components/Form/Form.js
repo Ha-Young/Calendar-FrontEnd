@@ -1,40 +1,40 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, {useEffect, useState} from "react";
+import { saveNewRecord } from "../../api";
 import "./style.css";
 
-const Form = ({ onSubmit, onChange }) => {
-  function handleSubmit(e) {
-    e.preventDefault();
+function Form ({ onEventSubmit }) {
+  const [content, setContent] = useState({title: "", description: "", startDate: "", startHour: "", endHour: ""});
+  const [submitting, setSubmitting] = useState(false);
+
+  function handleChange(event) {
+    const prop = event.target.className;
+    const value = event.target.value;
+
+    setContent(() => {
+      const newContent = {...content};
+      newContent[prop] = value;
+      return newContent;
+    });
   }
 
+  useEffect(() => {
+    onEventSubmit(content);
+  }, [submitting]);
+
   return (
-    <form className="input-container" onSubmit={onSubmit}>
+    <form className="input-container" onSubmit={(e) => { 
+      e.stopPropagation();
+      setSubmitting(!submitting);
+     }}>
       <div>새로운 이벤트</div>
-      <input type="text" className="title" placeholder="제목" onChange={onChange} />
-      <input type="text" className="description" placeholder="설명" onChange={onChange} />
-      <input type="text" className="start" placeholder="시작" onChange={onChange} />
-      <input type="text" className="finish" placeholder="종료" onChange={onChange} />
+      <input type="text" className="title" placeholder="제목" onChange={handleChange}/>
+      <input type="date" className="startDate" placeholder="시작일(YYYY-MM-DD)" onChange={handleChange}/>
+      <input type="text" className="startHour" placeholder="시작시간(0~23)" onChange={handleChange}/>
+      <input type="text" className="endHour" placeholder="종료시간(0~23)" onChange={handleChange}/>
+      <input type="text" className="description" placeholder="설명" onChange={handleChange}/>
       <button type="submit">추가</button>
     </form>
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSubmit(event) {
-      event.preventDefault();
-      dispatch({
-        type: "SAVE_RECORD",
-      })
-    },
-    onChange(event) {
-      dispatch({
-        type: "CHANGE_VALUE",
-        value: event.target.value,
-        changeTarget: event.target.className,
-      })
-    },
-  }
-}
-
-export default connect(null, mapDispatchToProps)(Form);
+export default Form;

@@ -4,8 +4,28 @@
 
 .day {
   float: left;
-  padding: 10px 50px;
+  width: 12%;
   height: 500px;
   background-color: #efefee;
   border: 2px solid ghostwhite;
 }
+
+.grid-container {
+  font-size: small;
+}
+
+.row {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  background-color: white;
+  border: 0.5px solid black;
+}
+
+.col {
+  height: 30px;
+  width: 100%;
+  border: 0.5px solid black;
+}
+
+
