@@ -1,28 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Icon from '../publicComponent/Icon/Icon'
 import ToggleIcon from './ToggleIcon/ToggleIcon';
 import './Header.scss';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { changeCalendarMode } from '../../actions';
+import { DAILY_MODE, WEEKLY_MODE } from '../../constants/dateFormats';
 
-const toggleIconClassName = 'header__toggleIcon';
+const TOGGLEICON_CLASSNAME = 'header__toggleIcon';
 
 // state가 있는 component
-function Header () {
-  const calendarMode = useSelector(state => state.calendarMode, shallowEqual);
-  const dispatchReducers = useDispatch();
-
+function Header ({ calendarMode, changeCalendarMode }) {
   function selectToggleIcon() {
     const returnObject = {};
     switch (calendarMode) {
-      case ('daily'):
-        returnObject.className = 'fas fa-sun ' + toggleIconClassName;
-        returnObject.textContent = 'daily'
+      case (DAILY_MODE):
+        returnObject.className = 'fas fa-sun ' + TOGGLEICON_CLASSNAME;
+        returnObject.textContent = DAILY_MODE
         break;
-      case ('weekly'):
-        returnObject.className = 'fas fa-calendar-week ' + toggleIconClassName;
-        returnObject.textContent = 'weekly'
+      case (WEEKLY_MODE):
+        returnObject.className = 'fas fa-calendar-week ' + TOGGLEICON_CLASSNAME;
+        returnObject.textContent = WEEKLY_MODE
         break;
     }
 
@@ -31,12 +27,12 @@ function Header () {
   const toggleIcon = selectToggleIcon();
 
   function handleToggleIconClick() {
-    if (calendarMode === 'daily') {
-      dispatchReducers(changeCalendarMode('weekly'));
+    if (calendarMode === DAILY_MODE) {
+      changeCalendarMode(WEEKLY_MODE);
       return;
     }
 
-    dispatchReducers(changeCalendarMode('daily'));
+    changeCalendarMode(DAILY_MODE);
   }
 
   // week일때 hover하면 전환? 이라는 아이콘 뜨고 week와 day가 토글됨, 밑에 week인지 day인지 글자가 보임(그건 hover해도 안바뀜)

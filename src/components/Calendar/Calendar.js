@@ -3,7 +3,6 @@ import './Calendar.scss';
 
 import CalendarUpper from './CalendarUpper/CalendarUpper';
 import CalendarTimeTable from './CalendarTimeTable/CalendarTimeTable';
-import { useSelector } from 'react-redux';
 import { dateInfoToObject, dateInfoToObjectArr } from '../../utils/dateUtil';
 
 // width 값은 여기서 동일하게 가진다.
@@ -12,11 +11,7 @@ import { dateInfoToObject, dateInfoToObjectArr } from '../../utils/dateUtil';
 
 // Redux = 지금 상태가 week 인지 daily인지
 
-const Calendar = () => {
-  const currentDate = useSelector(state => state.currentDate);
-  const currentWeek = useSelector(state => state.currentWeek);
-  const calendarMode = useSelector(state => state.calendarMode);
-
+const Calendar = ({ currentDate, currentWeek, calendarMode }) => {
   function getDateArr() {
     // 이걸로 그려야하는 날짜의 갯수를 정한다.
     const dateArr = [];
@@ -30,7 +25,6 @@ const Calendar = () => {
       dateArr.push(el);
     });
 
-    console.log(dateArr);
     return dateArr;
   }
   const dateArr = getDateArr();

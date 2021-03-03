@@ -8,6 +8,7 @@
   - Don't optimize pre-maturely!
 
  */
+import { SET_CURRENT_DATE, SET_CURRENT_WEEK, CHANGE_CALENDAR_MODE } from '../constants/actionTypes';
 
 const initialState = {
   currentDate: '',
@@ -17,17 +18,17 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case ('SET_CURRENT_DATE'): 
+    case SET_CURRENT_DATE: 
       return {
         ...state,
         currentDate: action.currentDate
       }
-    case ('SET_CURRENT_WEEK'):
+    case SET_CURRENT_WEEK:
       return {
         ...state,
         currentWeek: action.currentWeek
       }
-    case ('CHANGE_CALENDAR_MODE'):
+    case CHANGE_CALENDAR_MODE:
       return {
         ...state,
         calendarMode: action.calendarMode

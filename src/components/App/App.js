@@ -6,22 +6,20 @@ import { Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import moment from 'moment';
 
-import Header from "../Header/Header";
-import Calendar from '../Calendar/Calendar';
+import Header from "../../containers/Header";
+import Calendar from '../../containers/Calendar';
 import Background from '../publicComponent/Background/Background';
-import { useDispatch } from "react-redux";
-import { changeCalendarMode, setCurrentDate, setCurrentWeek } from "../../actions";
+import { DAILY_MODE } from "../../constants/dateFormats";
 
-function App() {
-  const dispatchReducers = useDispatch();
+function App({ initStore }) {
   
   useEffect(() => {
     const currentDate = moment().format('YYYY-M-D');
     const currentWeekSunday = moment().day(0).format('YYYY-M-D');
     const currentWeekSaturday = moment().day(6).format('YYYY-M-D');
-    dispatchReducers(setCurrentDate(currentDate));
-    dispatchReducers(setCurrentWeek(currentWeekSunday + '-' + currentWeekSaturday));
-    dispatchReducers(changeCalendarMode('daily'));
+    const currentWeek = currentWeekSunday + '/' + currentWeekSaturday;
+    const initCalendarMode = DAILY_MODE;
+    initStore(currentDate, currentWeek, initCalendarMode);
   }, []);
 
   return (
@@ -30,10 +28,10 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact>
-            <Calendar></Calendar>
+            <Calendar />
           </Route>
           <Route path="/event" exact>
-            <div>Event</div>
+            <div>Event 상세</div>
           </Route>
           <Route path="/event/new" exact>
             <div>New</div>
