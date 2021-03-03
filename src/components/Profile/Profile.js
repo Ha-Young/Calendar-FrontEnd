@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import firebase from "../../api/firebase";
+import Button from "../Button/Button";
 
 const Profile = function () {
   const auth = firebase.auth();
@@ -13,7 +14,7 @@ const Profile = function () {
 
   return (
     <>
-      <button onClick={onLogOutClick}>Log Out</button>
+      <Button onClick={onLogOutClick}>Log Out</Button>
     </>
   );
 };

@@ -16,4 +16,5 @@
   justify-content: center;
   align-items: center;
   width: 12vw;
+  border: 1px solid transparent;
 }

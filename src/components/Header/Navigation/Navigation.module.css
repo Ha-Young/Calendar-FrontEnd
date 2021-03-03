@@ -2,7 +2,7 @@ nav{
   position:fixed;
   top:20px;
   left:20px;
-  border:2px solid #333;
+  border:2px solid #2e6da4;
   border-radius:21px;
   min-width:40px;
   min-height:40px;
@@ -31,7 +31,7 @@ nav label{
   height:41px;
   text-align:center;
   line-height:40px;
-  background:#333;
+  background:#2e6da4;
   color:white;
   border-bottom-left-radius:20px;
   cursor:pointer;
@@ -55,7 +55,7 @@ nav input:checked ~ .navigation-list{
 }
 
 .navigation-tab a{
-  color:#333;
+  color:#2e6da4;
   text-transform:uppercase;
   text-decoration:none;
   font-family:'Roboto', sans-serif;
@@ -69,6 +69,6 @@ nav input:checked ~ .navigation-list{
 }
 
 .navigation-tab a:hover{
-  background:#333;
+  background:#2e6da4;
   color:white;
 }
