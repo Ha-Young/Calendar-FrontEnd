@@ -3,19 +3,19 @@ import React from "react";
 import HoursBar from "../HoursBar/HoursBar";
 import SchedulesBar from "../../containers/ScheduleBar";
 import { getWeekList } from "../../utils/date";
-import styles from "./CalendarWeek.module.css";
+import styles from "./Weekly.module.css";
 
-function CalendarWeek() {
+function Weekly() {
   const weekList = getWeekList();
 
   return (
-    <div className={styles.CalendarWeek}>
+    <div className={styles.weekly}>
       <HoursBar />
       {weekList.map((v) => {
         return (
           <SchedulesBar
             key={v}
-            fromDate={v - 3}
+            dayDiff={v}
           />
         );
       })}
@@ -23,4 +23,4 @@ function CalendarWeek() {
   );
 }
 
-export default CalendarWeek;
+export default Weekly;

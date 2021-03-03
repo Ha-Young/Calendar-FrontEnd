@@ -1,12 +1,16 @@
 import React from "react";
 
-function DateSelector({ date, preDate, nextDate }) {
+import styles from "./DateSelector.module.css";
+
+function DateSelector({ date, prevDate, nextDate, prevWeek, nextWeek }) {
   return (
-    <div>
-      <button onClick={preDate}>이전</button>
-      <text>{date}</text>
-      <button onClick={nextDate}>다음</button>
-    </div>
+    <span className={styles.dateSelector}>
+      <button onClick={prevWeek}>저번주</button>
+      <button onClick={prevDate}>어제</button>
+      <span>{date}</span>
+      <button onClick={nextDate}>내일</button>
+      <button onClick={nextWeek}>다음주</button>
+    </span>
   );
 }
 

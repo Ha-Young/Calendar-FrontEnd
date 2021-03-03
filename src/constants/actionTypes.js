@@ -5,7 +5,9 @@
   ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/constants/ActionTypes.js
 
  */
-export const TOGGLE_DAY = "TOGGLE_DAY";
+export const TOGGLE_VIEW_TYPE = "TOGGLE_VIEW_TYPE";
 
-export const PRE_DATE = "PRE_DATE";
+export const PREV_DATE = "PREV_DATE";
 export const NEXT_DATE = "NEXT_DATE";
+export const PREV_WEEK = "PREV_WEEK";
+export const NEXT_WEEK = "NEXT_WEEK";

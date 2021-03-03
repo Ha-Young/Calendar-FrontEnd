@@ -13,6 +13,7 @@ function Header ({ isDaily, toggleDay }) {
 
   return (
     <header className={styles.Header}>
+      <button onClick={handleClick}>{viewType}</button>
       <nav>
         <ul>
           <Link to="/calendar">
@@ -24,7 +25,6 @@ function Header ({ isDaily, toggleDay }) {
         </ul>
       </nav>
       <DateSelector />
-      <button onClick={handleClick}>{viewType}</button>
     </header>
   );
 }

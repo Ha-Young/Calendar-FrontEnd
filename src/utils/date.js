@@ -1,5 +1,3 @@
-import moment from "moment";
-
 const HOUR = 24;
 const WEEK = 7;
 
@@ -8,7 +6,7 @@ export function getHourList() {
 }
 
 export function getWeekList() {
-  return Array.from({length: WEEK}, (v, i) => i);
+  return Array.from({length: WEEK}, (v, i) => i - 3);
 }
 
 export function getDays(date) {
@@ -31,5 +29,7 @@ export function getDayOfTheWeek(date) {
       return "금";
     case 6:
       return "토";
+    default:
+      throw new Error({message: "getDayOfTheWeek"});
   }
 }

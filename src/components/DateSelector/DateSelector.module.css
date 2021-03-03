@@ -1,0 +1,9 @@
+.dateSelector {
+  display: inline-flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.dateSelector span {
+  padding: 5px;
+}

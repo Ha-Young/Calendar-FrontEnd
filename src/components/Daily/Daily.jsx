@@ -2,15 +2,15 @@ import React from "react";
 
 import HoursBar from "../HoursBar/HoursBar";
 import SchedulesBar from "../../containers/ScheduleBar";
-import styles from "./CalendarDay.module.css";
+import styles from "./Daily.module.css";
 
-function CalendarDay() {
+function Daily() {
   return (
-    <div className={styles.CalendarDay}>
+    <div className={styles.daily}>
       <HoursBar />
       <SchedulesBar />
     </div>
   );
 }
 
-export default CalendarDay;
+export default Daily;

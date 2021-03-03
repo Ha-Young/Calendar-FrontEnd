@@ -2,9 +2,13 @@
   position: relative;
   display: flex;
   width: 100%;
-  margin-top: 80px;
+  height: 100%;
   flex-direction: column;
   list-style: none;
+}
+
+.schedulesBar .dateBox {
+  height: 80px;
 }
 
 .schedulesBar li {
@@ -16,27 +20,5 @@
 }
 
 .schedulesBar li:hover {
-  background: #B5D6D6;
-}
-
-.theDate {
-  position: absolute;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.theDate div+div {
-  display: flex;
-  width: 50px;
-  height: 50px;
-  border: 2px solid #B5D6D6;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s;
-}
-
-.theDate div+div:hover {
   background: #B5D6D6;
 }

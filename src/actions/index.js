@@ -7,7 +7,9 @@
  */
 import * as actionTypes from "../constants/actionTypes";
 
-export const toggleDay = () => ({type: actionTypes.TOGGLE_DAY});
+export const toggleDay = () => ({type: actionTypes.TOGGLE_VIEW_TYPE});
 
-export const preDate = () => ({type: actionTypes.PRE_DATE});
+export const prevDate = () => ({type: actionTypes.PREV_DATE});
 export const nextDate = () => ({type: actionTypes.NEXT_DATE});
+export const prevWeek = () => ({type: actionTypes.PREV_WEEK});
+export const nextWeek = () => ({type: actionTypes.NEXT_WEEK});

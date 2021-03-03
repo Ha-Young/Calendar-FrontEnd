@@ -1,17 +1,12 @@
 import React from "react";
 
-import CalendarDay from "../CalendarDay/CalendarDay";
-import CalendarWeek from "../CalendarWeek/CalendarWeek";
+import Daily from "../Daily/Daily";
+import Weekly from "../Weekly/Weekly";
 
 function Calendar({ isDaily }) {
-  return (
-    <>
-      {isDaily
-        ? <CalendarDay></CalendarDay>
-        : <CalendarWeek></CalendarWeek>
-      }
-    </>
-  );
+  return isDaily
+    ? <Daily></Daily>
+    : <Weekly></Weekly>;
 }
 
 export default Calendar;

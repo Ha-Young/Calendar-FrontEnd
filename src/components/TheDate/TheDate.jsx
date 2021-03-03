@@ -1,15 +1,16 @@
 import React from "react";
 
 import { getDayOfTheWeek, getDays } from "../../utils/date";
+import styles from "./TheDate.module.css";
 
-function TheDate({ date, today = false, ...rest }) {
+function TheDate({ date, today = false }) {
   const dayOfTheWeek = getDayOfTheWeek(date);
   const days = getDays(date);
 
   return (
-    <div {...rest}>
+    <div className={styles.theDate}>
       <div>{dayOfTheWeek}</div>
-      <div>{days}</div>
+      <div className={styles.days}>{days}</div>
     </div>
   );
 }
