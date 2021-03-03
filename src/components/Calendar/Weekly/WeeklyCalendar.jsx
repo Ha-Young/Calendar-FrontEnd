@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from "react";
-import styles from "./Weekly.module.css";
+import React, { useState } from "react";
+import styles from "./WeeklyCalendar.module.css";
 
 import buildWeekly from "./buildWeekly";
-import Header from "../header";
+import CalendarHeader from "../CalendarHeader";
 import TimeSidebar from "../SidebarTime";
-import Calendar from "../Calendar";
+import Calendar from "../CalendarColumn";
 
 import moment from "moment";
 
-export default function Weekly() {
-  const [weekly, setWeekly] = useState([]);
-  const [weeklyValue, setWeeklyValue] = useState(moment());
+export default function WeeklyCalendar({ history }) {
+  const [weekly, setWeekly] = useState(moment());
 
-  const dateID = weeklyValue.format("YYYYMMMMDD");
+  const weekList = buildWeekly(weekly);
 
   function handleClickDateBox(e) {
-    console.log(e.target.getAttribute("data-id"));
-  }
+    if (e.target.hasAttribute("data-event")) {
+      const eventQuery = e.target.getAttribute("data-id");
 
-  useEffect(() => {
-    setWeekly(buildWeekly(weeklyValue));
-  }, [weeklyValue]);
+      history.push(`/event/${eventQuery}`);
+    } else {
+      console.log(e.target.getAttribute("data-id"));
+      // history.push("/event/new");
+    }
+  }
 
   return (
     <div className={styles.calendar}>
-      <Header
-        value={weeklyValue}
-        setValue={setWeeklyValue}
+      <CalendarHeader
+        value={weekly}
+        setValue={setWeekly}
         TypeOfTime="week"
       />
       <section className={styles.contents}>
@@ -39,16 +41,13 @@ export default function Weekly() {
               ))
             }
           </div>
-          {weekly.map((week) => (
+          {weekList.map((week) => (
             <div>
               {week.map((day) => (
-                <div
-                  className={styles.day}
-                  onClick={() => setWeeklyValue(day)}
-                >
+                <div className={styles.day}>
                   <Calendar
                     day={day.format("D").toString()}
-                    dayID={dateID}
+                    dayID={day.format("YYYY-MM-DD")}
                     onClickDate={handleClickDateBox}
                   />
                 </div>

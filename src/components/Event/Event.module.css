@@ -1,18 +1,13 @@
 .date-boxs {
-  display: flex;
-  justify-content: center;
-}
-
-.date-box {
-  margin: 0 1em;
+  display: block;
 }
 
 .text-box {
   width: 500px;
-  height: 500px;
+  height: 400px;
 }
 
-.submit {
+.button {
   display: block;
   width: 3em;
   height: 3em;

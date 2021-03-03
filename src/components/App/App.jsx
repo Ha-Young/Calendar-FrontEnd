@@ -7,8 +7,8 @@ import styles from "./App.module.css";
 
 import Header from "../Header/Header";
 import Event from "../Event/Event";
-import Weekly from "../Calendar/Weekly/Weekly";
-import Daily from "../Calendar/Daily/Daily";
+import Weekly from "../Calendar/Weekly/WeeklyCalendar";
+import Daily from "../Calendar/Daily/DailyCalendar";
 
 function App({ onInitialLoad }) {
   useEffect(() => {

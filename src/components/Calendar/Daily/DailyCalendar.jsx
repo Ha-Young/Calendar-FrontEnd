@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
-import styles from "./Daily.module.css";
+import React, { useState } from "react";
+import styles from "./DailyCalendar.module.css";
 
-import buildDaily from "./buildDaily";
-import Header from "../header";
+import CalendarHeader from "../CalendarHeader";
 import TimeSidebar from "../SidebarTime";
-import Calendar from "../Calendar";
+import CalendarColumn from "../CalendarColumn";
 
 import moment from "moment";
 
-export default function Daily({ history }) {
-  const [day, setDay] = useState("");
-  const [dayValue, setDayValue] = useState(moment());
+export default function DailyCalendar({ history }) {
+  const [day, setDay] = useState(moment());
 
-  const newDate = day ? day.format("D").toString() : null;
-  const dateID = dayValue.format("YYYYMMMMDD");
+  const startDay = day.clone().startOf("day");
+  const newDate = startDay.format("D").toString();
+  const dateID = startDay.format("YYYYMMMMDD");
 
   function handleClickDateBox(e) {
     if (e.target.hasAttribute("data-event")) {
@@ -22,29 +21,25 @@ export default function Daily({ history }) {
       history.push(`/event/${eventQuery}`);
     } else {
       console.log(e.target.getAttribute("data-id"));
-      history.push("/event/new");
+      // history.push("/event/new");
     }
   }
 
-  useEffect(() => {
-    setDay(buildDaily(dayValue));
-  }, [dayValue]);
-
   return (
     <div className={styles.calendar}>
-      <Header
-        value={dayValue}
-        setValue={setDayValue}
+      <CalendarHeader
+        value={day}
+        setValue={setDay}
         TypeOfTime="day"
       />
       <section className={styles.content}>
         <TimeSidebar />
         <div className={styles["flex-item"]}>
-          <Calendar
+          <CalendarColumn
             day={newDate}
             dayID={dateID}
             onClickDate={handleClickDateBox}
-            />
+          />
         </div>
       </section>
     </div>

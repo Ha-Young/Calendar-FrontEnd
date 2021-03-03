@@ -1,4 +1,4 @@
-export default function buildCalendar(value) {
+export default function buildWeekly(value) {
   const startDay = value.clone().startOf("week");
   const endDay = value.clone().endOf("week");
   const day = startDay.clone().subtract(1, "day");
