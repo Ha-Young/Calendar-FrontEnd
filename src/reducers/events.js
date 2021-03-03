@@ -3,19 +3,32 @@ import { combineReducers } from "redux";
 import { CREATE_EVNETS } from "../constants/actionTypes";
 
 const initialStatus_byId = {
-  "2021-03-10_12:2": {
-    id: "2021-03-10_12:2",
+  "2021-03-03_12:2": {
+    id: "2021-03-03_12:2",
     title: "밥먹기",
     description: "밥먹기",
-    startDate: "2021-03-10_12",
-    endDate: "2021-03-10_14",
+    date: "2021-03-03",
+    startDate: "2021-03-03_12",
+    endDate: "2021-03-03_14",
+    length: 2,
   },
-  "2020-03-11_12:2": {
-    id: "2020-03-11_12:2",
+  "2021-03-01_12:2": {
+    id: "2021-03-01_12:2",
+    title: "밥먹기",
+    description: "밥먹기",
+    date: "2021-03-01",
+    startDate: "2021-03-01_12",
+    endDate: "2021-03-01_14",
+    length: 2,
+  },
+  "2020-03-04_13:4": {
+    id: "2020-03-04_13:4",
     title: "밥먹기2",
     description: "밥먹기2",
-    startDate: "2021-03-11_12",
-    endDate: "2020-03-11_14",
+    date: "2021-03-04",
+    startDate: "2021-03-04_13",
+    endDate: "2020-03-04_17",
+    length: 2,
   },
 };
 
@@ -33,7 +46,7 @@ function byId(state = initialStatus_byId, action) {
   }
 }
 
-const initialStatus_allIds = ["2021-03-10_12:2", "2020-03-11_12:2"];
+const initialStatus_allIds = ["2021-03-01_12:2", "2021-03-03_12:2", "2020-03-04_13:4"];
 
 function allIds(state = initialStatus_allIds, action) {
   switch(action.type) {

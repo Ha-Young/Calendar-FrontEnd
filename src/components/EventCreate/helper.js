@@ -1,6 +1,6 @@
 import { message } from "antd";
 
-import { DATE_FORMAT_WITH_HOUR } from "../../constants/common";
+import { DATE_FORMAT, DATE_FORMAT_WITH_HOUR } from "../../constants/common";
 import { checkIsSameDate, checkIsSameDay, getDiffHour } from "../../utils/date";
 
 export const ERROR_TYPE_OVER_START_DAY = "OverStartDayError";
@@ -18,6 +18,7 @@ export const layout = {
 export function makeNewEvent(event) {
   let newEvent = null;
 
+  const date = event.startDate.format(DATE_FORMAT);
   const startDate = event.startDate.format(DATE_FORMAT_WITH_HOUR);
   const endDate = event.endDate.format(DATE_FORMAT_WITH_HOUR);
 
@@ -37,14 +38,14 @@ export function makeNewEvent(event) {
     };
   }
 
-  const id = `${startDate}:${diffHours}`;
-
   return {
     newEvent: {
       ...event,
-      id,
+      id: `${startDate}:${diffHours}`,
+      date,
       startDate,
       endDate,
+      length: diffHours,
     },
   };
 }
