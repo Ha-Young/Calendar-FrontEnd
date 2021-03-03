@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { periodUnit } from "../../../actions";
 import { WEEK } from "../../../constants/time";
 import { getCurrentWeek } from "../../../utils/getDate";
-import ScheduleContainer from "../ScheduleContainer/ScheduleContainer";
-import TimeContainer from "../TimeContainer/TimeContainer";
+import ScheduleContainer from "../CalendarItem/ScheduleContainer";
+import TimeContainer from "../CalendarItem/TimeContainer";
 import styles from "./WeekCalendar.module.css"
 
 function WeekCalendar({ week, onLoad }) {
@@ -28,10 +28,11 @@ function WeekCalendar({ week, onLoad }) {
       <div className={styles.wrapper}>
         <TimeContainer />
         <div className={styles.weekContainer}>
-          {WEEK.map((item) => (
+          {WEEK.map((item, index) => (
             <ScheduleContainer
               className={styles.ScheduleContainer}
               key={item}
+              dateId={week[index].id.toLocaleDateString()}
             />
           ))}
         </div>

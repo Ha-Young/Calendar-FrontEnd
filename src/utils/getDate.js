@@ -45,8 +45,18 @@ export function getTomorrow(date) {
   return today;
 }
 
-export function getPrevWeek(date) {
+export function getLastWeek(date) {
+  const today = new Date(date);
+
+  today.setDate(today.getDate() - 7);
+
+  return today;
 }
 
 export function getNextWeek(date) {
+  const today = new Date(date);
+
+  today.setDate(today.getDate() + 7);
+
+  return today;
 }

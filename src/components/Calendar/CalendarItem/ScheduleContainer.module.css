@@ -1,0 +1,5 @@
+.scheduleContainer {
+  display: grid;
+  grid-auto-rows: 48px;
+  width: 100%;
+}

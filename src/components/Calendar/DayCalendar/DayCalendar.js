@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
-import ScheduleContainer from "../ScheduleContainer/ScheduleContainer";
-import TimeContainer from "../TimeContainer/TimeContainer";
+import ScheduleContainer from "../CalendarItem/ScheduleContainer";
+import TimeContainer from "../CalendarItem/TimeContainer";
 import styles from "./DayCalendar.module.css";
 import { getCurrentDay } from "../../../utils/getDate";
 import { connect } from "react-redux";
 import { periodUnit } from "../../../actions";
 
 
-function DayCalendar({ day: { string, number }, onLoad }) {
+function DayCalendar({
+  date,
+  day: { string, number },
+  onLoad,
+}) {
   useEffect(() => {
     onLoad();
   }, []);
@@ -23,14 +27,17 @@ function DayCalendar({ day: { string, number }, onLoad }) {
       </div>
       <div className={styles.wrapper}>
         <TimeContainer />
-        <ScheduleContainer />
+        <ScheduleContainer dateId={date}/>
       </div>
     </div>
   );
 }
 
 function mapStateToProps({ currentDay }) {
-  return { day: getCurrentDay(currentDay) };
+  return {
+    date: currentDay.toLocaleDateString(),
+    day: getCurrentDay(currentDay),
+  };
 }
 
 function mapDispatchToProps(dispatch) {
