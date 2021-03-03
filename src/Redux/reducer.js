@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  console.log(state, action);
+
   switch(action.type) {
     case ADD_SUBMIT_DATA:
       return {

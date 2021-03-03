@@ -6,3 +6,11 @@ export const makeSundayDate = (date) => {
 
   return date;
 }
+
+export const setLastWeek = (dateObj, date) => {
+  dateObj.setDate(date - 7);
+}
+
+export const setNextWeek = (dateObj, date) => {
+  dateObj.setDate(date + 7);
+}

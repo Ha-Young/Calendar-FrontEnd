@@ -1,0 +1,57 @@
+.time {
+  height: 30px;
+  padding-bottom: 0.5px;
+}
+
+.weekDay {
+  width: 100%;
+  text-align: center;
+}
+
+.dayDateWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50px;
+}
+
+.dayDate {
+  position: relative;
+  right: 35px;
+}
+
+.eventWrapper {
+  border-top: 1px solid black;
+}
+
+.eventWrapper:hover {
+  cursor: pointer;
+}
+
+.event {
+  height: 30px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.calendar {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  top: 50px;
+}
+
+.days {
+  display: flex;
+  margin: 25px 0 10px;
+}
+
+.timeTableWrapper {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.weekDay:last-child .eventWrapper {
+  border-right: 1px solid black;
+}
