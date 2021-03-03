@@ -27,3 +27,11 @@
   color: white;
 }
 
+a.active > span {
+  color: white;;
+  background-color: #3dad9b;
+}
+
+a {
+  text-decoration: none;
+}

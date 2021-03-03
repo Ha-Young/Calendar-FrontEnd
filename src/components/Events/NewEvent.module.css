@@ -1,9 +1,0 @@
-.NewEvent {
-  display: flex;
-  justify-content: center;
-}
-
-.NewEventForm {
-  display: flex;
-  flex-flow: column;
-}

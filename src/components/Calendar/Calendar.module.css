@@ -3,52 +3,18 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  width: 800px;
+  /* width: 800px; */
 }
 
 .ControlBox {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 800px;
 }
 
-.DaysBox {
+.DayBoxesContainer {
   display: flex;
   flex-flow: nowrap row;
-}
-
-a.active > span {
-  color: white;;
-  background-color: #3dad9b;
-}
-
-a {
-  text-decoration: none;
-}
-
-.TimeTableBox {
-  display: flex;
-  width: 100%;
-}
-
-.TimeDisplayBox {
-  width: 100px;
-  background-color: #4c5067;
-}
-
-.TimeDisplay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  color: white;
-  font-size: 1.2rem;
-}
-
-.TimeTable {
-  display: flex;
-  flex-grow: 1;
-  background-color: #666d84;
 }
 
 /* border #4e505a

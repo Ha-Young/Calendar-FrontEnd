@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useHistory, useParams } from "react-router-dom";
-import { format, getDate, getDay, getMonth, getYear, sub, add } from "date-fns";
+import { useHistory, useParams } from "react-router-dom";
+import { format, getMonth, getYear, sub, add } from "date-fns";
 import styles from "./Calendar.module.css";
-import DayBox from "./DayBox";
-import Column from "./TimeTableColumn";
+import DayBox from "./DayBox/DayBox";
+import DayBoxes from "./DayBox/DayBoxes";
+import MoveButtons from "./Control/MoveButtons";
+import Dropdown from "./Control/Dropdown";
+import TimeTableBox from "./TimeTable/TimeTableBox";
 
 export default function Calender({ currentWeek, currentDay, setCurrentWeek, setCurrentDay, event }) {
   const history = useHistory();
@@ -25,34 +28,15 @@ export default function Calender({ currentWeek, currentDay, setCurrentWeek, setC
     setCurrentWeek(currentDay);
   }, [currentDay]);
   
-  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
   
-  const currentWeekData = currentWeek.length 
-    ? currentWeek.map((val) => {
-      return {
-        date: getDate(val),
-        dayOfWeek: daysOfWeek[getDay(val)],
-        formatString: format(val, "yyyy-MM-dd"),
-      }
-    }) 
-    : null;
-  
-  const currentMonth = isWeekMode ? month[getMonth(currentWeek[0])] : month[getMonth(currentDay)];
-  const currentYear = isWeekMode ? getYear(currentWeek[0]) : getYear(currentDay);
-
-  const time = [];
-  for (let i = 0; i <= 24; i++) {
-    if (i <= 12) {
-      time.push(`${i} AM`);
-    } else {
-      time.push(`${i - 12} PM`)
-    }
-  }
+  const isCurrentWeekLoad = currentWeek && currentWeek.length;
+  const currentMonth = isWeekMode && isCurrentWeekLoad ? month[getMonth(currentWeek[0].originalDate)] : month[getMonth(currentDay)];
+  const currentYear = isWeekMode && isCurrentWeekLoad ? getYear(currentWeek[0].originalDate) : getYear(currentDay);
 
   const handleDateUnitChange = (e) => {
     const dateUnit = e.currentTarget.value;
-    if (dateUnit === "") {
+    if (dateUnit === "DateUnit") {
       return;
     }
 
@@ -61,7 +45,7 @@ export default function Calender({ currentWeek, currentDay, setCurrentWeek, setC
 
   const handlePrevButtonClick = (e) => {
     if (isWeekMode) {
-      setCurrentWeek(sub(currentWeek[0], { weeks: 1 }));
+      setCurrentWeek(sub(currentWeek[0].originalDate, { weeks: 1 }));
     } else {
       setCurrentDay(sub(currentDay, { days: 1 }));
     }
@@ -69,7 +53,7 @@ export default function Calender({ currentWeek, currentDay, setCurrentWeek, setC
 
   const handleNextButtonClick = (e) => {
     if (isWeekMode) {
-      setCurrentWeek(add(currentWeek[0], { weeks: 1 }));
+      setCurrentWeek(add(currentWeek[0].originalDate, { weeks: 1 }));
     } else {
       setCurrentDay(add(currentDay, { days: 1 }));
     }
@@ -85,97 +69,36 @@ export default function Calender({ currentWeek, currentDay, setCurrentWeek, setC
     setCurrentDay(new Date(year, month - 1, day));
   }
 
-  const dayBoxes = currentWeekData 
-    ? currentWeekData.map((val, i) => {
-      const dayBoxes = isWeekMode
-        ? (<DayBox 
-          key={i}
-          title={val.date} 
-          description={val.dayOfWeek}
-          hasActiveToggle={!isWeekMode}
-        />)
-        : (<NavLink 
-            key={i}
-            to={`/calendar/day/${val.formatString}`}
-            activeClassName={styles.active}
-            onClick={handleDayBoxClick}
-          >
-          <DayBox 
-            title={val.date} 
-            description={val.dayOfWeek}
-            hasActiveToggle={!isWeekMode}
-          />
-        </NavLink>);
-
-      return (dayBoxes);
-    })
-    : null;
-
   return (
     <div className={styles.Calendar}>
       <div className={styles.ControlBox}>
-      <select 
-        name="DateUnit"
-        onChange={handleDateUnitChange}
-      >
-        <option value="">DateUnit</option>
-        <option value="week">Week</option>
-        <option value="day">Day</option>
-      </select>
-        <div className={styles.MoveButtonBox}>
-          <button 
-            className={styles.PrevButton}
-            onClick={handlePrevButtonClick}
-          >
-            {isWeekMode ? "Prev week" : "Prev day"}
-          </button>
-          <button 
-            className={styles.NextButton}
-            onClick={handleNextButtonClick}
-          >
-            {isWeekMode ? "Next week" : "Next day"}
-          </button>
-        </div>
+        <Dropdown 
+          name="date-unit" 
+          optionList={["DateUnit", "week", "day"]}
+          onChange={handleDateUnitChange}
+        />
+        <MoveButtons 
+          onPrevButtonClick={handlePrevButtonClick}
+          onNextButtonClick={handleNextButtonClick}
+          prevButtonText={isWeekMode ? "Prev week" : "Prev day"}
+          nextButtonText={isWeekMode ? "Next week" : "Next day"}
+        />
       </div>
-      <div className={styles.DaysBox}>
-        {currentWeek.length && <DayBox 
+      <div className={styles.DayBoxesContainer}>
+        {isCurrentWeekLoad && <DayBox 
           title={currentMonth}
           description={currentYear}
           hasActiveToggle={false}
         />}
-        {dayBoxes}
+        <DayBoxes 
+          days={currentWeek}
+          hasLink={!isWeekMode}
+          onLinkClick={handleDayBoxClick}
+        />
       </div>
-      <div className={styles.TimeTableBox}>
-        <div className={styles.TimeDisplayBox}>
-          {time.map((val, i) => {
-            return (
-              <div 
-                className={styles.TimeDisplay} 
-                key={i}
-              >
-                <span>{val}</span>
-              </div>
-            );
-          })}
-        </div>
-        {isWeekMode 
-          ? (
-            <div className={styles.TimeTable}>
-              <Column />
-              <Column />
-              <Column />
-              <Column />
-              <Column />
-              <Column />
-              <Column />
-            </div>
-            )
-          : (
-            <div className={styles.TimeTable}>
-              <Column />
-            </div>
-            )}
-      </div>
+      <TimeTableBox 
+        isWeek={isWeekMode}
+      />
     </div>
   );
 }
