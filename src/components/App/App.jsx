@@ -11,7 +11,7 @@ import SideBar from "../SideBar/SideBar";
 import CreateEvent from "../CreateEvent/CreateEvent";
 
 function App({ selectDay, nextButtonClicked, prevButtonClicked, selectedDate, selectedWeek }) {
-  // useEffect(() => {
+  // useEffect(() => { 
   //   onInitialLoad();
   // }, []);
   return (
