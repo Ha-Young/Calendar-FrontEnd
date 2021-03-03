@@ -7,7 +7,9 @@ import { getBorderStyle,getHilightStyle } from './helper';
 
 const cx = classNames.bind(styles);
 
-function DailySchedule({ date, diffForCurrentDate = 0 }) {
+function DailySchedule({ date, diffForCurrentDate = 0, eventList }) {
+  console.log(date, eventList);
+
   const timeList = getTimeList();
 
   const hilightStyle = getHilightStyle(diffForCurrentDate);

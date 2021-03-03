@@ -5,7 +5,7 @@ import { getCurrentDateStr } from "../utils/date";
 export function viewOption(state = VIEW_OPTION.DAILY, action) {
   switch (action.type) {
     case CHANGE_VIEW_OPTION:
-      return  action.payload;
+      return action.payload.viewOption;
 
     default:
       return state;
@@ -15,7 +15,7 @@ export function viewOption(state = VIEW_OPTION.DAILY, action) {
 export function currentDate(state = getCurrentDateStr(), action) {
   switch (action.type) {
     case CHANGE_DATE:
-      return action.payload;
+      return action.payload.currentDate;
 
     default:
       return state;
