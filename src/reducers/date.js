@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { CHANGE_DATE, CREATE_EVNETS,  RECEIVE_EVENTS } from "../constants/actionTypes";
+import { CHANGE_DATE, CHANGE_VIEW_OPTION, CREATE_EVNETS,  RECEIVE_EVENTS } from "../constants/actionTypes";
 import { VIEW_OPTION } from "../constants/stateTypes";
 import { getCurrentDateStr, getWeekDaysBasedOnDate } from "../utils/date";
 
@@ -47,10 +47,17 @@ function byId(state = initialStatus_byId, action) {
 }
 
 function visibleId(state = [getCurrentDateStr()], action) {
+  let newVisibleId = state;
+
   switch(action.type) {
     case CHANGE_DATE:
-      const newVisibleId = getVisibleId({ ...action.payload });
+      newVisibleId = getVisibleId({ ...action.payload });
       return newVisibleId;
+
+    case CHANGE_VIEW_OPTION:
+      newVisibleId = getVisibleId({ ...action.payload });
+      return newVisibleId;
+
     default:
       return state;
   }

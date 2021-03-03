@@ -4,46 +4,50 @@ import { Layout } from "antd";
 import React, { useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
+import ScheduleContainer from '../../containers/ScheduleContainer';
 import AppHeader from "../AppHeader";
 import AppSider from '../AppSider';
 import Events from "../Events";
-import Schedule from "../Schedule";
 import styles from "./App.module.css";
 
 const { Header, Footer, Content, Sider } = Layout;
 
 function App(
   {
-    onInitialLoad,
     viewOption,
-    changeViewOption,
     currentDate,
+    date,
+    events,
+    changeViewOption,
     changeCurrentDate,
     moveAddEventPage,
     createEvent,
   }) {
   useEffect(() => {
     console.log('init');
-    onInitialLoad();
   }, []);
+
+  function updateViewOption(newViewOption) {
+    changeViewOption({ currentDate, viewOption: newViewOption });
+  }
+
+  function updateCurrentDate(newCurrentDate) {
+    changeCurrentDate({ viewOption, currentDate: newCurrentDate });
+  }
 
   return (
     <Layout className={styles.App}>
       <Header className={styles.header}>
-        <AppHeader currentDate={currentDate} updateDate={changeCurrentDate}/>
+        <AppHeader currentDate={currentDate} updateDate={updateCurrentDate}/>
       </Header>
       <Layout className={styles.main}>
         <Sider className={styles.sidebar} width="300">
-          <AppSider viewOption={viewOption} updateViewOption={changeViewOption}/>
+          <AppSider viewOption={viewOption} updateViewOption={updateViewOption}/>
         </Sider>
         <Content className={styles.content}>
           <Switch>
             <Route path="/calendar">
-              <Schedule
-                viewOption={viewOption}
-                currentDate={currentDate}
-                onScheduleAddBtnClick={moveAddEventPage}
-              />
+              <ScheduleContainer />
             </Route>
             <Route path="/events">
               <Events createEvent={createEvent}/>
