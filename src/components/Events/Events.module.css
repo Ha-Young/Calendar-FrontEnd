@@ -13,3 +13,13 @@
   border: 1px solid grey;
 }
 
+/* each event container */
+
+.eachEvent {
+  max-width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}

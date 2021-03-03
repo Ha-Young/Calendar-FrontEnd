@@ -23,8 +23,11 @@ function App({ writeUserData, getUserData }) {
         <Route exact path="/event/new">
           <NewEvent writeUserData={writeUserData} />
         </Route>
-        <Route exact path="/event/:eventId">
-          <div>EVENT DETAIL</div>
+        <Route exact path="/event/:date">
+          <div>EVENT of selected date</div>
+        </Route>
+        <Route exact path="/event/:date/:hours">
+          <NewEvent writeUserData={writeUserData} /> 
         </Route>
         <Route path="*">
           <Redirect to="/calendar" />

@@ -11,26 +11,46 @@ export async function saveSampleData() {
   });
 }
 
+// what if startAt + endAt end up 2 digit
 export function writeUserData(userId = "guest", date, title, detail, startAt, endAt) {
-  firebase.database().ref(`users/${userId}/${date}/${startAt}`).set({
+  firebase.database().ref(`users/${userId}/${date}/${startAt+endAt}`).set({
+    date,
     userId,
     title,
     detail,
     startAt,
     endAt,
+  }, (error) => {
+    if (error) {
+      console.error(error);
+      // error handle
+    }
   });
 };
 
-export function getUserData(userId = "guest", date, startAt) {  // date default value needed
-  const userRef = firebase.database().ref(`users/${userId}/${date}/${startAt}`);
-  let result = [];
+export async function getUserData(userId = "guest", date, startAt, endAt) {  // date default value needed
+  const userRef = firebase.database().ref(`users/${userId}/${date}/${startAt+endAt}`);
+  const snapshot = await userRef.once("value");
+  const values = snapshot.val();
 
-  userRef.on("value", async (snapshot) => {
-    const events = await snapshot.val();
-    for (const date in events) {
-      result.push(events[date]);
-    }
-  });
+  return values;
+}
+
+export async function getAllUserData(userId = "guest") {  // date default value needed
+  const userRef = firebase.database().ref(`users/${userId}`);
+  const snapshot = await userRef.once("value", (snapShot) => snapShot);
+  const values = snapshot.val();
+  const result = [];
+
+  for (const date in values) {
+    result.push(...Object.values(values[date]));
+  }
 
   return result;
+}
+
+export function deleteTargetData(userId = "guest", date, startAt, endAt) {
+  console.log(userId, date, startAt, endAt);
+  const userRef = firebase.database().ref(`users/${userId}/${date}/${startAt+endAt}`);
+  userRef.remove();
 }

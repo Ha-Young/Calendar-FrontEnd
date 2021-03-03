@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Calendar.module.css";
 import firebase from "../../api/firebase"
-import { getDivsFor24Hours } from "../../utils/calander-utils";
+import { getDivsFor24Hours } from "../../utils/calander";
 
-export default function DailyBody({ today, getUserData }) {
-  const [allEvents, setAllEvents] = useState([]);
+export default function DailyBody({ today, isSideBarOn = true }) {
+  const [allEvents, setAllEvents] = useState({});
   
   const todayISO = today.toISOString().substring(0, 10);
   const hoursDiv = getDivsFor24Hours();
@@ -26,27 +26,30 @@ export default function DailyBody({ today, getUserData }) {
   return (
     <tbody className={styles.dailyTbody}>
       <tr className={styles.dailyTr}>
-      <td className={styles.hoursSideBar}>
-        {hoursDiv.map(each => <div className={styles.eachHour}>{each}</div>)}
-      </td>
+        <td className={styles.hoursSideBar}>
+          {isSideBarOn && hoursDiv.map(each => <div className={styles.eachHour} key={each}>{each}</div>)}
+        </td>
       <td className={styles.dailyEventTd}>
-        {hoursDiv.map((each) => {
+        {hoursDiv.map((each, index) => {
           let haveEvent = false;
-          let keyHour = Object.keys(allEvents);
+          let haveText = "";
+          for (const key in allEvents) {
+            const startHour = allEvents[key]["startAt"];
+            const endHour = allEvents[key]["endAt"];
 
-          // for (const key in allEvents) {
-          //   const startHour = allEvents[key]["startAt"];
-          //   const endHour = allEvents[key]["endAt"];
-
-          //   if (each >= Number(startHour) && each <= Number(endHour)) {
-          //     haveEvent = true;
-          //   }
-          // }
-
+            if (each >= Number(startHour) && each <= Number(endHour)) {
+              haveEvent = true;
+              if (each === Number(startHour)) {
+                haveText = allEvents[key]["title"];
+              }
+            }
+          }
 
           return (
-            <div className={`${styles.dailyHourDiv} ${styles.eachHour} ${haveEvent ? styles.haveEvent : ""}`}>
-              {haveEvent && allEvents[each]["title"]}
+            <div 
+              key={each + index}
+              className={`${styles.dailyHourDiv} ${haveEvent ? styles.haveEvent : styles.eachHour}`}>
+              {haveText && haveText}
             </div>
             );
         })}

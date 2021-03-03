@@ -4,22 +4,36 @@ import styles from "./Events.module.css";
 
 export default function Form(props) {
   const {
-    title,
-    detail,
-    startAt,
-    endAt,
-    onTitleChange,
-    onDetailChange,
-    onStartAtChange,
-    onEndAtChange,
-    onSubmit,
+    // date,
+    // title,
+    // detail,
+    // startAt,
+    // endAt,
+    // onDateChange,
+    // onTitleChange,
+    // onDetailChange,
+    // onStartAtChange,
+    // onEndAtChange,
+    // onSubmit,
+    inputValues,
+    onChangeInputValues,
    } = props;
 
   return (
     <form
-      onSubmit={onSubmit} 
+      // onSubmit={onSubmit} 
       className={`${styles.eventForm} ${styles.flexCenter}`}>
-      <label for="title">
+      <label>
+        DATE:
+        <input 
+          type="date"
+          id="date" 
+          // value={date}
+          // onChange={(e) => onDateChange(e.target.value)}
+          onChange={onChangeInputValues}
+        />
+      </label>
+      {/* <label>
         EVENT TITLE:
         <input 
           type="text"
@@ -28,7 +42,7 @@ export default function Form(props) {
           onChange={(e) => onTitleChange(e.target.value)} 
         />
       </label>
-      <label for="detail">
+      <label>
         EVENT DETAIL:
         <input 
           type="text"
@@ -37,24 +51,24 @@ export default function Form(props) {
           onChange={(e) => onDetailChange(e.target.value)}
         />
       </label>
-      <label for="startAt">
+      <label>
         EVENT START AT:
         <input 
-          type="datetime-local" 
+          type="time" 
           id="startAT" 
           value={startAt} 
           onChange={(e) => onStartAtChange(e.target.value)} 
         />
       </label>
-      <label for="endAt">
+      <label>
         EVENT END AT:
         <input 
-          type="datetime-local"
+          type="time"
           id="endAt" 
           value={endAt} 
           onChange={(e) => onEndAtChange(e.target.value)}
         />
-      </label>
+      </label> */}
       <input type="submit" />
     </form>
   );

@@ -1,7 +1,8 @@
 import React from "react";
-import { getDivsFor24Hours, getFutureDate, getPastDate } from "../../utils/calander-utils";
+import { getDivsFor24Hours, getFutureDate, getPastDate } from "../../utils/calander";
 import Header from "./Header";
 import styles from "./Calendar.module.css";
+import DailyBody from "./DailyBody";
 
 export default function WeeklyBody({ today }) {
   const dayOfToday = today.getDay();
@@ -20,9 +21,9 @@ export default function WeeklyBody({ today }) {
       <Header />
       <thead>
         <tr>
-          {thisWeek.map(date => {
+          {thisWeek.map((date, index) => {
             return (
-              <td className={styles.td} key={date}>
+              <td className={styles.td} key={date + index}>
                 {date.getDate()}
               </td>
             );
@@ -32,12 +33,12 @@ export default function WeeklyBody({ today }) {
       <tbody>
         <tr>
           <td className={styles.hoursSideBar}>
-            {hoursDiv.map(each => <div className={styles.eachHour}>{each}</div>)}
+            {hoursDiv.map((each, index) => <div key={each + index} className={styles.eachHour}>{each}</div>)}
           </td>
-          {thisWeek.map(date => {
+          {thisWeek.map((date, index) => {
             return (
-              <td className={styles.weeklyEventTd} key={date}>
-                {hoursDiv.map(() => <div className={styles.eachHour} />)}
+              <td className={styles.weeklyEventTd} key={date + index}>
+                <DailyBody today={date} isSideBarOn={false} />
               </td>
             );
           })}
