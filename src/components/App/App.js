@@ -4,7 +4,7 @@ import styles from './App.module.css';
 import Header from '../Header/Header';
 import Modal from '../../containers/Modal';
 import MonthlyCalendar from '../Main/MonthlyCalendar';
-import WeeklyCalendar from '../../components/Main/WeeklyCalendar';
+import WeeklyCalendar from '../../containers/WeeklyCalendar';
 import DailyCalendar from '../Main/DailyCalendar';
 
 function App({ onInitialLoad }) {
