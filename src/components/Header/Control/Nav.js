@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { PAGE_TYPE } from "../../../reducers";
+import { getMonth, getYear } from "../../../utils/getDay";
 
 const HeaderNav = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 10em;
   height: 2.5em;
   padding: 0.2em;
 
   p {
-    font-size: 1.6em;
+    font-size: 1.4em;
     margin-right: 0.2em;
   }
 
@@ -21,11 +22,13 @@ const HeaderNav = styled.div`
   }
 `;
 
-const Nav = () => {
+const Nav = ({ day, week, page }) => {
+  const month = page === PAGE_TYPE.DAILY ? getMonth(day) : getMonth(week);
+  const year = page === PAGE_TYPE.DAILY ? getYear(day) : getYear(week);
   return (
     <HeaderNav>
-      <p>2021년 3월</p>
-      <FontAwesomeIcon icon={faCaretDown} />
+      <p>{month}</p>
+      <p>{year}</p>
     </HeaderNav>
   );
 };

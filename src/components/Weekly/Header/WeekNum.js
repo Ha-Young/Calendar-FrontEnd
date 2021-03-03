@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { getWeek } from "../../../utils/getDay";
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,12 +35,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const dayNum = [1, 2, 3, 4, 5, 6, 7];
-
-const WeekNum = () => {
+const WeekNum = ({ count }) => {
+  const newWeek = getWeek(count);
   return (
     <Wrapper>
-      {dayNum.map(num => {
+      {newWeek.map(num => {
         return (
           <div key={num}>
             <p>{num}</p>

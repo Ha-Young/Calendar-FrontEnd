@@ -4,6 +4,7 @@ export default styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 5.5em;
   height: 3.4em;
   padding: 0.5em;
   border: 0.1em solid #DEDFDF;

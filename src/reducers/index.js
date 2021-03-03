@@ -9,29 +9,62 @@
 
  */
 
-import { MOVE_NEXT_DAY, MOVE_PREV_DAY, RESET_DAY } from "../constants/actionTypes";
+import { MOVE_NEXT_DAY, MOVE_PREV_DAY, MOVE_PREV_WEEK, MOVE_NEXT_WEEK, RESET_DAY, SET_DAILY, SET_WEEKLY } from "../constants/actionTypes";
 
+const MOVE = {
+  DAY: 1,
+  WEEK: 7,
+};
+
+export const PAGE_TYPE = {
+  DAILY: "Day",
+  WEEKLY: "Week",
+};
 
 const initialState = {
-  count: 0,
+  currentPage: "Daily",
+  countOfDay: 0,
+  countOfWeek: 0,
+  activedDay: "",
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case MOVE_NEXT_DAY:
+    case SET_DAILY:
       return {
         ...state,
-        count: state.count + 1
+        currentPage: PAGE_TYPE.DAILY
+      };
+    case SET_WEEKLY:
+      return {
+        ...state,
+        currentPage: PAGE_TYPE.WEEKLY
       };
     case MOVE_PREV_DAY:
       return {
         ...state,
-        count: state.count - 1
+        countOfDay: state.countOfDay - MOVE.DAY
+      };
+    case MOVE_NEXT_DAY:
+      return {
+        ...state,
+        countOfDay: state.countOfDay + MOVE.DAY
+      };
+    case MOVE_PREV_WEEK:
+      return {
+        ...state,
+        countOfWeek: state.countOfWeek - MOVE.WEEK
+      };
+    case MOVE_NEXT_WEEK:
+      return {
+        ...state,
+        countOfWeek: state.countOfWeek + MOVE.WEEK
       };
     case RESET_DAY:
       return {
         ...state,
-        count: initialState.count
+        countOfDay: initialState.countOfDay,
+        countOfWeek: initialState.countOfWeek
       };
     default:
       return state;

@@ -4,10 +4,12 @@ import DayLine from "./DayLine";
 import TimeLine from "./TimeLine";
 import WeekHeader from "./Header/WeekHeader";
 
-const Weekly = () => {
+const Weekly = ({ count, onPage }) => {
+  onPage();
+
   return (
     <Calendar>
-      <WeekHeader />
+      <WeekHeader count={count} />
       <TimeLine />
       <DayLine />
     </Calendar>

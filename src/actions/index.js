@@ -6,17 +6,46 @@
 
  */
 
-import { MOVE_NEXT_DAY, MOVE_PREV_DAY, RESET_DAY } from "../constants/actionTypes";
+import {
+  ADD_EVENT,
+  MOVE_NEXT_DAY,
+  MOVE_PREV_DAY,
+  MOVE_PREV_WEEK,
+  MOVE_NEXT_WEEK,
+  RESET_DAY,
+  SET_DAILY,
+  SET_WEEKLY
+} from "../constants/actionTypes";
 
- export const getNextDay = () => ({
-   type: MOVE_NEXT_DAY,
- });
+export const setDaily = () => ({
+  type: SET_DAILY,
+});
 
- export const getPrevDay = () => ({
-   type: MOVE_PREV_DAY,
- });
+export const setWeekly = () => ({
+  type: SET_WEEKLY,
+});
 
- export const resetDay = () => ({
-   type: RESET_DAY,
- });
- 
+export const movePrevDay = () => ({
+  type: MOVE_PREV_DAY,
+});
+
+export const moveNextDay = () => ({
+  type: MOVE_NEXT_DAY,
+});
+
+export const movePrevWeek = () => ({
+  type: MOVE_PREV_WEEK,
+});
+
+export const moveNextWeek = () => ({
+  type: MOVE_NEXT_WEEK,
+});
+
+export const resetDay = () => ({
+  type: RESET_DAY,
+});
+
+export const addEvent = (event) => ({
+  type: ADD_EVENT,
+  event: {},
+});

@@ -4,22 +4,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import HeaderBtn from "../../../shared/HeaderBtn";
 import FilterModal from "../Nav/FilterModal";
+import { connect } from "react-redux";
 
 const Wrapper = styled.div`
   position: relative;
-  
+
   p {
     margin-right: 0.5em;
   }
 `;
 
-const Filter = () => {
+const Filter = ({ page }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
     <Wrapper>
       <HeaderBtn onClick={() => setIsClicked(prev => !prev)}>
-        <p>Day</p>
+        <p>{page}</p>
         <FontAwesomeIcon icon={faCaretDown} />
       </HeaderBtn>
       {isClicked && <FilterModal />}
@@ -27,4 +28,8 @@ const Filter = () => {
   );
 }
 
-export default Filter;
+const mapStateToProps = (state) => ({
+  page: state.currentPage,
+});
+
+export default connect(mapStateToProps, null)(Filter);

@@ -1,10 +1,14 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
 import { saveSampleData, addfolder, updateSample, addSample } from "../api";
-import { getNextDay, getPrevDay, resetDay } from "../actions";
+import {
+  setDaily,
+  setWeekly,
+} from "../actions";
 
 const mapStateToProps = (state) => ({
-  count: state.count,
+  countOfDay: state.countOfDay,
+  countOfWeek: state.countOfWeek,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -15,14 +19,11 @@ const mapDispatchToProps = (dispatch) => ({
     //addSample();
     //addfolder();
   },
-  getNextDay: () => {
-    dispatch(getNextDay());
+  setDaily: () => {
+    dispatch(setDaily());
   },
-  getPrevDay: () => {
-    dispatch(getPrevDay());
-  },
-  resetDay: () => {
-    dispatch(resetDay());
+  setWeekly: () => {
+    dispatch(setWeekly());
   },
 });
 

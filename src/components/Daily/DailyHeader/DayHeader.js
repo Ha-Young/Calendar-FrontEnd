@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Day from "./Day"
-import EventAddBtn from "./EventAddBtn";
+import EventPageBtn from "./EventPageBtn";
 
 const Header = styled.header`
   position: fixed;
@@ -21,7 +21,7 @@ const Header = styled.header`
 const DayHeader = ({ count }) => {
   return (
     <Header>
-      <EventAddBtn />
+      <EventPageBtn />
       <Day count={count} />
     </Header>
   );

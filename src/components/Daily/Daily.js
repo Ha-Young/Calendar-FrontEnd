@@ -2,9 +2,11 @@ import React from "react";
 import Calendar from "../../shared/Calendar";
 import TimeLine from "./TimeLine";
 import EventLine from "./EventLine";
-import DayHeader from "./Header/DayHeader";
+import DayHeader from "./DailyHeader/DayHeader";
 
-const Daily = ({ count }) => {
+const Daily = ({ count, onPage }) => {
+  onPage();
+
   return (
     <Calendar>
       <DayHeader count={count} />

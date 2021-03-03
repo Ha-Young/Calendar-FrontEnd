@@ -15,11 +15,11 @@ const Header = styled.header`
   border-bottom: 0.1em solid #ABABAB;
 `;
 
-const WeekHeader = () => {
+const WeekHeader = ({ count }) => {
   return (
     <Header>
       <WeekStr />
-      <WeekNum />
+      <WeekNum count={count} />
     </Header>
   );
 };

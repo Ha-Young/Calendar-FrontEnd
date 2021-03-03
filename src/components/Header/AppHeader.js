@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Control from "./Control/Control";
+import Control from "./Control";
 import Logo from "./Logo";
 import Nav from "./Nav/Nav";
 
@@ -11,6 +11,7 @@ const Header = styled.header`
   height: 6em;
   padding-left: 1em;
   border-bottom: 1px solid #ABABAB;
+  z-index: 10;
 
   nav {
     display: flex;
@@ -31,13 +32,13 @@ const Header = styled.header`
 `;
 
 // TODO: Create your own header.
-const AppHeader = ({ nextDay, prevDay, resetDay }) => {
+const AppHeader = () => {
   return (
     <Header>
       <nav>
         <div className="flexBox">
           <Logo />
-          <Control nextDay={nextDay} prevDay={prevDay} resetDay={resetDay} />
+          <Control />
         </div>
         <Nav />
       </nav>

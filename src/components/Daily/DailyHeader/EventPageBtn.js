@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,12 +14,14 @@ const Button = styled.button`
   border: 0.1em solid #ABABAB;
 `;
 
-const EventAddBtn = () => {
+const EventPageBtn = () => {
   return (
-    <Button>
-      <FontAwesomeIcon icon={faPlus}/>
-    </Button>
+    <Link to="/Event/new" >
+      <Button>
+        <FontAwesomeIcon icon={faPlus}/>
+      </Button>
+    </Link>
   );
 };
 
-export default EventAddBtn;
+export default EventPageBtn;
