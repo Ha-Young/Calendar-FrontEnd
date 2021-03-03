@@ -5,8 +5,9 @@ import { setCalendarFor, setUserEvent } from "../features/actionCreators";
 import { createSelector } from "../features/selectors";
 
 const mapStateToProps = (state) => {
-  const selectorToCalendar = createSelector(state, "calendar");
-  return {selectorToCalendar};
+  const selectorToCalendar = createSelector(state,"calendar");
+  const eventDateInfo = {...selectorToCalendar()};
+  return {eventDateInfo};
 };
 
 const mapDispatchToProps = (dispatch) => {

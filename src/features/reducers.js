@@ -27,8 +27,12 @@ export default function reducer(state = initiateState, action) {
     case calendar.SET_DATE:
       return setCalendar(state, CALENDAR_STATE_KEY.DATE, payload);
     case calendar.SET_FROM_HOUR:
+      const { toHour } = state.calendar;
+      if (payload > toHour) return setCalendar(state, CALENDAR_STATE_KEY.FROM_HOUR, toHour);
       return setCalendar(state, CALENDAR_STATE_KEY.FROM_HOUR, payload);
     case calendar.SET_TO_HOUR:
+      const { fromHour } = state.calendar;
+      if (fromHour > payload) return setCalendar(state, CALENDAR_STATE_KEY.TO_HOUR, fromHour);
       return setCalendar(state, CALENDAR_STATE_KEY.TO_HOUR, payload);
     default:
       return state;

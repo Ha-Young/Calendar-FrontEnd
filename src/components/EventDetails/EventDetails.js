@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { MAX_MIN_DATE } from "../../constants"
 import { letDispatch } from "../../utils/eventHandlers";
-export default function EventDetails({getState, dispatches}) {
+export default function EventDetails({inputDate, dispatchBundle}) {
   const {
     setYear,
     setMonth,
     setDate,
     setFromHour,
     setToHour,
-  } = dispatches.actToCalendar;
+  } = dispatchBundle.actToCalendar;
+  const { setEvent } = dispatchBundle.actToEvent;
+  const {
+    year,
+    month,
+    date,
+    fromHour,
+    toHour,
+  } = inputDate;
 
   const [content, setContent] = useState("");
 
@@ -28,7 +36,7 @@ export default function EventDetails({getState, dispatches}) {
             type="number"
             min={MAX_MIN_DATE.YEAR.MIN}
             max={MAX_MIN_DATE.YEAR.MAX}
-            value={getState("year")}
+            value={year}
             onChange={(e) => letDispatch(Number(e.target.value), setYear)}
           />
         </label>
@@ -39,7 +47,7 @@ export default function EventDetails({getState, dispatches}) {
             type="number"
             min={MAX_MIN_DATE.MONTH.MIN}
             max={MAX_MIN_DATE.MONTH.MAX}
-            value={getState("month")}
+            value={month}
             onChange={(e) => letDispatch(Number(e.target.value), setMonth)}
           />
         </label>
@@ -50,7 +58,7 @@ export default function EventDetails({getState, dispatches}) {
             type="number"
             min={MAX_MIN_DATE.DATE.MIN}
             max={MAX_MIN_DATE.DATE.MAX}
-            value={getState("date")}
+            value={date}
             onChange={(e) => letDispatch(Number(e.target.value), setDate)}
           />
         </label>
@@ -62,7 +70,7 @@ export default function EventDetails({getState, dispatches}) {
           type="number"
           min={MAX_MIN_DATE.HOUR.MIN}
           max={MAX_MIN_DATE.HOUR.MAX}
-          value={getState("fromHour")}
+          value={fromHour}
           onChange={(e) => letDispatch(Number(e.target.value), setFromHour)}
         />
       </label>
@@ -73,7 +81,7 @@ export default function EventDetails({getState, dispatches}) {
           type="number"
           min={MAX_MIN_DATE.HOUR.MIN}
           max={MAX_MIN_DATE.HOUR.MAX}
-          value={getState("toHour")}
+          value={toHour}
           onChange={(e) => letDispatch(Number(e.target.value), setToHour)}
         />
       </label>
@@ -82,7 +90,9 @@ export default function EventDetails({getState, dispatches}) {
         <textarea name="eventContent" value={content} onChange={(e) => letDispatch(e.target.value, setContent)}></textarea>
       </label>
       </fieldset>
-      <button>등록</button>
+      <button onClick={() => {
+        const userEvent = {};
+      }}>등록</button>
       <button>취소</button>
     </>
   )

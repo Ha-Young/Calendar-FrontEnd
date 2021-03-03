@@ -1,9 +1,9 @@
-export function setCalendar(state, key, payload) {
+export function setCalendar(state, key, value) {
   return {
     ...state,
     calendar: {
       ...state.calendar,
-      [key]: payload,
+      [key]: value,
     }
   };
 }
