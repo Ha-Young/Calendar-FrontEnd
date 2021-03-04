@@ -16,7 +16,7 @@ export default function Header({ prevButtonClicked, nextButtonClicked }) {
         <Link to='/events/new'>Create Event</Link>
       </div>
       <div className={styles.navItemWrapper}>
-        <Link to='/events/eventId'>Create Event</Link>
+        <Link to='/events/eventId'>Event Datail / Edit</Link>
       </div>
       <div className={styles.navItemWrapper}>
         <Link to='/calendar'>new calendar.</Link>
