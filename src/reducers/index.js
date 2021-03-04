@@ -12,14 +12,23 @@ import { getToday, addDate } from "../api/date";
 
 const initialState = {
   currentPageDate: getToday(),
-  eventlist: [],
+  eventList: {},
+  eventKeyList: [],
 };
 
 export default function reducer(state = initialState, action) {
   const newState = { ...state };
-  console.log(action.type);
 
   switch (action.type) {
+    case "ON_SUBMIT":
+      if (state.eventKeyList.includes(action.key)) {
+        newState.eventList[action.key].push(action.event);
+      } else {
+        newState.eventList[action.key] = [action.event];
+        newState.eventKeyList.push(action.key);
+      }
+
+
     case "CLICK_LEFT":
       newState.currentPageDate = addDate(state.currentPageDate, {days: -1});
       break;

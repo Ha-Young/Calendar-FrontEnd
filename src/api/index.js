@@ -16,8 +16,7 @@ export async function saveNewRecord(content) {
 export async function getRecord(date) {
   const database = firebase.database();
   const refs = date.replace(/-/gi, "/");
-  
   const data = await database.ref(refs).once('value');
+
   return data.val();
 }
-

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
@@ -14,8 +14,8 @@ function App({ onInitialLoad }) {
   }, []);
 
   return (
-    <div className={styles.App}>
-      <Header />
+   <Fragment>
+     <Header />
       <Switch>
         <Route path="/" exact>
           <div>Main</div>
@@ -26,7 +26,7 @@ function App({ onInitialLoad }) {
           <Event />
         </Route>
       </Switch>
-    </div>
+   </Fragment>
   );
 }
 

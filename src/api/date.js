@@ -23,3 +23,17 @@ export const parseDate = function (dateString) {
   
   return dateObject;
 }
+
+export const convertToReduxStateForm = function (data) {
+ console.log(data);
+
+ for (let i = 0; i < data.length; i++) {
+   const hour = data[Object.keys(data)[0]];
+
+   const eventId = data[hour];
+   const event = eventId
+ }
+
+
+
+}

@@ -1,20 +1,11 @@
 import { connect } from "react-redux";
 import Daily from "../components/Daily/Daily";
+import { handleClickLeft, handleClickRight } from "../actions";
 
 const mapStateToProps = (state) => ({
-  events: state.eventlist,
-  currentPageDate: state.currentPageDate,                                                                                                                   
+  eventList: state.eventList,
+  eventKeyList: state.eventKeyList,  
+  currentPageDate: state.currentPageDate                                                                                                     
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    saveDataToReduxState: (eventlist) => {
-      dispatch({
-        type: "SAVE_DATA_TO_REDUX_STATE",
-        eventlist: eventlist,
-      });
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Daily);
+export default connect(mapStateToProps, {handleClickLeft, handleClickRight })(Daily);

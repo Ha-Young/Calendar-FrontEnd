@@ -1,49 +1,47 @@
 import React, { Fragment, useEffect } from "react";
-import Carousel from "../../containers/Carousel";
 import { hour} from "../../constants/DateConstants";
-import { getFormat } from "../../api/date";
-import { getRecord } from "../../api";
 import "./style.css";
+import { getFormat, parseDate } from "../../api/date";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
-export default function Daily({ currentPageDate, events, saveDataToReduxState }) {
+
+export default function Daily({ eventList, eventKeyList, currentPageDate, handleClickLeft, handleClickRight }) {
+  const currentDate = getFormat(currentPageDate);
+  const parsedCurrentDate = parseDate(currentDate);
+  const currentEventList = eventKeyList.includes(currentDate) ? eventList[currentDate] : [];
+
   let until;
 
-  useEffect(()=>{
-    (async function () {
-      const data = await getRecord(getFormat(currentPageDate));
-      let copied =[];
-
-      for (let key in data) {
-        let event = {startHour: key};
-        let eventID = data[key][Object.keys(data[key])[0]];
-
-        for (let second in eventID) {
-          event[second] =eventID[second];
-        }
-        copied.push(event);
-      }
-      saveDataToReduxState(copied);
-    })();
-  }, [currentPageDate]);
+  useEffect(() => {
+   
+  }, []);
 
   return (
     <Fragment>
+      <div className="header">
+          <AiOutlineArrowLeft className="previous" onClick={handleClickLeft}/>
+          <span>{parsedCurrentDate.year}년</span>
+          <span>{parsedCurrentDate.month}월</span>
+          <span>{parsedCurrentDate.date}일</span>
+          <AiOutlineArrowRight className="next" onClick={handleClickRight} />
+      </div>
       <div className="daily">
-        <Carousel />
+       
         <div className="row-container">
         { 
           hour.map((time) => {
           let isColor = "";
           let title = "";
 
-          for(let i = 0; i < events.length; i++) {
-            const start = parseInt(events[i].startHour);
-            const end = start + parseInt(events[i].duration);
+          for (let i = 0; i < currentEventList.length; i++) {
+            const event = currentEventList[i];
+            const start = parseInt(event.startHour);
+            const end = parseInt(event.endHour);
 
             if (time === start) {
               until = end;
-              title = events[i].title;
-            } 
+              title = event.title;
+            }
 
             if (time <= until) {
               isColor = "colored";

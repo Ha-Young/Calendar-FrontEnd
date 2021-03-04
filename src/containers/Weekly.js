@@ -3,7 +3,7 @@ import Weekly from "../components/Weekly/Weekly";
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events,  
+    events: state.eventlist,  
     currentPageDate: state.currentPageDate,                                                                                                                         
   }
 }
@@ -18,6 +18,12 @@ const mapDispatchToProps = (dispatch) => {
     handleClickRight: () => {
       dispatch({
         type: "CLICK_RIGHT_WEEK"
+      });
+    },
+    saveDataToReduxState: (newEventlist) => {
+      dispatch({
+        type: "SAVE_DATA_TO_REDUX_STATE",
+        eventlist: newEventlist,
       });
     }
   }
