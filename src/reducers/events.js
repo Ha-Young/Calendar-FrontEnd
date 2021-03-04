@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { CREATE_EVNETS, RECEIVE_DATE } from "../constants/actionTypes";
+import { CREATE_EVNETS, RECEIVE_DATE, RECEIVE_DATE_LIST } from "../constants/actionTypes";
 
 const initialStatus_byId = {
   // "2021-03-03_12:2": {
@@ -43,27 +43,45 @@ const initialStatus_byId = {
 
 function byId(state = initialStatus_byId, action) {
   switch(action.type) {
-    case CREATE_EVNETS:
+    case CREATE_EVNETS: {
       const event = action.payload;
 
       const newState = { ...state };
       newState[event.id] = event;
 
       return newState;
-
-    case RECEIVE_DATE:
-      const newActionById = {
-        ...state,
-      };
+    }
+    case RECEIVE_DATE: {
+      const newEventsById = { ...state };
 
       const [dateKey] = Object.keys(action.payload);
       const events = action.payload[dateKey];
 
       for (const [key, value] of Object.entries(events)) {
-        newActionById[key] = value;
+        newEventsById[key] = value;
       }
 
-      return newActionById;
+      return newEventsById;
+    }
+    case RECEIVE_DATE_LIST: {
+      const newEventsById = { ...state };
+
+      const dateList = action.payload;
+
+      for (const dateKey of Object.keys(dateList)) {
+        if (!dateList[dateKey]) {
+          continue;
+        }
+
+        const events = dateList[dateKey];
+
+        for (const [key, value] of Object.entries(events)) {
+          newEventsById[key] = value;
+        }
+      }
+
+      return newEventsById;
+    }
     default:
       return state;
   }
@@ -80,7 +98,8 @@ function allIds(state = initialStatus_allIds, action) {
 
       return state.concat(event.id);
 
-    case RECEIVE_DATE:
+    case RECEIVE_DATE: {
+      //Todo. 중복코드 제거 아래 LIST
       if (action.payload) {
         const [dateKey] = Object.keys(action.payload);
         const eventKeys = Object.keys(action.payload[dateKey]);
@@ -90,6 +109,30 @@ function allIds(state = initialStatus_allIds, action) {
         return newState;
       }
       return state;
+    }
+
+    case RECEIVE_DATE_LIST: {
+      if (action.payload) {
+
+        const dateList = action.payload;
+
+        let newState = [...state];
+
+        for (const dateKey of Object.keys(dateList)) {
+          if (!dateList[dateKey]) {
+            continue;
+          }
+
+          const eventKeys = Object.keys(action.payload[dateKey]);
+
+          newState = newState.concat(eventKeys);
+        }
+
+        return newState;
+      }
+      return state;
+    }
+
     default:
       return state;
   }
