@@ -8,6 +8,7 @@ import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import CreateEvent from "../CreateEvent/CreateEvent";
 import Calendar from "../Calendar/Calendar";
+import EventDetail from "../EventDetail/EventDetail";
 // TODO remove useless props
 function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, calculatedDates, selectedEventId, isDailyView }) {
   console.log('app render');
@@ -21,8 +22,8 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
           <Route path="/events/new">
             <CreateEvent />
           </Route>
-          <Route path="/events/:eventId">
-            <div>이벤트 상세 페이지</div>
+          <Route path="/events/eventId">
+            <EventDetail />
           </Route>
           <Route path="/calendar">
             <Calendar selectedDate={selectedDate} toggleCalendarView={toggleCalendarView} isDailyView={isDailyView}/>

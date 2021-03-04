@@ -27,3 +27,10 @@ export const loadEvents = (events) => ({
 export const toggleCalendarView = () => ({
   type: types.TOGGLE_CALENDAR_VIEW,
 });
+
+export const selectEvent = (selectedEventId) => ({
+  type: types.SELECT_EVENT,
+  payload: {
+    selectedEventId: selectedEventId,
+  }
+});

@@ -69,6 +69,13 @@ export default function reducer(state = initialState, action) {
       }
     }
 
+    case types.SELECT_EVENT: {
+      return {
+        ...state,
+        selectedEventId: action.payload.selectedEventId,
+      }
+    }
+
     default:
       return state;
   }
