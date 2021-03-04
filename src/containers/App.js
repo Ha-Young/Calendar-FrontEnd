@@ -29,9 +29,13 @@ const mapDispatchToProps = dispatch => ({
   },
   onInitLoad: async ({ userId, currentDate }) => {
     dispatch(startLoading());
-    const date = await readDate(userId, currentDate);
-    dispatch(receiveDate(date));
-    // const data = await receiveDateRange(userId, '2021-03-02', '2021-03-04');
+    // const date = await readDate(userId, currentDate);
+    // dispatch(receiveDate(date));
+    const dateList = await readDateListRange(userId, '2021-03-02', '2021-03-07');
+
+    console.log('dateList', dateList);
+
+    dispatch(receiveDateList(dateList));
   },
   getDate: async ({ userId, currentDate }) => {
     dispatch(startLoading());

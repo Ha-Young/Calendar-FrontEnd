@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { CHANGE_DATE, CHANGE_VIEW_OPTION, CREATE_EVNETS,  RECEIVE_DATE,  RECEIVE_EVENTS } from "../constants/actionTypes";
+import { CHANGE_DATE, CHANGE_VIEW_OPTION, CREATE_EVNETS,  RECEIVE_DATE,  RECEIVE_DATE_LIST,  RECEIVE_EVENTS } from "../constants/actionTypes";
 import { VIEW_OPTION } from "../constants/stateTypes";
 import { getCurrentDateStr, getWeekDateListBasedOnDate } from "../utils/date";
 
@@ -21,7 +21,7 @@ const initialStatus_byId = {
 
 function byId(state = initialStatus_byId, action) {
   switch(action.type) {
-    case CREATE_EVNETS:
+    case CREATE_EVNETS: {
       const event = action.payload;
       const eventId = event.id;
       const dateId = event.date;
@@ -36,8 +36,9 @@ function byId(state = initialStatus_byId, action) {
         };
       }
       return newState;
-
-    case RECEIVE_DATE:
+    }
+    case RECEIVE_DATE: {
+      //ToDo. 아래 DATELIST 중복 합치기
       const newDateById = { ...state };
 
       if (action.payload) {
@@ -48,12 +49,8 @@ function byId(state = initialStatus_byId, action) {
 
         const newDate = {
           id: dateKey,
-          events: [...prevEventList],
+          events: prevEventList.concat(eventKeys),
         };
-
-        for (const eventKey of eventKeys) {
-          newDate.events.push(eventKey);
-        }
 
         newDateById[dateKey] = newDate;
 
@@ -61,7 +58,41 @@ function byId(state = initialStatus_byId, action) {
       }
 
       return newDateById;
+    }
 
+    case RECEIVE_DATE_LIST: {
+      if (action.payload) {
+        const newDateById = { ...state };
+
+        const dateList = action.payload;
+
+        for (const dateKey of Object.keys(dateList)) {
+          if (!dateList[dateKey]) {
+            newDateById[dateKey] = {
+              id: dateKey,
+              events: [],
+            };
+  
+            continue;
+          }
+  
+          const eventKeys = Object.keys(dateList[dateKey]);
+  
+          const prevEventList = state[dateKey] ? state[dateKey].events : [];
+  
+          const newDate = {
+            id: dateKey,
+            events: prevEventList.concat(eventKeys),
+          };
+  
+          newDateById[dateKey] = newDate;
+        }
+
+        return newDateById;
+      }
+
+      return state;
+    }
     default:
       return state;
   }

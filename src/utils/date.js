@@ -59,6 +59,22 @@ export function getWeekDateListBasedOnDate(baseDate) {
   }));
 }
 
+export function getDateListBasedOnRange(startDate, endDate) {
+  //todo. startDate, endDate date인지 체크, endDate가 더 이후인지 체크
+  console.log('getDateListBasedOnRange');
+  const dateList = [startDate];
+
+  let calcDate = startDate;
+
+  while (calcDate !== endDate) {
+    calcDate = getCalcDay(calcDate, + 1);
+    dateList.push(calcDate);
+    console.log(dateList);
+  }
+
+  return dateList;
+}
+
 export function checkIsSameDate(date, anotherDate, dateFormat) {
   return moment(date, dateFormat).isSame(moment(anotherDate, dateFormat));
 }
