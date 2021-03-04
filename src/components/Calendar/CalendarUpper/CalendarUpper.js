@@ -17,6 +17,7 @@ const CalendarUpperContainer = styled.div`
       align-items:center;
       width: 25%;
       height: 4.5rem;
+      margin-top: 0.5%;
     }
 
     &__days {

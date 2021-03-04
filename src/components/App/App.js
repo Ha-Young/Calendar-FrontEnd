@@ -27,24 +27,28 @@ function App({ currentDate, calendarMode, initStore, moveDate, onInitialLoad }) 
 
   return (
     <Background>
-      <div className={styles.AppContainer}>
-        <DateNavigator direction={LEFT} onClick={moveDate(calendarMode, currentDate)} />
-        <div className={styles.App}>
-          <Header />
-          <Switch>
-            <Route path="/" exact>
-              <Calendar />
-            </Route>
-            <Route path="/event" exact>
-              <div>Event 상세</div>
-            </Route>
-            <Route path="/event/new" exact>
-              <ScheduleCreateForm />
-            </Route>
-          </Switch>
+      <Switch>
+        <Route path="/event/key" exact>
+          <div className={styles.modal}>Event 상세</div>
+        </Route>
+        <Route path="/">
+        <div className={styles.AppContainer}>
+          <DateNavigator direction={LEFT} onClick={moveDate(calendarMode, currentDate)} />
+          <div className={styles.App}>
+            <Header />
+            <Switch>
+              <Route path="/" exact>
+                <Calendar />
+              </Route>
+              <Route path="/event/new" exact>
+                <ScheduleCreateForm />
+              </Route>
+            </Switch>
+          </div>
+          <DateNavigator direction={RIGHT} onClick={moveDate(calendarMode, currentDate)} />
         </div>
-        <DateNavigator direction={RIGHT} onClick={moveDate(calendarMode, currentDate)} />
-      </div>
+        </Route>
+      </Switch>
     </Background>
   );
 }

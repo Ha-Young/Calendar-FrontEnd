@@ -25,7 +25,7 @@ const TimeLayout = () => {
     const middle = '~';
     const toHour = nextHour / 10 < 1 ? `0${nextHour}` : nextHour;
 
-    return (fromHour + middle + toHour);
+    return (`${fromHour} ${middle} ${toHour}`);
   }
 
   function getContentArray() {
