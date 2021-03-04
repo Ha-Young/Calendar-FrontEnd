@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ColorPicker, { useColor } from "react-color-palette";
+import TextInput from "../TextInput/TextInput";
 import styles from "./Form.module.css";
 import { validateText, validateTime } from "../../utils/vailidation";
 import { useHistory } from "react-router";
@@ -58,19 +59,15 @@ const Form = ({ onSubmit, initialState, children }) => {
     <div className={styles.wrapper}>
       <form onSubmit={handleSubmit}>
         <div className={styles.column}>
-          <input
-            className={styles.input}
-            name="title"
-            type="text"
-            onChange={handleInputChange}
-            value={newEventData.title}
+          <TextInput 
+            name={"title"} 
+            onChange={handleInputChange} 
+            value={newEventData.title} 
           />
-          <input
-            className={styles.input}
-            name="description"
-            type="text"
-            onChange={handleInputChange}
-            value={newEventData.description}
+          <TextInput 
+            name={"description"} 
+            onChange={handleInputChange} 
+            value={newEventData.description} 
           />
         </div>
         <div className={styles[`same-type`]}>

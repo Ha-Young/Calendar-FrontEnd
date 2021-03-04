@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Board.module.css";
+import styles from "./Calendar.module.css";
 import { hours } from "../../utils/date";
 
-const BoardSideBar = () => {
+const CalendarSideBar = () => {
   return (
     <div className={styles.bar}>
       {hours.map((item) => (
@@ -12,4 +12,4 @@ const BoardSideBar = () => {
   );
 };
 
-export default BoardSideBar;
+export default CalendarSideBar;

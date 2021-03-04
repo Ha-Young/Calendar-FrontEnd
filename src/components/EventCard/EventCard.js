@@ -1,16 +1,16 @@
 import React from "react";
-import styles from "./Card.module.css";
+import styles from "./EventCard.module.css";
 import { Link, useLocation } from "react-router-dom";
 import { generateCardHeight, generateCardLocation } from "../../utils/ui";
 
-const Card = ({ content }) => {
+const EventCard = ({ event }) => {
   const {
     color,
     id,
     endTime,
     startTime,
     title,
-  } = content;
+  } = event;
   const location = useLocation();
   const cardLength = generateCardHeight(startTime, endTime);
   const cardLocation = generateCardLocation(startTime);
@@ -35,4 +35,4 @@ const Card = ({ content }) => {
   );
 };
 
-export default Card;
+export default EventCard;

@@ -54,6 +54,8 @@ const mapStateToProps = ({ calendarDate, eventData }) => ({
   isDailyCalendar: calendarDate.isDaily,
   currentDate: calendarDate.date,
   selectedDate: calendarDate.selectedDate,
+  isLoading: eventData.isLoading,
+  errorMessage: eventData.errorMessage,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

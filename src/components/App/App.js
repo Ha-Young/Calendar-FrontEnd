@@ -17,9 +17,11 @@ const App = ({
   onLoad,
   saveNewEventData,
   selectedDate,
+  isLoading,
+  errorMessage,
 }) => {
   useEffect(() => {
-    onLoad(selectedDate); // initialLize..
+    onLoad(selectedDate);
   }, [selectedDate]);
 
   const location = useLocation();
@@ -27,6 +29,8 @@ const App = ({
   
   return (
     <div className={styles.App}>
+      {isLoading && "isLoading.."}
+      {errorMessage && errorMessage}
       <Header
         onClickButton={handleChangeCalendarType}
         onToggle={handleChangeCalendarPage}
@@ -38,7 +42,6 @@ const App = ({
       <Switch location={background || location}>
         <Route path="/calendar" exact>
           <CalendarPage
-            onLoad={onLoad}
             getEventByCurrentDate={getEventByCurrentDate}
             dateList={dateList}
           />
