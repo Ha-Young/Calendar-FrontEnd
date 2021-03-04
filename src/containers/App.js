@@ -11,6 +11,7 @@ import {
 const mapStateToProps = (state) => ({
   countOfDay: state.calendar.countOfDay,
   countOfWeek: state.calendar.countOfWeek,
+  events: state.event,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -4,7 +4,7 @@ import TimeLine from "./TimeLine";
 import EventLine from "./EventLine";
 import DayHeader from "./DailyHeader/DayHeader";
 
-const Daily = ({ count, onPage }) => {
+const Daily = ({ count, onPage, events }) => {
   useEffect(() => {
     onPage();
   }, []);
@@ -13,7 +13,7 @@ const Daily = ({ count, onPage }) => {
     <Calendar>
       <DayHeader count={count} />
       <TimeLine />
-      <EventLine />
+      <EventLine count={count} events={events} />
     </Calendar>
   );
 };

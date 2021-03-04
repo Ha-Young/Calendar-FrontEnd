@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { DAY_COLORS } from "../../assets/colors";
 import { getWeek } from "../../utils/convertTime";
 import EventLine from "./EventLine";
 
@@ -15,12 +16,18 @@ const Wrapper = styled.div`
 const DAY = 7;
 const days = new Array(DAY).fill(undefined).map((v,idx) => idx);
 
-const DayLine = ({ count }) => {
-  console.log(getWeek(count));
+const DayLine = ({ count, events }) => {
+  const currentWeek = getWeek(count);
+
   return (
     <Wrapper>
-      {days.map(v => {
-        return <EventLine key={v}  />;
+      {days.map(n => {
+        return <EventLine
+          key={n}
+          day={currentWeek[n]}
+          events={events}
+          color={DAY_COLORS[n]}
+        />;
       })}
     </Wrapper>
   );

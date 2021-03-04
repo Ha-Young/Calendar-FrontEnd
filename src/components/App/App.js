@@ -17,6 +17,7 @@ const App = ({
   countOfWeek,
   onSubmit,
   setEvent,
+  events,
 }) => {
   useEffect(() => {
     onInitialLoad();
@@ -29,13 +30,13 @@ const App = ({
 
       <Switch>
         <Route path="/" exact>
-          <Daily count={countOfDay} onPage={setDaily} />
+          <Daily count={countOfDay} onPage={setDaily} events={events} />
         </Route>
         <Route path="/Day">
-          <Daily count={countOfDay} onPage={setDaily} />
+          <Daily count={countOfDay} onPage={setDaily} events={events} />
         </Route>
         <Route path="/Week">
-          <Weekly count={countOfWeek} onPage={setWeekly} />
+          <Weekly count={countOfWeek} onPage={setWeekly} events={events} />
         </Route>
         <Route path="/Event/new">
           <Event onSubmit={onSubmit} onPage={setEvent}/>

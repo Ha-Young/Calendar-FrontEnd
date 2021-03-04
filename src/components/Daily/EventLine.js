@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { getDayIso } from "../../utils/convertTime";
 
 const Wrapper = styled.div`
   width: 80%;
@@ -21,7 +22,10 @@ const Wrapper = styled.div`
 const TIME = 24;
 const times = new Array(TIME).fill(undefined).map((v,idx) => idx);
 
-const EventLine = () => {
+const EventLine = ({ count, events }) => {
+  const currentDay = getDayIso(count);
+  console.log(currentDay);
+
   return (
     <Wrapper>
       {times.map(n => {
