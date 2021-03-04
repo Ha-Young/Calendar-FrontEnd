@@ -1,1 +1,2 @@
 export const ADD_SUBMIT_DATA = 'ADD_SUBMIT_DATA';
+export const SHOW_SCHEDULE_INFO = 'SHOW_SCHEDULE_INFO';

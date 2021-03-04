@@ -1,5 +1,6 @@
 import DailyCalendar from '../components/Main/DailyCalendar';
 import { connect } from 'react-redux';
+import { showscheduleinfo } from '../Redux/action';
 
 const getDateInfo = (state, id) => {
   return state.byDate[id];
@@ -13,4 +14,4 @@ const mapStateToProps = (state) => ({
   schedules: getSchedules(state)
 });
 
-export default connect(mapStateToProps, null)(DailyCalendar);
+export default connect(mapStateToProps, { showscheduleinfo })(DailyCalendar);

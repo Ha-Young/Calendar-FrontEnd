@@ -4,8 +4,10 @@ import styles from './EventPage.module.css';
 import Modal from './Modal';
 
 const Event = ({ datesInfo }) => {
+  console.log('event render')
   const { date } = useParams();
   const infoObj = datesInfo[date];
+  console.log(infoObj);
   const title = infoObj.title;
   const description = infoObj.description;
   const startTime = infoObj.startTime;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { makeDailyFullDate, isEventScheduled } from '../../utils';
 import { TIME_TABLE, SCHEDULE_BOX } from '../../constant';
 
-const DailyCalendar = ({ schedules }) => {
+const DailyCalendar = ({ schedules, showscheduleinfo }) => {
   const [todayDate, setTodayDate] = useState(new Date());
   const date = todayDate.getDate();
   const year = todayDate.getFullYear();
@@ -75,7 +75,7 @@ const DailyCalendar = ({ schedules }) => {
                     to={`/dailycalendar/dailyevent/${keyId}`}
                     style={{ textDecoration: 'none' }}
                   >
-                    <div className={styles.scheduledEvent}>
+                    <div className={styles.scheduledEvent} onClick={showscheduleinfo}>
                       {(Number(event.startTime) === time) && `${eventTitle}`}
                     </div>
                   </Link>
