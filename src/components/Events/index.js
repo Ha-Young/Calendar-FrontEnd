@@ -5,15 +5,15 @@ import EventCreateForm from "../EventCreateForm";
 import EventsDetail from "../EventDetail";
 import styles from "./Events.module.css";
 
-function Events({ createEvent, userId }) {
+function Events({ createEvent, user }) {
   const location = useLocation();
   const subPath = location.pathname.split('events/')[1];
 
   return (
     <div className={styles.wrapper}>
       {subPath === "new"
-        ? <EventCreateForm userId={userId} onCreate={createEvent}/>
-        : <EventsDetail userId={userId} eventId={subPath}/>}
+        ? <EventCreateForm userId={user.id} onCreate={createEvent}/>
+        : <EventsDetail userId={user.id} eventId={subPath}/>}
     </div>
   );
 }

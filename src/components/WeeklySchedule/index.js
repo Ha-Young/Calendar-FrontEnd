@@ -4,7 +4,6 @@ import { getWeekDateListBasedOnDate } from "../../utils/date";
 import DailySchedule from "../DailySchedule";
 
 function WeeklySchedule({ currentDate, eventListEachDay }) {
-  console.log(eventListEachDay);
   const weekList = getWeekDateListBasedOnDate(currentDate);
   return (
     <>
