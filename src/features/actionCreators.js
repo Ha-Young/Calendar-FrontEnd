@@ -1,4 +1,4 @@
-import { eventForm, userEvent } from "../constants/actionTypes";
+import { eventForm, userEvent, SET_CURRENT_DATE } from "../constants/actionTypes";
 
 export const setEventFormFor = {
   title: (title) => ({type: eventForm.SET_TITLE, payload: title}),
@@ -14,3 +14,5 @@ export const setEventFormFor = {
 export const setUserEventFor = {
   register: (event) => ({type: userEvent.SET_EVENT, payload: event}),
 }
+
+export const setCurrentDate = (dateBundle) => ({type: SET_CURRENT_DATE, payload: dateBundle});

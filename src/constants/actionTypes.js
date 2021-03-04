@@ -1,11 +1,3 @@
-/*
-
-  Action Types
-
-  ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/constants/ActionTypes.js
-
- */
-
  export const eventForm = {
    SET_YEAR: "SET_YEAR",
    SET_MONTH: "SET_MONTH",
@@ -19,3 +11,5 @@
  };
 
  export const userEvent = {SET_EVENT: "SET_EVENT"};
+
+ export const SET_CURRENT_DATE = "SET_CURRENT_DATE";

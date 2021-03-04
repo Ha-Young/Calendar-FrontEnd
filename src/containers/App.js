@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
 import "../css/reset.css";
-import { setEventFormFor, setUserEventFor } from "../features/actionCreators";
+import { setEventFormFor, setUserEventFor, setCurrentDate } from "../features/actionCreators";
 import { getDailyEvents, getWeeklyEvents } from "../utils/mapStateSupportors";
 
 const mapStateToProps = (state) => {
@@ -27,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
     actToUserEvent: {
       setEvent: (event) => dispatch(setUserEventFor.register(event)),
     },
+    actToCurrentDate: (dateBundle) => dispatch(setCurrentDate(dateBundle)),
   };
 };
 
