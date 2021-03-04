@@ -3,12 +3,11 @@ import { getDateISO, parseDate } from "utils/utilFunction";
 
 const database = firebaseInstance.database();
 
-export async function initializeApp(callback) {
+export function initializeApp(callback) {
   const userId = authService.currentUser.uid;
   const { year, monthInFirebase, weekOfMonth } = parseDate(getDateISO(0));
-  console.log(year, monthInFirebase, weekOfMonth);
 
-  await database
+  database
     .ref(`/events/${userId}/${year}/${monthInFirebase}/${weekOfMonth}`)
     .on("value", (snapshot) => {
       if (snapshot.val()) {
@@ -53,7 +52,7 @@ export const editToFirebase = async (editedEvent, id) => {
 
   await database
     .ref(`/events/${userId}/${year}/${monthInFirebase}/${weekOfMonth}`)
-    .update({ [id]: editedEvent });
+    .update({ [id]: { ...editedEvent, id } });
 };
 
 export const deleteAtFirebase = async (id, date) => {

@@ -67,7 +67,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         weeklyEvent: {
           ...state.weeklyEvent,
-          [action.id]: { ...action.editedEvent },
+          [action.id]: { ...action.editedEvent, id: action.id },
         },
       };
 
