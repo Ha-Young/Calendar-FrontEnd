@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./EntryBox.module.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { generateEntryBoxHeight, generateEntryBoxLocation } from "../../utils/uiUtils";
 
 const EntryBox = ({ event, isWeeklySchedule }) => {
@@ -17,7 +17,7 @@ const EntryBox = ({ event, isWeeklySchedule }) => {
   const EntryBoxLocation = generateEntryBoxLocation(start);
 
   return (
-    <Link to={`/events/${id}`}>
+    <NavLink to={`/events/${id}`}>
       <div
         className={styles["entry-box"]}
         style={{
@@ -29,7 +29,7 @@ const EntryBox = ({ event, isWeeklySchedule }) => {
       >
         {title}
       </div>
-    </Link>
+    </NavLink>
 
   );
 };

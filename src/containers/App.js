@@ -27,7 +27,22 @@ const mapDispatchToProps = function (dispatch) {
         type: types.ADD_EVENT,
         payload: event
       })
-    }
+    },
+    updateEvent: (prevEvent, updatedEvent) => {
+      dispatch({
+        type: types.UPDATE_EVENT,
+        payload: {
+          prevEvent,
+          updatedEvent
+        }
+      })
+    },
+    removeEvent: (event) => {
+      dispatch({
+        type: types.REMOVE_EVENT,
+        payload: event
+      })
+    },
   }
 };
 

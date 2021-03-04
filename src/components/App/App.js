@@ -17,6 +17,8 @@ const App = function ({
   onInitialLoad,
   setIsSchedule,
   addEvent,
+  updateEvent,
+  removeEvent,
 }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -49,6 +51,9 @@ const App = function ({
                   date={date}
                   setIsSchedule={setIsSchedule}
                   addEvent={addEvent}
+                  updateEvent={updateEvent}
+                  removeEvent={removeEvent}
+                  events={events}
                 />
               </>
             )

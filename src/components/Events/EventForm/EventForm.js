@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
+import uniqid from "uniqid";
 import Dropdown from "../../Dropdown/Dropdown";
 import { START_TIME_LIST, END_TIME_LIST } from "../../../constants/calendarConstants";
 import { generateDateAndTimeString } from "../../../utils/calendarUtils";
-import styles from "./EventForm.module.css";
 import { generateRandomColor } from "../../../utils/uiUtils";
+import styles from "./EventForm.module.css";
 
 const EventForm = function ({ addEvent, date, setIsSchedule }) {
   const [initialDate, initialStartTime, initialEndTime] = generateDateAndTimeString(date);
@@ -14,7 +15,7 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   let location = useLocation();
-  let history = useHistory();
+  const { push } = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -25,7 +26,7 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
     }
 
     const eventObject = {
-      id: `${inputDate} ${startTime}`,
+      id: uniqid(),
       color: generateRandomColor(),
       date: inputDate,
       startTime,
@@ -35,7 +36,7 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
     };
 
     addEvent(eventObject);
-    history.push("/calendar");
+    push("/calendar");
   }
 
   function createItemTag(item) {
@@ -86,6 +87,7 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
       </div>
       <div className={styles["description-container"]}>
         <textarea
+          className={styles["description"]}
           value={description}
           placeholder="Type your event description here..."
           onChange={event => setDescription(event.target.value)}

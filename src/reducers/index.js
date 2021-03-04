@@ -64,34 +64,56 @@ export default function reducer(state = initialState, action) {
         ...state,
         isSchedule
       };
-    //이거 나중에 고쳐야됨
-    //update가 더 맞지않냐?
     case types.ADD_EVENT:
-      const date = action.payload.date;
-      const id = action.payload.id;
-      const datesOfDate = state.events.byDates[date] ?? [];
-      const allIds = state.events.allIds.includes(action.payload.id)
-        ? [...state.events.allIds]
-        : [...state.events.allIds, action.payload.id];
-      const allDates = state.events.allDates.includes(action.payload.date)
-        ? [...state.events.allDates]
-        : [...state.events.allDates, action.payload.date];
+      //error handling추가해야됨 update도 같이 ㅇㅇ
+      // ex) 겹치는 시간대
+      const eventsOfDate = state.events.byDates[action.payload.date] ?? [];
 
       return {
         ...state,
         events: {
           byIds: {
             ...state.events.byIds,
-            [id]: action.payload,
+            [action.payload.id]: action.payload,
           },
           byDates: {
             ...state.events.byDates,
-            [date]: [...datesOfDate, action.payload]
+            [action.payload.date]: [...eventsOfDate, action.payload]
           },
-          allIds,
-          allDates,
+          allIds: [...state.events.allIds, action.payload.id],
+          allDates: [...state.events.allDates, action.payload.date],
         },
       };
+    case types.UPDATE_EVENT:
+      if (action.payload.updatedEvent === null) {
+        return state;
+      }
+
+      const prevEventsOfDate = state.events.byDates[action.payload.prevEvent.date];
+      const filteredPrevEventsOfDate = prevEventsOfDate.filter(event => event.id !== action.payload.prevEvent.id);
+      const updatedEventsOfDate = state.events.byDates[action.payload.updatedEvent.date] ?? [];
+      const filtedAllDates = state.events.allDates.filter(date => date !== action.payload.prevEvent.date);
+      return {
+        ...state,
+        events: {
+          ...state.events,
+          byIds: {
+            ...state.events.byIds,
+            [action.payload.updatedEvent.id]: action.payload.updatedEvent,
+          },
+          byDates: {
+            ...state.events.byDates,
+            [action.payload.prevEvent.date]: filteredPrevEventsOfDate.length === 0 ? null : filteredPrevEventsOfDate,
+            [action.payload.updatedEvent.date]: [...updatedEventsOfDate, action.payload.updatedEvent]
+          },
+          allDates: [...filtedAllDates, action.payload.updatedEvent.date],
+        },
+      };
+    case types.REMOVE_EVENT:
+      return {
+
+      };
+
     default:
       return state;
   }

@@ -2,10 +2,10 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import Schedule from "../../containers/Schedule";
-import Events from "../Events/Events";
+import DetailEvent from "../Events/DetailEvent/DetailEvent";
 import EventForm from "../Events/EventForm/EventForm";
 
-const Main = function ({ addEvent, date, setIsSchedule }) {
+const Main = function ({ events, updateEvent, removeEvent, addEvent, date, setIsSchedule }) {
   return (
     <Switch>
       {(
@@ -14,10 +14,8 @@ const Main = function ({ addEvent, date, setIsSchedule }) {
             <Schedule
               date={date}
               setIsSchedule={setIsSchedule}
+              events={events}
             />
-          </Route>
-          <Route exact path="/events">
-            <Events />
           </Route>
           <Route exact path="/events/new">
             <EventForm
@@ -26,10 +24,18 @@ const Main = function ({ addEvent, date, setIsSchedule }) {
               addEvent={addEvent}
             />
           </Route>
+          <Route exact path="/events/:eventId">
+            <DetailEvent
+              events={events}
+              updateEvent={updateEvent}
+              removeEvent={removeEvent}
+            />
+          </Route>
           <Route exact path="/calendar">
             <Schedule
               date={date}
               setIsSchedule={setIsSchedule}
+              events={events}
             />
           </Route>
           <Route exact path="/profile" >
