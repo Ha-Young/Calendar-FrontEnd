@@ -45,10 +45,7 @@ const EventInfo = styled.ul`
 
 export default function ScheduleEvent({ event }) {
   return (
-    <Link to={{
-      pathname: `/events/event-${event.date}-${event.startTime}`,
-      state: { event }
-    }}>
+    <Link to={`/events/event-${event.date}-${event.startTime}`}>
       <EventBox
         startTime={parseInt(event.startTime)}
         endTime={parseInt(event.endTime)}

@@ -46,6 +46,7 @@ function App({
           <EventView
             setUpdateEventMode={setUpdateEventMode}
             eventsInStore={eventsInStore}
+            saveEventInStore={saveEventInStore}
             deleteEventInStore={deleteEventInStore}
             setSelectedDate={setSelectedDate}
           />

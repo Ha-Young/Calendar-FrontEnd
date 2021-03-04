@@ -3,12 +3,13 @@ import { Link, useHistory, useParams } from "react-router-dom";
 
 import Button from "../Shared/Button";
 import PageNotFound from "../Error/PageNotFound";
-import { removeEvent } from "../../api/index";
+import Loading from "../Loading/Loading";
+import { getEvents, removeEvent } from "../../api/index";
 import { IoLocationSharp, IoTimeSharp, IoCalendarClearSharp, IoPencilSharp } from "react-icons/io5";
 
 import styles from "./EventView.module.scss";
 
-export default function EventView({ setUpdateEventMode, eventsInStore, deleteEventInStore, setSelectedDate }) {
+export default function EventView({ setUpdateEventMode, eventsInStore, saveEventInStore, deleteEventInStore, setSelectedDate }) {
   const [ currentEvent, setCurrentEvent ] = useState({});
   const history = useHistory();
   const params = useParams();
@@ -20,9 +21,22 @@ export default function EventView({ setUpdateEventMode, eventsInStore, deleteEve
       const event = eventsInStore.byDates[eventDate][eventStartTime];
       setCurrentEvent(event);
     } else {
-      setCurrentEvent(null);
+      fetchEvents(eventDate);
     }
   }, []);
+
+  const fetchEvents = async (date) => {
+    const eventList = await getEvents(date);
+    for (let i = 0; i < eventList.length; i++) {
+      if (eventList[i].startTime === eventStartTime) {
+        setCurrentEvent(eventList[i]);
+        saveEventInStore(date, [eventList[i]]);
+        break;
+      } else {
+        setCurrentEvent(null);
+      }
+    }
+  };
 
   const deleteEvent = async () => {
     await removeEvent(currentEvent.date, currentEvent.startTime);
@@ -35,38 +49,37 @@ export default function EventView({ setUpdateEventMode, eventsInStore, deleteEve
     setUpdateEventMode();
   };
 
-  return (
-    <>
-      {currentEvent === null
-        ? <PageNotFound text="잘못된 접근입니다."/>
-        : (
-          <div className={styles.EventView}>
-          <p className={styles.title}>{currentEvent.title}</p>
-          <dl>
-            <dt><IoCalendarClearSharp className="icon"/> Date</dt>
-            <dd>{currentEvent.date}</dd>
-          </dl>
-          <dl>
-            <dt><IoTimeSharp className="icon"/> Time</dt>
-            <dd>{currentEvent.startTime} - {currentEvent.endTime}</dd>
-          </dl>
-          <dl>
-            <dt><IoLocationSharp className="icon"/> Location</dt>
-            <dd>{currentEvent.location}</dd>
-          </dl>
-          <dl>
-            <dt><IoPencilSharp className="icon" /> Description</dt>
-            <dd>{currentEvent.description}</dd>
-          </dl>
-          <div className={styles.Buttons}>
-            <Link to={`/events/edit/event-${currentEvent.date}-${currentEvent.startTime}`}>
-              <Button handleClickEvent={handleEditEvent}>EDIT</Button>
-            </Link>
-            <Button handleClickEvent={deleteEvent}>DELETE</Button>
-          </div>
+  if (currentEvent === null) {
+    return (<PageNotFound text="잘못된 접근입니다."/>);
+  } else if (currentEvent.date) {
+    return (
+      <div className={styles.EventView}>
+        <p className={styles.title}>{currentEvent.title}</p>
+        <dl>
+          <dt><IoCalendarClearSharp className="icon"/> Date</dt>
+          <dd>{currentEvent.date}</dd>
+        </dl>
+        <dl>
+          <dt><IoTimeSharp className="icon"/> Time</dt>
+          <dd>{currentEvent.startTime} - {currentEvent.endTime}</dd>
+        </dl>
+        <dl>
+          <dt><IoLocationSharp className="icon"/> Location</dt>
+          <dd>{currentEvent.location}</dd>
+        </dl>
+        <dl>
+          <dt><IoPencilSharp className="icon" /> Description</dt>
+          <dd>{currentEvent.description}</dd>
+        </dl>
+        <div className={styles.Buttons}>
+          <Link to={`/events/edit/event-${currentEvent.date}-${currentEvent.startTime}`}>
+            <Button handleClickEvent={handleEditEvent}>EDIT</Button>
+          </Link>
+          <Button handleClickEvent={deleteEvent}>DELETE</Button>
         </div>
-        )
-      }
-    </>
-  )
+      </div>
+    );
+  } else {
+    return (<Loading text="Loading..." />);
+  }
 }
