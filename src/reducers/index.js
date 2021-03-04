@@ -13,7 +13,16 @@ const initialState = {
   date: new Date(),
   isWeeklySchedule: false,
   isSchedule: true,
-  events: {},
+  events: {
+    byStartDate: {
+
+    },
+    byEndDate: {
+
+    },
+    allStartDates: [],
+    allEndDates: [],
+  },
 };
 
 export default function reducer(state = initialState, action) {
@@ -49,18 +58,35 @@ export default function reducer(state = initialState, action) {
         isWeeklySchedule
       };
     case types.SET_IS_SCHEDULE:
-      const isSchedule = action.payload.includes("calendar") ? true : false;
+      const isSchedule = action.payload.includes("events") ? false : true;
       return {
         ...state,
         isSchedule
       };
     //이거 나중에 고쳐야됨
     case types.ADD_EVENT:
+      const startDate = action.payload.startDate;
+      const endDate = action.payload.endDate;
+
       return {
         ...state,
         events: {
-          ...state.events,
-          event: action.payload
+          byStartDate: {
+            ...state.events.byStartDate,
+            [startDate]: {
+              ...state.events.byStartDate[startDate].byStartTime,
+              byStartTime: {
+                [startTime]: {
+
+                }
+              }
+            }
+          },
+          byEndDate: {
+            ...state.events.byStartDate,
+          },
+          allStartDates: [...state.events.allStartDates, action.payload.startDate],
+          allEndDates: [...state.events.allEndDates, action.payload.endDate],
         }
       };
     default:

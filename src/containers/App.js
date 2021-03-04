@@ -22,6 +22,12 @@ const mapDispatchToProps = function (dispatch) {
         type: types.SET_IS_SCHEDULE,
         payload: path
       });
+    },
+    addEvent: (event) => {
+      dispatch({
+        type: types.ADD_EVENT,
+        payload: event
+      })
     }
     // updateNextWeek: () => {
     //   dispatch({

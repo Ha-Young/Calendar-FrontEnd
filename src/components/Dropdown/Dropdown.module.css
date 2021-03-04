@@ -4,7 +4,7 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  margin-left: 20px;
+  margin: 5px;
 }
 
 .dropdown.open > .dropdown-menu {
@@ -49,6 +49,8 @@
   display: none;
   float: left;
   min-width: 160px;
+  max-height: 200px;
+  overflow-y: scroll;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
@@ -71,7 +73,7 @@
   background: #ddd;
 }
 
-.dropdown-menu li > a {
+.dropdown-menu li > * {
   display: block;
   padding: 5px 20px;
   clear: both;

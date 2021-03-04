@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Dropdown from "../../Dropdown/Dropdown";
+import { TIME_LIST } from "../../../constants/calendarConstants";
 import styles from "./EventForm.module.css";
 
 const EventForm = function ({ setIsSchedule }) {
   const [title, setTitle] = useState("");
-  const [startDateString, setStartDateString] = useState("");
-  const [endDateString, setEndDateString] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [description, setDescription] = useState("");
   let location = useLocation();
 
@@ -15,7 +19,33 @@ const EventForm = function ({ setIsSchedule }) {
     //redirect to calendar
     // (돌아갈 때 무조건 daily 뜨게 해놓고)
     // (Calendar도 event들어간거 update해줘야됨)
+    console.log(startTime);
+    console.log(endTime);
 
+    const eventObject = {
+      startDate,
+      endDate,
+      startDateObject = {
+        title,
+        startTime,
+        endDate,
+        endTime,
+        description
+      },
+      endDateObject = {
+        title,
+        startDate,
+        startTime,
+        endTime,
+        description
+      }
+    }
+  }
+
+  function createItemTag(item) {
+    return (
+      <div>{item}</div>
+    );
   }
 
   useEffect(() => {
@@ -32,21 +62,34 @@ const EventForm = function ({ setIsSchedule }) {
           value={title}
           onChange={event => setTitle(event.target.value)}
           placeholder="ADD TITLE"
+          required
         />
       </div>
       <div className={styles["time-container"]}>
         <input
-          type="datetime-local"
-          step="3600"
-          value={startDateString}
-          onChange={event => setStartDateString(event.target.value)}
+          type="date"
+          value={startDate}
+          onChange={event => setStartDate(event.target.value)}
+          required
+        />
+        <Dropdown
+          className="start-time"
+          list={TIME_LIST}
+          chooseItem={value => setStartTime(value)}
+          createItemTag={createItemTag}
         />
         <p>-</p>
         <input
-          type="datetime-local"
-          step="3600"
-          value={endDateString}
-          onChange={event => setEndDateString(event.target.value)}
+          type="date"
+          value={endDate}
+          onChange={event => setEndDate(event.target.value)}
+          required
+        />
+        <Dropdown
+          className="end-time"
+          list={TIME_LIST}
+          chooseItem={value => setEndTime(value)}
+          createItemTag={createItemTag}
         />
       </div>
       <div className={styles["description-container"]}>
@@ -54,6 +97,7 @@ const EventForm = function ({ setIsSchedule }) {
           value={description}
           placeholder="Type your event description here..."
           onChange={event => setDescription(event.target.value)}
+          required
         />
       </div>
       <div className={styles["submit-button-container"]}>
@@ -68,3 +112,19 @@ const EventForm = function ({ setIsSchedule }) {
 };
 
 export default EventForm;
+
+
+/*
+events: {
+    byStartDate: {
+      01/01: {
+        sdfadf
+      }
+    },
+    byEndDate: {
+
+    },
+    allStartDates: [],
+    allEndDates: [],
+  },
+*/

@@ -11,7 +11,11 @@ const Main = function ({ isWeeklySchedule, date, setIsSchedule }) {
       {(
         <>
           <Route exact path="/">
-            <Schedule isWeeklySchedule={isWeeklySchedule} date={date} setIsSchedule={setIsSchedule} />
+            <Schedule
+              isWeeklySchedule={isWeeklySchedule}
+              date={date}
+              setIsSchedule={setIsSchedule}
+            />
           </Route>
           <Route exact path="/events">
             <Events />
@@ -20,7 +24,11 @@ const Main = function ({ isWeeklySchedule, date, setIsSchedule }) {
             <EventForm setIsSchedule={setIsSchedule} />
           </Route>
           <Route exact path="/calendar">
-            <Schedule isWeeklySchedule={isWeeklySchedule} date={date} setIsSchedule={setIsSchedule} />
+            <Schedule
+              isWeeklySchedule={isWeeklySchedule}
+              date={date}
+              setIsSchedule={setIsSchedule}
+            />
           </Route>
           <Route exact path="/profile" >
             <Profile />
