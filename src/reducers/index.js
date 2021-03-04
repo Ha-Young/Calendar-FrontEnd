@@ -9,8 +9,21 @@
 
  */
 
-const initialState = "Create your state structure!";
-
-export default function reducer(state = initialState) {
-  return state;
+const reducer = (state = {}, action) => {
+  switch (action.type) {
+    case "ADD_EVENT":
+      const { eventInfo } = action;
+      const { date } = eventInfo;
+      if (state.hasOwnProperty(eventInfo.date)) {
+        return {...state,
+          date: date,
+          [date]: [...state[date], eventInfo]
+        };
+      }
+      return {...state, date: date, [date]: [eventInfo]};
+    default:
+      return state;
+  }
 }
+
+export default reducer;
