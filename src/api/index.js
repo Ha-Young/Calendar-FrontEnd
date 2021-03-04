@@ -12,7 +12,6 @@ export async function saveNewRecord(key, content) {
 export async function getRecord() {
   const database = firebase.database();
   const data = await database.ref("/").once('value');
-  console.log(data.val());
 
   return data.val();
 }

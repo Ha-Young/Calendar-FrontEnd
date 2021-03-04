@@ -41,7 +41,7 @@ export default function reducer(state = initialState, action) {
         for (let id in firebaseData[key]) {
           const event = removeFirebaseId(firebaseData[key][id]);
           newState.eventList[key].push(event);
-        }
+        }                                
       }
       
       break;

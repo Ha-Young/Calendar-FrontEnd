@@ -10,8 +10,6 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
   const currentDate = getFormat(currentPageDate);
   const parsedCurrentDate = parseDate(currentDate);
   const currentEventList = eventKeyList.includes(currentDate) ? eventList[currentDate] : [];
-
-  console.log(eventKeyList.includes(currentDate));
   let until;
 
   return (
@@ -49,7 +47,7 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
           return (
             <div key={time} className={["time-div", isColor].join(" ")}>
               <div className="event-hour">{time}시</div>
-              <span className="event-title">{title}</span>
+              <div className="event-title">{title}</div>
             </div>
           );
           })

@@ -3,43 +3,29 @@ import { getFormat, convertToReduxStateForm, parseDate } from "../../api/date";
 import { days, hour } from "../../constants/DateConstants";
 import { getRecord } from "../../api";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-
 import "./style.css";
 
-export default function Weekly({ currentPageDate, events, handleClickLeft, handleClickRight, saveDataToReduxState }) {
+export default function Weekly({ events, keys, currentPageDate, handleClickLeft, handleClickRight }) {
   const currentDay = currentPageDate;
   const currentYear = currentDay.getFullYear();
   const currentMonth = currentDay.getMonth();
   const currentDate = currentDay.getDate();
   const CurrentDayOfWeek = currentDay.getDay();
   const currentWeek = [-1];
-  const currentWeekDate = [];
+  const currentWeekKey = [];
   let i = 0;
+
 
   for (let i = 0; i < 7; i++) {
     const day = new Date(currentYear, currentMonth, currentDate + (i - CurrentDayOfWeek));
     const date = day.getDate();
+  ;
 
-    currentWeekDate[i] = day;
     currentWeek[i] = date;
+    currentWeekKey[i] = getFormat(day);
   }
 
-  useEffect(() => {
-    (async function(){
-      const dates = await Promise.all(currentWeekDate.map((currentDate) => getRecord(getFormat(currentDate))));
-      const filteredDates = [];
-
-      for (let i = 0; i < 7; i++) {
-        if (dates[i]) {
-          const currentStateEvent = {...dates[i], date: parseDate(getFormat(currentWeekDate[i]))}
-          filteredDates.push(currentStateEvent);
-        }
-      }
-
-      convertToReduxStateForm(filteredDates);
-
-    })();
-  }, [currentPageDate]);
+  console.log(currentWeek);
 
   return (
     <Fragment>
@@ -53,14 +39,53 @@ export default function Weekly({ currentPageDate, events, handleClickLeft, handl
         <div className="row week-header">
           {days.map((day) => {
             return (
-              <div className="col">
+              <div key ={day} className="col">
                 <div>{day}</div>
                 <div>{day !=="시" && currentWeek[i++]}</div>
               </div>
             );
           })}
         </div>
-        {hour.map((time) => {
+        <div className="vertical-container">
+        {
+          currentWeekKey.map((key) => {
+            const currentEventList = keys.includes(key) ? events[key] : [];
+           
+            let until;
+
+               return (
+              <div className="vertical">
+                {hour.map((time) => {
+                   let isColor = "";
+                   let title = "";
+                
+                console.log(time, "이 ㅂ니다");
+
+                for (let i = 0; i < currentEventList.length; i++) {
+                  const event = currentEventList[i];
+                  const start = parseInt(event.startHour);
+                  const end = parseInt(event.endHour);
+
+                  console.log(time, end);
+                  if (time === start) {
+                    until = end;
+                    title = event.title;
+                  }
+
+                  if (time <= until) {
+                    isColor = "box-colored";
+                  }
+                }
+
+                  return <div className={["box", isColor].join(" ")}>{title}</div>
+                })}
+              </div>
+            )
+          })
+        }
+        </div>
+        
+        {/* {hour.map((time) => {
            return <div key={time} className="row">
              {days.map((day) => {
                 return <div key={day} className="col">
@@ -71,7 +96,7 @@ export default function Weekly({ currentPageDate, events, handleClickLeft, handl
              }
            </div>
           })
-        }
+        } */}
         </div>
       </div>
     </Fragment>
