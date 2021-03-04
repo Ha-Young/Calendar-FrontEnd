@@ -1,30 +1,31 @@
 import React from "react";
 
 import { getHourList } from "../../utils/date";
-import TheDate from "../TheDate/TheDate";
+import DaysBoard from "../DaysBoard/DaysBoard";
+import Schedule from "../Schedule/Schedule";
 import styles from "./SchedulesBar.module.css";
 
-function SchedulesBar({ date, dayDiff, events }) {
+function SchedulesBar({ date, isTheDay, events = [] }) {
   const hourList = getHourList();
-  const presentDate = date.clone().add(dayDiff, "days");
-  const mainDate = dayDiff === 0 ? true : false;
-
-  console.log(events);
 
   return (
     <div className={styles.schedulesBar}>
       <div className={styles.dateBox}>
-        <TheDate
-          date={presentDate}
-          today={mainDate}
+        <DaysBoard
+          date={date}
+          isTheDay={isTheDay}
         />
       </div>
       {hourList.map((v) => {
+        const hasEvent = !!events[v];
+
         return (
-          <li
-            key={v}
-            onClick={() => console.log(v, presentDate)}
-          />
+          <li key={v} >
+            {hasEvent
+              ? <Schedule event={events[v]} />
+              : ""
+            }
+          </li>
         );
       })}
     </div>

@@ -5,8 +5,4 @@ const mapStateToProps = (state) => ({
   isDaily: state.isDaily,
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   toggleDay: () => dispatch(toggleDay()),
-// });
-
 export default connect(mapStateToProps, null)(Calendar);

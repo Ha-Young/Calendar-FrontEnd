@@ -10,6 +10,8 @@
 
 .header .buttonContainer {
   display: flex;
+  padding: 10px 0;
+  gap: 10px;
   justify-content: center;
   align-content: center;
 }

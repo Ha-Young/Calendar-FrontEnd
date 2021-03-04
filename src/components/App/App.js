@@ -17,7 +17,9 @@ function App({ onInitialLoad }) {
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route path="/calendar" exact component={Calendar} />
+        <Route path="/calendar" exact>
+          <Calendar />
+        </Route>
         <Route path="/events" component={EventsRouter} />
         <Route>
           <Redirect to="/calendar" />

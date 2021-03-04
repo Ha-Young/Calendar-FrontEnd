@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react";
 
-import TheDate from "../TheDate/TheDate";
+import TheDate from "../DaysBoard/DaysBoard";
 import styles from "./EventForm.module.css";
 import TimeSelector from "../TimeSelector/TimeSelector";
 import WithLabel from "../WithLabel/WithLabel";
-import { START, END } from "../../constants/constants";
 
 function EventForm({ date, onSubmit }) {
   const titleRef = useRef(null);
@@ -12,17 +11,20 @@ function EventForm({ date, onSubmit }) {
   const [start, setStart] = useState(Number(date.format("H")));
   const [end, setEnd] = useState(Number(date.format("H")) + 1);
 
-  function handleTimeChange({ id, time }) {
-    switch (id) {
-      case START:
-        setStart(time);
-        break;
-      case END:
-        setEnd(time);
-        break;
-      default:
-        throw new Error({message: "handleTimeChange error"});
+  function handleStartTimeChange(time) {
+    if (time === end) {
+      return;
     }
+
+    setStart(time);
+  }
+
+  function handleEndTimeChange(time) {
+    if (time === start) {
+      return;
+    }
+
+    setEnd(time);
   }
 
   function handleSubmit(e) {
@@ -42,15 +44,15 @@ function EventForm({ date, onSubmit }) {
   return (
     <div className={styles.eventForm}>
       <div className={styles.dateContainer}>
-        <TheDate date={date} today={true} />
+        <TheDate date={date} isTheDay={true} />
         <span className={styles.timeSelectorContainer}>
           <TimeSelector
             time={start}
-            onChange={(time) => handleTimeChange({id: START, time})}
+            onChange={handleStartTimeChange}
           />
           <TimeSelector
             time={end}
-            onChange={(time) => handleTimeChange({id: END, time})}
+            onChange={handleEndTimeChange}
           />
         </span>
       </div>

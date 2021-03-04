@@ -21,6 +21,18 @@ export function getKeyFormat(date) {
   return date.format("YYYY-MM-DD");
 }
 
+export function getWeeklyKeyFormats(date) {
+  const tempDate = date.clone().add(-3, "days");
+  const result = [];
+
+  for (let i = 0; i < WEEK; i++) {
+    result.push(tempDate.format("YYYY-MM-DD"));
+    tempDate.add(1, "days");
+  }
+
+  return result;
+}
+
 export function getDayOfTheWeek(date) {
   switch (date.day()) {
     case 0:

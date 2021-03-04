@@ -1,11 +1,11 @@
-.theDate {
+.daysBoard {
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.theDate .days, .today {
+.daysBoard .days, .today {
   display: flex;
   width: 40px;
   height: 40px;
@@ -16,10 +16,10 @@
   transition: all 1s;
 }
 
-.theDate .days:hover, .today:hover {
+.daysBoard .days:hover, .today:hover {
   background: #B5D6D6;
 }
 
-.theDate .today {
+.daysBoard .today {
   background: #B5D6D6;
 }

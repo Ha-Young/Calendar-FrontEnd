@@ -1,45 +1,84 @@
+import { combineReducers } from "redux";
 import {
   SUBMIT_EVENT,
 } from "../constants/actionTypes";
-import { getKeyFormat } from "../utils/date";
+import { getWeeklyKeyFormats } from "../utils/date";
 
-export default function events(state = {byId: {}, allIds: []}, action) {
-  const payload = action.payload;
+function eventsById(state = {}, action) {
+  const { payload } = action;
 
   switch (action.type) {
     case SUBMIT_EVENT:
       return {
-        byId: {
-          ...state.byId,
-          [payload.id]: {
-            title: payload.title,
-            content: payload.content,
-            start: payload.start,
-            end: payload.end,
-          }
-        },
-        allIds: [
-          ...state.allIds,
-          payload.id
-        ],
+        ...state,
+        [payload.start] : {
+          title: payload.title,
+          content: payload.content,
+          start: payload.start,
+          end: payload.end,
+        }
       };
     default:
       return state;
   }
 }
 
-export function sortEvent(payload) {
-  return ({
-    id: payload.date.format("YYYY-MM-DD"),
-    title: payload.title,
-    content: payload.content,
-    start: Number(payload.start.format("H")),
-    end: Number(payload.end.format("H")),
-  });
+function eventsAllIds(state = [], action) {
+  const { payload } = action;
+
+  switch (action.type) {
+    case SUBMIT_EVENT:
+      return [
+        ...state,
+        payload.start,
+      ];
+    default:
+      return state;
+  }
 }
 
-export function getEvent(date) {
-  const id = getKeyFormat(date);
+const eventsOfDay = combineReducers({
+  byId: eventsById,
+  allIds: eventsAllIds,
+});
 
-  return {};
+export default function events(state = {}, action) {
+  const { payload } = action;
+
+  switch (action.type) {
+    case SUBMIT_EVENT:
+      return {
+        ...state,
+        [payload.date]: eventsOfDay(state[payload.date], action),
+      };
+    default:
+      return state;
+  }
+}
+
+export function sortEvent(event) {
+  return {
+    ...event,
+    date: event.date.format("YYYY-MM-DD"),
+  };
+}
+
+export function getWeeklyEvents(date, events) {
+  const weeklyKeys = getWeeklyKeyFormats(date);
+
+  return weeklyKeys.map((date) => events[date])
+                  .map((eventsOfDay) => {
+                    if (!eventsOfDay) {
+                      return;
+                    }
+
+                    const eventList = eventsOfDay.allIds;
+                    const result = [];
+
+                    for (const key of eventList) {
+                      result.push(eventsOfDay.byId[key]);
+                    }
+
+                    return result;
+                  });
 }

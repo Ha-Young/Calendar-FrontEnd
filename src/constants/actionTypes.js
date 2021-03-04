@@ -7,6 +7,7 @@
  */
 export const TOGGLE_VIEW_TYPE = "TOGGLE_VIEW_TYPE";
 
+export const MOVE_TO_TODAY = "MOVE_TO_TODAY";
 export const PREV_DATE = "PREV_DATE";
 export const NEXT_DATE = "NEXT_DATE";
 export const PREV_WEEK = "PREV_WEEK";

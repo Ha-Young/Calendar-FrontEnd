@@ -5,10 +5,13 @@ import {
   NEXT_DATE,
   PREV_WEEK,
   NEXT_WEEK,
+  MOVE_TO_TODAY,
 } from "../constants/actionTypes";
 
 export default function date(state = moment(), action) {
   switch (action.type) {
+    case MOVE_TO_TODAY:
+      return moment();
     case PREV_DATE:
       return state.clone().subtract(1, "days");
     case NEXT_DATE:

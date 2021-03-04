@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { toggleDay } from "../actions";
+import { moveToToday, toggleDay } from "../actions";
 import Header from "../components/Header/Header.jsx";
 
 const mapStateToProps = (state) => ({
@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   toggleDay: () => dispatch(toggleDay()),
+  moveToToday: () => dispatch(moveToToday()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

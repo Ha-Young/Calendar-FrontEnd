@@ -1,13 +1,23 @@
 import React from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
-import { FaCalendarDay, FaCalendarWeek, FaCalendarPlus, FaCalendar } from "react-icons/fa";
+import {
+  FaCalendarDay,
+  FaCalendarWeek,
+  FaCalendarPlus,
+  FaCalendar,
+  FaCalendarCheck
+} from "react-icons/fa";
 
 import DateSelector from "../../containers/DateSelector";
 import styles from "./Header.module.css";
 
-function Header ({ isDaily, toggleDay }) {
-  function handleClick() {
+function Header ({ isDaily, toggleDay, moveToToday }) {
+  function handleToggleClick() {
     toggleDay();
+  }
+
+  function handleTodayClick() {
+    moveToToday();
   }
 
   return (
@@ -15,7 +25,7 @@ function Header ({ isDaily, toggleDay }) {
       <div className={styles.buttonContainer}>
         <Switch>
           <Route path="/calendar">
-            <button onClick={handleClick}>
+            <button onClick={handleToggleClick}>
               {isDaily
                 ? <FaCalendarWeek size="4em" />
                 : <FaCalendarDay size="4em" />
@@ -28,6 +38,9 @@ function Header ({ isDaily, toggleDay }) {
                 </button>
               </Link>
             </nav>
+            <button onClick={handleTodayClick}>
+              <FaCalendarCheck size="4em" />
+            </button>
           </Route>
           <Route path="/events">
             <nav>

@@ -1,14 +1,18 @@
 import React from "react";
 
 import HoursBar from "../HoursBar/HoursBar";
-import SchedulesBar from "../../containers/ScheduleBar";
+import SchedulesBar from "../SchedulesBar/SchedulesBar";
 import styles from "./Daily.module.css";
 
-function Daily() {
+function Daily({ date, events }) {
   return (
     <div className={styles.daily}>
       <HoursBar />
-      <SchedulesBar dayDiff={0} />
+      <SchedulesBar
+        date={date}
+        events={events}
+        isTheDay={true}
+      />
     </div>
   );
 }
