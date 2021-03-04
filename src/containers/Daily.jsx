@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { directionConst } from "constants/constants";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
 import DailySchedule from "../components/DailySchedule/DailySchedule";
@@ -9,11 +9,6 @@ import { getDateISO, parseDate } from "utils/utilFunction";
 const Daily = ({ showPreviousDay, showNextDay }) => {
   const [dateCount, setDateCount] = useState(0);
   const [date, setDate] = useState(parseDate(getDateISO(0)));
-
-  useEffect(() => {
-    const currentDate = parseDate(getDateISO(dateCount));
-    setDate(currentDate);
-  }, [dateCount]);
 
   const setNewDate = (direction) => {
     let currentDateCount = dateCount;
@@ -29,6 +24,7 @@ const Daily = ({ showPreviousDay, showNextDay }) => {
     }
 
     setDateCount(currentDateCount);
+    setDate(parseDate(getDateISO(currentDateCount)));
   };
 
   return (

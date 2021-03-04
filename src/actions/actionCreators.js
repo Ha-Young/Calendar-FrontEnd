@@ -45,17 +45,17 @@ const showNextDay = (dateCount) => {
   };
 };
 
-const showPreviousWeek = (weekCount) => {
-  return {
-    type: ACTION.SHOW_PREVIOUS_WEEK,
-    currentWeekDays: getDaysOfWeek(weekCount),
-  };
-};
-
 const showWeekly = (events) => {
   return {
     type: ACTION.SHOW_WEEKLY,
     weeklyEvent: events,
+  };
+};
+
+const showPreviousWeek = (weekCount) => {
+  return {
+    type: ACTION.SHOW_PREVIOUS_WEEK,
+    currentWeekDays: getDaysOfWeek(weekCount),
   };
 };
 

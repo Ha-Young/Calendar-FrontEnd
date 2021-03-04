@@ -7,7 +7,7 @@ import { authService } from "api/firebaseService";
 import { initializeApp } from "api/firebaseAPIs";
 import { actionCreators } from "actions/actionCreators";
 
-const App = ({ onLoggedIn, state }) => {
+const App = ({ onLoggedIn }) => {
   const [ready, setReady] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 

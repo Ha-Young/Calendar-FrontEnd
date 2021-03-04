@@ -5,12 +5,7 @@ import WeeklySchedule from "../components/WeeklySchedule/WeeklySchedule";
 import { connect } from "react-redux";
 import { actionCreators } from "actions/actionCreators";
 import { fetchWeeklyEvent } from "api/firebaseAPIs";
-import {
-  getDateISO,
-  parseDate,
-  getMonthAndWeek,
-  getDaysOfWeek,
-} from "utils/utilFunction";
+import { getDateISO, getMonthAndWeek, getDaysOfWeek } from "utils/utilFunction";
 
 const Weekly = ({
   weeklyEvent,
@@ -19,17 +14,15 @@ const Weekly = ({
   showNextWeek,
 }) => {
   const [weekCount, setWeekCount] = useState(0);
-  const [weekOfMonth, setWeekOfMonth] = useState(getMonthAndWeek(0));
+  const [weekOfMonth, setWeekOfMonth] = useState(
+    getMonthAndWeek(getDateISO(weekCount))
+  );
   const [daysOfWeek, setDaysOfWeek] = useState(getDaysOfWeek(0));
 
   useEffect(() => {
-    const today = parseDate(getDateISO(weekCount));
-    const daysOfCurrentWeek = getDaysOfWeek(weekCount);
-    setDaysOfWeek(daysOfCurrentWeek);
-
     fetchWeeklyEvent((events) => {
       showWeekly(events);
-    }, today);
+    }, getDateISO(weekCount));
   }, [showWeekly, weekCount]);
 
   const setNewWeek = (direction) => {
@@ -46,7 +39,7 @@ const Weekly = ({
     }
 
     setWeekCount(currentWeekCount);
-    setWeekOfMonth(getMonthAndWeek(currentWeekCount));
+    setWeekOfMonth(getMonthAndWeek(getDateISO(currentWeekCount)));
     setDaysOfWeek(getDaysOfWeek(currentWeekCount));
   };
 

@@ -6,14 +6,15 @@ export const getDateISO = (ref = 0) => {
 };
 
 export const parseDate = (date = "") => {
-  const weekOfMonth = getWeekOfMonth(date);
+  const weekOfMonth = getMonthAndWeek(date);
 
   return {
     year: moment(date).day(0).format("YYYY"),
-    weekOfMonth,
     month: moment(date).format("MM"),
+    weekOfMonth: weekOfMonth.week,
     date: moment(date).format("DD"),
     day: moment(date).format("dddd"),
+    monthInFirebase: weekOfMonth.month,
   };
 };
 
@@ -31,8 +32,8 @@ export const getDaysOfWeek = (ref = 0) => {
   return thisWeek;
 };
 
-export const getMonthAndWeek = (count = 0) => {
-  const target = moment().day(count);
+export const getMonthAndWeek = (date = "") => {
+  const target = moment(date).day(0);
   const monthAndWeek = {};
   const weekOfMonth = Math.ceil(target.date() / 7);
   monthAndWeek.month = target.format("MM");
