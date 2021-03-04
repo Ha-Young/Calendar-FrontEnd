@@ -13,6 +13,7 @@ import * as types from "../constants/actionTypes";
 import { DateTime } from 'luxon';
 
 const initialDay = DateTime.now();
+// REVIEW calendar contents 안에 data attribute 로 id랑 요일 index 갖고있으면 event에서 찾아서 detail로 넘겨주면 되니까 selectedEventId 굳이 필요 없을수도??
 const initialState = {
   selectedDate: initialDay,
   calculatedDates: [],

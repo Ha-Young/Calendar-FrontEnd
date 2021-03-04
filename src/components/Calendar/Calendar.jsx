@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Calendar.module.css";
 import CalendarHeader from "../CalendarHeader/CalendarHeader";
-import CalendarContents from "../CalendarContents/CalendarContents";
+import CalendarContents from "../../containers/CalendarContents";
 import { readDailyData } from "../../api";
 
 export default function Calendar({ selectedDate, loadEvents, events }) {
@@ -14,7 +14,7 @@ export default function Calendar({ selectedDate, loadEvents, events }) {
         <button onClick={() => setIsDailyView(!isDailyView)}>Daily / Weekly Toggle</button>
       </div>
       <CalendarHeader selectedDate={selectedDate} isDailyView={isDailyView} />
-      <CalendarContents selectedDate={selectedDate} loadEvents={loadEvents} events={events} isDailyView={isDailyView} />
+      <CalendarContents />
     </div>
   );
 }
