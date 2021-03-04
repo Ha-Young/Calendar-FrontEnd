@@ -17,3 +17,8 @@ export const removeToEvent = dateInformation => ({
   type: types.REMOVE_EVENT_INFORMATION,
   dateInformation,
 });
+
+export const setToInitialData = data => ({
+  type: types.SET_EVENT_INFORMATION,
+  data
+});

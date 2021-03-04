@@ -7,10 +7,13 @@ export async function saveSampleData() {
 
   // Note: `set` method returns a promise.
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.ref("test/123").set({
-    test: "text",
-    id: "안녕!",
-    good: "good"
+
+  const initialData = database.ref("events");
+
+  initialData.on("value", (snapshot) => {
+    const data = snapshot.val();
+
+    return data;
   });
 }
 
@@ -22,30 +25,16 @@ export async function addEvent(event, newPostKey) {
 }
 
 export function getEventKey() {
-  const newPostKey = firebase.database().ref().child("events").push().key;
+  const database = firebase.database();
+  const newPostKey = database.ref().child("events").push().key;
 
   return newPostKey;
 }
 
-// export async function addEvent(date) {
+export async function removeEvent(event) {
+  const database = firebase.database();
+  const { eventDate, eventId } = event;
 
-//   await database.ref(`AllId/${date}`)
-// }
+  await database.ref(`events/${eventDate}/${eventId}`).set(null);
+}
 
-// export async function removeEvents() {
-//   const database = firebase.database();
-
-//   // await database.ref()
-// }
-
-// export async function addEvents(data) {
-//   const database = firebase.database();
-
-//   await database.ref()
-// }
-
-// export async function fetchEvents() {
-//   const database = firebase.database();
-
-//   database.ref("test").once("value");
-// }

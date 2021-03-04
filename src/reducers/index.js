@@ -67,5 +67,8 @@ export default function reducer(state = initialState, action) {
         ...mockState,
       };
     }
+
+    default:
+      return state;
   }
 }

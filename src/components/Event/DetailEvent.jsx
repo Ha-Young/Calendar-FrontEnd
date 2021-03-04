@@ -38,7 +38,7 @@ function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }
     const defaultStartDate = targetEvent.eventDate; // 여기에 시작 날짜가 젹혀있음
     const removeEvent = {
       eventDate: defaultStartDate,
-      eventId: id
+      eventId: id,
     };
 
     history.push("/weekly");
