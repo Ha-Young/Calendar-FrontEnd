@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import moment from 'moment';
 
 import CalendarUpperDays from './CalendarUpperDays/CalendarUpperDays';
-import { changeMonthFormat } from '../../../utils/dateUtil';
 
 const CalendarUpperContainer = styled.div`
   display: flex;

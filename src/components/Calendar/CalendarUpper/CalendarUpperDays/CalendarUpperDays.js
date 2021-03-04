@@ -18,7 +18,7 @@ const CalendarUpperDays = ({ dateArr }) => {
   function getDayArray() {
     const dayArray = [];
     
-    dateArr.map((el, index) => {
+    dateArr.forEach((el, index) => {
       dayArray.push(
         <OneDay key={index}>
           <RoundShape textContext={el.day}></RoundShape>
@@ -26,9 +26,6 @@ const CalendarUpperDays = ({ dateArr }) => {
         </OneDay>
       )
     })
-
-      
-    
 
     return dayArray;
   }

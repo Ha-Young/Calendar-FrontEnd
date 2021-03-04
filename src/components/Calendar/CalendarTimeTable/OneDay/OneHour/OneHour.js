@@ -18,7 +18,6 @@ const OneHour = ({ oneData, isEdge, isWeek }) => {
   console.log('ONEHOUR : ', oneData);
   let color;
   let content;
-  let borderFlg;
   if (oneData) {
     color = oneData.color;
     content = !isWeek && isEdge === 1 ? oneData.content : '';

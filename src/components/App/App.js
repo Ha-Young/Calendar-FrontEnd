@@ -6,13 +6,14 @@ import { Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import moment from 'moment';
 import { DAILY_MODE, YYYYMD } from "../../constants/dateFormats";
+import { LEFT, RIGHT } from "../../constants/constants";
+import { getThisWeekSunAndSat } from "../../utils/dateUtil";
 
 import Header from "../../containers/Header";
 import Calendar from '../../containers/Calendar';
 import Background from '../publicComponent/Background/Background';
 import DateNavigator from '../DateNavigator/DateNavigator';
-import { LEFT, RIGHT } from "../../constants/constants";
-import { getThisWeekSunAndSat } from "../../utils/dateUtil";
+import ScheduleCreateForm from '../../containers/ScheduleCreateForm';
 
 function App({ currentDate, calendarMode, initStore, moveDate, onInitialLoad }) {
   
@@ -38,7 +39,7 @@ function App({ currentDate, calendarMode, initStore, moveDate, onInitialLoad }) 
               <div>Event 상세</div>
             </Route>
             <Route path="/event/new" exact>
-              <div>New</div>
+              <ScheduleCreateForm />
             </Route>
           </Switch>
         </div>

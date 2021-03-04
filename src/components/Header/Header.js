@@ -20,6 +20,7 @@ function Header ({ calendarMode, changeCalendarMode }) {
         returnObject.className = 'fas fa-calendar-week ' + TOGGLEICON_CLASSNAME;
         returnObject.textContent = WEEKLY_MODE
         break;
+      default:
     }
 
     return returnObject;

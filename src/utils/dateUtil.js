@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { YYYYMD } from '../constants/dateFormats';
+import { YYYYMD, YYYYMMDD } from '../constants/dateFormats';
 
 export function dateInfoToObject(date) {
   const dateInfoObejct = {};
@@ -40,4 +40,20 @@ export function getThisWeekSunAndSat(currentDate) {
   const currentWeekSunday = moment(currentDate).day(0).format(YYYYMD);
   const currentWeekSaturday = moment(currentDate).day(6).format(YYYYMD);
   return currentWeekSunday + '/' + currentWeekSaturday;
+}
+
+export function changeDateFormatYYYYMMDD(date) {
+  const dateArr = date.split('-');
+  const year = dateArr[0];
+  const month = (dateArr[1] / 10) < 1 ? `0${dateArr[1]}` : dateArr[1];
+  const day = (dateArr[2] / 10) < 1 ? `0${dateArr[2]}` : dateArr[2];
+  return `${year}-${month}-${day}`;
+}
+
+export function changeDateFormatYYYYMD(date) {
+  const dateArr = date.split('-');
+  const year = dateArr[0];
+  const month = (dateArr[1] / 10) < 1 ? dateArr[1].split('')[1] : dateArr[1];
+  const day = (dateArr[2] / 10) < 1 ? dateArr[2].split('')[1] : dateArr[2];
+  return `${year}-${month}-${day}`;
 }

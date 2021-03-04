@@ -102,26 +102,10 @@ timeTestArray2[4] = true;
 timeTestArray2[6] = true;
 timeTestArray2[7] = true;
 
-const sampleCalendar = {
-  2021: {
-    3: {
-      ...oneMonth,
-      3: {
-        datas: [samepleSchedule[0]],
-        timeArray: timeTestArray
-      },
-      4: {
-        datas: [samepleSchedule[1], samepleSchedule[2]],
-        timeArray: timeTestArray2
-      }
-    }
-  }
-}
-
 const database = firebase.database();
 
 export async function saveSampleData(setData = getOneYearSchema(2021)) {
-  console.log('fireBase database : ', database);
+  //console.log('fireBase database : ', database);
 
   /*
   const oneMonth = {
