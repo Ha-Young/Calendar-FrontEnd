@@ -1,6 +1,11 @@
 import { connect } from "react-redux";
 import DetailEvent from "../components/Event/DetailEvent";
 import { addToEvent, removeToEvent } from "../actions";
+import { addEvent } from "../api";
+
+const mapStateToProps = state => ({
+  eventInformation: state
+});
 
 const mapDispatchToProps = dispatch => ({
   onSubmitAddEvent: (eventInformation) => {
@@ -11,4 +16,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(null, mapDispatchToProps)(DetailEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailEvent);

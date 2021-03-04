@@ -19,12 +19,13 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function Schedule({ event, dayID }) {
+export default function Schedule({ event }) {
   const {
     startTime,
     endTime,
     title,
-    description
+    description,
+    eventId
   } = event;
 
   const editStartTime = Number(startTime.slice(0, 2));
@@ -40,7 +41,7 @@ export default function Schedule({ event, dayID }) {
     >
       <div
         className={styled.eventInformation}
-        onClick={() => history.push(`/event/${dayID}`)}
+        onClick={() => history.push(`/event/${eventId}`)}
       >
         {title}<br />
         {description}

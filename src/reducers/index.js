@@ -11,26 +11,61 @@
 
 import * as types from "../constants/actionTypes";
 
-const initialState = {};
+const initialState = {
+  byId: {}
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case types.ADD_EVENT_INFORMATION:
-      const { event, event: { eventDate } } = action;
+    case types.ADD_EVENT_INFORMATION: {
+      const { event, event: { eventDate, eventId } } = action;
+      const { byId } = state;
 
-      if (state.hasOwnProperty(eventDate)) {
+      if (byId.hasOwnProperty(eventDate)) {
         return {
           ...state,
-          [eventDate]: [...state[eventDate], event]
+          byId: {
+            ...byId,
+            [eventDate]: [...byId[eventDate], event],
+          },
+          [eventId]: action.event
         };
       }
 
       return {
         ...state,
-        [eventDate]: [event]
+        byId: {
+          ...byId,
+          [eventDate]: [event]
+        },
+        [eventId]: action.event
       };
+    }
 
-    // case types.GET_EVENT_INFORMATION:
+    case types.REMOVE_EVENT_INFORMATION: {
+      const { eventDate, eventId } = action.dateInformation;
+      const mockState = {...state};
+      const filterDateList = mockState.byId[eventDate].filter((event) =>
+      event.eventId !== eventId
+      );
 
+      delete mockState[eventId];
+
+      if (filterDateList.length) {
+        return {
+          ...mockState,
+          byId: {
+            ...state.byId,
+            [eventDate]: [...filterDateList]
+          }
+        };
+      }
+
+      delete mockState.byId[eventDate];
+
+      return {
+        ...mockState,
+      };
+    }
   }
 }

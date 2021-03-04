@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Event.module.css";
 
-import { addEvent } from "../../api";
+import { useHistory, useParams } from "react-router-dom";
 
-function DetailEvent({ onSubmitAddEvent, onSubmitRemoveEvent }) {
-  const [eventDate, setEventDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }) {
+  const history = useHistory();
+  const { id } = useParams();
+  const targetEvent = eventInformation[id];
 
-  // useEffect(() => {
-
-  // }, []);
+  const [eventDate, setEventDate] = useState(targetEvent.eventDate);
+  const [startTime, setStartTime] = useState(targetEvent.startTime);
+  const [endTime, setEndTime] = useState(targetEvent.endTime);
+  const [title, setTitle] = useState(targetEvent.title);
+  const [description, setDescription] = useState(targetEvent.description);
 
   function handleClickInputButton(e) {
     e.preventDefault();
@@ -30,20 +30,20 @@ function DetailEvent({ onSubmitAddEvent, onSubmitRemoveEvent }) {
     };
 
     onSubmitAddEvent(eventInformation);
-    // addEvent(eventInformation);
   }
 
   function handleClickRemoveButton(e) {
     e.preventDefault();
 
+    const defaultStartDate = targetEvent.eventDate; // 여기에 시작 날짜가 젹혀있음
     const removeEvent = {
-      id: eventDate,
-      startTime,
-    }
+      eventDate: defaultStartDate,
+      eventId: id
+    };
 
-    onSubmitRemoveEvent(removeEvent); // 얘는 redux에서 내용 제거용
-    // 여기에 파이어 베이스에서 데이터 제거하는 거
-  }
+    history.push("/weekly");
+    onSubmitRemoveEvent(removeEvent);
+  };
 
   function handleChangeInput(e) {
     e.preventDefault();
@@ -81,15 +81,16 @@ function DetailEvent({ onSubmitAddEvent, onSubmitRemoveEvent }) {
       <div>여기는 상세 페이지입니다.</div>
       <div className={styles.dateBoxs}>
         <p>이벤트 날짜</p>
-        <input type="date" name="date" onChange={handleChangeInput} />
+        <input value={eventDate} type="date" name="date" onChange={handleChangeInput} />
         <p>시작 시간</p>
-        <input type="time" name="startTime" onChange={handleChangeInput} />
+        <input value={startTime} type="time" name="startTime" onChange={handleChangeInput} />
         <p>종료 시간</p>
-        <input type="time" name="endTime" onChange={handleChangeInput} />
+        <input value={endTime} type="time" name="endTime" onChange={handleChangeInput} />
         <p>이벤트 제목</p>
-        <input type="text" name="title" onChange={handleChangeInput} />
+        <input value={title} type="text" name="title" onChange={handleChangeInput} />
         <p>이벤트 내용 작성</p>
         <input
+          value={description}
           className={styles.textBox}
           type="text"
           name="description"
@@ -99,14 +100,16 @@ function DetailEvent({ onSubmitAddEvent, onSubmitRemoveEvent }) {
           onClick={handleClickInputButton}
           className={styles.button}
           type="submit"
-          value="제출"
-        />
+        >
+          제출
+        </button>
         <button
           onClick={handleClickRemoveButton}
           className={styles.button}
           type="submit"
-          value="리셋"
-        />
+        >
+          리셋
+        </button>
       </div>
     </div>
   );

@@ -14,10 +14,17 @@ export async function saveSampleData() {
   });
 }
 
-export async function addEvent(event) {
+export async function addEvent(event, newPostKey) {
   const database = firebase.database();
+  const { eventDate } = event;
 
-  await database.ref("events/").push(event);
+  await database.ref(`events/${eventDate}/${newPostKey}`).set(event);
+}
+
+export function getEventKey() {
+  const newPostKey = firebase.database().ref().child("events").push().key;
+
+  return newPostKey;
 }
 
 // export async function addEvent(date) {

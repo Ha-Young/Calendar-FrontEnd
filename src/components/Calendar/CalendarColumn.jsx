@@ -4,8 +4,8 @@ import styles from "./Calendar.module.css";
 import Schedule from "./Schedule/Schedule";
 
 function CalendarColumn({ events, colummDay, dayID }) {
+  const hasEvent = events && events.byId[dayID];
   const result = [];
-  const hasEvent = events && events[dayID];
 
   for (let i = 0; i < 24; i++) {
     result.push(i);
@@ -28,7 +28,7 @@ function CalendarColumn({ events, colummDay, dayID }) {
           );
         })}
         {hasEvent &&
-          events[dayID].map((event) =>
+          events.byId[dayID].map((event) =>
             <Schedule event={event} dayID={dayID} />
           )
         }

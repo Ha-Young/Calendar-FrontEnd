@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Event.module.css";
 
-import { addToEvent } from "../../actions";
-import { addEvent } from "../../api";
-
 function Event({ onSubmitAddEvent }) {
   const [eventDate, setEventDate] = useState("");
   const [startTime, setStartTime] = useState("");
@@ -18,22 +15,21 @@ function Event({ onSubmitAddEvent }) {
     const editEndClock = `${endTime.slice(0, 2)}:00`;
 
     const eventInformation = {
-      eventDate,
       startTime: editStartTime,
       endTime: editEndClock,
+      eventDate,
       title,
       description,
       eventDate
     };
 
     onSubmitAddEvent(eventInformation);
-    // addEvent(eventInformation);
   }
 
-  function handleChangeInput(e) {
-    e.preventDefault();
+  function handleChangeInput(event) {
+    event.preventDefault();
 
-    const { target } = e;
+    const { target } = event;
 
     switch (target.name) {
       case "date":
