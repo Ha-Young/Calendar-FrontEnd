@@ -1,3 +1,4 @@
+import { waitForElementToBeRemoved } from "@testing-library/react";
 import React, { useState } from "react";
 import styles from "./EventForm.module.css";
 
@@ -18,8 +19,14 @@ export default function EventForm ({ onEventInfoSubmit }) {
   const [eventInfo, setEventIfo] = useState(initialEventInfo);
 
   const handleChange = (ev) => {
-    const { name, value } = ev.target;
-    setEventIfo({...eventInfo, [name]: value})
+    const { name } = ev.target;
+    let { value } = ev.target;
+
+    if (ev.target.type === "number") {
+      value = parseInt(value, 10);
+    }
+
+    setEventIfo({...eventInfo, [name]: value});
   }
 
   const handleSubmit = (ev) => {
@@ -83,7 +90,7 @@ export default function EventForm ({ onEventInfoSubmit }) {
               name="event-start-hour"
               value={eventInfo["event-start-hour"]}
               max="23"
-              min="0"
+              min="1"
               onChange={handleChange}
             />
               시

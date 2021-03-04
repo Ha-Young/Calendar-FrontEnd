@@ -7,7 +7,6 @@ import DateIndicator from "./DateIndicator";
 import IncDecrementControlBox from "./IncDecrementControlBox";
 
 export default function Calendar ({ eventInfo }) {
-  console.log(eventInfo);
   const [currentDate, setCurrentDate] = useState(moment());
 
   const handleIncreaseClick = () => {

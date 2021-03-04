@@ -7,14 +7,21 @@
   overflow: scroll;
   width: 70vw;
   height: 50vh;
+  border-left: 1px solid #BDBDBD;
+  box-sizing: border-box;
   background-color: #FFF8E1;
+  font-weight: bold;
 }
 
 .DayTable div {
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #BDBDBD;
+  border-bottom: 1px solid #BDBDBD;
 }
 
 .link {
   text-decoration: none;
+  color: black;
 }

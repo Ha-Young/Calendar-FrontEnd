@@ -42,9 +42,7 @@ const eventInfo = (state = {}, action) => {
         }
       };
 
-      console.log(state);
-
-      return state
+      return state;
     default:
       return state;
   }
