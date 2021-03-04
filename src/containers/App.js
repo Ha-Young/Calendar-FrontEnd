@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { saveNewRecord } from "../api";
 import App from "../components/App/App";
 
 const mapStateToProps = (state) => ({

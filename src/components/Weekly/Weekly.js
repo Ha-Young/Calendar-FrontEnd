@@ -1,15 +1,12 @@
 import React, { Fragment } from "react";
 import { days, hour } from "../../constants/DateConstants";
-import { getToday } from "../../api/date";
 import Carousel from "../Carousel/Carousel";
 import "./style.css";
 
 export default function Weekly() {
-  const date = getToday();
   return (
     <Fragment>
       <div className="days">
-        <Carousel date={date}/>
         <div className="grid-container">
         {hour.map((time) => {
            return <div key={time} className="row">

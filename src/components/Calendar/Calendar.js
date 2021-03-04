@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import Daily from "../Daily/Daily";
-import Weekly from "../Weekly/Weekly";
+import Daily from "../../containers/Daily";
+import Weekly from "../../containers/Weekly";
 
 export default function Calendar() {
   return (

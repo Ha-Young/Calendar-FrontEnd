@@ -4,7 +4,7 @@
   width: 18%;
 }
 
-.arrow {
+.previous, .next {
   background-color: lightgreen;
   margin: 0% 3%;
 }

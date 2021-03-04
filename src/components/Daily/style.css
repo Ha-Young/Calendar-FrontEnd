@@ -13,3 +13,7 @@
   text-align: left;
   border: 1px solid black;
 }
+
+.colored {
+  background-color: palegreen;
+}

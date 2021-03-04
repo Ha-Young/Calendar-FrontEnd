@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { saveNewRecord } from "../api";
 import Form from "../components/Form/Form";
 
 const mapDispatchToProps = (dispatch) => {
