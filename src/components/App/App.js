@@ -16,6 +16,7 @@ const App = ({
   handleChangeCalendarPage,
   loadEventData,
   saveNewEventData,
+  selectedDate,
 }) => {
   return (
     <div className={styles.App}>
@@ -24,6 +25,7 @@ const App = ({
         onToggle={handleChangeCalendarPage}
         type={isDailyCalendar}
         currentDate={currentDate}
+        selectedDate={selectedDate}
       />
       <SideBar />
       <Switch>

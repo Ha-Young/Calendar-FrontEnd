@@ -7,12 +7,12 @@ import styles from "./Header.module.css";
 
 // TODO: Create your own header.
 
-const Header = ({ onClickButton, onToggle, currentDate, type }) => {
+const Header = ({ onClickButton, onToggle, currentDate, selectedDate, type }) => {
   const handleClickDayButton = () => onClickButton(viewMode.DAILYMODE.isDaily);
   const handleClickWeekButton = () => onClickButton(viewMode.WEEKLYMODE.isDaily);
 
   const handlePrevButton = () => { // 나누는게 나은가..? usecallback 사용하기
-    const newCalendarDate = setCalendarData(subDays, type, currentDate);
+    const newCalendarDate = setCalendarData(subDays, type, selectedDate);
 
     onToggle({
       ...newCalendarDate,
@@ -20,7 +20,7 @@ const Header = ({ onClickButton, onToggle, currentDate, type }) => {
   };
 
   const handleNextButton = () => {
-    const newCalendarDate = setCalendarData(addDays, type, currentDate);
+    const newCalendarDate = setCalendarData(addDays, type, selectedDate);
 
     onToggle({
       ...newCalendarDate,

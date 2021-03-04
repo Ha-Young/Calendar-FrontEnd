@@ -25,12 +25,12 @@ export const getDay = (today) => {
 export const setCalendarData = (cb, isDailyCalendar, currentDate) => {
   const calendarGap = isDailyCalendar ? viewMode.DAILYMODE.gap : viewMode.WEEKLYMODE.gap;
 
-  const date = cb(currentDate, calendarGap);
-  const daily = getDay(date);
-  const weekly = getWeek(date);
+  const selectedDate = cb(currentDate, calendarGap);
+  const daily = getDay(selectedDate);
+  const weekly = getWeek(selectedDate);
 
   return {
-    date,
+    selectedDate,
     daily,
     weekly,
   };

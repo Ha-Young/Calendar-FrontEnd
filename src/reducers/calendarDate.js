@@ -4,6 +4,7 @@ import * as types from "../constants/actionTypes";
 const initialState = {
   isDaily: false,
   date: today,
+  selectedDate: today,
   daily: getDay(today),
   weekly: getWeek(today),
 };
