@@ -7,10 +7,8 @@ export default function Header () {
   return (
     <header>
       <nav>
-        <ul>
-          <li><Link to="/">Daily</Link></li>
-          <li><Link to="/weekly">Weekly</Link></li>
-        </ul>
+        <div><Link to="/">Daily</Link></div>
+        <div><Link to="/weekly">Weekly</Link></div>
       </nav>
     </header>
   );

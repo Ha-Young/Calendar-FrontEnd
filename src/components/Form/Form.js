@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { Route, Switch, Link, useHistory } from "react-router-dom";
 import styles from "./Form.module.css";
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, formTime, currentDay }) {
+  const history = useHistory();
   const initialState = {
+    eventDate: currentDay,
     title: "",
     description: "",
-    start: "",
-    end: "",
+    start: formTime,
+    end: formTime + 1,
   };
   const [values, setValues] = useState(initialState);
 
@@ -18,11 +21,12 @@ export default function Form({ onSubmit }) {
   function handleSubmit(e) {
     e.preventDefault();
     onSubmit(values);
-    setValues(initialState);
+    history.push("/");
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>{currentDay}</h1>
       <label>
         Title :
         <input
@@ -45,7 +49,7 @@ export default function Form({ onSubmit }) {
         Start time :
         <input
           name="start"
-          type="text"
+          type="number"
           value={values.start}
           onChange={handleChange}
         />
@@ -54,7 +58,7 @@ export default function Form({ onSubmit }) {
         End time :
         <input
           name="end"
-          type="text"
+          type="number"
           value={values.end}
           onChange={handleChange}
         />

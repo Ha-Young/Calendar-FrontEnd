@@ -8,37 +8,57 @@
   - Don't optimize pre-maturely!
 
  */
-
-// const initialState = "Create your state structure!";
-
-// export default function reducer(state = initialState) {
-//   return state;
-// }
 import { combineReducers } from "redux";
-import { format } from "date-fns";
-import { CREATE_EVENT, GET_DATE } from "../constants/actionTypes";
+import { CREATE_EVENT, GET_DATE, NEXT_DAY, YESTER_DAY } from "../constants/actionTypes";
+import _ from "lodash";
 
-const initialToday = new Date();
-
-const initialState = {
-  year: format(initialToday, "yyyy"),
-  month: format(initialToday, "MMMM"),
-  date: format(initialToday, "dd"),
-};
+const initialState = new Date().toISOString().slice(0, 10);
 
 const currentDay = (state = initialState, action) => {
   switch (action.type) {
     case GET_DATE:
       return state;
+    case NEXT_DAY:
+      const nextDay = new Date(state);
+      nextDay.setDate(nextDay.getDate() + 1);
+      return nextDay.toISOString().slice(0, 10);
+    case YESTER_DAY:
+      const prevDay = new Date(state);
+      prevDay.setDate(prevDay.getDate() - 1);
+      return prevDay.toISOString().slice(0, 10);
     default:
       return state;
   }
 };
 
-const events = (state = [], action) =>{
+const initialEvent = {
+  "2021-03-04" : [],
+};
+
+initialEvent["2021-03-04"][8] = {
+  title: "go",
+  description: "asdf",
+  start: 8,
+  end: 9,
+};
+
+const events = (state = initialEvent, action) =>{
   switch (action.type) {
     case CREATE_EVENT:
-      return state.concat(action.events);
+      const { title, description, start, end, eventDate } = action.events;
+      if (!state[eventDate]) {
+        state[eventDate] = [];
+      }
+      state[eventDate][start] = {
+        title,
+        description,
+        start,
+        end,
+      };
+      // return state.concat(action.events);
+      return {
+        ...state,
+      }
     default:
       return state;
   }

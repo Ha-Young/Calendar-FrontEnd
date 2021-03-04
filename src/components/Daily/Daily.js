@@ -1,25 +1,43 @@
 import React from "react";
-import { Route, Switch, Link, useRouteMatch, useLocation } from "react-router-dom";
-import Event from "../Event/Event";
+import { Link } from "react-router-dom";
+import randomIndex from "../../utils/randomIndex";
 import styles from "./Daily.module.css";
-import Create from "../../containers/CreateEvent";
-import Update from "../../containers/UpdateEvent";
 
 
-
-export default function Daily({ currentDay, events }) {
-  const { year, month, date } = currentDay;
-  const match = useRouteMatch();
-
+export default function Daily({ currentDay, events, goForward, goBackward }) {
   console.log(events)
+  const HOURS = [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+
+  function handleClick(type) {
+    if (type === "prev") {
+      goBackward();
+    } else {
+      goForward();
+    }
+  }
 
   return (
     <div className={styles.daily_container}>
-      <h3>{year} / {month} / {date}</h3>
-      <ul>
-        <Link to="/event/1"><li>1</li></Link>
-      </ul>
-      {/* <Route path={`${match.path}/:time/:id`} component={Update} /> */}
+      <div className={styles.flex}>
+        <button onClick={() => handleClick("prev")}>⬅️</button>
+        <h3>{currentDay}</h3>
+        <button onClick={() => handleClick("next")}>➡️</button>
+      </div>
+      {HOURS.map((hour, index) => {
+        return (
+          <Link to={`/event/${hour}`} key={randomIndex()}>
+            <div className={styles.daily_time}>
+              <div>{hour}</div>
+              {events[hour] && (
+                <div className={styles.event_color}>
+                  <div>{events[hour].title}</div>
+                  <div>{events[hour].description}</div>
+                </div>
+              )}
+            </div>
+          </Link>
+        );
+      })}
     </div>
   );
 }

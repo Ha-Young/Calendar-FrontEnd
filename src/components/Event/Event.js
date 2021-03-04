@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Link, useRouteMatch, useLocation } from "react-router-dom";
+import { Route, Switch, Link, useRouteMatch } from "react-router-dom";
 import Create from "../../containers/CreateEvent";
 import Update from "../../containers/UpdateEvent";
 import styles from "./Event.module.css";

@@ -6,28 +6,35 @@
   background-color: rgb(236, 238, 225);
 }
 
-* {
-  box-sizing: border-box;
+.daily_container button {
+  all: unset;
+  margin: 0 3vw;
 }
 
 .daily_time {
   display: flex;
-  height: 5vh;
-  border-bottom: gray solid 1px;
+  align-items: center;
+  height: 3.5vh;
   padding: 1.5vw;
+  border-bottom: rgb(223, 223, 223) solid 1px;
 }
 
 .daily_time div:nth-child(1) {
   flex-basis: 8%;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  margin-right: 2vw;
 }
 
 .daily_time div:nth-child(2) {
-  justify-self: flex-end;
-  align-self: center;
-  flex-basis: 85%;
-  background-color: rgb(119, 201, 153);
+  flex-basis: 100%;
+  justify-content: center;
+}
+
+.event_color {
+  background-color: rgb(230, 224, 197);
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

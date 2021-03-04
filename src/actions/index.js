@@ -20,3 +20,11 @@ export const createEvent = (events) => ({
 export const loadDate = () => ({
   type: types.GET_DATE,
 });
+
+export const nextDay = () => ({
+  type: types.NEXT_DAY,
+});
+
+export const yesterDay = () => ({
+  type: types.YESTER_DAY,
+});

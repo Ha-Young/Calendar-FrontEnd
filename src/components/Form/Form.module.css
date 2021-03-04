@@ -24,7 +24,7 @@ input {
   right: 20%;
 }
 
-button {
+form button {
   all: unset;
   width: 20vw;
   align-self: center;
