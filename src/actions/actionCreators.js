@@ -1,3 +1,4 @@
+import { uploadNewEvent, uploadEditedEvent } from "api/firebaseAPIs";
 import { ACTION } from "constants/actionTypes";
 import {
   generateKey,
@@ -65,6 +66,8 @@ const addEvent = (newEvent = {}) => {
 
   const id = generateKey();
 
+  uploadNewEvent(newEvent, id);
+
   return {
     type: ACTION.ADD_EVENT,
     id,
@@ -79,10 +82,13 @@ const deleteEvent = (id) => {
   };
 };
 
-const editEvent = (obj) => {
+const editEvent = (editedEvent, id) => {
+  uploadEditedEvent(editedEvent, id);
+
   return {
     type: ACTION.EDIT_EVENT,
-    obj,
+    editedEvent,
+    id,
   };
 };
 

@@ -12,6 +12,7 @@ const initialState = {
   currentWeekOfMonth: getWeekOfMonthByDate(getDateISOByRef(0)),
   weeklyEvent: {},
   currentDate: getDateByRef(0),
+  currentDateISO: getDateISOByRef(0),
   dailyEvent: {},
 };
 
@@ -52,14 +53,23 @@ export default function reducer(state = initialState, action) {
     case ACTION.ADD_EVENT:
       return {
         ...state,
-        weeklyEvent: action.weeklyEvent,
+        weeklyEvent: {
+          ...state.weeklyEvent,
+          [action.id]: { ...action.newEvent, id: action.id },
+        },
       };
 
     case ACTION.DELETE_EVENT:
       return state;
 
     case ACTION.EDIT_EVENT:
-      return { ...state, title: action.title };
+      return {
+        ...state,
+        weeklyEvent: {
+          ...state.weeklyEvent,
+          [action.id]: { ...action.editedEvent },
+        },
+      };
 
     case ACTION.NO_EVENT:
       return state;

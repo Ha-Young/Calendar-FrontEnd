@@ -1,16 +1,32 @@
 import EventForm from "components/EventForm/EventForm";
 import { inputConst, typeConst } from "constants/constants";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { actionCreators } from "actions";
-import { getToday } from "utils/utilFunction";
+import { actionCreators } from "actions/actionCreators";
+import { getDateISOByRef } from "utils/utilFunction";
+import { useHistory, useParams } from "react-router-dom";
 
-const HandleEvent = ({ type, addEvent, editEvent }) => {
+const HandleEvent = ({ type, weeklyEvent, addEvent, editEvent }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState(getToday());
+  const [date, setDate] = useState(getDateISOByRef(0));
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const param = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (type === typeConst.EDIT) {
+      const currentEvent = weeklyEvent[param.eventId];
+      const { title, description, date, startTime, endTime } = currentEvent;
+
+      setTitle(title);
+      setDescription(description);
+      setDate(date);
+      setStartTime(("0" + startTime + "시").slice(-3));
+      setEndTime(("0" + endTime + "시").slice(-3));
+    }
+  }, [param.eventId, type, weeklyEvent]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,31 +43,45 @@ const HandleEvent = ({ type, addEvent, editEvent }) => {
     if (type === typeConst.ADD) {
       addEvent(newEvent);
     } else if (type === typeConst.EDIT) {
-      editEvent(newEvent);
+      editEvent(newEvent, param.eventId);
     }
+
+    setTitle("");
+    setDescription("");
+    setDate(getDateISOByRef(0));
+    setStartTime("");
+    setEndTime("");
+    history.push(`/events/${param.eventId}`);
+
+    alert("submit complete");
+
     // send to database logic
   };
 
   const handleInput = (e) => {
-    switch (e.target.name) {
+    const {
+      target: { name, value },
+    } = e;
+
+    switch (name) {
       case inputConst.TITLE:
-        setTitle(e.target.value);
+        setTitle(value);
         break;
 
       case inputConst.DESCRIPTION:
-        setDescription(e.target.value);
+        setDescription(value);
         break;
 
       case inputConst.DATE:
-        setDate(e.target.value);
+        setDate(value);
         break;
 
       case inputConst.START_TIME:
-        setStartTime(e.target.value);
+        setStartTime(value);
         break;
 
       case inputConst.END_TIME:
-        setEndTime(e.target.value);
+        setEndTime(value);
         break;
 
       default:
@@ -68,11 +98,17 @@ const HandleEvent = ({ type, addEvent, editEvent }) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  const { weeklyEvent } = state;
+  return { weeklyEvent };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addEvent: (newEvent) => dispatch(actionCreators.addEvent(newEvent)),
-    editEvent: (newEvent) => dispatch(actionCreators.editEvent(newEvent)),
+    editEvent: (editedEvent, id) =>
+      dispatch(actionCreators.editEvent(editedEvent, id)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(HandleEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(HandleEvent);

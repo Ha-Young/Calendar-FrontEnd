@@ -3,7 +3,7 @@ import { directionConst } from "constants/constants";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
 import DailySchedule from "../components/DailySchedule/DailySchedule";
 import { connect } from "react-redux";
-import { actionCreators } from "actions";
+import { actionCreators } from "actions/actionCreators";
 
 const Daily = ({ currentDate, showPreviousDay, showNextDay }) => {
   const [dateCount, setDateCount] = useState(0);

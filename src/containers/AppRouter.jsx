@@ -10,7 +10,7 @@ import EventDetail from "components/EventDetail/EventDetail";
 import Login from "components/Login/Login";
 import { typeConst } from "constants/constants";
 
-const AppRouter = ({ isLoggedIn }) => {
+const AppRouter = ({ weeklyEvent, isLoggedIn }) => {
   return (
     <>
       {isLoggedIn ? (
@@ -33,12 +33,12 @@ const AppRouter = ({ isLoggedIn }) => {
               <HandleEvent type={typeConst.ADD} />
             </Route>
 
-            <Route path="/events/:eventId">
-              <EventDetail />
+            <Route exact path="/events/edit/:eventId">
+              <HandleEvent type={typeConst.EDIT} />
             </Route>
 
-            <Route exact path="/events/:eventId/edit">
-              <HandleEvent type={typeConst.EDIT} />
+            <Route exact path="/events/:eventId">
+              <EventDetail weeklyEvent={weeklyEvent} />
             </Route>
 
             <Route exact path="/profile"></Route>
@@ -59,7 +59,7 @@ const AppRouter = ({ isLoggedIn }) => {
 };
 
 const mapStateToProps = (state) => {
-  return state || {};
+  return state;
 };
 
 export default connect(mapStateToProps)(AppRouter);

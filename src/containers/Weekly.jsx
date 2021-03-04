@@ -4,7 +4,7 @@ import { getDaysOfWeek, getWeekOfMonth } from "utils/utilFunction";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
 import WeeklySchedule from "../components/WeeklySchedule/WeeklySchedule";
 import { connect } from "react-redux";
-import { actionCreators } from "actions";
+import { actionCreators } from "actions/actionCreators";
 
 const Weekly = ({
   currentWeekDays,
