@@ -6,7 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
-import Event from "../Event/Event";
+import EventForm from "../Event/EventForm";
 
 function App({ onInitialLoad, eventInfo, onEventInfoSubmit }) {
   useEffect(() => {
@@ -23,8 +23,8 @@ function App({ onInitialLoad, eventInfo, onEventInfoSubmit }) {
         <Route path="/calendar" exact>
           <Calendar eventInfo={eventInfo} />
         </Route>
-        <Route path="/event">
-          <Event onEventInfoSubmit={onEventInfoSubmit} />
+        <Route path="/event/new">
+          <EventForm onEventInfoSubmit={onEventInfoSubmit} />
         </Route>
       </Switch>
     </div>

@@ -36,6 +36,7 @@ export default function EventForm ({ onEventInfoSubmit }) {
 
   return (
     <>
+      <div className={styles.EventForm}>
       <form onSubmit={handleSubmit} className={styles.eventInput}>
         <div>
           일정 제목
@@ -141,6 +142,7 @@ export default function EventForm ({ onEventInfoSubmit }) {
           value="등록"
         />
       </form>
+      </div>
     </>
   );
 }

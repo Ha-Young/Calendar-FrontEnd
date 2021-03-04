@@ -9,7 +9,7 @@ export default function Header () {
       <nav className={styles.nav}>
         <ul className={styles.ul}>
           <li><Link to='/'>Main</Link></li>
-          <li><Link to='/event'>Event</Link></li>
+          <li><Link to='/event/new'>Event</Link></li>
           <li><Link to='/calendar'>Calendar</Link></li>
         </ul>
       </nav>

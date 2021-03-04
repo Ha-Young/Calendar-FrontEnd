@@ -1,14 +1,24 @@
 @import url("../../assets/styles/reset.css");
 
+.EventForm {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 70vh;
+  background-color: #F1F8E9;
+  font-weight: bold;
+}
+
 .eventInput {
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 70vw;
-  height: 60vh;
+  width: 90%;
+  height: 90%;
   background-color: #FFF8E1;
-  font-weight: bold;
 }
 
 .eventInput > div {
