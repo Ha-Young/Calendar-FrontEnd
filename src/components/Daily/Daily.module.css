@@ -1,10 +1,9 @@
 .container {
-  margin: 1vw 10vw 0;
+  margin: 1vw 10vw;
 }
 
 .column {
   height: 3.3vh;
   background-color: yellowgreen;
   border: 1px solid;
-
 }

@@ -1,0 +1,7 @@
+.WeeklyContainer {
+  display: flex;
+}
+
+.DailyContainer {
+  width: 10vw;
+}

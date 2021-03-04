@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "./Daily.module.css";
+import dailyStyles from "./Daily.module.css";
+import weeklyStyles from "../Weekly/Weekly.module.css";
 import { MAX_MIN_DATE, DAYS } from "../../constants";
 import CalendarHeader from "../shared/CalendarHeader";
 
-export default function Daily({ eventDate, userEvents }) {
+export default function Daily({ role, eventDate, userEvents }) {
   const date = eventDate.getDate();
   const day = eventDate.getDay();
   const timeColumns = [];
@@ -27,7 +28,7 @@ export default function Daily({ eventDate, userEvents }) {
     const { id, title } = eventTable[i] ?? {id: null, title: null};
 
     timeColumns.push(
-      <div className={styles.column} key={i}>
+      <div className={dailyStyles.column} key={i}>
         {eventTable[i]
           ? <div
               id={id}
@@ -40,7 +41,7 @@ export default function Daily({ eventDate, userEvents }) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={role === "daily" ? dailyStyles.container : weeklyStyles.DailyContainer}>
       <CalendarHeader>
         <h1>{date}일 {`${DAYS[day]}요일`}</h1>
       </CalendarHeader>

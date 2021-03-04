@@ -1,7 +1,13 @@
 import React from "react";
-import DateColumn from "../shared/DateColumn";
-export default function Weakly() {
+import styles from "./Weekly.module.css";
+import Daily from "../Daily/Daily";
+export default function Weekly({ userEvents }) {
+
   return (
-    <DateColumn />
+    <div className={styles.WeeklyContainer}>
+      {userEvents.map((events, index) => (
+        <Daily key={index} eventDate={events[0]} userEvents={events[1]} />
+      ))}
+    </div>
   );
 }
