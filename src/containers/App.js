@@ -2,13 +2,14 @@ import { connect } from "react-redux";
 import App from "../components/App/App";
 import { saveSampleData, addfolder, updateSample, addSample } from "../api";
 import {
+  addEvent,
   setDaily,
   setWeekly,
 } from "../actions";
 
 const mapStateToProps = (state) => ({
-  countOfDay: state.countOfDay,
-  countOfWeek: state.countOfWeek,
+  countOfDay: state.calendar.countOfDay,
+  countOfWeek: state.calendar.countOfWeek,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -24,6 +25,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setWeekly: () => {
     dispatch(setWeekly());
+  },
+  onSubmit: (event) => {
+    dispatch(addEvent(event));
   },
 });
 

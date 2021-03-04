@@ -21,14 +21,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const EndTime = ({ saveData, dataType }) => {
+const EndTime = ({ saveData }) => {
   return (
     <Wrapper>
-      <label htmlFor="end-day">
+      <label htmlFor="end-date">
         End Time:
       </label>
-      <input type="date" id="end-day" onChange={e => saveData(e.target.value, dataType.END_DATE)} />
-      <input type="time" id="end-time" onChange={e => saveData(e.target.value, dataType.END_HOUR)} />
+      <input
+        type="date"
+        id="end-date"
+        onChange={e => saveData(e.target.value)}
+      />
     </Wrapper>
   );
 };

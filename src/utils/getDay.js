@@ -15,7 +15,7 @@ export const getDayNum = count => {
   return Number(newDay.toString());
 };
 
-export const getWeek = (count = 0) => {
+export const getWeek = count => {
   const activeDay = moment().add(count, 'day')
   const week = [];
 
@@ -26,13 +26,13 @@ export const getWeek = (count = 0) => {
   return week;
 };
 
-export const getMonth = (count) => {
+export const getMonth = count => {
   const month = moment().add(count, 'day').format('MMMM');
 
   return month;
 };
 
-export const getYear = (count) => {
+export const getYear = count => {
   const year = moment().add(count, 'day').format('YYYY');
 
   return year;

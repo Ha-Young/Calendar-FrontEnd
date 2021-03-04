@@ -36,6 +36,7 @@ const Event = ({ onSubmit }) => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     onSubmit(event);
+    console.log(event);
   };
 
   const onInputSubmit = (prop) => (value) => {
@@ -65,3 +66,40 @@ const Event = ({ onSubmit }) => {
 };
 
 export default Event;
+
+// const saveData = (data, type) => {
+//   switch (type) {
+//     case DATA_TYPE.TITLE:
+//       return setAddingData({
+//         ...addingData,
+//         title: data
+//       });
+//     case DATA_TYPE.DESC:
+//       return setAddingData({
+//         ...addingData,
+//         desc: data
+//       });
+//     case DATA_TYPE.START_DATE:
+//       return setAddingData({
+//         ...addingData,
+//         startDate: data
+//       });
+//     case DATA_TYPE.START_HOUR:
+//       return setAddingData({
+//         ...addingData,
+//         startHour: data
+//       })
+//     case DATA_TYPE.END_DATE:
+//       return setAddingData({
+//         ...addingData,
+//         endDate: data
+//       });
+//     case DATA_TYPE.END_HOUR:
+//       return setAddingData({
+//         ...addingData,
+//         endHour: data
+//       });
+//     default:
+//       return;
+//   }
+// };

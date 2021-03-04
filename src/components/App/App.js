@@ -8,7 +8,6 @@ import AppHeader from "../Header/AppHeader";
 import Weekly from "../Weekly/Weekly";
 import Daily from "../Daily/Daily";
 import Event from "../Event/index";
-import { getWeek } from "../../utils/getDay";
 
 const App = ({
   onInitialLoad,
@@ -16,10 +15,10 @@ const App = ({
   setWeekly,
   countOfDay,
   countOfWeek,
+  onSubmit,
 }) => {
   useEffect(() => {
     onInitialLoad();
-    getWeek();
   }, []);
 
   return (
@@ -38,7 +37,7 @@ const App = ({
           <Daily count={countOfDay} onPage={setDaily} />
         </Route>
         <Route path="/Event/new">
-          <Event count={countOfDay} />
+          <Event onSubmit={onSubmit} />
         </Route>
       </Switch>
     </>

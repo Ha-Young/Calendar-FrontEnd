@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PAGE_TYPE } from "../../../reducers";
+import { PAGE_TYPE } from "../../../reducers/calendar";
 import HeaderBtn from "../../../shared/HeaderBtn";
 
 const Today = ({ resetDay, page }) => {

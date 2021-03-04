@@ -43,9 +43,9 @@ const Control = ({
 };
 
 const mapStateToProps = (state) => ({
-  currentPage: state.currentPage,
-  day: state.countOfDay,
-  week: state.countOfWeek,
+  currentPage: state.calendar.currentPage,
+  day: state.calendar.countOfDay,
+  week: state.calendar.countOfWeek,
 });
 
 const mapDispatchToProps = (dispatch) => ({

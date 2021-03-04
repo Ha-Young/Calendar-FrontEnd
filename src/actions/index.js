@@ -7,14 +7,14 @@
  */
 
 import {
-  ADD_EVENT,
   MOVE_NEXT_DAY,
   MOVE_PREV_DAY,
   MOVE_PREV_WEEK,
   MOVE_NEXT_WEEK,
   RESET_DAY,
   SET_DAILY,
-  SET_WEEKLY
+  SET_WEEKLY,
+  ADD_EVENT,
 } from "../constants/actionTypes";
 
 export const setDaily = () => ({
@@ -47,5 +47,7 @@ export const resetDay = () => ({
 
 export const addEvent = (event) => ({
   type: ADD_EVENT,
-  event: {},
+  payload: {
+    [event.startDate]: event
+  },
 });

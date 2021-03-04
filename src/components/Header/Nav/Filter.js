@@ -29,7 +29,7 @@ const Filter = ({ page }) => {
 };
 
 const mapStateToProps = (state) => ({
-  page: state.currentPage,
+  page: state.calendar.currentPage,
 });
 
 export default connect(mapStateToProps, null)(Filter);

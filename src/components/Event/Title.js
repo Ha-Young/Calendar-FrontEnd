@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Title = ({ saveData, dataType }) => {
+const Title = ({ saveData }) => {
   return (
     <Wrapper>
       <label htmlFor="title">
@@ -30,7 +30,7 @@ const Title = ({ saveData, dataType }) => {
       <input
         type="text"
         id="title"
-        onChange={ev => saveData(ev.target.value, dataType.TITLE)}
+        onChange={ev => saveData(ev.target.value)}
       />
     </Wrapper>
   );

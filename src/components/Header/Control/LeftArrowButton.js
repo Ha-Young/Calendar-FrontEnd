@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 import Button from "../../../shared/ArrowBtn";
-import { PAGE_TYPE } from "../../../reducers";
+import { PAGE_TYPE } from "../../../reducers/calendar";
 
 
 const LeftArrowButton = ({ prevDay, prevWeek, page }) => {
