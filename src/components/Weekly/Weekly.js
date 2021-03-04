@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Weekly.module.css";
 import Daily from "../Daily/Daily";
+
 export default function Weekly({ userEvents }) {
 
   return (

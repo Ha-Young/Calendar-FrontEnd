@@ -4,7 +4,8 @@ import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Daily from "../Daily/Daily";
 import Weekly from "../Weekly/Weekly";
-import EventForm from "../EventDetails/EventForm";
+import EventForm from "../EventForm/EventForm";
+import EventDetails from "../EventDetails/EventDetails";
 
 function App(props) {
   const [isDaily, setIsDaily] = useState(true);
@@ -26,6 +27,9 @@ function App(props) {
         </Route>
         <Route path="/events/new">
           <EventForm inputData={props.eventFormInfo} setEventForm={props.actToEventForm} setUserEvent={props.actToUserEvent}/>
+        </Route>
+        <Route path="/events/:eventId">
+          <EventDetails inputData={props.eventFormInfo} />
         </Route>
       </Switch>
     </div>

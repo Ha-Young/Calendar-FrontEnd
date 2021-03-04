@@ -3,6 +3,7 @@ import dailyStyles from "./Daily.module.css";
 import weeklyStyles from "../Weekly/Weekly.module.css";
 import { MAX_MIN_DATE, DAYS } from "../../constants";
 import CalendarHeader from "../shared/CalendarHeader";
+import { Link } from 'react-router-dom';
 
 export default function Daily({ role, eventDate, userEvents }) {
   const date = eventDate.getDate();
@@ -30,10 +31,12 @@ export default function Daily({ role, eventDate, userEvents }) {
     timeColumns.push(
       <div className={dailyStyles.column} key={i}>
         {eventTable[i]
-          ? <div
-              id={id}
-              onClick={(e) => console.log(e.target.id)}
-            >{title}</div>
+          ? <Link to={`/events/${id}`}>
+              <div
+                id={id}
+                onClick={(e) => console.log(e.target.id)}
+              >{title}</div>
+            </Link>
           : i
         }
       </div>
