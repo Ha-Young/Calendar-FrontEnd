@@ -1,9 +1,10 @@
 .navigation {
   display: flex;
   position: fixed;
-  width: 100%;
+  width: calc(100% - 285.5px);
   height: 100px;
-  padding-left: 120px;
+  padding-left: 35.05px;
+  align-items: center;
   background: #ffffff;
   border-bottom: 1px solid #EEEEEE;
   z-index: 10;
@@ -17,8 +18,8 @@
 }
 
 .bar {
-  margin-left: 4px;
-  margin-right: 3px;
+  padding-left: 4px;
+  padding-right: 3px;
   flex-direction: column;
   color: #ADADAD;
 }
@@ -37,5 +38,6 @@
 }
 
 .date {
-  margin-right: 147px;
+  width: 100%;
+  text-align: center;
 }
