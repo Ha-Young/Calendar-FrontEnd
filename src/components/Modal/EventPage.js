@@ -1,11 +1,13 @@
 import React from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useRouteMatch } from 'react-router-dom';
 import styles from './EventPage.module.css';
 import Modal from './Modal';
 
 const Event = ({ datesInfo }) => {
   const history = useHistory();
   const { date } = useParams();
+  const { url } = useRouteMatch();
+  const calendarType = url.split('/')[1];
   const infoObj = datesInfo[date];
   const title = infoObj.title;
   const description = infoObj.description;
@@ -20,7 +22,10 @@ const Event = ({ datesInfo }) => {
       scheduleEndTime={endTime}
     >
       <div className={styles.buttonsWrapper}>
-        <button className={styles.editButton}>EDIT</button>
+        <button
+          className={styles.editButton}
+          onClick={() => history.push(`/${calendarType}/${date}`)}
+        >EDIT</button>
         <button
           className={styles.exitButton}
           onClick={() => history.goBack()}

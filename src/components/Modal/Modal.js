@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useRouteMatch } from 'react-router-dom';
 import styles from './Modal.module.css';
 import { TIME_UNTIL_ELEVEN, TIME_UNTIL_TWELVE } from '../../constant';
 
@@ -12,6 +12,8 @@ const Modal = ({
   }) => {
   const history = useHistory();
   const { date } = useParams();
+  const { url } = useRouteMatch();
+  const prevCalendar = url.split('/')[1];
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [endTime, setEndTime] = useState(1);
@@ -65,7 +67,7 @@ const Modal = ({
       endTime
     });
 
-    history.goBack();
+    history.push(`/${prevCalendar}`);
   };
 
   return (
