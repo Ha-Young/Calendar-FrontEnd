@@ -13,6 +13,7 @@ const DailyCalendar = ({ schedules, showscheduleinfo }) => {
   const timeCells = [];
   const eventCells = [];
   let daysList;
+  let firstKeyId;
 
   for (let i = 0; i < TIME_TABLE; i++) {
     timeCells.push(i);
@@ -69,13 +70,15 @@ const DailyCalendar = ({ schedules, showscheduleinfo }) => {
             );
 
             if (showSchedule) {
+              if (Number(event.startTime) === time) firstKeyId = keyId;
+
               return (
-                <div key={keyId}>
+                <div key={keyId} onClick={showscheduleinfo}>
                   <Link
-                    to={`/dailycalendar/dailyevent/${keyId}`}
+                    to={`/dailycalendar/dailyevent/${firstKeyId}`}
                     style={{ textDecoration: 'none' }}
                   >
-                    <div className={styles.scheduledEvent} onClick={showscheduleinfo}>
+                    <div className={styles.scheduledEvent}>
                       {(Number(event.startTime) === time) && `${eventTitle}`}
                     </div>
                   </Link>

@@ -8,15 +8,14 @@ const Modal = ({
   children,
   scheduleTitle,
   scheduleDescription,
-  scheduleStartTime,
   scheduleEndTime
   }) => {
   const history = useHistory();
   const { date } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(1);
+  const startTime = Number(date.split('-')[3])
   let startOptionList = [];
   let endOptionList = [];
 
@@ -50,13 +49,7 @@ const Modal = ({
     )
   });
 
-  const handleSelectChange = (e) => {
-    if (e.target.name === 'startTime') {
-      setStartTime(e.target.value);
-    } else {
-      setEndTime(e.target.value);
-    }
-  };
+  const handleSelectChange = (e) => setEndTime(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -102,12 +95,9 @@ const Modal = ({
           <div>
             <select
               name='startTime'
-              value={children ?
-                Number(scheduleStartTime) :
-                Number(startTime)
-              }
+              value= {startTime}
               className={styles.startTimeSelect}
-              onChange={(e) => handleSelectChange(e)}
+              onChange={() => { return }}
             >
               {startOptionList}
             </select>

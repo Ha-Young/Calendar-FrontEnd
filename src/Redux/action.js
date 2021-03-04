@@ -8,6 +8,5 @@ export const addsubmitdata = (scheduleInfo) => (
 
 export const showscheduleinfo = () => (
   {
-    type: SHOW_SCHEDULE_INFO,
-    isScheduleShown: false
+    type: SHOW_SCHEDULE_INFO
   });
