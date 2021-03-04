@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./CreateEvent.module.css";
 import { saveData } from "../../api";
@@ -12,6 +12,7 @@ export default function CreateEvent() {
   const [startDateTime, setStartDateTime] = useState("");
   const [endDateTime, setEndDateTime] = useState("");
   const history = useHistory();
+  console.log(startDateTime)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,9 +26,20 @@ export default function CreateEvent() {
     const date = startDateTime.slice(0, 10);
 
     // TODO err 핸들링 추가
+    // TODO API 함수는 connect의 mapDispatchToProps에 올려서, helper함수로 묶어서 내려줘야 할수도 있음.
     saveData(newEvent, date).then(() => {
       history.push("/calendar");
     });
+  }
+
+  const startDateValidation = (e) => {
+    setStartDateTime(e.target.value)
+    console.log(startDateTime)
+    console.log(endDateTime)
+    console.log(startDateTime > endDateTime)
+    if (startDateTime > endDateTime) {
+      console.log('시작시간이 끝시간보다 뒤다..')
+    }
   }
 
   return (
@@ -41,6 +53,7 @@ export default function CreateEvent() {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -52,6 +65,7 @@ export default function CreateEvent() {
                 cols="30" 
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -61,7 +75,8 @@ export default function CreateEvent() {
               <input
                 type="datetime-local" 
                 value={startDateTime}
-                onChange={(e) => setStartDateTime(e.target.value)}
+                onChange={(e) => startDateValidation(e)}
+                required
               />
             </div>
           </div>
@@ -71,7 +86,8 @@ export default function CreateEvent() {
               <input
                 type="datetime-local" 
                 value={endDateTime}
-                onChange={(e) => setEndDateTime(e.target.value)}
+                onChange={(e) => setEndDateTime(e.target.value.slice(0,14)+"00")}
+                required
               />
             </div>
           </div>

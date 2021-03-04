@@ -37,8 +37,9 @@ export default function reducer(state = initialState, action) {
     }
 
     case types.NEXT_BUTTON_CLICKED: {
-      // TODO daily, weekly에 따라 로직 분기처리 필요
-      const newDate = state.selectedDate.plus({ days: 1 });
+      const newDate = state.isDailyView
+      ? state.selectedDate.plus({ days: 1 })
+      : state.selectedDate.plus({ days: 7 });
 
       return {
         ...state,
@@ -47,7 +48,9 @@ export default function reducer(state = initialState, action) {
     }
 
     case types.PREV_BUTTON_CLICKED: {
-      const newDate = state.selectedDate.minus({ days: 1 });
+      const newDate = state.isDailyView
+      ? state.selectedDate.minus({ days: 1 })
+      : state.selectedDate.minus({ days: 7 });
 
       return {
         ...state,
