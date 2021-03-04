@@ -10,10 +10,20 @@
 
 .time-div{ 
   height: 30px;
-  text-align: left;
   border: 1px solid black;
 }
 
 .colored {
   background-color: palegreen;
+  border-style: hidden;
+}
+
+.event-hour {
+  text-align: left;
+}
+
+.event-title {
+  position: relative;
+  text-align: center;
+  z-index: 1;
 }

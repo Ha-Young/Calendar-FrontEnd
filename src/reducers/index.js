@@ -1,5 +1,5 @@
-import { saveNewRecord } from "../api";
-import { getToday, addDate, parseDate } from "../api/date";
+import { saveNewRecord, getRecord } from "../api";
+import { getToday, addDate, getFormat } from "../api/date";
 /*
 
   Reducers
@@ -12,8 +12,8 @@ import { getToday, addDate, parseDate } from "../api/date";
  */
 
 const initialState = {
-  events: [],
   currentPageDate: getToday(),
+  eventlist: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -24,15 +24,15 @@ export default function reducer(state = initialState, action) {
       saveNewRecord(action.content);
       newState.events.push(action.content);
       break;
-
     case "CLICK_LEFT":
       newState.currentPageDate = addDate(state.currentPageDate, {days: -1});
       break;
     case "CLICK_RIGHT":
       newState.currentPageDate = addDate(state.currentPageDate, {days: 1});
       break;
+    case "SAVE_DATA_TO_REDUX_STATE":
+      newState.eventlist = action.eventlist;
     default:
-      break;
   }
 
   return newState;
