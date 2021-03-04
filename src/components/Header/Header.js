@@ -3,14 +3,16 @@ import { NavLink } from 'react-router-dom';
 import { formatDate } from "../../utils/SetDate";
 import styles from "./Header.module.scss";
 
+const today = new Date();
+
 // TODO: Create your own header.
-export default function Header ({ selectedDate, setSelectedDateWithToday, setCreateEventMode }) {
+export default function Header ({ selectedDate, setSelectedDate, setCreateEventMode }) {
   const formattedDate = formatDate(selectedDate, "yyyy-MM-dd-E");
   const [ year, month, dateNumber, day ] = formattedDate.split("-");
 
   return (
     <header className={styles.Header}>
-      <h1 onClick={setSelectedDateWithToday}>{year}.{month}</h1>
+      <h1 onClick={() => setSelectedDate(today)}>{year}.{month}</h1>
       <ul>
         <li>
           <NavLink to="/schedule" activeClassName={styles.active}>WEEKLY</NavLink>
@@ -19,7 +21,7 @@ export default function Header ({ selectedDate, setSelectedDateWithToday, setCre
           <NavLink to="/" exact activeClassName={styles.active}>DAILY</NavLink>
         </li>
         <li>
-          <NavLink to="/events" onClick={setCreateEventMode} activeClassName={styles.active} exact>New Event</NavLink>
+          <NavLink to="/events/new" onClick={setCreateEventMode} activeClassName={styles.active} exact>New Event</NavLink>
         </li>
       </ul>
     </header>

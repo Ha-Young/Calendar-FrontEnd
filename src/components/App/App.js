@@ -11,33 +11,47 @@ import EventEdit from "../Event/EventEdit";
 import EventView from "../Event/EventView";
 import PageNotFound from "../Error/PageNotFound";
 
-function App({ selectedDate, setSelectedDateWithToday, eventMode, setCreateEventMode, setUpdateEventMode }) {
+function App({
+  selectedDate,
+  setSelectedDate,
+  eventMode,
+  setCreateEventMode,
+  setUpdateEventMode,
+  eventsInStore,
+  saveEventInStore,
+  deleteEventInStore
+}) {
   return (
     <div className={styles.App}>
       <Header
         selectedDate={selectedDate}
         setCreateEventMode={setCreateEventMode}
-        setSelectedDateWithToday={setSelectedDateWithToday}
+        setSelectedDate={setSelectedDate}
       />
       <Switch>
-        <Route path="/" exact>
+        <Route path={["/", "/daily"]} exact>
           <Daily/>
         </Route>
         <Route path="/schedule">
           <Weekly />
         </Route>
-        <Route path="/events" exact>
+        <Route path={["/events/new", "/events/edit/:event_id"]}>
           <EventEdit
             eventMode={eventMode}
-            setCreateEventMode={setCreateEventMode}
-            setUpdateEventMode={setUpdateEventMode}
+            eventsInStore={eventsInStore}
+            deleteEventInStore={deleteEventInStore}
+            saveEventInStore={saveEventInStore}
           />
         </Route>
         <Route path="/events/:event_id">
-          <EventView setUpdateEventMode={setUpdateEventMode}/>
+          <EventView
+            setUpdateEventMode={setUpdateEventMode}
+            eventsInStore={eventsInStore}
+            deleteEventInStore={deleteEventInStore}
+          />
         </Route>
         <Route>
-          <PageNotFound/>
+          <PageNotFound text="존재하지 않는 페이지입니다."/>
         </Route>
       </Switch>
     </div>

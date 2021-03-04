@@ -5,12 +5,29 @@ import styles from "./Schedule.module.scss";
 
 const eventBoxes = [...Array(24).keys()];
 
-export default function Schedule({ eventDate }) {
+export default function Schedule({ eventDate, saveEventInStore, eventsInStore }) {
   const [ events, setEvents ] = useState(null);
 
   useEffect(() => {
+    if (eventsInStore.byDates.hasOwnProperty(eventDate)) {
+      console.log("no fetch");
+      return;
+    }
+    console.log("fetch");
     fetchEvents(eventDate);
   }, [eventDate]);
+
+  useEffect(() => {
+    if (eventsInStore.byDates.hasOwnProperty(eventDate)) {
+      const eventList = eventsInStore.byDates[eventDate];
+      let result = [];
+      for (const event in eventList) {
+        result.push(eventList[event]);
+      }
+      setEvents(result);
+      return;
+    }
+  }, [eventDate])
 
   const renderScheduleBoxes = () => {
     return eventBoxes.map((box) => (
@@ -20,7 +37,7 @@ export default function Schedule({ eventDate }) {
 
   const fetchEvents = async (date) => {
     const result = await getEvents(date);
-    console.log(result);
+    saveEventInStore(eventDate, result);
     setEvents(result);
   };
 

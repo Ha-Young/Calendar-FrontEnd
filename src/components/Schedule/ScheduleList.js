@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import Schedule from "./Schedule";
+import Schedule from "../../containers/Schedule";
 import { formatDate } from "../../utils/SetDate";
 
 import styles from "./ScheduleList.module.scss";
@@ -40,5 +40,5 @@ export default function ScheduleList({ calendarMode, selectedDate, week }) {
         : renderDailySchedule(selectedDate)
       }
     </div>
-  )
+  );
 }

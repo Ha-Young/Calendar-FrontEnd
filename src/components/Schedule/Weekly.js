@@ -1,7 +1,15 @@
 import React, { useEffect } from "react";
 import Calendar from "./Calendar";
 
-export default function Weekly ({ calendarMode, setWeeklyCalendarMode, today, selectedDate, week, goLastWeek, goNextWeek }) {
+export default function Weekly ({
+  calendarMode,
+  setWeeklyCalendarMode,
+  today,
+  selectedDate,
+  week,
+  goLastWeek,
+  goNextWeek
+}) {
   useEffect(() => {
     if (calendarMode === "daily") {
       setWeeklyCalendarMode();

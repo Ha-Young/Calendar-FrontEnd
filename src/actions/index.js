@@ -44,3 +44,15 @@ export const setCreateEventMode = () => ({
 export const setUpdateEventMode = () => ({
   type: types.SET_UPDATE_EVENT_MODE,
 });
+
+export const saveEvent = (date, eventList) => ({
+  type: types.SAVE_EVENT,
+  date,
+  eventList,
+});
+
+export const deleteEvent = (date, startTime) => ({
+  type: types.DELETE_EVENT,
+  date,
+  startTime,
+});
