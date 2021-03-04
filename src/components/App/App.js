@@ -7,7 +7,7 @@ import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Daily from "../Daily/Daily";
 import Weekly from "../Weekly/Weekly";
-import EventDetails from "../EventDetails/EventDetails";
+import EventForm from "../EventDetails/EventForm";
 import Modal from "../shared/Modal";
 
 function App(props) {
@@ -22,9 +22,9 @@ function App(props) {
         <Route path="/weekly">
           <Weekly />
         </Route>
-        <Route path="/event">
+        <Route path="/events/new">
         <Modal>
-          <EventDetails inputDate={props.eventDateInfo} dispatchBundle={props.dispatchBundle}/>
+          <EventForm inputData={props.eventFormInfo} setEventForm={props.actToEventForm} setUserEvent={props.actToUserEvent}/>
         </Modal>
         </Route>
       </Switch>

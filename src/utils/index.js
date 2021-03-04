@@ -5,12 +5,12 @@ export const getTwoDigitsString = (number) => {
 
 export const getDatesForMonthly = (year, month) => {
   const dates = [];
-  const realMonth = month - 1;
-  const startDate = 1 - new Date(year, realMonth).getDay();
+  const mutatedMonth = month - 1;
+  const startDate = 1 - new Date(year, mutatedMonth).getDay();
   const DAYLYCOLUMN = 35;
 
   for (let i = 0; i < DAYLYCOLUMN; i++) {
-    dates.push(new Date(year, realMonth, startDate + i));
+    dates.push(new Date(year, mutatedMonth, startDate + i));
   }
 
   return dates;
@@ -18,12 +18,12 @@ export const getDatesForMonthly = (year, month) => {
 
 export const getDatesForWeekly = (year, month, date) => {
   const dates = [];
-  const realMonth = month - 1;
-  const startDate = date - new Date(year, realMonth, date).getDay();
+  const mutatedMonth = month - 1;
+  const startDate = date - new Date(year, mutatedMonth, date).getDay();
   const WEEKLYCOLUMN = 7;
 
   for (let i = 0; i < WEEKLYCOLUMN; i++) {
-    dates.push(new Date(year, realMonth, startDate + i));
+    dates.push(new Date(year, mutatedMonth, startDate + i));
   }
 
   return dates;
@@ -44,4 +44,9 @@ export const getFromStringDateTo = {
   date: (stringDate) => new Date(stringDate).getDate(),
   day: (stringDate) => new Date(stringDate).getDay(),
   hour: (stringDate) => new Date(stringDate).getHours(),
+};
+
+export const getDateISOstring = (year, month, date, hour) => {
+  const mutatedMonth = month - 1;
+  return new Date(year, mutatedMonth, date, hour).toISOString();
 };

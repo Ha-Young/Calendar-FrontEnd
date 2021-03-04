@@ -9,7 +9,7 @@ export default function Header () {
         <ul>
           <li><Link to='/'>Daily</Link></li>
           <li><Link to="/weekly">Weekly</Link></li>
-          <li><Link to='/event'>Event Detail</Link></li>
+          <li><Link to='/events/new'>Event Detail</Link></li>
         </ul>
       </nav>
     </header>

@@ -1,24 +1,28 @@
 import React, { useState } from "react";
-import { MAX_MIN_DATE } from "../../constants"
-import { letDispatch } from "../../utils/eventHandlers";
-export default function EventDetails({inputDate, dispatchBundle}) {
+import { MAX_MIN_DATE } from "../../constants";
+import registerEvent from "../../utils/registerEvent";
+
+function EventForm({inputData, setEventForm, setUserEvent}) {
   const {
+    setTitle,
+    setContent,
     setYear,
     setMonth,
     setDate,
     setFromHour,
     setToHour,
-  } = dispatchBundle.actToCalendar;
-  const { setEvent } = dispatchBundle.actToEvent;
+  } = setEventForm;
+  const { setEvent } = setUserEvent;
+
   const {
+    title,
+    content,
     year,
     month,
     date,
     fromHour,
     toHour,
-  } = inputDate;
-
-  const [content, setContent] = useState("");
+  } = inputData;
 
   return (
     <>
@@ -26,7 +30,7 @@ export default function EventDetails({inputDate, dispatchBundle}) {
       <fieldset>
         <label>
           Title:
-          <input name="title" type="text" />
+          <input onChange={(e) => setTitle(e.target.value)} name="title" type="text" />
         </label>
 
         <label>
@@ -37,7 +41,7 @@ export default function EventDetails({inputDate, dispatchBundle}) {
             min={MAX_MIN_DATE.YEAR.MIN}
             max={MAX_MIN_DATE.YEAR.MAX}
             value={year}
-            onChange={(e) => letDispatch(Number(e.target.value), setYear)}
+            onChange={(e) => setYear(Number(e.target.value))}
           />
         </label>
         <label>
@@ -48,7 +52,7 @@ export default function EventDetails({inputDate, dispatchBundle}) {
             min={MAX_MIN_DATE.MONTH.MIN}
             max={MAX_MIN_DATE.MONTH.MAX}
             value={month}
-            onChange={(e) => letDispatch(Number(e.target.value), setMonth)}
+            onChange={(e) => setMonth(Number(e.target.value))}
           />
         </label>
         <label>
@@ -59,7 +63,7 @@ export default function EventDetails({inputDate, dispatchBundle}) {
             min={MAX_MIN_DATE.DATE.MIN}
             max={MAX_MIN_DATE.DATE.MAX}
             value={date}
-            onChange={(e) => letDispatch(Number(e.target.value), setDate)}
+            onChange={(e) => setDate(Number(e.target.value))}
           />
         </label>
 
@@ -71,7 +75,7 @@ export default function EventDetails({inputDate, dispatchBundle}) {
           min={MAX_MIN_DATE.HOUR.MIN}
           max={MAX_MIN_DATE.HOUR.MAX}
           value={fromHour}
-          onChange={(e) => letDispatch(Number(e.target.value), setFromHour)}
+          onChange={(e) => setFromHour(Number(e.target.value))}
         />
       </label>
       <label>
@@ -82,18 +86,18 @@ export default function EventDetails({inputDate, dispatchBundle}) {
           min={MAX_MIN_DATE.HOUR.MIN}
           max={MAX_MIN_DATE.HOUR.MAX}
           value={toHour}
-          onChange={(e) => letDispatch(Number(e.target.value), setToHour)}
+          onChange={(e) => setToHour(Number(e.target.value))}
         />
       </label>
       <label>
         Content:
-        <textarea name="eventContent" value={content} onChange={(e) => letDispatch(e.target.value, setContent)}></textarea>
+        <textarea name="eventContent" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
       </label>
       </fieldset>
-      <button onClick={() => {
-        const userEvent = {};
-      }}>등록</button>
+      <button onClick={() => registerEvent(inputData, {title, content}, setEvent)}>등록</button>
       <button>취소</button>
     </>
   )
 };
+
+export default EventForm;
