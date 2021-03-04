@@ -20,10 +20,6 @@ export default function reducer(state = initialState, action) {
   const newState = { ...state };
 
   switch (action.type) {
-    case "SAVE_RECORD":
-      saveNewRecord(action.content);
-      newState.events.push(action.content);
-      break;
     case "CLICK_LEFT":
       newState.currentPageDate = addDate(state.currentPageDate, {days: -1});
       break;

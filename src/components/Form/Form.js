@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { saveNewRecord } from "../../api";
 import "./style.css";
 
 function Form ({ onEventSubmit }) {
@@ -18,7 +19,7 @@ function Form ({ onEventSubmit }) {
   return (
     <form className="input-container" onSubmit={(e) => { 
       e.preventDefault();
-      onEventSubmit(content);
+      saveNewRecord(content);
      }}>
       <div>새로운 이벤트</div>
       <input type="text" className="title" placeholder="제목" onChange={handleChange}/>

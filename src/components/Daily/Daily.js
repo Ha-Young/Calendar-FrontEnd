@@ -26,8 +26,6 @@ export default function Daily({ currentPageDate, events, saveDataToReduxState })
     })();
   }, [currentPageDate]);
 
-
-
   return (
     <Fragment>
       <div className="daily">
