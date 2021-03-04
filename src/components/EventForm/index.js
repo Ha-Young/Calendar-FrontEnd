@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 
 import { ERROR_MSG_EVENT_DAY_OVER, ERROR_MSG_OVER_START_DAY } from "../../constants/errorMsg";
 import { getCurrentMoment } from "../../utils/date";
-import styles from "./EventCreateForm.module.css";
+import styles from "./EventForm.module.css";
 import { ERROR_TYPE_EVENT_DAY_OVER, ERROR_TYPE_OVER_START_DAY, layout, makeNewEvent, viewErrMsg } from "./helper";
 
-function EventCreateForm({ userId, onCreate }) {
+function EventForm({ userId, onCreate, event }) {
   const history = useHistory();
 
   function handleSubmitClick(values) {
@@ -121,4 +121,4 @@ function EventCreateForm({ userId, onCreate }) {
   );
 }
 
-export default EventCreateForm;
+export default EventForm;

@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-import EventCreateForm from "../EventCreateForm";
 import EventsDetail from "../EventDetail";
+import EventForm from "../EventForm";
 import styles from "./Events.module.css";
 
 function Events({ createEvent, user }) {
@@ -12,7 +12,7 @@ function Events({ createEvent, user }) {
   return (
     <div className={styles.wrapper}>
       {subPath === "new"
-        ? <EventCreateForm userId={user.id} onCreate={createEvent}/>
+        ? <EventForm  userId={user.id} onCreate={createEvent}/>
         : <EventsDetail userId={user.id} eventId={subPath}/>}
     </div>
   );
