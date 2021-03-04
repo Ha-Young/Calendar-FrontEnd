@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import { submitEvent } from "../actions/index";
 import { sortEvent } from "../reducers/events";
-import EventForm from "../components/EventForm/EventForm";
+import NewEventForm from "../components/NewEventForm/NewEventForm";
 
 const mapStateToProps = (state) => ({
   date: state.date,
@@ -16,4 +16,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NewEventForm);
