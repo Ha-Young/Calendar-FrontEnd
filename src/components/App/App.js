@@ -10,10 +10,14 @@ import Daily from "../Schedule/Daily";
 import EventEdit from "../Event/EventEdit";
 import EventView from "../Event/EventView";
 
-function App({ selectedDate, eventMode, setCreateEventMode, setUpdateEventMode }) {
+function App({ selectedDate, setSelectedDateWithToday, eventMode, setCreateEventMode, setUpdateEventMode }) {
   return (
     <div className={styles.App}>
-      <Header selectedDate={selectedDate} setCreateEventMode={setCreateEventMode}/>
+      <Header
+        selectedDate={selectedDate}
+        setCreateEventMode={setCreateEventMode}
+        setSelectedDateWithToday={setSelectedDateWithToday}
+      />
       <Switch>
         <Route path="/" exact>
           <Daily/>

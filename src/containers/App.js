@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { setCreateEventMode, setUpdateEventMode } from "../actions";
+import { setSelectedDate, setCreateEventMode, setUpdateEventMode } from "../actions";
+
+const today = new Date();
 
 const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
@@ -14,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setUpdateEventMode() {
       dispatch(setUpdateEventMode());
+    },
+    setSelectedDateWithToday() {
+      dispatch(setSelectedDate(today));
     },
   }
 };

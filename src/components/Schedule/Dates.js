@@ -7,8 +7,8 @@ export default function Dates({ calendarMode, today, selectedDate, week }) {
   const formattedSelectedDate = formatDate(selectedDate, "yyyy-MM-dd-E");
   const [ year, month, dateNumber, day ] = formattedSelectedDate.split("-");
 
-  const formatWeek = () => {
-    const formattedWeek = week.map((date) => formatDate(date, "yyyy-MM-dd-E"));
+  const formatWeek = (weekList) => {
+    const formattedWeek = weekList.map((date) => formatDate(date, "yyyy-MM-dd-E"));
     return formattedWeek;
   };
 
@@ -24,7 +24,7 @@ export default function Dates({ calendarMode, today, selectedDate, week }) {
     <ul className={styles.Dates}>
       {calendarMode === "weekly"
        ? (
-          formatWeek().map((date) => {
+          formatWeek(week).map((date) => {
             const [ year, month, dateNumber, day ] = date.split("-");
             return (
               <li key={date}>

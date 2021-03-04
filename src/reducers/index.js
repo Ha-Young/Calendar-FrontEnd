@@ -61,6 +61,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         selectedDate: action.date,
+        week: getCurrentWeek(action.date),
       }
     case "SET_CREATE_EVENT_MODE":
       return {
