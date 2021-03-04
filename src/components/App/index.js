@@ -18,13 +18,16 @@ function App(
     currentDate,
     date,
     events,
+    user,
     changeViewOption,
     changeCurrentDate,
     moveAddEventPage,
     createEvent,
+    onInitLoad,
   }) {
   useEffect(() => {
-    console.log('init');
+    console.log('init', user);
+    onInitLoad({ userId: user.id, currentDate });
   }, []);
 
   function updateViewOption(newViewOption) {
@@ -50,7 +53,7 @@ function App(
               <ScheduleContainer />
             </Route>
             <Route path="/events">
-              <Events createEvent={createEvent}/>
+              <Events user={user} createEvent={createEvent}/>
             </Route>
             <Redirect from="/" exact to="/calendar" />
           </Switch>

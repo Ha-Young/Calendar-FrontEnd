@@ -11,6 +11,7 @@
 
 import * as types from '../constants/actionTypes';
 
+// Todo. action function arrow func to function dfinition
 export const changeViewOption = ({ viewOption, currentDate }) => ({
   type: types.CHANGE_VIEW_OPTION,
   payload: { viewOption, currentDate },

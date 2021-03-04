@@ -1,8 +1,10 @@
 import { connect } from "react-redux";
 
 import { changeCurrentDate, changeViewOption } from "../actions";
+import { receiveDate, receiveDateList } from "../actions/date";
 import { createEvent } from "../actions/events";
-import { writeEvent } from "../api";
+import { startLoading } from "../actions/loading";
+import { readDate, readDateListRange, writeEvent } from "../api";
 import App from "../components/App";
 
 const mapStateToProps = state => ({
@@ -10,6 +12,7 @@ const mapStateToProps = state => ({
   currentDate: state.currentDate,
   date: state.date,
   events: state.events,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -23,6 +26,22 @@ const mapDispatchToProps = dispatch => ({
   createEvent: ({ userId, event }) => {
     dispatch(createEvent(event));
     writeEvent(userId, event);
+  },
+  onInitLoad: async ({ userId, currentDate }) => {
+    dispatch(startLoading());
+    const date = await readDate(userId, currentDate);
+    dispatch(receiveDate(date));
+    // const data = await receiveDateRange(userId, '2021-03-02', '2021-03-04');
+  },
+  getDate: async ({ userId, currentDate }) => {
+    dispatch(startLoading());
+    const date = await readDate(userId, currentDate);
+    dispatch(receiveDate(date));
+  },
+  getDateListOnRange: async ({ userId, startDate, endDate }) => {
+    dispatch(startLoading());
+    const dateList = await readDateListRange(userId, startDate, endDate);
+    dispatch(receiveDateList(dateList));
   },
 });
 
