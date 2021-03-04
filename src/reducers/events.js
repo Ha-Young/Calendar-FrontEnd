@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import {
+  DETAIL_EVENT,
   SUBMIT_EVENT,
 } from "../constants/actionTypes";
 import { getWeeklyKeyFormats } from "../utils/date";
@@ -12,6 +13,7 @@ function eventsById(state = {}, action) {
       return {
         ...state,
         [payload.start] : {
+          date: payload.date,
           title: payload.title,
           content: payload.content,
           start: payload.start,
@@ -50,6 +52,11 @@ export default function events(state = {}, action) {
       return {
         ...state,
         [payload.date]: eventsOfDay(state[payload.date], action),
+      };
+    case DETAIL_EVENT:
+      return {
+        ...state,
+        targetEvent: state[payload.date].byId[payload.id],
       };
     default:
       return state;

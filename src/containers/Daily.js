@@ -31,7 +31,7 @@ const mapStateToProps = (state) => {
 
   return {
     date: state.date,
-    events: mockEvents,
+    events,
   }
 };
 

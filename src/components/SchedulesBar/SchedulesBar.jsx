@@ -2,7 +2,7 @@ import React from "react";
 
 import { getHourList, getKeyFormat } from "../../utils/date";
 import DaysBoard from "../DaysBoard/DaysBoard";
-import Schedule from "../Schedule/Schedule";
+import Schedule from "../../containers/Schedule";
 import styles from "./SchedulesBar.module.css";
 
 function SchedulesBar({ date, isTheDay, events = [] }) {

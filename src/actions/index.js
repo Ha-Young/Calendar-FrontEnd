@@ -19,3 +19,10 @@ export const submitEvent = (event) => ({
   type: actionTypes.SUBMIT_EVENT,
   payload: event,
 });
+export const eventDetail = (date, id) => ({
+  type: actionTypes.DETAIL_EVENT,
+  payload: {
+    date,
+    id,
+  },
+});

@@ -14,3 +14,4 @@ export const PREV_WEEK = "PREV_WEEK";
 export const NEXT_WEEK = "NEXT_WEEK";
 
 export const SUBMIT_EVENT = "SUBMIT_EVENT";
+export const DETAIL_EVENT = "DETAIL_EVENT";

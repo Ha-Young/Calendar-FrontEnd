@@ -9,3 +9,19 @@ export async function saveSampleData() {
     test: "text",
   });
 }
+
+export async function loadData({ date, callback }) {
+  const database = firebase.database();
+
+  database.ref(`calendar/${date}`).on("value", (snapshot) => {
+    callback(snapshot.val());
+  });
+}
+
+export async function updateData({ date, id, event }) {
+  const database = firebase.database();
+
+  await database.ref(`calendar/${date}`).update({
+    [id]: event,
+  });
+}
