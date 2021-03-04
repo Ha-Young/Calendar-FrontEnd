@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import {
   DETAIL_EVENT,
+  EDIT_EVENT,
   SUBMIT_EVENT,
 } from "../constants/actionTypes";
 import { getWeeklyKeyFormats } from "../utils/date";
@@ -58,6 +59,8 @@ export default function events(state = {}, action) {
         ...state,
         targetEvent: state[payload.date].byId[payload.id],
       };
+    case EDIT_EVENT:
+      return {};
     default:
       return state;
   }

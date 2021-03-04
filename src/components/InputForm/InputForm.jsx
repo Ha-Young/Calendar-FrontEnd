@@ -11,7 +11,7 @@ function InputForm({ onSubmit, title = "", content = "", disable, children }) {
   useEffect(() => {
     titleRef.current.value = title;
     contentRef.current.value = content;
-  }, []);
+  }, [title, content]);
 
   function handleSubmit(e) {
     e.preventDefault();

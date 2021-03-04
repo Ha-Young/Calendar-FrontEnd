@@ -26,3 +26,7 @@ export const eventDetail = (date, id) => ({
     id,
   },
 });
+export const editEvent = (event) => ({
+  type: actionTypes.EDIT_EVENT,
+  payload: event,
+});
