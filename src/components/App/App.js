@@ -10,16 +10,23 @@ import EventEditor from "../Events/EventEditor";
 
 function App(props) {
   const { 
-    onInitialLoad, 
+    initialLoadFromFirebase, 
     userId, 
     allEvents, 
     createEvent, 
     updateEvent, 
-    deleteEvent, 
-    createEventForFirebase
+    deleteEvent,
+    initEvents,
+    createEventInFirebase,
+    deleteEventInFirebase,
   } = props;
 
   useEffect(() => {
+    (async () => {
+      const loadedEvents = await initialLoadFromFirebase(userId);
+
+      initEvents(loadedEvents);
+    })();
   }, []);
 
   return (
@@ -31,11 +38,13 @@ function App(props) {
         </Route>
         <Route path={["/events/new", "/events/:eventId"]}>
           <EventEditor
+            userId={userId}
             allEvents={allEvents}
             createEvent={createEvent}
             updateEvent={updateEvent}
             deleteEvent={deleteEvent}
-            createEventForFirebase={createEventForFirebase}
+            createEventInFirebase={createEventInFirebase}
+            deleteEventInFirebase={deleteEventInFirebase}
           />
         </Route>
         <Redirect path="*" to="/calendar/week" />

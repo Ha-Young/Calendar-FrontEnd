@@ -6,11 +6,13 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 
 export default function EventEditor(props) {
   const { 
+    userId,
     allEvents,
     createEvent,
     updateEvent,
     deleteEvent,
-    createEventForFirebase,
+    createEventInFirebase,
+    deleteEventInFirebase,
   } = props;
 
   const history = useHistory();
@@ -41,8 +43,6 @@ export default function EventEditor(props) {
   } : null;
 
   useEffect(() => {
-    console.log(selectedEvent.startTime);
-
     if (selectedEvent) {
       $inputTitle.current.value = selectedEvent.title ?? "";
       $inputDescription.current.value = selectedEvent.description ?? "";
@@ -69,8 +69,6 @@ export default function EventEditor(props) {
     const id = `${date}-${startTime}-${endTime}`;
     const length = Number(endTime) - Number(startTime);
 
-    console.log(startTime)
-
     const newEvent = {
       title,
       description,
@@ -87,9 +85,11 @@ export default function EventEditor(props) {
 
     if (isUpdate) {
       updateEvent(selectedEvent, newEvent);
+      deleteEventInFirebase(userId, selectedEvent);
+      createEventInFirebase(userId, newEvent);
     } else {
       createEvent(newEvent);
-      // createEventForFirebase(newEvent);
+      createEventInFirebase(userId, newEvent);
     }
 
     history.push("/calendar/week")
@@ -107,6 +107,7 @@ export default function EventEditor(props) {
 
   const handleDeleteButtonClick = (e) => {
     deleteEvent(selectedEvent);
+    deleteEventInFirebase(userId, selectedEvent);
     history.push("/calendar/week")
   }
 

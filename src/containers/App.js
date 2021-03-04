@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { writeEvents } from "../api";
-import { createEvent, updateEvent, deleteEvent } from "../actions/index";
+import { writeEventFb, readEventsFb, deleteEventFb } from "../api";
+import { createEvent, updateEvent, deleteEvent, initEvents } from "../actions/index";
 
 const mapStateToProps = (state) => ({
   allEvents: state.events,
@@ -10,8 +10,16 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   // This function is passed to App component.
-  createEventForFirebase: (userId) => {
-    writeEvents(userId);
+  createEventInFirebase: (userId, event) => {
+    writeEventFb(userId, event);
+  },
+
+  deleteEventInFirebase: (userId, event) => {
+    deleteEventFb(userId, event.id);
+  },
+
+  initialLoadFromFirebase: async (userId) => {
+    return await readEventsFb(userId);
   },
 
   createEvent: (event) => {
@@ -24,6 +32,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   deleteEvent: (event) => {
     dispatch(deleteEvent(event));
+  },
+
+  initEvents: (events) => {
+    dispatch(initEvents(events));
   },
 });
 

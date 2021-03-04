@@ -1,4 +1,4 @@
-import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT } from "../constants/actionTypes";
+import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT, INIT_EVENTS } from "../constants/actionTypes";
 import { combineReducers } from "redux";
 import produce from "immer";
 import makeDateIndex from "../util/makeTreeBranch";
@@ -35,7 +35,7 @@ const dateIndexMock = {
   }
 }
 
-const eventList = (state = eventListMock, action) => {
+const eventList = (state = {}, action) => {
   switch (action.type) {
     case CREATE_EVENT: {
       return ({
@@ -57,12 +57,16 @@ const eventList = (state = eventListMock, action) => {
       });
     }
 
+    case INIT_EVENTS: {
+      return action.events;
+    }
+
     default:
       return state;
   }
 }
 
-const dateIndex = (state = dateIndexMock, action) => {
+const dateIndex = (state = {}, action) => {
   switch (action.type) {
     case CREATE_EVENT: {
       const id = action.event.id;
@@ -124,6 +128,23 @@ const dateIndex = (state = dateIndexMock, action) => {
       return produce(state, (draftState) => {
         makeDateIndex(newIds, draftState, year, month, day);
       });
+    }
+
+    case INIT_EVENTS: {
+      let newState = state;
+
+      for (const id in action.events) {
+        const { year, month, day } = getDateInfoFromId(id);
+
+        const prevIds = newState?.[year]?.[month]?.[day];
+        const newIds = prevIds ? [...new Set([...prevIds, id])] : [id];
+
+        newState = produce(newState, (draftState) => {
+          makeDateIndex(newIds, draftState, year, month, day);
+        });
+      }
+
+      return newState;
     }
 
     default:

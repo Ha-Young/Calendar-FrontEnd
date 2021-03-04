@@ -13,6 +13,7 @@ import {
   CREATE_EVENT,
   UPDATE_EVENT,
   DELETE_EVENT,
+  INIT_EVENTS,
 } from "../constants/actionTypes";
 
 export const setCurrentDay = (date) => ({
@@ -44,4 +45,9 @@ export const updateEvent = (prevEvent, newEvent) => ({
 export const deleteEvent = (event) => ({
   type: DELETE_EVENT,
   event,
+});
+
+export const initEvents = (events) => ({
+  type: INIT_EVENTS,
+  events,
 });
