@@ -38,25 +38,29 @@ function byId(state = initialStatus_byId, action) {
       return newState;
 
     case RECEIVE_DATE:
+      const newDateById = { ...state };
+
       if (action.payload) {
         const [dateKey] = Object.keys(action.payload);
         const eventKeys = Object.keys(action.payload[dateKey]);
 
         const prevEventList = state[dateKey] ? state[dateKey].events : [];
 
-        const newDateById = {
+        const newDate = {
           id: dateKey,
           events: [...prevEventList],
         };
 
         for (const eventKey of eventKeys) {
-          newDateById.events.push(eventKey);
+          newDate.events.push(eventKey);
         }
+
+        newDateById[dateKey] = newDate;
 
         return newDateById;
       }
 
-      return state;
+      return newDateById;
 
     default:
       return state;
