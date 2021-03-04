@@ -1,6 +1,26 @@
 import moment from "moment";
 import { dateConst } from "constants/constants";
 
+export const getDateISO = (ref = 0) => {
+  return moment().add(ref, "days").format("YYYY-MM-DD");
+};
+
+export const parseDate = (date = "") => {
+  const weekOfMonth = getWeekOfMonth(date);
+
+  return {
+    year: moment(date).day(0).format("YYYY"),
+    weekOfMonth,
+    month: moment(date).format("MM"),
+    date: moment(date).format("DD"),
+    day: moment(date).format("dddd"),
+  };
+};
+
+export const getWeekOfMonth = (date = "") => {
+  return Math.ceil(moment(date).day(0).date() / 7).toString();
+};
+
 export const getDaysOfWeek = (ref = 0) => {
   const thisWeek = [];
 
@@ -11,7 +31,7 @@ export const getDaysOfWeek = (ref = 0) => {
   return thisWeek;
 };
 
-export const getWeekOfMonthByRef = (count = 0) => {
+export const getMonthAndWeek = (count = 0) => {
   const target = moment().day(count);
   const monthAndWeek = {};
   const weekOfMonth = Math.ceil(target.date() / 7);
@@ -19,41 +39,6 @@ export const getWeekOfMonthByRef = (count = 0) => {
   monthAndWeek.week = weekOfMonth;
 
   return monthAndWeek;
-};
-export const getWeekOfMonthByDate = (date = "") => {
-  return Math.ceil(moment(date).day(0).date() / 7).toString();
-};
-
-export const getThisWeek = () => {
-  return Math.ceil(moment().day(0).date() / 7);
-};
-
-export const getToday = () => {
-  return moment().format("YYYY-MM-DD");
-};
-
-export const getDateISOByRef = (ref = 0) => {
-  return moment().add(ref, "days").format("YYYY-MM-DD");
-};
-
-export const getDateByRef = (ref = 0) => {
-  const momentDate = moment().add(ref, "days");
-  const weekOfMonth = getWeekOfMonthByRef(ref).week;
-  return {
-    year: momentDate.format("YYYY"),
-    weekOfMonth,
-    month: momentDate.format("MM"),
-    date: momentDate.format("DD"),
-    day: momentDate.format("dddd"),
-  };
-};
-
-export const parseDate = (date = "") => {
-  return {
-    year: moment(date).day(0).format("YYYY"),
-    month: moment(date).day(0).format("MM"),
-    weekOfMonth: getWeekOfMonthByDate(date),
-  };
 };
 
 export const generateKey = (ref = 0) => {

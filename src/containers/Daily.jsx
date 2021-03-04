@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { directionConst } from "constants/constants";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
 import DailySchedule from "../components/DailySchedule/DailySchedule";
 import { connect } from "react-redux";
 import { actionCreators } from "actions/actionCreators";
+import { getDateISO, parseDate } from "utils/utilFunction";
 
-const Daily = ({ currentDate, showPreviousDay, showNextDay }) => {
+const Daily = ({ showPreviousDay, showNextDay }) => {
   const [dateCount, setDateCount] = useState(0);
+  const [date, setDate] = useState(parseDate(getDateISO(0)));
+
+  useEffect(() => {
+    const currentDate = parseDate(getDateISO(dateCount));
+    setDate(currentDate);
+  }, [dateCount]);
 
   const setNewDate = (direction) => {
     let currentDateCount = dateCount;
@@ -29,22 +36,16 @@ const Daily = ({ currentDate, showPreviousDay, showNextDay }) => {
       <CalenderHeader
         onClick={setNewDate}
         currentPeriod={
-          currentDate.month +
+          date.month +
           "월 " +
-          currentDate.date +
+          date.date +
           "일 " +
-          currentDate.day.toUpperCase().slice(0, 3)
+          date.day.toUpperCase().slice(0, 3)
         }
       />
       <DailySchedule />
     </>
   );
-};
-
-const mapStateToProps = (state) => {
-  console.log(state);
-  const { currentDate } = state;
-  return { currentDate };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -56,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Daily);
+export default connect(null, mapDispatchToProps)(Daily);

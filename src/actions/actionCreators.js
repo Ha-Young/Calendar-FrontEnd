@@ -4,12 +4,7 @@ import {
   deleteAtFirebase,
 } from "api/firebaseAPIs";
 import { ACTION } from "constants/actionTypes";
-import {
-  generateKey,
-  getDateByRef,
-  getDateISOByRef,
-  getDaysOfWeek,
-} from "utils/utilFunction";
+import { getDateISO, getDaysOfWeek } from "utils/utilFunction";
 
 const setInitialize = (initialEvent, userId) => {
   if (!Object.keys(initialEvent).length) {
@@ -18,7 +13,7 @@ const setInitialize = (initialEvent, userId) => {
     };
   }
 
-  const today = getDateISOByRef(0);
+  const today = getDateISO(0);
   const dailyEvent = {};
 
   for (const [key, value] of Object.entries(initialEvent)) {
@@ -34,18 +29,19 @@ const setInitialize = (initialEvent, userId) => {
     userId,
   };
 };
+const showDaily = () => {};
 
 const showPreviousDay = (dateCount) => {
   return {
     type: ACTION.SHOW_PREVIOUS_DAY,
-    currentDate: getDateByRef(dateCount),
+    // currentDate: getDateByRef(dateCount),
   };
 };
 
 const showNextDay = (dateCount) => {
   return {
     type: ACTION.SHOW_NEXT_DAY,
-    currentDate: getDateByRef(dateCount),
+    // currentDate: getDateByRef(dateCount),
   };
 };
 
@@ -53,6 +49,13 @@ const showPreviousWeek = (weekCount) => {
   return {
     type: ACTION.SHOW_PREVIOUS_WEEK,
     currentWeekDays: getDaysOfWeek(weekCount),
+  };
+};
+
+const showWeekly = (events) => {
+  return {
+    type: ACTION.SHOW_WEEKLY,
+    weeklyEvent: events,
   };
 };
 
@@ -72,8 +75,8 @@ const addEvent = (newEvent = {}, id) => {
 
   return {
     type: ACTION.ADD_EVENT,
-    id,
     newEvent,
+    id,
   };
 };
 
@@ -95,13 +98,22 @@ const editEvent = (editedEvent, id) => {
   };
 };
 
+const userLogin = () => {};
+const userLogout = () => {};
+const editProfile = () => {};
+
 export const actionCreators = {
   setInitialize,
+  showDaily,
   showPreviousDay,
   showNextDay,
+  showWeekly,
   showPreviousWeek,
   showNextWeek,
   addEvent,
   deleteEvent,
   editEvent,
+  userLogin,
+  userLogout,
+  editProfile,
 };

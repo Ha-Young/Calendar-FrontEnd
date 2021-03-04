@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { dateConst, directionConst } from "constants/constants";
-import { getDaysOfWeek, getWeekOfMonthByRef } from "utils/utilFunction";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
 import WeeklySchedule from "../components/WeeklySchedule/WeeklySchedule";
 import { connect } from "react-redux";
 import { actionCreators } from "actions/actionCreators";
+import { fetchWeeklyEvent } from "api/firebaseAPIs";
+import {
+  getDateISO,
+  parseDate,
+  getMonthAndWeek,
+  getDaysOfWeek,
+} from "utils/utilFunction";
 
 const Weekly = ({
-  currentWeekDays,
-  currentWeekOfMonth,
+  weeklyEvent,
+  showWeekly,
   showPreviousWeek,
   showNextWeek,
 }) => {
   const [weekCount, setWeekCount] = useState(0);
-  const [weekOfMonth, setWeekOfMonth] = useState(getWeekOfMonthByRef(0));
+  const [weekOfMonth, setWeekOfMonth] = useState(getMonthAndWeek(0));
+  const [daysOfWeek, setDaysOfWeek] = useState(getDaysOfWeek(0));
+
+  useEffect(() => {
+    const today = parseDate(getDateISO(weekCount));
+    const daysOfCurrentWeek = getDaysOfWeek(weekCount);
+    setDaysOfWeek(daysOfCurrentWeek);
+
+    fetchWeeklyEvent((events) => {
+      showWeekly(events);
+    }, today);
+  }, [showWeekly, weekCount]);
 
   const setNewWeek = (direction) => {
     let currentWeekCount = weekCount;
@@ -29,7 +46,8 @@ const Weekly = ({
     }
 
     setWeekCount(currentWeekCount);
-    setWeekOfMonth(getWeekOfMonthByRef(currentWeekCount));
+    setWeekOfMonth(getMonthAndWeek(currentWeekCount));
+    setDaysOfWeek(getDaysOfWeek(currentWeekCount));
   };
 
   return (
@@ -38,18 +56,18 @@ const Weekly = ({
         onClick={setNewWeek}
         currentPeriod={weekOfMonth.month + "월 " + weekOfMonth.week + "주차"}
       />
-      <WeeklySchedule week={currentWeekDays} />
+      <WeeklySchedule daysOfWeek={daysOfWeek} weeklyEvent={weeklyEvent} />
     </>
   );
 };
 
 const mapStateToProps = (state) => {
-  const { currentWeekDays, currentWeekOfMonth } = state;
-  return { currentWeekDays };
+  return state;
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    showWeekly: (events) => dispatch(actionCreators.showWeekly(events)),
     showPreviousWeek: (weekCount) =>
       dispatch(actionCreators.showPreviousWeek(weekCount)),
     showNextWeek: (weekCount) =>

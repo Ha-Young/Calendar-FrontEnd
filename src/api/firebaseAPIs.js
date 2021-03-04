@@ -1,12 +1,11 @@
 import { authService, firebaseInstance } from "./firebaseService";
-import { getDateISOByRef, parseDate } from "utils/utilFunction";
-import { mockEvent } from "utils/mock.js";
+import { getDateISO, parseDate } from "utils/utilFunction";
 
 const database = firebaseInstance.database();
 
 export async function initializeApp(callback) {
   const userId = authService.currentUser.uid;
-  const { year, month, weekOfMonth } = parseDate(getDateISOByRef(0));
+  const { year, month, weekOfMonth } = parseDate(getDateISO(0));
 
   await database
     .ref(`/events/${userId}/${year}/${month}/${weekOfMonth}`)
@@ -21,7 +20,20 @@ export async function initializeApp(callback) {
 
 export async function fetchDailyEvent(callback, date) {}
 
-export async function fetchWeeklyEvent(callback, date) {}
+export function fetchWeeklyEvent(callback, date) {
+  const userId = authService.currentUser.uid;
+  const { year, month, weekOfMonth } = parseDate(date);
+
+  database
+    .ref(`/events/${userId}/${year}/${month}/${weekOfMonth}`)
+    .on("value", (snapshot) => {
+      if (snapshot.val()) {
+        callback(snapshot.val());
+      } else {
+        callback({});
+      }
+    });
+}
 
 export const addToFirebase = async (newEvent, id) => {
   const { date } = newEvent;
@@ -30,7 +42,7 @@ export const addToFirebase = async (newEvent, id) => {
 
   await database
     .ref(`/events/${userId}/${year}/${month}/${weekOfMonth}`)
-    .update({ [id]: newEvent });
+    .update({ [id]: { ...newEvent, id } });
 };
 
 export const editToFirebase = async (editedEvent, id) => {
@@ -51,13 +63,3 @@ export const deleteAtFirebase = async (id, date) => {
     .ref(`/events/${userId}/${year}/${month}/${weekOfMonth}`)
     .update({ [id]: null });
 };
-
-// export const updateEventList = async (updatedEvent) => {
-//   await database
-//     .ref(`/events/${authService.currentUser.uid}`)
-//     .set(updatedEvent);
-// };
-
-// export const testFirebase = async () => {
-//   mockEvent.forEach((event) => addToFirebase(event));
-// };

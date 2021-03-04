@@ -1,10 +1,5 @@
 export const dateConst = {
   TIME_LIST: [],
-  // CURRENT_YYMMDD: {
-  //   year: new Date().getFullYear(),
-  //   month: new Date().getMonth(),
-  //   day: new Date().getDate(),
-  // },
   MS_OF_DAY: 1000 * 24 * 3600,
   DAY_OF_WEEK: 7,
 };

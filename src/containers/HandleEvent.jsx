@@ -3,13 +3,13 @@ import { inputConst, typeConst } from "constants/constants";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { actionCreators } from "actions/actionCreators";
-import { generateKey, getDateISOByRef } from "utils/utilFunction";
+import { generateKey, getDateISO } from "utils/utilFunction";
 import { useHistory, useParams } from "react-router-dom";
 
 const HandleEvent = ({ type, weeklyEvent, addEvent, editEvent }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState(getDateISOByRef(0));
+  const [date, setDate] = useState(getDateISO(0));
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const param = useParams();
@@ -50,13 +50,11 @@ const HandleEvent = ({ type, weeklyEvent, addEvent, editEvent }) => {
 
     setTitle("");
     setDescription("");
-    setDate(getDateISOByRef(0));
+    setDate(getDateISO(0));
     setStartTime("");
     setEndTime("");
 
     alert("submit complete");
-
-    // send to database logic
   };
 
   const handleInput = (e) => {
