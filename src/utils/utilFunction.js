@@ -12,38 +12,42 @@ export const parseDate = (date = "") => {
   return {
     year: moment(date).day(0).format("YYYY"),
     month: moment(date).format("MM"),
-    weekOfMonth: weekOfMonth.week,
     date: moment(date).format("DD"),
     day: moment(date).format("dddd"),
     monthInFirebase: weekOfMonth.month,
+    weekOfMonth: weekOfMonth.week,
   };
 };
 
-export const getWeekOfMonth = (date = "") => {
+export const getWeekOfMonth = (date = moment().day(0).format("YYYY-MM-DD")) => {
   return Math.ceil(moment(date).day(0).date() / 7).toString();
 };
 
 export const getDaysOfWeek = (ref = 0) => {
-  const thisWeek = [];
+  const daysOfTargetWeek = [];
 
   for (let i = ref; i < ref + dateConst.DAY_OF_WEEK; i++) {
-    thisWeek.push(moment().day(i).format("MM DD dddd").split(" "));
+    daysOfTargetWeek.push(moment().day(i).format("MM DD dddd").split(" "));
   }
 
-  return thisWeek;
+  return daysOfTargetWeek;
 };
 
-export const getMonthAndWeek = (date = "") => {
-  const target = moment(date).day(0);
+export const getMonthAndWeek = (
+  date = moment().day(0).format("YYYY-MM-DD")
+) => {
+  const targetSunday = moment(date).day(0);
   const monthAndWeek = {};
-  const weekOfMonth = Math.ceil(target.date() / 7);
-  monthAndWeek.month = target.format("MM");
+  const weekOfMonth = Math.ceil(targetSunday.date() / 7);
+  monthAndWeek.month = targetSunday.format("MM");
   monthAndWeek.week = weekOfMonth;
 
   return monthAndWeek;
 };
 
-export const makeFirebaseURL = (date) => {
+export const makeFirebaseURL = (
+  date = moment().day(0).format("YYYY-MM-DD")
+) => {
   const userId = authService.currentUser.uid;
   const { year, monthInFirebase, weekOfMonth } = parseDate(date);
 
@@ -52,7 +56,7 @@ export const makeFirebaseURL = (date) => {
   return url;
 };
 
-export const generateKey = (ref = 0) => {
+export const generateKey = () => {
   let key = new Date().getTime().toString();
   const fullLength = 20;
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

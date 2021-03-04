@@ -2,6 +2,7 @@ import React from "react";
 import { dateConst } from "constants/constants";
 import styles from "./WeeklySchedule.module.css";
 import { useHistory } from "react-router-dom";
+import EventCardStyled from "components/EventCard/EventCardStyled";
 
 const WeeklyScedule = ({ daysOfWeek, weeklyEvent }) => {
   const history = useHistory();
@@ -33,20 +34,9 @@ const WeeklyScedule = ({ daysOfWeek, weeklyEvent }) => {
       </section>
       <section>
         {weeklyEvent &&
-          Object.values(weeklyEvent).map((event) => {
-            return (
-              <div
-                key={event.id}
-                onClick={() => history.push(`/events/${event.id}`)}
-              >
-                <h1>{event.title}</h1>
-                <p>{event.description}</p>
-                <p>{event.date}</p>
-                <p>{event.startTime}</p>
-                <p>{event.endTime}</p>
-              </div>
-            );
-          })}
+          Object.values(weeklyEvent).map((event) => (
+            <EventCardStyled key={event.id} {...event} />
+          ))}
       </section>
     </>
   );
