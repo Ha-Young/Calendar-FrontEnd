@@ -3,7 +3,7 @@ import Event from "../components/Event/Event";
 import { addToEvent } from "../actions";
 
 const mapDispatchToProps = dispatch => ({
-  onSubmitEvent: (eventInformation) => {
+  onSubmitAddEvent: (eventInformation) => {
     dispatch(addToEvent(eventInformation));
   }
 });

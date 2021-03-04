@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Event.module.css";
 
-import { addToEvent } from "../../actions";
 import { addEvent } from "../../api";
 
-function Event({ onSubmitAddEvent }) {
+function DetailEvent({ onSubmitAddEvent, onSubmitRemoveEvent }) {
   const [eventDate, setEventDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  function onClickInputButton(e) {
+  // useEffect(() => {
+
+  // }, []);
+
+  function handleClickInputButton(e) {
     e.preventDefault();
 
     const editStartTime = `${startTime.slice(0, 2)}:00`;
@@ -28,6 +31,18 @@ function Event({ onSubmitAddEvent }) {
 
     onSubmitAddEvent(eventInformation);
     // addEvent(eventInformation);
+  }
+
+  function handleClickRemoveButton(e) {
+    e.preventDefault();
+
+    const removeEvent = {
+      id: eventDate,
+      startTime,
+    }
+
+    onSubmitRemoveEvent(removeEvent); // 얘는 redux에서 내용 제거용
+    // 여기에 파이어 베이스에서 데이터 제거하는 거
   }
 
   function handleChangeInput(e) {
@@ -63,6 +78,7 @@ function Event({ onSubmitAddEvent }) {
 
   return (
     <div>
+      <div>여기는 상세 페이지입니다.</div>
       <div className={styles.dateBoxs}>
         <p>이벤트 날짜</p>
         <input type="date" name="date" onChange={handleChangeInput} />
@@ -79,15 +95,21 @@ function Event({ onSubmitAddEvent }) {
           name="description"
           onChange={handleChangeInput}
         />
-        <input
-          onClick={onClickInputButton}
+        <button
+          onClick={handleClickInputButton}
           className={styles.button}
           type="submit"
           value="제출"
+        />
+        <button
+          onClick={handleClickRemoveButton}
+          className={styles.button}
+          type="submit"
+          value="리셋"
         />
       </div>
     </div>
   );
 }
 
-export default Event;
+export default DetailEvent;

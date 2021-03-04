@@ -12,3 +12,8 @@ export const addToEvent = event => ({
   type: types.ADD_EVENT_INFORMATION,
   event,
 });
+
+export const removeToEvent = dateInformation => ({
+  type: types.GET_CALENDAR_VIEWER_SUCCESS,
+  dateInformation,
+});

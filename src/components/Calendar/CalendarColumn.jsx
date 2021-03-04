@@ -29,7 +29,7 @@ function CalendarColumn({ events, colummDay, dayID }) {
         })}
         {hasEvent &&
           events[dayID].map((event) =>
-            <Schedule event={event} />
+            <Schedule event={event} dayID={dayID} />
           )
         }
       </div>

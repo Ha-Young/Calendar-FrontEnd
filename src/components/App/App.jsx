@@ -6,9 +6,10 @@ import { Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 
 import Header from "../Header/Header";
-import Event from "../Event/Event";
+import Event from "../../containers/EventContainer";
 import Weekly from "../Calendar/Weekly/WeeklyCalendar";
 import Daily from "../Calendar/Daily/DailyCalendar";
+import DetailEvent from "../../containers/DetailEventContainer";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
@@ -21,11 +22,11 @@ function App({ onInitialLoad }) {
       <Switch>
         <Route path="/" exact component={Weekly} />
         <Route path="/event/new" component={Event} />
-        <Route exact path="/event/:id" component={Event} />
+        <Route exact path="/event/:id" component={DetailEvent} />
         <Route path="/weekly" component={Weekly} />
         <Route path="/daily" component={Daily} />
         <Route>
-          {/* not found */}
+          <div>잘못된 접근입니다.</div>
         </Route>
       </Switch>
     </div>
