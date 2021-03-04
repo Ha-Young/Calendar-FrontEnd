@@ -4,7 +4,7 @@ import humanImg from "../../assets/human.png";
 import DailyWeekDropDown from "../DailyWeekDropDown";
 import styles from "./AppSider.module.css";
 
-function AppSider({ viewOption, updateViewOption }) {
+function AppSider({ viewOption, onChangeViewOption }) {
   return (
     <div className={styles.appSider}>
       <h1 className={styles.appTitle}>My Scheduler</h1>
@@ -15,7 +15,7 @@ function AppSider({ viewOption, updateViewOption }) {
       <div>
         <DailyWeekDropDown
           defaultKey={viewOption}
-          onChange={selectKey => updateViewOption(selectKey)}
+          onChange={selectKey => onChangeViewOption(selectKey)}
         />
       </div>
     </div>
