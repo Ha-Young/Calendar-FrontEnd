@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Modal.module.css";
+
 import { Modal, Form, Input, Button, DatePicker } from "antd";
 import { TwitterPicker } from "react-color";
 import styled from "styled-components";

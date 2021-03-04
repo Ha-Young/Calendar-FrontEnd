@@ -11,6 +11,10 @@
   font-size: 50px;
 }
 
+.fontColor {
+  color: white;
+}
+
 .HoursColumn {
   position: absolute;
   top: 170px;
