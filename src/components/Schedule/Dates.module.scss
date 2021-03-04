@@ -1,10 +1,12 @@
 .Dates {
-  margin: 0 0 0 40px;
-  padding: 0 0 0.5em 0;
+  height: 80px;
+  margin: 0;
+  padding: 0.5em calc(15px + 1em) 0.5em calc(40px + 1em);
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #dddddd;
+  box-sizing: border-box;
 
   li {
     width: 100%;

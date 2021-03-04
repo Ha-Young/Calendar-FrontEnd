@@ -1,6 +1,6 @@
 import React from "react";
 import { formatDate } from "../../utils/SetDate";
-import styles from "./Date.module.scss";
+import styles from "./Dates.module.scss";
 
 export default function Dates({ calendarMode, today, selectedDate, week }) {
   const formattedTodayDate = formatDate(today, "yyyy-MM-dd-E");

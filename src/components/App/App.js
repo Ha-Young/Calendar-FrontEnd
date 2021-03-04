@@ -21,14 +21,14 @@ function App({ selectedDate, eventMode, setCreateEventMode, setUpdateEventMode }
         <Route path="/schedule">
           <Weekly />
         </Route>
-        <Route path="/event" exact>
+        <Route path="/events" exact>
           <EventEdit
             eventMode={eventMode}
             setCreateEventMode={setCreateEventMode}
             setUpdateEventMode={setUpdateEventMode}
           />
         </Route>
-        <Route path="/event/:event_id">
+        <Route path="/events/:event_id">
           <EventView setUpdateEventMode={setUpdateEventMode}/>
         </Route>
         <Route>

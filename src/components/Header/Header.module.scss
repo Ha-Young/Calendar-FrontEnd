@@ -1,3 +1,45 @@
 .Header {
+  height: 90px;
+  padding: 1.5em 1em;
+  box-sizing: border-box;
+  display: flex;
+  flex-basis: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dddddd;
 
+  h1 {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      a {
+        border: 1px solid #313131;
+        border-right: none;
+        padding: 0.3em 0.5em;
+        display: inline-block;
+        text-decoration: none;
+        color: #313131;
+        &.active {
+          color: #ffffff;
+          background: #313131;
+        }
+      }
+
+      &:last-child {
+        a {
+          border-right: 1px solid #313131;
+        }
+      }
+    }
+  }
 }

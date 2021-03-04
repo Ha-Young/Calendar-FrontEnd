@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { formatDate } from "../../utils/SetDate";
 import styles from "./Header.module.scss";
 
@@ -12,10 +12,16 @@ export default function Header ({ selectedDate, setCreateEventMode }) {
     <header className={styles.Header}>
       <h1>{year}.{month}</h1>
       <ul>
-        <li><Link to="/schedule">WEEKLY</Link></li>
-        <li><Link to="/" exact="true">DAILY</Link></li>
+        <li>
+          <NavLink to="/schedule" activeClassName={styles.active}>WEEKLY</NavLink>
+        </li>
+        <li>
+          <NavLink to="/" exact="true" activeClassName={styles.active}>DAILY</NavLink>
+        </li>
+        <li>
+          <NavLink to="/events" onClick={setCreateEventMode} activeClassName={styles.active}>New Event</NavLink>
+        </li>
       </ul>
-      <Link to="/event" onClick={setCreateEventMode}><button type="button">New Event</button></Link>
     </header>
   );
 }
