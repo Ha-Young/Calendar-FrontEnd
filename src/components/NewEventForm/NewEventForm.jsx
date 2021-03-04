@@ -1,16 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 import styles from "./NewEventForm.module.css";
-import WithLabel from "../WithLabel/WithLabel";
 import DaysAndTimeForm from "../DaysAndTimeForm/DaysAndTimeForm";
+import InputForm from "../InputForm/InputForm";
 
 function NewEventForm({ date, onSubmit }) {
-  const titleRef = useRef(null);
-  const contentRef = useRef(null);
   const [start, setStart] = useState(Number(date.format("H")));
   const [end, setEnd] = useState(Number(date.format("H")) + 1);
 
-  function handleStartTimeChange(time) {
+  function handleStartChange(time) {
     if (time === end) {
       return;
     }
@@ -18,7 +16,7 @@ function NewEventForm({ date, onSubmit }) {
     setStart(time);
   }
 
-  function handleEndTimeChange(time) {
+  function handleEndChange(time) {
     if (time === start) {
       return;
     }
@@ -26,13 +24,10 @@ function NewEventForm({ date, onSubmit }) {
     setEnd(time);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
+  function handleInputSubmit(input) {
     const event = {
+      ...input,
       date,
-      title: titleRef.current.value,
-      content: contentRef.current.value,
       start,
       end,
     };
@@ -47,28 +42,14 @@ function NewEventForm({ date, onSubmit }) {
         isTheDay={true}
         start={start}
         end={end}
-        handleStartTimeChange={handleStartTimeChange}
-        handleEndTimeChange={handleEndTimeChange}
+        handleStartChange={handleStartChange}
+        handleEndChange={handleEndChange}
       />
-      <form
-        className={styles.formContainer}
-        onSubmit={handleSubmit}
+      <InputForm
+        onSubmit={handleInputSubmit}
       >
-        <WithLabel label="제목">
-          <input
-            className={styles.title}
-            ref={titleRef}
-            type="text"
-          />
-        </WithLabel>
-        <WithLabel label="내용">
-          <textarea
-            className={styles.content}
-            ref={contentRef}
-          />
-        </WithLabel>
         <button>다 ~ 적 었 다 아 아 아</button>
-      </form>
+      </InputForm>
     </div>
   );
 }

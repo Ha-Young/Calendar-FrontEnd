@@ -9,8 +9,8 @@ function DaysAndTimeForm({
   isTheDay,
   start,
   end,
-  handleStartTimeChange,
-  handleEndTimeChange,
+  handleStartChange,
+  handleEndChange,
 }) {
   return (
     <div className={styles.daysAndTimeForm}>
@@ -18,11 +18,11 @@ function DaysAndTimeForm({
         <span className={styles.timeSelectorContainer}>
           <TimeSelector
             time={start}
-            onChange={handleStartTimeChange}
+            onChange={handleStartChange}
           />
           <TimeSelector
             time={end}
-            onChange={handleEndTimeChange}
+            onChange={handleEndChange}
           />
         </span>
       </div>
