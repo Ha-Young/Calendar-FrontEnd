@@ -13,6 +13,6 @@ export const setEventFormFor = {
 
 export const setUserEventFor = {
   register: (event) => ({type: userEvent.SET_EVENT, payload: event}),
-}
+};
 
 export const setCurrentDate = (dateBundle) => ({type: SET_CURRENT_DATE, payload: dateBundle});
