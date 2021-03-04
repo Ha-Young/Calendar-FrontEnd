@@ -13,6 +13,9 @@ function App({ onInitialLoad, eventInfo, onEventInfoSubmit }) {
     onInitialLoad();
   }, []);
 
+  console.log("APp")
+  console.log(eventInfo);
+
   return (
     <div className={styles.App}>
       <Header />

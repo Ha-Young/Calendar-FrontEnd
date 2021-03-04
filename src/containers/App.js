@@ -3,14 +3,9 @@ import App from "../components/App/App";
 import { saveSampleData } from "../api";
 import { submitEventInfo } from "../actions"
 
-// const mapStateToProps = (state) => ({
-//   eventInfo: state.eventInfo
-// });
-const mapStateToProps = (state) => {
-  console.log("mapStateToProps");
-  console.log(state);
-  return {eventInfo: state.eventInfo}
-};
+const mapStateToProps = (state) => ({
+  eventInfo: state.eventInfo
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onInitialLoad: () => {
