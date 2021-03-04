@@ -11,7 +11,7 @@ export const getDaysOfWeek = (ref = 0) => {
   return thisWeek;
 };
 
-export const getWeekOfMonth = (count = 0) => {
+export const getWeekOfMonthByRef = (count = 0) => {
   const target = moment().day(count);
   const monthAndWeek = {};
   const weekOfMonth = Math.ceil(target.date() / 7);
@@ -38,7 +38,10 @@ export const getDateISOByRef = (ref = 0) => {
 
 export const getDateByRef = (ref = 0) => {
   const momentDate = moment().add(ref, "days");
+  const weekOfMonth = getWeekOfMonthByRef(ref).week;
   return {
+    year: momentDate.format("YYYY"),
+    weekOfMonth,
     month: momentDate.format("MM"),
     date: momentDate.format("DD"),
     day: momentDate.format("dddd"),

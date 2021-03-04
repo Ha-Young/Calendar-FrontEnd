@@ -3,7 +3,7 @@ import { inputConst, typeConst } from "constants/constants";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { actionCreators } from "actions/actionCreators";
-import { getDateISOByRef } from "utils/utilFunction";
+import { generateKey, getDateISOByRef } from "utils/utilFunction";
 import { useHistory, useParams } from "react-router-dom";
 
 const HandleEvent = ({ type, weeklyEvent, addEvent, editEvent }) => {
@@ -41,9 +41,12 @@ const HandleEvent = ({ type, weeklyEvent, addEvent, editEvent }) => {
     };
 
     if (type === typeConst.ADD) {
-      addEvent(newEvent);
+      const id = generateKey();
+      addEvent(newEvent, id);
+      history.push(`/events/${id}`);
     } else if (type === typeConst.EDIT) {
       editEvent(newEvent, param.eventId);
+      history.push(`/events/${param.eventId}`);
     }
 
     setTitle("");
@@ -51,7 +54,6 @@ const HandleEvent = ({ type, weeklyEvent, addEvent, editEvent }) => {
     setDate(getDateISOByRef(0));
     setStartTime("");
     setEndTime("");
-    history.push(`/events/${param.eventId}`);
 
     alert("submit complete");
 
@@ -105,7 +107,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addEvent: (newEvent) => dispatch(actionCreators.addEvent(newEvent)),
+    addEvent: (newEvent, id) => dispatch(actionCreators.addEvent(newEvent, id)),
     editEvent: (editedEvent, id) =>
       dispatch(actionCreators.editEvent(editedEvent, id)),
   };

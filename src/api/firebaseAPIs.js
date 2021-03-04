@@ -21,7 +21,7 @@ export async function initializeApp(callback) {
     });
 }
 
-export const uploadNewEvent = async (newEvent, id) => {
+export const addToFirebase = async (newEvent, id) => {
   const { date } = newEvent;
   const userId = authService.currentUser.uid;
   const { year, month, weekOfMonth } = parseDate(date);
@@ -31,7 +31,7 @@ export const uploadNewEvent = async (newEvent, id) => {
     .update({ [id]: newEvent });
 };
 
-export const uploadEditedEvent = async (editedEvent, id) => {
+export const editToFirebase = async (editedEvent, id) => {
   const { date } = editedEvent;
   const userId = authService.currentUser.uid;
   const { year, month, weekOfMonth } = parseDate(date);
@@ -39,6 +39,15 @@ export const uploadEditedEvent = async (editedEvent, id) => {
   await database
     .ref(`/events/${userId}/${year}/${month}/${weekOfMonth}`)
     .update({ [id]: editedEvent });
+};
+
+export const deleteAtFirebase = async (id, date) => {
+  const userId = authService.currentUser.uid;
+  const { year, month, weekOfMonth } = parseDate(date);
+
+  await database
+    .ref(`/events/${userId}/${year}/${month}/${weekOfMonth}`)
+    .update({ [id]: null });
 };
 
 const getCurrentEventList = async () => {};
@@ -50,5 +59,5 @@ export const updateEventList = async (updatedEvent) => {
 };
 
 export const testFirebase = async () => {
-  mockEvent.forEach((event) => uploadNewEvent(event));
+  mockEvent.forEach((event) => addToFirebase(event));
 };

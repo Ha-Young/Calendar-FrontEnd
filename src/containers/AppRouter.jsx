@@ -9,8 +9,9 @@ import HandleEvent from "containers/HandleEvent";
 import EventDetail from "components/EventDetail/EventDetail";
 import Login from "components/Login/Login";
 import { typeConst } from "constants/constants";
+import { actionCreators } from "actions/actionCreators";
 
-const AppRouter = ({ weeklyEvent, isLoggedIn }) => {
+const AppRouter = ({ weeklyEvent, deleteEvent, isLoggedIn }) => {
   return (
     <>
       {isLoggedIn ? (
@@ -38,7 +39,10 @@ const AppRouter = ({ weeklyEvent, isLoggedIn }) => {
             </Route>
 
             <Route exact path="/events/:eventId">
-              <EventDetail weeklyEvent={weeklyEvent} />
+              <EventDetail
+                weeklyEvent={weeklyEvent}
+                deleteEvent={(id, date) => deleteEvent(id, date)}
+              />
             </Route>
 
             <Route exact path="/profile"></Route>
@@ -62,4 +66,10 @@ const mapStateToProps = (state) => {
   return state;
 };
 
-export default connect(mapStateToProps)(AppRouter);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteEvent: (id, date) => dispatch(actionCreators.deleteEvent(id, date)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

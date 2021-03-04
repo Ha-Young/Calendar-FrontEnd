@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { dateConst, directionConst } from "constants/constants";
-import { getDaysOfWeek, getWeekOfMonth } from "utils/utilFunction";
+import { getDaysOfWeek, getWeekOfMonthByRef } from "utils/utilFunction";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
 import WeeklySchedule from "../components/WeeklySchedule/WeeklySchedule";
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ const Weekly = ({
   showNextWeek,
 }) => {
   const [weekCount, setWeekCount] = useState(0);
-  const [weekOfMonth, setWeekOfMonth] = useState(getWeekOfMonth(0));
+  const [weekOfMonth, setWeekOfMonth] = useState(getWeekOfMonthByRef(0));
   // console.log(daysOfWeek);
 
   const setNewWeek = (direction) => {
@@ -30,7 +30,7 @@ const Weekly = ({
     }
 
     setWeekCount(currentWeekCount);
-    setWeekOfMonth(getWeekOfMonth(currentWeekCount));
+    setWeekOfMonth(getWeekOfMonthByRef(currentWeekCount));
   };
 
   return (

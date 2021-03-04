@@ -1,4 +1,8 @@
-import { uploadNewEvent, uploadEditedEvent } from "api/firebaseAPIs";
+import {
+  addToFirebase,
+  editToFirebase,
+  deleteAtFirebase,
+} from "api/firebaseAPIs";
 import { ACTION } from "constants/actionTypes";
 import {
   generateKey,
@@ -59,14 +63,12 @@ const showNextWeek = (weekCount) => {
   };
 };
 
-const addEvent = (newEvent = {}) => {
+const addEvent = (newEvent = {}, id) => {
   if (!Object.keys(newEvent).length) {
     return;
   }
 
-  const id = generateKey();
-
-  uploadNewEvent(newEvent, id);
+  addToFirebase(newEvent, id);
 
   return {
     type: ACTION.ADD_EVENT,
@@ -75,15 +77,16 @@ const addEvent = (newEvent = {}) => {
   };
 };
 
-const deleteEvent = (id) => {
+const deleteEvent = (id, date) => {
+  deleteAtFirebase(id, date);
   return {
     type: ACTION.DELETE_EVENT,
-    id: parseInt(id),
+    id,
   };
 };
 
 const editEvent = (editedEvent, id) => {
-  uploadEditedEvent(editedEvent, id);
+  editToFirebase(editedEvent, id);
 
   return {
     type: ACTION.EDIT_EVENT,

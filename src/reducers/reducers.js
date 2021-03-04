@@ -60,6 +60,7 @@ export default function reducer(state = initialState, action) {
       };
 
     case ACTION.DELETE_EVENT:
+      delete state.weeklyEvent[action.id];
       return state;
 
     case ACTION.EDIT_EVENT:
