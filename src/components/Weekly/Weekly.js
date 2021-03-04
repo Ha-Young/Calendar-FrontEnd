@@ -31,9 +31,9 @@ export default function Weekly({ events, keys, currentPageDate, handleClickLeft,
     <Fragment>
       <div className="days">
         <div className="header">
-          <AiOutlineArrowLeft className="previous" onClick={handleClickLeft} />
+          <AiOutlineArrowLeft className="previous" onClick={() => {handleClickLeft(-7)}} />
           <span>{getFormat(currentPageDate)}</span>
-          <AiOutlineArrowRight className="next" onClick={handleClickRight} />
+          <AiOutlineArrowRight className="next" onClick={() => {handleClickRight(7)}} />
         </div>
         <div className="grid-container">
         <div className="row week-header">

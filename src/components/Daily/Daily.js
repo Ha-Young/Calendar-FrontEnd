@@ -15,11 +15,11 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
   return (
     <Fragment>
       <div className="header">
-          <AiOutlineArrowLeft className="previous" onClick={handleClickLeft}/>
+          <AiOutlineArrowLeft className="previous" onClick={() => {handleClickLeft(-1)}}/>
           <span>{parsedCurrentDate.year}년</span>
           <span>{parsedCurrentDate.month}월</span>
           <span>{parsedCurrentDate.date}일</span>
-          <AiOutlineArrowRight className="next" onClick={handleClickRight} />
+          <AiOutlineArrowRight className="next" onClick={() => {handleClickRight(1)}} />
       </div>
       <div className="daily">
        

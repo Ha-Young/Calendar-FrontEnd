@@ -24,11 +24,9 @@ function App({ onInitialLoad }) {
      <Header />
       <Switch>
         <Route path="/" exact>
-          <div>Main</div>
           <Calendar />
         </Route>
         <Route path="/event">
-          <div>Event</div>
           <Event />
         </Route>
       </Switch>

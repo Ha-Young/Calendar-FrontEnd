@@ -22,13 +22,16 @@ export const submitData = (key, event) => (
   });
 
 
-export const handleClickLeft = () => (
+export const handleClickLeft = (value) => (
   {
    type: CLICK_LEFT, 
+   value: value
   });
 
 
-export const handleClickRight = () => (
+export const handleClickRight = (value) => (
   {
    type: CLICK_RIGHT, 
+   value: value
   });
+

@@ -9,9 +9,9 @@ export default function Calendar() {
       <Router>
         <div>
           <nav>
-            <ul>
-              <li><Link to="/daily">일간 스케줄</Link></li>
-              <li><Link to="/weekly">주간 스케줄</Link></li>
+            <ul className="menu">
+              <li className="daily-menu"><Link to="/daily">일간 스케줄</Link></li>
+              <li className="weekly-menu"><Link to="/weekly">주간 스케줄</Link></li>
             </ul>
           </nav>
         </div>

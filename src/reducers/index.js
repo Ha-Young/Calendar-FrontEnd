@@ -55,16 +55,10 @@ export default function reducer(state = initialState, action) {
       break;
 
     case "CLICK_LEFT":
-      newState.currentPageDate = addDate(state.currentPageDate, {days: -1});
+      newState.currentPageDate = addDate(state.currentPageDate, {days: action.value});
       break;
     case "CLICK_RIGHT":
-      newState.currentPageDate = addDate(state.currentPageDate, {days: 1});
-      break;
-    case "CLICK_LEFT_WEEK":
-      newState.currentPageDate =addDate(state.currentPageDate, {days: -7});
-      break;
-    case "CLICK_RIGHT_WEEK":
-      newState.currentPageDate =addDate(state.currentPageDate, {days: 7});
+      newState.currentPageDate = addDate(state.currentPageDate, {days: action.value});
       break;
     case "SAVE_DATA_TO_REDUX_STATE":
       newState.eventlist = action.eventlist;
