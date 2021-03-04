@@ -20,10 +20,10 @@ const mapDispatchToProps = (dispatch) => ({
   handleChangeCalendarPage(info) {
     dispatch(changeCalendarPage(info));
   },
-  async loadEventData() {
+  async onLoad(dateShown) {
     try {
       dispatch((getEventData()));
-      const data = await loadEventData();
+      const data = await loadEventData(dateShown);
 
       dispatch(getEventDataSuccess({
         events: data,
@@ -35,10 +35,10 @@ const mapDispatchToProps = (dispatch) => ({
   async saveNewEventData(data) {
     try {
       dispatch((setEventData()));
-      saveEventData(data);
+      const savedResult = await saveEventData(data);
 
       dispatch((setEventDataSuccess({
-        events: data,
+        events: savedResult,
       })));
     } catch(error) {
       dispatch((setEventDataFail(error.message)));

@@ -22,6 +22,10 @@ export const getDay = (today) => {
   return [currentDay(today)];
 };
 
+export const endsOfWeek = (date) => {
+  return [formatISO(startOfWeek(date)), formatISO(endOfWeek(date))];
+};
+
 export const setCalendarDate = (cb, isDailyCalendar, currentDate) => {
   const calendarGap = isDailyCalendar ? viewMode.DAILYMODE.gap : viewMode.WEEKLYMODE.gap;
 

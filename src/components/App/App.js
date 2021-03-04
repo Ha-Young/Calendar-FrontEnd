@@ -14,10 +14,14 @@ const App = ({
   currentDate,
   handleChangeCalendarType,
   handleChangeCalendarPage,
-  loadEventData,
+  onLoad,
   saveNewEventData,
   selectedDate,
 }) => {
+  useEffect(() => {
+    onLoad(selectedDate); // initialLize..
+  }, [selectedDate]);
+
   const location = useLocation();
   const background = location.state?.background;
   
@@ -34,7 +38,7 @@ const App = ({
       <Switch location={background || location}>
         <Route path="/calendar" exact>
           <CalendarPage
-            onLoad={loadEventData}
+            onLoad={onLoad}
             getEventByCurrentDate={getEventByCurrentDate}
             dateList={dateList}
           />

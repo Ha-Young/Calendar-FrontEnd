@@ -10,7 +10,7 @@ const EventDetailPage = ({ getEventById, onSubmit, onRemove }) => {
   const { event } = useParams();
   const history = useHistory();
   const currentEvent = getEventById(event);
-  console.log(event);
+  
   const handleRemoveButton = () => {
     onRemove(currentEvent);
     history.goBack();

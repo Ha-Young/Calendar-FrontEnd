@@ -1,5 +1,6 @@
 // TODO: Go to `./firebase.js` and update your firebase config.
 import firebase from "./firebase";
+import { endsOfWeek } from "../utils/date";
 
 export const saveEventData = async (data) => {
   const database = firebase.database();
@@ -9,6 +10,11 @@ export const saveEventData = async (data) => {
     ...data,
     id,
   });
+
+  return {
+    ...data,
+    id,
+  };
 };
 
 export const changeEventData = async (data) => {
@@ -26,10 +32,18 @@ export const removeEventData = async (data) => {
   await database.ref(`userId/events/${data.id}`).remove();
 };
 
-export const loadEventData = async () => {
-  const database = firebase.database().ref("userId/events/");
-  const data = await database.once("value");
+export const loadEventData = async (date) => {
+  const [startOfWeek, endOfWeek] = endsOfWeek(date);
 
+  const database = firebase
+    .database()
+    .ref("userId/events/")
+    .orderByChild("date")
+    .startAt(startOfWeek)
+    .endAt(endOfWeek);
+
+  const data = await database.once("value");
+  
   return data.val();
 };
 

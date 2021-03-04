@@ -3,15 +3,24 @@ import * as types from "../constants/actionTypes";
 
 export const byId = (state = {}, actions) => {
   switch (actions.type) {
-    case types.GET_EVENT_DATA_SUCCESS: 
-    case types.SET_EVENT_DATA_SUCCESS: 
+    case types.GET_EVENT_DATA_SUCCESS: {
+      const { payLoad: { events } } = actions;
+
+      if (events === null) return { ...state }; // null 처리 해줘도 되는지..?
+
+      return {
+        ...state,
+        ...events,
+      };
+    }
+    case types.SET_EVENT_DATA_SUCCESS:
     case types.UPDATE_EVENT_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
 
       return {
         ...state,
-        ...events,
-      }
+        [events.id]: events,
+      };
     }
     case types.DELETE_EVENT_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
@@ -28,11 +37,22 @@ export const byId = (state = {}, actions) => {
 
 export const allIds = (state = [], actions) => {
   switch (actions.type) {
-    case types.GET_EVENT_DATA_SUCCESS:
+    case types.GET_EVENT_DATA_SUCCESS: {
+      const { payLoad: { events } } = actions;
+
+      if (events === null) return [...state]; // null 처리 해줘도 되는지..?
+
+      const eventIds = {
+        ...state,
+        ...Object.keys(events),
+      };
+      
+      return Object.values(eventIds);
+    }
     case types.SET_EVENT_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
 
-      return Object.keys(events);
+      return [...state, events.id];
     }
     case types.DELETE_EVENT_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
