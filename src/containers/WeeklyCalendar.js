@@ -1,5 +1,6 @@
 import WeeklyCalendar from '../components/Main/WeeklyCalendar';
 import { connect } from 'react-redux';
+import { showscheduleinfo } from '../Redux/action';
 
 const getDateInfo = (state, id) => {
   return state.byDate[id];
@@ -13,4 +14,4 @@ const mapStateToProps = (state) => ({
   schedules: getSchedules(state)
 });
 
-export default connect(mapStateToProps, null)(WeeklyCalendar);
+export default connect(mapStateToProps, { showscheduleinfo })(WeeklyCalendar);

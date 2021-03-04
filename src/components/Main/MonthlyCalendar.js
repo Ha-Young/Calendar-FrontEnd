@@ -1,6 +1,7 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import styles from './MonthlyCalendar.module.css';
 
+const MonthlyCalendar = () => {
 const date = new Date();
 const thisYear = date.getFullYear();
 const thisMonth = date.getMonth();
@@ -15,7 +16,6 @@ const prevDates = [];
 const thisDates = [...Array(TLDate + 1).keys()].slice(1);
 const nextDates = [];
 
-const MonthlyCalendar = () => {
   if (PLDay !== 6) {
     for (let i = 0; i < PLDay + 1; i++) {
       prevDates.unshift(PLDate - i);
@@ -43,7 +43,7 @@ const MonthlyCalendar = () => {
   return (
     <div className={styles.calendar}>
       <div className={styles.header}>
-        <div>{thisYear}년 {thisMonth}월</div>
+        <div>{thisYear}년 {thisMonth + 1}월</div>
           <div>
             <button>&lt;</button>
             <button>Today</button>

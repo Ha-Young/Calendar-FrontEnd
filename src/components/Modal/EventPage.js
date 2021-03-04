@@ -1,9 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import styles from './EventPage.module.css';
 import Modal from './Modal';
 
 const Event = ({ datesInfo }) => {
+  const history = useHistory();
   const { date } = useParams();
   const infoObj = datesInfo[date];
   const title = infoObj.title;
@@ -20,7 +21,10 @@ const Event = ({ datesInfo }) => {
     >
       <div className={styles.buttonsWrapper}>
         <button className={styles.editButton}>EDIT</button>
-        <button className={styles.exitButton}>EXIT</button>
+        <button
+          className={styles.exitButton}
+          onClick={() => history.goBack()}
+        >EXIT</button>
       </div>
     </Modal>
   )
