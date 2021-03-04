@@ -73,9 +73,6 @@ const createCalendar = (localDates, events) => {
   return days;
 }
 
-
-
-
 export default function CalendarContents({ selectedDate, calculatedDates, events, selectedEventId, isDailyView, loadEvents, toggleCalendarView }) {
   debugger;
   // TODO 이러지 말고 옛날 selectedWeek처럼 localdate같은걸(이름바꿔서) store에 만들고 reducer에서 계산하는것도 방법인듯.

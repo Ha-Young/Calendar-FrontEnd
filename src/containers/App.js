@@ -9,6 +9,7 @@ import { selectDay, nextButtonClicked, prevButtonClicked, loadEvents, toggleCale
 //     saveSampleData();
 //   },
 // });
+// TODO 앱에서 쓰는 prop이랑 action만 내려보내야함
 const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
   calculatedDates: state.calculatedDates,

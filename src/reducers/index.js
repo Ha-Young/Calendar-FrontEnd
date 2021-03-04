@@ -14,6 +14,7 @@ import { DateTime } from 'luxon';
 
 const initialDay = DateTime.now();
 // REVIEW calendar contents 안에 data attribute 로 id랑 요일 index 갖고있으면 event에서 찾아서 detail로 넘겨주면 되니까 selectedEventId 굳이 필요 없을수도??
+// TODO selectedDate랑 isDailyView 같이 넘겨주면 calculatedDates를 안에서 계산할 수 있음. satate안늘리고 차라리 그게 나을수도?
 const initialState = {
   selectedDate: initialDay,
   calculatedDates: [],
@@ -22,12 +23,13 @@ const initialState = {
   isDailyView: true,
 };
 
+// TODO newDate는 이제 필요없을듯? 바로 대입해도 될듯
 export default function reducer(state = initialState, action) {
   console.log('reducer')
-  console.log(action)
   switch (action.type) {
     case types.SELECT_DAY: {
       const newDate = formatDate(action.payload.selectedDate);
+
       return {
         ...state,
         selectedDate: newDate,
@@ -37,6 +39,7 @@ export default function reducer(state = initialState, action) {
     case types.NEXT_BUTTON_CLICKED: {
       // TODO daily, weekly에 따라 로직 분기처리 필요함!
       const newDate = state.selectedDate.plus({ days: 1 });
+
       return {
         ...state,
         selectedDate: newDate,
@@ -45,6 +48,7 @@ export default function reducer(state = initialState, action) {
 
     case types.PREV_BUTTON_CLICKED: {
       const newDate = state.selectedDate.minus({ days: 1 });
+
       return {
         ...state,
         selectedDate: newDate,
@@ -56,6 +60,13 @@ export default function reducer(state = initialState, action) {
         ...state,
         events: action.payload.events,
       };
+    }
+
+    case types.TOGGLE_CALENDAR_VIEW: {
+      return {
+        ...state,
+        isDailyView: !state.isDailyView,
+      }
     }
 
     default:
