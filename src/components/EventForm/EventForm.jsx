@@ -9,23 +9,15 @@ import { START, END } from "../../constants/constants";
 function EventForm({ date, onSubmit }) {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
-  const [start, setStart] = useState(date.clone());
-  const [end, setEnd] = useState(date.clone().add(1, "hours"));
+  const [start, setStart] = useState(Number(date.format("H")));
+  const [end, setEnd] = useState(Number(date.format("H")) + 1);
 
   function handleTimeChange({ id, time }) {
     switch (id) {
       case START:
-        if (time.format("H") === end.format("H")) {
-          break;
-        }
-
         setStart(time);
         break;
       case END:
-        if (time.format("H") === start.format("H")) {
-          break;
-        }
-
         setEnd(time);
         break;
       default:
