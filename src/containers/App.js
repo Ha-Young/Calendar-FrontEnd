@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 
 import { changeCurrentDate, changeViewOption } from "../actions";
 import { createEvent } from "../actions/events";
+import { writeEvent } from "../api";
 import App from "../components/App";
 
 const mapStateToProps = state => ({
@@ -18,9 +19,12 @@ const mapDispatchToProps = dispatch => ({
   changeCurrentDate: ({ viewOption, currentDate }) => {
     dispatch(changeCurrentDate({ viewOption, currentDate }));
   },
-  createEvent: newEvent => {
-    dispatch(createEvent(newEvent));
+  // 질문. userId도 같이?
+  createEvent: ({ userId, event }) => {
+    dispatch(createEvent(event));
+    writeEvent(userId, event);
   },
 });
 
+//Todo. HOC으로 routerhistory props에 담아 내려줄 수 있게 하기.
 export default connect(mapStateToProps, mapDispatchToProps)(App);

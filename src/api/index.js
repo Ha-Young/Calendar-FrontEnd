@@ -11,10 +11,26 @@ export async function saveSampleData() {
   });
 }
 
-
-export async function createEvent(userId, date, event) {
+export async function writeEvent(userId, event) {
   const database = firebase.database();
-  await database.ref(`${userId}/${date}`).set({
-    
+
+  const {
+    id,
+    title,
+    description,
+    date,
+    startDate,
+    endDate,
+    timeLength,
+  } = event;
+
+  return await database.ref(`${userId}/${date}/${id}`).set({
+    id,
+    title,
+    description,
+    date,
+    startDate,
+    endDate,
+    timeLength,
   });
 }
