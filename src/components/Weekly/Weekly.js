@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Calendar from "../../shared/Calendar";
 import DayLine from "./DayLine";
 import TimeLine from "./TimeLine";
 import WeekHeader from "./Header/WeekHeader";
 
 const Weekly = ({ count, onPage }) => {
-  onPage();
+  useEffect(() => {
+    onPage();
+  }, []);
 
   return (
     <Calendar>

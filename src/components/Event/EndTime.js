@@ -27,8 +27,8 @@ const EndTime = ({ saveData, dataType }) => {
       <label htmlFor="end-day">
         End Time:
       </label>
-      <input type="date" id="end-day" />
-      <input type="time" id="end-time"/>
+      <input type="date" id="end-day" onChange={e => saveData(e.target.value, dataType.END_DATE)} />
+      <input type="time" id="end-time" onChange={e => saveData(e.target.value, dataType.END_HOUR)} />
     </Wrapper>
   );
 };

@@ -22,18 +22,22 @@ const Form = styled.form`
 `;
 
 const DATA_TYPE = {
-  TITLE: "title",
-  DESC: "desc",
-  START_TIME: "startTime",
-  END_TIME: "endTime",
+  TITLE: "TITLE",
+  DESC: "DESC",
+  START_DATE: "START_DATE",
+  START_HOUR: "START_HOUR",
+  END_DATE: "END_DATE",
+  END_HOUR: "END_HOUR",
 };
 
 const Main = () => {
   const [addingData, setAddingData] = useState({
     title: "",
     desc: "",
-    startTime: "",
-    endTime: "",
+    startDate: "",
+    startHour: "",
+    endDate: "",
+    endHour: "",
   });
 
   const handleSubmit = ev => {
@@ -44,7 +48,7 @@ const Main = () => {
   const saveData = (data, type) => {
     switch (type) {
       case DATA_TYPE.TITLE:
-        return setAddingData({  
+        return setAddingData({
           ...addingData,
           title: data
         });
@@ -53,20 +57,30 @@ const Main = () => {
           ...addingData,
           desc: data
         });
-      case DATA_TYPE.START_TIME:
+      case DATA_TYPE.START_DATE:
         return setAddingData({
           ...addingData,
-          startTime: data
+          startDate: data
         });
-      case DATA_TYPE.END_TIME:
+      case DATA_TYPE.START_HOUR:
         return setAddingData({
           ...addingData,
-          endTime: data
+          startHour: data
+        })
+      case DATA_TYPE.END_DATE:
+        return setAddingData({
+          ...addingData,
+          endDate: data
+        });
+      case DATA_TYPE.END_HOUR:
+        return setAddingData({
+          ...addingData,
+          endHour: data
         });
       default:
         return;
     }
-  };
+  }
 
   return (
     <Form onSubmit={handleSubmit}>

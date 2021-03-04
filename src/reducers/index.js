@@ -9,7 +9,15 @@
 
  */
 
-import { MOVE_NEXT_DAY, MOVE_PREV_DAY, MOVE_PREV_WEEK, MOVE_NEXT_WEEK, RESET_DAY, SET_DAILY, SET_WEEKLY } from "../constants/actionTypes";
+import {
+  MOVE_NEXT_DAY,
+  MOVE_PREV_DAY,
+  MOVE_PREV_WEEK,
+  MOVE_NEXT_WEEK,
+  RESET_DAY,
+  SET_DAILY,
+  SET_WEEKLY
+} from "../constants/actionTypes";
 
 const MOVE = {
   DAY: 1,
@@ -27,7 +35,6 @@ const initialState = {
   countOfWeek: 0,
   activedDay: "",
   events: {
-
   },
 };
 

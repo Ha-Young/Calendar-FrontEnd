@@ -27,8 +27,8 @@ const StartTime = ({ saveData, dataType }) => {
       <label htmlFor="start-day">
         Start Time:
       </label>
-      <input type="date" id="start-day" />
-      <input type="time" id="start-time" />
+      <input type="date" id="start-day" onChange={e => saveData(e.target.value, dataType.START_DATE)} />
+      <input type="time" id="start-time" onChange={e => saveData(e.target.value, dataType.START_HOUR)} />
     </Wrapper>
   );
 };
