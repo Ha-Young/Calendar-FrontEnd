@@ -1,6 +1,8 @@
 // TODO: Go to `./firebase.js` and update your firebase config.
 import firebase from "./firebase";
 
+const ROOT_DIR = 'schedule';
+
 export async function saveSampleData() {
   const database = firebase.database();
 
@@ -24,7 +26,7 @@ export async function writeEvent(userId, event) {
     timeLength,
   } = event;
 
-  return await database.ref(`${userId}/${date}/${id}`).set({
+  return await database.ref(`${ROOT_DIR}/${userId}/${date}/${id}`).set({
     id,
     title,
     description,
@@ -33,4 +35,22 @@ export async function writeEvent(userId, event) {
     endDate,
     timeLength,
   });
+}
+
+export async function readDate(userId, currentDate) {
+  const database = firebase.database();
+  const snapshot = await database.ref(`/${ROOT_DIR}/${userId}/${currentDate}`).once('value');
+
+  const data = snapshot.val() || [];
+
+  return {
+    [currentDate]: data,
+  };
+}
+
+export async function readDateListRange(userId, startDate, endDate) {
+  const database = firebase.database();
+  console.log(`/${ROOT_DIR}/${userId}`);
+  const snapshot = await database.ref(`/${ROOT_DIR}/${userId}`).orderByKey().startAt(startDate).endAt(endDate).once('value');
+  console.log(snapshot.val());
 }
