@@ -9,6 +9,7 @@ import Weekly from "../Schedule/Weekly";
 import Daily from "../Schedule/Daily";
 import EventEdit from "../Event/EventEdit";
 import EventView from "../Event/EventView";
+import PageNotFound from "../Error/PageNotFound";
 
 function App({ selectedDate, setSelectedDateWithToday, eventMode, setCreateEventMode, setUpdateEventMode }) {
   return (
@@ -36,7 +37,7 @@ function App({ selectedDate, setSelectedDateWithToday, eventMode, setCreateEvent
           <EventView setUpdateEventMode={setUpdateEventMode}/>
         </Route>
         <Route>
-          <Daily/>
+          <PageNotFound/>
         </Route>
       </Switch>
     </div>

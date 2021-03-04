@@ -19,7 +19,7 @@ export default function Header ({ selectedDate, setSelectedDateWithToday, setCre
           <NavLink to="/" exact activeClassName={styles.active}>DAILY</NavLink>
         </li>
         <li>
-          <NavLink to="/events" onClick={setCreateEventMode} activeClassName={styles.active}>New Event</NavLink>
+          <NavLink to="/events" onClick={setCreateEventMode} activeClassName={styles.active} exact>New Event</NavLink>
         </li>
       </ul>
     </header>
