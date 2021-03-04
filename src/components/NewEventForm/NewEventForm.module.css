@@ -6,20 +6,6 @@
   align-items: center;
 }
 
-.newEventForm .dateContainer {
-  display: flex;
-  padding: 10px;
-  justify-content: center;
-  align-content: center;
-}
-
-.newEventForm .timeSelectorContainer {
-  display: flex;
-  margin-left: 10px;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .newEventForm .formContainer {
   display: flex;
   width: 60%;

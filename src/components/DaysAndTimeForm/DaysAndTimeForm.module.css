@@ -1,0 +1,13 @@
+.daysAndTimeForm {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-content: center;
+}
+
+.daysAndTimeForm .timeSelectorContainer {
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
 
-import TheDate from "../DaysBoard/DaysBoard";
 import styles from "./NewEventForm.module.css";
-import TimeSelector from "../TimeSelector/TimeSelector";
 import WithLabel from "../WithLabel/WithLabel";
+import DaysAndTimeForm from "../DaysAndTimeForm/DaysAndTimeForm";
 
 function NewEventForm({ date, onSubmit }) {
   const titleRef = useRef(null);
@@ -43,19 +42,14 @@ function NewEventForm({ date, onSubmit }) {
 
   return (
     <div className={styles.newEventForm}>
-      <div className={styles.dateContainer}>
-        <TheDate date={date} isTheDay={true} />
-        <span className={styles.timeSelectorContainer}>
-          <TimeSelector
-            time={start}
-            onChange={handleStartTimeChange}
-          />
-          <TimeSelector
-            time={end}
-            onChange={handleEndTimeChange}
-          />
-        </span>
-      </div>
+      <DaysAndTimeForm
+        date={date}
+        isTheDay={true}
+        start={start}
+        end={end}
+        handleStartTimeChange={handleStartTimeChange}
+        handleEndTimeChange={handleEndTimeChange}
+      />
       <form
         className={styles.formContainer}
         onSubmit={handleSubmit}
