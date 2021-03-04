@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./CalendarHeader.module.css";
 import { calculateWeek } from "../../reducers";
 
+// TODO rename function
 const CalendarDate = (localDate) => {
   const head = localDate.map(item => {
     return (

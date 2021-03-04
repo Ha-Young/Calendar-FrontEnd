@@ -7,13 +7,13 @@ export default function Header({ prevButtonClicked, nextButtonClicked }) {
   return (
     <header className={styles.wrapper}>
       <div className={styles.navItemWrapper}>
+        <Link to='/calendar'>Calendar</Link>
+      </div>
+      <div className={styles.navItemWrapper}>
         <Link to='/events/new'>Create Event</Link>
       </div>
       <div className={styles.navItemWrapper}>
         <Link to='/events/eventId'>Event Datail / Edit</Link>
-      </div>
-      <div className={styles.navItemWrapper}>
-        <Link to='/calendar'>new calendar.</Link>
       </div>
       day only
       <div className={styles.navButtonWrapper}>

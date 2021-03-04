@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import CreateEvent from "../CreateEvent/CreateEvent";
 import Calendar from "../Calendar/Calendar";
-
+// TODO remove useless props
 function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, calculatedDates, selectedEventId, isDailyView }) {
   console.log('app render');
 

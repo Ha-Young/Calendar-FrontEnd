@@ -13,3 +13,7 @@
 .navButtonWrapper {
   width: 30px;
 }
+
+button {
+  padding: 0;
+}

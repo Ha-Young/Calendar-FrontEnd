@@ -37,7 +37,7 @@ export default function reducer(state = initialState, action) {
     }
 
     case types.NEXT_BUTTON_CLICKED: {
-      // TODO daily, weekly에 따라 로직 분기처리 필요함!
+      // TODO daily, weekly에 따라 로직 분기처리 필요
       const newDate = state.selectedDate.plus({ days: 1 });
 
       return {

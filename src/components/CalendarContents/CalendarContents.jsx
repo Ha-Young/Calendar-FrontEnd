@@ -20,30 +20,15 @@ const createTimeLineItem = () => {
   return items;
 }
 
-// TODO component로 빼기
-const createCalendarItem = (dayIndex) => {
-  const items = [];
-
-  for (let i = 0; i < 24; i++) {
-    items.push(
-      <div
-        key={i * 2}
-        className={styles.calendarItem}
-      />
-    );
-  }
-
-  return items;
-}
-
+// TODO map안쪽 for loop 따로 뺄 수 있을듯? 
 const createCalendar = (localDates, events) => {
-  debugger;
+  // debugger;
   const days = localDates.map((date, index) => {
     const event = events[index];
     const items = [];
 
     for (let hour = 0; hour < 24; hour++) {
-      // TODO 그냥 for문으로 바꿔서 break 가능하게 바꾸는것도 좋을듯. 지금은 24 * event 개수가 시간복잡도라 너무 느림.
+      // TODO 그냥 for문으로 바꿔서 break 가능하게 바꾸는것도 좋을듯. 지금은 24 * event 개수가 시간복잡도라 너무 느림. 멸망...
       let isEvent = false;
       for (let eventKey in event) {
         const min = DateTime.fromISO(event[eventKey].startDateTime).hour;
@@ -53,7 +38,7 @@ const createCalendar = (localDates, events) => {
           if (DateTime.fromISO(event[eventKey].startDateTime).hour === hour) {
             items.push(<div key={hour}className={styles.fillItem}>{event[eventKey].title}</div>);
           } else {
-            items.push(<div key={hour} className={styles.fillItem}></div>);
+            items.push(<div key={hour} className={styles.fillItem} />);
           }
         }
       }
@@ -67,25 +52,29 @@ const createCalendar = (localDates, events) => {
       }
     }
 
-    return items;
+    return (
+      <div key={index} className={styles.dayWrapper}>
+        {items}
+      </div>
+    );
   });
 
   return days;
 }
 
 export default function CalendarContents({ selectedDate, calculatedDates, events, selectedEventId, isDailyView, loadEvents, toggleCalendarView }) {
-  debugger;
+  // debugger;
   // TODO 이러지 말고 옛날 selectedWeek처럼 localdate같은걸(이름바꿔서) store에 만들고 reducer에서 계산하는것도 방법인듯.
   // isDailyView까지 store에 넣으면 reducer안에서 데일리/위클리에 따라서 계산 가능하니까
   let localDates = calculateWeek(selectedDate, isDailyView);
-  console.log(isDailyView)
+  console.log(`isDailyView: ${isDailyView}`)
   // console.log('calendar content render')
-  console.log(localDates)
+  console.log(`localDates: ${localDates}`)
   // console.log(localDate.map(date => date.toFormat("yyyy-LL-dd")))
-  console.log(events)
+  console.log(`events: ${events}`)
 
   useEffect(() => {
-    debugger;
+    // debugger;
     const readData = async () => {
       // console.log('get firebase data')
       // console.log(localDate);
@@ -97,7 +86,7 @@ export default function CalendarContents({ selectedDate, calculatedDates, events
 
     readData();
   }, [selectedDate, isDailyView]);
-
+  console.log(createCalendar(localDates, events))
   return (
     <div className={styles.wrapper}>
       <div className={styles.timeLineWrapper}>
@@ -105,7 +94,6 @@ export default function CalendarContents({ selectedDate, calculatedDates, events
       </div>
       <div className={styles.calendarItemWrapper}>
         {createCalendar(localDates, events)}
-        
       </div>
     </div>
   );
