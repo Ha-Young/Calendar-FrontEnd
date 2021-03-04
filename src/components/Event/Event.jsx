@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./Event.module.css";
 
 function Event({ onSubmitAddEvent }) {
@@ -7,6 +8,8 @@ function Event({ onSubmitAddEvent }) {
   const [endTime, setEndTime] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const history = useHistory();
 
   function onClickInputButton(e) {
     e.preventDefault();
@@ -23,6 +26,7 @@ function Event({ onSubmitAddEvent }) {
       eventDate
     };
 
+    history.push("/weekly");
     onSubmitAddEvent(eventInformation);
   }
 

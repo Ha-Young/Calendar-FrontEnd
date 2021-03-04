@@ -4,7 +4,7 @@ import styles from "./WeeklyCalendar.module.css";
 import buildWeekly from "./buildWeekly";
 import CalendarHeader from "../CalendarHeader";
 import TimeSidebar from "../SidebarTime";
-import CalendarColumn from "../CalendarColumn";
+import CalendarColumn from "../../../containers/CalendarColumnContainer";
 
 import moment from "moment";
 

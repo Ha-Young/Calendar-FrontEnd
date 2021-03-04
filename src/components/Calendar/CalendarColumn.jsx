@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import styles from "./Calendar.module.css";
 import Schedule from "./Schedule/Schedule";
 
@@ -37,10 +36,4 @@ function CalendarColumn({ events, colummDay, dayID }) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    events: state
-  };
-}
-
-export default connect(mapStateToProps, null)(CalendarColumn);
+export default CalendarColumn;

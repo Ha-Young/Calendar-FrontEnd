@@ -2,8 +2,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import DetailEvent from "../../Event/DetailEvent";
-
 const Wrapper = styled.div`
   position: absolute;
   top: ${props => props.startTime * 3.5}em;

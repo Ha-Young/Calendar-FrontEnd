@@ -14,8 +14,8 @@ function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }
   const [title, setTitle] = useState(targetEvent.title);
   const [description, setDescription] = useState(targetEvent.description);
 
-  function handleClickInputButton(e) {
-    e.preventDefault();
+  function handleClickInputButton(event) {
+    event.preventDefault();
 
     const editStartTime = `${startTime.slice(0, 2)}:00`;
     const editEndClock = `${endTime.slice(0, 2)}:00`;
@@ -32,8 +32,8 @@ function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }
     onSubmitAddEvent(eventInformation);
   }
 
-  function handleClickRemoveButton(e) {
-    e.preventDefault();
+  function handleClickRemoveButton(event) {
+    event.preventDefault();
 
     const defaultStartDate = targetEvent.eventDate; // 여기에 시작 날짜가 젹혀있음
     const removeEvent = {
@@ -45,10 +45,15 @@ function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }
     onSubmitRemoveEvent(removeEvent);
   };
 
-  function handleChangeInput(e) {
-    e.preventDefault();
+  function handlereviseButton(event) {
+    handleClickInputButton(event);
+    handleClickRemoveButton(event);
+  }
 
-    const { target } = e;
+  function handleChangeInput(event) {
+    event.preventDefault();
+
+    const { target } = event;
 
     switch (target.name) {
       case "date":
@@ -97,7 +102,7 @@ function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }
           onChange={handleChangeInput}
         />
         <button
-          onClick={handleClickInputButton}
+          onClick={handlereviseButton}
           className={styles.button}
           type="submit"
         >
