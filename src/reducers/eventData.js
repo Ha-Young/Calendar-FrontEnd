@@ -8,15 +8,16 @@ export const byId = (state = {}, actions) => {
 
       return {
         ...state,
-        ...Object.values(events).reduce((acc, val) => {
-          if (!acc.hasOwnProperty(val.id)) {
-            acc[val.id] = [];
-          }
+        ...events,
+        // ...Object.values(events).reduce((acc, val) => {
+        //   if (!acc.hasOwnProperty(val.id)) {
+        //     acc[val.id] = [];
+        //   }
 
-          acc[val.id].push(val);
+        //   acc[val.id].push(val);
 
-          return acc;
-        }, {}),
+        //   return acc;
+        // }, {}),
       }
     }
     default:
@@ -29,13 +30,7 @@ export const allIds = (state = [], actions) => {
     case types.GET_CALENDAR_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
 
-      return Object.values(events).reduce((acc, event) => {
-        if (!acc.includes(event.id)) {
-          acc.push(event.id);
-        }
-
-        return acc;
-      }, []);
+      return Object.keys(events);
     }
     default:
       return state;
@@ -64,16 +59,22 @@ export const errorMessage = (state = "", actions) => {
 
 export const getEventById = (state, id) => state.byId[id];
 
-export const getEventByPath = (state, id, path) =>
-  getEventById(state, id).filter((event) => event.path === path);
+// export const getEventByPath = (state, id, path) =>
+//   getEventById(state, id).filter((event) => event.path === path);
 
-export const getEventsByCurrentDates = (state, currentDates) => {
+export const getEventByCurrentDate = (state, date) => {
   // return currentDates.reduce((acc, val) => {
   //   acc[val] = getEventById(state, val);
 
   //   return acc;
   // }, {});
-  return currentDates.map(id => getEventById(state, id));
+  return state.allIds.reduce((acc, val) => {
+    if (getEventById(state, val).date === date) {
+      acc.push(getEventById(state, val));
+    }
+
+    return acc;
+  }, []);
 };
 
 export default combineReducers({

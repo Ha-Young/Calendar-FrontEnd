@@ -5,9 +5,10 @@ import { currentDay, today } from "../../utils/date";
 
 const NewEventPage = ({ onSubmit }) => {
   const initialFormState = {
+    id: "",
     title: "",
     description: "",
-    id: currentDay(today),
+    date: currentDay(today),
     startTime: "",
     endTime: "",
     color: null,

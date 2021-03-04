@@ -5,14 +5,14 @@ import Bar from "../Bar/Bar";
 import styles from "./Board.module.css";
 import { hours } from "../../utils/date";
 
-const Board = ({ headerData, content }) => {
+const Board = ({ headerData, getEventByCurrentDate }) => {
   return (
     <div className={styles.wrapper}>
       <BoardHeader nav={headerData} />
       <div className={styles.content}>
         <BoardSideBar />
-        {content?.map((data, index) => (
-          <Bar key={index} content={data} length={hours} />
+        {headerData?.map((date, index) => (
+          <Bar key={index} content={getEventByCurrentDate(date)} length={hours} />
         ))}
       </div>
     </div>

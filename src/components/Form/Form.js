@@ -76,10 +76,10 @@ const Form = ({ onSubmit, initialState, children }) => {
         <div className={styles[`same-type`]}>
           <input
             className={styles.input}
-            name="id"
+            name="date"
             type="date"
             onChange={handleInputChange}
-            value={newEventData.id}
+            value={newEventData.date}
           />
           <input
             className={styles.input}

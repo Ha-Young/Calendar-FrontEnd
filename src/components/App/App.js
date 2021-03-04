@@ -8,7 +8,7 @@ import EventDetailPageContainer from "../../containers/EventDetailPageContainer"
 import { Route, Switch, Redirect } from "react-router-dom";
 
 const App = ({
-  eventList,
+  getEventByCurrentDate,
   dateList,
   isDailyCalendar,
   currentDate,
@@ -30,7 +30,7 @@ const App = ({
         <Route path="/" exact>
           <CalendarPage
             onLoad={loadEventData}
-            eventList={eventList}
+            getEventByCurrentDate={getEventByCurrentDate}
             dateList={dateList}
           />
         </Route>

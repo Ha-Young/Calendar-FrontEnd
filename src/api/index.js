@@ -3,28 +3,27 @@ import firebase from "./firebase";
 
 export const saveEventData = async (data) => {
   const database = firebase.database();
-  const path = database.ref("userId/events/").push().key;
+  const id = database.ref("userId/events/").push().key;
 
-  await database.ref(`userId/events/${path}`).set({
+  await database.ref(`userId/events/${id}`).set({
     ...data,
-    path,
+    id,
   });
 };
 
 export const updateEventData = async (data) => {
   const database = firebase.database();
-  const path = data.path;
+  const id = data.id;
 
-  await database.ref(`userId/events/${path}`).update({
+  await database.ref(`userId/events/${id}`).update({
     ...data,
   });
 };
 
 export const removeEventData = async (data) => {
   const database = firebase.database();
-  const path = data.path;
 
-  await database.ref(`userId/events/${path}`).remove();
+  await database.ref(`userId/events/${data.id}`).remove();
 };
 
 export const getEventsData = async () => {
