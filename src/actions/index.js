@@ -1,7 +1,5 @@
 import * as types from "../constants/actionTypes";
 
-let nextTodoId = 0
-
 export const selectDay = date => ({
   type: types.SELECT_DAY,
   payload: {
@@ -28,9 +26,10 @@ export const toggleCalendarView = () => ({
   type: types.TOGGLE_CALENDAR_VIEW,
 });
 
-export const selectEvent = (selectedEventId) => ({
+export const selectEvent = (selectedEventId, selectedEventDayIndex) => ({
   type: types.SELECT_EVENT,
   payload: {
     selectedEventId: selectedEventId,
+    selectedEventDayIndex: selectedEventDayIndex,
   }
 });

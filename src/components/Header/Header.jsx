@@ -12,9 +12,6 @@ export default function Header({ prevButtonClicked, nextButtonClicked }) {
       <div className={styles.navItemWrapper}>
         <Link to='/events/new'>Create Event</Link>
       </div>
-      <div className={styles.navItemWrapper}>
-        <Link to='/events/eventId'>Event Datail / Edit</Link>
-      </div>
       day only
       <div className={styles.navButtonWrapper}>
         <button><MdNavigateBefore onClick={() => prevButtonClicked()} /></button>

@@ -26,9 +26,10 @@ export default function CreateEvent() {
 
     // TODO err 핸들링 추가
     saveData(newEvent, date).then(() => {
-      // history.push("/calendar/daily");
+      history.push("/calendar");
     });
   }
+
   return (
     <div className={styles.wrapper}>
       <form onSubmit={(e) => handleSubmit(e)}>

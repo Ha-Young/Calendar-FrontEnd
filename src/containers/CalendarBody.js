@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
-import CalendarContents from "../components/CalendarContents/CalendarContents.jsx";
+import CalendarBody from "../components/CalendarBody/CalendarBody.jsx";
 import { selectDay, nextButtonClicked, prevButtonClicked, loadEvents, toggleCalendarView, selectEvent } from "../actions/index";
 
 const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
   calculatedDates: state.calculatedDates,
   events: state.events,
-  selectedEventId: state.selectedEventId,
+  selectedEventInfo: state.selectedEventInfo,
   isDailyView: state.isDailyView,
 });
 
@@ -19,4 +19,4 @@ const mapDispatchToProps = {
   selectEvent,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarContents);
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarBody);

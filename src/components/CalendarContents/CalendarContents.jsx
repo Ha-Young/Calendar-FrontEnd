@@ -1,27 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import { DateTime } from "luxon";
 import styles from "./CalendarContents.module.css";
-import { readWeeklyData } from "../../api";
-import { calculateWeek } from "../../reducers";
 
-// TODO component로 빼기
-const createTimeLineItem = () => {
-  const items = [];
+export default function CalendarContents({ localDates, events, selectEvent }) {
+  const history = useHistory();
 
-  for (let i = 0; i < 24; i++) {
-    let prefix;
-
-    if (i < 12) prefix = "오전";
-    else prefix = "오후";
-
-    items.push(<div key={i * 2} className={styles.timeLineItem}>{`${prefix} ${i}시`}</div>);
+  // TODO remove e if you don't use
+  const handleEventClick = (e, id, dayIndex) => {
+    selectEvent(id, dayIndex);
+    history.push(`/events/${id}`);
   }
 
-  return items;
-}
 
 // TODO map안쪽 for loop 따로 뺄 수 있을듯? 
-const createCalendar = (localDates, events, selectEvent) => {
   const days = localDates.map((date, index) => {
     const event = events[index];
     const items = [];
@@ -32,10 +24,11 @@ const createCalendar = (localDates, events, selectEvent) => {
       for (let eventKey in event) {
         if (event.hasOwnProperty(eventKey) && (hour >= DateTime.fromISO(event[eventKey].startDateTime).hour && hour <= DateTime.fromISO(event[eventKey].endDateTime).hour)) {
           isEvent = true;
+          // REVIEW id가 어떻게 제대로 들어가지?? 이거 느낌이 전부 클로저 박아둔 삘인디,, 그냥 data-attribute 에 넣어두고 e.target으로 잡는것도 괜찮을듯??
           if (DateTime.fromISO(event[eventKey].startDateTime).hour === hour) {
-            items.push(<div key={hour}className={styles.fillItem} onClick={() => selectEvent(event[eventKey].uid)}>{event[eventKey].title}</div>);
+            items.push(<div key={hour}className={styles.fillItem} onClick={(e) => handleEventClick(e, event[eventKey].uid, index)}>{event[eventKey].title}</div>);
           } else {
-            items.push(<div key={hour} className={styles.fillItem} onClick={() => selectEvent(event[eventKey].uid)} />);
+            items.push(<div key={hour} className={styles.fillItem} onClick={(e) => handleEventClick(e, event[eventKey].uid, index)} />);
           }
         }
       }
@@ -58,39 +51,4 @@ const createCalendar = (localDates, events, selectEvent) => {
   });
 
   return days;
-}
-
-export default function CalendarContents({ selectedDate, calculatedDates, events, selectedEventId, isDailyView, loadEvents, toggleCalendarView, selectEvent }) {
-  // TODO 이러지 말고 옛날 selectedWeek처럼 localdate같은걸(이름바꿔서) store에 만들고 reducer에서 계산하는것도 방법인듯.
-  // isDailyView까지 store에 넣으면 reducer안에서 데일리/위클리에 따라서 계산 가능하니까
-  let localDates = calculateWeek(selectedDate, isDailyView);
-  // console.log(`isDailyView: ${isDailyView}`)
-  // console.log('calendar content render')
-  // console.log(`localDates: ${localDates}`)
-  // console.log(localDate.map(date => date.toFormat("yyyy-LL-dd")))
-  // console.log(`events: ${events}`)
-
-  useEffect(() => {
-    const readData = async () => {
-      // console.log('get firebase data')
-      // console.log(localDate);
-      const events = await readWeeklyData(localDates.map(date => date.toFormat("yyyy-LL-dd")));
-      // console.log('after get events')
-      loadEvents(events);
-      // console.log('after dispatch action')
-    }
-
-    readData();
-  }, [selectedDate, isDailyView]);
-
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.timeLineWrapper}>
-        {createTimeLineItem()}
-      </div>
-      <div className={styles.calendarItemWrapper}>
-        {createCalendar(localDates, events, selectEvent)}
-      </div>
-    </div>
-  );
 }

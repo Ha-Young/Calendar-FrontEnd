@@ -1,20 +1,13 @@
 import { connect } from "react-redux";
 import App from "../components/App/App.jsx";
-import { saveSampleData } from "../api";
 import { selectDay, nextButtonClicked, prevButtonClicked, loadEvents, toggleCalendarView } from "../actions/index";
 
-// const mapDispatchToProps = () => ({
-//   // This function is passed to App component.
-//   onInitialLoad: () => {
-//     saveSampleData();
-//   },
-// });
 // TODO 앱에서 쓰는 prop이랑 action만 내려보내야함
 const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
   calculatedDates: state.calculatedDates,
   events: state.events,
-  selectedEventId: state.selectedEventId,
+  selectedEventInfo: state.selectedEventInfo,
   isDailyView: state.isDailyView,
 });
 

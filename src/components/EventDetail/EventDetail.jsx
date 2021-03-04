@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./EventDetail.module.css";
-import { saveData } from "../../api";
+import { updateEvent } from "../../api";
 
 // TODO onchange에 setState걸어놔서 사용자가 뭐 입력할때마다 리랜더링됨. 디바운스 적용하면 좋을듯?? 아닌가?
 // 디바운스 짧게 안하면 submit하기전에 업데이트 안돼서 누락될수도 잇겟다.
 
-export default function EventDetail() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [startDateTime, setStartDateTime] = useState("");
-  const [endDateTime, setEndDateTime] = useState("");
+export default function EventDetail({ events, selectedEventInfo }) {
+  const selectedEvent = events[selectedEventInfo.selectedEventDayIndex][selectedEventInfo.selectedEventId];
+
+  const [title, setTitle] = useState(selectedEvent.title);
+  const [description, setDescription] = useState(selectedEvent.description);
+  const [startDateTime, setStartDateTime] = useState(selectedEvent.startDateTime);
+  const [endDateTime, setEndDateTime] = useState(selectedEvent.endDateTime);
   const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -25,10 +27,11 @@ export default function EventDetail() {
     const date = startDateTime.slice(0, 10);
 
     // TODO err 핸들링 추가
-    saveData(newEvent, date).then(() => {
-      // history.push("/calendar/daily");
+    updateEvent(newEvent, date, selectedEvent.uid).then(() => {
+      history.push("/calendar");
     });
   }
+
   return (
     <div className={styles.wrapper}>
       <form onSubmit={(e) => handleSubmit(e)}>

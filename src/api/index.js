@@ -7,7 +7,16 @@ export async function saveData(data, date) {
 
   newEvent["uid"] = newEventKey;
 
-  database.ref('test/' + date + "/" + newEventKey).set(newEvent);
+  return database.ref('test/' + date + "/" + newEventKey).set(newEvent);
+}
+
+export async function updateEvent(data, date, key) {
+  const updatedData = { ...data };
+  const database = firebase.database();
+
+  updatedData["uid"] = key;
+
+  return database.ref("test/" + date + "/" + key).set(updatedData);
 }
 
 export async function readDailyData(date) {

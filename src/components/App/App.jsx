@@ -10,7 +10,7 @@ import CreateEvent from "../CreateEvent/CreateEvent";
 import Calendar from "../Calendar/Calendar";
 import EventDetail from "../EventDetail/EventDetail";
 // TODO remove useless props
-function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, calculatedDates, selectedEventId, isDailyView }) {
+function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, calculatedDates, events, selectedEventInfo, isDailyView }) {
   console.log('app render');
 
   return (
@@ -22,8 +22,8 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
           <Route path="/events/new">
             <CreateEvent />
           </Route>
-          <Route path="/events/eventId">
-            <EventDetail />
+          <Route path="/events/:eventId">
+            <EventDetail events={events} selectedEventInfo={selectedEventInfo} />
           </Route>
           <Route path="/calendar">
             <Calendar selectedDate={selectedDate} toggleCalendarView={toggleCalendarView} isDailyView={isDailyView}/>
