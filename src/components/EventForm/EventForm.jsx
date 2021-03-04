@@ -5,11 +5,11 @@ import styles from "./EventForm.module.css";
 import TimeSelector from "../TimeSelector/TimeSelector";
 import WithLabel from "../WithLabel/WithLabel";
 
-function EventForm({ date, onSubmit }) {
+function EventForm({ date, onSubmit, event }) {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
-  const [start, setStart] = useState(Number(date.format("H")));
-  const [end, setEnd] = useState(Number(date.format("H")) + 1);
+  const [start, setStart] = useState(event ? event.start : Number(date.format("H")));
+  const [end, setEnd] = useState(event ? event.end : Number(date.format("H")) + 1);
 
   function handleStartTimeChange(time) {
     if (time === end) {
@@ -63,6 +63,7 @@ function EventForm({ date, onSubmit }) {
         <WithLabel label="제목">
           <input
             className={styles.title}
+            value={event ? event.title : ""}
             ref={titleRef}
             type="text"
           />
@@ -70,6 +71,7 @@ function EventForm({ date, onSubmit }) {
         <WithLabel label="내용">
           <textarea
             className={styles.content}
+            value={event ? event.content : ""}
             ref={contentRef}
           />
         </WithLabel>
