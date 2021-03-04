@@ -1,5 +1,6 @@
-import { TIME } from "../constants/time";
+import { TIME_FROM, TIME_TO } from "../constants/time";
 
-export function getTimeIndex(time) {
-  return TIME.indexOf(time);
-}
+export const getTimeIndex = {
+  from: (time) => TIME_FROM.indexOf(time),
+  to: (time) => TIME_TO.indexOf(time),
+};

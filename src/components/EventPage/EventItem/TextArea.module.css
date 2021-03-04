@@ -1,5 +1,7 @@
-.TextArea textarea{
+.TextArea textarea {
   display: block;
+  resize: none;
+  width: 300px;
   height: 40px;
   margin: 20px;
   padding: 10px 40px;
@@ -8,11 +10,10 @@
   background-clip: padding-box;
   border: 1px solid #ced6e0;
   border-radius: 5px;
+  font-size: 22px;
   outline: none;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  font-family: 'Google Sans',Roboto,Arial,sans-serif;
-  font-size: 22px;
-  width: 300px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
 }
 
 .TextArea textarea:hover,

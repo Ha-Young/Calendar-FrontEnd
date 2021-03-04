@@ -1,27 +1,33 @@
 import React from "react";
+import { TIME_FROM, TIME_TO } from "../../../constants/time";
 import { connect } from "react-redux";
-import { selectTime } from "../../../actions";
-import { TIME } from "../../../constants/time";
 import { getTimeIndex } from "../../../utils/getTimeIndex";
+import { selectTime } from "../../../actions";
 import styles from "./Selector.module.css";
 
-function Selector({ selectedTime, updateSelectedTime }) {
+function Selector({
+  selectedTime,
+  updateSelectedTime,
+  fromRef,
+  toRef,
+}) {
   return (
     <div className={styles.selectorTable}>
       <select
-        defaultValue={TIME[selectedTime]}
+        defaultValue={TIME_FROM[selectedTime]}
         onChange={(e) =>
-          updateSelectedTime(getTimeIndex(e.target.value))
+          updateSelectedTime(getTimeIndex.from(e.target.value))
         }
+        ref={fromRef}
       >
-        {TIME.map((time) => (
+        {TIME_FROM.map((time) => (
           <option value={time} key={time}>
             {time}
           </option>
          ))}
     </select>
-    <select>
-      {TIME.slice(selectedTime).map(time => (
+    <select ref={toRef}>
+      {TIME_TO.slice(selectedTime).map(time => (
         <option value={time} key={time}>
           {time}
         </option>

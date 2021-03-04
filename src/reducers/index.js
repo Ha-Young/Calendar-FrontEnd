@@ -9,8 +9,9 @@
 
  */
 
-import { DAY, NEXT_DATE, PREV_DATE, WEEK, SELECT_TIME, SELECT_DATE } from "../constants/actionTypes";
+import { DAY, NEXT_DATE, PREV_DATE, WEEK, SELECT_TIME, SELECT_DATE, ADD_EVENT } from "../constants/actionTypes";
 import { getCurrentWeek, getLastWeek, getNextWeek, getTomorrow, getYesterday } from "../utils/getDate";
+import _ from "lodash";
 
 const initialState = {
   period: DAY,
@@ -21,7 +22,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  const copy = { ...state };
+  const copy = _.cloneDeep(state);
 
   switch (action.type) {
     case DAY:
@@ -51,6 +52,28 @@ export default function reducer(state = initialState, action) {
       return copy;
     case SELECT_TIME:
       copy.selectedTime = action.time;
+      return copy;
+
+    case ADD_EVENT:
+      const {
+        currentDay,
+        title,
+        description,
+        from,
+        to
+      } = action.event;
+
+      if (!copy.events[currentDay]) {
+        copy.events[currentDay] = {};
+      }
+
+      copy.events[currentDay][from] = {
+        title,
+        description,
+        length: to - from,
+        id: new Date().toLocaleDateString(),
+      };
+
       return copy;
 
     default:

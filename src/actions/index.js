@@ -6,7 +6,7 @@
 
  */
 
-import { DAY, NEXT_DATE, PREV_DATE, SELECT_DATE, SELECT_TIME, WEEK } from "../constants/actionTypes";
+import { ADD_EVENT, DAY, NEXT_DATE, PREV_DATE, SELECT_DATE, SELECT_TIME, WEEK } from "../constants/actionTypes";
 
 export const prevDate = (date) => ({
   type: PREV_DATE,
@@ -41,3 +41,8 @@ export const periodUnit = (unit = DAY) => {
     unit,
   };
 };
+
+export const addEvent = (event) => ({
+  type: ADD_EVENT,
+  event,
+});
