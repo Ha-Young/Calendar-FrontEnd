@@ -3,22 +3,23 @@ import * as types from "../constants/actionTypes";
 
 export const byId = (state = {}, actions) => {
   switch (actions.type) {
-    case types.GET_CALENDAR_DATA_SUCCESS: {
+    case types.GET_EVENT_DATA_SUCCESS: 
+    case types.SET_EVENT_DATA_SUCCESS: 
+    case types.UPDATE_EVENT_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
 
       return {
         ...state,
         ...events,
-        // ...Object.values(events).reduce((acc, val) => {
-        //   if (!acc.hasOwnProperty(val.id)) {
-        //     acc[val.id] = [];
-        //   }
-
-        //   acc[val.id].push(val);
-
-        //   return acc;
-        // }, {}),
       }
+    }
+    case types.DELETE_EVENT_DATA_SUCCESS: {
+      const { payLoad: { events } } = actions;
+      const savedEvents = { ...state };
+
+      delete savedEvents[events.id];
+
+      return savedEvents;
     }
     default:
       return state;
@@ -27,10 +28,16 @@ export const byId = (state = {}, actions) => {
 
 export const allIds = (state = [], actions) => {
   switch (actions.type) {
-    case types.GET_CALENDAR_DATA_SUCCESS: {
+    case types.GET_EVENT_DATA_SUCCESS:
+    case types.SET_EVENT_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
 
       return Object.keys(events);
+    }
+    case types.DELETE_EVENT_DATA_SUCCESS: {
+      const { payLoad: { events } } = actions;
+
+      return state.filter((event) => event.id !== events.id);
     }
     default:
       return state;
@@ -39,8 +46,21 @@ export const allIds = (state = [], actions) => {
 
 export const isLoading = (state = true, actions) => {
   switch (actions.type) {
-    case types.GET_CALENDAR_DATA_SUCCESS: {
-      return actions.payLoad.isLoading;
+    case types.GET_EVENT_DATA_SUCCESS:
+    case types.SET_EVENT_DATA_SUCCESS:
+    case types.UPDATE_EVENT_DATA_SUCCESS:
+    case types.DELETE_EVENT_DATA_SUCCESS:
+    case types.GET_EVENT_DATA_FAIL:
+    case types.SET_EVENT_DATA_FAIL:
+    case types.UPDATE_EVENT_DATA_FAIL:
+    case types.DELETE_EVENT_DATA_FAIL: {
+      return false;
+    }
+    case types.GET_EVENT_DATA:
+    case types.SET_EVENT_DATA:
+    case types.UPDATE_EVENT_DATA:
+    case types.DELETE_EVENT_DATA: {
+      return true;
     }
     default:
       return state;
@@ -49,32 +69,21 @@ export const isLoading = (state = true, actions) => {
 
 export const errorMessage = (state = "", actions) => {
   switch (actions.type) {
-    case types.GET_CALENDAR_DATA_SUCCESS: {
-      return actions.payLoad.errorMessage;
+    case types.GET_EVENT_DATA_FAIL:
+    case types.SET_EVENT_DATA_FAIL:
+    case types.UPDATE_EVENT_DATA_FAIL:
+    case types.DELETE_EVENT_DATA_FAIL: {
+      return actions;
+    }
+    case types.GET_EVENT_DATA:
+    case types.SET_EVENT_DATA:
+    case types.UPDATE_EVENT_DATA:
+    case types.DELETE_EVENT_DATA: {
+      return "";
     }
     default:
       return state;
   }
-};
-
-export const getEventById = (state, id) => state.byId[id];
-
-// export const getEventByPath = (state, id, path) =>
-//   getEventById(state, id).filter((event) => event.path === path);
-
-export const getEventByCurrentDate = (state, date) => {
-  // return currentDates.reduce((acc, val) => {
-  //   acc[val] = getEventById(state, val);
-
-  //   return acc;
-  // }, {});
-  return state.allIds.reduce((acc, val) => {
-    if (getEventById(state, val).date === date) {
-      acc.push(getEventById(state, val));
-    }
-
-    return acc;
-  }, []);
 };
 
 export default combineReducers({
@@ -83,3 +92,15 @@ export default combineReducers({
   isLoading,
   errorMessage,
 });
+
+export const getEventById = (state, id) => state.byId[id];
+
+export const getEventByCurrentDate = (state, date) => {
+  return state.allIds.reduce((acc, val) => {
+    if (getEventById(state, val)?.date === date) {
+      acc.push(getEventById(state, val));
+    }
+
+    return acc;
+  }, []);
+};

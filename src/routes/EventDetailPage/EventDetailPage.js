@@ -26,18 +26,20 @@ const EventDetailPage = ({ getEventById, onSubmit, onRemove }) => {
 
   return (
     <Modal onClick={handleGoBack}>
-      {
-        showEditWindow
-          ? <Form onSubmit={onSubmit} initialState={currentEvent}>
-              <button type="submit" onClick={handleRemoveButton}>Remove</button>
-              <button onClick={handleGoBack}>Go Back!</button>
-            </Form>
-          : <EventDetail 
-              onEdit={handleEditPage} 
-              event={currentEvent} 
-              onGoBack={handleGoBack} 
-            />
-      }
+      <div className={styles.wrapper}>
+        {
+          showEditWindow
+            ? <Form onSubmit={onSubmit} initialState={currentEvent}>
+                <button type="submit" onClick={handleRemoveButton}>Remove</button>
+                <button onClick={handleGoBack}>Go Back!</button>
+              </Form>
+            : <EventDetail 
+                onEdit={handleEditPage} 
+                event={currentEvent} 
+                onGoBack={handleGoBack} 
+              />
+        }
+      </div>
     </Modal>
   );
 };

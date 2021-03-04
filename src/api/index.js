@@ -11,7 +11,7 @@ export const saveEventData = async (data) => {
   });
 };
 
-export const updateEventData = async (data) => {
+export const changeEventData = async (data) => {
   const database = firebase.database();
   const id = data.id;
 
@@ -26,15 +26,12 @@ export const removeEventData = async (data) => {
   await database.ref(`userId/events/${data.id}`).remove();
 };
 
-export const getEventsData = async () => {
+export const loadEventData = async () => {
   const database = firebase.database().ref("userId/events/");
   const data = await database.once("value");
 
   return data.val();
 };
 
-// export const saveEventData = async () => {
-//   const database = firebase.database();
-
-//   // Note: `set` method returns a promise.
-//   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
+// Note: `set` method returns a promise.
+// Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise

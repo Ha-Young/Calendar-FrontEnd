@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import styles from "./NewEventPage.module.css";
 import Form from "../../components/Form/Form";
-import Modal from "../../components/Modal/Modal";
 import { currentDay, today } from "../../utils/date";
 
 const NewEventPage = ({ onSubmit }) => {
@@ -17,7 +15,9 @@ const NewEventPage = ({ onSubmit }) => {
   };
 
   return (
-    <Form onSubmit={onSubmit} initialState={initialFormState} />
+    <div className={styles.wrapper}>
+      <Form onSubmit={onSubmit} initialState={initialFormState} />
+    </div>
   );
 };
 

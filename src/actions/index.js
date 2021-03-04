@@ -17,27 +17,59 @@ export const changeCalendarPage = (payLoad) => ({
   payLoad,
 });
 
-// export const startFetchCalendarData = (payLoad) => ({
-//   type: types.START_FETCH_CALENDAR_DATA,
-//   payLoad,
-// });
-
-export const fetchCalendarDataSuccess = (payLoad) => ({
-  type: types.GET_CALENDAR_DATA_SUCCESS,
+export const getEventDataSuccess = (payLoad) => ({
+  type: types.GET_EVENT_DATA_SUCCESS,
   payLoad,
 });
 
-export const fetchCalendarDataFail = (payLoad) => ({
-  type: types.GET_CALENDAR_DATA_FAIL,
+export const getEventDataFail = (errorMessage) => ({
+  type: types.GET_EVENT_DATA_FAIL,
+  errorMessage,
+});
+
+export const getEventData = () => ({
+  type: types.GET_EVENT_DATA,
+});
+
+export const setEventDataSuccess = (payLoad) => ({
+  type: types.SET_EVENT_DATA_SUCCESS,
   payLoad,
 });
 
-export const sendEventData = (payLoad) => ({
-  type: types.SEND_EVENT_DATA,
+export const setEventDataFail = (errorMessage) => ({
+  type: types.SET_EVENT_DATA_FAIL,
+  errorMessage,
+});
+
+export const setEventData = (payLoad) => ({
+  type: types.SET_EVENT_DATA,
   payLoad,
 });
 
-export const sendEventDataSuccess = (payLoad) => ({
-  type: types.SEND_EVENT_DATA,
+export const deleteEventDataSuccess = (payLoad) => ({
+  type: types.DELETE_EVENT_DATA_SUCCESS,
   payLoad,
+});
+
+export const deleteEventDataFail = (errorMessage) => ({
+  type: types.DELETE_EVENT_DATA_FAIL,
+  errorMessage,
+});
+
+export const deleteEventData = () => ({
+  type: types.DELETE_EVENT_DATA,
+});
+
+export const updateEventDataSuccess = (payLoad) => ({
+  type: types.UPDATE_EVENT_DATA_SUCCESS,
+  payLoad,
+});
+
+export const updateEventDataFail = (errorMessage) => ({
+  type: types.UPDATE_EVENT_DATA_FAIL,
+  errorMessage,
+});
+
+export const updateEventData = () => ({
+  type: types.UPDATE_EVENT_DATA,
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { viewMode } from "../../constants/viewMode";
 import { generateTitleDate } from "../../utils/date";
 import { addDays, subDays } from "date-fns";
-import { setCalendarData } from "../../utils/date";
+import { setCalendarDate } from "../../utils/date";
 import styles from "./Header.module.css";
 
 // TODO: Create your own header.
@@ -12,7 +12,7 @@ const Header = ({ onClickButton, onToggle, currentDate, selectedDate, type }) =>
   const handleClickWeekButton = () => onClickButton(viewMode.WEEKLYMODE.isDaily);
 
   const handlePrevButton = () => { // 나누는게 나은가..? usecallback 사용하기
-    const newCalendarDate = setCalendarData(subDays, type, selectedDate);
+    const newCalendarDate = setCalendarDate(subDays, type, selectedDate);
 
     onToggle({
       ...newCalendarDate,
@@ -20,7 +20,7 @@ const Header = ({ onClickButton, onToggle, currentDate, selectedDate, type }) =>
   };
 
   const handleNextButton = () => {
-    const newCalendarDate = setCalendarData(addDays, type, selectedDate);
+    const newCalendarDate = setCalendarDate(addDays, type, selectedDate);
 
     onToggle({
       ...newCalendarDate,

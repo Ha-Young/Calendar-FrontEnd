@@ -15,7 +15,7 @@ const EventDetail = ({ onEdit, event, onGoBack }) => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div>
       <div className={styles.column}>
         <div className={styles.input}>{title}</div>
         <div className={styles.input}>{description}</div>

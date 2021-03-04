@@ -1,10 +1,14 @@
 import { connect } from "react-redux";
-import { getEventsData, saveEventData } from "../api";
+import { loadEventData, saveEventData } from "../api";
 import {
   changeCalendarType,
   changeCalendarPage,
-  fetchCalendarDataSuccess,
-  fetchCalendarDataFail
+  getEventDataSuccess,
+  getEventDataFail,
+  getEventData,
+  setEventData,
+  setEventDataSuccess,
+  setEventDataFail,
 } from "../actions/index";
 import App from "../components/App/App";
 import { getEventByCurrentDate } from "../reducers/eventData";
@@ -18,25 +22,26 @@ const mapDispatchToProps = (dispatch) => ({
   },
   async loadEventData() {
     try {
-      const data = await getEventsData();
+      dispatch((getEventData()));
+      const data = await loadEventData();
 
-      dispatch(fetchCalendarDataSuccess({
-        isLoading: false,
-        errorMessage: "",
+      dispatch(getEventDataSuccess({
         events: data,
       }));
     } catch(error) {
-      dispatch(fetchCalendarDataFail({  // 인덴팅
-        isLoading: false,
-        errorMessage: error.message,
-      }));
+      dispatch(getEventDataFail(error.message));
     }
   },
   async saveNewEventData(data) {
     try {
+      dispatch((setEventData()));
       saveEventData(data);
-    } catch(error) {
 
+      dispatch((setEventDataSuccess({
+        events: data,
+      })));
+    } catch(error) {
+      dispatch((setEventDataFail(error.message)));
     }
   },
 });

@@ -22,7 +22,7 @@ export const getDay = (today) => {
   return [currentDay(today)];
 };
 
-export const setCalendarData = (cb, isDailyCalendar, currentDate) => {
+export const setCalendarDate = (cb, isDailyCalendar, currentDate) => {
   const calendarGap = isDailyCalendar ? viewMode.DAILYMODE.gap : viewMode.WEEKLYMODE.gap;
 
   const selectedDate = cb(currentDate, calendarGap);

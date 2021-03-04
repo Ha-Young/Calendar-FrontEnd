@@ -1,8 +1,16 @@
 import { connect } from "react-redux";
 import EventDetailPage from "../routes/EventDetailPage/EventDetailPage";
 import { getEventById } from "../reducers/eventData";
-import { updateEventData, removeEventData } from "../api/index";
-console.log(24);
+import { changeEventData, removeEventData } from "../api/index";
+import {
+  updateEventDataSuccess,
+  updateEventDataFail,
+  updateEventData,
+  deleteEventData,
+  deleteEventDataSuccess,
+  deleteEventDataFail,
+} from "../actions/index";
+
 const mapStateToProps = ({ eventData }) => ({
   getEventById: (id) => getEventById(eventData, id),
 });
@@ -10,22 +18,26 @@ const mapStateToProps = ({ eventData }) => ({
 const mapDispatchToProps = (dispatch) => ({
   async onSubmit(data) {
     try {
-      // 디스패치 달기
-      await updateEventData(data)
+      dispatch(updateEventData());
+
+      await changeEventData(data);
+      dispatch(updateEventDataSuccess({
+        events: data,
+      }));
     } catch (error) {
-      // 디스패치
-    } finally {
-      // 디스패치..
+      dispatch(updateEventDataFail(error.message));
     }
   },
   async onRemove(data) {
     try {
-      // 디스패치 달기
-      await removeEventData(data)
+      dispatch(deleteEventData());
+
+      await removeEventData(data);
+      dispatch(deleteEventDataSuccess({
+        events: data,
+      }));
     } catch (error) {
-      // 디스패치
-    } finally {
-      // 디스패치..
+      dispatch(deleteEventDataFail(error.message));
     }
   },
 });

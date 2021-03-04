@@ -1,11 +1,13 @@
 .content {
+  display: flex;
+  justify-content: center;
   position: absolute;
   background: white;
   z-index: 8;
-  top: 50%;
-  left: 50%;
+  top: 20%;
+  left: 40%;
   max-width: 500px;
-  max-height: 500px;
+  min-height: 400px;
   box-shadow: 5px 5px 5px 5px #D3D3D3;
   border-radius: 10px;
 }
