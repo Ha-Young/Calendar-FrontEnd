@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ScheduleCreateForm.module.scss';
-import { changeDateFormatYYYYMMDD } from '../../utils/dateUtil';
+import { changeDateFormatYYYYMD, changeDateFormatYYYYMMDD, dateInfoToObject, removeZeroInString } from '../../utils/dateUtil';
 
 import Container from '../publicComponent/Container/Container';
 import DateSelectForm from './DateSelectForm/DateSelectForm';
 import ColorInputForm from './ColorInputForm/ColorInputForm';
 import TextInputForm from './TextInputForm/TextInputForm';
 import ButtonInputForm from './ButtonComponent/ButtonComponent';
+import { setSchedule } from '../../api';
 
 const ScheduleCreateForm = ({ currentDate }) => {
   const [date, setDate] = useState('');
@@ -42,6 +43,22 @@ const ScheduleCreateForm = ({ currentDate }) => {
 
   function handleSubmitButtonClick() {
     // 여긴 firebase 등록이 들어감...
+    console.log('button event 작동');
+    const dateObj = dateInfoToObject(changeDateFormatYYYYMD(date));
+    const newSchedule = {
+      key: 0,
+      year: Number(dateObj.year),
+      month: Number(dateObj.month),
+      day: Number(dateObj.day),
+      startHour: Number(removeZeroInString(startHour)),
+      endHour: Number(removeZeroInString(endHour)),
+      content: content,
+      color: color
+    };
+    console.log('들어가는 데이터', newSchedule);
+    setSchedule(newSchedule).then(() => {
+      window.location.href = "/";
+    });
   }
 
   const dateHandlers = {
@@ -63,7 +80,7 @@ const ScheduleCreateForm = ({ currentDate }) => {
         <DateSelectForm changeEvents={dateHandlers} values={dateValues}></DateSelectForm>
         <ColorInputForm onChangeEvent={handleColorChange} value={color}></ColorInputForm>
         <TextInputForm placeHolder={'Contents'} onChangeEvent={handleContentChange} value={content}></TextInputForm>
-        <ButtonInputForm textContent={'Add'} onChangeEvent={handleSubmitButtonClick}></ButtonInputForm>
+        <ButtonInputForm textContent={'Add'} onClickEvent={handleSubmitButtonClick}></ButtonInputForm>
       </div>
     </Container>
   );

@@ -12,11 +12,12 @@ const ContentLayoutContainer = styled.div`
 `;
 
 const OneDay = ({ todayData, isWeek }) => {
+  // ERR!!!! type에 대한 Err체크가 필요...
   console.log('ONEDAY : ', todayData);
   function getOneHourArray() {
     const twentyFourHourArray = todayData.timeArray;
-    const datas = todayData.datas || [];
-    datas.forEach((el) => {
+    const datas = todayData.datas || {};
+    Object.values(datas).forEach((el) => {
       for (let i = el.startHour; i <= el.endHour; i++ ) {
         twentyFourHourArray[i] = el;
       }

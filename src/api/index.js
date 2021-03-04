@@ -155,7 +155,10 @@ export async function getAllEventsByDates(dateArr, callback) {
 /** 단 하나의 schedule을 넘겨주고  그것을 update한다. */
 export async function setSchedule(schedule) {
   const returnObj = {};
-  returnObj[schedule.key] = schedule;
-  console.log(returnObj);
-  const test3 = await database.ref(`calendar/${schedule.year}/${schedule.month}/${schedule.day}/datas`).update(returnObj);
+  
+  const databaseRef = database.ref(`calendar/${schedule.year}/${schedule.month}/${schedule.day}/datas`);
+  const key = databaseRef.push().key;
+  schedule['key'] = key;
+  returnObj[key] = schedule;
+  databaseRef.update(returnObj);
 }

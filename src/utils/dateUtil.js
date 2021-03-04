@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { YYYYMD, YYYYMMDD } from '../constants/dateFormats';
+import { YYYYMD } from '../constants/dateFormats';
 
 export function dateInfoToObject(date) {
   const dateInfoObejct = {};
@@ -53,7 +53,11 @@ export function changeDateFormatYYYYMMDD(date) {
 export function changeDateFormatYYYYMD(date) {
   const dateArr = date.split('-');
   const year = dateArr[0];
-  const month = (dateArr[1] / 10) < 1 ? dateArr[1].split('')[1] : dateArr[1];
-  const day = (dateArr[2] / 10) < 1 ? dateArr[2].split('')[1] : dateArr[2];
+  const month = (dateArr[1] / 10) < 1 ? removeZeroInString(dateArr[1]) : dateArr[1];
+  const day = (dateArr[2] / 10) < 1 ? removeZeroInString(dateArr[2]) : dateArr[2];
   return `${year}-${month}-${day}`;
+}
+
+export function removeZeroInString(num) {
+  return String(num).replace('0', '');
 }
