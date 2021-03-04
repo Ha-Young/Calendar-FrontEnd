@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 import Button from "../Shared/Button";
 import PageNotFound from "../Error/PageNotFound";
@@ -8,7 +8,7 @@ import { IoLocationSharp, IoTimeSharp, IoCalendarClearSharp, IoPencilSharp } fro
 
 import styles from "./EventView.module.scss";
 
-export default function EventView({ setUpdateEventMode, eventsInStore, deleteEventInStore }) {
+export default function EventView({ setUpdateEventMode, eventsInStore, deleteEventInStore, setSelectedDate }) {
   const [ currentEvent, setCurrentEvent ] = useState({});
   const history = useHistory();
   const params = useParams();
@@ -27,6 +27,7 @@ export default function EventView({ setUpdateEventMode, eventsInStore, deleteEve
   const deleteEvent = async () => {
     await removeEvent(currentEvent.date, currentEvent.startTime);
     deleteEventInStore(currentEvent.date, currentEvent.startTime);
+    setSelectedDate(new Date(currentEvent.date));
     history.push("/daily");
   };
 

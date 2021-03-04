@@ -10,10 +10,8 @@ export default function Schedule({ eventDate, saveEventInStore, eventsInStore })
 
   useEffect(() => {
     if (eventsInStore.byDates.hasOwnProperty(eventDate)) {
-      console.log("no fetch");
       return;
     }
-    console.log("fetch");
     fetchEvents(eventDate);
   }, [eventDate]);
 

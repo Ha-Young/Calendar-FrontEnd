@@ -41,6 +41,8 @@ function App({
             eventsInStore={eventsInStore}
             deleteEventInStore={deleteEventInStore}
             saveEventInStore={saveEventInStore}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
           />
         </Route>
         <Route path="/events/:event_id">
@@ -48,6 +50,7 @@ function App({
             setUpdateEventMode={setUpdateEventMode}
             eventsInStore={eventsInStore}
             deleteEventInStore={deleteEventInStore}
+            setSelectedDate={setSelectedDate}
           />
         </Route>
         <Route>

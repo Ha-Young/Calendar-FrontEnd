@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { formatDate } from "../../utils/SetDate";
 import styles from "./Header.module.scss";
 
@@ -9,6 +9,7 @@ const today = new Date();
 export default function Header ({ selectedDate, setSelectedDate, setCreateEventMode }) {
   const formattedDate = formatDate(selectedDate, "yyyy-MM-dd-E");
   const [ year, month, dateNumber, day ] = formattedDate.split("-");
+  const { pathname } = useLocation();
 
   return (
     <header className={styles.Header}>
@@ -18,7 +19,7 @@ export default function Header ({ selectedDate, setSelectedDate, setCreateEventM
           <NavLink to="/schedule" activeClassName={styles.active}>WEEKLY</NavLink>
         </li>
         <li>
-          <NavLink to="/" exact activeClassName={styles.active}>DAILY</NavLink>
+          <NavLink to="" exact activeClassName={styles.active} isActive={() => ["/daily"].includes(pathname)}>DAILY</NavLink>
         </li>
         <li>
           <NavLink to="/events/new" onClick={setCreateEventMode} activeClassName={styles.active} exact>New Event</NavLink>
