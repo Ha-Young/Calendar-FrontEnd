@@ -1,0 +1,18 @@
+.buttonsWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 302px;
+  height: 70px;
+  margin: auto;
+}
+
+.editButton {
+  width: 100px;
+  height: 30px;
+}
+
+.exitButton {
+  width: 100px;
+  height: 30px;
+}

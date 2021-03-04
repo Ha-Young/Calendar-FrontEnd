@@ -3,7 +3,14 @@ import { useParams, useHistory } from 'react-router-dom';
 import styles from './Modal.module.css';
 import { TIME_UNTIL_ELEVEN, TIME_UNTIL_TWELVE } from '../../constant';
 
-const Modal = ({ addsubmitdata }) => {
+const Modal = ({
+  addsubmitdata,
+  children,
+  scheduleTitle,
+  scheduleDescription,
+  scheduleStartTime,
+  scheduleEndTime
+  }) => {
   const history = useHistory();
   const { date } = useParams();
   const [title, setTitle] = useState('');
@@ -75,7 +82,7 @@ const Modal = ({ addsubmitdata }) => {
           <input
             type='text'
             maxLength='20'
-            value={title}
+            value={children ? scheduleTitle : title}
             placeholder='title'
             onChange={(e) => setTitle(e.target.value)}
             className={styles.titleInput}
@@ -85,7 +92,7 @@ const Modal = ({ addsubmitdata }) => {
           <input
             type='text'
             maxLength='20'
-            value={description}
+            value={children ? scheduleDescription : description}
             placeholder='description'
             onChange={(e) => setDescription(e.target.value)}
             className={styles.descriptionInput}
@@ -95,7 +102,10 @@ const Modal = ({ addsubmitdata }) => {
           <div>
             <select
               name='startTime'
-              value={Number(startTime)}
+              value={children ?
+                Number(scheduleStartTime) :
+                Number(startTime)
+              }
               className={styles.startTimeSelect}
               onChange={(e) => handleSelectChange(e)}
             >
@@ -105,7 +115,10 @@ const Modal = ({ addsubmitdata }) => {
           <div>
             <select
               name='endTime'
-              value={endTime}
+              value={children ?
+                scheduleEndTime :
+                endTime
+              }
               className={styles.endTimeSelect}
               onChange={(e) => handleSelectChange(e)}
             >
@@ -114,11 +127,13 @@ const Modal = ({ addsubmitdata }) => {
           </div>
         </div>
         <div className={styles.submitWrapper}>
-          <input
-            type='submit'
-            value='submit'
-            className={styles.submitButton}
-          />
+          {children ||
+            <input
+              type='submit'
+              value='submit'
+              className={styles.submitButton}
+            />
+          }
         </div>
       </div>
     </form>
