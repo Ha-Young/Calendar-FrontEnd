@@ -43,7 +43,7 @@ const createCalendar = (localDates, events) => {
     const items = [];
 
     for (let hour = 0; hour < 24; hour++) {
-      // TODO 그냥 for문으로 바꿔서 break 가능하게 바꾸는것도 좋을듯
+      // TODO 그냥 for문으로 바꿔서 break 가능하게 바꾸는것도 좋을듯. 지금은 24 * event 개수가 시간복잡도라 너무 느림.
       let isEvent = false;
       for (let eventKey in event) {
         const min = DateTime.fromISO(event[eventKey].startDateTime).hour;
@@ -77,16 +77,18 @@ const createCalendar = (localDates, events) => {
 
 
 export default function CalendarContents({ selectedDate, loadEvents, events, isDailyView }) {
+  debugger;
   // TODO 이러지 말고 옛날 selectedWeek처럼 localdate같은걸(이름바꿔서) store에 만들고 reducer에서 계산하는것도 방법인듯.
   // isDailyView까지 store에 넣으면 reducer안에서 데일리/위클리에 따라서 계산 가능하니까
   let localDates = calculateWeek(selectedDate, isDailyView);
-
+  console.log(isDailyView)
   // console.log('calendar content render')
   console.log(localDates)
   // console.log(localDate.map(date => date.toFormat("yyyy-LL-dd")))
   console.log(events)
 
   useEffect(() => {
+    debugger;
     const readData = async () => {
       // console.log('get firebase data')
       // console.log(localDate);
@@ -105,8 +107,7 @@ export default function CalendarContents({ selectedDate, loadEvents, events, isD
         {createTimeLineItem()}
       </div>
       <div className={styles.calendarItemWrapper}>
-        {createCalendar(localDates, events)[0]}
-        {createCalendar(localDates, events)[1]}
+        {createCalendar(localDates, events)}
         
       </div>
     </div>

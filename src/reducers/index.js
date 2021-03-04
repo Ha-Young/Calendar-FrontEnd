@@ -15,9 +15,10 @@ import { DateTime } from 'luxon';
 const initialDay = DateTime.now();
 const initialState = {
   selectedDate: initialDay,
+  calculatedDates: [],
   events: [],
   selectedEventId: "",
-  viewSelector: "",
+  isDailyView: true,
 };
 
 export default function reducer(state = initialState, action) {

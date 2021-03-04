@@ -11,11 +11,9 @@ import SideBar from "../SideBar/SideBar";
 import CreateEvent from "../CreateEvent/CreateEvent";
 import Calendar from "../Calendar/Calendar";
 
-function App({ selectDay, nextButtonClicked, prevButtonClicked, loadEvents, selectedDate, events }) {
-  console.log('app render')
-  // useEffect(() => {
-  //   onInitialLoad();
-  // }, []);
+function App({ selectDay, nextButtonClicked, prevButtonClicked, loadEvents, toggleCalendarView, selectedDate, calculatedDates, events, selectedEventId, isDailyView }) {
+  console.log('app render');
+
   return (
     <div className={styles.App}>
       <Header nextButtonClicked={nextButtonClicked} prevButtonClicked={prevButtonClicked} />

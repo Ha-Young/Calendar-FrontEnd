@@ -23,3 +23,7 @@ export const loadEvents = (events) => ({
     events: events,
   }
 });
+
+export const toggleCalendarView = () => ({
+  type: types.TOGGLE_CALENDAR_VIEW,
+});

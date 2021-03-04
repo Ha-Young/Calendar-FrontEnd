@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import App from "../components/App/App.jsx";
 import { saveSampleData } from "../api";
-import { selectDay, nextButtonClicked, prevButtonClicked, loadEvents } from "../actions/index";
+import { selectDay, nextButtonClicked, prevButtonClicked, loadEvents, toggleCalendarView } from "../actions/index";
 
 // const mapDispatchToProps = () => ({
 //   // This function is passed to App component.
@@ -11,9 +11,10 @@ import { selectDay, nextButtonClicked, prevButtonClicked, loadEvents } from "../
 // });
 const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
-  selectedEventId: state.selectedEventId,
-  viewSelector: state.viewSelector,
+  calculatedDates: state.calculatedDates,
   events: state.events,
+  selectedEventId: state.selectedEventId,
+  isDailyView: state.isDailyView,
 });
 
 const mapDispatchToProps = {
@@ -21,6 +22,7 @@ const mapDispatchToProps = {
   nextButtonClicked,
   prevButtonClicked,
   loadEvents,
+  toggleCalendarView,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
