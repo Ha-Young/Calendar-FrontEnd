@@ -28,13 +28,10 @@ function App({
         setCreateEventMode={setCreateEventMode}
         setSelectedDate={setSelectedDate}
       />
+      <Route path="/" exact component={Weekly} />
       <Switch>
-        <Route path={["/", "/daily"]} exact>
-          <Daily/>
-        </Route>
-        <Route path="/schedule">
-          <Weekly />
-        </Route>
+        <Route path="/calendar" component={Weekly} />
+        <Route path="/daily" component={Daily} />
         <Route path={["/events/new", "/events/edit/:event_id"]}>
           <EventEdit
             eventMode={eventMode}

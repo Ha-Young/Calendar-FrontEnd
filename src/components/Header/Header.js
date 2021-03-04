@@ -16,10 +16,10 @@ export default function Header ({ selectedDate, setSelectedDate, setCreateEventM
       <h1 onClick={() => setSelectedDate(today)}>{year}.{month}</h1>
       <ul>
         <li>
-          <NavLink to="/schedule" activeClassName={styles.active}>WEEKLY</NavLink>
+          <NavLink to="/" exact activeClassName={styles.active}>WEEKLY</NavLink>
         </li>
         <li>
-          <NavLink to="" exact activeClassName={styles.active} isActive={() => ["/daily"].includes(pathname)}>DAILY</NavLink>
+          <NavLink to="/daily" activeClassName={styles.active}>DAILY</NavLink>
         </li>
         <li>
           <NavLink to="/events/new" onClick={setCreateEventMode} activeClassName={styles.active} exact>New Event</NavLink>

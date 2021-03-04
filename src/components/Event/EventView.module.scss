@@ -1,5 +1,7 @@
 .EventView {
+  max-width: 600px;
   max-height: calc(100% - 90px);
+  margin: 0 auto;
   padding: 1em;
   overflow-y: auto;
   box-sizing: border-box;
