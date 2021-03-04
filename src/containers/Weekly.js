@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
   today: state.calendar.today,
   selectedDate: state.calendar.selectedDate,
   week: state.calendar.week,
-  calendarMode: state.calnedar.calendarMode,
+  calendarMode: state.calendar.calendarMode,
 });
 
 const mapDispatchToProps = (dispatch) => {
