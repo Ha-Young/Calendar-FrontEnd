@@ -5,8 +5,8 @@ import { Route, Switch } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./App.module.scss";
 import Header from "../Header/Header";
-import Weekly from "../Schedule/Weekly";
-import Daily from "../Schedule/Daily";
+import Weekly from "../../containers/Weekly";
+import Daily from "../../containers/Daily";
 import EventEdit from "../Event/EventEdit";
 import EventView from "../Event/EventView";
 import PageNotFound from "../Error/PageNotFound";

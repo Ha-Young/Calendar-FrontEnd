@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
 import Calendar from "./Calendar";
-import { goLastWeek, goNextWeek, setWeeklyCalendarMode } from "../../actions";
 
-const Weekly = ({ calendarMode, setWeeklyCalendarMode, today, selectedDate, week, goLastWeek, goNextWeek }) => {
+export default function Weekly ({ calendarMode, setWeeklyCalendarMode, today, selectedDate, week, goLastWeek, goNextWeek }) {
   useEffect(() => {
     if (calendarMode === "daily") {
       setWeeklyCalendarMode();
@@ -21,26 +19,3 @@ const Weekly = ({ calendarMode, setWeeklyCalendarMode, today, selectedDate, week
     />
   )
 };
-
-const mapStateToProps = (state) => ({
-  today: state.today,
-  selectedDate: state.selectedDate,
-  week: state.week,
-  calendarMode: state.calendarMode,
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    goLastWeek() {
-      dispatch(goLastWeek());
-    },
-    goNextWeek() {
-      dispatch(goNextWeek());
-    },
-    setWeeklyCalendarMode() {
-      dispatch(setWeeklyCalendarMode());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps) (Weekly);

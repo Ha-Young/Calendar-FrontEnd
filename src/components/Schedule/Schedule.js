@@ -20,6 +20,7 @@ export default function Schedule({ eventDate }) {
 
   const fetchEvents = async (date) => {
     const result = await getEvents(date);
+    console.log(result);
     setEvents(result);
   };
 

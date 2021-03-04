@@ -1,4 +1,6 @@
-import { subDate, addDate, getCurrentWeek, getLastWeek, getNextWeek } from "../utils/SetDate";
+import { combineReducers } from "redux";
+import calendar from "./calendar";
+import event from "./event";
 
 /*
 
@@ -11,69 +13,9 @@ import { subDate, addDate, getCurrentWeek, getLastWeek, getNextWeek } from "../u
 
  */
 
-const today = new Date();
+const rootReducer = combineReducers({
+  calendar,
+  event
+});
 
-const initialState = {
-  calendarMode: "daily",
-  today: today,
-  selectedDate: today,
-  week: getCurrentWeek(today),
-  eventMode: "create",
-  currentEvent: null,
-};
-
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case "SET_DAILY_CALENDAR_MODE":
-      return {
-        ...state,
-        calendarMode: "daily"
-      }
-    case "SET_WEEKLY_CALENDAR_MODE":
-      return {
-        ...state,
-        calendarMode: "weekly",
-        week: getCurrentWeek(state.selectedDate),
-      }
-    case "GO_PREV_DATE":
-      return {
-        ...state,
-        selectedDate: subDate(state.selectedDate, 1),
-      }
-    case "GO_NEXT_DATE":
-      return {
-        ...state,
-        selectedDate: addDate(state.selectedDate, 1),
-      }
-    case "GO_LAST_WEEK":
-      return {
-        ...state,
-        week: getLastWeek(state.week),
-        selectedDate: subDate(state.selectedDate, 7),
-      }
-    case "GO_NEXT_WEEK":
-      return {
-        ...state,
-        week: getNextWeek(state.week),
-        selectedDate: addDate(state.selectedDate, 7),
-      }
-    case "SET_SELECTED_DATE":
-      return {
-        ...state,
-        selectedDate: action.date,
-        week: getCurrentWeek(action.date),
-      }
-    case "SET_CREATE_EVENT_MODE":
-      return {
-        ...state,
-        eventMode: "create",
-      }
-    case "SET_UPDATE_EVENT_MODE":
-      return {
-        ...state,
-        eventMode: "update",
-      }
-    default:
-      return state;
-  }
-}
+export default rootReducer;

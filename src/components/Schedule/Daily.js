@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
 import Calendar from "./Calendar";
-import { goPrevDate, goNextDate, setDailyCalendarMode } from "../../actions";
 
-const Daily = ({ calendarMode, today, selectedDate, goPrevDate, goNextDate, changeToDailyMode }) => {
+export default function Daily ({ calendarMode, today, selectedDate, goPrevDate, goNextDate, setDailyCalendarMode }) {
   useEffect(() => {
     if (calendarMode === "weekly") {
       setDailyCalendarMode();
@@ -19,25 +17,3 @@ const Daily = ({ calendarMode, today, selectedDate, goPrevDate, goNextDate, chan
     />
   )
 };
-
-const mapStateToProps = (state) => ({
-  today: state.today,
-  selectedDate: state.selectedDate,
-  calendarMode: state.calendarMode,
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    goPrevDate() {
-      dispatch(goPrevDate());
-    },
-    goNextDate() {
-      dispatch(goNextDate());
-    },
-    setDailyCalendarMode() {
-      dispatch(setDailyCalendarMode());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps) (Daily);

@@ -5,8 +5,8 @@ import { setSelectedDate, setCreateEventMode, setUpdateEventMode } from "../acti
 const today = new Date();
 
 const mapStateToProps = (state) => ({
-  selectedDate: state.selectedDate,
-  eventMode: state.eventMode
+  selectedDate: state.calendar.selectedDate,
+  eventMode: state.event.eventMode,
 });
 
 const mapDispatchToProps = (dispatch) => {
