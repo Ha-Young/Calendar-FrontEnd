@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { dayName } from "../../../utils/getDay";
+import { dayName } from "../../../utils/convertTime";
 
 const Wrapper = styled.div`
   display: flex;

@@ -35,7 +35,6 @@ const initialState = {
   currentPage: "Day",
   countOfDay: 0,
   countOfWeek: 0,
-  activedDay: "",
 };
 
 const calendar = (state = initialState, action) => {

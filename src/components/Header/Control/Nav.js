@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { PAGE_TYPE } from "../../../reducers/calendar";
-import { getMonth, getYear } from "../../../utils/getDay";
+import { getMonth, getYear } from "../../../utils/convertTime";
 
 const HeaderNav = styled.div`
   display: flex;

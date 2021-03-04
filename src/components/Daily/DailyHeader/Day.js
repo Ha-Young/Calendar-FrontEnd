@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { getDayStr, getDayNum } from "../../../utils/getDay";
+import { getDayStr, getDayNum } from "../../../utils/convertTime";
 
 const Wrapper = styled.div`
   padding-left: 0.5em;

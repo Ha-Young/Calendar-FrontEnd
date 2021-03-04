@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import convertTime from "../../utils/convertTime";
+import convertTime from "../../utils/convertToAmPm";
 
 const Wrapper = styled.div`
   .flex-box {

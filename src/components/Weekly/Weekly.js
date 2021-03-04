@@ -13,7 +13,7 @@ const Weekly = ({ count, onPage }) => {
     <Calendar>
       <WeekHeader count={count} />
       <TimeLine />
-      <DayLine />
+      <DayLine count={count} />
     </Calendar>
   );
 };
