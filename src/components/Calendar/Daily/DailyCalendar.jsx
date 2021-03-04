@@ -12,7 +12,7 @@ export default function DailyCalendar({ history }) {
 
   const startDay = day.clone().startOf("day");
   const newDate = startDay.format("D").toString();
-  const dateID = startDay.format("YYYYMMMMDD");
+  const dateID = startDay.format("YYYY-MM-DD");
 
   function handleClickDateBox(e) {
     if (e.target.hasAttribute("data-event")) {

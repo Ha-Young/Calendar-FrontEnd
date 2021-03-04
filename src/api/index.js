@@ -14,18 +14,15 @@ export async function saveSampleData() {
   });
 }
 
-export async function fetchAllEvents() {
-  const calendarData = firebase.database().ref("test");
+export async function addEvent(event) {
+  const database = firebase.database();
 
-  calendarData.on("value", (snapshot) => {
-    const data = snapshot.val();
-    console.log(data);
-  });
+  await database.ref("events/").push(event);
 }
 
-// export async function addEvent() {
+// export async function addEvent(date) {
 
-//   await database.ref(`${}`)
+//   await database.ref(`AllId/${date}`)
 // }
 
 // export async function removeEvents() {

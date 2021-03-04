@@ -1,8 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import styles from "./Calendar.module.css";
+import Schedule from "./Schedule/Schedule";
 
-export default function Calendar({ day, dayID, onClickDate }) {
+function CalendarColumn({ events, day, dayID, onClickDate }) {
   const result = [];
+  const hasEvent = events && events[dayID];
 
   for (let i = 0; i < 24; i++) {
     result.push(i);
@@ -10,24 +13,36 @@ export default function Calendar({ day, dayID, onClickDate }) {
 
   return (
     <>
-      <div className={styles["day-box"]}>
+      <div className={styles["day1"]}>
         {day}
       </div>
-      {result.map((time) => {
-        return (
-          <div
-            // onClick={(e) => onClickDate(`${dayID}-${time}`)}
-            onClick={(e) => onClickDate(e)}
-            data-id={`${dayID}-${time}`}
-            key={time}
-            className={styles["day-box"]}
-          >
-          </div>
-        );
-      })}
+      <div className={styles.boxList}>
+        {result.map((time) => {
+          return (
+            <div
+              // onClick={(e) => onClickDate(`${dayID}-${time}`)}
+              onClick={(e) => onClickDate(e)}
+              data-id={`${dayID}-${time}`}
+              key={time}
+              className={styles["day-box"]}
+            >
+            </div>
+          );
+        })}
+        {hasEvent &&
+          events[dayID].map((event) =>
+            <Schedule event={event} />
+          )
+        }
+      </div>
     </>
   );
 }
 
- // 이벤트가 여기까지 넘어와서 이벤트 여부에 따른 분기점 트리거를 넘겨줌 예를 들면
- // data-id or null을 넘겨 이 둘에 대한 분기점으로 해결해보자
+const mapStateToProps = state => {
+  return {
+    events: state
+  };
+}
+
+export default connect(mapStateToProps, null)(CalendarColumn);

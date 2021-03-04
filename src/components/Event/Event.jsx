@@ -1,30 +1,34 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import styles from "./Event.module.css";
 
-import { fetchAllEvents } from "../../api/index";
+import { addToEvent } from "../../actions";
+import { addEvent } from "../../api";
 
-export default function Event() {
+const Event = ({ onSubmitEvent }) => {
   const [eventDate, setEventDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  // 이 쪽 컴포넌트에서 리덕스로 데이터 관리
+
   function onClickInputButton(e) {
     e.preventDefault();
 
     const editStartTime = `${startTime.slice(0, 2)}:00`;
-    const editEndClock = `${Number(endTime.slice(0, 2)) + 1}:00`;
+    const editEndClock = `${endTime.slice(0, 2)}:00`;
 
-    return {
-      [eventDate]: {
-        [editStartTime]: {
-          editEndClock,
-          title,
-          description
-        }
-      }
+    const eventInformation = {
+      eventDate,
+      startTime: editStartTime,
+      endTime: editEndClock,
+      title,
+      description,
+      eventDate
     };
+
+    onSubmitEvent(eventInformation);
+    // addEvent(eventInformation);
   }
 
   function onChangeDate(e) {
@@ -74,3 +78,11 @@ export default function Event() {
     </div>
   );
 }
+
+const mapDispatchToProps = dispatch => ({
+  onSubmitEvent: (eventInformation) => {
+    dispatch(addToEvent(eventInformation));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(Event);

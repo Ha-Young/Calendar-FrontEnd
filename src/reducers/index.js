@@ -9,8 +9,28 @@
 
  */
 
-const initialState = "Create your state structure!";
+import * as types from "../constants/actionTypes";
 
-export default function reducer(state = initialState) {
-  return state;
+const initialState = {};
+
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case types.ADD_EVENT_INFORMATION:
+      const { event, event: { eventDate } } = action;
+
+      if (state.hasOwnProperty(eventDate)) {
+        return {
+          ...state,
+          [eventDate]: [...state[eventDate], event]
+        };
+      }
+
+      return {
+        ...state,
+        [eventDate]: [event]
+      };
+
+    // case types.GET_EVENT_INFORMATION:
+
+  }
 }
