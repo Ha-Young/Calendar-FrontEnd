@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Description from "./Description";
 import EndHour from "./EndHour";
@@ -22,7 +22,7 @@ const Form = styled.form`
   }
 `;
 
-const Event = ({ onSubmit }) => {
+const Event = ({ onSubmit, onPage }) => {
   const [event, setEvent] = useState({
     title: "",
     description: "",
@@ -30,6 +30,10 @@ const Event = ({ onSubmit }) => {
     startHour: "",
     endHour: "",
   });
+
+  useEffect(() => {
+    onPage();
+  }, [])
 
   const handleSubmit = (ev) => {
     ev.preventDefault();

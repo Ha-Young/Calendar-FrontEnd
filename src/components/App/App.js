@@ -31,11 +31,11 @@ const App = ({
         <Route path="/" exact>
           <Daily count={countOfDay} onPage={setDaily} />
         </Route>
-        <Route path="/Week">
-          <Weekly count={countOfWeek} onPage={setWeekly} />
-        </Route>
         <Route path="/Day">
           <Daily count={countOfDay} onPage={setDaily} />
+        </Route>
+        <Route path="/Week">
+          <Weekly count={countOfWeek} onPage={setWeekly} />
         </Route>
         <Route path="/Event/new">
           <Event onSubmit={onSubmit} onPage={setEvent}/>

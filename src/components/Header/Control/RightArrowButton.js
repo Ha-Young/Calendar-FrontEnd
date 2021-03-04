@@ -6,13 +6,15 @@ import { PAGE_TYPE } from "../../../reducers/calendar";
 
 const RightArrowButton = ({ nextDay, nextWeek, page }) => {
   const handleClick = () => {
-    if (page === PAGE_TYPE.DAILY) {
+    if (page === PAGE_TYPE.DAY) {
       nextDay();
       
       return;
     }
     
-    nextWeek();
+    if (page === PAGE_TYPE.WEEK) {
+      nextWeek();
+    }
   };
 
   return (
