@@ -12,6 +12,13 @@
   background-color: #DCEDC8
 }
 
+.dateIndicatorContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
 .tableContainer {
   display: flex;
   justify-content: center;

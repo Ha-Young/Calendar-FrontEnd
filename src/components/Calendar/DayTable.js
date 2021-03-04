@@ -3,7 +3,7 @@ import styles from "./DayTable.module.css";
 import { Link } from "react-router-dom";
 
 export default function DayTable ({ eventInfo }) {
-  console.log("hello")
+  console.log("DayTable")
   console.log(eventInfo)
   const time = [
     {time: "0 AM", id: "0-AM"},
