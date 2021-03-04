@@ -16,6 +16,7 @@ const DailySchedule = function ({
         updateDateWithTime={updateDateWithTime}
         date={date}
         timeList={timeList}
+        events={events}
       />
     </div>
   );

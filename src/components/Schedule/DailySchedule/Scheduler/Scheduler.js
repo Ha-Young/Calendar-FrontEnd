@@ -9,15 +9,20 @@ const Scheduler = function ({
   timeList,
   events
 }) {
-  const tableId = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
+  const dateNumber = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;
+  const tableId = `${year}-${month}-${dateNumber}`;
 
   return (
     <div className={styles["scheduler"]}>
       <TimeTable timeList={timeList} />
       <Table
+        className="table"
         tableId={tableId}
         tableRow={timeList}
         updateDateWithTime={updateDateWithTime}
+        events={events}
       />
     </div>
   );

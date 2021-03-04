@@ -5,6 +5,7 @@ import * as types from "../constants/actionTypes";
 const mapStateToProps = function (state) {
   return {
     isWeeklySchedule: state.isWeeklySchedule,
+    events: state.events
   };
 };
 

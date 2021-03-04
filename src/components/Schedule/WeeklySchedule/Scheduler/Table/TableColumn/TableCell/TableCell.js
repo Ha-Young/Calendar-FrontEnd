@@ -2,9 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./TableCell.module.css";
 
-const TableCell = function ({ updateDateWithTime, cellId, events }) {
+const TableCell = function ({ updateDateWithTime, cellId }) {
   let history = useHistory();
-
   function handleCellClick() {
     updateDateWithTime(cellId);
     history.push("/events/new");

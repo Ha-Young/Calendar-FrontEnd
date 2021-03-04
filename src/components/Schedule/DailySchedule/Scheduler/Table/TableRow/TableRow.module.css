@@ -1,5 +1,7 @@
 .table-row {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   width: 90vw;
   border-top: 1px solid gray;
@@ -10,4 +12,85 @@
 
 .table-row:hover {
   background-color: #e6e6e6;
+}
+
+.event0 {
+  background-color: tomato;
+  transition: all 0.2s ease-in-out;
+}
+
+.event0:hover {
+  background-color: rgb(247, 71, 40);
+}
+
+.event1 {
+  background-color: tomato;
+  transition: all 1.2s ease-in-out;
+}
+
+.event1:hover {
+  background-color: rgb(247, 71, 40);
+}
+
+.event2 {
+  background-color: tomato;
+  transition: all 0.2s ease-in-out;
+}
+
+.event2:hover {
+  background-color: rgb(247, 71, 40);
+}
+
+.event3 {
+  background-color: tomato;
+  transition: all 0.2s ease-in-out;
+}
+
+.event3:hover {
+  background-color: rgb(247, 71, 40);
+}
+
+.event4 {
+  background-color: tomato;
+  transition: all 0.2s ease-in-out;
+}
+
+.event4:hover {
+  background-color: rgb(247, 71, 40);
+}
+
+.event5 {
+  background-color: tomato;
+  transition: all 0.2s ease-in-out;
+}
+
+.event5:hover {
+  background-color: rgb(247, 71, 40);
+}
+
+.event6 {
+  background-color: tomato;
+  transition: all 0.2s ease-in-out;
+}
+
+.event6:hover {
+  background-color: rgb(247, 71, 40);
+}
+
+.event7 {
+  background-color: tomato;
+  transition: all 0.2s ease-in-out;
+}
+
+.event7:hover {
+  background-color: rgb(247, 71, 40);
+}
+
+.event8 {
+  background-color: tomato;
+  transition: all 0.2s ease-in-out;
+}
+
+.event8:hover {
+  background-color: rgb(247, 71, 40);
 }

@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./Table.module.css";
 import TableRow from "./TableRow/TableRow";
+import EntryBox from "../../../../EntryBox/EntryBox";
+import styles from "./Table.module.css";
 
 const Table = function ({
   updateDateWithTime,
@@ -8,6 +9,9 @@ const Table = function ({
   tableRow,
   events
 }) {
+
+  const eventsOfDate = events.byDates[tableId];
+
   return (
     <div className={styles["table"]}>
       {tableRow.map(rowNumber =>
@@ -17,6 +21,9 @@ const Table = function ({
           rowId={`${tableId} ${rowNumber}`}
           updateDateWithTime={updateDateWithTime}
         />
+      ))}
+      {!!eventsOfDate && eventsOfDate.map(event => (
+        <EntryBox event={event} key={event.id} isWeeklySchedule={false} />
       ))}
     </div>
   );

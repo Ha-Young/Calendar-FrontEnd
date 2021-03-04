@@ -24,11 +24,13 @@ const Schedule = function ({
           date={date}
           timeList={START_TIME_LIST}
           updateDateWithTime={updateDateWithTime}
+          events={events}
         />
         : <DailySchedule
           date={date}
           timeList={START_TIME_LIST}
           updateDateWithTime={updateDateWithTime}
+          events={events}
         />
       }
     </div>

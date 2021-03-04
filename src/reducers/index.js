@@ -69,6 +69,7 @@ export default function reducer(state = initialState, action) {
     case types.ADD_EVENT:
       const date = action.payload.date;
       const id = action.payload.id;
+      const datesOfDate = state.events.byDates[date] ?? [];
       const allIds = state.events.allIds.includes(action.payload.id)
         ? [...state.events.allIds]
         : [...state.events.allIds, action.payload.id];
@@ -85,10 +86,7 @@ export default function reducer(state = initialState, action) {
           },
           byDates: {
             ...state.events.byDates,
-            [date]: {
-              ...state.events.byDates[date],
-              [id]: action.payload,
-            }
+            [date]: [...datesOfDate, action.payload]
           },
           allIds,
           allDates,

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import Dropdown from "../../Dropdown/Dropdown";
 import { START_TIME_LIST, END_TIME_LIST } from "../../../constants/calendarConstants";
 import { generateDateAndTimeString } from "../../../utils/calendarUtils";
 import styles from "./EventForm.module.css";
+import { generateRandomColor } from "../../../utils/uiUtils";
 
 const EventForm = function ({ addEvent, date, setIsSchedule }) {
   const [initialDate, initialStartTime, initialEndTime] = generateDateAndTimeString(date);
@@ -13,15 +14,19 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   let location = useLocation();
+  let history = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();
-    //event object만들어서 redux state에 저장해주고
-    //redirect to calendar
-    // (돌아갈 때 무조건 daily 뜨게 해놓고)
-    // (Calendar도 event들어간거 update해줘야됨)
+
+    if (startTime > endTime) {
+      alert("Check the time please");
+      return;
+    }
+
     const eventObject = {
       id: `${inputDate} ${startTime}`,
+      color: generateRandomColor(),
       date: inputDate,
       startTime,
       endTime,
@@ -29,7 +34,8 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
       description,
     };
 
-    addEvent(eventObject)
+    addEvent(eventObject);
+    history.push("/calendar");
   }
 
   function createItemTag(item) {

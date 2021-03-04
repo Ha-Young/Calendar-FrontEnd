@@ -51,8 +51,9 @@ export function generateCalendarArray(year, month) {
   return calendarArray;
 }
 
-export function generateWeekArray(date) {
+export function generateWeekArrayAndMonthArray(date) {
   const weekArray = [];
+  const monthArray = [];
 
   for (let i = 0; i < 7; i++) {
     const year = date.getFullYear();
@@ -61,9 +62,10 @@ export function generateWeekArray(date) {
     const dateNumber = date.getDate();
     const newDate = new Date(year, month, dateNumber - day + i);
     weekArray.push(newDate.getDate());
+    monthArray.push(newDate.getMonth() + 1);
   }
 
-  return weekArray;
+  return [weekArray, monthArray];
 }
 
 export function generateDateTitle(isWeek, date) {
@@ -93,7 +95,7 @@ export function generateDateTitle(isWeek, date) {
 export function generateDateAndTimeString(date) {
   const year = date.getFullYear();
   const month = date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
-  const dateNumber = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;;
+  const dateNumber = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;
   const time = date.getHours();
 
   const dateString = `${year}-${month}-${dateNumber}`;

@@ -1,0 +1,7 @@
+.table-column {
+  display: flex;
+  flex-flow: column;
+  width: 12vw;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}

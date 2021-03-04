@@ -7,19 +7,20 @@ const Scheduler = function ({
   updateDateWithTime,
   date,
   weekArray,
+  monthArray,
   timeList,
   events
 }) {
-  const tableId = `${date.getFullYear()}-${date.getMonth() + 1}`;
-
   return (
     <div className={styles["scheduler"]}>
       <TimeTable timeList={timeList} />
       <Table
-        tableId={tableId}
         tableColumn={weekArray}
+        year={date.getFullYear()}
+        monthArray={monthArray}
         tableRow={timeList}
         updateDateWithTime={updateDateWithTime}
+        events={events}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header/Header";
 import Scheduler from "./Scheduler/Scheduler";
-import { generateWeekArray } from "../../../utils/calendarUtils";
+import { generateWeekArrayAndMonthArray } from "../../../utils/calendarUtils";
 import styles from "./WeeklySchedule.module.css";
 
 const WeeklySchedule = function ({
@@ -10,7 +10,7 @@ const WeeklySchedule = function ({
   timeList,
   events
 }) {
-  const weekArray = generateWeekArray(date);
+  const [weekArray, monthArray] = generateWeekArrayAndMonthArray(date);
 
   return (
     <div className={styles["weekly-schedule"]}>
@@ -19,7 +19,9 @@ const WeeklySchedule = function ({
         date={date}
         timeList={timeList}
         weekArray={weekArray}
+        monthArray={monthArray}
         updateDateWithTime={updateDateWithTime}
+        events={events}
       />
     </div>
   );
