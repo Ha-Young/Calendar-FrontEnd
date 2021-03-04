@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 import Container from "../Shared/Container";
+import Button from "../Shared/Button";
 import InputRadio from "../Shared/InputRadio";
 import InputDate from "../Shared/InputDate";
 import InputText from "../Shared/InputText";
@@ -134,10 +135,10 @@ export default function EventEdit({ eventMode }) {
       </Container>
       <p className={styles.validationText}>{validationText}</p>
       <div className={styles.Buttons}>
-        <button type="button" onClick={() => history.goBack()}>BACK</button>
-        <button type="button" onClick={saveEvent}>
+        <Button handleClickEvent={() => history.goBack()}>BACK</Button>
+        <Button handleClickEvent={saveEvent}>
           {eventMode === "update" ? "EDIT" : "SAVE"}
-        </button>
+        </Button>
       </div>
     </div>
   )

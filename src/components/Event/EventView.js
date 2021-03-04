@@ -1,7 +1,10 @@
 import React from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 
+import Button from "../Shared/Button";
 import { removeEvent } from "../../api/index";
+import { IoLocationSharp, IoTimeSharp, IoCalendarClearSharp, IoPencilSharp } from "react-icons/io5";
+
 import styles from "./EventView.module.scss";
 
 export default function EventView({ setUpdateEventMode }) {
@@ -21,24 +24,31 @@ export default function EventView({ setUpdateEventMode }) {
 
   return (
     <div className={styles.EventView}>
-      <ul>
-        <li className={styles.itle}>{event.title}</li>
-        <li>{event.date}</li>
-        <li>
-          <p>{event.startTime}</p>
-          <p>{event.endTime}</p>
-        </li>
-        <li>{event.location}</li>
-        <li>{event.description}</li>
-      </ul>
+      <p className={styles.title}>{event.title}</p>
+      <dl>
+        <dt><IoCalendarClearSharp className="icon"/> Date</dt>
+        <dd>{event.date}</dd>
+      </dl>
+      <dl>
+        <dt><IoTimeSharp className="icon"/> Time</dt>
+        <dd>{event.startTime} - {event.endTime}</dd>
+      </dl>
+      <dl>
+        <dt><IoLocationSharp className="icon"/> Location</dt>
+        <dd>{event.location}</dd>
+      </dl>
+      <dl>
+        <dt><IoPencilSharp className="icon" /> Description</dt>
+        <dd>{event.description}</dd>
+      </dl>
       <div className={styles.Buttons}>
         <Link to={{
           pathname: "/event",
           state: { event }
         }}>
-          <button type="button" onClick={handleEditEvent}>EDIT</button>
+          <Button handleClickEvent={handleEditEvent}>EDIT</Button>
         </Link>
-        <button type="button" onClick={deleteEvents}>DELETE</button>
+        <Button handleClickEvent={deleteEvents}>DELETE</Button>
       </div>
     </div>
   )

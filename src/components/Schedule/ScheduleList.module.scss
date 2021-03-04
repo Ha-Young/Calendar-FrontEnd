@@ -1,10 +1,10 @@
 .Schedule {
-  max-height: 500px;
+  max-height: calc(100% - 170px);
   padding: 0 1em;
-  overflow-x: hidden;
   overflow-y: auto;
   display: flex;
   justify-content: space-between;
+  box-sizing: border-box;
 
   ul {
     margin: 0;

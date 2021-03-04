@@ -1,16 +1,33 @@
 .EventView {
+  max-height: calc(100% - 90px);
   padding: 1em;
+  overflow-y: auto;
+  box-sizing: border-box;
 
-  ul {
-    margin: 0;
-    padding: 0;
-    li {
-      margin: 0.7em 0;
+  .title {
+    margin: 0 0 1.5em 0;
+    padding: 0 0 0.5em 0;
+    font-size: 1.7em;
+    font-weight: bold;
+    border-bottom: 1px solid #313131;
+  }
+
+  dl {
+    margin: 0 0 1.5em 0;
+
+    dt {
+      margin: 0 0 0.5em 0;
+      font-weight: bold;
+      font-size: 1.2em;
     }
-    .itle {
-      padding: 0 0 0.2em 0;
-      font-size: 2em;
-      border-bottom: 1px solid #313131;
+
+    dd {
+      margin: 0;
+      padding: 0.5em;
+      border: 1px solid #dddddd;
+      border-radius: 5px;
+      background: #f5f5f5;
+      white-space: pre-wrap;
     }
   }
 
