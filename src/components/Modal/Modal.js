@@ -53,9 +53,7 @@ const Modal = ({ addsubmitdata }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
-    console.log('title' + title.length, 'des:'+ description.length);
-    console.log('start'+ startTime, 'end'+ endTime);
+
     if (title.length === 0 || description.length === 0) return;
     if (Number(startTime) >= Number(endTime)) return;
 
