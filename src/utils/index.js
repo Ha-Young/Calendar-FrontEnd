@@ -33,10 +33,12 @@ export const getFullDateToString = (dateObj) => {
   const year = dateObj.getFullYear();
   const month = getTwoDigitsString(dateObj.getMonth() + 1);
   const date = getTwoDigitsString(dateObj.getDate());
+  const hour = getTwoDigitsString(dateObj.getHours());
+  const minute = getTwoDigitsString(dateObj.getMinutes());
+  const second = getTwoDigitsString(dateObj.getSeconds());
 
-  return `${year}-${month}-${date}`;
+  return `${year}-${month}-${date} ${hour}:${minute}:${second}`;
 }
-
 
 export const getFromStringDateTo = {
   year: (stringDate) => new Date(stringDate).getFullYear(),

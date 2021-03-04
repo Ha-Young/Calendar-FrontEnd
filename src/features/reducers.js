@@ -1,5 +1,5 @@
 import { eventForm, userEvent } from "../constants/actionTypes";
-import { setEventForm, setUserEvent } from "../utils/reducerSuppotor";
+import { setEventForm, setUserEvent, setCurrentDate } from "../utils/reducerSupportors";
 import { EVENT_FORM_STATE_KEY, EVENT_INIT_ID, MAX_MIN_DATE } from "../constants";
 const current = new Date();
 const initiateState = {
@@ -15,45 +15,75 @@ const initiateState = {
     month: current.getMonth() + 1,
     date: current.getDate(),
     fromHour: current.getHours(),
-    toHour: current.getHours(),
+    toHour: current.getHours() + 1,
   },
   currentDate: current,
 };
+
+const {
+  TITLE,
+  CONTENT,
+  YEAR,
+  MONTH,
+  DATE,
+  FROM_HOUR,
+  TO_HOUR,
+} = EVENT_FORM_STATE_KEY;
+
+const { MIN: YEAR_MIN, MAX: YEAR_MAX } = MAX_MIN_DATE.YEAR;
+const { MIN: MONTH_MIN, MAX: MONTH_MAX} = MAX_MIN_DATE.MONTH;
+const { MIN: DATE_MIN, MAX: DATE_MAX} = MAX_MIN_DATE.DATE;
+const { MAX: HOUR_MAX } = MAX_MIN_DATE.HOUR;
 
 export default function reducer(state = initiateState, action) {
   const payload = action.payload;
 
   switch(action.type) {
     case eventForm.SET_TITLE:
-      return setEventForm(state, EVENT_FORM_STATE_KEY.TITLE, payload);
+      return setEventForm(state, TITLE, payload);
     case eventForm.SET_CONTENT:
-      return setEventForm(state, EVENT_FORM_STATE_KEY.CONTENT, payload);
+      return setEventForm(state, CONTENT, payload);
     case eventForm.SET_YEAR:
-      return setEventForm(state, EVENT_FORM_STATE_KEY.YEAR, payload);
+      const isInvalidYear = payload < YEAR_MIN || YEAR_MAX < payload;
+
+      if (isInvalidYear) return state;
+
+      return setCurrentDate(setEventForm(state, YEAR, payload));
+
     case eventForm.SET_MONTH:
-      return setEventForm(state, EVENT_FORM_STATE_KEY.MONTH, payload);
+      const isInvalidMonth = payload < MONTH_MIN || MONTH_MAX < payload;
+
+      if (isInvalidMonth) return state;
+      return setCurrentDate(setEventForm(state, MONTH, payload));
+
     case eventForm.SET_DATE:
-      return setEventForm(state, EVENT_FORM_STATE_KEY.DATE, payload);
+      const isInvalidDate = payload < DATE_MIN || DATE_MAX < payload;
+
+      if (isInvalidDate) return state;
+
+      return setCurrentDate(setEventForm(state, DATE, payload));
+
     case eventForm.SET_FROM_HOUR:
-      if (MAX_MIN_DATE.HOUR.MAX < payload) return state;
       const { toHour } = state.eventForm;
+      const isInvalidFromHour = HOUR_MAX < payload
+        || payload === toHour;
 
-      if (payload > toHour) {
-        return setEventForm(state, EVENT_FORM_STATE_KEY.FROM_HOUR, toHour);
-      } else {
-        return setEventForm(state, EVENT_FORM_STATE_KEY.FROM_HOUR, payload);
-      }
+      if (isInvalidFromHour) return state;
+
+      return setCurrentDate(setEventForm(state, FROM_HOUR, payload));
+
     case eventForm.SET_TO_HOUR:
-      if (MAX_MIN_DATE.HOUR.MAX < payload) return state;
       const { fromHour } = state.eventForm;
+      const isInvalidToHour = HOUR_MAX < payload
+        || payload === fromHour;
+      if (isInvalidToHour) return state;
 
-      if (fromHour > payload) {
-        return setEventForm(state, EVENT_FORM_STATE_KEY.TO_HOUR, fromHour);
-      } else {
-        return setEventForm(state, EVENT_FORM_STATE_KEY.TO_HOUR, payload);
-      }
+      const to = fromHour > payload ? fromHour : payload;
+      return setEventForm(state, TO_HOUR, to);
+
     case userEvent.SET_EVENT:
       return setUserEvent(state, payload);
+
     default:
       return state;
   }

@@ -2,10 +2,16 @@ import { connect } from "react-redux";
 import App from "../components/App/App";
 import "../css/reset.css";
 import { setEventFormFor, setUserEventFor } from "../features/actionCreators";
+import { getDailyEvents } from "../utils/mapStateSupportors";
 
 const mapStateToProps = (state) => {
-  const eventFormInfo = {... state.eventForm};
-  return {eventFormInfo};
+  const eventFormInfo = {...state.eventForm};
+  const currentDate = state.currentDate;
+  const copyUserEvent = {...state.userEvent.byId};
+  const dailyEvents = getDailyEvents(currentDate.getDate(), copyUserEvent);
+  console.log(dailyEvents);
+  // weekly 이벤트 데이터, daily 이벤트 데이터 각각 처리해서 반환.
+  return {eventFormInfo, currentDate, dailyEvents};
 };
 
 const mapDispatchToProps = (dispatch) => {

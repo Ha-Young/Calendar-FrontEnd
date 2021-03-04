@@ -27,3 +27,17 @@ export function setUserEvent(state, userEvent) {
     }
   };
 }
+
+export function setCurrentDate(state) {
+  const {
+    year,
+    month,
+    date,
+  } = state.eventForm;
+  const current = new Date(year, month - 1, date);
+
+  return {
+    ...state,
+    currentDate: current,
+  }
+}

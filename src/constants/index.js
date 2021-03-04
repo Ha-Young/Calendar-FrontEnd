@@ -16,6 +16,7 @@ export const MAX_MIN_DATE = {
     MIN: 0,
   },
 };
+export const DAYS = ["일", "월", "화", "수", "목", "금", "토"];
 
 export const EVENT_FORM_STATE_KEY = {
   TITLE: "title",

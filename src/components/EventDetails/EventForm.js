@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MAX_MIN_DATE } from "../../constants";
 import registerEvent from "../../utils/registerEvent";
 
