@@ -3,27 +3,18 @@ import styles from "./Calendar.module.css";
 import CalendarHeader from "../CalendarHeader/CalendarHeader";
 import CalendarContents from "../CalendarContents/CalendarContents";
 import { readDailyData } from "../../api";
-import { calculateWeek } from "../../reducers/index";
 
 export default function Calendar({ selectedDate, loadEvents, events }) {
+  // TODO sotre로 빼고 버튼 onClick에 action 만들어서 넣어주기
   const [isDailyView, setIsDailyView] = useState(true);
-
-  // useEffect(() => {
-  //   console.log('useEffect')
-  //   const readData = async () => {
-  //     const response = await readDailyData(selectedDate.toFormat("yyyy-LL-dd"));
-  //   }
-
-  //   readData();
-  // }, [selectedDate]);
 
   return (
     <div className={styles.calendarWrapper}>
       <div>
         <button onClick={() => setIsDailyView(!isDailyView)}>Daily / Weekly Toggle</button>
       </div>
-      <CalendarHeader selectedDate={isDailyView ? [selectedDate] : calculateWeek(selectedDate)} />
-      <CalendarContents selectedDate={isDailyView ? [selectedDate] : calculateWeek(selectedDate)} loadEvents={loadEvents} events={events} />
+      <CalendarHeader selectedDate={selectedDate} isDailyView={isDailyView} />
+      <CalendarContents selectedDate={selectedDate} loadEvents={loadEvents} events={events} isDailyView={isDailyView} />
     </div>
   );
 }

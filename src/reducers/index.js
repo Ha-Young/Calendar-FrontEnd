@@ -66,7 +66,9 @@ function formatDate(date) {
 }
 
 // TODO util 만들어서 빼기.
-export function calculateWeek(date) {
+export function calculateWeek(date, isDailyView) {
+  if (isDailyView) return [date];
+
   const weekYear = date.weekYear;
   const weekNumber = date.weekNumber;
   const selectedWeek = [];

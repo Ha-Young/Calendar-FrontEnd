@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import styles from "./CalendarContents.module.css";
 import { readWeeklyData } from "../../api";
+import { calculateWeek } from "../../reducers";
 
+// TODO component로 빼기
 const createTimeLineItem = () => {
   const items = [];
 
@@ -17,6 +19,7 @@ const createTimeLineItem = () => {
   return items;
 }
 
+// TODO component로 빼기
 const createCalendarItem = () => {
   const items = [];
 
@@ -27,25 +30,26 @@ const createCalendarItem = () => {
   return items;
 }
 
-export default function CalendarContents({ selectedDate, loadEvents, events }) {
-  debugger
-  console.log('calendar content render')
-  console.log(selectedDate)
-  console.log(selectedDate.map(date => date.toFormat("yyyy-LL-dd")))
+export default function CalendarContents({ selectedDate, loadEvents, events, isDailyView }) {
+  let localDate = calculateWeek(selectedDate, isDailyView);
+
+  // console.log('calendar content render')
+  // console.log(localDate)
+  // console.log(localDate.map(date => date.toFormat("yyyy-LL-dd")))
   console.log(events)
 
   useEffect(() => {
     const readData = async () => {
-      console.log('get firebase data')
-      console.log(selectedDate);
-      const events = await readWeeklyData(selectedDate.map(date => date.toFormat("yyyy-LL-dd")));
-      console.log('after get events')
+      // console.log('get firebase data')
+      // console.log(localDate);
+      const events = await readWeeklyData(localDate.map(date => date.toFormat("yyyy-LL-dd")));
+      // console.log('after get events')
       loadEvents(events);
-      console.log('after dispatch action')
+      // console.log('after dispatch action')
     }
 
     readData();
-  }, [selectedDate]);
+  }, [selectedDate, isDailyView]);
 
   return (
     <div className={styles.wrapper}>
