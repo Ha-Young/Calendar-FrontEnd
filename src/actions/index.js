@@ -56,3 +56,8 @@ export const deleteEvent = (date, startTime) => ({
   date,
   startTime,
 });
+
+export const saveUserId = (userId) => ({
+  type: types.SAVE_USER_ID,
+  userId,
+});

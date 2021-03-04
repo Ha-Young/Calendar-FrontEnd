@@ -9,7 +9,7 @@ import { IoLocationSharp, IoTimeSharp, IoCalendarClearSharp, IoPencilSharp } fro
 
 import styles from "./EventView.module.scss";
 
-export default function EventView({ setUpdateEventMode, eventsInStore, saveEventInStore, deleteEventInStore, setSelectedDate }) {
+export default function EventView({ userId, setUpdateEventMode, eventsInStore, saveEventInStore, deleteEventInStore, setSelectedDate }) {
   const [ currentEvent, setCurrentEvent ] = useState("");
   const history = useHistory();
   const params = useParams();
@@ -26,7 +26,7 @@ export default function EventView({ setUpdateEventMode, eventsInStore, saveEvent
   }, []);
 
   const fetchEvents = async (date) => {
-    const eventList = await getEvents(date);
+    const eventList = await getEvents(userId, date);
     for (let i = 0; i < eventList.length; i++) {
       if (eventList[i].startTime === eventStartTime) {
         setCurrentEvent(eventList[i]);
@@ -39,7 +39,7 @@ export default function EventView({ setUpdateEventMode, eventsInStore, saveEvent
   };
 
   const deleteEvent = async () => {
-    await removeEvent(currentEvent.date, currentEvent.startTime);
+    await removeEvent(userId, currentEvent.date, currentEvent.startTime);
     deleteEventInStore(currentEvent.date, currentEvent.startTime);
     setSelectedDate(new Date(currentEvent.date));
     history.push("/daily");

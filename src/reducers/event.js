@@ -4,7 +4,8 @@ const initalState = {
   eventMode: "create",
   events: {
     byDates: {},
-  }
+  },
+  userId: "",
 };
 
 export default function event(state = initalState, action) {
@@ -40,6 +41,11 @@ export default function event(state = initalState, action) {
       return produce(state, draft => {
         delete draft.events.byDates[action.date][action.startTime];
       });
+    case "SAVE_USER_ID":
+      return {
+        ...state,
+        userId: action.userId,
+      }
     default:
       return state;
   }

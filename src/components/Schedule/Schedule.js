@@ -5,14 +5,15 @@ import styles from "./Schedule.module.scss";
 
 const eventBoxes = [...Array(24).keys()];
 
-export default function Schedule({ eventDate, saveEventInStore, eventsInStore }) {
+export default function Schedule({ userId, eventDate, saveEventInStore, eventsInStore }) {
   const [ events, setEvents ] = useState(null);
 
   useEffect(() => {
     if (eventsInStore.byDates.hasOwnProperty(eventDate)) {
       return;
     }
-    fetchEvents(eventDate);
+    console.log("fetch!");
+    fetchEvents(userId, eventDate);
   }, [eventDate]);
 
   useEffect(() => {
@@ -33,8 +34,8 @@ export default function Schedule({ eventDate, saveEventInStore, eventsInStore })
     ))
   };
 
-  const fetchEvents = async (date) => {
-    const result = await getEvents(date);
+  const fetchEvents = async (userId, date) => {
+    const result = await getEvents(userId, date);
     saveEventInStore(eventDate, result);
     setEvents(result);
   };

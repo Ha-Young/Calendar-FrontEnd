@@ -14,8 +14,8 @@ const data = firebase.database();
 //   });
 // }
 
-export const createEvent = async ({ title, date, startTime, endTime, location, description, eventColor }) => {
-  await data.ref(`events/${date}/${startTime}`).set({
+export const createEvent = async ({ userId, title, date, startTime, endTime, location, description, eventColor }) => {
+  await data.ref(`events/${userId}/${date}/${startTime}`).set({
     title,
     date,
     startTime,
@@ -26,8 +26,8 @@ export const createEvent = async ({ title, date, startTime, endTime, location, d
   });
 };
 
-export const getEvents = async (date) => {
-  const eventsRef = data.ref(`events/${date}`);
+export const getEvents = async (userId, date) => {
+  const eventsRef = data.ref(`events/${userId}/${date}`);
   const result = [];
 
   const snapshot = await eventsRef.once("value").then((snapshot) => snapshot);
@@ -40,11 +40,20 @@ export const getEvents = async (date) => {
   return result;
 };
 
-export const removeEvent = async (date, startTime) => {
-  await data.ref(`events/${date}/${startTime}`).set(null);
+export const removeEvent = async (userId, date, startTime) => {
+  await data.ref(`events/${userId}/${date}/${startTime}`).set(null);
 };
 
-export const updateEvent = async (date, startTime, event) => {
-  await removeEvent(date, startTime);
+export const updateEvent = async (userId, date, startTime, event) => {
+  await removeEvent(userId, date, startTime);
   await createEvent(event);
+};
+
+export const loginWithGoogleAccount = async () => {
+  console.log("login");
+  const provider = new firebase.auth.GoogleAuthProvider();
+  const result = await firebase.auth().signInWithPopup(provider).then((result) => result);
+  const userId = result.user.uid;
+
+  return userId;
 };

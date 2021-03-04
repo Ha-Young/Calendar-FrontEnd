@@ -18,9 +18,10 @@ const validationTextList = {
   requiredError: "필수값을 모두 입력해주세요."
 };
 
-export default function EventEdit({ eventMode, eventsInStore, saveEventInStore, deleteEventInStore, setSelectedDate }) {
+export default function EventEdit({ userId, eventMode, eventsInStore, saveEventInStore, deleteEventInStore, setSelectedDate }) {
   const [ validationText, setValidationText ] = useState("");
   const [ currentEvent, setCurrentEvent ] = useState({
+    userId,
     title: "",
     date: "",
     startTime: "",
@@ -40,9 +41,15 @@ export default function EventEdit({ eventMode, eventsInStore, saveEventInStore, 
       const eventStartTime = params.event_id.slice(17, 23);
       const event = eventsInStore.byDates[eventDate][eventStartTime];
       oldEvent.current = event;
-      setCurrentEvent(event);
+      setCurrentEvent(() => {
+        return {
+          ...event,
+          userId,
+        }
+      });
     } else {
       setCurrentEvent({
+        userId,
         title: "",
         date: "",
         startTime: "",
@@ -74,12 +81,15 @@ export default function EventEdit({ eventMode, eventsInStore, saveEventInStore, 
     }
 
     if (eventMode === "update") {
+      console.log(currentEvent);
+      updateEvent(userId, oldEvent.current.date, oldEvent.current.startTime, currentEvent);
       deleteEventInStore(oldEvent.current.date, oldEvent.current.startTime);
       saveEventInStore(currentEvent.date, [currentEvent]);
     } else {
       await createEvent(currentEvent);
       saveEventInStore(currentEvent.date, [currentEvent]);
     }
+
     setSelectedDate(new Date(currentEvent.date));
     history.push("/daily");
   };

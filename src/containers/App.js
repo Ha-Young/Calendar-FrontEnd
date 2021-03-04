@@ -6,6 +6,7 @@ const mapStateToProps = (state) => ({
   selectedDate: state.calendar.selectedDate,
   eventMode: state.event.eventMode,
   eventsInStore: state.event.events,
+  userId: state.event.userId,
 });
 
 const mapDispatchToProps = (dispatch) => {

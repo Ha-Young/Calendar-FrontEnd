@@ -4,6 +4,7 @@ import { saveEvent } from "../actions/";
 
 const mapStateToProps = (state) => ({
   eventsInStore: state.event.events,
+  userId: state.event.userId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
