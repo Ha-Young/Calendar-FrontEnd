@@ -10,7 +10,7 @@ import DailyCalendar from '../../containers/DailyCalendar';
 
 function App({ onInitialLoad }) {
   useEffect(() => {
-    onInitialLoad();
+  
   }, []);
 
   return (

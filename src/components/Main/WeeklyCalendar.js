@@ -68,7 +68,7 @@ const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
           <div>{day}</div>
           <div>{currentDate}</div>
         </div>
-        <div className={styles.eventWrapper} key={index}>
+        <div className={styles.eventWrapper}>
           {eventCells.map((item, time) => {
             const fullDate = makeWeekFullDate(year, month, startDate, time);
 

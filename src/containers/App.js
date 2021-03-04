@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { saveSampleData } from "../api";
+import { saveData } from "../api";
 
 const mapStateToProps = (state) => ({
   something: "Mapping redux state to App component props.",
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = () => ({
 
   onInitialLoad: () => {
-    saveSampleData();
+    saveData();
   },
 });
 
