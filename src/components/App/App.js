@@ -7,10 +7,16 @@ import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
 import Event from "../Event/Event";
+import { getRecord } from "../../api";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
-    onInitialLoad();
+    (async function(){
+      const data = await getRecord();
+      console.log(data);
+      onInitialLoad(data);
+    })();
+    
   }, []);
 
   return (

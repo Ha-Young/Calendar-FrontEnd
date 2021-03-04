@@ -3,6 +3,7 @@ import { hour} from "../../constants/DateConstants";
 import "./style.css";
 import { getFormat, parseDate } from "../../api/date";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { saveNewRecord } from "../../api";
 
 
 export default function Daily({ eventList, eventKeyList, currentPageDate, handleClickLeft, handleClickRight }) {
@@ -10,11 +11,8 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
   const parsedCurrentDate = parseDate(currentDate);
   const currentEventList = eventKeyList.includes(currentDate) ? eventList[currentDate] : [];
 
+  console.log(eventKeyList.includes(currentDate));
   let until;
-
-  useEffect(() => {
-   
-  }, []);
 
   return (
     <Fragment>

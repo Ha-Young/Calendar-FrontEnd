@@ -10,7 +10,7 @@ import { getToday, addDate } from "../api/date";
 
  */
 
-const initialState = {
+let initialState = {
   currentPageDate: getToday(),
   eventList: {},
   eventKeyList: [],
@@ -19,7 +19,32 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   const newState = { ...state };
 
+  function removeFirebaseId(Id) {
+    const removed = {};
+
+    for (let key in Id) {
+      removed[key] = Id[key];
+    }
+
+    return removed;
+  }
+
   switch (action.type) {
+    case "ON_INITIAL_LOAD":
+      const firebaseData = action.events;
+
+      for (let currentKey in firebaseData) {
+        const key = currentKey;
+        newState.eventList[key] = [];
+        newState.eventKeyList.push(key);
+
+        for (let id in firebaseData[key]) {
+          const event = removeFirebaseId(firebaseData[key][id]);
+          newState.eventList[key].push(event);
+        }
+      }
+      
+      break;
     case "ON_SUBMIT":
       if (state.eventKeyList.includes(action.key)) {
         newState.eventList[action.key].push(action.event);
@@ -27,7 +52,7 @@ export default function reducer(state = initialState, action) {
         newState.eventList[action.key] = [action.event];
         newState.eventKeyList.push(action.key);
       }
-
+      break;
 
     case "CLICK_LEFT":
       newState.currentPageDate = addDate(state.currentPageDate, {days: -1});
@@ -47,6 +72,6 @@ export default function reducer(state = initialState, action) {
     default:
       break;
   }
-
+  console.log(newState);
   return newState;
 }

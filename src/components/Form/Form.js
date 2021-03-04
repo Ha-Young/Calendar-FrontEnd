@@ -12,6 +12,7 @@ function Form ({ submitData }) {
   function handleSubmit(e) {
     e.preventDefault();
     submitData(date, {title, description, date, startHour, endHour});
+    saveNewRecord(date, {title, description, date, startHour, endHour});
   }
 
   return (

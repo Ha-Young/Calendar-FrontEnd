@@ -5,7 +5,14 @@
   ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/actions/index.js
 
  */
-import { ON_SUBMIT, CLICK_LEFT, CLICK_RIGHT } from "../constants/actionTypes";
+import { ON_INITIAL_LOAD, ON_SUBMIT, CLICK_LEFT, CLICK_RIGHT } from "../constants/actionTypes";
+
+export const onInitialLoad = (allEvent) => (
+  {
+    type: ON_INITIAL_LOAD,
+    events: allEvent,
+  }
+)
 
 export const submitData = (key, event) => (
   {
