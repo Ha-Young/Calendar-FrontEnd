@@ -37,7 +37,7 @@ export function getTimeAMPM(time) {
 }
 
 export function getTimeList() {
-  return Array.from({ length: HOUR }, (v, k) => k);
+  return Array.from({ length: HOUR }, (_, k) => k);
 }
 
 export function getDayOfTheWeek(date) {
@@ -52,6 +52,13 @@ export function getDiffHour(startMoment, endMoment) {
   return Math.ceil(moment.duration(endMoment.diff(startMoment)).asHours());
 }
 
+export function getDiffDay(dateA, dateB) {
+  const momentDateA = moment(dateA);
+  const momentDateB = moment(dateB);
+
+  return Math.abs(moment.duration(momentDateB.diff(momentDateA)).asDays());
+}
+
 export function getWeekDateListBasedOnDate(baseDate) {
   return WEEK_CALCULATE_LIST.map(calcDay => ({
     date: getCalcDay(baseDate, calcDay),
@@ -61,7 +68,6 @@ export function getWeekDateListBasedOnDate(baseDate) {
 
 export function getDateListBasedOnRange(startDate, endDate) {
   //todo. startDate, endDate date인지 체크, endDate가 더 이후인지 체크
-  console.log('getDateListBasedOnRange');
   const dateList = [startDate];
 
   let calcDate = startDate;
@@ -69,7 +75,6 @@ export function getDateListBasedOnRange(startDate, endDate) {
   while (calcDate !== endDate) {
     calcDate = getCalcDay(calcDate, + 1);
     dateList.push(calcDate);
-    console.log(dateList);
   }
 
   return dateList;
