@@ -1,4 +1,4 @@
-import { bindActionCreators } from "redux";
+import { getOneYearSchema } from "./dbSchema";
 import firebase from "./firebase";
 
 /*
@@ -69,7 +69,7 @@ const samepleSchedule = [
     color: '#63CCCA'
   },
   {
-    key: 1,
+    key: 0,
     year: 2021,
     month: 3,
     day: 4,
@@ -77,22 +77,50 @@ const samepleSchedule = [
     endHour: 4,
     content: "second Test!!!!!!!!!",
     color: '#FF5964'
+  },
+  {
+    key: 1,
+    year: 2021,
+    month: 3,
+    day: 4,
+    startHour: 6,
+    endHour: 7,
+    content: "third Test!!!!!!!!!",
+    color: '#4F359B'
   }
 ]
+
+const timeTestArray = [...Array(24).fill(false)];
+timeTestArray[0] = true;
+timeTestArray[1] = true;
+timeTestArray[2] = true;
+const timeTestArray2 = [...Array(24).fill(false)];
+timeTestArray2[1] = true;
+timeTestArray2[2] = true;
+timeTestArray2[3] = true;
+timeTestArray2[4] = true;
+timeTestArray2[6] = true;
+timeTestArray2[7] = true;
 
 const sampleCalendar = {
   2021: {
     3: {
       ...oneMonth,
-      3: samepleSchedule[0],
-      4: samepleSchedule[1]
+      3: {
+        datas: [samepleSchedule[0]],
+        timeArray: timeTestArray
+      },
+      4: {
+        datas: [samepleSchedule[1], samepleSchedule[2]],
+        timeArray: timeTestArray2
+      }
     }
   }
 }
 
 const database = firebase.database();
 
-export async function saveSampleData() {
+export async function saveSampleData(setData = getOneYearSchema(2021)) {
   console.log('fireBase database : ', database);
 
   /*
@@ -121,11 +149,11 @@ export async function saveSampleData() {
     12: oneMonth
   });
   */
-  const test2 = await database.ref("schedule").set(samepleSchedule);
-  const test3 = await database.ref("calendar").set(sampleCalendar);
-
+  const test3 = await database.ref("calendar").set(setData);
   const getTest = await database.ref("calendar").on('value', (data) => console.log('fetched data : ',data.val()));
-  const getTest2 = await database.ref("schedule").on('value', (data) => console.log('fetched data : ',data.val()));
+  setSchedule(samepleSchedule[0]);
+  setSchedule(samepleSchedule[1]);
+  setSchedule(samepleSchedule[2]);
 }
 
 export async function getAllEventsByDates(dateArr, callback) {
@@ -133,8 +161,17 @@ export async function getAllEventsByDates(dateArr, callback) {
     .once('value', (value) => {
       const resultArr = [];
       dateArr.forEach((el) => {
+        // TODO: 해당년, 월, 일 데이터가 없을 때 다시 만들어서 firebase에 넣고 다시 시작한다.
         resultArr.push(value.val()[el.year][el.month][el.day]);
       });
       callback(resultArr);
     });
+}
+
+/** 단 하나의 schedule을 넘겨주고  그것을 update한다. */
+export async function setSchedule(schedule) {
+  const returnObj = {};
+  returnObj[schedule.key] = schedule;
+  console.log(returnObj);
+  const test3 = await database.ref(`calendar/${schedule.year}/${schedule.month}/${schedule.day}/datas`).update(returnObj);
 }

@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import TimeLayout from './TimeLayout/TimeLayout';
-import ContentLayout from './ContentLayout/ContentLayout';
+import OneDay from './OneDay/OneDay';
+import { WEEKLY_MODE } from '../../../constants/dateFormats';
 
 const CalendarTimeTableStyle = styled.div`
   display: flex;
@@ -29,15 +30,14 @@ const CalendarTimeTableStyle = styled.div`
   }
 `;
 
-const CalendarTimeTable = ({ dateArr, scheduleData = [] }) => {
+const CalendarTimeTable = ({ scheduleData = [], calendarMode }) => {
   console.log('CalendarTimeTable', scheduleData);
-  // TODO: content Layout을 scheduleData 길이에 따라 1번 혹은 7번 쪼개야한다.
-
+  // content Layout을 scheduleData 길이에 따라 1번 혹은 7번 쪼갬
+  
   function getOneDayLayoutArray() {
     return scheduleData.map((el, index) => {
-      // TODO: LayOut 이름 바꾸기
       return (
-        <ContentLayout key={index} todayData={el}></ContentLayout>
+        <OneDay key={index} todayData={el} isWeek={calendarMode === WEEKLY_MODE}></OneDay>
       );
     });
   }

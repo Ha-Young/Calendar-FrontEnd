@@ -38,7 +38,7 @@ const Calendar = ({ currentDate, currentWeek, calendarMode, scheduleData, dispat
     <div className="calendar">
       <CalendarUpper dateArr={dateArr}></CalendarUpper>
       <hr></hr>
-      <CalendarTimeTable dateArr={dateArr} scheduleData={scheduleData}></CalendarTimeTable>
+      <CalendarTimeTable scheduleData={scheduleData} calendarMode={calendarMode}></CalendarTimeTable>
     </div>
   );
 };

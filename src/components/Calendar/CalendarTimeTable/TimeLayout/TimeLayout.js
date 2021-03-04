@@ -6,14 +6,14 @@ import Content from '../../../publicComponent/Content/Content';
 const TimeLayoutContainer = styled.header`
   display: flex;
   flex-direction: column;
-  width: 25%;
+  min-width: 25%;
   height: 100%;
 
   .time {
+    min-width: inherit;
     height: 30px;
     text-align: center;
-    padding-right: 0.3em;
-    border-right: solid 1px;
+    border-right: solid 1px black;
   }
 `;
 
@@ -31,7 +31,7 @@ const TimeLayout = () => {
   function getContentArray() {
     const contentArray = [];
     for (let i = 0; i < 24; i++) {
-      contentArray.push(<Content key={i} className={"time"} textContent={makeOneHourString(i)} />)
+      contentArray.push(<Content key={i} className={"time"} textContent={makeOneHourString(i)} hover={false} />)
     }
 
     return contentArray;
