@@ -4,6 +4,7 @@ import styles from './App.module.css';
 import Header from '../Header/Header';
 import Modal from '../../containers/Modal';
 import MonthlyCalendar from '../Main/MonthlyCalendar';
+import Event from '../../containers/Event';
 import WeeklyCalendar from '../../containers/WeeklyCalendar';
 import DailyCalendar from '../../containers/DailyCalendar';
 
@@ -25,11 +26,14 @@ function App({ onInitialLoad }) {
         <Route exact path='/dailycalendar'>
           <DailyCalendar />
         </Route>
-        <Route path='/weeklycalendar/:keyId'>
+        <Route exact path='/weeklycalendar/:date'>
           <Modal />
         </Route>
-        <Route path='/dailycalendar/:keyId'>
+        <Route exact path='/dailycalendar/:date'>
           <Modal />
+        </Route>
+        <Route path='/dailycalendar/dailyevent/:date'>
+          <Event />
         </Route>
       </Switch>
     </div>

@@ -5,7 +5,7 @@ import { TIME_UNTIL_ELEVEN, TIME_UNTIL_TWELVE } from '../../constant';
 
 const Modal = ({ addsubmitdata }) => {
   const history = useHistory();
-  const { keyId } = useParams();
+  const { date } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startTime, setStartTime] = useState(0);
@@ -53,12 +53,14 @@ const Modal = ({ addsubmitdata }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(e);
+    console.log('title' + title.length, 'des:'+ description.length);
+    console.log('start'+ startTime, 'end'+ endTime);
     if (title.length === 0 || description.length === 0) return;
-
+    if (Number(startTime) >= Number(endTime)) return;
 
     addsubmitdata({
-      keyId,
+      date,
       title,
       description,
       startTime,

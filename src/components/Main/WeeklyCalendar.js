@@ -4,8 +4,7 @@ import styles from './WeeklyCalendar.module.css';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { TIME_TABLE, SCHEDULE_BOX } from '../../constant';
 
-const WeeklyCalendar = ({ events }) => {
-  console.log(events);
+const WeeklyCalendar = ({ schedules }) => {
   const [todayDate, setTodayDate] = useState(new Date());
   const currentDate = new Date();
   const date = todayDate.getDate();
@@ -73,8 +72,8 @@ const WeeklyCalendar = ({ events }) => {
           {eventCells.map((item, time) => {
             const fullDate = makeWeekFullDate(year, month, startDate, time);
 
-            for (const event of events) {
-              const eventDay = Number(event.keyId.split('-')[2]);
+            for (const event of schedules) {
+              const eventDay = Number(event.date.split('-')[2]);
               const eventTitle = event.title;
               const showSchedule = isEventScheduled(
                 time,

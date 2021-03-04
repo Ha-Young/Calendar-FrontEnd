@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import styles from './DailyCalendar.module.css';
 import { Link } from 'react-router-dom';
 import { makeDailyFullDate, isEventScheduled } from '../../utils';
+import { TIME_TABLE, SCHEDULE_BOX } from '../../constant';
 
-const DailyCalendar = ({ events }) => {
+const DailyCalendar = ({ schedules }) => {
   const [todayDate, setTodayDate] = useState(new Date());
-  console.log(events);
   const date = todayDate.getDate();
   const year = todayDate.getFullYear();
   const month = todayDate.getMonth();
@@ -14,11 +14,11 @@ const DailyCalendar = ({ events }) => {
   const eventCells = [];
   let daysList;
 
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < TIME_TABLE; i++) {
     timeCells.push(i);
   }
 
-  for (let j = 0; j < 24; j++) {
+  for (let j = 0; j < SCHEDULE_BOX; j++) {
     eventCells.push(j);
   }
 
@@ -57,8 +57,8 @@ const DailyCalendar = ({ events }) => {
         {eventCells.map((item, time) => {
           const keyId = makeDailyFullDate(year, month, date, time);
 
-          for (const event of events) {
-            const eventDay = Number(event.keyId.split('-')[2]);
+          for (const event of schedules) {
+            const eventDay = Number(event.date.split('-')[2]);
             const eventTitle = event.title;
             const showSchedule = isEventScheduled(
               time,
@@ -71,9 +71,14 @@ const DailyCalendar = ({ events }) => {
             if (showSchedule) {
               return (
                 <div key={keyId}>
-                  <div className={styles.scheduledEvent}>
-                    {(Number(event.startTime) === time) && `${eventTitle}`}
-                  </div>
+                  <Link
+                    to={`/dailycalendar/dailyevent/${keyId}`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <div className={styles.scheduledEvent}>
+                      {(Number(event.startTime) === time) && `${eventTitle}`}
+                    </div>
+                  </Link>
                 </div>
               )
             }
