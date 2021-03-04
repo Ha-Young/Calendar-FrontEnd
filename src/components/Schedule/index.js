@@ -9,7 +9,6 @@ import WeeklySchedule from "../WeeklySchedule";
 import styles from "./Schedule.module.css";
 
 function Schedule({ viewOption, currentDate, eventListEachDay }) {
-  console.log('schedule component', eventListEachDay);
   const history = useHistory();
 
   function moveAddEventPage() {

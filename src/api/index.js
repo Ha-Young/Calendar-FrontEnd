@@ -10,3 +10,11 @@ export async function saveSampleData() {
     test: "text",
   });
 }
+
+
+export async function createEvent(userId, date, event) {
+  const database = firebase.database();
+  await database.ref(`${userId}/${date}`).set({
+    
+  });
+}
