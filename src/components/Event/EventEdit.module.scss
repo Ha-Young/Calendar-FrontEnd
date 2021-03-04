@@ -41,22 +41,22 @@
     display: inline-block;
     border-radius: 5px;
     vertical-align: text-top;
-  }
 
-  .purple {
-    background: #B721FF;
-  }
+    &.purple {
+      background: #B721FF;
+    }
 
-  .blue {
-    background: #21D4FD;
-  }
+    &.blue {
+      background: #21D4FD;
+    }
 
-  .orange {
-    background: #F39237;
-  }
+    &.orange {
+      background: #F39237;
+    }
 
-  .pink {
-    background: #ff6c91;
+    &.pink {
+      background: #ff6c91;
+    }
   }
 
   .validationText {

@@ -10,6 +10,11 @@
   & > div{
     width: 100%;
     box-sizing: border-box;
+    margin: 0 0.5em 0 0;
+
+    &:last-child {
+      margin: 0;
+    }
 
     label {
       margin: 0 0 0.3em 0;
@@ -20,7 +25,15 @@
     input:not([type="radio"]),
     textarea {
       width: 100%;
+      padding: 0.5em 0.3em;
       box-sizing: border-box;
+      border: 1px solid #b1b1b1;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.5em 0.3em;
+      border: 1px solid #b1b1b1;
     }
   }
 }
