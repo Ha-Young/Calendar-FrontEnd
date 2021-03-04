@@ -85,13 +85,10 @@ const WeeklyCalendar = ({ events }) => {
               );
 
               if (showSchedule) {
-                console.log(event.startTime);
-                console.log(time);
-                console.log(event.title);
                 return (
                   <div key={fullDate}>
                     <div className={styles.scheduledEvent}>
-                      {(event.startTime === time) && `${eventTitle}`}
+                      {(Number(event.startTime) === time) && `${eventTitle}`}
                     </div>
                   </div>
                 )

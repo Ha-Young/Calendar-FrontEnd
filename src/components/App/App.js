@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 import Modal from '../../containers/Modal';
 import MonthlyCalendar from '../Main/MonthlyCalendar';
 import WeeklyCalendar from '../../containers/WeeklyCalendar';
-import DailyCalendar from '../Main/DailyCalendar';
+import DailyCalendar from '../../containers/DailyCalendar';
 
 function App({ onInitialLoad }) {
   useEffect(() => {

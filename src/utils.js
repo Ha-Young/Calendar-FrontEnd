@@ -19,6 +19,10 @@ export const makeWeekFullDate = (year, month, startDate, time) => {
   return `${year}-${month + 1}-${startDate - 1}-${time}`;
 }
 
+export const makeDailyFullDate = (year, month, startDate, time) => {
+  return `${year}-${month + 1}-${startDate}-${time}`;
+}
+
 export const isEventScheduled = (time, startTime, endTime, eventDay, currentDate) => {
   if ((time >= startTime && time < endTime) &&
     eventDay === currentDate) {

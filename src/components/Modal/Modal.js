@@ -54,6 +54,9 @@ const Modal = ({ addsubmitdata }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (title.length === 0 || description.length === 0) return;
+
+
     addsubmitdata({
       keyId,
       title,

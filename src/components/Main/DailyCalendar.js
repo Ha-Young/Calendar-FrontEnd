@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styles from './DailyCalendar.module.css';
 import { Link } from 'react-router-dom';
+import { makeDailyFullDate, isEventScheduled } from '../../utils';
 
-const DailyCalendar = () => {
+const DailyCalendar = ({ events }) => {
   const [todayDate, setTodayDate] = useState(new Date());
-
+  console.log(events);
   const date = todayDate.getDate();
   const year = todayDate.getFullYear();
   const month = todayDate.getMonth();
@@ -53,8 +54,30 @@ const DailyCalendar = () => {
         </div>
       </div>
       <div className={styles.eventWrapper}>
-        {eventCells.map((item, index) => {
-          const keyId = todayDate.getDate() + index;
+        {eventCells.map((item, time) => {
+          const keyId = makeDailyFullDate(year, month, date, time);
+
+          for (const event of events) {
+            const eventDay = Number(event.keyId.split('-')[2]);
+            const eventTitle = event.title;
+            const showSchedule = isEventScheduled(
+              time,
+              event.startTime,
+              event.endTime,
+              eventDay,
+              date
+            );
+
+            if (showSchedule) {
+              return (
+                <div key={keyId}>
+                  <div className={styles.scheduledEvent}>
+                    {(Number(event.startTime) === time) && `${eventTitle}`}
+                  </div>
+                </div>
+              )
+            }
+          }
 
           return (
             <div key={keyId}>
