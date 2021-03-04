@@ -10,7 +10,7 @@ import { IoLocationSharp, IoTimeSharp, IoCalendarClearSharp, IoPencilSharp } fro
 import styles from "./EventView.module.scss";
 
 export default function EventView({ setUpdateEventMode, eventsInStore, saveEventInStore, deleteEventInStore, setSelectedDate }) {
-  const [ currentEvent, setCurrentEvent ] = useState({});
+  const [ currentEvent, setCurrentEvent ] = useState("");
   const history = useHistory();
   const params = useParams();
   const eventDate = params.event_id.slice(6, 16);
@@ -33,7 +33,7 @@ export default function EventView({ setUpdateEventMode, eventsInStore, saveEvent
         saveEventInStore(date, [eventList[i]]);
         break;
       } else {
-        setCurrentEvent(null);
+        setCurrentEvent("Not Found");
       }
     }
   };
@@ -49,9 +49,18 @@ export default function EventView({ setUpdateEventMode, eventsInStore, saveEvent
     setUpdateEventMode();
   };
 
-  if (currentEvent === null) {
-    return (<PageNotFound text="잘못된 접근입니다."/>);
-  } else if (currentEvent.date) {
+  const renderSwitchComponent = () => {
+    switch (currentEvent) {
+      case "Not Found":
+        return (<PageNotFound text="잘못된 접근입니다."/>);
+      case "":
+        return (<Loading text="Loading..." />);
+      default:
+        return renderEventView();
+    }
+  };
+
+  const renderEventView = () => {
     return (
       <div className={styles.EventView}>
         <p className={styles.title}>{currentEvent.title}</p>
@@ -78,8 +87,10 @@ export default function EventView({ setUpdateEventMode, eventsInStore, saveEvent
           <Button handleClickEvent={deleteEvent}>DELETE</Button>
         </div>
       </div>
-    );
-  } else {
-    return (<Loading text="Loading..." />);
-  }
+    )
+  };
+
+  return (
+    renderSwitchComponent()
+  );
 }
