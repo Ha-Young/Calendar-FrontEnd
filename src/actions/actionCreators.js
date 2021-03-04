@@ -4,7 +4,7 @@ import {
   deleteAtFirebase,
 } from "api/firebaseAPIs";
 import { ACTION } from "constants/actionTypes";
-import { getDateISO, getMonthAndWeek } from "utils/utilFunction";
+import { getDateISO } from "utils/utilFunction";
 
 const setInitialize = (initialEvent, userId) => {
   if (!Object.keys(initialEvent).length) {
@@ -30,20 +30,17 @@ const setInitialize = (initialEvent, userId) => {
   };
 };
 
-const showDaily = (events, date) => {
+const showDaily = (events) => {
   return {
     type: ACTION.SHOW_DAILY,
     dailyEvent: events,
-    currentDate: date,
-    currentMonthAndWeek: getMonthAndWeek(date),
   };
 };
 
-const showWeekly = (events, monthAndWeek) => {
+const showWeekly = (events) => {
   return {
     type: ACTION.SHOW_WEEKLY,
     weeklyEvent: events,
-    currentMonthAndWeek: monthAndWeek,
   };
 };
 

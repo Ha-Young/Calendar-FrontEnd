@@ -16,9 +16,9 @@ const Weekly = ({ weeklyEvent, showWeekly }) => {
 
   useEffect(() => {
     fetchWeeklyEvent((events) => {
-      showWeekly(events, monthAndWeek);
+      showWeekly(events);
     }, getDateISO(weekCount));
-  }, [showWeekly, monthAndWeek, weekCount]);
+  }, [showWeekly, weekCount]);
 
   const setNewWeek = (direction) => {
     let currentWeekCount = weekCount;
@@ -53,8 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showWeekly: (events, monthAndWeek) =>
-      dispatch(actionCreators.showWeekly(events, monthAndWeek)),
+    showWeekly: (events) => dispatch(actionCreators.showWeekly(events)),
   };
 };
 

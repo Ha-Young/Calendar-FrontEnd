@@ -1,11 +1,8 @@
 import { ACTION } from "constants/actionTypes";
-import { getDateISO, getMonthAndWeek } from "utils/utilFunction";
 
 const initialState = {
   userId: "",
   userProfile: {},
-  currentDateISO: getDateISO(0),
-  currentMonthAndWeek: getMonthAndWeek(getDateISO(0)),
   weeklyEvent: {},
   dailyEvent: {},
 };
@@ -24,15 +21,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         dailyEvent: action.dailyEvent,
-        currentDate: action.date,
-        currentMonthAndWeek: action.currentMonthAndWeek,
       };
 
     case ACTION.SHOW_WEEKLY:
       return {
         ...state,
         weeklyEvent: action.weeklyEvent,
-        currentMonthAndWeek: { ...action.currentMonthAndWeek },
       };
 
     case ACTION.ADD_EVENT:

@@ -13,7 +13,7 @@ const Daily = ({ dailyEvent, showDaily }) => {
 
   useEffect(() => {
     fetchDailyEvent((events) => {
-      showDaily(events, getDateISO(dateCount));
+      showDaily(events);
     }, getDateISO(dateCount));
   }, [showDaily, dateCount]);
 
@@ -55,8 +55,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showDaily: (events, date) =>
-      dispatch(actionCreators.showDaily(events, date)),
+    showDaily: (events) => dispatch(actionCreators.showDaily(events)),
   };
 };
 
