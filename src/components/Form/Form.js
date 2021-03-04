@@ -9,8 +9,19 @@ function Form ({ submitData }) {
   const [startHour, setStartHour] = useState("");
   const [endHour, setEndHour] = useState("");
 
+  function isValid() {
+
+    
+
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
+    if (!isValid(startHour, endHour)) {
+      alert("시간이 겹칩니다,,");
+      return;
+    }
+
     submitData(date, {title, description, date, startHour, endHour});
     saveNewRecord(date, {title, description, date, startHour, endHour});
   }

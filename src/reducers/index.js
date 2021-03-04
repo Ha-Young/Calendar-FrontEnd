@@ -14,6 +14,7 @@ let initialState = {
   currentPageDate: getToday(),
   eventList: {},
   eventKeyList: [],
+  selectedEventKey: "",
 };
 
 export default function reducer(state = initialState, action) {

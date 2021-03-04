@@ -1,12 +1,13 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import { hour} from "../../constants/DateConstants";
-import "./style.css";
 import { getFormat, parseDate } from "../../api/date";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import { saveNewRecord } from "../../api";
+import Modal from "../Modal/Modal";
+import "./style.css";
 
 
 export default function Daily({ eventList, eventKeyList, currentPageDate, handleClickLeft, handleClickRight }) {
+  const [IsModalShown, setIsModalShown] = useState(false);
   const currentDate = getFormat(currentPageDate);
   const parsedCurrentDate = parseDate(currentDate);
   const currentEventList = eventKeyList.includes(currentDate) ? eventList[currentDate] : [];
@@ -14,6 +15,9 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
 
   return (
     <Fragment>
+      {IsModalShown && 
+        <Modal time=""/>
+      }
       <div className="header">
           <AiOutlineArrowLeft className="previous" onClick={() => {handleClickLeft(-1)}}/>
           <span>{parsedCurrentDate.year}년</span>
@@ -28,6 +32,8 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
           hour.map((time) => {
           let isColor = "";
           let title = "";
+
+          
 
           for (let i = 0; i < currentEventList.length; i++) {
             const event = currentEventList[i];
@@ -45,7 +51,7 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
           }
 
           return (
-            <div key={time} className={["time-div", isColor].join(" ")}>
+            <div key={time} className={["time-div", isColor].join(" ")} onClick={isColor ?() => {setIsModalShown(true)} : ""}>
               <div className="event-hour">{time}시</div>
               <div className="event-title">{title}</div>
             </div>
