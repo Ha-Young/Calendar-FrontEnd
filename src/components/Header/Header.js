@@ -40,13 +40,31 @@ export default function Header(props) {
       <h1>{year}년 {month}월 {week}주차</h1>
       <nav>
         <ul>
-          <li><Link to='/calendar' onClick={() => setIsDaily(true)}>일간</Link></li>
-          <li><Link to="/weekly" onClick={() => setIsDaily(false)}>주간</Link></li>
-          <li><Link to='/events/new'>새로운 이벤트</Link></li>
           <li>
-            <button onClick={() => dispatch(beforeDateBundle)}>이전</button>
+            <Link to='/calendar' onClick={() => setIsDaily(true)}>
+              일간
+            </Link>
           </li>
-          <li><button onClick={() => dispatch(afterDateBundle)}>다음</button></li>
+          <li>
+            <Link to="/calendar/weekly" onClick={() => setIsDaily(false)}>
+              주간
+            </Link>
+          </li>
+          <li>
+            <Link to='/events/new'>
+              새로운 이벤트
+            </Link>
+          </li>
+          <li>
+            <button onClick={() => dispatch(beforeDateBundle)}>
+              이전
+            </button>
+          </li>
+          <li>
+            <button onClick={() => dispatch(afterDateBundle)}>
+              다음
+            </button>
+          </li>
         </ul>
       </nav>
     </header>

@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
   const copyUserEvent = {...state.userEvent.byId};
   const dailyEvents = getDailyEvents(currentDate, copyUserEvent);
   const weeklyEvents = getWeeklyEvents(currentDate, copyUserEvent);
-  return {eventFormInfo, currentDate, dailyEvents, weeklyEvents};
+  return {eventFormInfo, currentDate, dailyEvents, weeklyEvents, copyUserEvent};
 };
 
 const mapDispatchToProps = (dispatch) => {

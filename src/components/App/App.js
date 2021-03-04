@@ -22,11 +22,15 @@ function App(props) {
         <Route path="/calendar" exact>
           <Daily role={"daily"} eventDate={props.currentDate} userEvents={props.dailyEvents} />
         </Route>
-        <Route path="/weekly">
-          <Weekly eventDate={props.currentDate} userEvents={props.weeklyEvents}/>
+        <Route exact path="/calendar/weekly">
+          <Weekly eventDate={props.currentDate} userEvents={props.weeklyEvents} />
         </Route>
         <Route path="/events/new">
-          <EventForm inputData={props.eventFormInfo} setEventForm={props.actToEventForm} setUserEvent={props.actToUserEvent}/>
+          <EventForm
+            inputData={props.eventFormInfo}
+            setEventForm={props.actToEventForm}
+            setUserEvent={props.actToUserEvent}
+            userEventAll={props.copyUserEvent}/>
         </Route>
         <Route path="/events/:eventId">
           <EventDetails inputData={props.eventFormInfo} />

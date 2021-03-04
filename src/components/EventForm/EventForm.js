@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { MAX_MIN_DATE } from "../../constants";
 import registerEvent from "../../utils/registerEvent";
+import checkValidEvent from "../../utils/checkValidEvent";
 
-function EventForm({inputData, setEventForm, setUserEvent}) {
+
+function EventForm({inputData, setEventForm, setUserEvent, userEventAll}) {
+  const [isValidEvent, setIsValidEvent] = useState(true);
+
   const {
     setTitle,
     setContent,
@@ -94,7 +98,13 @@ function EventForm({inputData, setEventForm, setUserEvent}) {
         <textarea name="eventContent" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
       </label>
       </fieldset>
-      <button onClick={() => registerEvent(inputData, {title, content}, setEvent)}>등록</button>
+      {isValidEvent ? null : <div>중복된 이벤트입니다.</div>}
+      <button onClick={() => {
+        checkValidEvent(userEventAll, inputData, setIsValidEvent)
+          && registerEvent(inputData, {title, content}, setEvent)
+      }}>
+        등록
+      </button>
       <button>취소</button>
     </>
   )
