@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import Carousel from "../../containers/Carousel";
 import { hour} from "../../constants/DateConstants";
-import { getFormat, getToday, parseDate } from "../../api/date";
+import { getFormat } from "../../api/date";
 import { getRecord } from "../../api";
 import "./style.css";
 
@@ -37,10 +37,10 @@ export default function Daily({ currentPageDate, events, saveDataToReduxState })
           let title = "";
 
           for(let i = 0; i < events.length; i++) {
-            const start = events[i].startHour;
-            const end = parseInt(start) + parseInt(events[i].duration);
+            const start = parseInt(events[i].startHour);
+            const end = start + parseInt(events[i].duration);
 
-            if (time == start) {
+            if (time === start) {
               until = end;
               title = events[i].title;
             } 

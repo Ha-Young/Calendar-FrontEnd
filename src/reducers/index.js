@@ -1,5 +1,4 @@
-import { saveNewRecord, getRecord } from "../api";
-import { getToday, addDate, getFormat } from "../api/date";
+import { getToday, addDate } from "../api/date";
 /*
 
   Reducers
@@ -18,6 +17,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   const newState = { ...state };
+  console.log(action.type);
 
   switch (action.type) {
     case "CLICK_LEFT":
@@ -26,9 +26,17 @@ export default function reducer(state = initialState, action) {
     case "CLICK_RIGHT":
       newState.currentPageDate = addDate(state.currentPageDate, {days: 1});
       break;
+    case "CLICK_LEFT_WEEK":
+      newState.currentPageDate =addDate(state.currentPageDate, {days: -7});
+      break;
+    case "CLICK_RIGHT_WEEK":
+      newState.currentPageDate =addDate(state.currentPageDate, {days: 7});
+      break;
     case "SAVE_DATA_TO_REDUX_STATE":
       newState.eventlist = action.eventlist;
+      break;
     default:
+      break;
   }
 
   return newState;

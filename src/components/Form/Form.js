@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { saveNewRecord } from "../../api";
 import "./style.css";
 
-function Form ({ onEventSubmit }) {
+function Form () {
   const [content, setContent] = useState({title: "", description: "", startDate: "", startHour: "", endHour: ""});
 
   function handleChange(event) {
