@@ -9,7 +9,8 @@ const eventListMock = {
     title: "커피는 더 맛있다.",
     description: "차가운 커피도 맛있다. 따듯한 커피도 맛있다. 에헤헤헤",
     startDate: new Date('March 03, 2021 09:00:00'),
-    endDate: new Date('March 03, 2021 21:00:00'),
+    endDate: new Date('March 03, 2021 18:00:00'),
+    length: 12,
     id: "2021-03-03-09-18",
   },
 
@@ -18,6 +19,7 @@ const eventListMock = {
     description: "따듯한 물 맛있다 에헤헤헤",
     startDate: new Date('March 02, 2021 15:00:00'),
     endDate: new Date('March 02, 2021 18:00:00'),
+    length: 3,
     id: "2021-03-02-15-18",
   }
 }
@@ -65,7 +67,7 @@ const dateIndex = (state = dateIndexMock, action) => {
       const { year, month, day } = getDateInfoFromId(id);
 
       const prevIds = state?.[year]?.[month]?.[day];
-      const newIds = prevIds ? [...prevIds, id] : [id];
+      const newIds = prevIds ? [...new Set([...prevIds, id])] : [id];
 
       return produce(state, (draftState) => {
         makeDateIndex(newIds, draftState, year, month, day);
@@ -77,14 +79,17 @@ const dateIndex = (state = dateIndexMock, action) => {
       const { 
         year: prevYear, 
         month: prevMonth, 
-        day: prevDay 
+        day: prevDay,
       } = getDateInfoFromId(prevId);
       
-      const idsBeforeFilter = state[prevYear][prevMonth][prevDay];
-      const idsAfterFilter = idsBeforeFilter.filter((id) => id !== prevId);
+      const idsNotFiltered = state[prevYear][prevMonth][prevDay];
+      let idsFiltered = idsNotFiltered.filter((id) => id !== prevId);
+      if (!idsFiltered.length) {
+        idsFiltered = null;
+      }
 
-      const newState = produce(state, (draftState) => {
-        makeDateIndex(idsAfterFilter, draftState, prevYear, prevMonth, prevDay);
+      const newStateFiltered = produce(state, (draftState) => {
+        makeDateIndex(idsFiltered, draftState, prevYear, prevMonth, prevDay);
       });
 
       const newId = action.newEvent.id;
@@ -94,10 +99,12 @@ const dateIndex = (state = dateIndexMock, action) => {
         day: newDay,
       } = getDateInfoFromId(newId);
 
-      const prevIds = state?.[newYear]?.[newMonth]?.[newDay];
-      const newIds = prevIds ? [...prevIds, newId] : [newId];
+      const prevIds = newStateFiltered?.[newYear]?.[newMonth]?.[newDay];
+      const newIds = prevIds ? [...new Set([...prevIds, newId])] : [newId];
 
-      makeDateIndex(newIds, newState, newYear, newMonth, newDay);
+      const newState = produce(newStateFiltered, (draftState) => {
+        makeDateIndex(newIds, draftState, newYear, newMonth, newDay);
+      });
 
       return newState;
     }
@@ -107,7 +114,10 @@ const dateIndex = (state = dateIndexMock, action) => {
       const { year, month, day } = getDateInfoFromId(id);
 
       const prevIds = state[year][month][day];
-      const newIds = prevIds.filter((id) => id !== id);
+      let newIds = prevIds.filter((id) => id !== id);
+      if (!newIds.length) {
+        newIds = null;
+      }
 
       return produce(state, (draftState) => {
         makeDateIndex(newIds, draftState, year, month, day);

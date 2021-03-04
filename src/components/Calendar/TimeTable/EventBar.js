@@ -1,0 +1,51 @@
+import React from "react";
+import styles from "./EventBar.module.css";
+import { Link } from "react-router-dom";
+import { format } from "date-fns";
+
+
+export default function EventBar({ isWide, event, colorNum }) {
+  const title = !isWide && event.title.length > 6 
+    ? event.title.slice(0,6) + "..." 
+    : event.title;
+  
+  const COLOR_SET_LENGTH = 4
+  const circularColorNum = colorNum % COLOR_SET_LENGTH;
+  const classList = [styles.EventBar, styles[`Color${circularColorNum}`]];
+  if (isWide) {
+    classList.push(styles.IsWide);
+  }
+
+  const className = classList.join(" ");
+
+  const linkTo = {
+    pathname:`/events/${event.id}`,
+    state: { 
+      selectedEvent: {
+        ...event,
+        date: format(event.startDate, "yyyy-MM-dd"),
+        start: format(event.startDate, "HH:mm"),
+        end: format(event.endDate, "HH:mm"),
+      },
+      isReadMode: true,
+      isUpdate: true,
+    },
+  }
+
+  return (
+    <Link
+      to={linkTo}
+    >
+      <div 
+        className={className}
+        style={{
+          height: `${50 * (event.length)}px`,
+        }}
+      >
+        <span className={styles.Title}>
+          {title}
+        </span>
+      </div>
+    </Link>
+  );
+}

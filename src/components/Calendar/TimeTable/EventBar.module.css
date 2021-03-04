@@ -1,0 +1,35 @@
+.EventBar {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100px;
+  color: white;
+  z-index: 1;
+}
+
+.Color0 {
+  background-color: #68bee1;
+}
+.Color1 {
+  background-color: #f4a149;
+}
+.Color2 {
+  background-color: #f28183;
+}
+.Color3 {
+  background-color: #9cd67f;
+}
+
+.IsWide {
+  width: 100%;
+}
+
+/*
+68bee1 하늘색
+f4a149 주황색
+f28183 분홍색
+9cd67f 연두색
+*/

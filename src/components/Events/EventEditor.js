@@ -2,25 +2,27 @@ import React, { useEffect, useRef, useState, } from "react";
 import styles from "./EventEditor.module.css";
 import InputBox from "./InputBox";
 import parseDateString from "date-fns/parse";
+import { format } from "date-fns";
 import testEventValidation from "../../util/testEventValidation";
-
-/*
-  이벤트 제목
-  이벤트 설명
-  이벤트 시작 날짜 및 시간
-  이벤트 종료 날짜 및 시간
-*/
+import { Link, useLocation, useHistory } from "react-router-dom";
 
 export default function EventEditor(props) {
   const { 
-    selectedEvent,
     allEvents,
-    isUpdate = false,
     createEvent,
     updateEvent,
+    deleteEvent,
   } = props;
 
-  console.log(allEvents);
+  const history = useHistory();
+  const location = useLocation();
+  const selectedEvent = location?.state?.selectedEvent;
+  const isUpdate = location?.state?.isUpdate;
+  const isReadMode = location?.state?.isReadMode;
+
+  const inputTextClassName = isReadMode ? `${styles.InputText} ${styles.ReadModeInput}` : styles.InputText;
+  const inputDateClassName = isReadMode ? `${styles.InputDate} ${styles.ReadModeInput}` : styles.InputDate;
+  const inputTimeClassName = isReadMode ? `${styles.InputTime} ${styles.ReadModeInput}` : styles.InputTime;
 
   const [message, setMessage] = useState("");
 
@@ -30,15 +32,35 @@ export default function EventEditor(props) {
   const $inputStartTime = useRef();
   const $inputEndTime = useRef();
 
+  const linkToEdit = isReadMode ? {
+    pathname:`/events/${selectedEvent.id}`,
+    state: { 
+      selectedEvent: {
+        ...selectedEvent,
+        date: format(selectedEvent.startDate, "yyyy-MM-dd"),
+        start: format(selectedEvent.startDate, "HH:mm"),
+        end: format(selectedEvent.endDate, "HH:mm"),
+      },
+      isReadMode: false,
+      isUpdate: true,
+    }
+  } : null;
+
   useEffect(() => {
     if (selectedEvent) {
-      $inputTitle.current.value = selectedEvent.title;
-      $inputDescription.current.value = selectedEvent.description;
-      $inputDate.current.value = selectedEvent.date;
-      $inputStartTime.current.value = selectedEvent.start;
-      $inputEndTime.current.value = selectedEvent.end;
+      $inputTitle.current.value = selectedEvent.title ?? "";
+      $inputDescription.current.value = selectedEvent.description ?? "";
+      $inputDate.current.value = selectedEvent.date ?? "";
+      $inputStartTime.current.value = selectedEvent.start ?? "";
+      $inputEndTime.current.value = selectedEvent.end ?? "";
+    } else {
+      $inputTitle.current.value = "";
+      $inputDescription.current.value = "";
+      $inputDate.current.value = "";
+      $inputStartTime.current.value = "";
+      $inputEndTime.current.value = "";
     }
-  }, []);
+  }, [selectedEvent]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +71,7 @@ export default function EventEditor(props) {
     const startHour = e.currentTarget.start.value.slice(0, 2);
     const endHour = e.currentTarget.end.value.slice(0, 2);
     const id = `${date}-${startHour}-${endHour}`;
+    const length = Number(endHour) - Number(startHour);
 
     const eventData = {
       title,
@@ -61,9 +84,9 @@ export default function EventEditor(props) {
     const startDate = parseDateString(`${date} ${startHour}`,"yyyy-MM-dd HH", new Date());
     const endDate = parseDateString(`${date} ${endHour}`,"yyyy-MM-dd HH", new Date());
 
-    // if (!testEventValidation(e, eventData, allEvents, setMessage)) {
-    //   return;
-    // }
+    if (!testEventValidation(e, eventData, allEvents, setMessage)) {
+      return;
+    }
 
     const newEvent = {
       title,
@@ -71,6 +94,7 @@ export default function EventEditor(props) {
       startDate,
       endDate,
       id,
+      length,
     }
 
     if (isUpdate) {
@@ -78,6 +102,8 @@ export default function EventEditor(props) {
     } else {
       createEvent(newEvent);
     }
+
+    history.push("/calendar/week")
   }
   
   const handleDateChange = (e) => {
@@ -88,6 +114,11 @@ export default function EventEditor(props) {
     if (minute !== "00") {
       e.currentTarget.value = `${hour}:00`;
     }
+  }
+
+  const handleDeleteButtonClick = (e) => {
+    deleteEvent(selectedEvent);
+    history.push("/calendar/week")
   }
 
   return (
@@ -101,10 +132,11 @@ export default function EventEditor(props) {
           labelContent="Title"
         >
           <input 
-            className={styles.InputText} 
+            className={inputTextClassName} 
             type="text" 
             name="title" 
             ref={$inputTitle}
+            readOnly={!!isReadMode}
           />
         </InputBox>
         <InputBox 
@@ -112,11 +144,12 @@ export default function EventEditor(props) {
           labelContent="Description"
         >
           <textarea 
-            className={styles.InputText} 
+            className={inputTextClassName} 
             name="description" 
             cols="30" 
             rows="10"
             ref={$inputDescription}
+            readOnly={!!isReadMode}
           />
         </InputBox>
         <InputBox 
@@ -124,10 +157,11 @@ export default function EventEditor(props) {
           labelContent="Date"
         >
           <input 
-            className={styles.InputDate} 
+            className={inputDateClassName} 
             type="date" 
             name="date"
             ref={$inputDate}
+            readOnly={!!isReadMode}
           />
         </InputBox>
         <div className={styles.InputStartEndTimeBox}>
@@ -136,11 +170,12 @@ export default function EventEditor(props) {
             labelContent="Start"
           >
             <input 
-              className={styles.InputTime} 
+              className={inputTimeClassName} 
               type="time" 
               name="start"
               onChange={handleDateChange}
               ref={$inputStartTime}
+              readOnly={!!isReadMode}
             />
           </InputBox>
           <InputBox 
@@ -148,18 +183,43 @@ export default function EventEditor(props) {
             labelContent="End"
           >
             <input 
-              className={styles.InputTime} 
+              className={inputTimeClassName} 
               type="time" 
               name="end"
               onChange={handleDateChange}
               ref={$inputEndTime}
+              readOnly={!!isReadMode}
             />
           </InputBox>
         </div>
+        <hr />
         <div className={styles.MessageBox}>
           {message}
         </div>
-        <button className={styles.SubmitButton} type="submit">Save Event</button>
+
+        {isReadMode 
+          ? <div className={styles.ButtonBox}>
+              <Link to={linkToEdit}>
+                <button 
+                  className={styles.Button} 
+                  type="button"
+                >
+                  Edit Event
+                </button>
+              </Link>
+              <button 
+                className={styles.Button} 
+                type="button"
+                onClick={handleDeleteButtonClick}
+              >
+                Delete Event
+              </button>
+            </div>
+          : <div className={styles.ButtonBox}>
+              <button className={styles.Button} type="submit">
+                {isUpdate ? "Update Event" : "Create Event"}
+              </button>
+            </div>}
       </form>
     </div>
   );

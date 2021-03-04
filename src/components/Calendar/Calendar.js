@@ -8,10 +8,22 @@ import MoveButtons from "./Control/MoveButtons";
 import Dropdown from "./Control/Dropdown";
 import TimeTableBox from "./TimeTable/TimeTableBox";
 
-export default function Calender({ currentWeek, currentDay, setCurrentWeek, setCurrentDay, event }) {
+export default function Calender(props) {
+  const { 
+    currentWeek, 
+    currentDay, 
+    setCurrentWeek, 
+    setCurrentDay, 
+    setIsWeekMode, 
+    isWeekMode, 
+  } = props;
+
   const history = useHistory();
   const param = useParams();
-  const [isWeekMode, setIsWeekMode] = useState(param.dateUnit === "week");
+
+  useEffect(() => {
+    setIsWeekMode(param.dateUnit === "week");
+  }, []);
 
   useEffect(() => {
     const dateUnit = isWeekMode ? "week" : "day";

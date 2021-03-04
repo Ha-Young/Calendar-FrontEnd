@@ -22,13 +22,32 @@
 .InputText {
   width: 100%;
   resize: none;
+  padding: 10px;
   font-size: 1.3rem;
+  border: none;
+  border-bottom: solid 3px dodgerblue;
+  border-radius: 5px;
+  background-color: #f5f5f5;
 }
 
 .InputDate {
-  text-align: center;
   width: 100%;
+  padding: 10px;
   font-size: 1.5rem;
+  border: none;
+  border-bottom: solid 3px dodgerblue;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.InputTime {
+  width: 200px;
+  padding: 10px;
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: solid 3px dodgerblue;
+  border-radius: 5px;
+  background-color: #f5f5f5;
 }
 
 .InputStartEndTimeBox {
@@ -42,15 +61,14 @@
   margin-right: 10px;
 }
 
-.InputTime {
-  width: 200px;
-  font-size: 1.5rem;
-  text-align: center;
+.ButtonBox {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.SubmitButton {
+.Button {
+  width: 150px;
   padding: 8px;
-  margin-top: 10px;
   font-size: 1rem;
 }
 
@@ -59,4 +77,13 @@
   margin-top: 20px;
   color: red;
   text-align: start;
+}
+
+.ReadModeInput {
+  border-bottom: solid 3px crimson;
+  outline: none;
+}
+
+hr {
+  width: 100%;
 }

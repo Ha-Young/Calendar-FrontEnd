@@ -1,16 +1,17 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { saveSampleData } from "../api";
+import { loadUserData } from "../api";
 import { createEvent, updateEvent, deleteEvent } from "../actions/index";
 
 const mapStateToProps = (state) => ({
   allEvents: state.events,
+  userId: "MintChocoTheMax"
 });
 
 const mapDispatchToProps = (dispatch) => ({
   // This function is passed to App component.
-  onInitialLoad: () => {
-    saveSampleData();
+  onInitialLoad: (userId) => {
+    loadUserData(userId);
   },
 
   createEvent: (event) => {

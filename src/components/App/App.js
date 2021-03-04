@@ -8,9 +8,9 @@ import Header from "../Header/Header";
 import Calendar from "../../containers/Calendar";
 import EventEditor from "../Events/EventEditor";
 
-function App({ onInitialLoad, allEvents, createEvent, updateEvent, deleteEvent }) {
+function App({ onInitialLoad, userId, allEvents, createEvent, updateEvent, deleteEvent }) {
   useEffect(() => {
-    onInitialLoad();
+    onInitialLoad(userId);
   }, []);
 
   return (
@@ -20,11 +20,12 @@ function App({ onInitialLoad, allEvents, createEvent, updateEvent, deleteEvent }
         <Route path="/calendar/:dateUnit">
           <Calendar />
         </Route>
-        <Route path="/events/new">
+        <Route path={["/events/new", "/events/:eventId"]}>
           <EventEditor
             allEvents={allEvents}
             createEvent={createEvent}
             updateEvent={updateEvent}
+            deleteEvent={deleteEvent}
           />
         </Route>
         <Redirect path="*" to="/calendar/week" />

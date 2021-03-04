@@ -1,9 +1,12 @@
+import getDataInfoFromId from "./getDateInfoFromId";
+
 export default function testEventValidation(submitEvent, eventData, allEvents, setMessage) {
   const {
     title,
     date,
     startHour,
     endHour,
+    id,
   } = eventData;
 
   
@@ -36,4 +39,15 @@ export default function testEventValidation(submitEvent, eventData, allEvents, s
     return false;
   }
 
+  // const { year, month, day } = getDataInfoFromId(id);
+
+  // const otherIds = allEvents.dateIndex?.[year]?.[month]?.[day];
+  // if (otherIds) {
+  //   for (const otherId of otherIds) {
+  //     const otherStartTime = otherId.slice(11, 13);
+  //     console.log(otherStartTime);
+  //   }
+  // }
+
+  return true;
 }

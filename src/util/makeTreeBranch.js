@@ -19,6 +19,11 @@ export default function makeTreeBranch(value, targetObj, ...keys) {
   keys.shift();
 
   if (!keys.length) {
+    if (value === null) {
+      delete targetObj[currentKey];
+      return;
+    }
+
     targetObj[currentKey] = value;
     return;
   }
