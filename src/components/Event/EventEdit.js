@@ -117,7 +117,7 @@ export default function EventEdit({ eventMode }) {
       <Container className={styles.Description}>
         <div>
           <label>Description</label>
-          <Textarea name="description" handleChange={handleChange} value={currentEvent.description}/>
+          <Textarea name="description" rows="4" handleChange={handleChange} value={currentEvent.description}/>
         </div>
       </Container>
       <Container>
