@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 import Container from "../Shared/Container";
+import InputRadio from "../Shared/InputRadio";
 import InputDate from "../Shared/InputDate";
 import InputText from "../Shared/InputText";
 import InputTime from "../Shared/InputTime";
@@ -24,6 +25,7 @@ export default function EventEdit({ eventMode }) {
     startTime: "",
     endTime: "",
     location: "",
+    eventColor: "#B721FF",
     description: "",
   });
 
@@ -43,6 +45,7 @@ export default function EventEdit({ eventMode }) {
         startTime: "",
         endTime: "",
         location: "",
+        eventColor: "#B721FF",
         description: "",
       });
     }
@@ -54,6 +57,7 @@ export default function EventEdit({ eventMode }) {
       ...currentEvent,
       [name]: value,
     });
+    console.log(currentEvent);
   };
 
   const saveEvent = async () => {
@@ -113,6 +117,19 @@ export default function EventEdit({ eventMode }) {
         <div>
           <label>Description</label>
           <Textarea name="description" handleChange={handleChange} value={currentEvent.description}/>
+        </div>
+      </Container>
+      <Container>
+        <div>
+          <label>Color</label>
+          <InputRadio name="eventColor" handleChange={handleChange} value="#B721FF" />
+          <span className={`${styles.eventColor} ${styles.purple}`}></span>
+          <InputRadio name="eventColor" handleChange={handleChange} value="#21D4FD" />
+          <span className={`${styles.eventColor} ${styles.blue}`}></span>
+          <InputRadio name="eventColor" handleChange={handleChange} value="#F39237" />
+          <span className={`${styles.eventColor} ${styles.orange}`}></span>
+          <InputRadio name="eventColor" handleChange={handleChange} value="#ff6c91" />
+          <span className={`${styles.eventColor} ${styles.pink}`}></span>
         </div>
       </Container>
       <p className={styles.validationText}>{validationText}</p>

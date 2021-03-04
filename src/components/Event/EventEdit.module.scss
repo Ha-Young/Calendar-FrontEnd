@@ -6,7 +6,7 @@
     vertical-align: text-bottom;
   }
   .header {
-    margin: 1em;
+    margin: 1em 1em 0.5em 1em;
 
     .eventMode {
       margin: 0 0 0.5em 0;
@@ -16,6 +16,7 @@
       border-bottom: 1px solid #313131;
     }
     .validationGuide {
+      margin: 0;
       text-align: right;
       font-size: 0.8em;
     }
@@ -32,6 +33,30 @@
       border: 1px solid transparent;
       border-bottom: 1px solid black;
     }
+  }
+
+  .eventColor {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 5px;
+    vertical-align: text-top;
+  }
+
+  .purple {
+    background: #B721FF;
+  }
+
+  .blue {
+    background: #21D4FD;
+  }
+
+  .orange {
+    background: #F39237;
+  }
+
+  .pink {
+    background: #ff6c91;
   }
 
   .validationText {

@@ -9,7 +9,7 @@ const EventBox = styled.span`
   height: ${props => (props.endTime - props.startTime) * 70}px;
   position: absolute;
   top: ${props => props.startTime * 70}px;
-  background: #B721FF;
+  background: ${props => props.eventColor};
   color: #ffffff;
   overflow: hidden;
 `
@@ -49,7 +49,11 @@ export default function ScheduleEvent({ event }) {
       pathname: `/event/event-${event.date}-${event.startTime}-${event.endTime}`,
       state: { event }
     }}>
-      <EventBox startTime={parseInt(event.startTime)} endTime={parseInt(event.endTime)}>
+      <EventBox
+        startTime={parseInt(event.startTime)}
+        endTime={parseInt(event.endTime)}
+        eventColor={event.eventColor}
+      >
         <EventInfo>
           <li className="title">{event.title}</li>
           {event.location !== "" && (

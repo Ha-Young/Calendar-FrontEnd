@@ -1,5 +1,5 @@
 .FormContainer {
-  margin: 1em;
+  margin: 0.7em 1em;
   display: flex;
   justify-content: space-between;
 
@@ -17,7 +17,7 @@
       font-weight: bold;
     }
 
-    input,
+    input:not([type="radio"]),
     textarea {
       width: 100%;
       box-sizing: border-box;
