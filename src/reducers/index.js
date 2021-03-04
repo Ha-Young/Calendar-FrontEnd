@@ -9,27 +9,34 @@
 
  */
 
-import { DAY, NEXT_DATE, PREV_DATE, WEEK } from "../constants/actionTypes";
+import { DAY, NEXT_DATE, PREV_DATE, WEEK, SELECT_TIME, SELECT_DATE } from "../constants/actionTypes";
 import { getCurrentWeek, getLastWeek, getNextWeek, getTomorrow, getYesterday } from "../utils/getDate";
 
 const initialState = {
-  today: new Date(),
-  currentDay: new Date(),
-  currentWeek: getCurrentWeek(new Date()),
   period: DAY,
+  today: new Date().toLocaleDateString(),
+  currentDay: new Date().toLocaleDateString(),
+  currentWeek: getCurrentWeek(new Date()),
+  events: {},
 };
 
 export default function reducer(state = initialState, action) {
   const copy = { ...state };
 
   switch (action.type) {
+    case DAY:
+      copy.period = DAY;
+      return copy;
+    case WEEK:
+      copy.period = action.unit;
+      return copy;
+
     case PREV_DATE:
       if (copy.period === DAY) {
         copy.currentDay = getYesterday(copy.currentDay);
       } else {
         copy.currentDay = getLastWeek(copy.currentDay);
       }
-
       return copy;
     case NEXT_DATE:
       if (copy.period === DAY) {
@@ -37,14 +44,15 @@ export default function reducer(state = initialState, action) {
       } else {
         copy.currentDay = getNextWeek(copy.currentDay);
       }
+      return copy;
 
+    case SELECT_DATE:
+      copy.currentDay = new Date(action.date).toLocaleDateString();
       return copy;
-    case DAY:
-      copy.period = DAY;
+    case SELECT_TIME:
+      copy.selectedTime = action.time;
       return copy;
-    case WEEK:
-      copy.period = action.unit;
-      return copy;
+
     default:
       return state;
   }

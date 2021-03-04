@@ -35,7 +35,7 @@ function DayCalendar({
 
 function mapStateToProps({ currentDay }) {
   return {
-    date: currentDay.toLocaleDateString(),
+    date: currentDay,
     day: getCurrentDay(currentDay),
   };
 }

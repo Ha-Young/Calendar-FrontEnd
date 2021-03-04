@@ -1,0 +1,32 @@
+.selectorTable select {
+  display: block;
+  height: 40px;
+  margin: 20px;
+  padding: 10px 40px;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced6e0;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.selectorTable > select:hover,
+.selectorTable > select:focus {
+  border: 1px solid black;
+}
+
+.selectorTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectorTable > select {
+  margin: 20px 10px;
+  width: 182px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}

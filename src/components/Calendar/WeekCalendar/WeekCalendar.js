@@ -32,7 +32,7 @@ function WeekCalendar({ week, onLoad }) {
             <ScheduleContainer
               className={styles.ScheduleContainer}
               key={item}
-              dateId={week[index].id.toLocaleDateString()}
+              dateId={week[index].id}
             />
           ))}
         </div>

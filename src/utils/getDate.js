@@ -12,7 +12,7 @@ export function getCurrentDay(date) {
   return {
     string: WEEK[currentDate.getDay()],
     number: currentDate.getDate(),
-    id: currentDate,
+    id: currentDate.toLocaleDateString(),
   };
 }
 
@@ -34,7 +34,7 @@ export function getYesterday(date) {
 
   today.setDate(today.getDate() - 1);
 
-  return today;
+  return today.toLocaleDateString();
 }
 
 export function getTomorrow(date) {
@@ -42,7 +42,7 @@ export function getTomorrow(date) {
 
   today.setDate(today.getDate() + 1);
 
-  return today;
+  return today.toLocaleDateString();
 }
 
 export function getLastWeek(date) {
@@ -50,7 +50,7 @@ export function getLastWeek(date) {
 
   today.setDate(today.getDate() - 7);
 
-  return today;
+  return today.toLocaleDateString();
 }
 
 export function getNextWeek(date) {
@@ -58,5 +58,5 @@ export function getNextWeek(date) {
 
   today.setDate(today.getDate() + 7);
 
-  return today;
+  return today.toLocaleDateString();
 }
