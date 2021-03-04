@@ -1,6 +1,5 @@
 import React from "react";
 
-import HoursColumn from "../HoursColumn";
 import DaysInWeekRow from "../DaysInWeekRow";
 import CalendarHeader from "../CalendarHeader";
 
@@ -8,6 +7,7 @@ import styles from "./Day.module.css";
 
 export default function Day({
   now,
+  events,
   onPrevClick,
   onNextClick,
   isDayCalendarShown,
@@ -20,7 +20,11 @@ export default function Day({
         onNextClick={onNextClick}
         isDayCalendarShown={isDayCalendarShown}
       />
-      <DaysInWeekRow now={now} isDayCalendarShown={isDayCalendarShown} />
+      <DaysInWeekRow
+        now={now}
+        isDayCalendarShown={isDayCalendarShown}
+        events={events}
+      />
     </div>
   );
 }

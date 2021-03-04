@@ -1,28 +1,30 @@
 import React from "react";
 import { formatDate, getDaysInWeek } from "../../utils/utils";
 import styles from "./Calendar.module.css";
-import HourInDaysRow from "./HourInDaysRow";
+import HourInDaysRow from "./HourInDaysColumn";
 
-export default function DaysInWeekRow({ now, isDayCalendarShown }) {
+export default function DaysInWeekRow({ now, isDayCalendarShown, events }) {
   const daysInWeek = getDaysInWeek(now).map((dayObj, index) => {
     return formatDate(dayObj);
   });
-
   const today = formatDate(now);
-  console.log("today is", today);
 
   return (
     <div className={`${styles.rowWrapper}`}>
       {isDayCalendarShown ? (
-        <HourInDaysRow day={today} isDayCalendarShown={isDayCalendarShown} />
+        <HourInDaysRow
+          day={today}
+          isDayCalendarShown={isDayCalendarShown}
+          events={events}
+        />
       ) : (
         daysInWeek.map((day, index) => {
-          console.log("day is", day);
           return (
             <HourInDaysRow
               day={day}
               key={index}
               isDayCalendarShown={isDayCalendarShown}
+              events={events}
             />
           );
         })

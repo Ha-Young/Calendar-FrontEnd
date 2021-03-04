@@ -33,6 +33,7 @@
 }
 
 .hoursIndayWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -42,9 +43,18 @@
 }
 
 .hourWrapper {
+  position: relative;
   width: 100%;
   height: 100%;
   border-bottom: black 1px solid;
+}
+
+.eventWrapper {
+  position: absolute;
+  width: 100%;
+  height: 65px;
+  background-color: brown;
+  z-index: 10;
 }
 
 .hourWrapper:hover {

@@ -8,6 +8,7 @@ import styles from "./Week.module.css";
 
 export default function Week({
   now,
+  events,
   onPrevClick,
   onNextClick,
   isDayCalendarShown,
@@ -20,7 +21,11 @@ export default function Week({
         onNextClick={onNextClick}
         isDayCalendarShown={isDayCalendarShown}
       />
-      <DaysInWeekRow now={now} isDayCalendarShown={isDayCalendarShown} />
+      <DaysInWeekRow
+        now={now}
+        isDayCalendarShown={isDayCalendarShown}
+        events={events}
+      />
     </div>
   );
 }

@@ -5,4 +5,5 @@
   font-size: 60px;
   color: #1979fe;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.7));
+  z-index: 20;
 }

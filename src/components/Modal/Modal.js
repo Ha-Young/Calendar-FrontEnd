@@ -1,6 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
+import styles from "./Modal.module.css";
 import { Modal, Form, Input, Button, DatePicker } from "antd";
+import { TwitterPicker } from "react-color";
+import styled from "styled-components";
 const { RangePicker } = DatePicker;
+const formItemLayout = {
+  labelCol: {
+    xs: {
+      span: 3,
+    },
+    sm: {
+      span: 8,
+    },
+  },
+  wrapperCol: {
+    xs: {
+      span: 3,
+    },
+    sm: {
+      span: 16,
+    },
+  },
+};
 
 export default function EventModal({
   isModalVisible,
@@ -16,13 +37,20 @@ export default function EventModal({
       onOk={handleOk}
       onCancel={handleCancel}
       width={800}
+      bodyStyle={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
+      }}
     >
       <Form
         onFinish={(e) => {
           onAddEvent(e);
-          console.log(e.RangePicker[0].format("YYYY-MM-DD HH"));
           handleOk();
         }}
+        {...formItemLayout}
       >
         <Form.Item name={"eventTitle"} label="eventTitle">
           <Input />
@@ -33,6 +61,7 @@ export default function EventModal({
         <Form.Item name={"eventDescription"} label="eventDescription">
           <Input.TextArea />
         </Form.Item>
+        <TwitterPicker />
         <Form.Item>
           <Button type="primary" htmlType="submit">
             Button

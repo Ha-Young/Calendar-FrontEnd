@@ -3,12 +3,12 @@ import {
   PREV,
   TO_DAY_CALENDAR,
   TO_WEEK_CALENDAR,
+  ADD_EVENT,
 } from "../actions/index";
 
-import { addDay, subDay, addWeek, subWeek } from "../utils/utils";
+import { addDay, subDay, addWeek, subWeek, format } from "../utils/utils";
 
 const initialState = {
-  byDays: [],
   events: [],
   currentTime: new Date(),
   isDayCalendarShown: true,
@@ -44,11 +44,11 @@ export default function reducer(state = initialState, action) {
         isDayCalendarShown: false,
       };
 
-    // case ADD_EVENT:
-    //   return {
-    //     ...state,
-    //     events: [...state.events, action.event],
-    //   };
+    case ADD_EVENT:
+      return {
+        ...state,
+        events: [...state.events, action.payload],
+      };
 
     default:
       return state;

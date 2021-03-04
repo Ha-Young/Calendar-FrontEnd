@@ -1,9 +1,8 @@
 import React from "react";
+import Event from "./Event";
 import styles from "./Calendar.module.css";
 
-export default function HourInDaysRow({ day, isDayCalendarShown }) {
-  console.log(day);
-  console.log(isDayCalendarShown);
+export default function HourInDaysColumn({ day, isDayCalendarShown, events }) {
   const hours = [
     "00",
     "01",
@@ -35,18 +34,33 @@ export default function HourInDaysRow({ day, isDayCalendarShown }) {
   return (
     <div className={`${styles.dayWrapper}`}>
       <h3 className={`${styles.dayFont}`}>{!isDayCalendarShown && day}</h3>
-      <div className={`${styles.hoursIndayWrapper}`}>
+
+      <div className={`${styles.hoursIndayWrapper}`} events={events}>
         {hours.map((hour, index) => {
           return (
             <div
               className={`${styles.hourWrapper}`}
               key={index}
-              date={`${day}`}
-              hour={`${hour}`}
+              date={day}
+              hour={hour}
               onClick={() => {
                 console.log(`${day}`, `${hour}`);
               }}
-            ></div>
+            >
+              {!!events.length &&
+                events.map((e) => {
+                  if (hour === e.StartHour && day === e.Date) {
+                    return (
+                      <Event
+                        title={e.Title}
+                        description={e.Description}
+                        height={e.EndHour - e.StartHour}
+                        key={index}
+                      />
+                    );
+                  }
+                })}
+            </div>
           );
         })}
       </div>

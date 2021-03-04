@@ -12,6 +12,7 @@ import {
   PREV,
   TO_DAY_CALENDAR,
   TO_WEEK_CALENDAR,
+  ADD_EVENT,
 } from "../actions/index";
 
 import { Route, Switch } from "react-router-dom";
@@ -25,13 +26,19 @@ const mapDispatchToProps = (dispatch) => ({
   onPrevClick: () => dispatch({ type: PREV }),
   onNextClick: () => dispatch({ type: NEXT }),
   onAddEvent: (userInputEvent) => {
-    console.log("onAddEvent is", userInputEvent);
     const { eventTitle, RangePicker, eventDescription } = userInputEvent;
-    console.log(eventTitle, RangePicker, eventDescription);
-    const eventStart = RangePicker[0].format("YYYY/MM/DD HH");
-    const eventEnd = RangePicker[1].format("YYYY/MM/DD HH");
-    const event = { eventTitle, eventDescription, eventStart, eventEnd };
+    const eventDate = RangePicker[0].format("YYYY/MM/DD");
+    const eventStartHour = RangePicker[0].format("HH");
+    const eventEndHour = RangePicker[1].format("HH");
+    const event = {
+      Title: eventTitle,
+      Description: eventDescription,
+      Date: eventDate,
+      StartHour: eventStartHour,
+      EndHour: eventEndHour,
+    };
     console.log("final event is", event);
+    dispatch({ type: ADD_EVENT, payload: event });
   },
 });
 
@@ -44,6 +51,9 @@ const MainContainer = ({
   onAddEvent,
 }) => {
   console.log(state);
+  console.log(state.currentTime);
+  console.log(state.calendar.events[0]);
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -77,6 +87,7 @@ const MainContainer = ({
           <Route path="/Day" exact>
             <Day
               now={state.calendar.currentTime}
+              events={state.calendar.events}
               isDayCalendarShown={state.calendar.isDayCalendarShown}
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
@@ -85,6 +96,7 @@ const MainContainer = ({
           <Route path="/Week">
             <Week
               now={state.calendar.currentTime}
+              events={state.calendar.events}
               isDayCalendarShown={state.calendar.isDayCalendarShown}
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
