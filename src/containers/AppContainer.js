@@ -6,9 +6,9 @@ import {
   getEventDataSuccess,
   getEventDataFail,
   getEventData,
-  setEventData,
   setEventDataSuccess,
   setEventDataFail,
+  setEventData,
 } from "../actions/index";
 import App from "../components/App/App";
 import { getEventByCurrentDate } from "../reducers/eventData";

@@ -1,9 +1,15 @@
 import { startOfWeek, endOfWeek, eachDayOfInterval, formatISO, format } from "date-fns";
 import { viewMode } from "../constants/viewMode";
+
+const DAY_LENGTH = 24;
+const INITIAL_VALUE = 0;
+const LENGTH_FLAG = 10;
+const DAY_FORMAT = "PP";
+
 export const today = new Date();
 
-export const hours = new Array(24).fill(0).map((_, index) => 
-  index < 10 ? `0${index}:00` : `${index}:00`); // 상수 지정
+export const hours = new Array(DAY_LENGTH).fill(INITIAL_VALUE).map((_, index) => 
+  index < LENGTH_FLAG ? `0${index}:00` : `${index}:00`);
 
 export const currentDay = (today) => formatISO(today).slice(0, 10);
 
@@ -40,4 +46,4 @@ export const setCalendarDate = (cb, isDailyCalendar, currentDate) => {
   };
 };
 
-export const generateTitleDate = (date) => format(date, "PP");
+export const generateTitleDate = (date) => format(date, DAY_FORMAT);

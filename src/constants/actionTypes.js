@@ -5,7 +5,6 @@
   ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/constants/ActionTypes.js
 
  */
-
 export const CHANGE_CALENDAR_TYPE = "CHANGE_CALENDAR_TYPE";
 export const CHANGE_CALENDAR_PAGE = "CHANGE_CALENDAR_PAGE";
 
