@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 
 import { ERROR_MSG_EVENT_DAY_OVER, ERROR_MSG_OVER_START_DAY } from "../../constants/errorMsg";
 import { getCurrentMoment } from "../../utils/date";
-import styles from "./EventCreate.module.css";
+import styles from "./EventCreateForm.module.css";
 import { ERROR_TYPE_EVENT_DAY_OVER, ERROR_TYPE_OVER_START_DAY, layout, makeNewEvent, viewErrMsg } from "./helper";
 
-function EventCreate({ onCreate }) {
+function EventCreateForm({ userId, onCreate }) {
   const history = useHistory();
 
   function handleSubmitClick(values) {
@@ -24,12 +24,16 @@ function EventCreate({ onCreate }) {
       return;
     }
 
-    onCreate(newEvent);
+    // 질문 userId도 같이?
+    onCreate({
+      userId,
+      event: newEvent,
+    });
 
     history.push('/calendar');
   };
 
-  function handleCancelClick(e) {
+  function handleCancelClick() {
     history.goBack();
   };
 
@@ -117,4 +121,4 @@ function EventCreate({ onCreate }) {
   );
 }
 
-export default EventCreate;
+export default EventCreateForm;
