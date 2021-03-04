@@ -18,7 +18,26 @@ export function initializeApp(callback) {
     });
 }
 
-export async function fetchDailyEvent(callback, date) {}
+export async function fetchDailyEvent(callback, date) {
+  const userId = authService.currentUser.uid;
+  const { year, monthInFirebase, weekOfMonth } = parseDate(date);
+  const dailyEvent = {};
+
+  database
+    .ref(`/events/${userId}/${year}/${monthInFirebase}/${weekOfMonth}`)
+    .on("value", (snapshot) => {
+      if (snapshot.val()) {
+        for (const [key, value] of Object.entries(snapshot.val())) {
+          if (value.date === date) {
+            dailyEvent[key] = value;
+          }
+        }
+        callback(dailyEvent);
+      } else {
+        callback({});
+      }
+    });
+}
 
 export function fetchWeeklyEvent(callback, date) {
   const userId = authService.currentUser.uid;

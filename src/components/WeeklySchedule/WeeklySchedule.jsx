@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const WeeklyScedule = ({ daysOfWeek, weeklyEvent }) => {
   const history = useHistory();
-  // console.log(daysOfWeek);
+
   return (
     <>
       <section className={styles.container}>

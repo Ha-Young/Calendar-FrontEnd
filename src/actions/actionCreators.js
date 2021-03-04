@@ -4,7 +4,7 @@ import {
   deleteAtFirebase,
 } from "api/firebaseAPIs";
 import { ACTION } from "constants/actionTypes";
-import { getDateISO, getDaysOfWeek } from "utils/utilFunction";
+import { getDateISO, getMonthAndWeek } from "utils/utilFunction";
 
 const setInitialize = (initialEvent, userId) => {
   if (!Object.keys(initialEvent).length) {
@@ -29,40 +29,21 @@ const setInitialize = (initialEvent, userId) => {
     userId,
   };
 };
-const showDaily = () => {};
 
-const showPreviousDay = (dateCount) => {
+const showDaily = (events, date) => {
   return {
-    type: ACTION.SHOW_PREVIOUS_DAY,
-    // currentDate: getDateByRef(dateCount),
+    type: ACTION.SHOW_DAILY,
+    dailyEvent: events,
+    currentDate: date,
+    currentMonthAndWeek: getMonthAndWeek(date),
   };
 };
 
-const showNextDay = (dateCount) => {
-  return {
-    type: ACTION.SHOW_NEXT_DAY,
-    // currentDate: getDateByRef(dateCount),
-  };
-};
-
-const showWeekly = (events) => {
+const showWeekly = (events, monthAndWeek) => {
   return {
     type: ACTION.SHOW_WEEKLY,
     weeklyEvent: events,
-  };
-};
-
-const showPreviousWeek = (weekCount) => {
-  return {
-    type: ACTION.SHOW_PREVIOUS_WEEK,
-    currentWeekDays: getDaysOfWeek(weekCount),
-  };
-};
-
-const showNextWeek = (weekCount) => {
-  return {
-    type: ACTION.SHOW_NEXT_WEEK,
-    currentWeekDays: getDaysOfWeek(weekCount),
+    currentMonthAndWeek: monthAndWeek,
   };
 };
 
@@ -105,11 +86,7 @@ const editProfile = () => {};
 export const actionCreators = {
   setInitialize,
   showDaily,
-  showPreviousDay,
-  showNextDay,
   showWeekly,
-  showPreviousWeek,
-  showNextWeek,
   addEvent,
   deleteEvent,
   editEvent,
