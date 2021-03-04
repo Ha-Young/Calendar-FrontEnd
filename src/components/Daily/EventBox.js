@@ -18,12 +18,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const TimeBox = ({ title, color, hasEvent, eventStart }) => {
+const EventBox = ({ title, color, hasEvent, eventStart }) => {
   const background = hasEvent ? color : null;
   const text = hasEvent ? title : null;
 
   const handleClick = (ev) => {
-    console.log(ev.target.className);
+    console.log(ev.target);
   };
 
   return (
@@ -36,7 +36,4 @@ const TimeBox = ({ title, color, hasEvent, eventStart }) => {
   );
 };
 
-export default TimeBox;
-
-/* background-color: ${props => props.color ?
-  props.color : "#FFFFFF"}; */
+export default EventBox;

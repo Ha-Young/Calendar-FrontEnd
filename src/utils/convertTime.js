@@ -53,3 +53,9 @@ export const getDayIso = count => {
 
   return day;
 };
+
+export const getDayIndex = count => {
+  const newDay = moment().add(count, 'day').format('d');
+
+  return newDay;
+};

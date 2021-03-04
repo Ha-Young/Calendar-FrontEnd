@@ -5,5 +5,5 @@ export const DAY_COLORS = [
   "#caffbf",
   "#9bf6ff",
   "#a0c4ff",
-  "#a0c4ff",
+  "#bdb2ff",
 ];
