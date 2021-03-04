@@ -1,27 +1,18 @@
 import React from "react";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  position: relative;
-  width: 10em;
-  margin: 1em;
-
-  input {
-    height: 2em;
-    width: 100%;
-    padding: 0.8m 0.5m;
-  }
-`;
+import Input from "../../shared/Input";
 
 const StartTime = ({ saveData }) => {
   return (
-    <Wrapper>
+    <Input>
+    <label htmlFor="start-time">
+      Start Time:
+    </label>
       <input
         type="time"
         id="start-time"
         onChange={e => saveData(e.target.value)}
       />
-    </Wrapper>
+    </Input>
   );
 };
 
