@@ -21,7 +21,7 @@
   background-color: #FFF8E1;
 }
 
-.eventInput > div {
+.inputContainer {
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
@@ -41,12 +41,21 @@ input {
 }
 
 .timeInputContainer input {
-  width: 15%;;
+  width: 15%;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15%;
 }
 
 .submitButton {
   all: unset;
   width: 15%;
-  height: 5%;
+  height: 50%;
+  margin: 5%;
   background-color: #FFE0B2;
 }

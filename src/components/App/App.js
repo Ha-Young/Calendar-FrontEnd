@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
 import EventForm from "../Event/EventForm";
 
-function App({ onInitialLoad, eventInfo, onEventInfoSubmit }) {
+function App({ onInitialLoad, eventInfo, onEventInfoSubmit, eventIdRoute, onEventIdClick }) {
   useEffect(() => {
     onInitialLoad();
   }, []);
@@ -21,10 +21,24 @@ function App({ onInitialLoad, eventInfo, onEventInfoSubmit }) {
           <div>Main</div>
         </Route>
         <Route path="/calendar" exact>
-          <Calendar eventInfo={eventInfo} />
+          <Calendar
+            eventInfo={eventInfo}
+            onEventIdClick={onEventIdClick}
+          />
         </Route>
         <Route path="/event/new">
-          <EventForm onEventInfoSubmit={onEventInfoSubmit} />
+          <EventForm
+            onEventInfoSubmit={onEventInfoSubmit}
+            isCreateMode={true}
+          />
+        </Route>
+        <Route path={`/event/${eventIdRoute}`}>
+          <EventForm
+            onEventInfoSubmit={onEventInfoSubmit}
+            isCreateMode={false}
+            eventInfo={eventInfo}
+            eventIdRoute={eventIdRoute}
+          />
         </Route>
       </Switch>
     </div>

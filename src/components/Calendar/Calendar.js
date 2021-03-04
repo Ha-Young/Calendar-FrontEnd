@@ -6,7 +6,7 @@ import DayTable from "./DayTable";
 import DateIndicator from "./DateIndicator";
 import IncDecrementControlBox from "./IncDecrementControlBox";
 
-export default function Calendar ({ eventInfo }) {
+export default function Calendar ({ eventInfo, onEventIdClick }) {
   const [currentDate, setCurrentDate] = useState(moment());
 
   const handleIncreaseClick = () => {
@@ -44,6 +44,7 @@ export default function Calendar ({ eventInfo }) {
             date={currentDate.format("D")}
             day={currentDate.format("E")}
             eventInfo={eventInfo}
+            onEventIdClick={onEventIdClick}
           />
         </div>
       </div>

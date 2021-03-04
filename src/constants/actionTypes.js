@@ -6,3 +6,4 @@
 
  */
  export const SUBMIT_EVENTINFO = "SUBMIT_EVENTINFO";
+ export const ROUTE_EVENTID = "ROUTE_EVENTID";

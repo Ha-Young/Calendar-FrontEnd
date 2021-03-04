@@ -2,8 +2,8 @@ import { waitForElementToBeRemoved } from "@testing-library/react";
 import React, { useState } from "react";
 import styles from "./EventForm.module.css";
 
-export default function EventForm ({ onEventInfoSubmit }) {
-  const initialEventInfo = {
+export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo, eventIdRoute }) {
+  const initialEventData = {
     "event-title": "",
     "event-description": "",
     "event-start-year": new Date().getFullYear(),
@@ -16,7 +16,7 @@ export default function EventForm ({ onEventInfoSubmit }) {
     "event-end-hour": new Date().getHours() + 1,
   }
 
-  const [eventInfo, setEventIfo] = useState(initialEventInfo);
+  const [eventData, setEventIfo] = useState(initialEventData);
 
   const handleChange = (ev) => {
     const { name } = ev.target;
@@ -26,19 +26,19 @@ export default function EventForm ({ onEventInfoSubmit }) {
       value = parseInt(value, 10);
     }
 
-    setEventIfo({...eventInfo, [name]: value});
+    setEventIfo({...eventData, [name]: value});
   }
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    onEventInfoSubmit(eventInfo);
+    onEventInfoSubmit(eventData);
   }
 
   return (
     <>
       <div className={styles.EventForm}>
       <form onSubmit={handleSubmit} className={styles.eventInput}>
-        <div>
+        <div className={styles.inputContainer}>
           일정 제목
           <input
             type="text"
@@ -48,7 +48,7 @@ export default function EventForm ({ onEventInfoSubmit }) {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className={styles.inputContainer}>
           일정 내용
           <input
             type="text"
@@ -58,20 +58,20 @@ export default function EventForm ({ onEventInfoSubmit }) {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className={styles.inputContainer}>
           일정 시작 시간
           <div className={styles.timeInputContainer}>
             <input
               type="number"
               name="event-start-year"
-              value={eventInfo["event-start-year"]}
+              value={eventData["event-start-year"]}
               onChange={handleChange}
             />
               년
             <input
               type="number"
               name="event-start-month"
-              value={eventInfo["event-start-month"]}
+              value={eventData["event-start-month"]}
               max="12"
               min="1"
               onChange={handleChange}
@@ -80,7 +80,7 @@ export default function EventForm ({ onEventInfoSubmit }) {
             <input
               type="number"
               name="event-start-date"
-              value={eventInfo["event-start-date"]}
+              value={eventData["event-start-date"]}
               max="31"
               min="1"
               onChange={handleChange}
@@ -89,7 +89,7 @@ export default function EventForm ({ onEventInfoSubmit }) {
             <input
               type="number"
               name="event-start-hour"
-              value={eventInfo["event-start-hour"]}
+              value={eventData["event-start-hour"]}
               max="23"
               min="1"
               onChange={handleChange}
@@ -97,20 +97,20 @@ export default function EventForm ({ onEventInfoSubmit }) {
               시
           </div>
         </div>
-        <div>
+        <div className={styles.inputContainer}>
           일정 종료 시간
           <div className={styles.timeInputContainer}>
             <input
               type="number"
               name="event-end-year"
-              value={eventInfo["event-end-year"]}
+              value={eventData["event-end-year"]}
               onChange={handleChange}
             />
               년
             <input
               type="number"
               name="event-end-month"
-              value={eventInfo["event-end-month"]}
+              value={eventData["event-end-month"]}
               max="12"
               min="1"
               onChange={handleChange}
@@ -119,7 +119,7 @@ export default function EventForm ({ onEventInfoSubmit }) {
             <input
               type="number"
               name="event-end-date"
-              value={eventInfo["event-end-date"]}
+              value={eventData["event-end-date"]}
               max="31"
               min="1"
               onChange={handleChange}
@@ -128,7 +128,7 @@ export default function EventForm ({ onEventInfoSubmit }) {
             <input
               type="number"
               name="event-end-hour"
-              value={eventInfo["event-end-hour"]}
+              value={eventData["event-end-hour"]}
               max="23"
               min="0"
               onChange={handleChange}
@@ -136,11 +136,23 @@ export default function EventForm ({ onEventInfoSubmit }) {
               시
           </div>
         </div>
-        <input
-          className={styles.submitButton}
-          type="submit"
-          value="등록"
-        />
+        <div className={styles.buttonContainer}>
+          {isCreateMode && <input
+            className={styles.submitButton}
+            type="submit"
+            value="등록"
+          />}
+          {!isCreateMode && <input
+            className={styles.submitButton}
+            type="submit"
+            value="수정"
+          />}
+          {!isCreateMode && <input
+            className={styles.submitButton}
+            type="submit"
+            value="삭제"
+          />}
+        </div>
       </form>
       </div>
     </>

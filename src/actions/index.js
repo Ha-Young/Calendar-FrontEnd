@@ -12,6 +12,12 @@ const submitEventInfo = (eventInfo) => ({
   eventInfo
 });
 
+const routeEventId = (eventId) => ({
+  type: types.ROUTE_EVENTID,
+  eventId
+});
+
 export {
-  submitEventInfo
+  submitEventInfo,
+  routeEventId
 };

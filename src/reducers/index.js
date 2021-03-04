@@ -25,29 +25,40 @@ const eventInfo = (state = {}, action) => {
       const eventEndHour = action.eventInfo["event-end-hour"];
       const eventDateId = `id-${eventStartYear}-${eventStartMonth}-${eventStartDate}`;
       const eventHourId = `id-${eventStartHour}`;
+      const eventId = `id-${eventStartYear}-${eventStartMonth}-${eventStartDate}-${eventStartHour}`;
 
       state[eventDateId] = {
         ...state[eventDateId],
         [eventHourId]: {
+          eventId,
           eventTitle,
           eventDescription,
-          eventStartDate,
+          eventStartYear,
           eventStartMonth,
           eventStartDate,
           eventStartHour,
-          eventEndDate,
+          eventEndYear,
           eventEndMonth,
           eventEndDate,
           eventEndHour
         }
       };
-
       return state;
     default:
       return state;
   }
 }
 
+const eventIdRoute = (state = "", action) => {
+  switch (action.type) {
+    case "ROUTE_EVENT":
+      return state = action.eventId;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
-  eventInfo
+  eventInfo,
+  eventIdRoute
 });
