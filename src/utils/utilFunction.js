@@ -1,5 +1,6 @@
 import moment from "moment";
 import { dateConst } from "constants/constants";
+import { authService } from "api/firebaseService";
 
 export const getDateISO = (ref = 0) => {
   return moment().add(ref, "days").format("YYYY-MM-DD");
@@ -40,6 +41,15 @@ export const getMonthAndWeek = (date = "") => {
   monthAndWeek.week = weekOfMonth;
 
   return monthAndWeek;
+};
+
+export const makeFirebaseURL = (date) => {
+  const userId = authService.currentUser.uid;
+  const { year, monthInFirebase, weekOfMonth } = parseDate(date);
+
+  const url = `/events/${userId}/${year}/${monthInFirebase}/${weekOfMonth}`;
+
+  return url;
 };
 
 export const generateKey = (ref = 0) => {

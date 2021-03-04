@@ -60,6 +60,7 @@ const addEvent = (newEvent = {}, id) => {
 
 const deleteEvent = (id, date) => {
   deleteAtFirebase(id, date);
+
   return {
     type: ACTION.DELETE_EVENT,
     id,
