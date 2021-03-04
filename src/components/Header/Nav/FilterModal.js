@@ -22,8 +22,9 @@ const FilterModal = () => {
   return (
     <Wrapper>
       <ul>
-        <li><Link to="/weekly">weekly</Link></li>
-        <li><Link to="/daily">daily</Link></li>
+        <li><Link to="/Day">Day</Link></li>
+        <li><Link to="/Week">Week</Link></li>
+        <li><Link to="/Event/new">Event</Link></li>
       </ul>
     </Wrapper>
   );

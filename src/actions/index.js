@@ -12,17 +12,22 @@ import {
   MOVE_PREV_WEEK,
   MOVE_NEXT_WEEK,
   RESET_DAY,
-  SET_DAILY,
-  SET_WEEKLY,
+  SET_DAY_PAGE,
+  SET_WEEK_PAGE,
+  SET_EVENT_PAGE,
   ADD_EVENT,
 } from "../constants/actionTypes";
 
-export const setDaily = () => ({
-  type: SET_DAILY,
+export const setDayPage = () => ({
+  type: SET_DAY_PAGE,
 });
 
-export const setWeekly = () => ({
-  type: SET_WEEKLY,
+export const setWeekPage = () => ({
+  type: SET_WEEK_PAGE,
+});
+
+export const setEventPage = () => ({
+  type: SET_EVENT_PAGE,
 });
 
 export const movePrevDay = () => ({
@@ -48,6 +53,6 @@ export const resetDay = () => ({
 export const addEvent = (event) => ({
   type: ADD_EVENT,
   payload: {
-    [event.startDate]: event
+    [event.date]: event
   },
 });

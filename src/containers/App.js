@@ -3,8 +3,9 @@ import App from "../components/App/App";
 import { saveSampleData, addfolder, updateSample, addSample } from "../api";
 import {
   addEvent,
-  setDaily,
-  setWeekly,
+  setDayPage,
+  setWeekPage,
+  setEventPage,
 } from "../actions";
 
 const mapStateToProps = (state) => ({
@@ -21,10 +22,13 @@ const mapDispatchToProps = (dispatch) => ({
     //addfolder();
   },
   setDaily: () => {
-    dispatch(setDaily());
+    dispatch(setDayPage());
   },
   setWeekly: () => {
-    dispatch(setWeekly());
+    dispatch(setWeekPage());
+  },
+  setEvent: () => {
+    dispatch(setEventPage());
   },
   onSubmit: (event) => {
     dispatch(addEvent(event));

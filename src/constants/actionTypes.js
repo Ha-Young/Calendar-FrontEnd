@@ -5,8 +5,9 @@
   ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/constants/ActionTypes.js
 
  */
-export const SET_DAILY = "SET_DAILY";
-export const SET_WEEKLY = "SET_WEEKLY";
+export const SET_DAY_PAGE = "SET_DAY_PAGE";
+export const SET_WEEK_PAGE = "SET_WEEK_PAGE";
+export const SET_EVENT_PAGE = "SET_EVENT_PAGE";
 
 export const MOVE_PREV_DAY = "MOVE_PREV_DAY";
 export const MOVE_NEXT_DAY = "MOVE_NEXT_DAY";

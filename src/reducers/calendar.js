@@ -15,8 +15,9 @@ import {
   MOVE_PREV_WEEK,
   MOVE_NEXT_WEEK,
   RESET_DAY,
-  SET_DAILY,
-  SET_WEEKLY,
+  SET_DAY_PAGE,
+  SET_WEEK_PAGE,
+  SET_EVENT_PAGE,
 } from "../constants/actionTypes";
 
 const MOVE = {
@@ -25,12 +26,13 @@ const MOVE = {
 };
 
 export const PAGE_TYPE = {
-  DAILY: "Day",
-  WEEKLY: "Week",
+  DAY: "Day",
+  WEEK: "Week",
+  EVENT: "Event",
 };
 
 const initialState = {
-  currentPage: "Daily",
+  currentPage: "Day",
   countOfDay: 0,
   countOfWeek: 0,
   activedDay: "",
@@ -38,16 +40,21 @@ const initialState = {
 
 const calendar = (state = initialState, action) => {
   switch (action.type) {
-    case SET_DAILY:
+    case SET_DAY_PAGE:
       return {
         ...state,
-        currentPage: PAGE_TYPE.DAILY
+        currentPage: PAGE_TYPE.DAY
       };
-    case SET_WEEKLY:
+    case SET_WEEK_PAGE:
       return {
         ...state,
-        currentPage: PAGE_TYPE.WEEKLY
+        currentPage: PAGE_TYPE.WEEK
       };
+    case SET_EVENT_PAGE:
+      return {
+        ...state,
+        currentPage: PAGE_TYPE.EVENT
+      }
     case MOVE_PREV_DAY:
       return {
         ...state,

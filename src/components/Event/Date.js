@@ -21,19 +21,19 @@ const Wrapper = styled.div`
   }
 `;
 
-const EndTime = ({ saveData }) => {
+const Date = ({ saveData }) => {
   return (
     <Wrapper>
-      <label htmlFor="end-date">
-        End Time:
+      <label htmlFor="start-date">
+        Start Time:
       </label>
       <input
         type="date"
-        id="end-date"
+        id="start-date"
         onChange={e => saveData(e.target.value)}
       />
     </Wrapper>
   );
 };
 
-export default EndTime;
+export default Date;

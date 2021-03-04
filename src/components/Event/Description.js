@@ -21,19 +21,19 @@ const Wrapper = styled.div`
   }
 `;
 
-const StartTime = ({ saveData }) => {
+const Description = ({ saveData }) => {
   return (
     <Wrapper>
-      <label htmlFor="start-date">
-        Start Time:
+      <label htmlFor="description">
+        Add Desc:
       </label>
       <input
-        type="date"
-        id="start-date"
-        onChange={e => saveData(e.target.value)}
+        type="text"
+        id="description"
+        onChange={ev => saveData(ev.target.value)}
       />
     </Wrapper>
   );
 };
 
-export default StartTime;
+export default Description;

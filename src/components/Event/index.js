@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Desc from "./Desc";
-import EndDate from "./EndDate";
+import Description from "./Description";
 import EndHour from "./EndHour";
-import StartDate from "./StartDate";
+import Date from "./Date";
 import StartHour from "./StartHour";
 import SubmitBtn from "./SubmitBtn";
 import Title from "./Title";
@@ -27,9 +26,8 @@ const Event = ({ onSubmit }) => {
   const [event, setEvent] = useState({
     title: "",
     description: "",
-    startDate: "",
+    date: "",
     startHour: "",
-    endDate: "",
     endHour: "",
   });
 
@@ -49,15 +47,12 @@ const Event = ({ onSubmit }) => {
     <Form onSubmit={handleSubmit}>
       <div>
         <Title saveData={onInputSubmit("title")} />
-        <Desc saveData={onInputSubmit("description")} />
+        <Description saveData={onInputSubmit("description")} />
         <div>
-          <StartDate saveData={onInputSubmit("startDate")} />
+          <Date saveData={onInputSubmit("date")} />
           <StartHour saveData={onInputSubmit("startHour")} />
         </div>
-        <div>
-          <EndDate saveData={onInputSubmit("endDate")} />
-          <EndHour saveData={onInputSubmit("endHour")} />
-        </div>
+        <EndHour saveData={onInputSubmit("endHour")} />
         <SubmitBtn />
       </div>
     </Form>
