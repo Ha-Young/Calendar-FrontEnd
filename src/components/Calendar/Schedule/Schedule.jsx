@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   top: ${props => props.startTime * 3.5}em;
   width: 100%;
   height: ${props => props.event * 3.5}em;
-  background-color: red;
+  background-color: #fbc531;
 `;
 
 export default function Schedule({ event }) {

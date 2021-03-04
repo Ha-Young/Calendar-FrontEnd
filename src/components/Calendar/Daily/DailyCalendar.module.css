@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.flex-item {
+.flexItem {
   flex: 1;
   margin-top: 2em;
   margin-right: 3em;

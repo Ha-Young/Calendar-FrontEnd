@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styles from "./Calendar.module.css";
 import Schedule from "./Schedule/Schedule";
 
-function CalendarColumn({ events, day, dayID, onClickDate }) {
+function CalendarColumn({ events, colummDay, dayID }) {
   const result = [];
   const hasEvent = events && events[dayID];
 
@@ -13,18 +13,16 @@ function CalendarColumn({ events, day, dayID, onClickDate }) {
 
   return (
     <>
-      <div className={styles["day1"]}>
-        {day}
+      <div className={styles.day}>
+        {colummDay}
       </div>
       <div className={styles.boxList}>
         {result.map((time) => {
           return (
             <div
-              // onClick={(e) => onClickDate(`${dayID}-${time}`)}
-              onClick={(e) => onClickDate(e)}
               data-id={`${dayID}-${time}`}
               key={time}
-              className={styles["day-box"]}
+              className={styles.dayBox}
             >
             </div>
           );

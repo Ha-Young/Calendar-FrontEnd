@@ -7,38 +7,26 @@ import CalendarColumn from "../CalendarColumn";
 
 import moment from "moment";
 
-export default function DailyCalendar({ history }) {
+export default function DailyCalendar() {
   const [day, setDay] = useState(moment());
 
   const startDay = day.clone().startOf("day");
-  const newDate = startDay.format("D").toString();
-  const dateID = startDay.format("YYYY-MM-DD");
-
-  function handleClickDateBox(e) {
-    if (e.target.hasAttribute("data-event")) {
-      const eventQuery = e.target.getAttribute("data-id");
-
-      history.push(`/event/${eventQuery}`);
-    } else {
-      console.log(e.target.getAttribute("data-id"));
-      // history.push("/event/new");
-    }
-  }
+  const columnDay = startDay.format("D").toString();
+  const yearMonthDate = startDay.format("YYYY-MM-DD");
 
   return (
     <div className={styles.calendar}>
       <CalendarHeader
-        value={day}
-        setValue={setDay}
-        TypeOfTime="day"
+        calendarDate={day}
+        setCalendarDate={setDay}
+        typeOfTime="day"
       />
       <section className={styles.content}>
         <TimeSidebar />
-        <div className={styles["flex-item"]}>
+        <div className={styles.flexItem}>
           <CalendarColumn
-            day={newDate}
-            dayID={dateID}
-            onClickDate={handleClickDateBox}
+            colummDay={columnDay}
+            dayID={yearMonthDate}
           />
         </div>
       </section>

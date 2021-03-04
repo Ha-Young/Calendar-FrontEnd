@@ -31,42 +31,52 @@ const Event = ({ onSubmitEvent }) => {
     // addEvent(eventInformation);
   }
 
-  function onChangeDate(e) {
-    setEventDate(e.target.value);
-  }
+  function handleChangeInput(e) {
+    const { target } = e;
 
-  function onChangeStartTime(e) {
-    setStartTime(e.target.value);
-  }
+    switch (target.name) {
+      case "date":
+        setEventDate(target.value);
+        break;
 
-  function onChangeEndTime(e) {
-    setEndTime(e.target.value);
-  }
+      case "startTime":
+        setStartTime(target.value);
+        break;
 
-  function onChangeTitle(e) {
-    setTitle(e.target.value);
-  }
+      case "endTime":
+        setEndTime(target.value);
+        break;
 
-  function onChangeDescription(e) {
-    setDescription(e.target.value);
+      case "title":
+        setTitle(target.value);
+        break;
+
+      case "description":
+        setDescription(target.value);
+        break;
+
+      default:
+        break;
+    }
   }
 
   return (
     <div>
-      <div className={styles["date-boxs"]}>
+      <div className={styles.dateBoxs}>
         <p>이벤트 날짜</p>
-        <input type="date" name="date" onChange={onChangeDate} />
+        <input type="date" name="date" onChange={handleChangeInput} />
         <p>시작 시간</p>
-        <input type="time" name="startTime" onChange={onChangeStartTime} />
+        <input type="time" name="startTime" onChange={handleChangeInput} />
         <p>종료 시간</p>
-        <input type="time" name="endTime" onChange={onChangeEndTime} />
+        <input type="time" name="endTime" onChange={handleChangeInput} />
         <p>이벤트 제목</p>
-        <input type="text" name="title" onChange={onChangeTitle} />
+        <input type="text" name="title" onChange={handleChangeInput} />
         <p>이벤트 내용 작성</p>
         <input
-          className={styles["text-box"]}
+          className={styles.textBox}
           type="text"
-          onChange={onChangeDescription}
+          name="description"
+          onChange={handleChangeInput}
         />
         <input
           onClick={onClickInputButton}

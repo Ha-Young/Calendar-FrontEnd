@@ -8,13 +8,13 @@ export default function Header () {
     <header>
       <nav>
         <ul className={styles.navigation}>
-          <li className={styles["navigation-item"]}>
+          <li className={styles.navigationItem}>
             <NavLink exact to="/weekly">Weely</NavLink>
           </li>
-          <li className={styles["navigation-item"]}>
+          <li className={styles.navigationItem}>
             <NavLink exact to="/daily">daily</NavLink>
           </li>
-          <li className={styles["navigation-item"]}>
+          <li className={styles.navigationItem}>
             <NavLink exact to="/event/new">event</NavLink>
           </li>
         </ul>

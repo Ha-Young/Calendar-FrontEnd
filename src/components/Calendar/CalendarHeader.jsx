@@ -1,28 +1,28 @@
 import React from "react";
 import styles from "./Calendar.module.css";
 
-export default function CalendarHeader({ value, setValue, TypeOfTime }) {
+export default function CalendarHeader({ calendarDate, setCalendarDate, typeOfTime }) {
   function currentMonthName() {
-    return value.format("MMMM");
+    return calendarDate.format("MMMM");
   }
 
   function currentYear() {
-    return value.format("YYYY");
+    return calendarDate.format("YYYY");
   }
 
   function previousMonth() {
-    return value.clone().subtract(1, TypeOfTime);
+    return calendarDate.clone().subtract(1, typeOfTime);
   }
 
   function nextMonth() {
-    return value.clone().add(1, TypeOfTime);
+    return calendarDate.clone().add(1, typeOfTime);
   }
 
   return (
     <div className={styles.header}>
       <button
         className={styles.previous}
-        onClick={() => setValue(previousMonth())}
+        onClick={() => setCalendarDate(previousMonth())}
       >
         {String.fromCharCode(171)}
       </button>
@@ -31,7 +31,7 @@ export default function CalendarHeader({ value, setValue, TypeOfTime }) {
       </div>
       <button
         className={styles.next}
-        onClick={() => setValue(nextMonth())}
+        onClick={() => setCalendarDate(nextMonth())}
       >
         {String.fromCharCode(187)}
       </button>

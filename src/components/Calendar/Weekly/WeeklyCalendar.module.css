@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 
-.weeks .day-week {
+.weeks .dayWeek {
   width: calc(100% / 7);
   height: 2em;
   display: inline-block;
@@ -45,7 +45,7 @@
   display: flex;
 }
 
-.flex-item {
+.flexItem {
   flex: 1;
   margin-right: 3em;
 }
