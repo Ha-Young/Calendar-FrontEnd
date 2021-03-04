@@ -7,7 +7,7 @@ const TimeTable = function ({ timeList }) {
     <div className={styles["time-table"]}>
       {timeList.map(time =>
       (
-        <TimeCell key={`${time}O'Cloock`} time={time} />
+        <TimeCell key={`${time}O'Clock`} time={time} />
       ))}
     </div>
   );

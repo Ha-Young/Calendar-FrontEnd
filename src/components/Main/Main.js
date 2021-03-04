@@ -1,18 +1,17 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Profile from "../Profile/Profile";
-import Schedule from "../Schedule/Schedule";
+import Schedule from "../../containers/Schedule";
 import Events from "../Events/Events";
 import EventForm from "../Events/EventForm/EventForm";
 
-const Main = function ({ isWeeklySchedule, date, setIsSchedule }) {
+const Main = function ({ addEvent, date, setIsSchedule }) {
   return (
     <Switch>
       {(
         <>
           <Route exact path="/">
             <Schedule
-              isWeeklySchedule={isWeeklySchedule}
               date={date}
               setIsSchedule={setIsSchedule}
             />
@@ -21,11 +20,14 @@ const Main = function ({ isWeeklySchedule, date, setIsSchedule }) {
             <Events />
           </Route>
           <Route exact path="/events/new">
-            <EventForm setIsSchedule={setIsSchedule} />
+            <EventForm
+              date={date}
+              setIsSchedule={setIsSchedule}
+              addEvent={addEvent}
+            />
           </Route>
           <Route exact path="/calendar">
             <Schedule
-              isWeeklySchedule={isWeeklySchedule}
               date={date}
               setIsSchedule={setIsSchedule}
             />

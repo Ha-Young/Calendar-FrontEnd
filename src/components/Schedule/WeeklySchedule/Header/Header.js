@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "./Header.module.css";
-import { generateWeekArray } from "../../../../utils/calendarUtils";
 import { DAY_LIST } from "../../../../constants/calendarConstants";
 
-const Header = function ({ date }) {
-  const weekArray = generateWeekArray(date);
+const Header = function ({ weekArray }) {
 
   return (
     <div className={styles["header"]}>

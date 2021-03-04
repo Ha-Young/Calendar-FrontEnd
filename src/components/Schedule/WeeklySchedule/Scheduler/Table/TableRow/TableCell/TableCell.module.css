@@ -2,4 +2,10 @@
   width: 12vw;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.table-cell:hover {
+  background-color: #e6e6e6;
 }

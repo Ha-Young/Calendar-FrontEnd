@@ -11,11 +11,12 @@ import { Route } from "react-router-dom";
 import Auth from "../Auth/Auth";
 
 const App = function ({
-  isWeeklySchedule,
   isSchedule,
   date,
+  events,
   onInitialLoad,
-  setIsSchedule
+  setIsSchedule,
+  addEvent,
 }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -45,10 +46,9 @@ const App = function ({
               <>
                 <Header isSchedule={isSchedule} />
                 <Main
-                  isWeeklySchedule={isWeeklySchedule}
                   date={date}
-                  isLoggedIn={isLoggedIn}
                   setIsSchedule={setIsSchedule}
+                  addEvent={addEvent}
                 />
               </>
             )

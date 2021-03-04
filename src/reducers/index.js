@@ -14,14 +14,10 @@ const initialState = {
   isWeeklySchedule: false,
   isSchedule: true,
   events: {
-    byStartDate: {
-
-    },
-    byEndDate: {
-
-    },
-    allStartDates: [],
-    allEndDates: [],
+    byIds: {},
+    byDates: {},
+    allIds: [],
+    allDates: [],
   },
 };
 
@@ -51,6 +47,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         date: new Date(year, month, dateNumber + 1)
       };
+    case types.UPDATE_DATE_WITH_TIME:
+      return {
+        ...state,
+        date: new Date(action.payload)
+      };
     case types.CHANGE_SCHEDULE_TYPE:
       const isWeeklySchedule = action.payload === "week" ? true : false;
       return {
@@ -64,30 +65,34 @@ export default function reducer(state = initialState, action) {
         isSchedule
       };
     //이거 나중에 고쳐야됨
+    //update가 더 맞지않냐?
     case types.ADD_EVENT:
-      const startDate = action.payload.startDate;
-      const endDate = action.payload.endDate;
+      const date = action.payload.date;
+      const id = action.payload.id;
+      const allIds = state.events.allIds.includes(action.payload.id)
+        ? [...state.events.allIds]
+        : [...state.events.allIds, action.payload.id];
+      const allDates = state.events.allDates.includes(action.payload.date)
+        ? [...state.events.allDates]
+        : [...state.events.allDates, action.payload.date];
 
       return {
         ...state,
         events: {
-          byStartDate: {
-            ...state.events.byStartDate,
-            [startDate]: {
-              ...state.events.byStartDate[startDate].byStartTime,
-              byStartTime: {
-                [startTime]: {
-
-                }
-              }
+          byIds: {
+            ...state.events.byIds,
+            [id]: action.payload,
+          },
+          byDates: {
+            ...state.events.byDates,
+            [date]: {
+              ...state.events.byDates[date],
+              [id]: action.payload,
             }
           },
-          byEndDate: {
-            ...state.events.byStartDate,
-          },
-          allStartDates: [...state.events.allStartDates, action.payload.startDate],
-          allEndDates: [...state.events.allEndDates, action.payload.endDate],
-        }
+          allIds,
+          allDates,
+        },
       };
     default:
       return state;

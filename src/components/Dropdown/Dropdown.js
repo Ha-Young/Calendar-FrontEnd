@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import styles from "./Dropdown.module.css";
 
-const Dropdown = function ({ chooseItem, list, createItemTag }) {
+const Dropdown = function ({ initialValue, chooseItem, list, createItemTag }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [labelItem, setLabelItem] = useState(list[0]);
+  const [labelItem, setLabelItem] = useState(initialValue);
 
   function handleToggleButtonClick() {
     setIsOpen(isOpen => !isOpen);
@@ -18,7 +18,7 @@ const Dropdown = function ({ chooseItem, list, createItemTag }) {
 
   useEffect(() => {
     chooseItem(labelItem);
-  }, []);
+  }, [chooseItem, labelItem]);
 
   return (
     <div className={`${styles["dropdown"]} ${styles[isOpen ? "open" : ""]}`}>

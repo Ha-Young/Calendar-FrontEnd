@@ -2,12 +2,21 @@ import React from "react";
 import styles from "./Table.module.css";
 import TableRow from "./TableRow/TableRow";
 
-const Table = function ({ tableList }) {
+const Table = function ({
+  updateDateWithTime,
+  tableId,
+  tableRow,
+  events
+}) {
   return (
     <div className={styles["table"]}>
-      {tableList.map(element =>
+      {tableRow.map(rowNumber =>
       (
-        <TableRow key={`row${element}`} />
+        <TableRow
+          key={`row${rowNumber}`}
+          rowId={`${tableId} ${rowNumber}`}
+          updateDateWithTime={updateDateWithTime}
+        />
       ))}
     </div>
   );

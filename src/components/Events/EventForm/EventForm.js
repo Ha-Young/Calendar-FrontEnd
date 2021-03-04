@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Dropdown from "../../Dropdown/Dropdown";
-import { TIME_LIST } from "../../../constants/calendarConstants";
+import { START_TIME_LIST, END_TIME_LIST } from "../../../constants/calendarConstants";
+import { generateDateAndTimeString } from "../../../utils/calendarUtils";
 import styles from "./EventForm.module.css";
 
-const EventForm = function ({ setIsSchedule }) {
+const EventForm = function ({ addEvent, date, setIsSchedule }) {
+  const [initialDate, initialStartTime, initialEndTime] = generateDateAndTimeString(date);
+  const [inputDate, setInputDate] = useState(initialDate);
+  const [startTime, setStartTime] = useState(initialStartTime);
+  const [endTime, setEndTime] = useState(initialEndTime);
   const [title, setTitle] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
   const [description, setDescription] = useState("");
   let location = useLocation();
 
@@ -19,27 +20,16 @@ const EventForm = function ({ setIsSchedule }) {
     //redirect to calendar
     // (돌아갈 때 무조건 daily 뜨게 해놓고)
     // (Calendar도 event들어간거 update해줘야됨)
-    console.log(startTime);
-    console.log(endTime);
-
     const eventObject = {
-      startDate,
-      endDate,
-      startDateObject = {
-        title,
-        startTime,
-        endDate,
-        endTime,
-        description
-      },
-      endDateObject = {
-        title,
-        startDate,
-        startTime,
-        endTime,
-        description
-      }
-    }
+      id: `${inputDate} ${startTime}`,
+      date: inputDate,
+      startTime,
+      endTime,
+      title,
+      description,
+    };
+
+    addEvent(eventObject)
   }
 
   function createItemTag(item) {
@@ -50,7 +40,7 @@ const EventForm = function ({ setIsSchedule }) {
 
   useEffect(() => {
     setIsSchedule(location.pathname);
-  }, []);
+  }, [setIsSchedule, location.pathname]);
 
   return (
     <form className={styles["event-form"]} onSubmit={handleSubmit}>
@@ -68,26 +58,22 @@ const EventForm = function ({ setIsSchedule }) {
       <div className={styles["time-container"]}>
         <input
           type="date"
-          value={startDate}
-          onChange={event => setStartDate(event.target.value)}
+          value={inputDate}
+          onChange={event => setInputDate(event.target.value)}
           required
         />
         <Dropdown
           className="start-time"
-          list={TIME_LIST}
+          initialValue={startTime}
+          list={START_TIME_LIST}
           chooseItem={value => setStartTime(value)}
           createItemTag={createItemTag}
         />
         <p>-</p>
-        <input
-          type="date"
-          value={endDate}
-          onChange={event => setEndDate(event.target.value)}
-          required
-        />
         <Dropdown
           className="end-time"
-          list={TIME_LIST}
+          initialValue={endTime}
+          list={END_TIME_LIST}
           chooseItem={value => setEndTime(value)}
           createItemTag={createItemTag}
         />
@@ -112,19 +98,3 @@ const EventForm = function ({ setIsSchedule }) {
 };
 
 export default EventForm;
-
-
-/*
-events: {
-    byStartDate: {
-      01/01: {
-        sdfadf
-      }
-    },
-    byEndDate: {
-
-    },
-    allStartDates: [],
-    allEndDates: [],
-  },
-*/

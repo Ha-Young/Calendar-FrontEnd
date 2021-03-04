@@ -1,13 +1,22 @@
 import React from "react";
 import styles from "./TableRow.module.css";
-import { DAY_LIST } from "../../../../../../constants/calendarConstants";
 import TableCell from "./TableCell/TableCell";
 
-const TableRow = function () {
+const TableRow = function ({
+  updateDateWithTime,
+  tableId,
+  tableColumn,
+  rowId,
+  events
+}) {
   return (
     <div className={styles["table-row"]}>
-      {DAY_LIST.map(day => (
-        <TableCell key={`cell${day}`} />
+      {tableColumn.map(dateNumber => (
+        <TableCell
+          key={`cell${tableId}${dateNumber}${rowId}`}
+          cellId={`${tableId}-${dateNumber} ${rowId}`}
+          updateDateWithTime={updateDateWithTime}
+        />
       ))}
     </div>
   );

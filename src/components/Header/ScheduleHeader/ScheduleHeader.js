@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { generateDateString } from "../../../utils/calendarUtils";
+import { generateDateTitle } from "../../../utils/calendarUtils";
 import Button from "../../Button/Button";
 import Title from "../../Title/Title";
 import Dropdown from "../../Dropdown/Dropdown";
@@ -15,7 +15,7 @@ const ScheduleHeader = function ({
   updateNextDay,
   changeScheduleType,
 }) {
-  const title = generateDateString(isWeeklySchedule, date);
+  const title = generateDateTitle(isWeeklySchedule, date);
   const list = ["day", "week"];
 
   function onPrevButtonClick() {
@@ -49,6 +49,7 @@ const ScheduleHeader = function ({
         children={title}
       />
       <Dropdown
+        initialValue={list[0]}
         chooseItem={changeScheduleType}
         list={list}
         createItemTag={createNavLinkToCalendar}

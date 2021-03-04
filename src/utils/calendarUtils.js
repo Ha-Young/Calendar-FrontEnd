@@ -66,7 +66,7 @@ export function generateWeekArray(date) {
   return weekArray;
 }
 
-export function generateDateString(isWeek, date) {
+export function generateDateTitle(isWeek, date) {
   const year = date.getFullYear();
   const month = date.getMonth();
   const dateNumber = date.getDate();
@@ -90,12 +90,15 @@ export function generateDateString(isWeek, date) {
   return `${MONTH_LIST[month]}, ${year}`;
 }
 
-export function generateTimeList() {
-  const TimeList = [];
+export function generateDateAndTimeString(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1 > 9 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
+  const dateNumber = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`;;
+  const time = date.getHours();
 
-  for (let i = 0; i < 24; i++) {
-    TimeList.push(i);
-  }
+  const dateString = `${year}-${month}-${dateNumber}`;
+  const startTimeString = `${time > 9 ? time : `0${time}`}:00`;
+  const endTimeString = `${time + 1 > 9 ? time + 1 : `0${time + 1}`}:00`;
 
-  return TimeList;
+  return [dateString, startTimeString, endTimeString];
 }
