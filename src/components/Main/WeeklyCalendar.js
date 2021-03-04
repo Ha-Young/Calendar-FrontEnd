@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeSundayDate, setLastWeek, setNextWeek, makeWeekFullDate } from '../../utils';
+import { makeSundayDate, setLastWeek, setNextWeek, makeWeekFullDate, isEventScheduled } from '../../utils';
 import styles from './WeeklyCalendar.module.css';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { TIME_TABLE, SCHEDULE_BOX } from '../../constant';
@@ -17,8 +17,6 @@ const WeeklyCalendar = ({ events }) => {
   const eventCells = [];
   let sundayDate = makeSundayDate(todayDate);
   let daysList, prevMonth, prevYear, nextMonth, nextYear;
-  let startTime;
-  let endTime;
 
   for (let i = 0; i < TIME_TABLE; i++) {
     timeCells.push(i);
@@ -77,17 +75,24 @@ const WeeklyCalendar = ({ events }) => {
 
             for (const event of events) {
               const eventDay = Number(event.keyId.split('-')[2]);
-              startTime = event.startTime;
-              endTime = event.endTime;
+              const eventTitle = event.title;
+              const showSchedule = isEventScheduled(
+                time,
+                event.startTime,
+                event.endTime,
+                eventDay,
+                currentDate
+              );
 
-              if ((time >= event.startTime && time < event.endTime)
-                && eventDay === (currentDate)) {
-
+              if (showSchedule) {
+                console.log(event.startTime);
+                console.log(time);
+                console.log(event.title);
                 return (
                   <div key={fullDate}>
-                    <Link to={`${url}/${fullDate}`}>
-                      <div className={styles.scheduledEvent} />
-                    </Link>
+                    <div className={styles.scheduledEvent}>
+                      {(event.startTime === time) && `${eventTitle}`}
+                    </div>
                   </div>
                 )
               }
@@ -99,8 +104,7 @@ const WeeklyCalendar = ({ events }) => {
                   <div className={styles.event} />
                 </Link>
               </div>
-              )
-            })
+            )})
           }
         </div>
       </div>

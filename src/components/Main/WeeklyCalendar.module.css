@@ -31,7 +31,7 @@
 .scheduledEvent {
   height: 30px;
   border-left: 1px solid black;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid transparent;
   background-color: red;
 }
 
@@ -43,7 +43,7 @@
 
 .calendar {
   position: relative;
-  width: 600px;
+  width: 800px;
   margin: 0 auto;
   top: 50px;
 }

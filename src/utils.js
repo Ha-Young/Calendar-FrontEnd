@@ -18,3 +18,12 @@ export const setNextWeek = (dateObj, date) => {
 export const makeWeekFullDate = (year, month, startDate, time) => {
   return `${year}-${month + 1}-${startDate - 1}-${time}`;
 }
+
+export const isEventScheduled = (time, startTime, endTime, eventDay, currentDate) => {
+  if ((time >= startTime && time < endTime) &&
+    eventDay === currentDate) {
+      return true;
+    }
+
+  return false;
+}
