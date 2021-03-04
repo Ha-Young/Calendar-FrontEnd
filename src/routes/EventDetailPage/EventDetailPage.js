@@ -1,25 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import EventDetail from "./EventDetail";
 import Form from "../../components/Form/Form";
+import Modal from "../../components/Modal/Modal";
 import styles from "./EventDetailPage.module.css";
-import { extractUrl } from "../../utils/ui";
 
 const EventDetailPage = ({ getEventById, onSubmit, onRemove }) => {
+  const [showEditWindow, setShowEditWindow] = useState(false);
   const { event } = useParams();
   const history = useHistory();
   const currentEvent = getEventById(event);
-
+  console.log(event);
   const handleRemoveButton = () => {
     onRemove(currentEvent);
     history.goBack();
   };
 
+  const handleGoBack = () => {
+    history.goBack();
+  };
+
+  const handleEditPage = () => {
+    setShowEditWindow(true);
+  };
+
   return (
-    <>
-      <Form onSubmit={onSubmit} initialState={currentEvent}>
-        <button type="submit" onClick={handleRemoveButton}>Remove</button>
-      </Form>
-    </>
+    <Modal onClick={handleGoBack}>
+      {
+        showEditWindow
+          ? <Form onSubmit={onSubmit} initialState={currentEvent}>
+              <button type="submit" onClick={handleRemoveButton}>Remove</button>
+              <button onClick={handleGoBack}>Go Back!</button>
+            </Form>
+          : <EventDetail 
+              onEdit={handleEditPage} 
+              event={currentEvent} 
+              onGoBack={handleGoBack} 
+            />
+      }
+    </Modal>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Card.module.css";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { generateCardHeight, generateCardLocation } from "../../utils/ui";
 
 const Card = ({ content }) => {
@@ -11,11 +11,15 @@ const Card = ({ content }) => {
     startTime,
     title,
   } = content;
+  const location = useLocation();
   const cardLength = generateCardHeight(startTime, endTime);
   const cardLocation = generateCardLocation(startTime);
 
   return (
-    <Link to={`/events/${id}`}>
+    <Link to={{
+      pathname: `/events/${id}`,
+      state: { background: location },
+    }}>
       <div
         className={styles.card}
         style={{

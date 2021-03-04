@@ -5,7 +5,7 @@ import SideBar from "../SideBar/SideBar";
 import NewEventPage from "../../routes/NewEventPage/NewEventPage";
 import CalendarPage from "../../routes/CalendarPage/CalendarPage";
 import EventDetailPageContainer from "../../containers/EventDetailPageContainer";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 
 const App = ({
   getEventByCurrentDate,
@@ -18,6 +18,9 @@ const App = ({
   saveNewEventData,
   selectedDate,
 }) => {
+  const location = useLocation();
+  const background = location.state?.background;
+  
   return (
     <div className={styles.App}>
       <Header
@@ -28,8 +31,8 @@ const App = ({
         selectedDate={selectedDate}
       />
       <SideBar />
-      <Switch>
-        <Route path="/" exact>
+      <Switch location={background || location}>
+        <Route path="/calendar" exact>
           <CalendarPage
             onLoad={loadEventData}
             getEventByCurrentDate={getEventByCurrentDate}
@@ -39,11 +42,14 @@ const App = ({
         <Route path="/events/new">
           <NewEventPage onSubmit={saveNewEventData} />
         </Route>
-        <Route path="/events/:event">
-          <EventDetailPageContainer />
-        </Route>
-        <Redirect path="*" to="/" />
       </Switch>
+      {
+        background && 
+          <Route path="/events/:event">
+            <EventDetailPageContainer />     
+          </Route>
+      }
+      <Redirect path="*" to="/calendar" />
     </div>
   );
 };

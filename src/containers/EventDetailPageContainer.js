@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import EventDetailPage from "../routes/EventDetailPage/EventDetailPage";
 import { getEventById } from "../reducers/eventData";
 import { updateEventData, removeEventData } from "../api/index";
-
+console.log(24);
 const mapStateToProps = ({ eventData }) => ({
   getEventById: (id) => getEventById(eventData, id),
 });

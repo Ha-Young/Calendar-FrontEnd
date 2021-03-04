@@ -5,7 +5,7 @@ const BoardHeader = ({ nav, children }) => {
   return (
     <div className={styles.navigation}>
       {nav?.map((date) => (
-        <div className={styles.date}>{date}</div>
+        <div key={date} className={styles.date}>{date}</div>
       ))}
     </div>
   );
