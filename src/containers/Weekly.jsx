@@ -14,7 +14,6 @@ const Weekly = ({
 }) => {
   const [weekCount, setWeekCount] = useState(0);
   const [weekOfMonth, setWeekOfMonth] = useState(getWeekOfMonthByRef(0));
-  // console.log(daysOfWeek);
 
   const setNewWeek = (direction) => {
     let currentWeekCount = weekCount;

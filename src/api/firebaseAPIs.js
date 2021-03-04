@@ -1,10 +1,8 @@
 import { authService, firebaseInstance } from "./firebaseService";
-import { mockEvent } from "utils/mock.js";
 import { getDateISOByRef, parseDate } from "utils/utilFunction";
+import { mockEvent } from "utils/mock.js";
 
 const database = firebaseInstance.database();
-
-export async function fetchDailyEvent(callback) {}
 
 export async function initializeApp(callback) {
   const userId = authService.currentUser.uid;
@@ -13,13 +11,17 @@ export async function initializeApp(callback) {
   await database
     .ref(`/events/${userId}/${year}/${month}/${weekOfMonth}`)
     .on("value", (snapshot) => {
-      if (snapshot) {
+      if (snapshot.val()) {
         callback(snapshot.val());
       } else {
-        return;
+        callback({});
       }
     });
 }
+
+export async function fetchDailyEvent(callback, date) {}
+
+export async function fetchWeeklyEvent(callback, date) {}
 
 export const addToFirebase = async (newEvent, id) => {
   const { date } = newEvent;
@@ -50,14 +52,12 @@ export const deleteAtFirebase = async (id, date) => {
     .update({ [id]: null });
 };
 
-const getCurrentEventList = async () => {};
+// export const updateEventList = async (updatedEvent) => {
+//   await database
+//     .ref(`/events/${authService.currentUser.uid}`)
+//     .set(updatedEvent);
+// };
 
-export const updateEventList = async (updatedEvent) => {
-  await database
-    .ref(`/events/${authService.currentUser.uid}`)
-    .set(updatedEvent);
-};
-
-export const testFirebase = async () => {
-  mockEvent.forEach((event) => addToFirebase(event));
-};
+// export const testFirebase = async () => {
+//   mockEvent.forEach((event) => addToFirebase(event));
+// };

@@ -43,7 +43,6 @@ const HandleEvent = ({ type, weeklyEvent, addEvent, editEvent }) => {
     if (type === typeConst.ADD) {
       const id = generateKey();
       addEvent(newEvent, id);
-      history.push(`/events/${id}`);
     } else if (type === typeConst.EDIT) {
       editEvent(newEvent, param.eventId);
       history.push(`/events/${param.eventId}`);
