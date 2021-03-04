@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState, } from "react";
 import styles from "./EventEditor.module.css";
 import InputBox from "./InputBox";
-import parseDateString from "date-fns/parse";
-import { format } from "date-fns";
 import testEventValidation from "../../util/testEventValidation";
 import { Link, useLocation, useHistory } from "react-router-dom";
 
@@ -12,6 +10,7 @@ export default function EventEditor(props) {
     createEvent,
     updateEvent,
     deleteEvent,
+    createEventForFirebase,
   } = props;
 
   const history = useHistory();
@@ -35,24 +34,21 @@ export default function EventEditor(props) {
   const linkToEdit = isReadMode ? {
     pathname:`/events/${selectedEvent.id}`,
     state: { 
-      selectedEvent: {
-        ...selectedEvent,
-        date: format(selectedEvent.startDate, "yyyy-MM-dd"),
-        start: format(selectedEvent.startDate, "HH:mm"),
-        end: format(selectedEvent.endDate, "HH:mm"),
-      },
+      selectedEvent,
       isReadMode: false,
       isUpdate: true,
     }
   } : null;
 
   useEffect(() => {
+    console.log(selectedEvent.startTime);
+
     if (selectedEvent) {
       $inputTitle.current.value = selectedEvent.title ?? "";
       $inputDescription.current.value = selectedEvent.description ?? "";
       $inputDate.current.value = selectedEvent.date ?? "";
-      $inputStartTime.current.value = selectedEvent.start ?? "";
-      $inputEndTime.current.value = selectedEvent.end ?? "";
+      $inputStartTime.current.value = selectedEvent.startTime ? `${selectedEvent.startTime}:00` : "";
+      $inputEndTime.current.value = selectedEvent.endTime ? `${selectedEvent.endTime}:00` : "";
     } else {
       $inputTitle.current.value = "";
       $inputDescription.current.value = "";
@@ -68,39 +64,32 @@ export default function EventEditor(props) {
     const title = e.currentTarget.title.value.trim();
     const description = e.currentTarget.description.value.trim();
     const date = e.currentTarget.date.value;
-    const startHour = e.currentTarget.start.value.slice(0, 2);
-    const endHour = e.currentTarget.end.value.slice(0, 2);
-    const id = `${date}-${startHour}-${endHour}`;
-    const length = Number(endHour) - Number(startHour);
+    const startTime = e.currentTarget.start.value.slice(0,2);
+    const endTime = e.currentTarget.end.value.slice(0,2);
+    const id = `${date}-${startTime}-${endTime}`;
+    const length = Number(endTime) - Number(startTime);
 
-    const eventData = {
-      title,
-      date,
-      startHour,
-      endHour,
-      id,
-    };
-
-    const startDate = parseDateString(`${date} ${startHour}`,"yyyy-MM-dd HH", new Date());
-    const endDate = parseDateString(`${date} ${endHour}`,"yyyy-MM-dd HH", new Date());
-
-    if (!testEventValidation(e, eventData, allEvents, setMessage)) {
-      return;
-    }
+    console.log(startTime)
 
     const newEvent = {
       title,
       description,
-      startDate,
-      endDate,
-      id,
+      date,
+      startTime,
+      endTime,
       length,
+      id,
+    };
+
+    if (!testEventValidation(e, newEvent, allEvents, setMessage)) {
+      return;
     }
 
     if (isUpdate) {
       updateEvent(selectedEvent, newEvent);
     } else {
       createEvent(newEvent);
+      // createEventForFirebase(newEvent);
     }
 
     history.push("/calendar/week")

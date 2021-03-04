@@ -1,5 +1,6 @@
 export default function makeTreeBranch(value, targetObj, ...keys) {
   const currentKey = keys[0]
+  
   if (typeof currentKey !== "string") {
     throw new Error("key is not string");
   }
@@ -29,4 +30,7 @@ export default function makeTreeBranch(value, targetObj, ...keys) {
   }
 
   makeTreeBranch(value, targetObj[currentKey], ...keys);
+  if (!Object.keys(targetObj[currentKey]).length && value === null) {
+    delete targetObj[currentKey];
+  }
 }

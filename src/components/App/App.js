@@ -8,9 +8,18 @@ import Header from "../Header/Header";
 import Calendar from "../../containers/Calendar";
 import EventEditor from "../Events/EventEditor";
 
-function App({ onInitialLoad, userId, allEvents, createEvent, updateEvent, deleteEvent }) {
+function App(props) {
+  const { 
+    onInitialLoad, 
+    userId, 
+    allEvents, 
+    createEvent, 
+    updateEvent, 
+    deleteEvent, 
+    createEventForFirebase
+  } = props;
+
   useEffect(() => {
-    onInitialLoad(userId);
   }, []);
 
   return (
@@ -26,6 +35,7 @@ function App({ onInitialLoad, userId, allEvents, createEvent, updateEvent, delet
             createEvent={createEvent}
             updateEvent={updateEvent}
             deleteEvent={deleteEvent}
+            createEventForFirebase={createEventForFirebase}
           />
         </Route>
         <Redirect path="*" to="/calendar/week" />

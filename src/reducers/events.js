@@ -8,8 +8,9 @@ const eventListMock = {
   "2021-03-03-09-18" : {
     title: "커피는 더 맛있다.",
     description: "차가운 커피도 맛있다. 따듯한 커피도 맛있다. 에헤헤헤",
-    startDate: new Date('March 03, 2021 09:00:00'),
-    endDate: new Date('March 03, 2021 18:00:00'),
+    date: "2021-03-03",
+    startTime:"09",
+    endTime:"18",
     length: 12,
     id: "2021-03-03-09-18",
   },
@@ -17,8 +18,9 @@ const eventListMock = {
   "2021-03-02-15-18" : {
     title: "맹물 맛있다.",
     description: "따듯한 물 맛있다 에헤헤헤",
-    startDate: new Date('March 02, 2021 15:00:00'),
-    endDate: new Date('March 02, 2021 18:00:00'),
+    date:"2021-03-02",
+    startTime:"15",
+    endTime:"18",
     length: 3,
     id: "2021-03-02-15-18",
   }

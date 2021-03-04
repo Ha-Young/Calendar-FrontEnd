@@ -2,8 +2,6 @@ import { connect } from "react-redux";
 import TimeTableColumnBox from "../components/Calendar/TimeTable/ColumnBox";
 import { getDate, getMonth, getYear } from "date-fns";
 
-// isWeek, allEvents, week, day
-
 const getEventsFromWeek = (week, events) => {
   const result = [];
   

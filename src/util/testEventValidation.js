@@ -4,8 +4,8 @@ export default function testEventValidation(submitEvent, eventData, allEvents, s
   const {
     title,
     date,
-    startHour,
-    endHour,
+    startTime,
+    endTime,
     id,
   } = eventData;
 
@@ -22,19 +22,19 @@ export default function testEventValidation(submitEvent, eventData, allEvents, s
     return false;
   }
 
-  if (!startHour) {
+  if (!startTime) {
     setMessage("이벤트 시작 시간을 입력해주세요.");
-    submitEvent.currentTarget.startHour.focus();
+    submitEvent.currentTarget.start.focus();
     return false;
   }
 
-  if (!endHour) {
+  if (!endTime) {
     setMessage("이벤트 종료 시간을 입력해주세요.");
-    submitEvent.currentTarget.endHour.focus();
+    submitEvent.currentTarget.end.focus();
     return false;
   }
 
-  if (endHour <= startHour) {
+  if (Number(endTime) <= Number(startTime)) {
     setMessage("이벤트 종료 시간은 이벤트 시작 시간 이후여야 합니다.");
     return false;
   }

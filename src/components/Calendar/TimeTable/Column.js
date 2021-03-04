@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Column.module.css"
 import EventBar from "./EventBar";
-import { getHours, format } from "date-fns";
+import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
 export default function Column({ day, isEventBarWide, events, isColorReverse }) {
@@ -10,7 +10,7 @@ export default function Column({ day, isEventBarWide, events, isColorReverse }) 
 
   if (events) {
     for (const [i, event] of events.entries()) {
-      const startTime = getHours(event.startDate);
+      const startTime = Number(event.startTime);
       cells[startTime] = { 
         event, 
         colorNum: isColorReverse ? COLOR_SET_LENGTH - 1 - i : i,
@@ -43,7 +43,7 @@ export default function Column({ day, isEventBarWide, events, isColorReverse }) 
               pathname:"/events/new",
               state: { selectedEvent: {
                 date: format(day, "yyyy-MM-dd"),
-                start: hour < 10 ? `0${hour}:00` : `${hour}:00`,
+                startTime: hour < 10 ? `0${hour}` : `${hour}:00`,
               }},
             }}
             key={hour}

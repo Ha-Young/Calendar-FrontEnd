@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./EventBar.module.css";
 import { Link } from "react-router-dom";
-import { format } from "date-fns";
-
 
 export default function EventBar({ isWide, event, colorNum }) {
   const title = !isWide && event.title.length > 6 
@@ -21,12 +19,7 @@ export default function EventBar({ isWide, event, colorNum }) {
   const linkTo = {
     pathname:`/events/${event.id}`,
     state: { 
-      selectedEvent: {
-        ...event,
-        date: format(event.startDate, "yyyy-MM-dd"),
-        start: format(event.startDate, "HH:mm"),
-        end: format(event.endDate, "HH:mm"),
-      },
+      selectedEvent: event,
       isReadMode: true,
       isUpdate: true,
     },
