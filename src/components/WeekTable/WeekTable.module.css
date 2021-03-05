@@ -61,6 +61,15 @@
   border-bottom: 1px solid #BDBDBD;
 }
 
+.eventTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 10vh;
+  border: 1px solid #BDBDBD;
+}
+
 .link {
   text-decoration: none;
   color: black;

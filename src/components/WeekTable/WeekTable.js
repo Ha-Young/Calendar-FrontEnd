@@ -13,7 +13,7 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
   const weekEvents = [];
 
   for (let i = 0; i < DAYCELL_NUMBER; i++) {
-    datesOfWeek.push([]);
+    weekEvents.push([]);
   }
 
   for (let i = 0; i < DAYCELL_NUMBER; i++) {
@@ -40,27 +40,26 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
     }
   }
 
+  const eventTable = [];
+  console.log(weekEvents);
+  for (let i = 0; i < weekEvents.length; i++) {
+    eventTable[i] = weekEvents[i].map((item, index) => {
+      return (
+        <>
+          <div key={weekEvents[i][index].eventId}>
+            <Link
+              to={`/event/${weekEvents[i][index].eventId}`}
+              data-event-id={`${weekEvents[i][index].eventId}`}
+              // onClick={handleEventIdClick}
+            >
+              {weekEvents[i][index].content}
+            </Link>
+          </div>
+        </>
+      );
+    });
+  }
 
-  // const timeTable = timeCells.map((item, index) => {
-  //    return (
-  //     <>
-  //       <div key={item.id}>
-  //         {item.time}
-  //       </div>
-  //       <div key={todayEvents[index].eventId}>
-  //         <Link
-  //           to={`/event/${todayEvents[index].eventId}`}
-  //           data-event-id={`${todayEvents[index].eventId}`}
-  //           onClick={handleEventIdClick}
-  //         >
-  //           {todayEvents[index].content}
-  //         </Link>
-  //       </div>
-  //     </>
-  //   );
-  // });
-
-  // const dayTable[0] = 
 
   for (let i = 0; i < TIMECELL_NUMBER; i++) {
     const time = i < 12 ? `${i} AM` : `${i % 12} PM`;
@@ -104,26 +103,26 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
         <div className={styles.timeTable}>
           {timeTable}
         </div>
-        <div>
-          일
+        <div className={styles.eventTable}>
+          {eventTable[0]}
         </div>
-        <div>
-          월
+        <div className={styles.eventTable}>
+          {eventTable[1]}
         </div>
-        <div>
-          화
+        <div className={styles.eventTable}>
+          {eventTable[1]}
         </div>
-        <div>
-          수
+        <div className={styles.eventTable}>
+          {eventTable[1]}
         </div>
-        <div>
-          목
+        <div className={styles.eventTable}>
+          {eventTable[1]}
         </div>
-        <div>
-          금
+        <div className={styles.eventTable}>
+          {eventTable[1]}
         </div>
-        <div>
-          토
+        <div className={styles.eventTable}>
+          {eventTable[1]}
         </div>
       </div>
     </div>
