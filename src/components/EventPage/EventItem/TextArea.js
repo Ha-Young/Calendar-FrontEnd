@@ -1,5 +1,5 @@
 import React from "react";
-import { PLACEHOLDER } from "../../../constants/newEvent";
+import { PLACEHOLDER } from "../../../constants/common";
 import styles from "./TextArea.module.css";
 
 function TextArea({ text, updateText }) {

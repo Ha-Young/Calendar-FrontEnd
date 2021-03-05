@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { getTimeIndex } from "../../../utils/getTimeIndex";
 import { selectTime } from "../../../actions";
 import styles from "./Selector.module.css";
+import { SELECT_TIME } from "../../../constants/actionTypes";
+import { SELECTOR_NAME } from "../../../constants/common";
 
 function Selector({ props: {
     fromRef,
@@ -17,7 +19,7 @@ function Selector({ props: {
   return (
     <div className={styles.selectorTable}>
       <div>
-        <h3>시작 시간</h3>
+        <h3>{SELECTOR_NAME.START}</h3>
         <select
           defaultValue={TIME_FROM[from] || TIME_FROM[selectedTime]}
           onChange={(e) =>
@@ -33,7 +35,7 @@ function Selector({ props: {
         </select>
       </div>
       <div>
-        <h3>종료 시간</h3>
+        <h3>{SELECTOR_NAME.END}</h3>
         <select
           defaultValue={TIME_TO[to - 1] || null}
           ref={toRef}

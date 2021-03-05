@@ -1,5 +1,6 @@
 import React from "react";
 import Form from "../EventItem/Form";
+import { MODIFY_BUTTON } from "../../../constants/common";
 import styles from "./EventDetail.module.css";
 
 function EventDetail({
@@ -8,9 +9,9 @@ function EventDetail({
   return (
     <div className={styles.detailContainer}>
       <div className={styles.detailBox}>
-        <Form {...state} formId={"change"} />
-        <button form="change">Edit</button>
-        <button form="change">Remove</button>
+        <Form {...state} />
+        <button>{MODIFY_BUTTON.EDIT}</button>
+        <button>{MODIFY_BUTTON.REMOVE}</button>
       </div>
     </div>
   );

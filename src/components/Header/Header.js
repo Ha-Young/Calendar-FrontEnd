@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { nextDate, prevDate } from '../../actions';
-import { MOVE_DATE, PERIOD_UNIT } from '../../constants/headerButton';
+import { MOVE_DATE_BUTTON, PERIOD_UNIT } from '../../constants/common';
 import { getCurrentDate } from '../../utils/getDate';
 import styles from "./Header.module.css";
 
@@ -15,10 +15,10 @@ function Header ({
     <header className={styles.Header}>
       <div className={styles.moveDate}>
         <button onClick={() => onPrevButtonClick(currentDate)}>
-          {MOVE_DATE.PREV}
+          {MOVE_DATE_BUTTON.PREV}
         </button>
         <button onClick={() => onNextButtonClick(currentDate)}>
-          {MOVE_DATE.NEXT}
+          {MOVE_DATE_BUTTON.NEXT}
         </button>
       </div>
       <h2 className={styles.date}>{currentDate}</h2>

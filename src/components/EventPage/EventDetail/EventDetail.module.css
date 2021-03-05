@@ -14,12 +14,24 @@
   align-items: center;
   border-radius: 20px;
   width: 480px;
-  height: 450px;
+  height: 530px;
   background: #fafafa;
   box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
     2px 2px 2px #ffffff inset;
   animation: anime 3s cubic-bezier(0.16, 1, 0.3, 1) alternate;
   overflow: hidden;
+}
+
+.detailBox button {
+  width: 384px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: inherit;
+  color: inherit;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
 }
 
 @keyframes anime {
@@ -46,7 +58,7 @@
   }
   100% {
     width: 480px;
-    height: 450px;
+    height: 530px;
     background: #fafafa;
     box-shadow: 40px 40px 40px #cccccc, 0 0 0 #ffffff, 0 0 0 #cccccc inset,
       2px 2px 2px #ffffff inset;
