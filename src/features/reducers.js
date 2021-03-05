@@ -96,7 +96,7 @@ export default function reducer(state = initiateState, action) {
     case eventForm.CORRECT_EVENT:
       return {
         ...state,
-        eventForm: {...payload},
+        eventForm: { ...payload },
       };
 
     case userEvent.SET_EVENT:

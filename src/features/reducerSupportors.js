@@ -22,7 +22,7 @@ export function setEventForm(state, key, value) {
 
 export function setUserEvent(state, userEvent) {
   const { id } =  userEvent;
-  let allId = [...state.userEvent.allId];
+  let allId = [ ...state.userEvent.allId ];
 
   if (!state.userEvent.byId[id]) allId.push(id);
 
@@ -47,8 +47,8 @@ export function setUserEvent(state, userEvent) {
 }
 
 export function clearUserEvent(state, eventId) {
-  const copyUserEventById = {...state.userEvent.byId};
-  const copyUserEventAllId = [...state.userEvent.allId];
+  const copyUserEventById = { ...state.userEvent.byId };
+  const copyUserEventAllId = [ ...state.userEvent.allId ];
   delete copyUserEventById[eventId];
   copyUserEventAllId.splice(copyUserEventAllId.indexOf(eventId), 1);
 

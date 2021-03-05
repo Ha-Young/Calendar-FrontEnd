@@ -1,5 +1,5 @@
 export function getEventForm(state) {
-  return {...state.eventForm};
+  return { ...state.eventForm };
 }
 
 export function getCurrentDate(state) {
@@ -7,11 +7,11 @@ export function getCurrentDate(state) {
 }
 
 export function getUserEventById(state) {
-  return {...state.userEvent.byId};
+  return { ...state.userEvent.byId };
 }
 
 export function getUserEventAllId(state) {
-  return [...state.userEvent.allId];
+  return [ ...state.userEvent.allId ];
 }
 
 export function getDailyEvents(date, userEvent) {

@@ -3,7 +3,7 @@ import { EVENT_INIT_ID } from "../../constants";
 
 const registerEvent = (dateInfo, eventInfo, setEvent) => {
 
-  const { eventId, year, month, date, fromHour, toHour} = dateInfo;
+  const { eventId, year, month, date, fromHour, toHour } = dateInfo;
   const { title, content } = eventInfo;
   const eventFrom = getDateISOstring(year, month, date, fromHour);
   const eventTo = getDateISOstring(year, month, date, toHour);

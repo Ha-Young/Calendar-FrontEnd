@@ -127,7 +127,7 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
           등록
         </button>
       <Link to="/calendar">
-        <button onClick={() => clearForm({...inputData, title: "", content: "", eventId: EVENT_INIT_ID})}>취소</button>
+        <button onClick={() => clearForm({ ...inputData, title: "", content: "", eventId: EVENT_INIT_ID })}>취소</button>
       </Link>
     </>
   )
