@@ -37,7 +37,7 @@ export const setScheduleData = (scheduleData) => ({
   scheduleData
 });
 
-export const getTargetScheduleData = (targetScheduleData) => ({
+export const setTargetScheduleData = (targetScheduleData) => ({
   type: GET_TARGET_SCHEDULE_DATA,
   targetScheduleData
 });

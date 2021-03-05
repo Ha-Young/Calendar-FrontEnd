@@ -1,24 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ScheduleCreateForm.module.scss';
-import { changeDateFormatYYYYMD, changeDateFormatYYYYMMDD, dateInfoToObject, removeZeroInString } from '../../utils/dateUtil';
+import { changeDateFormatYYYYMD, changeDateFormatYYYYMMDD, dateAssemble, dateInfoToObject, plusFrontZero, removeZeroInString } from '../../utils/dateUtil';
+import { setSchedule } from '../../api';
+import { useLocation } from 'react-router-dom';
 
 import Container from '../publicComponent/Container/Container';
 import DateSelectForm from './DateSelectForm/DateSelectForm';
 import ColorInputForm from './ColorInputForm/ColorInputForm';
 import TextInputForm from './TextInputForm/TextInputForm';
 import ButtonInputForm from '../publicComponent/ButtonComponent/ButtonComponent';
-import { setSchedule } from '../../api';
 
 const ScheduleCreateForm = ({ currentDate }) => {
   const [date, setDate] = useState('');
   const [startHour, setStartHour] = useState('');
   const [endHour, setEndHour] = useState('');
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState('#DDDDDD');
   const [content, setContent] = useState('');
-
+  const [key, setKey] = useState(null);
+  const { state } = useLocation();
+  
   useEffect(() => {
-    const editedDate = changeDateFormatYYYYMMDD(currentDate);
-    setDate(editedDate.toString());
+    if (state) {
+      const assembledDat = dateAssemble(state.year, state.month, state.day);
+      const editedDate = changeDateFormatYYYYMMDD(assembledDat);
+      setDate(editedDate.toString());
+      setStartHour(plusFrontZero(state.startHour));
+      setEndHour(plusFrontZero(state.endHour));
+      setColor(state.color);
+      setContent(state.content);
+      setKey(state.key);
+    } else {
+      const editedDate = changeDateFormatYYYYMMDD(currentDate);
+      setDate(editedDate.toString());
+    }
   }, [currentDate]);
 
   function handleDateChange(event) {
@@ -42,11 +56,9 @@ const ScheduleCreateForm = ({ currentDate }) => {
   }
 
   function handleSubmitButtonClick() {
-    // 여긴 firebase 등록이 들어감...
-    console.log('button event 작동');
     const dateObj = dateInfoToObject(changeDateFormatYYYYMD(date));
     const newSchedule = {
-      key: 0,
+      key: key,
       year: Number(dateObj.year),
       month: Number(dateObj.month),
       day: Number(dateObj.day),
@@ -55,8 +67,7 @@ const ScheduleCreateForm = ({ currentDate }) => {
       content: content,
       color: color
     };
-    console.log('들어가는 데이터', newSchedule);
-    setSchedule(newSchedule).then(() => {
+    setSchedule(newSchedule, newSchedule.key).then(() => {
       window.location.href = "/";
     });
   }

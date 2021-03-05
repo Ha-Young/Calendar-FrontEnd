@@ -5,8 +5,4 @@ const mapStateToProps = (state) => ({
   currentDate: state.currentDate
 });
 
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ScheduleCreateForm);
+export default connect(mapStateToProps, null)(ScheduleCreateForm);

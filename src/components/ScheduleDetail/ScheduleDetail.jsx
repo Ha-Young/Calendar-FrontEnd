@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../publicComponent/Container/Container';
 import styles from './ScheduleDetail.module.scss';
 import styled from 'styled-components';
 import { dateAssemble, plusFrontZero } from '../../utils/dateUtil';
 import ButtonComponent from '../publicComponent/ButtonComponent/ButtonComponent';
 import { deleteSchedule } from '../../api';
+import { Link, Redirect } from 'react-router-dom';
 
 const ColorBlock = styled.div`
   width: 40px;
@@ -24,9 +25,20 @@ const testData = {
   year: 2021
 };
 
-const ScheduleDetail = ({ targetScheduleData }) => {
-  const data = targetScheduleData || testData;
+const ScheduleDetail = ({ targetScheduleData, setTargetScheduleData }) => {
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  const data = targetScheduleData ? JSON.parse(JSON.stringify(targetScheduleData)) : testData;
   const date = dateAssemble(data.year, data.month, data.day);
+  
+  useEffect(() => {
+    console.log('isUpdate : ',isUpdate);
+    return (isUpdate ? null : () => setTargetScheduleData(null));
+  }, [isUpdate]);
+
+  function handleUpdateButtonClick() {
+    setIsUpdate(true);
+  }
 
   function handleDeleteButtonClick() {
     deleteSchedule(data);
@@ -47,8 +59,12 @@ const ScheduleDetail = ({ targetScheduleData }) => {
           {data.content}
         </div>
         <div className={styles.buttonsSection}>
-          <ButtonComponent textContent={'Update'}></ButtonComponent>
-          <ButtonComponent textContent={'Delete'} onClickEvent={handleDeleteButtonClick}></ButtonComponent>
+          <Link to={{pathname: "/event/new", state: data}}>
+            <ButtonComponent textContent={'Update'} onClickEvent={handleUpdateButtonClick} className={styles.button}></ButtonComponent>
+          </Link>
+          <Link to="/">
+            <ButtonComponent textContent={'Delete'} onClickEvent={handleDeleteButtonClick} className={styles.button}></ButtonComponent>
+          </Link>
         </div>
       </div>
     </Container>

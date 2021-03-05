@@ -7,7 +7,7 @@ import { dateInfoToObject, dateInfoToObjectArr } from '../../utils/dateUtil';
 import { DAILY_MODE } from '../../constants/dateFormats';
 import { getAllEventsByDates } from '../../api';
 
-const Calendar = ({ currentDate, calendarMode, scheduleData, dispatchScheduleData, getTargetScheduleData }) => {
+const Calendar = ({ currentDate, calendarMode, scheduleData, dispatchScheduleData, setTargetScheduleData }) => {
   function getDateArr() {
     // 이걸로 그려야하는 날짜의 갯수를 정한다.
     return calendarMode === DAILY_MODE 
@@ -27,7 +27,7 @@ const Calendar = ({ currentDate, calendarMode, scheduleData, dispatchScheduleDat
   }, [calendarMode, currentDate]);
 
   function handleSchduleClickEvent(targetSchedule) {
-    return () => getTargetScheduleData(targetSchedule);
+    return () => setTargetScheduleData(targetSchedule);
   }
 
   return (

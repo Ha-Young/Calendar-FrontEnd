@@ -14,6 +14,8 @@ const OneHourContainer = styled.div`
 
   a {
     width: 99%;
+    text-decoration: none;
+    color: inherit;
   }
 `;
 

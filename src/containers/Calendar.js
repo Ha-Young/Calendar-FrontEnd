@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { setScheduleData, getTargetScheduleData } from "../actions";
+import { setScheduleData, setTargetScheduleData } from "../actions";
 import Calendar from '../components/Calendar/Calendar';
 
 const mapStateToProps = (state) => ({
@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchScheduleData: (scheduleData) => dispatch(setScheduleData(scheduleData)),
-  getTargetScheduleData: (targetScheduleData) => dispatch(getTargetScheduleData(targetScheduleData))
+  setTargetScheduleData: (targetScheduleData) => dispatch(setTargetScheduleData(targetScheduleData))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
