@@ -13,8 +13,6 @@ export default function CreateEvent() {
   const [startDateTime, setStartDateTime] = useState("");
   const [endDateTime, setEndDateTime] = useState("");
   const history = useHistory();
-  console.log(startDateTime)
-  console.log(DateTime.fromISO(startDateTime).plus({ days: 1 }).toISODate()+"T00:00")
 
   const handleSubmit = (e) => {
     e.preventDefault();

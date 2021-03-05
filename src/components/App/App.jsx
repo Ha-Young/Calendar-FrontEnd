@@ -11,8 +11,6 @@ import Calendar from "../Calendar/Calendar";
 import EventDetail from "../EventDetail/EventDetail";
 // TODO remove useless props
 function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, calculatedDates, events, selectedEventInfo, isDailyView }) {
-  console.log('app render');
-
   return (
     <div className={styles.App}>
       <Header nextButtonClicked={nextButtonClicked} prevButtonClicked={prevButtonClicked} />

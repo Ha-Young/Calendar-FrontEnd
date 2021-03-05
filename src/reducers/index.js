@@ -1,14 +1,3 @@
-/*
-
-  Reducers
-
-  ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/reducers/index.js
-
-  우선 하나의 reducer로 작업을 시작하고, reducer의 로직이 많아지면 `combineReducers`를 이용해 모듈을 분리해보세요.
-  - Don't optimize pre-maturely!
-
- */
-
 import * as types from "../constants/actionTypes";
 import { DateTime } from 'luxon';
 
@@ -25,7 +14,6 @@ const initialState = {
 
 // TODO newDate는 이제 필요없을듯? 바로 대입해도 될듯
 export default function reducer(state = initialState, action) {
-  console.log('reducer')
   switch (action.type) {
     case types.SELECT_DAY: {
       const newDate = formatDate(action.payload.selectedDate);
