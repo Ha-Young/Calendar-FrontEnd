@@ -2,6 +2,7 @@
 
 .WeekTable {
   display: flex;
+  flex-flow: column;
   overflow: scroll;
   width: 70vw;
   height: 50vh;
@@ -11,13 +12,42 @@
   font-weight: bold;
 }
 
+.dayTable {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+}
+
+.dayCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid #BDBDBD;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.contentContainer {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  border-right: 1px solid #BDBDBD;
+  border-bottom: 1px solid #BDBDBD;
+}
+
 .timeTable {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 10%;
-  height: 120vh;
+  width: 12%;
+  height: 100vh;
   border-right: 1px solid #BDBDBD;
   border-bottom: 1px solid #BDBDBD;
 }

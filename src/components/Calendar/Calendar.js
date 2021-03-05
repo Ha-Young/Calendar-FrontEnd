@@ -16,7 +16,7 @@ export default function Calendar ({
   onEventDayClick,
   onEventWeekClick
 }) {
-  console.log(isDayCalendar)
+
   const [currentDate, setCurrentDate] = useState(moment());
   const [formattedCurrentDate, setFormattedCurrentDate] = useState({
     year: currentDate.format("YYYY"),
