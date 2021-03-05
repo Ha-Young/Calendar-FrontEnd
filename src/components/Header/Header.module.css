@@ -1,0 +1,28 @@
+@import "../../common/main.module.css";
+@value calenderLightBlue from "../../common/main.module.css";
+
+.dailyButton {
+  position: absolute;
+}
+
+.weeklyButton {
+  position: absolute;
+  top: 3vh;
+  left: 30vw;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.addButton {
+  position: absolute;
+  background-color: inherit;
+  border: none;
+  font-size: 40px;
+  color: calenderLightBlue;
+  top: 3vh;
+  left: 92vw;
+}
+
+.profileButton {
+  position: absolute;
+}

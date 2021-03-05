@@ -1,6 +1,28 @@
+@value calenderBlack: #2c3e50;
+@value calenderWhite: white;
+@value calenderDeepDarkGray: #7f8c8d;
+@value calenderDarkGray: #34495e;
+@value calenderGray: #95a5a6;
+@value calenderLightGray: #bdc3c7;
+@value calenderBrightGray: #ecf0f1;
+@value calenderRed: #e74c3c;
+@value calenderValidRed: #EA2027;
+@value calenderBlue: #3498db;
+@value calenderValidBlue: #3742fa;
+@value calenderLightBlue: #1e90ff;
+@value calenderSkyBlue: #74b9ff;
+@value calenderBrightBlue: #dff9fb;
+@value calenderYellow: #f1c40f;
+@value calenderPink: #ff6b81;
+@value calenderShadow: rgba(217, 217, 217, 1);
+@value calenderColorful: linear-gradient(166deg, rgba(237, 193, 211, 1) 0%,rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%);
+@value mediaQuery: 64rem;
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 * {
   font-family: "Nanum Gothic", sans-serif;
   font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
