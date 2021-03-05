@@ -20,24 +20,33 @@ function App(props) {
       />
       <Switch>
         <Route path="/calendar" exact>
-          <Daily role={"daily"} eventDate={props.currentDate} userEvents={props.dailyEvents} />
+          <Daily
+            role={"daily"}
+            eventDate={props.currentDate}
+            userEvents={props.dailyEvents}
+            dispatch={props.actToEventForm.setAllDate}
+          />
         </Route>
         <Route exact path="/calendar/weekly">
-          <Weekly eventDate={props.currentDate} userEvents={props.weeklyEvents} />
+          <Weekly
+            eventDate={props.currentDate}
+            userEvents={props.weeklyEvents}
+            dispatch={props.actToEventForm.setAllDate}
+          />
         </Route>
         <Route path="/events/new">
           <EventForm
             inputData={props.eventInfo}
             setEventForm={props.actToEventForm}
             setUserEvent={props.actToUserEvent}
-            eventById={props.eventById}/>
+            eventById={props.eventById}
+          />
         </Route>
         <Route path="/events/:eventId">
           <EventDetails
-            inputData={props.eventInfo}
             setEventForm={props.actToEventForm.correct}
             clearEvent={props.actToUserEvent.clearEvent}
-            eventAllIds={props.eventAllIds}
+            eventById={props.eventById}
           />
         </Route>
       </Switch>

@@ -41,8 +41,10 @@ export default function reducer(state = initiateState, action) {
   switch(action.type) {
     case eventForm.SET_TITLE:
       return setEventForm(state, TITLE, payload);
+
     case eventForm.SET_CONTENT:
       return setEventForm(state, CONTENT, payload);
+
     case eventForm.SET_YEAR:
       const isInvalidYear = payload < YEAR_MIN || YEAR_MAX < payload;
 
@@ -54,6 +56,7 @@ export default function reducer(state = initiateState, action) {
       const isInvalidMonth = payload < MONTH_MIN || MONTH_MAX < payload;
 
       if (isInvalidMonth) return state;
+
       return setCurrentDate(setEventForm(state, MONTH, payload));
 
     case eventForm.SET_DATE:
@@ -76,10 +79,18 @@ export default function reducer(state = initiateState, action) {
       const { fromHour } = state.eventForm;
       const isInvalidToHour = HOUR_MAX < payload
         || payload === fromHour;
+
       if (isInvalidToHour) return state;
 
       const to = fromHour > payload ? fromHour : payload;
+
       return setEventForm(state, TO_HOUR, to);
+
+    case eventForm.SET_ALL_DATE:
+      return setCurrentDate(setEventForm(state, null, payload));
+
+    case eventForm.CLEAR_FORM:
+      return setCurrentDate(setEventForm(state, null, payload));
 
     case eventForm.CORRECT_EVENT:
       return {

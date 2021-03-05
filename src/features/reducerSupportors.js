@@ -1,11 +1,22 @@
+import { EVENT_INIT_ID } from "../constants";
 export function setEventForm(state, key, value) {
+  if (key) {
+    return {
+      ...state,
+      eventForm: {
+        ...state.eventForm,
+        [key]: value,
+      }
+    };
+  }
+
   return {
     ...state,
     eventForm: {
       ...state.eventForm,
-      [key]: value,
+      ...value,
     }
-  };
+  }
 }
 
 export function setUserEvent(state, userEvent) {
@@ -24,6 +35,12 @@ export function setUserEvent(state, userEvent) {
         }
       },
       allId,
+    },
+    eventForm: {
+      ...state.eventForm,
+      title: "",
+      content: "",
+      eventId: EVENT_INIT_ID,
     }
   };
 }

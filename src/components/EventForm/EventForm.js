@@ -1,13 +1,19 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { MAX_MIN_DATE } from "../../constants";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import styles from "./EventForm.module.css";
+import { MAX_MIN_DATE, EVENT_INIT_ID } from "../../constants";
 import registerEvent from "./registerEvent";
 import checkValidEvent from "./checkValidEvent";
 
 
-function EventForm({inputData, setEventForm, setUserEvent, userEventById}) {
+function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
   const [isValidEvent, setIsValidEvent] = useState(true);
   const history = useHistory();
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => setIsValidEvent(true), 2000);
+    return () => clearTimeout(timeoutId);
+  }, [isValidEvent]);
 
   const {
     setTitle,
@@ -17,7 +23,9 @@ function EventForm({inputData, setEventForm, setUserEvent, userEventById}) {
     setDate,
     setFromHour,
     setToHour,
+    clearForm,
   } = setEventForm;
+
   const { setEvent } = setUserEvent;
 
   const {
@@ -29,6 +37,13 @@ function EventForm({inputData, setEventForm, setUserEvent, userEventById}) {
     fromHour,
     toHour,
   } = inputData;
+
+  function handleOnClick() {
+    const isValid = checkValidEvent(eventById, inputData);
+    if (!isValid) return setIsValidEvent(isValid);
+    registerEvent(inputData, {title, content}, setEvent);
+    history.push("/calendar");
+  }
 
   return (
     <>
@@ -107,17 +122,13 @@ function EventForm({inputData, setEventForm, setUserEvent, userEventById}) {
           />
         </label>
       </fieldset>
-      {isValidEvent ? null : <span>중복된 이벤트입니다.</span>}
-        <button onClick={() => {
-          const isValid = checkValidEvent(userEventById, inputData);
-          if (!isValid) return setIsValidEvent(isValid);
-          registerEvent(inputData, {title, content}, setEvent);
-          history.push("/calendar");
-        }}>
+      {isValidEvent ? null : <span className={styles.alert}>중복된 이벤트입니다.</span>}
+        <button onClick={handleOnClick}>
           등록
         </button>
-
-      <button>취소</button>
+      <Link to="/calendar">
+        <button onClick={() => clearForm({...inputData, title: "", content: "", eventId: EVENT_INIT_ID})}>취소</button>
+      </Link>
     </>
   )
 };

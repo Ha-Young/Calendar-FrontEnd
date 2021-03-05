@@ -3,12 +3,15 @@ import dailyStyles from "./Daily.module.css";
 import weeklyStyles from "../Weekly/Weekly.module.css";
 import { MAX_MIN_DATE, DAYS } from "../../constants";
 import CalendarHeader from "../shared/CalendarHeader";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-export default function Daily({ role, eventDate, userEvents }) {
+export default function Daily({ role, eventDate, userEvents, dispatch }) {
+  const history = useHistory();
+  const year = eventDate.getFullYear();
+  const month = eventDate.getMonth() + 1;
   const date = eventDate.getDate();
   const day = eventDate.getDay();
-  const timeColumns = [];
+  const hourColumns = [];
 
   const eventTable = userEvents.reduce((table, userEvent) => {
     const fromHour = new Date(userEvent.period.from).getHours();
@@ -28,16 +31,24 @@ export default function Daily({ role, eventDate, userEvents }) {
   for (let i = 0; i <= MAX_MIN_DATE.HOUR.MAX; i++) {
     const { id, title } = eventTable[i] ?? {id: null, title: null};
 
-    timeColumns.push(
-      <div className={dailyStyles.column} key={i}>
+    hourColumns.push(
+      <div key={i} id={i} className={dailyStyles.column} onClick={handleClick}>
         {eventTable[i]
           ? <Link to={`/events/${id}`}>
               <div id={id}>{title}</div>
             </Link>
-          : i
+          : null
         }
       </div>
     );
+  }
+
+  function handleClick(e) {
+    const hour = Number(e.target.id);
+    if (Number.isNaN(hour)) return;
+    const payload = {year, month, date, fromHour: hour, toHour: hour + 1};
+    dispatch(payload);
+    history.push("/events/new");
   }
 
   return (
@@ -45,7 +56,7 @@ export default function Daily({ role, eventDate, userEvents }) {
       <CalendarHeader>
         <h1>{date}일 {`${DAYS[day]}요일`}</h1>
       </CalendarHeader>
-        {timeColumns}
+        {hourColumns}
     </div>
   );
 }

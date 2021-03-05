@@ -8,8 +8,9 @@ export const setEventFormFor = {
   date: (date) => ({type: eventForm.SET_DATE, payload: date}),
   fromHour: (hour) => ({type: eventForm.SET_FROM_HOUR, payload: hour}),
   toHour: (hour) => ({type: eventForm.SET_TO_HOUR, payload: hour}),
-  fromToHour: (hour) => ({type: eventForm.SET_FROM_TO_HOUR, payload: hour}),
+  allDate: (dateForm) => ({type: eventForm.SET_ALL_DATE, payload: dateForm}),
   correct: (form) => ({type: eventForm.CORRECT_EVENT, payload: form}),
+  clearForm: (form) => ({type: eventForm.CLEAR_FORM, payload: form}),
 };
 
 export const setUserEventFor = {
