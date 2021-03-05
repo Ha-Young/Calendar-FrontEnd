@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Control from "./Control";
+import Control from "../../containers/AppHeaderControl";
 import Logo from "./Logo";
 import Nav from "./Nav/Nav";
 
