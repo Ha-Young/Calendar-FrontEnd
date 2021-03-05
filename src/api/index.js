@@ -84,7 +84,11 @@ export async function readDateListRange(userId, startDate, endDate) {
   const database = firebase.database();
   const snapshot = await database.ref(`/${ROOT_DIR}/${userId}`).orderByKey().startAt(startDate).endAt(endDate).once('value');
 
-  const getDateList = snapshot.val();
+  let getDateList = snapshot.val();
+
+  if (getDateList === null) {
+    getDateList = {};
+  }
 
   for (const needDate of needDateList) {
     if (needDate in getDateList) {

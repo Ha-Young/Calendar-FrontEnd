@@ -7,8 +7,8 @@ const HOUR = 24;
 const AM = "AM";
 const PM = "PM";
 const DAY_OF_THE_WEEK = [
-  "월요일", "화요일", "수요일",
-  "목요일", "금요일", "토요일", "일요일"
+  "일요일", "월요일", "화요일", "수요일",
+  "목요일", "금요일", "토요일"
 ];
 const WEEK_CALCULATE_LIST = [-3, -2, -1, 0, 1, 2, 3];
 
