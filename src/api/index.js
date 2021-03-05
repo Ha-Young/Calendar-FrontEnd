@@ -31,11 +31,12 @@ export async function addSample() {
   await database.ref().update(updates);
 };
 
-export async function addfolder() {
+export async function getFirebaseData(setData) {
   const databaseRef = firebase.database().ref();
 
   await databaseRef.on("value", (snapShot) => {
     const data = snapShot.val();
-    console.log(data);
+    
+    setData(data);
   });
 };

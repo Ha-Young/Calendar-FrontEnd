@@ -1,6 +1,7 @@
 import {
   ADD_EVENT,
   DELETE_EVENT,
+  GET_FIREBASE_EVENTS,
 } from "../constants/actionTypes";
 
 const EVENT_DATA_EXAMPLE = {
@@ -41,6 +42,10 @@ const event = (state = initialState, action) => {
       delete state[action.payload.key];
 
       return state;
+    case GET_FIREBASE_EVENTS:
+      return {
+        ...action.data
+      }
     default:
       return state;
   }

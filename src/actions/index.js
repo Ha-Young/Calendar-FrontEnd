@@ -17,6 +17,7 @@ import {
   SET_EVENT_PAGE,
   ADD_EVENT,
   DELETE_EVENT,
+  GET_FIREBASE_EVENTS,
 } from "../constants/actionTypes";
 
 export const setDayPage = () => ({
@@ -63,4 +64,9 @@ export const deleteEvent = (event) => ({
   payload: {
     key: event.date
   },
+});
+
+export const getEvents = (data) => ({
+  type: GET_FIREBASE_EVENTS,
+  data,
 });

@@ -23,22 +23,18 @@ const Form = styled.form`
   }
 `;
 
+const MOCK_DATA = {
+  title: "",
+  description: "",
+  date: "",
+  startHour: "",
+  endHour: "",
+};
+
 const Event = ({ onSubmit, onPage }) => {
   const location = useLocation();
-  const [event, setEvent] = useState({
-    title: "",
-    description: "",
-    date: "",
-    startHour: "",
-    endHour: "",
-  });
-  const modifyingData = {
-    title: "",
-    description: "",
-    date: "",
-    startHour: "",
-    endHour: "",
-  };
+  const [event, setEvent] = useState(MOCK_DATA);
+  const modifyingData = MOCK_DATA;
 
   if (location.state) {
     const modifyingEvent = location.state.modifyingEvent;

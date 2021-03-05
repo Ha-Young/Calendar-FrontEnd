@@ -19,3 +19,4 @@ export const RESET_DAY = "RESET_DAY";
 
 export const ADD_EVENT = "ADD_EVENT";
 export const DELETE_EVENT = "DELETE_EVENT";
+export const GET_FIREBASE_EVENTS = "GET_FIREBASE_EVENTS";

@@ -1,12 +1,13 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { saveSampleData, addfolder, updateSample, addSample } from "../api";
+import { saveSampleData, addfolder, updateSample, getFirebaseData } from "../api";
 import {
   addEvent,
   setDayPage,
   setWeekPage,
   setEventPage,
   deleteEvent,
+  getEvents,
 } from "../actions";
 
 const mapStateToProps = (state) => ({
@@ -21,7 +22,9 @@ const mapDispatchToProps = (dispatch) => ({
     //saveSampleData();
     //updateSample();
     //addSample();
-    //addfolder();
+    getFirebaseData((data) => {
+      dispatch(getEvents(data));
+    });
   },
   setDaily: () => {
     dispatch(setDayPage());

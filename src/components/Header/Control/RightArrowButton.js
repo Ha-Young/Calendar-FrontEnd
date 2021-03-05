@@ -8,10 +8,10 @@ const RightArrowButton = ({ nextDay, nextWeek, page }) => {
   const handleClick = () => {
     if (page === PAGE_TYPE.DAY) {
       nextDay();
-      
+
       return;
     }
-    
+
     if (page === PAGE_TYPE.WEEK) {
       nextWeek();
     }
