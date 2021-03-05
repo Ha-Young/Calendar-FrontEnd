@@ -93,6 +93,7 @@ export default function reducer(state = initialState, action) {
       const filteredPrevEventsOfDate = prevEventsOfDate.filter(event => event.id !== action.payload.prevEvent.id);
       const updatedEventsOfDate = state.events.byDates[action.payload.updatedEvent.date] ?? [];
       const filtedAllDates = state.events.allDates.filter(date => date !== action.payload.prevEvent.date);
+
       return {
         ...state,
         events: {
@@ -110,8 +111,28 @@ export default function reducer(state = initialState, action) {
         },
       };
     case types.REMOVE_EVENT:
-      return {
+      const eventsByIds = { ...state.events.byIds };
+      delete eventsByIds[action.payload.id];
+      const eventsByDate = [...state.events.byDates[action.payload.date]];
+      const filteredEventsByDate = eventsByDate.filter(event => event.id !== action.payload.id);
 
+      return {
+        ...state,
+        events: {
+          byIds: eventsByIds,
+          byDates: {
+            ...state.events.byDates,
+            [action.payload.date]: filteredEventsByDate.length === 0 ? null : filteredEventsByDate,
+          },
+          allDates: state.events.allDates.filter(date => {
+            if (filteredEventsByDate.length) {
+              return true;
+            }
+
+            return date !== action.payload.date
+          }),
+          allIds: state.events.allIds.filter(id => id !== action.payload.id)
+        }
       };
 
     default:
