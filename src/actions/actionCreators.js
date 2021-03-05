@@ -3,6 +3,7 @@ import {
   editAtFirebase,
   deleteAtFirebase,
 } from "api/firebaseAPIs";
+import { authService } from "api/firebaseService";
 import { ACTION } from "constants/actionTypes";
 import { getDateISO } from "utils/utilFunction";
 
@@ -15,6 +16,7 @@ const setInitialize = (initialEvent, userId) => {
 
   const today = getDateISO(0);
   const dailyEvent = {};
+  const { displayName, email, photoURL, phoneNumber } = authService.currentUser;
 
   for (const [key, value] of Object.entries(initialEvent)) {
     if (value.date === today) {
@@ -24,6 +26,7 @@ const setInitialize = (initialEvent, userId) => {
 
   return {
     type: ACTION.SET_INITIALIZE,
+    userData: { displayName, email, photoURL, phoneNumber },
     weeklyEvent: initialEvent,
     dailyEvent,
     userId,

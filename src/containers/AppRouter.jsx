@@ -34,6 +34,7 @@ const AppRouter = ({
   addEvent,
   editEvent,
   deleteEvent,
+  userData,
   isLoggedIn,
 }) => {
   const [weekCount, setWeekCount] = useState(0);
@@ -171,7 +172,7 @@ const AppRouter = ({
             </Route>
 
             <Route exact path={routes.PROFILE}>
-              <Profile />
+              <Profile userData={userData} />
             </Route>
 
             <Redirect from="/calender" to={routes.HOME} />

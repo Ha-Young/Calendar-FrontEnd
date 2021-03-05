@@ -1,0 +1,42 @@
+@value calenderBlack, calenderDarkGray, calenderGray,  calenderRed from "../../common/main.module.css";
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 200px;
+  width: 100vw;
+  text-align: center;
+}
+
+.userPhoto {
+  border-radius: 50px;
+}
+
+.userPhoto,
+.userDefault {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+}
+
+.userName {
+  margin-top: 20px;
+}
+
+.email {
+  margin-top: 10px;
+  font-weight: 400;
+}
+
+.logoutButton {
+  height: 40px;
+  width: 90px;
+  margin: 0 auto;
+  margin-top: 40px;
+  border-radius: 20px;
+  background-color: calenderRed;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
+}

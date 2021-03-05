@@ -2,7 +2,7 @@ import { ACTION } from "constants/actionTypes";
 
 const initialState = {
   userId: "",
-  userProfile: {},
+  userData: {},
   weeklyEvent: {},
   dailyEvent: {},
 };
@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userId: action.userId,
+        userData: action.userData,
         dailyEvent: action.dailyEvent,
         weeklyEvent: action.weeklyEvent,
       };
