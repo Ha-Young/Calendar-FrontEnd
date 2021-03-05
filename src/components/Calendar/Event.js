@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import EventModal from "../Modal/EventModal";
 
 const StyledEvent = styled.div`
   position: absolute;
@@ -15,42 +14,25 @@ export default function Event({
   id,
   height,
   title,
+  startHour,
+  endHour,
   description,
-  onDeleteEvent,
+  onClickGetEventInfo,
+  showModal,
 }) {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
   return (
     <>
       <StyledEvent
         height={height}
         onClick={(e) => {
           e.stopPropagation();
+          onClickGetEventInfo({ id, title, startHour, endHour, description });
           showModal();
         }}
       >
         <h2 style={{ color: "white" }}>{title}</h2>
         <h3 style={{ color: "white" }}>{description}</h3>
       </StyledEvent>
-      <EventModal
-        isModalVisible={isModalVisible}
-        handleOk={() => handleOk()}
-        handleCancel={() => handleCancel()}
-        onDeleteEvent={onDeleteEvent}
-        eventInfo={{ id, title, description }}
-      />
     </>
   );
 }

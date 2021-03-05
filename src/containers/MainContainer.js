@@ -6,6 +6,7 @@ import Week from "../components/Calendar/Week/Week";
 import AddEventButton from "../components/Button/AddEventButton";
 import styles from "./MainContainer.module.css";
 import EventModal from "../components/Modal/EventModal";
+import { formatUserInput } from "../utils/utils";
 
 import {
   NEXT,
@@ -14,11 +15,11 @@ import {
   TO_WEEK_CALENDAR,
   ADD_EVENT,
   DELETE_EVENT,
+  EDIT_EVENT,
 } from "../actions/index";
 
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import uuid from "react-uuid";
 
 const mapStateToProps = (state) => ({ state });
 
@@ -28,20 +29,15 @@ const mapDispatchToProps = (dispatch) => ({
   onPrevClick: () => dispatch({ type: PREV }),
   onNextClick: () => dispatch({ type: NEXT }),
   onAddEvent: (userInputEvent) => {
-    const { eventTitle, RangePicker, eventDescription } = userInputEvent;
-    const eventDate = RangePicker[0].format("YYYY/MM/DD");
-    const eventStartHour = RangePicker[0].format("HH");
-    const eventEndHour = RangePicker[1].format("HH");
-    const event = {
-      Id: uuid(),
-      Title: eventTitle,
-      Description: eventDescription,
-      Date: eventDate,
-      StartHour: eventStartHour,
-      EndHour: eventEndHour,
-    };
+    const event = formatUserInput(null, userInputEvent);
     dispatch({ type: ADD_EVENT, payload: event });
   },
+
+  onEditEvent: (eventId, userInputEvent) => {
+    const event = formatUserInput(eventId, userInputEvent);
+    dispatch({ type: EDIT_EVENT, payload: { eventId, event } });
+  },
+
   onDeleteEvent: (eventId) => {
     dispatch({ type: DELETE_EVENT, payload: eventId });
   },
@@ -55,9 +51,14 @@ const MainContainer = ({
   onChangeWeekMode,
   onAddEvent,
   onDeleteEvent,
+  onEditEvent,
 }) => {
+  const [eventInfo, getEventInfo] = useState({});
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [eventInfo, setEventInfo] = useState({});
+
+  const onClickGetEventInfo = (eventInfo) => {
+    getEventInfo(eventInfo);
+  };
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -85,6 +86,9 @@ const MainContainer = ({
           handleOk={() => handleOk()}
           handleCancel={() => handleCancel()}
           onAddEvent={onAddEvent}
+          onDeleteEvent={onDeleteEvent}
+          onEditEvent={onEditEvent}
+          eventInfo={eventInfo}
         />
         <Switch>
           <Route path="/Day" exact>
@@ -95,6 +99,8 @@ const MainContainer = ({
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
               onDeleteEvent={onDeleteEvent}
+              onClickGetEventInfo={onClickGetEventInfo}
+              showModal={showModal}
             />
           </Route>
           <Route path="/Week">
@@ -105,6 +111,8 @@ const MainContainer = ({
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
               onDeleteEvent={onDeleteEvent}
+              onClickGetEventInfo={onClickGetEventInfo}
+              showModal={showModal}
             />
           </Route>
           <Route path="/Event">

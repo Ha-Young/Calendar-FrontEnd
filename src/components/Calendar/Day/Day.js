@@ -11,6 +11,7 @@ export default function Day({
   onPrevClick,
   onNextClick,
   onDeleteEvent,
+  onClickGetEventInfo,
   isDayCalendarShown,
   showModal,
 }) {
@@ -28,6 +29,7 @@ export default function Day({
         events={events}
         showModal={showModal}
         onDeleteEvent={onDeleteEvent}
+        onClickGetEventInfo={onClickGetEventInfo}
       />
     </div>
   );

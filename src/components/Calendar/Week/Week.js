@@ -12,6 +12,7 @@ export default function Week({
   onPrevClick,
   onNextClick,
   onDeleteEvent,
+  onClickGetEventInfo,
   isDayCalendarShown,
   showModal,
 }) {
@@ -29,6 +30,7 @@ export default function Week({
         events={events}
         showModal={showModal}
         onDeleteEvent={onDeleteEvent}
+        onClickGetEventInfo={onClickGetEventInfo}
       />
     </div>
   );

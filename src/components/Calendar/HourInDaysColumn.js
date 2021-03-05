@@ -7,6 +7,8 @@ export default function HourInDaysColumn({
   isDayCalendarShown,
   events,
   onDeleteEvent,
+  onClickGetEventInfo,
+  showModal,
 }) {
   const hours = [
     "00",
@@ -49,21 +51,24 @@ export default function HourInDaysColumn({
               date={day}
               hour={hour}
             >
-              {!!events.length &&
-                events.map((e) => {
-                  if (hour === e.StartHour && day === e.Date) {
-                    return (
-                      <Event
-                        title={e.Title}
-                        id={e.Id}
-                        description={e.Description}
-                        height={e.EndHour - e.StartHour}
-                        key={index}
-                        onDeleteEvent={onDeleteEvent}
-                      />
-                    );
-                  }
-                })}
+              {events.map((e) => {
+                if (hour === e.startHour && day === e.date) {
+                  return (
+                    <Event
+                      title={e.title}
+                      id={e.id}
+                      startHour={e.startHour}
+                      endHour={e.endHour}
+                      description={e.description}
+                      height={e.endHour - e.startHour}
+                      key={index}
+                      onDeleteEvent={onDeleteEvent}
+                      onClickGetEventInfo={onClickGetEventInfo}
+                      showModal={showModal}
+                    />
+                  );
+                }
+              })}
             </div>
           );
         })}

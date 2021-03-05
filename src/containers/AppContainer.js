@@ -14,13 +14,12 @@ const mapDispatchToProps = (dispatch) => ({
   onInitialLoad: () => {
     saveSampleData();
   },
-  onSendEvent: (event) => {
-    dispatch(receiveEvents(event));
-  },
 });
 
-const AppContainer = () => {
-  useEffect(() => {}, []);
+const AppContainer = ({ onInitialLoad }) => {
+  useEffect(() => {
+    onInitialLoad();
+  }, []);
   return (
     <>
       <Sidebar />

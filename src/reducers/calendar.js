@@ -5,6 +5,7 @@ import {
   TO_WEEK_CALENDAR,
   ADD_EVENT,
   DELETE_EVENT,
+  EDIT_EVENT,
 } from "../actions/index";
 
 import { addDay, subDay, addWeek, subWeek, format } from "../utils/utils";
@@ -54,7 +55,19 @@ export default function reducer(state = initialState, action) {
     case DELETE_EVENT:
       return {
         ...state,
-        events: state.events.filter((event) => event.Id !== action.payload),
+        events: state.events.filter((event) => event.id !== action.payload),
+      };
+
+    case EDIT_EVENT:
+      return {
+        ...state,
+        events: state.events.map((event) => {
+          if (event.id === action.payload.eventId) {
+            return (event = Object.assign(event, action.payload.event));
+          } else {
+            return (event = Object.assign(event, event));
+          }
+        }),
       };
 
     default:

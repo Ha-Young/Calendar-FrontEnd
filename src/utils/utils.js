@@ -1,5 +1,6 @@
 import add from "date-fns/add";
 import sub from "date-fns/sub";
+import uuid from "react-uuid";
 import {
   eachDayOfInterval,
   eachWeekOfInterval,
@@ -52,4 +53,21 @@ export function getDaysInWeek(dateObj) {
     start: startOfWeek(dateObj),
     end: endOfWeek(dateObj),
   });
+}
+
+export function formatUserInput(eventId, userInputEvent) {
+  const { eventTitle, RangePicker, eventDescription } = userInputEvent;
+  const eventDate = RangePicker[0].format("YYYY/MM/DD");
+  const eventStartHour = RangePicker[0].format("HH");
+  const eventEndHour = RangePicker[1].format("HH");
+  const event = {
+    id: eventId ? eventId : uuid(),
+    title: eventTitle,
+    description: eventDescription,
+    date: eventDate,
+    startHour: eventStartHour,
+    endHour: eventEndHour,
+  };
+
+  return event;
 }

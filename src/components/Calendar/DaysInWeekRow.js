@@ -8,6 +8,8 @@ export default function DaysInWeekRow({
   isDayCalendarShown,
   events,
   onDeleteEvent,
+  onClickGetEventInfo,
+  showModal,
 }) {
   const daysInWeek = getDaysInWeek(now).map((dayObj, index) => {
     return formatDate(dayObj);
@@ -22,6 +24,8 @@ export default function DaysInWeekRow({
           isDayCalendarShown={isDayCalendarShown}
           events={events}
           onDeleteEvent={onDeleteEvent}
+          onClickGetEventInfo={onClickGetEventInfo}
+          showModal={showModal}
         />
       ) : (
         daysInWeek.map((day, index) => {
@@ -32,6 +36,8 @@ export default function DaysInWeekRow({
               isDayCalendarShown={isDayCalendarShown}
               events={events}
               onDeleteEvent={onDeleteEvent}
+              onClickGetEventInfo={onClickGetEventInfo}
+              showModal={showModal}
             />
           );
         })

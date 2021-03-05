@@ -2,7 +2,7 @@ import React from "react";
 
 import { Modal, Form, Input, Button, DatePicker } from "antd";
 import { TwitterPicker } from "react-color";
-import styled from "styled-components";
+
 const { RangePicker } = DatePicker;
 const formItemLayout = {
   labelCol: {
@@ -35,6 +35,7 @@ export default function EventModal({
   let isAddClicked = false;
   let isEditClicked = false;
   let isDeleteClicked = false;
+
   console.log("eventInfo of element that you clicked", eventInfo);
 
   return (
@@ -45,6 +46,7 @@ export default function EventModal({
       onOk={handleOk}
       onCancel={handleCancel}
       width={800}
+      footer={null}
       bodyStyle={{
         display: "flex",
         justifyContent: "center",
@@ -61,12 +63,14 @@ export default function EventModal({
           }
           if (isEditClicked) {
             console.log("edit clicked");
+            onEditEvent(eventInfo.id, e);
+            handleOk();
           }
 
           if (isDeleteClicked) {
             console.log(eventInfo.id);
             onDeleteEvent(eventInfo.id);
-            // handleOk();
+            handleOk();
           }
         }}
         {...formItemLayout}
