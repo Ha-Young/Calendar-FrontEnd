@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 import {
+  DELETE_EVENT,
   DETAIL_EVENT,
   EDIT_EVENT,
+  INIT_EVENT,
   SUBMIT_EVENT,
 } from "../constants/actionTypes";
 import { getWeeklyKeyFormats } from "../utils/date";
@@ -33,6 +35,14 @@ function eventsById(state = {}, action) {
       }
 
       copy[event.start] = event;
+
+      return copy;
+    }
+    case DELETE_EVENT: {
+      const { prevId } = payload;
+      const copy = Object.assign({}, state);
+
+      delete copy[prevId];
 
       return copy;
     }
@@ -70,6 +80,19 @@ function eventsAllIds(state = [], action) {
 
       return copy;
     }
+    case DELETE_EVENT: {
+      const { prevId } = payload;
+      const copy = state.slice();
+
+      for (let i = 0; i < copy.length; i ++) {
+        if (copy[i] === prevId) {
+          copy.splice(i, 1);
+          break;
+        }
+      }
+
+      return copy;
+    }
     default:
       return state;
   }
@@ -84,7 +107,9 @@ export default function events(state = {}, action) {
   const { payload } = action;
 
   switch (action.type) {
-    case SUBMIT_EVENT: {
+    case SUBMIT_EVENT:
+    case EDIT_EVENT:
+    case DELETE_EVENT: {
       const { date } = payload;
 
       return {
@@ -100,12 +125,9 @@ export default function events(state = {}, action) {
         targetEvent: state[date].byId[id],
       };
     }
-    case EDIT_EVENT: {
-      const { date } = payload.event;
-
+    case INIT_EVENT: {
       return {
-        ...state,
-        [date]: eventsOfDay(state[date], action),
+        ...payload,
       };
     }
     default:

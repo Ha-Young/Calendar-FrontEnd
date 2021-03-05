@@ -6,7 +6,6 @@ import styles from "./InputForm.module.css";
 function InputForm({ onSubmit, title = "", content = "", disabled, children }) {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
-  const [holdSubmit, setHoldSubmit] = useState(disabled);
 
   useEffect(() => {
     titleRef.current.value = title;
@@ -15,11 +14,6 @@ function InputForm({ onSubmit, title = "", content = "", disabled, children }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    if (holdSubmit) {
-      setHoldSubmit(!holdSubmit);
-      return;
-    }
 
     onSubmit({
       title: titleRef.current.value,

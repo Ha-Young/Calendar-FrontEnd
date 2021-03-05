@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { editEvent } from "../actions/index";
+import { deleteEvent, editEvent } from "../actions/index";
 import { sortEvent } from "../reducers/events";
 import EventDetail from "../components/EventDetail/EventDetail";
 
@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 
     return dispatch(editEvent(sorted, prevId));
   },
+  onDeleteEvent: (date, prevId) => dispatch(deleteEvent(date, prevId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventDetail);

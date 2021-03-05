@@ -16,3 +16,5 @@ export const NEXT_WEEK = "NEXT_WEEK";
 export const SUBMIT_EVENT = "SUBMIT_EVENT";
 export const DETAIL_EVENT = "DETAIL_EVENT";
 export const EDIT_EVENT = "EDIT_EVENT";
+export const INIT_EVENT = "INIT_EVENT";
+export const DELETE_EVENT = "DELETE_EVENT";

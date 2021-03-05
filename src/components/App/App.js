@@ -9,9 +9,9 @@ import EventsRouter from "../EventsRouter/EventsRouter"
 import Calendar from "../../containers/Calendar";
 
 function App({ onInitialLoad }) {
-  useEffect(() => {
-    onInitialLoad();
-  }, [onInitialLoad]);
+  // useEffect(() => {
+  //   onInitialLoad();
+  // }, [onInitialLoad]);
 
   return (
     <div className={styles.App}>

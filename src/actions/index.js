@@ -33,3 +33,14 @@ export const editEvent = (event, prevId) => ({
     prevId,
   },
 });
+export const initEvent = (events) => ({
+  type: actionTypes.INIT_EVENT,
+  payload: events,
+});
+export const deleteEvent = (date, prevId) => ({
+  type: actionTypes.DELETE_EVENT,
+  payload: {
+    date,
+    prevId,
+  },
+});
