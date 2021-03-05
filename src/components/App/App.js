@@ -22,14 +22,12 @@ function App({ onInitialLoad }) {
   return (
    <Fragment>
      <Header />
-      <Switch>
-        <Route path="/" exact>
+        <Route path="/calendar">
           <Calendar />
         </Route>
         <Route path="/event">
           <Event />
         </Route>
-      </Switch>
    </Fragment>
   );
 }

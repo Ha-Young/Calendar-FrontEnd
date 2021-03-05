@@ -8,8 +8,9 @@ export default function Header() {
     <header>
       <nav>
         <ul className="menu">
-          <li className="calendar-menu"><Link to='/'>Calendar</Link></li>
+          <li className="calendar-menu"><Link to='/calendar'>Calendar</Link></li>
           <li className="event-menu"><Link to='/event'>Event</Link></li>
+          <li className="home-menu"><Link to='/'>Home</Link></li>
         </ul>
       </nav>
     </header>
