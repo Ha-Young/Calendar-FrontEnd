@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import { getRandomHSLColor } from "../../utils/common";
 import { getHour } from "../../utils/date";
@@ -14,6 +15,7 @@ const STICKER_COLOR_HOVER_LIGHTNESS = "75%";
 
 function EventSticker({ event, color, hoverColor }) {
   const [isHover, setIsHover] = useState(false);
+  const history = useHistory();
 
   const startTime = getHour(event.startDate);
   const timeLength = event.timeLength;
@@ -48,6 +50,7 @@ function EventSticker({ event, color, hoverColor }) {
         style={inlineStyle}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
+        onClick={() => history.push(`/events/${event.id}`)}
       >
         {event.title}
       </div>
