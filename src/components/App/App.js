@@ -17,7 +17,7 @@ function App({ events, addEvents, removeEvents, onClickLogin, auth }) {
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route path="/calendar">
+        <Route exact path="/calendar">
           <Dashboard 
             main={<Calendar userId={userId} events={events} addEvents={addEvents} />}
             login={<Login onClickLogin={onClickLogin} auth={auth} />}
@@ -32,7 +32,7 @@ function App({ events, addEvents, removeEvents, onClickLogin, auth }) {
         <Route exact path="/event/detail/:date/:hours">
           <EventDetail userId={userId} removeEvents={removeEvents} />
         </Route>
-        <Route exact path="/event/:date/:hours">
+        <Route exact path="/event/edit/:date/:hours">
           <NewEvent userId={userId} /> 
         </Route>
         <Route path="*">

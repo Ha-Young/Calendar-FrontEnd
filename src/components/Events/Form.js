@@ -37,7 +37,7 @@ export default function Form({ onSubmit, inputValues, onChangeInputValues}) {
       <label>
         START AT:
         <input 
-          type="time" 
+          type="time"
           name="startAt" 
           value={startAt} 
           onChange={onChangeInputValues}

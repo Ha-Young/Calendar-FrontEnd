@@ -4,7 +4,7 @@ export default function Button({ onClick, isLoggedIn}) {
   const buttonText = isLoggedIn ? "LOG OUT" : "LOG IN";
   return (
     <button onClick={() => onClick(isLoggedIn)}>
-      {buttonText}
+      {buttonText} With Google.
     </button>
   );
 }

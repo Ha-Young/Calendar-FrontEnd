@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import Form from "./Form";
 import styles from "./Events.module.css";
-import { useLocation } from "react-router-dom";
 import { getOnlyHours, makeOClock } from "../../utils/event";
 import { deleteTargetData, writeUserData } from "../../api";
 
@@ -15,7 +16,7 @@ export default function NewEvent({ userId }) {
     startAt: "",
     endAt: "",
   };
-
+  
   if (location.state) {
     initialInputValues = {
       ...location.state,

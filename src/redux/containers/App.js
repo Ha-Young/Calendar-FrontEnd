@@ -14,13 +14,12 @@ const mapDispatchToProps = (dispatch) => ({
   addEvents: (date, event) => {
     dispatch({type: ADD_TO_EVENTS, payload: { date, event }});
   },
-
   removeEvents: (userId, date, startAt, endAt) => {
+    console.log("delete");
     const time = startAt + endAt;
     deleteTargetData(userId, date, startAt, endAt);
     dispatch({type: REMOVE_EVENTS, payload: { date, time}});
   },
-
   onClickLogin: async (isLoggedIn) => {
     const type = isLoggedIn ? LOGOUT : LOGIN;
 
