@@ -12,7 +12,6 @@ export default function Event() {
           <li><Link to={`${match.url}/new`}>이벤트 추가</Link></li>
         </nav>
       </div>
-
       <Switch>
         <Route path={`${match.url}/new`}><Form /></Route>
       </Switch>

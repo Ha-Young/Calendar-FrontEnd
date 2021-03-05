@@ -2,16 +2,9 @@
   margin: 20px;
 }
 
-.day {
-  float: left;
-  width: 12%;
-  height: 500px;
-  background-color: #efefee;
-  border: 2px solid ghostwhite;
-}
-
 .grid-container {
   font-size: small;
+  left: 40px;
 }
 
 .row {
@@ -30,11 +23,12 @@
 
 .vertical-container {
   display: flex;
+  height: 720px;
 }
 
 .vertical {
   width: 14.3%;
-  height: 720px;
+  height: 766px;
   border: 0.5px solid black;
 }
 
@@ -44,10 +38,21 @@
   border: 0.5px solid black;
 }
 
+.time-col {
+  position: fixed;
+  margin-top: 40px;
+  height: 720px;
+  width: 10px;
+}
+
+.time-box {
+  height: 32px;
+  width: 10px;
+  margin-left: -20px;
+  text-align: center;
+}
+
 .box-colored {
   background-color: palegreen;
   border-color: palegreen;
 }
-
-
-

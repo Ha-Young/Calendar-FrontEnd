@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect } from "react";
-import { getFormat, convertToReduxStateForm, parseDate } from "../../api/date";
+import React, { Fragment } from "react";
+import { getFormat } from "../../api/date";
 import { days, hour } from "../../constants/DateConstants";
-import { getRecord } from "../../api";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import "./style.css";
 
@@ -15,17 +14,13 @@ export default function Weekly({ events, keys, currentPageDate, handleClickLeft,
   const currentWeekKey = [];
   let i = 0;
 
-
   for (let i = 0; i < 7; i++) {
     const day = new Date(currentYear, currentMonth, currentDate + (i - CurrentDayOfWeek));
     const date = day.getDate();
-  ;
 
     currentWeek[i] = date;
     currentWeekKey[i] = getFormat(day);
   }
-
-  console.log(currentWeek);
 
   return (
     <Fragment>
@@ -35,71 +30,57 @@ export default function Weekly({ events, keys, currentPageDate, handleClickLeft,
           <span>{getFormat(currentPageDate)}</span>
           <AiOutlineArrowRight className="next" onClick={() => {handleClickRight(7)}} />
         </div>
+       
         <div className="grid-container">
-        <div className="row week-header">
-          {days.map((day) => {
-            return (
-              <div key ={day} className="col">
-                <div>{day}</div>
-                <div>{day !=="시" && currentWeek[i++]}</div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="vertical-container">
-        {
-          currentWeekKey.map((key) => {
-            const currentEventList = keys.includes(key) ? events[key] : [];
-           
-            let until;
+          <div className="time-col">
+            {hour.map((hour) => {
+              return (<div className="time-box">{hour}</div>);
+            })}
+          </div>
+          <div className="row week-header">
+            {days.map((day) => {
+              return (
+                <div key ={day} className="col">
+                  <div>{day}</div>
+                  <div>{day !=="시" && currentWeek[i++]}</div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="vertical-container">
+            {currentWeekKey.map((key) => {
+              const currentEventList = keys.includes(key) ? events[key] : [];
+              let until;
 
-               return (
-              <div className="vertical">
-                {hour.map((time) => {
-                   let isColor = "";
-                   let title = "";
-                
-                console.log(time, "이 ㅂ니다");
+              return (
+                <div className="vertical">
+                  {hour.map((time) => {
+                    let isColor = "";
+                    let title = "";
 
-                for (let i = 0; i < currentEventList.length; i++) {
-                  const event = currentEventList[i];
-                  const start = parseInt(event.startHour);
-                  const end = parseInt(event.endHour);
+                  for (let i = 0; i < currentEventList.length; i++) {
+                    const event = currentEventList[i];
+                    const start = parseInt(event.startHour);
+                    const end = parseInt(event.endHour);
 
-                  console.log(time, end);
-                  if (time === start) {
-                    until = end;
-                    title = event.title;
+                    if (time === start) {
+                      until = end;
+                      title = event.title;
+                    }
+
+                    if (time <= until) {
+                      isColor = "box-colored";
+                    }
                   }
-
-                  if (time <= until) {
-                    isColor = "box-colored";
-                  }
-                }
 
                   return <div className={["box", isColor].join(" ")}>{title}</div>
-                })}
-              </div>
-            )
-          })
-        }
-        </div>
-        
-        {/* {hour.map((time) => {
-           return <div key={time} className="row">
-             {days.map((day) => {
-                return <div key={day} className="col">
-                  
-
+                  })}
                 </div>
-              })
-             }
-           </div>
-          })
-        } */}
+              );
+            })}
+          </div>
         </div>
       </div>
     </Fragment>
   );
 }
-

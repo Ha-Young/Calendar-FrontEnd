@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
@@ -13,10 +13,8 @@ function App({ onInitialLoad }) {
   useEffect(() => {
     (async function(){
       const data = await getRecord();
-      console.log(data);
       onInitialLoad(data);
     })();
-    
   }, []);
 
   return (
