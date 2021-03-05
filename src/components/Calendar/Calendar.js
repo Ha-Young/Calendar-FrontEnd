@@ -34,20 +34,24 @@ export default function Calendar({ userId, events, addEvents }) {
 
   return (
     <>
-      <button onClick={handleClickPrev}>
-        <span>prev</span>
-      </button>
-      <button onClick={toggleCalendar}>
-        <span>WEEKLY / DAILY</span>
-      </button>
-      <button onClick={handleClickNext}>
-        <span>next</span>
-      </button>
       <div className={styles.todayDiv}>
         <span>{thisYear}-{thisMonth}-{dateOfToday}</span>
-        <button onClick={handleClickToday}>TODAY</button>
       </div>
-      <div className={styles.table}>
+      <div className={styles.buttonContainer}>
+        <button onClick={handleClickPrev}>
+          <span>prev</span>
+        </button>
+        <button onClick={toggleCalendar}>
+          <span>WEEKLY / DAILY</span>
+        </button>
+        <button onClick={handleClickToday}>
+          TODAY
+        </button>
+        <button onClick={handleClickNext}>
+          <span>next</span>
+        </button>
+      </div>
+      <div className={isDaily ? styles.dailyTable : styles.table}>
         {isDaily
           ? <DailyBody userId={userId} today={today} addEvents={addEvents} events={events} isDaily={isDaily} />
           : <WeeklyBody userId={userId} today={today} addEvents={addEvents} events={events} isDaily={isDaily} />

@@ -1,20 +1,48 @@
 /* common */
 
-.todayDiv {
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  width: 500px;
+  padding: 0.5rem;
+}
+
+.DayHeader {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 86%;
+}
+
+.todayDiv {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.todayDiv span {
+  font-size: 20px;
+  color:#61677C;
+  letter-spacing: 0.1em;
+  padding-bottom: 0.5em;
 }
 
 .eventsContainer {
   display: flex;
+  justify-content: center;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
   width: 100%;
-  max-width: 50vw;
+}
+
+.hoursSideBar {
+  display: flex;
+  flex-direction: column;
+  max-width: 50px;
+  height: max-content;
 }
 
 /* Weekly */
@@ -24,11 +52,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 63vh;
+  width: 60vw;
+	padding: 32px;
+  border-radius: 13px;
+  background-color: #F2F3F7;;
+  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  overflow: scroll;
 }
+
+.dateHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 85%;
+  padding-bottom: 1rem;
+}
+
 
 .th, .td {
   width: 10rem;
-  height: 50px;
+  height: 30px;
 }
 
 .weeklyEventTd {
@@ -38,7 +82,7 @@
 }
 
 .eachHour:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #e7eaf1;
 }
 
 .eachHour {
@@ -53,11 +97,19 @@
   cursor: pointer;
 }
 
-.hoursSideBar {
-  max-width: 50px;
-}
-
 /* Daily */
+.dailyTable {
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 63vh;
+	padding: 32px;
+  border-radius: 13px;
+  background-color: #F2F3F7;;
+  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  overflow: scroll;
+}
 
 .dailyTbody {
   width: 50%;
@@ -68,7 +120,6 @@
 }
 
 .dailyEventTd {
-  height: 100%;
   width: 100%;
   border: 1px solid #ddd;
 }
@@ -79,7 +130,7 @@
 }
 
 .haveEvent {
-  border: 1px solid tomato;
-  background-color: tomato;
+  background-color: #dad6f3d7;
+  color: rgb(104, 104, 104);
   cursor: pointer;
 }

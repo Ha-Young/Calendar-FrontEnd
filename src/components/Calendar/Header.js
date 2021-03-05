@@ -3,16 +3,14 @@ import styles from "./Calendar.module.css";
 
 export default function Header() {
   return (
-    <thead>
-      <tr>
-        <th className={styles.th}>SUN</th>
-        <th className={styles.th}>MON</th>
-        <th className={styles.th}>TUE</th>
-        <th className={styles.th}>WED</th>
-        <th className={styles.th}>THU</th>
-        <th className={styles.th}>FIR</th>
-        <th className={styles.th}>SAT</th>
-      </tr>
-    </thead>
+    <div className={styles.DayHeader}>
+      <div className={styles.EachDay}>SUN</div>
+      <div className={styles.EachDay}>MON</div>
+      <div className={styles.EachDay}>TUE</div>
+      <div className={styles.EachDay}>WED</div>
+      <div className={styles.EachDay}>THU</div>
+      <div className={styles.EachDay}>FIR</div>
+      <div className={styles.EachDay}>SAT</div>
+    </div>
   )
 }

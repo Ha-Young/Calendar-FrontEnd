@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import styles from "./Header.module.css";
+
 export default function Header () {
   return (
-    <header>
+    <header className={styles.Header}>
       <nav>
-        <ul>
-          <li><Link to='/'>Calander</Link></li>
-          <li><Link to='/event'>EVENTS</Link></li>
+        <ul className={styles.Ul}>
+          <li><Link to='/'>Calendar</Link></li>
           <li><Link to='/event/new'>NEW Event</Link></li>
         </ul>
       </nav>

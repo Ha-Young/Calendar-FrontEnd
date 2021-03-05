@@ -3,29 +3,27 @@ import { connect } from "react-redux";
 import { deleteTargetData, moveDataToLoggedInUser } from "../../api";
 import { loginWithGoogle } from "../../api/google-login";
 import App from "../../components/App/App";
-import { ADD_TO_EVENTS, ERROR, LOGIN, LOGOUT, REMOVE_ALL_EVENTS, REMOVE_EVENTS } from "../../constants/actionTypes";
+import { addEvents, error, login, logout, removeAllEvents, removeEvents } from "../actions";
 
 const mapStateToProps = (state) => ({
   events: state.events,
   auth: state.login,
+  userId: state.login.userId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addEvents: (date, event) => {
-    dispatch({type: ADD_TO_EVENTS, payload: { date, event }});
+    dispatch(addEvents(date, event));
   },
   removeEvents: (userId, date, startAt, endAt) => {
-    console.log("delete");
     const time = startAt + endAt;
     deleteTargetData(userId, date, startAt, endAt);
-    dispatch({type: REMOVE_EVENTS, payload: { date, time}});
+    dispatch(removeEvents(date, time));
   },
   onClickLogin: async (isLoggedIn) => {
-    const type = isLoggedIn ? LOGOUT : LOGIN;
-
-    if (type === LOGOUT) {
-      dispatch({type: LOGOUT});
-      dispatch({type: REMOVE_ALL_EVENTS});
+    if (isLoggedIn) {
+      dispatch(logout());
+      dispatch(removeAllEvents());
       localStorage.setItem("userId", "");
       return;
     }
@@ -34,13 +32,13 @@ const mapDispatchToProps = (dispatch) => ({
   
     if (isSuccess) {
       moveDataToLoggedInUser(data);
-      dispatch({type: REMOVE_ALL_EVENTS});
-      dispatch({type: LOGIN, payload: { userId: data }});
+      dispatch(removeAllEvents());
+      dispatch(login(data));
       localStorage.setItem("userId", data);
       return;
     }
 
-    dispatch({type: ERROR, payload: { error: data }});
+    error(data);
     return;
   },
 });

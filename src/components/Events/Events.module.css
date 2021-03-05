@@ -5,21 +5,108 @@
   align-items: center;
 }
 
-.eventForm {
-  width: 500px;
-}
-
 .eventFormContainer {
-  border: 1px solid grey;
+  height: 100vh;
+  padding: 1rem;
 }
 
-/* each event container */
+/* form */
+
+.eventForm {
+  display: block;
+  height: auto;
+  min-width: 500px;
+	padding: 32px;
+	background-color: #EBECF0;
+	border-radius: 13px;
+  box-shadow:  3px 3px 5px #BABECC,  -5px -5px 10px #FFF;
+}
+.formField {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.inputGroup {
+	width: 100%;
+	height: auto;
+}
+
+.inputGroup input {
+  display: block;    
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background-color: transparent;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: #61677C;
+  text-shadow: 1px 1px 0 #FFF;
+  padding: 12px;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  transition: all 0.2s ease-in-out;
+}
+
+.inputGroup input:focus {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+.inputGroup label{
+  display: block;
+  padding-left: 10px;
+  text-align: left;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: #61677C;
+  text-shadow: 1px 1px 0 #FFF;
+  margin-bottom: 8px;
+}
+
+.submit {
+	background-color: transparent;
+	color: #61677C;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 0.07em;
+	text-shadow: 1px 1px 0 #FFF;
+	padding: 8px 20px;
+	border: 0;
+	border-radius: 30px;
+	box-shadow:  3px 3px 5px #BABECC,  -4px -4px 10px #FFF;
+	outline: 0;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.submit:hover {
+  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+
+.submit:active {
+  box-shadow: inset 2px 2px 3px #BABECC, inset -2px -2px 3px #FFF;
+}
+
+/* detail */
+
+.eachInfo {
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: #61677C;
+  text-shadow: 1px 1px 0 #FFF;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+}
 
 .eachEvent {
-  max-width: 60%;
-  margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }

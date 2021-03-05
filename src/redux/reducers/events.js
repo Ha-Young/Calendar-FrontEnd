@@ -7,7 +7,6 @@ export default function events(state = initialState, action) {
   switch (action.type) {
     case ADD_TO_EVENTS: {
       const { date, event } = payload;
-      
       return {
         ...state,
         [date]: Object.assign(state[date] ?? {}, event),

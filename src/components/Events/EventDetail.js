@@ -8,15 +8,15 @@ export default function EventDetail({ removeEvents }) {
 
   const eventData = {...location.state};
   const { date, startAt, endAt, title, detail, userId } = eventData;
-
   return (
-    <div className={styles.eachEvent}>
-      <span>{date}</span>
-      <span>from {startAt} to {endAt}</span>
-      <span>title: {title}</span>
-      <span>{detail}</span>
-      <button onClick={() => removeEvents(userId, date, startAt, endAt)}>
-        DEL
+    <div className={styles.eventForm}>
+      <div className={styles.eachInfo}>{date}</div>
+      <div className={styles.eachInfo}>Time: {startAt} ~ {endAt}</div>
+      <div className={styles.eachInfo}>Title: {title}</div>
+      <div className={styles.eachInfo}>Detail: {detail}</div>
+      <button
+        onClick={() => removeEvents(userId, date, startAt, endAt)}>
+        <span>DEL</span>
       </button>
       <button>
         <Link to={{

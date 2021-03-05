@@ -13,7 +13,6 @@ export default function DailyBody({ userId, today, isDaily, addEvents, events })
 
   async function fetchDailyData() {
     const result = await getDailyData(userId, todayISO);
-
     if(isObj(result)) {
       addEvents(todayISO, result);
     }
@@ -39,7 +38,7 @@ export default function DailyBody({ userId, today, isDaily, addEvents, events })
           for (const key in todayEvent) {
             const startHour = todayEvent[key]["startAt"];
             const endHour = todayEvent[key]["endAt"];
-
+            console.log(startHour)
             if (each >= Number(startHour) && each <= Number(endHour)) {
               haveEvent = true;
               eventData = todayEvent[key];
@@ -53,6 +52,7 @@ export default function DailyBody({ userId, today, isDaily, addEvents, events })
             haveEvent
             ? <WithEvent 
                 key={each + index}
+                userId={userId}
                 text={eventText}
                 eventData={eventData}
                 className={`${styles.haveEvent} ${styles.dailyHourDiv}`} 

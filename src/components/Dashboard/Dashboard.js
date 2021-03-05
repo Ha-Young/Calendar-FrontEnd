@@ -1,16 +1,19 @@
 import React from "react";
 import styles from "./Dashboard.module.css";
 
-export default function Dashboard({ main, login }) {
+export default function Dashboard({ main, login, events}) {
   return (
     <div className={styles.container}>
       <div className={styles.leftSideBar}>
-        <div className={styles.userInfo}>
+        <div className={styles.nav}>
           {login}
         </div>
-        <div className={styles.eventsInfo}>
+        <div className={styles.info}>
+          Hello!
         </div>
-        <div className={styles.miniCalander}>
+        <div className={styles.events}>
+          <div className={styles.text}>EVENTS</div>
+          {events}
         </div>
       </div>
       <main className={styles.main}>

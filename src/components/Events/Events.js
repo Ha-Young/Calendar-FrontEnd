@@ -17,19 +17,12 @@ export default function Events({ userId, removeEvents }) {
   }, []);
   return (
     <ul>
-      {allEvents.length && 
+      {allEvents.length > 0 && 
         allEvents.map(eachEvent => {
-          const { date, startAt, endAt, title, detail, userId } = eachEvent;
+          const { date, startAt, endAt, title, userId } = eachEvent;
           return (
             <div className={styles.eachEvent}>
-              <span>{date}</span>
-              <span>from {startAt} to {endAt}</span>
               <span>{title}</span>
-              <span>{detail}</span>
-              <button onClick={() => {
-                return removeEvents(userId, date, startAt, endAt)}}>
-                DEL
-              </button>
               <button>
                 <Link to={{
                   pathname: `/event/edit/${date}/${startAt + endAt}`,

@@ -1,20 +1,54 @@
+* {
+  overflow: scroll;
+}
+
+.text{
+  padding: 0.5rem;
+  letter-spacing: 0.05em;
+  color:#61677C;
+}
+
 .container {
-  width:90%;
-  height: 90%;
+  display: flex;
+  flex-direction: row;
+  height: 85vh;
+  width: 80vw;
+  margin: 0;
+  padding: 32px;
+	border-radius: 13px;
+  background-color: #F2F3F7;
+  box-shadow:  3px 3px 5px #BABECC,  -5px -5px 10px #FFF;
+}
+
+.main {
+  width: 90vw;
+}
+
+.nav {
+  width: 80%;
+  height: 100px;
+  padding: 1rem;
 }
 
 .leftSideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 30%;
 }
 
-.userInfo {
+.info {
+  font-size: 30px;
   height: 20%;
+  width: 80%;
+  border-radius: 15px;
+  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  line-height: 5;
 }
 
-.eventsInfo {
-  height: 50%;
-}
-
-.miniCalander {
+.events {
   height: 30%;
+  width: 80%;
+  border-radius: 15px;
+  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
 }

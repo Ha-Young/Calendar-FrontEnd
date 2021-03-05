@@ -10,21 +10,17 @@ import Dashboard from "../Dashboard/Dashboard";
 import Login from "../Login/Login";
 import EventDetail from "../Events/EventDetail";
 
-function App({ events, addEvents, removeEvents, onClickLogin, auth }) {
-  const { userId } = auth;
-  
+function App({ events, addEvents, removeEvents, onClickLogin, auth, userId }) {
   return (
     <div className={styles.App}>
       <Header />
       <Switch>
         <Route exact path="/calendar">
-          <Dashboard 
+          <Dashboard
             main={<Calendar userId={userId} events={events} addEvents={addEvents} />}
-            login={<Login onClickLogin={onClickLogin} auth={auth} />}
+            login={<Login onClickLogin={onClickLogin} auth={auth}/>}
+            events={<Events userId={userId} removeEvents={removeEvents} />}
           />
-        </Route>
-        <Route exact path="/event">
-          <Events userId={userId} removeEvents={removeEvents} />
         </Route>
         <Route exact path="/event/new">
           <NewEvent userId={userId} />

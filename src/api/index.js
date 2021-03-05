@@ -1,7 +1,6 @@
 import { GUEST } from "../constants/login";
 import firebase from "./firebase";
 
-// what if startAt + endAt end up 2 digit
 export function writeUserData(userId, date, title, detail, startAt, endAt) {
   firebase.database().ref(`users/${userId}/${date}/${startAt + endAt}`).set({
     date,
@@ -39,13 +38,13 @@ export async function getDailyData(userId, dateISO) {
   return result;
 }
 
-export async function getAllUserData(userId) {  // date default value needed
+export async function getAllUserData(userId) {
   const result = [];
 
   const userRef = firebase.database().ref(`users/${userId}`);
   const snapshot = await userRef.once("value", (snapShot) => snapShot);
   const values = snapshot.val();
-
+  
   for (const date in values) {
     result.push(...Object.values(values[date]));
   }
@@ -62,7 +61,7 @@ export async function moveDataToLoggedInUser(userId) {
   const guestRef = firebase.database().ref(`users/${GUEST}`);
   const snapshot = await guestRef.once("value", (snapShot) => snapShot);
   const guestData = snapshot.val() ?? {};
-  console.log(guestData);
+
   firebase.database().ref(`users/${userId}`).update(guestData, (error) => {
     if (error) {
       console.error(error);

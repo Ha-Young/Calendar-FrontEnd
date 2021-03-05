@@ -1,25 +1,56 @@
 :root {
-  --neu-background: #EDF2F0;
-
-  --neu-color-one: #ecf0f3;
-  --neu-color-two: #d1d9e6;
-
-  --neu-white: #f9f9f9;
-  --neu-grey: #a0a5a8;
-  --neu-black: #181818;
-
-  --neu-purple: #4B70E2;
-}
-
-.App {
-  text-align: center;
+  --bg-color: #EBECF0;
+  --title-letter-spacing: 0.05em;
+  --title-color:#61677C;
 }
 
 * {
   box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+html, body {
+  /* background-color: var(--bg-color); */
+  background-color: #D9E1EE;
+  height: 100vh;
+}
+
+button, ul, li {
+  all: unset;
 }
 
 a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
 }
+
+.App {
+  font-family: 'Roboto', sans-serif;
+  color:  var(--title-color);
+  max-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.App button {
+  letter-spacing: var(--title-letter-spacing);
+  padding: 0.5rem;
+  color: var(--title-color);
+  border-radius: 15px;
+  box-shadow: -3px -3px 7px #ffffff, 3px 3px 5px #ceced1;
+}
+
+.App button:active {
+  box-shadow: 4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+              inset -4px -4px 6px 0 rgba(255,255,255,.5),
+              inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+}
+
+

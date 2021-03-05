@@ -19,21 +19,19 @@ export default function WeeklyBody({ userId, today, addEvents, events, isDaily }
   return (
     <>
       <Header />
-      <thead>
-        <tr>
-          {thisWeek.map((date, index) => {
-            return (
-              <td className={styles.td} key={date + index}>
-                {date.getDate()}
-              </td>
-            );
-          })}
-        </tr>
-      </thead>
+      <div className={styles.dateHeader}>
+        {thisWeek.map((date, index) => {
+          return (
+            <div className={styles.date} key={date + index}>
+              {date.getDate()}
+            </div>
+          );
+        })}
+      </div>
       <tbody>
       <tr>
         <td className={styles.hoursSideBar}>
-          {arrayOf24Hours.map((each, index) => <div key={each + index} className={styles.eachHour}>{each}</div>)}
+          {arrayOf24Hours.map((each, index) => <td key={each + index} className={styles.eachHour}>{each}</td>)}
         </td>
         {thisWeek.map((date, index) => {
           return (
