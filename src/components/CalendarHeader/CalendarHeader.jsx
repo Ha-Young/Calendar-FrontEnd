@@ -4,9 +4,9 @@ import { calculateWeek } from "../../reducers";
 
 // TODO rename function
 const CalendarDate = (localDate) => {
-  const head = localDate.map(item => {
+  const head = localDate.map((item, index) => {
     return (
-      <div className={styles.calendarItem}>
+      <div key={index} className={styles.calendarItem}>
         <div>{item.weekdayShort}</div>
         <div>{item.day}</div>
       </div>
