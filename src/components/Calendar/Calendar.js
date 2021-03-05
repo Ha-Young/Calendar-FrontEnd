@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styles from "./Calendar.module.css";
 import moment from "moment";
 import { cloneDeep } from "lodash";
-import DayTable from "./DayTable";
-import DateIndicator from "./DateIndicator";
-import TwoOptionSelector from "./TwoOptionSelector";
-import IncDecrementControlBox from "./IncDecrementControlBox";
+import DayTable from "../DayTable/DayTable";
+import DateIndicator from "../DateIndicator/DateIndicator";
+import TwoOptionSelector from "../TwoOptionSelector/TwoOptionSelector";
+import IncDecrementControlBox from "../IncDecrementControlBox/IncDecrementControlBox";
 
 export default function Calendar ({
   eventInfo,
@@ -28,20 +28,18 @@ export default function Calendar ({
     <>
       <div className={styles.Calender}>
         <header className={styles.headerContainer}>
-          <div className={styles.dateIndicatorContainer}>
-            <TwoOptionSelector
-              firstOption="일간"
-              secondOption="주간"
-              onFirstOptionClick={onEventDayClick}
-              onSecondOptionClick={onEventWeekClick}
-            />
-            <DateIndicator
-              year={currentDate.format("YYYY")}
-              month={currentDate.format("M")}
-              date={currentDate.format("D")}
-              day={currentDate.format("E")}
-            />
-          </div>
+          <TwoOptionSelector
+            firstOption="일간"
+            secondOption="주간"
+            onFirstOptionClick={onEventDayClick}
+            onSecondOptionClick={onEventWeekClick}
+          />
+          <DateIndicator
+            year={currentDate.format("YYYY")}
+            month={currentDate.format("M")}
+            date={currentDate.format("D")}
+            day={currentDate.format("E")}
+          />
         </header>
         <div className={styles.tableContainer}>
           <div className={styles.tableIndex}>

@@ -6,7 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
-import EventForm from "../Event/EventForm";
+import EventForm from "../EventForm/EventForm";
 
 function App({
   onInitialLoad,
