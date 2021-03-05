@@ -5,16 +5,16 @@ import styles from "./WeeklyCalender.module.css";
 
 const WeeklyCalender = ({ daysOfWeek, weeklyEvent }) => {
   return (
-    <>
-      <section className={styles.container}>
-        <div className={styles.timeContainer}>
-          <div className={styles.tableHeader}></div>
-          {dateConst.TIME_LIST.map((time) => (
-            <div key={time} className={styles.eachTime}>
-              {time}시
-            </div>
-          ))}
-        </div>
+    <div className={styles.container}>
+      <div className={styles.timeContainer}>
+        <div className={styles.tableHeader}></div>
+        {dateConst.TIME_LIST.map((time) => (
+          <div key={time} className={styles.eachTime}>
+            {time}시
+          </div>
+        ))}
+      </div>
+      <section className={styles.scheduleContainer}>
         {daysOfWeek.map((date) => (
           <div key={date} className={styles.eachDay}>
             <div className={styles.tableHeader}>
@@ -35,8 +35,7 @@ const WeeklyCalender = ({ daysOfWeek, weeklyEvent }) => {
             ))}
         </div>
       </section>
-      ㄴ
-    </>
+    </div>
   );
 };
 

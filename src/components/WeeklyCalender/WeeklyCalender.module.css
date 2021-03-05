@@ -8,7 +8,14 @@ div {
   margin: 0 auto;
   margin-top: 1vh;
   display: flex;
+  justify-content: space-around;
+}
+
+.scheduleContainer {
+  display: flex;
   justify-content: space-between;
+  width: 90%;
+  position: relative;
 }
 
 .tableHeader {
@@ -23,7 +30,7 @@ div {
 
 .timeContainer {
   text-align: right;
-  width: 50%;
+  width: 10%;
 }
 
 .date {

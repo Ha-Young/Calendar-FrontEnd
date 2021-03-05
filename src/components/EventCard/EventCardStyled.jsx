@@ -1,64 +1,43 @@
 import { dateConst } from "constants/constants";
-import React, { useEffect, useMemo, useState } from "react";
-import { useHistory } from "react-router-dom";
+import routes from "constants/routes";
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { generateColor, parseDate } from "utils/utilFunction";
 import styles from "./EventCardStyled.module.css";
 
 const EventCardStyled = ({ id, title, date, startTime, endTime }) => {
   const history = useHistory();
   const [cardStyle, setCardStyle] = useState();
+  const { pathname } = useLocation();
 
-  const color = useMemo(() => generateColor(), []);
   useEffect(() => {
-    const containerWidth = (window.innerWidth * 90) / 100;
-    const cardWidth = containerWidth / 7.5;
-    const timeWidth = cardWidth / 2;
-    const leftMargin = (window.innerWidth * 5) / 100;
+    let positionTop, positionLeft, cardWidth, cardHeight;
 
-    // const [color, setColor] = useState(generateColor());
-
-    const positionLeft = `${
-      leftMargin + timeWidth + cardWidth * dateConst.DAYS[parseDate(date).day]
-    }px`;
-    console.log(containerWidth);
-    console.log(cardWidth);
-    console.log(timeWidth);
-    console.log(leftMargin);
-    console.log(positionLeft);
-    console.log(dateConst.DAYS[parseDate(date).day]);
-    const positionTop = startTime;
-
-    // useEffect(() => {
-    //   const randomColor = generateColor();
-    //   setColor(randomColor);
-    // }, []);
-
-    const cardHeight = (endTime - startTime) * 32;
-
-    // const { nomal, hover } = useMemo(
-    //   () => getRandomHSLColor(
-    //     STICKER_COLOR_SATURATION,
-    //     STICKER_COLOR_LIGHTNESS,
-    //     STICKER_COLOR_HOVER_LIGHTNESS
-    //   ), []
-    // );
-
-    // const stickerHoverColor = hoverColor || hover;
+    if (pathname === routes.WEEKLY) {
+      cardWidth = Math.floor((window.innerWidth * 81) / 100 / 7);
+      cardHeight = (endTime - startTime) * 32;
+      positionLeft = cardWidth * dateConst.DAYS[parseDate(date).day];
+      positionTop = 60 + startTime * 32;
+    } else if (pathname === routes.DAILY) {
+      cardWidth = Math.floor((window.innerWidth * 81) / 100 / 7);
+      cardHeight = (endTime - startTime) * 32;
+      positionLeft = cardWidth * dateConst.DAYS[parseDate(date).day];
+      positionTop = 60 + startTime * 32;
+    }
 
     const cardStyle = {
       position: "absolute",
-      margin: 0,
-      // top: ,
-      left: positionLeft,
-      // padding: "0px",
+      top: `${positionTop}px`,
+      left: `${positionLeft}px`,
       width: `${cardWidth}px`,
       height: `${cardHeight}px`,
-      backgroundColor: color || generateColor(),
+      backgroundColor: generateColor(),
       opacity: 0.9,
       cursor: "pointer",
     };
+
     setCardStyle(cardStyle);
-  }, [window.innerWidth]);
+  }, [pathname]);
 
   return (
     <div

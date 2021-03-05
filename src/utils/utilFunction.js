@@ -75,10 +75,8 @@ export const generateColor = () => {
   let color = "#";
 
   for (let i = 0; i < 6; i++) {
-    color += option.charAt(Math.round(Math.random() * option.length));
+    color += option.charAt(Math.floor(Math.random() * option.length));
   }
-
-  console.log(color);
 
   return color;
 };
