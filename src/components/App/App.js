@@ -30,14 +30,14 @@ function App(props) {
             inputData={props.eventInfo}
             setEventForm={props.actToEventForm}
             setUserEvent={props.actToUserEvent}
-            userEventAll={props.userEventById}/>
+            eventById={props.eventById}/>
         </Route>
         <Route path="/events/:eventId">
           <EventDetails
             inputData={props.eventInfo}
             setEventForm={props.actToEventForm.correct}
             clearEvent={props.actToUserEvent.clearEvent}
-            userEventAll={props.userEventById}
+            eventAllIds={props.eventAllIds}
           />
         </Route>
       </Switch>

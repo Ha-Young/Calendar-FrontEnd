@@ -13,7 +13,7 @@ export default function EventDetails({ inputData, eventAllIds, setEventForm, cle
     toHour,
   } = inputData;
 
-  // for (const userEvent in ) {
+  // for (const id in eventAllIds) {
   // }
   return (
     <>

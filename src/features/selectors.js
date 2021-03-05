@@ -10,6 +10,10 @@ export function getUserEventById(state) {
   return {...state.userEvent.byId};
 }
 
+export function getUserEventAllId(state) {
+  return [...state.userEvent.allId];
+}
+
 export function getDailyEvents(date, userEvent) {
   const currentYear = date.getFullYear();
   const currentMonth = date.getMonth();

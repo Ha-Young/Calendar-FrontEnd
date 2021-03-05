@@ -5,7 +5,7 @@ import registerEvent from "./registerEvent";
 import checkValidEvent from "./checkValidEvent";
 
 
-function EventForm({inputData, setEventForm, setUserEvent, userEventAll}) {
+function EventForm({inputData, setEventForm, setUserEvent, userEventById}) {
   const [isValidEvent, setIsValidEvent] = useState(true);
   const history = useHistory();
 
@@ -109,7 +109,7 @@ function EventForm({inputData, setEventForm, setUserEvent, userEventAll}) {
       </fieldset>
       {isValidEvent ? null : <span>중복된 이벤트입니다.</span>}
         <button onClick={() => {
-          const isValid = checkValidEvent(userEventAll, inputData);
+          const isValid = checkValidEvent(userEventById, inputData);
           if (!isValid) return setIsValidEvent(isValid);
           registerEvent(inputData, {title, content}, setEvent);
           history.push("/calendar");
