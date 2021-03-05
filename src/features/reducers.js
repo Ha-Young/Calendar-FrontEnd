@@ -32,8 +32,8 @@ const {
 } = EVENT_FORM_STATE_KEY;
 
 const { MIN: YEAR_MIN, MAX: YEAR_MAX } = MAX_MIN_DATE.YEAR;
-const { MIN: MONTH_MIN, MAX: MONTH_MAX} = MAX_MIN_DATE.MONTH;
-const { MIN: DATE_MIN, MAX: DATE_MAX} = MAX_MIN_DATE.DATE;
+const { MIN: MONTH_MIN, MAX: MONTH_MAX } = MAX_MIN_DATE.MONTH;
+const { MIN: DATE_MIN, MAX: DATE_MAX } = MAX_MIN_DATE.DATE;
 const { MAX: HOUR_MAX } = MAX_MIN_DATE.HOUR;
 
 export default function reducer(state = initiateState, action) {
