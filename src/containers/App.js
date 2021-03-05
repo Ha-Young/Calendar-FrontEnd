@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import { changeCurrentDate, changeViewOption } from "../actions";
 import { receiveDate, receiveDateList } from "../actions/date";
-import { createEvent } from "../actions/events";
+import { createdEvent } from "../actions/events";
 import { startLoading } from "../actions/loading";
 import { readDate, readDateListRange, writeEvent } from "../api";
 import App from "../components/App";
@@ -23,14 +23,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changeCurrentDate({ viewOption, currentDate }));
   },
   // 질문. userId도 같이?
-  createEvent: ({ userId, event }) => {
-    dispatch(createEvent(event));
-    writeEvent(userId, event);
-  },
-  onInitLoad: async ({ userId, currentDate }) => {
-    dispatch(startLoading());
-    const date = await readDate(userId, currentDate);
-    dispatch(receiveDate(date));
+  createEvent: async ({ userId, event }) => {
+    await writeEvent(userId, event);
+    dispatch(createdEvent(event));
   },
   getDate: async ({ userId, currentDate }) => {
     dispatch(startLoading());
