@@ -1,0 +1,6 @@
+.CalendarEvent {
+  display: flex;
+  justify-content: center;
+  height: 1000px;
+  align-items: center;
+}

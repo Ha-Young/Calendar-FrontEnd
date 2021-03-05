@@ -5,8 +5,11 @@ import { Route, Switch } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
+import Week from "../Week.js/Week";
+import Daily from "../../containers/Daily";
+import CalendarEvent from "../CalendarEvent/CalendarEvent";
 
-function App({ onInitialLoad }) {
+function App({ onInitialLoad, something }) {
   useEffect(() => {
     onInitialLoad();
   }, []);
@@ -15,12 +18,10 @@ function App({ onInitialLoad }) {
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route path="/" exact>
-          <div>Main</div>
-        </Route>
-        <Route path="/event">
-          <div>Event</div>
-        </Route>
+        <Route exact path="/" component={Week} />
+        <Route path="/week" component={Week} />
+        <Route path="/day" component={Daily} />
+        <Route path="/events/new" component={CalendarEvent} />
       </Switch>
     </div>
   );

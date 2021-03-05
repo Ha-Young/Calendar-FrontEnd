@@ -1,3 +1,4 @@
+export const RECEIVE_EVENT_DATA = "RECEIVE_EVENT_DATA";
 /*
 
   Action Types

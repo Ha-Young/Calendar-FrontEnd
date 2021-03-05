@@ -9,8 +9,9 @@
 
  */
 
-const initialState = "Create your state structure!";
+import { combineReducers } from "redux";
+import eventsReducer from "./eventsReducer";
 
-export default function reducer(state = initialState) {
-  return state;
-}
+export default combineReducers({
+  eventsReducer
+});

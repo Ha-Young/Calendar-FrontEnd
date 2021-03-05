@@ -1,0 +1,14 @@
+.DailyTimeBar {
+  position: relative;
+  border: 1px solid rgb(224, 224, 224);
+  height: 50px;
+  cursor: pointer;
+  margin-left: 50px;
+}
+
+span {
+  font-size: 11px;
+  position: absolute;
+  left: -40px;
+  top: -8px;
+}
