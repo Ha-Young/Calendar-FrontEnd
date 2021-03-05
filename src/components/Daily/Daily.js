@@ -17,27 +17,53 @@ export default function Daily({ currentDay, events, goForward, goBackward }) {
   }
 
   return (
-    <div className={styles.daily_container}>
+    <>
       <div className={styles.flex}>
-        <button onClick={() => handleClick("prev")}>⬅️</button>
-        <h3>{currentDay}</h3>
-        <button onClick={() => handleClick("next")}>➡️</button>
+        <span role="img" aria-label="arrow" onClick={() => handleClick("prev")}>⬅️</span>
+        <div>{currentDay}</div>
+        <span role="img" aria-label="arrow" onClick={() => handleClick("next")}>➡️</span>
       </div>
-      {HOURS.map((hour, index) => {
-        return (
-          <Link to={`/event/${hour}`} key={randomIndex()}>
-            <div className={styles.daily_time}>
-              <div>{hour}</div>
-              {events[hour] && (
-                <div className={styles.event_color}>
-                  <div>{events[hour].title}</div>
-                  <div>{events[hour].description}</div>
-                </div>
+      <div className={styles.daily_container}>
+        {HOURS.map((hour, index) => {
+          return (
+            <Link to={`/event/${hour}`} key={randomIndex()}>
+              <div className={styles.daily_hour}>
+                {hour}
+              </div>
+            </Link>
+          );
+        })}
+        {/* {HOURS.map((hour, index) => {
+          return (
+            <>
+              {events[hour] ? (
+                TimeElement(events[hour], hour)
+              ) : (
+                <Link to={`/event/${hour}`} key={randomIndex()}>
+                  <div className={styles.daily_hour}>
+                    {hour}
+                  </div>
+                </Link>
               )}
-            </div>
-          </Link>
-        );
-      })}
-    </div>
+            </>
+          );
+        })} */}
+      </div>
+    </>
+  );
+}
+
+function TimeElement(list, hour) {
+  const { eventId, title, description } = list;
+
+  return (
+    <Link to={`/event/${hour}/new`} key={eventId}>
+      <div className={styles.daily_hour}>
+        {hour}
+      </div>
+      <div className={styles.daily_event}>
+        {title}
+      </div>
+    </Link>
   );
 }

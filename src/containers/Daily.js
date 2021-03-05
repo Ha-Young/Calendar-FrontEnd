@@ -4,7 +4,7 @@ import { nextDay, yesterDay } from "../actions";
 
 const mapStateToProps = (state) => ({
   currentDay: state.currentDay,
-  events: state.events[state.currentDay] || [],
+  events: state.events[state.currentDay],
 });
 
 const mapDispatchToProps = (dispatch) => ({

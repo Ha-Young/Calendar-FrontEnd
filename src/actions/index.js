@@ -7,13 +7,22 @@
  */
 import * as types from "../constants/actionTypes";
 
-export const connectDB = (data) => ({
-  type: types.CONNECT_DB,
+export const getData = (data) => ({
+  type: types.GET_DATA,
   data,
 });
 
-export const createEvent = (events) => ({
+export const createEvent = (event) => ({
   type: types.CREATE_EVENT,
+  event,
+});
+
+export const deleteEvent = (eventId) => ({
+  type: types.DELETE_EVENT,
+  eventId,
+});
+export const updateEvent = (events) => ({
+  type: types.UPDATE_EVENT,
   events,
 });
 

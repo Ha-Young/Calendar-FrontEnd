@@ -9,15 +9,13 @@
 
  */
 import { combineReducers } from "redux";
-import { CREATE_EVENT, GET_DATE, NEXT_DAY, YESTER_DAY } from "../constants/actionTypes";
+import { GET_DATA, CREATE_EVENT, NEXT_DAY, YESTER_DAY } from "../constants/actionTypes";
 import _ from "lodash";
 
 const initialState = new Date().toISOString().slice(0, 10);
 
 const currentDay = (state = initialState, action) => {
   switch (action.type) {
-    case GET_DATE:
-      return state;
     case NEXT_DAY:
       const nextDay = new Date(state);
       nextDay.setDate(nextDay.getDate() + 1);
@@ -32,33 +30,44 @@ const currentDay = (state = initialState, action) => {
 };
 
 const initialEvent = {
-  "2021-03-04" : [],
-};
-
-initialEvent["2021-03-04"][8] = {
-  title: "go",
-  description: "asdf",
-  start: 8,
-  end: 9,
+  "2021-03-05" : [{
+    eventId: "firstEvent",
+    title: "go",
+    description: "asdf",
+    start: 8,
+    end: 9,
+  }],
 };
 
 const events = (state = initialEvent, action) =>{
   switch (action.type) {
+    // case GET_DATA:
+    //   console.log('here is store', action.data)
+    //   return action.data;
     case CREATE_EVENT:
-      const { title, description, start, end, eventDate } = action.events;
-      if (!state[eventDate]) {
-        state[eventDate] = [];
+      if (!state[action.event.eventDate]) {
+        state[action.event.eventDate] = [];
       }
-      state[eventDate][start] = {
-        title,
-        description,
-        start,
-        end,
-      };
-      // return state.concat(action.events);
-      return {
-        ...state,
-      }
+      console.log(state[action.event.eventDate])
+
+      state[action.event.eventDate].push({
+        eventId: action.event.eventId,
+        title: action.event.title,
+        description: action.event.description,
+        start: action.event.start,
+        end: action.event.end,
+      });
+
+      console.log(state)
+      // return Object.assign({}, state, {
+      //   [action.event.eventDate]: {
+      //     eventId: action.event.eventId,
+      //     title: action.event.title,
+      //     description: action.event.description,
+      //     start: action.event.start,
+      //     end: action.event.end,
+      //   }
+      // });
     default:
       return state;
   }

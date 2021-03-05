@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Route, Switch, Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import randomIndex from "../../utils/randomIndex";
 import styles from "./Form.module.css";
 
 export default function Form({ onSubmit, formTime, currentDay }) {
   const history = useHistory();
   const initialState = {
+    eventId: randomIndex(),
     eventDate: currentDay,
     title: "",
     description: "",
@@ -64,7 +66,6 @@ export default function Form({ onSubmit, formTime, currentDay }) {
         />
       </label>
       <button type="submit">Submit</button>
-      {/* // disabled={submitting} */}
     </form>
   );
 }
