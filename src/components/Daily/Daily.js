@@ -3,6 +3,7 @@ import Calendar from "../../shared/Calendar";
 import TimeLine from "./TimeLine";
 import EventLine from "./EventLine";
 import DayHeader from "./DailyHeader/DayHeader";
+import FlexBox from "../../shared/FlexBox";
 
 const Daily = ({ count, onPage, events }) => {
   useEffect(() => {
@@ -12,8 +13,10 @@ const Daily = ({ count, onPage, events }) => {
   return (
     <Calendar>
       <DayHeader count={count} />
-      <TimeLine />
-      <EventLine count={count} events={events} />
+      <FlexBox>
+        <TimeLine />
+        <EventLine count={count} events={events} />
+      </FlexBox>
     </Calendar>
   );
 };

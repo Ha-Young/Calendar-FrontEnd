@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Day from "./Day"
-import EventPageBtn from "./EventPageBtn";
+import EventPageBtn from "../../../shared/EventPageBtn";
 
 const Header = styled.header`
   position: fixed;
@@ -10,10 +10,9 @@ const Header = styled.header`
   align-items: center;
   top: 6.05em;
   height: 5em;
-  width: 120%;
+  width: 100%;
   padding: 2em;
-  padding-left: 5em;
-  margin-left: 17em;
+  padding-left: 40%;
   background-color: #FFFFFF;
   border-bottom: 0.1em solid #ABABAB;
 `;

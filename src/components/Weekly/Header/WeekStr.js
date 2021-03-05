@@ -4,10 +4,10 @@ import { dayName } from "../../../utils/convertTime";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 67%;
-  padding-left: 0.5em;
+  width: 155%;
+  padding-top: 1em;
   color: #ABABAB;
 `;
 

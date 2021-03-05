@@ -2,24 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import WeekStr from "./WeekStr";
 import WeekNum from "./WeekNum";
+import FlexColumnBox from "../../../shared/FlexColumnBox";
+import EventPageBtn from "../../../shared/EventPageBtn";
 
 const Header = styled.header`
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 6.05em;
-  height: 5.5em;
-  width: 120%;
+  height: 5em;
+  width: 125%;
   padding: 2em;
-  padding-left: 15em;
   background-color: #FFFFFF;
-  margin-left: 17em;
   border-bottom: 0.1em solid #ABABAB;
 `;
 
 const WeekHeader = ({ count }) => {
   return (
     <Header>
-      <WeekStr />
-      <WeekNum count={count} />
+      <FlexColumnBox>
+        <EventPageBtn />
+        <WeekStr />
+        <WeekNum count={count} />
+      </FlexColumnBox>
     </Header>
   );
 };

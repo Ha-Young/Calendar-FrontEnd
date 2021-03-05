@@ -7,6 +7,7 @@ import Nav from "./Nav/Nav";
 const Header = styled.header`
   position: fixed;
   display: flex;
+  top: 0em;
   width: 100%;
   height: 6em;
   padding-left: 1em;

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Button = styled.button`
+  position: absolute;
   width: 2em;
   height: 2em;
   margin-right: 2em;

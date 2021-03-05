@@ -6,9 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 67.5%;
-  padding-left: 0.2em;
-  padding-top: 0.5em;
+  width: 175%;
   font-size: 2em;
 
   div {

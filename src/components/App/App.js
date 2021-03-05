@@ -8,6 +8,7 @@ import AppHeader from "../Header/AppHeader";
 import Weekly from "../Weekly/Weekly";
 import Daily from "../Daily/Daily";
 import Event from "../Event/index";
+import FlexColumnBox from "../../shared/FlexColumnBox";
 
 const App = ({
   onInitialLoad,
@@ -24,7 +25,7 @@ const App = ({
   }, []);
 
   return (
-    <>
+    <FlexColumnBox>
       <GlobalStyles />
       <AppHeader />
 
@@ -42,7 +43,7 @@ const App = ({
           <Event onSubmit={onSubmit} onPage={setEvent}/>
         </Route>
       </Switch>
-    </>
+    </FlexColumnBox>
   );
 };
 

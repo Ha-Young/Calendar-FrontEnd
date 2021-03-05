@@ -18,16 +18,19 @@ const Wrapper = styled.div`
   }
 `;
 
-const EventBox = ({ title, color, hasEvent, eventStart }) => {
+const EventBox = ({ title, color, hasEvent, eventStart, ID }) => {
   const background = hasEvent ? color : null;
   const text = hasEvent ? title : null;
 
   const handleClick = (ev) => {
-    console.log(ev.target);
+    if (hasEvent) {
+      console.log(ev.target.getAttribute("id"));
+    }
   };
 
   return (
     <Wrapper
+      id={ID}
       onClick={handleClick}
       style={{background}}
     >

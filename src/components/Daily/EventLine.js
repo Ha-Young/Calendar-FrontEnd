@@ -61,6 +61,7 @@ const EventLine = ({ count, events }) => {
 
         return <EventBox
           key={n}
+          ID={currentDay}
           title={eventTitle}
           color={color}
           hasEvent={hasEvent}
