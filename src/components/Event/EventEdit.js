@@ -47,6 +47,7 @@ export default function EventEdit({
       const eventDate = params.event_id.slice(6, 16);
       const eventStartTime = params.event_id.slice(17, 23);
       const event = eventsInStore.byDates[eventDate][eventStartTime];
+
       oldEvent.current = event;
       setCurrentEvent(() => {
         return {
@@ -118,7 +119,12 @@ export default function EventEdit({
       <Container className={styles.Title}>
         <div>
           <label>Event Title <CgAsterisk className={styles.asterisk} /></label>
-          <InputText name="title" handleChange={handleChange} value={currentEvent.title} required={true} />
+          <InputText
+            name="title"
+            handleChange={handleChange}
+            value={currentEvent.title}
+            required={true}
+          />
         </div>
       </Container>
       <Container className={styles.Date}>
@@ -130,35 +136,74 @@ export default function EventEdit({
       <Container className={styles.Time}>
         <div>
           <label>Start Time <CgAsterisk className={styles.asterisk} /></label>
-          <InputTime name="startTime" isStartTime={true} handleChange={handleChange} value={currentEvent.startTime} />
+          <InputTime
+            name="startTime"
+            isStartTime={true}
+            handleChange={handleChange}
+            value={currentEvent.startTime}
+          />
         </div>
         <div>
           <label>End Time <CgAsterisk className={styles.asterisk} /></label>
-          <InputTime name="endTime" isEndTime={true} handleChange={handleChange} value={currentEvent.endTime} />
+          <InputTime
+            name="endTime"
+            isEndTime={true}
+            handleChange={handleChange}
+            value={currentEvent.endTime}
+          />
         </div>
       </Container>
       <Container className={styles.Location}>
         <div>
           <label>Location</label>
-          <InputText name="location" handleChange={handleChange} value={currentEvent.location} />
+          <InputText
+            name="location"
+            handleChange={handleChange}
+            value={currentEvent.location}
+          />
         </div>
       </Container>
       <Container className={styles.Description}>
         <div>
           <label>Description</label>
-          <Textarea name="description" rows="4" handleChange={handleChange} value={currentEvent.description} />
+          <Textarea
+            name="description"
+            rows="4"
+            handleChange={handleChange}
+            value={currentEvent.description}
+          />
         </div>
       </Container>
       <Container>
         <div>
           <label>Color</label>
-          <InputRadio name="eventColor" handleChange={handleChange} value="#B721FF" />
+          <InputRadio
+            name="eventColor"
+            handleChange={handleChange}
+            value="#B721FF"
+            checked={currentEvent.eventColor === "#B721FF"}
+          />
           <span className={`${styles.eventColor} ${styles.purple}`}></span>
-          <InputRadio name="eventColor" handleChange={handleChange} value="#21D4FD" />
+          <InputRadio
+            name="eventColor"
+            handleChange={handleChange}
+            value="#21D4FD"
+            checked={currentEvent.eventColor === "#21D4FD"}
+          />
           <span className={`${styles.eventColor} ${styles.blue}`}></span>
-          <InputRadio name="eventColor" handleChange={handleChange} value="#F39237" />
+          <InputRadio
+            name="eventColor"
+            handleChange={handleChange}
+            value="#F39237"
+            checked={currentEvent.eventColor === "#F39237"}
+          />
           <span className={`${styles.eventColor} ${styles.orange}`}></span>
-          <InputRadio name="eventColor" handleChange={handleChange} value="#ff6c91" />
+          <InputRadio
+            name="eventColor"
+            handleChange={handleChange}
+            value="#ff6c91"
+            checked={currentEvent.eventColor === "#ff6c91"}
+          />
           <span className={`${styles.eventColor} ${styles.pink}`}></span>
         </div>
       </Container>
