@@ -1,3 +1,5 @@
+@import "../../styles/colors.css";
+
 .dateColumn {
   position: relative;
   width: 100%;
@@ -7,12 +9,12 @@
   width: 100%;
   height: 48px;
   min-width: 81px;
-  border-top: 1px black solid;
+  border-top: 1px var(--schedule-border-color) solid;
   cursor: pointer;
 }
 
 .dateRow:hover {
-  background-color: #f5f5f5;
+  background-color: var(--schedule-hover-color);
 }
 
 .dayInfo {
@@ -24,7 +26,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: var(--schedule-header-background-color);
   z-index: 99;
 }
 
@@ -49,27 +51,27 @@
 }
 
 .hilight .dayOfTheWeek {
-  color: #1a73e8;
+  color: var(--shcedule-hilight-background-color);
   font-size: 0.9rem;
 }
 
 .hilight .dayOfMonth {
   width: 42px;
   height: 42px;
-  background-color: #1a73e8;
-  color: white;
+  background-color: var(--shcedule-hilight-background-color);;
+  color: var(--schedule-hilight-color);
   font-size: 1.3rem;
 }
 
 .nomal .dayOfMonth {
-  background-color: #d9d9d9;
-  color: white;
+  background-color: var(--colorton-light-gray);
+  color: var(--schedule-hilight-color);
 }
 
 .leftBorder {
-  border-left: #d9d9d9 .5px solid;
+  border-left: var(--colorton-light-gray) .5px solid;
 }
 
 .rightBorder {
-  border-right: #d9d9d9 .5px solid;
+  border-right: var(--colorton-light-gray) .5px solid;
 }

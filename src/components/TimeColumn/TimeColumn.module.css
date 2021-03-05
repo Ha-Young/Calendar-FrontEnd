@@ -1,3 +1,5 @@
+@import "../../styles/colors.css";
+
 .timeColumnWrapper {
   position: relative;
 }
@@ -11,7 +13,7 @@
 .timeText {
   position: relative;
   top: -13px;
-  color: #70757a;
+  color: var(--schedule-time-column-color);
   font-size: 10px;
 }
 
@@ -21,7 +23,7 @@
   z-index: 1;
   width: 100%;
   height: 90px;
-  background-color: white;
+  background-color: var(--schedule-background-color);
 }
 
 .spanArea {

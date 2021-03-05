@@ -1,3 +1,5 @@
+@import '../../styles/colors.css';
+
 .app {
   text-align: center;
 }
@@ -5,7 +7,7 @@
 .header {
   display: flex;
   height: 64px;
-  background-color: #B39C7D;
+  background-color: var(--colorton-medium);
 }
 
 .main {
@@ -14,7 +16,7 @@
 
 .sidebar {
   width: 500px;
-  background-color: #DBCDAD;
+  background-color: var(--colorton-light);
 }
 
 .content {
@@ -30,5 +32,5 @@
   align-items: center;
   padding: 10px;
   height : 30px;
-  background-color: #806854;
+  background-color: var(--colorton-dark);
 }

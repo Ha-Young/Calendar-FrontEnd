@@ -1,3 +1,5 @@
+@import "../../styles/colors.css";
+
 .loginWrapper {
   position: fixed;
   top:0;
@@ -9,7 +11,7 @@
   height: 100%;
   z-index: 9999;
 
-  background-color: rgba(0, 0, 0, 0.226);
+  background-color: var(--modal--background-color);
 }
 
 .loginForm {
@@ -19,5 +21,5 @@
   align-items: center;
   width: 200px;
   height: 250px;
-  background-color: white;
+  background-color: var(--modal--block-background-color);
 }

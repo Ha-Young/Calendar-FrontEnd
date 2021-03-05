@@ -1,3 +1,5 @@
+@import "../../styles/colors.css";
+
 .wrapper {
   position: relative;
   display: flex;
@@ -8,11 +10,11 @@
   min-width: 600px;
   height: 100%;
   min-height: 600px;
-  background-color: white;
+  background-color: var(--modal--block-background-color);
   padding-right: 10px;
   overflow: scroll;
-  border: #d9d9d9 .5px solid;
-  -webkit-box-shadow: 5px 5px 20px 10px #d9d9d9;
-  -moz-box-shadow: 5px 5px 20px 10px #d9d9d9;
-  box-shadow: 5px 5px 20px 10px #d9d9d9;
+  border: var(--colorton-light-gray) .5px solid;
+  -webkit-box-shadow: 5px 5px 20px 10px var(--colorton-light-gray);
+  -moz-box-shadow: 5px 5px 20px 10px var(--colorton-light-gray);
+  box-shadow: 5px 5px 20px 10px var(--colorton-light-gray);
 }

@@ -1,3 +1,5 @@
+@import "../../styles/colors.css";
+
 .scheduleAddBtnWrapper {
   position: fixed;
   bottom: 50px;
@@ -11,29 +13,29 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #1a73e8;
+  background-color: var(--shcedule-hilight-background-color);
 }
 
 .scheduleAddBtn:hover {
-  background-color: #e6f7ff;
-  border-color: #1a73e8;
+  background-color: var(--hover-color);
+  border-color: var(--shcedule-hilight-background-color);
 }
 
 .scheduleAddBtn svg {
   font-size: 40px;
-  color: white;
+  color: var(--schedule-add-btn-color);
   transition: color 0.2s linear, transform 0.2s linear;
 }
 
 .scheduleAddBtn:hover svg {
-  color: #d9d9d9;
+  color: var(--colorton-light-gray);
   transform: rotate(90deg);
 }
 
 .scheduleAddBtn:active svg {
-  color: #d9d9d9;
+  color: var(--colorton-light-gray);
 }
 
 .scheduleAddBtn:focus svg {
-  color: #d9d9d9;
+  color: var(--colorton-light-gray);
 }

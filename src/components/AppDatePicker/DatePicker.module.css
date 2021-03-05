@@ -1,3 +1,5 @@
+@import "../../styles/colors.css";
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -8,14 +10,14 @@
 }
 
 .moveBtn:hover {
-  background-color: #e6f7ff;
+  background-color: var(--hover-color);
 }
 
 .datePicker {
   border: black solid 1px;
   cursor: pointer;
   font-size: 20px;
-  background-color: #B39C7D;
+  background-color: var(--colorton-medium);
 }
 
 .datePicker {
@@ -30,5 +32,5 @@
 }
 
 .datePicker:hover {
-  background-color: #e6f7ff;
+  background-color: var(--hover-color);
 }
