@@ -1,0 +1,21 @@
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+  height: 100%;
+  border: 0.1px solid black;
+  border-style: none none;
+}
+
+.button {
+  margin: 1em;
+  cursor: pointer;
+}
+
+.div {
+  display: flex;
+  width: 100vh;
+  height: 100vh;
+}
