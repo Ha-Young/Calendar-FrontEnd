@@ -7,7 +7,7 @@ const initialState = {
   dailyEvent: {},
 };
 
-export default function reducer(state = initialState, action) {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ACTION.SET_INITIALIZE:
       return {
@@ -57,4 +57,6 @@ export default function reducer(state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;

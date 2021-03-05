@@ -1,6 +1,6 @@
 import {
   addToFirebase,
-  editToFirebase,
+  editAtFirebase,
   deleteAtFirebase,
 } from "api/firebaseAPIs";
 import { ACTION } from "constants/actionTypes";
@@ -50,7 +50,6 @@ const addEvent = (newEvent = {}, id) => {
   }
 
   addToFirebase(newEvent, id);
-
   return {
     type: ACTION.ADD_EVENT,
     newEvent,
@@ -60,7 +59,6 @@ const addEvent = (newEvent = {}, id) => {
 
 const deleteEvent = (id, date) => {
   deleteAtFirebase(id, date);
-
   return {
     type: ACTION.DELETE_EVENT,
     id,
@@ -68,8 +66,7 @@ const deleteEvent = (id, date) => {
 };
 
 const editEvent = (editedEvent, id) => {
-  editToFirebase(editedEvent, id);
-
+  editAtFirebase(editedEvent, id);
   return {
     type: ACTION.EDIT_EVENT,
     editedEvent,

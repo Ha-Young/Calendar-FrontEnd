@@ -3,7 +3,7 @@ import { getDateISO, makeFirebaseURL } from "utils/utilFunction";
 
 const database = firebaseInstance.database();
 
-export function initializeApp(callback) {
+export const initializeApp = (callback) => {
   const firebaseURL = makeFirebaseURL(getDateISO(0));
 
   database.ref(firebaseURL).on("value", (snapshot) => {
@@ -13,9 +13,9 @@ export function initializeApp(callback) {
       callback({});
     }
   });
-}
+};
 
-export async function fetchDailyEvent(callback, date) {
+export const fetchDailyEvent = (callback, date) => {
   const firebaseURL = makeFirebaseURL(date);
   const dailyEvent = {};
 
@@ -31,9 +31,9 @@ export async function fetchDailyEvent(callback, date) {
       callback({});
     }
   });
-}
+};
 
-export function fetchWeeklyEvent(callback, date) {
+export const fetchWeeklyEvent = (callback, date) => {
   const firebaseURL = makeFirebaseURL(date);
 
   database.ref(firebaseURL).on("value", (snapshot) => {
@@ -43,7 +43,7 @@ export function fetchWeeklyEvent(callback, date) {
       callback({});
     }
   });
-}
+};
 
 export const addToFirebase = async (newEvent, id) => {
   const { date } = newEvent;
@@ -52,7 +52,7 @@ export const addToFirebase = async (newEvent, id) => {
   await database.ref(firebaseURL).update({ [id]: { ...newEvent, id } });
 };
 
-export const editToFirebase = async (editedEvent, id) => {
+export const editAtFirebase = async (editedEvent, id) => {
   const { date } = editedEvent;
   const firebaseURL = makeFirebaseURL(date);
 
