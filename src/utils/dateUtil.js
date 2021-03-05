@@ -61,3 +61,11 @@ export function changeDateFormatYYYYMD(date) {
 export function removeZeroInString(num) {
   return String(num).replace('0', '');
 }
+
+export function plusFrontZero(num) {
+  return ('0' + String(num));
+}
+
+export function dateAssemble(year, month, day) {
+  return `${year}-${month}-${day}`;
+}

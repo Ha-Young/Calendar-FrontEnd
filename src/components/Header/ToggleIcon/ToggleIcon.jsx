@@ -9,7 +9,6 @@ const ToggleIcon = ({ iconClassName, textContent, fontSize }) => {
       </Icon>
       <span className="toggleIcon__text">{textContent}</span>
     </div>
-    
   );
 }
 

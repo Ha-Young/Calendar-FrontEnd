@@ -11,8 +11,7 @@ const ContentLayoutContainer = styled.div`
   border-right: solid 1px black;
 `;
 
-const OneDay = ({ todayData, isWeek }) => {
-  // ERR!!!! type에 대한 Err체크가 필요...
+const ContentLayout = ({ todayData, isWeek, callback }) => {
   console.log('ONEDAY : ', todayData);
   function getOneHourArray() {
     const twentyFourHourArray = todayData.timeArray;
@@ -27,7 +26,7 @@ const OneDay = ({ todayData, isWeek }) => {
       let isEdge = 0;
       if (eachHour.startHour === i) isEdge = 1;
       else if (eachHour.endHour === i) isEdge = -1;
-      return (<OneHour key={i} oneData={eachHour} isEdge={isEdge} isWeek={isWeek}></OneHour>);
+      return (<OneHour key={i} oneData={eachHour} isEdge={isEdge} isWeek={isWeek} callback={callback}></OneHour>);
     });
   }
 
@@ -38,4 +37,4 @@ const OneDay = ({ todayData, isWeek }) => {
   );
 };
 
-export default OneDay;
+export default ContentLayout;

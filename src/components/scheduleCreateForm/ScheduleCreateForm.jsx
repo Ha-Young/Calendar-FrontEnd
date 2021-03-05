@@ -6,7 +6,7 @@ import Container from '../publicComponent/Container/Container';
 import DateSelectForm from './DateSelectForm/DateSelectForm';
 import ColorInputForm from './ColorInputForm/ColorInputForm';
 import TextInputForm from './TextInputForm/TextInputForm';
-import ButtonInputForm from './ButtonComponent/ButtonComponent';
+import ButtonInputForm from '../publicComponent/ButtonComponent/ButtonComponent';
 import { setSchedule } from '../../api';
 
 const ScheduleCreateForm = ({ currentDate }) => {

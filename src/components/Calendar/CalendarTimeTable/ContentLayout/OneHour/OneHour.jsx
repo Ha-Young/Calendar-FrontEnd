@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Content from '../../../../publicComponent/Content/Content';
@@ -10,28 +11,38 @@ const OneHourContainer = styled.div`
   height: 30px;
   border-right: solid 1px black;
   text-align: center;
+
+  a {
+    width: 99%;
+  }
 `;
 
-const OneHour = ({ oneData, isEdge, isWeek }) => {
-  // TODO: data가 들어왔을때와 아닐때의 css가 다르도록 해주기
-  // TODO: style 전략: classname을 다르게해서 구별해주기
+const OneHour = ({ oneData, isEdge, isWeek, callback }) => {
   console.log('ONEHOUR : ', oneData);
   let color;
   let content;
+  let onClickEvent = null;
+  let key = null;
   if (oneData) {
     color = oneData.color;
     content = !isWeek && isEdge === 1 ? oneData.content : '';
+    onClickEvent = callback(oneData);
+    key = oneData.key;
   }
 
-  return (
-    <OneHourContainer>
-      <Content 
+  const contentJSX = (
+    <Content 
         className={"context"} 
         textContent={content} 
         color={color}
-        hover={true}
         borderFlg={isEdge}
+        onClickEvent={onClickEvent}
       />
+  );
+
+  return (
+    <OneHourContainer>
+      {onClickEvent ? <Link to={`/event/${key}`}>{contentJSX}</Link> : contentJSX}
     </OneHourContainer>
   );
 };
