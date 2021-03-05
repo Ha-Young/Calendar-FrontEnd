@@ -1,7 +1,7 @@
-import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT, INIT_EVENTS } from "../constants/actionTypes";
 import { combineReducers } from "redux";
 import produce from "immer";
-import makeDateIndex from "../util/makeTreeBranch";
+import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT, INIT_EVENTS } from "../constants/actionTypes";
+import makeNestedObject from "../util/makeNestedObject";
 import getDateInfoFromId from "../util/getDateInfoFromId";
 
 const eventList = (state = {}, action) => {
@@ -45,7 +45,7 @@ const dateIndex = (state = {}, action) => {
       const newIds = prevIds ? [...new Set([...prevIds, id])] : [id];
 
       return produce(state, (draftState) => {
-        makeDateIndex(newIds, draftState, year, month, day);
+        makeNestedObject(newIds, draftState, year, month, day);
       });
     }
 
@@ -64,7 +64,7 @@ const dateIndex = (state = {}, action) => {
       }
 
       const newStateFiltered = produce(state, (draftState) => {
-        makeDateIndex(idsFiltered, draftState, prevYear, prevMonth, prevDay);
+        makeNestedObject(idsFiltered, draftState, prevYear, prevMonth, prevDay);
       });
 
       const newId = action.newEvent.id;
@@ -78,7 +78,7 @@ const dateIndex = (state = {}, action) => {
       const newIds = prevIds ? [...new Set([...prevIds, newId])] : [newId];
 
       const newState = produce(newStateFiltered, (draftState) => {
-        makeDateIndex(newIds, draftState, newYear, newMonth, newDay);
+        makeNestedObject(newIds, draftState, newYear, newMonth, newDay);
       });
 
       return newState;
@@ -95,7 +95,7 @@ const dateIndex = (state = {}, action) => {
       }
 
       return produce(state, (draftState) => {
-        makeDateIndex(newIds, draftState, year, month, day);
+        makeNestedObject(newIds, draftState, year, month, day);
       });
     }
 
@@ -109,7 +109,7 @@ const dateIndex = (state = {}, action) => {
         const newIds = prevIds ? [...new Set([...prevIds, id])] : [id];
 
         newState = produce(newState, (draftState) => {
-          makeDateIndex(newIds, draftState, year, month, day);
+          makeNestedObject(newIds, draftState, year, month, day);
         });
       }
 

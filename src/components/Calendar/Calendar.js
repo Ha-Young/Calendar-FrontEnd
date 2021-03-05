@@ -43,8 +43,12 @@ export default function Calender(props) {
   const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
   
   const isCurrentWeekLoad = currentWeek && currentWeek.length;
-  const currentMonth = isWeekMode && isCurrentWeekLoad ? month[getMonth(currentWeek[0].originalDate)] : month[getMonth(currentDay)];
-  const currentYear = isWeekMode && isCurrentWeekLoad ? getYear(currentWeek[0].originalDate) : getYear(currentDay);
+  const currentMonth = isWeekMode && isCurrentWeekLoad 
+    ? month[getMonth(currentWeek[0].originalDate)] 
+    : month[getMonth(currentDay)];
+  const currentYear = isWeekMode && isCurrentWeekLoad 
+    ? getYear(currentWeek[0].originalDate) 
+    : getYear(currentDay);
 
   const handleDateUnitChange = (e) => {
     const dateUnit = e.currentTarget.value;

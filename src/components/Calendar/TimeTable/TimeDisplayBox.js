@@ -7,7 +7,7 @@ export default function TimeDisplayBox() {
     if (i <= 12) {
       time.push(`${i} AM`);
     } else {
-      time.push(`${i - 12} PM`)
+      time.push(`${i - 12} PM`);
     }
   }
 

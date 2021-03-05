@@ -1,4 +1,4 @@
-export default function makeTreeBranch(value, targetObj, ...keys) {
+export default function makeNestedObject(value, targetObj, ...keys) {
   const currentKey = keys[0]
   
   if (typeof currentKey !== "string") {
@@ -29,7 +29,7 @@ export default function makeTreeBranch(value, targetObj, ...keys) {
     return;
   }
 
-  makeTreeBranch(value, targetObj[currentKey], ...keys);
+  makeNestedObject(value, targetObj[currentKey], ...keys);
   if (!Object.keys(targetObj[currentKey]).length && value === null) {
     delete targetObj[currentKey];
   }

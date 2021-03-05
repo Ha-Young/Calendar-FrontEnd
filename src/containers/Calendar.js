@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
+import {sub, add, eachDayOfInterval, getDay, getDate, format } from "date-fns";
 import Calendar from "../components/Calendar/Calendar";
 import { setCurrentWeek, setCurrentDay, setIsWeekMode } from "../actions/index";
-import {sub, add, eachDayOfInterval, getDay, getDate, format } from "date-fns";
 
 const refineWeek = (currentWeek) => {
   const daysOfWeek = 
@@ -17,7 +17,7 @@ const refineWeek = (currentWeek) => {
         date: getDate(val),
         dayOfWeek: daysOfWeek[getDay(val)],
         formatString: format(val, "yyyy-MM-dd"),
-      }
+      };
     }) 
     : null;
 }

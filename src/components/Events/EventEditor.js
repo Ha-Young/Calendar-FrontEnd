@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState, } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import styles from "./EventEditor.module.css";
-import InputBox from "./InputBox";
 import testEventValidation from "../../util/testEventValidation";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import InputTitle from "./InputTitle";
+import InputDescription from "./InputDescription";
+import InputDate from "./InputDate";
+import InputTime from "./InputTime";
+import ButtonBox from "./EventEditorButtonBox"
 
 export default function EventEditor(props) {
   const { 
@@ -103,7 +107,7 @@ export default function EventEditor(props) {
 
   const handleDeleteButtonClick = (e) => {
     deleteEvent(userId, selectedEvent);
-    history.push("/calendar/week")
+    history.push("/calendar/week");
   }
 
   return (
@@ -112,99 +116,52 @@ export default function EventEditor(props) {
         className={styles.NewEventForm}
         onSubmit={handleSubmit}
       >
-        <InputBox 
-          labelFor="title"
-          labelContent="Title"
-        >
-          <input 
-            className={inputTextClassName} 
-            type="text" 
-            name="title" 
-            ref={$inputTitle}
-            readOnly={!!isReadMode}
-          />
-        </InputBox>
-        <InputBox 
-          labelFor="description"
-          labelContent="Description"
-        >
-          <textarea 
-            className={inputTextClassName} 
-            name="description" 
-            cols="30" 
-            rows="10"
-            ref={$inputDescription}
-            readOnly={!!isReadMode}
-          />
-        </InputBox>
-        <InputBox 
-          labelFor="date"
-          labelContent="Date"
-        >
-          <input 
-            className={inputDateClassName} 
-            type="date" 
-            name="date"
-            ref={$inputDate}
-            readOnly={!!isReadMode}
-          />
-        </InputBox>
+        <InputTitle 
+          inputClassName={inputTextClassName}
+          inputRef={$inputTitle} 
+          isReadOnly={!!isReadMode}
+        />
+
+        <InputDescription 
+          textareaClassName={inputTextClassName}
+          textareaRef={$inputDescription}
+          isReadOnly={!!isReadMode}
+        />
+
+        <InputDate 
+          inputDateClassName={inputDateClassName} 
+          inputDateRef={$inputDate} 
+          isReadOnly={!!isReadMode}
+        />
+
         <div className={styles.InputStartEndTimeBox}>
-          <InputBox 
-            labelFor="start"
-            labelContent="Start"
-          >
-            <input 
-              className={inputTimeClassName} 
-              type="time" 
-              name="start"
-              onChange={handleDateChange}
-              ref={$inputStartTime}
-              readOnly={!!isReadMode}
-            />
-          </InputBox>
-          <InputBox 
-            labelFor="end"
-            labelContent="End"
-          >
-            <input 
-              className={inputTimeClassName} 
-              type="time" 
-              name="end"
-              onChange={handleDateChange}
-              ref={$inputEndTime}
-              readOnly={!!isReadMode}
-            />
-          </InputBox>
+          <InputTime 
+            inputTimeClassName={inputTimeClassName}
+            inputTimeRef={$inputStartTime}
+            isReadOnly={!!isReadMode}
+            isStartTime={true}
+            onChange={handleDateChange}
+          />
+
+          <InputTime 
+            inputTimeClassName={inputTimeClassName}
+            inputTimeRef={$inputEndTime}
+            isReadOnly={!!isReadMode}
+            isStartTime={false}
+            onChange={handleDateChange}
+          />
         </div>
         <hr />
         <div className={styles.MessageBox}>
           {message}
         </div>
 
-        {isReadMode 
-          ? <div className={styles.ButtonBox}>
-              <Link to={linkToEdit} className={styles.Link}>
-                <button 
-                  className={styles.Button} 
-                  type="button"
-                >
-                  Edit Event
-                </button>
-              </Link>
-              <button 
-                className={styles.Button} 
-                type="button"
-                onClick={handleDeleteButtonClick}
-              >
-                Delete Event
-              </button>
-            </div>
-          : <div className={styles.ButtonBox}>
-              <button className={styles.Button} type="submit">
-                {isUpdate ? "Update Event" : "Create Event"}
-              </button>
-            </div>}
+        <ButtonBox 
+          isReadMode={isReadMode}
+          isUpdateMode={isUpdate}
+          linkToEdit={linkToEdit}
+          onDeleteClick={handleDeleteButtonClick} 
+        />
       </form>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./MoveButtons.module.css";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+import styles from "./MoveButtons.module.css";
 
 export default function MoveButtons(props) {
   const { 

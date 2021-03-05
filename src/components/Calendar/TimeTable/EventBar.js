@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./EventBar.module.css";
 import { Link } from "react-router-dom";
+import styles from "./EventBar.module.css";
 
 export default function EventBar({ isWide, event, colorNum }) {
   const title = !isWide && event.title.length > 6 

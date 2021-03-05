@@ -4,13 +4,13 @@ import "firebase/database";
 
 // TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: "AIzaSyARZXJ7CBDN1OpWyLPpDV_tzKMCSpsL1Sk",
-  authDomain: "calenderviewer-662ce.firebaseapp.com",
-  databaseURL: "https://calenderviewer-662ce-default-rtdb.firebaseio.com",
-  projectId: "calenderviewer-662ce",
-  storageBucket: "calenderviewer-662ce.appspot.com",
-  messagingSenderId: "870045493730",
-  appId: "1:870045493730:web:957afe63899c60187fb1bb"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
