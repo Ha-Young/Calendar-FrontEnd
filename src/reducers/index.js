@@ -1,5 +1,9 @@
-const initialState = "Create your state structure!";
+import { combineReducers } from "redux";
+import EventInfoControlReducer from "./EventInfoControlReducer";
+import DateControlReducer from "./DateControlReducer";
 
-export default function reducer(state = initialState) {
-  return state;
-}
+const allReducers = combineReducers({
+  EventInfoControlReducer, DateControlReducer,
+})
+
+export default allReducers;

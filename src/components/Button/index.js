@@ -5,10 +5,9 @@ export default function Button({
   title,
   onClick,
 }) {
-
   return (
     <button onClick={onClick} className={styles.Button} title={title}>
       {title}
     </button>
-  )
+  );
 }

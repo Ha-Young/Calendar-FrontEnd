@@ -7,7 +7,6 @@ export default function Main({
   calendarMode,
   currentDate,
 }) {
-
   return (
     <>
       <div className={styles.Main}>
@@ -16,7 +15,7 @@ export default function Main({
           calendarMode={calendarMode}
           currentDate={currentDate}
         />
-        </div>
-      </>
-  )
+      </div>
+    </>
+  );
 }

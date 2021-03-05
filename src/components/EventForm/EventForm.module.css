@@ -1,6 +1,6 @@
 .formWrap {
-    background-color: teal;
-    display: flex;
-    flex-direction: column;
-    align-items: ceneter;
+  background-color: teal;
+  display: flex;
+  flex-direction: column;
+  align-items: ceneter;
 }

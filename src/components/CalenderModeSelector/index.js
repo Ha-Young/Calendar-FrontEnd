@@ -18,5 +18,5 @@ export default function CalenderModeSelector({
       <option value={CALENDAR_MODE.DAILY} defaultValue>Daily</option>
       <option value={CALENDAR_MODE.WEEKLY}>Weekly</option>
     </select>
-  )
+  );
 }

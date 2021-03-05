@@ -6,10 +6,9 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
-  // HashRouter as Router
 } from "react-router-dom";
 import AppContainer from "./containers/AppContainer";
-import DateControlReducer from "./reducers/DateControlReducer";
+import allReducers from "./reducers";
 
 const middleware = [];
 
@@ -17,7 +16,7 @@ if (process.env.NODE_ENV !== "production") {
   middleware.push(createLogger());
 }
 
-const store = createStore(DateControlReducer,
+const store = createStore(allReducers,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 

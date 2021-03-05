@@ -12,10 +12,8 @@ export default function Header ({
   moveToPrevDate,
   moveToNextDate,
 }) {
-console.log(moveToNextDate, "!!")
   return (
     <header className={styles.Header}>
-
       <div className={styles.NavBar}>
         <Link to="/events/new">
           <Button title="새로운 이벤트"/>
@@ -32,10 +30,8 @@ console.log(moveToNextDate, "!!")
       <div className={styles.Selector}>
         <CalenderModeSelector
           changeCalendarMode={changeCalendarMode}
-
         />
       </div>
-  
     </header>
   );
 }

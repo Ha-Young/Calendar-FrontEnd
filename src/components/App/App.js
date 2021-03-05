@@ -1,8 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-// TODO: We are using CSS Modules here.
-// Do your own research about CSS Modules.
-// For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header";
 import Main from "../Main/"
@@ -15,9 +12,8 @@ function App({
   moveToPrevDate,
   moveToNextDate,
 }) {
-console.log(moveToNextDate,"??")
+
   return (
-    
     <div className={styles.App}>
 
       <Switch>

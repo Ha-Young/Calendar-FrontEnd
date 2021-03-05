@@ -8,9 +8,6 @@ export default function Calendar ({
   currentDate,
   calendarMode,
 }) {
-    console.log("calender", calendarMode)
-  let week = true;
-  console.log(currentDate, "??????")
   return (
     <div className={styles.Calender}>
       { calendarMode === CALENDAR_MODE.WEEKLY ?
@@ -30,5 +27,5 @@ export default function Calendar ({
         </div>
       }
     </div>
-  )
+  );
 }
