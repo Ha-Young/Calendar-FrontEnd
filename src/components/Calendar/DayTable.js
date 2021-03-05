@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./DayTable.module.css";
 import { Link } from "react-router-dom";
-import { routeEventId } from "../../actions";
 
 export default function DayTable ({ year, month, date, eventInfo, onEventIdClick }) {
   const CELL_NUMBER = 24;
@@ -11,8 +10,6 @@ export default function DayTable ({ year, month, date, eventInfo, onEventIdClick
   const todayEvents = new Array(CELL_NUMBER).fill("");
 
   const handleEventIdClick = (ev) => {
-    console.log(ev.target)
-    console.log(ev.currentTarget)
     onEventIdClick(ev.target.dataset.eventId);
   }
 

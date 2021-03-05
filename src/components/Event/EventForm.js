@@ -3,17 +3,37 @@ import React, { useState } from "react";
 import styles from "./EventForm.module.css";
 
 export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo, eventIdRoute }) {
-  const initialEventData = {
-    "event-title": "",
-    "event-description": "",
-    "event-start-year": new Date().getFullYear(),
-    "event-start-month": new Date().getMonth() + 1,
-    "event-start-date": new Date().getDate(),
-    "event-start-hour": new Date().getHours(),
-    "event-end-year": new Date().getFullYear(),
-    "event-end-month": new Date().getMonth() + 1,
-    "event-end-date": new Date().getDate(),
-    "event-end-hour": new Date().getHours() + 1,
+  let initialEventData = {}
+  console.log(eventInfo)
+  if (isCreateMode) {
+    initialEventData = {
+      "event-title": "",
+      "event-description": "",
+      "event-start-year": new Date().getFullYear(),
+      "event-start-month": new Date().getMonth() + 1,
+      "event-start-date": new Date().getDate(),
+      "event-start-hour": new Date().getHours(),
+      "event-end-year": new Date().getFullYear(),
+      "event-end-month": new Date().getMonth() + 1,
+      "event-end-date": new Date().getDate(),
+      "event-end-hour": new Date().getHours() + 1,
+    }
+  } else {
+    const eventDateId = "id-".concat(eventIdRoute.substring(3, 11));
+    const eventHourId = "id-".concat(eventIdRoute.substring(12));
+
+    initialEventData = {
+      "event-title": eventInfo[eventDateId][eventHourId]["eventTitle"],
+      "event-description": eventInfo[eventDateId][eventHourId]["eventDescription"],
+      "event-start-year": eventInfo[eventDateId][eventHourId]["eventStartYear"],
+      "event-start-month": eventInfo[eventDateId][eventHourId]["eventStartMonth"],
+      "event-start-date": eventInfo[eventDateId][eventHourId]["eventStartDate"],
+      "event-start-hour": eventInfo[eventDateId][eventHourId]["eventStartHour"],
+      "event-end-year": eventInfo[eventDateId][eventHourId]["eventEndYear"],
+      "event-end-month": eventInfo[eventDateId][eventHourId]["eventEndMonth"],
+      "event-end-date": eventInfo[eventDateId][eventHourId]["eventEndDate"],
+      "event-end-hour": eventInfo[eventDateId][eventHourId]["eventEndHour"],
+    }
   }
 
   const [eventData, setEventIfo] = useState(initialEventData);
@@ -43,6 +63,7 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
           <input
             type="text"
             name="event-title"
+            value={eventData["event-title"]}
             placeholder="일정 제목을 입력하세요."
             autoComplete="off"
             onChange={handleChange}
@@ -53,6 +74,7 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
           <input
             type="text"
             name="event-description"
+            value={eventData["event-description"]}
             placeholder="일정 내용을 입력하세요."
             autoComplete="off"
             onChange={handleChange}

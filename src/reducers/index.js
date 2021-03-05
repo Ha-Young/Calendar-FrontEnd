@@ -51,7 +51,7 @@ const eventInfo = (state = {}, action) => {
 
 const eventIdRoute = (state = "", action) => {
   switch (action.type) {
-    case "ROUTE_EVENT":
+    case "ROUTE_EVENTID":
       return state = action.eventId;
     default:
       return state;
