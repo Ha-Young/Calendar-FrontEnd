@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+import { PATH_EVENTS, PATH_NEW } from "../../constants/path";
 import { VIEW_OPTION } from "../../constants/stateTypes";
 import DailySchedule from "../DailySchedule";
 import ScheduleAddBtn from "../ScheduleAddBtn";
@@ -12,7 +13,7 @@ function Schedule({ viewOption, currentDate, eventListEachDay }) {
   const history = useHistory();
 
   function moveAddEventPage() {
-    history.push("/events/new");
+    history.push(`${PATH_EVENTS}${PATH_NEW}`);
   }
 
   return (

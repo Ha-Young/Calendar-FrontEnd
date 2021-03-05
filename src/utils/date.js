@@ -1,7 +1,7 @@
 import moment from "moment";
 
 import { DATE_FORMAT, DATE_FORMAT_WITH_HOUR } from "../constants/common";
-import { ERROR_MSG_DATE_RANGE } from "../constants/errorMsg";
+import { ERROR_MSG_DATE_RANGE } from "../constants/error";
 
 const HOUR = 24;
 const AM = "AM";

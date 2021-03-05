@@ -5,7 +5,7 @@ import { createdEvent, deletedEvent, updatedEvent } from "../actions/events";
 import { startLoading, stopLoading } from "../actions/loading";
 import { removeEvent, updateEvent, writeEvent } from "../api";
 import Events from "../components/Events";
-import { ERROR_MSG_GET_API_ERROR } from "../constants/errorMsg";
+import { ERROR_MSG_GET_API_ERROR } from "../constants/error";
 
 const mapStateToProps = state => ({
   events: state.events,
