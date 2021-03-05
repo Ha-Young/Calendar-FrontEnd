@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onEventInfo: (eventInfo) => {
-    dispatch(addEvent(eventInfo))
+    dispatch(addEvent(eventInfo));
   },
 });
 
