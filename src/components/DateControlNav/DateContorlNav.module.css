@@ -1,4 +1,10 @@
 .DateControlNav {
-  margin-left: 3vw;
-  background-color: teal;
+  display: flex;
+  justify-content: space-between;
+  font-size: x-large;
+}
+
+.currentDateTitle {
+  display: flex;
+  align-items: center;
 }

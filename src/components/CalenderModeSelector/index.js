@@ -2,15 +2,13 @@ import React from "react";
 import styles from "./CalenderModeSelector.module.css";
 import { CALENDAR_MODE } from "../../utils/constants";
 
-export default function CalenderModeSelector({
-    changeCalendarMode
-}) {
+export default function CalenderModeSelector({ changeCalendarMode }) {
   function handleSelectChange(e) {
     let mode = e.target.value;
 
     mode === CALENDAR_MODE.DAILY ?
     changeCalendarMode(CALENDAR_MODE.DAILY) :
-    changeCalendarMode(CALENDAR_MODE.WEEKLY)
+    changeCalendarMode(CALENDAR_MODE.WEEKLY);
   }
 
   return (

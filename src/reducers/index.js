@@ -4,6 +4,6 @@ import DateControlReducer from "./DateControlReducer";
 
 const allReducers = combineReducers({
   EventInfoControlReducer, DateControlReducer,
-})
+});
 
 export default allReducers;

@@ -12,12 +12,10 @@ function App({
   moveToPrevDate,
   moveToNextDate,
   moveToToday,
-
   eventInfoList,
 }) {
   return (
     <div className={styles.App}>
-
       <Switch>
         <Route path="/calendar" exact>
           <Header

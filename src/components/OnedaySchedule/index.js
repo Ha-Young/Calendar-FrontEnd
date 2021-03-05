@@ -4,15 +4,13 @@ import { Link } from "react-router-dom";
 
 export default function OnedaySchedule({ 
   title,
-  currentDate,
   eventInfoList,
 }) {
-
-  let onedayScheduleCells = Array(24).fill(0);
 
   const matchedEvents = eventInfoList.filter(
     (event) => event.date.substr(5) === title
   );
+  let onedayScheduleCells = Array(24).fill(0);
 
   matchedEvents.map((event) => {
     let startTime = Number(event.startTime.substr(0, 2));
@@ -27,12 +25,12 @@ export default function OnedaySchedule({
 
   return (
     <div className={styles.OnedaySchedule}>
-      <div className={styles.title}><p className={styles.text}>{title}</p></div>
+      <div className={styles.title}><div className={styles.text}>{title}</div></div>
         {
           onedayScheduleCells.map((event, idx) =>
             event ?
-              <Link key={idx} to={`events/${event.id}`}>
-                <div key={idx} className={styles.cell}>{event.title}</div>
+              <Link className={styles.link} key={idx} to={`events/${event.id}`}>
+                <div key={idx} className={`${styles.cell} ${styles.eventCell}`}>{event.title}</div>
               </Link> :
                 <div key={idx} className={styles.cell}>{event.title}</div>
           )

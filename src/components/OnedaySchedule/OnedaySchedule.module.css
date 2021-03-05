@@ -3,15 +3,19 @@
   flex-direction: column;
   width: 100%;
   text-align: center;
-  background-color: tomato;
 }
+
 .cell {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: turquoise;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.eventCell {
+  background-color: #dff9fb;
 }
 
 .title {
@@ -19,5 +23,12 @@
 }
 
 .text {
-  font-size: medium;
+  margin-top: 1vh;
+  font-size: x-large;
+}
+
+.link {
+  color: black;
+  font-weight: bolder;
+  text-decoration: none;
 }

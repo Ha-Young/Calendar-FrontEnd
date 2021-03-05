@@ -1,16 +1,14 @@
 .indicator {
-    display: flex;
-    width: 10%;
-    margin-top: 25px;
-    justify-content: center;
-    background-color: violet;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  margin-top: 25px;
 }
 
 .cell {
-    display: flex;
-    justify-content: center;
-    height: 50px;
-    width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-   background-color: tomato;
+  display: flex;
+  justify-content: center;
+  height: 51px;
+  width: 100%;
+  font-size: large;
 }

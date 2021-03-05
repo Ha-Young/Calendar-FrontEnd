@@ -11,18 +11,16 @@ import {
 import { fetchEventsList } from "../api";
 
 function AppContainer({
-    currentDate,
-    calendarMode,
-    changeCalendarMode,
-    moveToPrevDate,
-    moveToNextDate,
-    moveToToday,
-    onInitialLoad,
-
-    EventInfoControlReducer,
-    getUserEvents,
+  currentDate,
+  calendarMode,
+  changeCalendarMode,
+  moveToPrevDate,
+  moveToNextDate,
+  moveToToday,
+  onInitialLoad,
+  EventInfoControlReducer,
+  getUserEvents,
 }) {
-
   async function getUserEventsFromFirebase() {
     const result = await fetchEventsList();
     getUserEvents(result);
@@ -41,7 +39,6 @@ function AppContainer({
       moveToNextDate={moveToNextDate}
       moveToToday={moveToToday}
       onInitialLoad={onInitialLoad}
-
       eventInfoList={EventInfoControlReducer}
     />
   );

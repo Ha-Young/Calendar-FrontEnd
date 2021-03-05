@@ -1,3 +1,9 @@
 select {
+  width: 10vw;
+  height: 6vh;
+  margin-right: 5vw;
+  text-align-last: center;
+  font-size: large;
+  font-family: 'Hind', sans-serif;
   cursor: pointer;
 }

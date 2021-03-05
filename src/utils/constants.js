@@ -19,3 +19,22 @@ export const EVENT_FORM_TYPE = {
   UPDATING: "UPDATING",
 }
 
+export const INPUT_TIME_STEP = 3600;
+
+export const EVENT_FORM_NAME = {
+  TITLE: "title",
+  DESC: "desc",
+  START_TIME: "startTime",
+  END_TIME: "endTime",
+}
+
+export const EVENT_FORM_PLACEHOLDER = {
+  TITLE: "Event Title",
+  DESC: "Event Description",
+  DELETE: "Delete this event",
+  SUBMIT: "Submit!"
+}
+
+export const BUTTON_PLACEHOLDER = {
+  SUBMIT: "Add new event!",
+}

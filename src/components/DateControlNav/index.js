@@ -17,13 +17,11 @@ export default function DateContorlNav({
 }) {
   function handleButtonClick(e) {
     const buttonType = e.target.title;
-    console.log(buttonType, "buttonType")
     let newDate;
 
     if (buttonType === BUTTON_TYPE.TODAY) {
-        console.log("not inside?????????", buttonType)
-       newDate = moment().toISOString();
-       moveToToday(newDate);
+      newDate = moment().toISOString();
+      moveToToday(newDate);
     } else if (buttonType === BUTTON_TYPE.PREV) {
       if (calendarMode === CALENDAR_MODE.DAILY) {
         newDate = moment(currentDate).subtract(BUTTON_PAYLOAD.DAILY_PAYLOAD, "days").toISOString();
@@ -49,9 +47,9 @@ export default function DateContorlNav({
       <Button title={BUTTON_TYPE.PREV} onClick={handleButtonClick}></Button>
       <Button title={BUTTON_TYPE.NEXT} onClick={handleButtonClick}></Button>
       { calendarMode === CALENDAR_MODE.DAILY ?
-        <span>{currentDate.substr(0, 10)}</span> :
-        <span>{`${moment(currentDate).weeks()}th week!`}</span>
+        <div className={styles.currentDateTitle}>{currentDate.substr(0, 10)}</div> :
+        <div className={styles.currentDateTitle}>{`${moment(currentDate).weeks()}th week!`}</div>
       }
     </div>
-  )
+  );
 }

@@ -4,6 +4,7 @@ import styles from "./Header.module.css"
 import CalenderModeSelector from "../CalenderModeSelector";
 import Button from "../Button";
 import DateControlNav from "../DateControlNav";
+import { BUTTON_PLACEHOLDER } from "../../utils/constants";
 
 export default function Header ({
   currentDate,
@@ -17,7 +18,7 @@ export default function Header ({
     <header className={styles.Header}>
       <div className={styles.NavBar}>
         <Link to="/events/new">
-          <Button title="Add new event!"/>
+          <Button title={BUTTON_PLACEHOLDER.SUBMIT}/>
         </Link>
 
         <DateControlNav

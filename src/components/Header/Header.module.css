@@ -1,14 +1,12 @@
 .Header {
   display: flex;
-  height: 10vh;
-  background-color: blue;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  height: 10vh;
 }
 
 .NavBar {
   display: flex;
-  background-color: thistle;
 }
 
 .Selector {

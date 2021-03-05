@@ -16,7 +16,6 @@ function EventFormContainer({
   deleteUserEvent,
   updateUserEvent,
 }) {
-
   return (
     <div>
       <Switch>
@@ -37,12 +36,10 @@ function EventFormContainer({
         </Route>
       </Switch>
     </div>
-  )
+  );
 }
 
-function mapStateToProps({
-  EventInfoControlReducer,
-}) {
+function mapStateToProps({ EventInfoControlReducer }) {
   return {
     EventInfoControlReducer,
   }

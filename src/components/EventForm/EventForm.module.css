@@ -1,10 +1,33 @@
 .formWrap {
-  background-color: teal;
   display: flex;
   flex-direction: column;
+  width: 100%;
   align-items: ceneter;
+  margin-top: 10vh;
+  padding-bottom: 10vh;
 }
 
 .hidden {
   display: none;
+}
+
+input {
+  width: 400px;
+  height: 80px;
+  margin-bottom: 10px;
+  font-size: large;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  text-align-last: center;
+}
+
+.goBack {
+  margin: 0 0 5vw 20px;
+  font-size: x-large;
+  text-decoration: none;
 }
