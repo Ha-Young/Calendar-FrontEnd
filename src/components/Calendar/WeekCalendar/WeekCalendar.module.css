@@ -11,6 +11,7 @@
 .top {
   display: grid;
   grid-template-columns: 60px 1fr;
+  margin-top: 91px;
 }
 
 .week {

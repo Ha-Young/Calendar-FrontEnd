@@ -1,7 +1,14 @@
 .Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: #c9ccd3 1px solid;
+  z-index: 10;
 }
 
 .Header nav {

@@ -70,8 +70,10 @@ export default function reducer(state = initialState, action) {
       copy.events[currentDay][from] = {
         title,
         description,
+        from,
+        to,
         length: to - from,
-        id: new Date().toLocaleDateString(),
+        id: new Date().toISOString(),
       };
 
       return copy;

@@ -4,35 +4,23 @@ import styles from "./ScheduleContainer.module.css";
 import PropTypes from "prop-types";
 import ScheduleBox from "./ScheduleBox";
 import { connect } from "react-redux";
+import EventBox from "./EventBox";
 
 function ScheduleContainer({ events, dateId }) {
-  console.log(events, dateId)
-  if ((events[dateId] && events[dateId][0])) {
-    console.log("here")
-  }
   return (
     <div className={styles.scheduleContainer} id={dateId}>
       {TIME_FROM.map((time, index) => (
         (events[dateId] && events[dateId][index])
         ?
-        <>
-          <div className={styles.event}>
-          here in event!
-          </div>
+        <div className={styles.eventBox} key={time}>
+          <EventBox {...events[dateId][index]} />
           <ScheduleBox
-            id={{
-              date: dateId,
-              time,
-            }}
-            key={time}
-            />
-        </>
+            id={{ date: dateId, time }}
+          />
+        </div>
         :
         <ScheduleBox
-          id={{
-            date: dateId,
-            time,
-          }}
+          id={{ date: dateId, time }}
           key={time}
         />
       ))}

@@ -1,0 +1,15 @@
+.event {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  border-radius: 5px;
+  background: #f0f0f0;
+}
+
+.event:hover {
+  background-color: #eceff3;
+}
+
+.link {
+  color: black;
+}
