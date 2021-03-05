@@ -8,15 +8,35 @@ import "./style.css";
 
 export default function Daily({ eventList, eventKeyList, currentPageDate, handleClickLeft, handleClickRight }) {
   const [IsModalShown, setIsModalShown] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState({});
+
   const currentDate = getFormat(currentPageDate);
   const parsedCurrentDate = parseDate(currentDate);
   const currentEventList = eventKeyList.includes(currentDate) ? eventList[currentDate] : [];
   let until;
+  let firstKey;
+
+  function handleClick(event) {
+    setIsModalShown(true);
+    const selectedHour = event.target.className.split(" ")[0];
+    
+    console.log(selectedHour);
+    for (let i = 0; i < currentEventList.length; i++) {
+      console.log(currentEventList[i].startHour, selectedHour);
+      if (currentEventList[i].startHour === selectedHour) {
+        setSelectedEvent(currentEventList[i]);
+        break;
+      }
+    }
+  }
 
   return (
     <Fragment>
       {IsModalShown && 
-        <Modal time=""/>
+        <Modal 
+        selected={selectedEvent}
+        setIsModalShown={setIsModalShown}
+        />
       }
       <div className="header">
           <AiOutlineArrowLeft className="previous" onClick={() => {handleClickLeft(-1)}}/>
@@ -32,9 +52,7 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
           hour.map((time) => {
           let isColor = "";
           let title = "";
-
-          
-
+  
           for (let i = 0; i < currentEventList.length; i++) {
             const event = currentEventList[i];
             const start = parseInt(event.startHour);
@@ -43,6 +61,7 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
             if (time === start) {
               until = end;
               title = event.title;
+              firstKey = start;
             }
 
             if (time <= until) {
@@ -51,9 +70,9 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
           }
 
           return (
-            <div key={time} className={["time-div", isColor].join(" ")} onClick={isColor ?() => {setIsModalShown(true)} : ""}>
-              <div className="event-hour">{time}시</div>
-              <div className="event-title">{title}</div>
+            <div key={time} className={[firstKey, "time-div", isColor].join(" ")} onClick={isColor ? handleClick : null}>
+              {time}시
+              <div className={[firstKey, "event-title"].join(" ")}>{title}</div>
             </div>
           );
           })

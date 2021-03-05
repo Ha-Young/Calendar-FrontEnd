@@ -1,19 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, HashRouter, Link, Route, Switch } from "react-router-dom";
 import Form from "../../containers/Form";
 
 export default function Event() {
   return (
-    <Router>
-      <div>
-        <nav>
-          <li><Link to="/new">이벤트 추가</Link></li>
-        </nav>
-      </div>
-
-      <Switch>
-        <Route path="/new"><Form /></Route>
-      </Switch>
-    </Router>
+    <div>
+      <nav>
+        <Route path="/new" component={Form}/>
+      </nav>
+    </div>
   );
 }

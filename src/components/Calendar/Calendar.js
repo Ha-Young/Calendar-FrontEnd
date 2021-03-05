@@ -6,21 +6,20 @@ import Weekly from "../../containers/Weekly";
 export default function Calendar() {
   return (
     <Fragment>
-      <Router>
-        <div>
-          <nav>
+        {/* <div> */}
+          {/* <nav>
             <ul className="menu">
               <li className="daily-menu"><Link to="/daily">일간 스케줄</Link></li>
               <li className="weekly-menu"><Link to="/weekly">주간 스케줄</Link></li>
             </ul>
-          </nav>
-        </div>
+          </nav> */}
+        {/* <Route exact path="/calendar" component
 
         <Switch>
           <Route path="/daily"><Daily /></Route>
           <Route path="/weekly"><Weekly /></Route>
         </Switch>
-      </Router>
+      </Router> */}
     </Fragment>
   );
 }
