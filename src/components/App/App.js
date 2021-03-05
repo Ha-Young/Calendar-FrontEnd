@@ -13,6 +13,8 @@ function App({
   moveToPrevDate,
   moveToNextDate,
   onInitialLoad,
+
+  eventInfoList,
 }) {
 
   useEffect(() => {
@@ -34,6 +36,7 @@ function App({
           <Main
             currentDate={currentDate}
             calendarMode={calendarMode}
+            eventInfoList={eventInfoList}
           />
         </Route>
 

@@ -17,3 +17,16 @@ const database = firebase.database();
 export async function addNewEventToFirebase(addedUserEventInfo) {
   await database.ref(`events/${addedUserEventInfo.id}`).set(addedUserEventInfo);
 }
+
+export async function fetchEventsList() {
+  const eventList = [];
+  const eventsRef = database.ref("events/");
+
+  await eventsRef.once("value", function(snapshot) {
+    snapshot.forEach((childSnapshot) => {
+      eventList.push(childSnapshot.val());
+    })
+  })
+
+  return eventList;
+}

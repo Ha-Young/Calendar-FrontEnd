@@ -6,6 +6,7 @@ import Calendar from "../Calendar";
 export default function Main({
   calendarMode,
   currentDate,
+  eventInfoList,
 }) {
   return (
     <>
@@ -14,6 +15,7 @@ export default function Main({
         <Calendar
           calendarMode={calendarMode}
           currentDate={currentDate}
+          eventInfoList={eventInfoList}
         />
       </div>
     </>

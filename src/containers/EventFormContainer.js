@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import EventForm from "../components/EventForm";
-import { addNewEvent } from "../actions";
+import { addNewEvent, getUserEvents } from "../actions";
 
 function EventFormContainer({
   addNewEvent,
@@ -35,8 +35,11 @@ function mapStateToProps({
 function mapDispatchToProps(dispatch) {
   return {
     addNewEvent(userInputInfo){
-      dispatch(addNewEvent(userInputInfo))
-    }
+      dispatch(addNewEvent(userInputInfo));
+    },
+    getUserEvents(fetchedUserEvents){
+      dispatch(getUserEvents(fetchedUserEvents));
+    },
   }
 }
 

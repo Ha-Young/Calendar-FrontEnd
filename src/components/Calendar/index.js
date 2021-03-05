@@ -7,16 +7,19 @@ import { CALENDAR_MODE } from "../../utils/constants";
 export default function Calendar ({
   currentDate,
   calendarMode,
+  eventInfoList,
   // GET ARR
 }) {
 
   // EVENT ?
+  console.log(eventInfoList, "???")
 
   // DAT MATCHING -> CURRENTDATE || TITLE === ? 
 
   // YES
   // MATHCED ARR -> EXTRACT
   // EVENT TIME 
+  
 
 
 
