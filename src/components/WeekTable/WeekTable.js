@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./WeekTable.module.css";
 import { Link } from "react-router-dom";
 
-export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
+export default function WeekTable ({ currentDate,eventInfo, onEventIdClick }) {
   const { year, month, date } = currentDate;
   const CELL_NUMBER = 24;
   const timeCells = [];
@@ -57,7 +57,7 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
   });
 
   return (
-    <div className={styles.DayTable}>
+    <div className={styles.WeekTable}>
       {timeTable}
     </div>
   );

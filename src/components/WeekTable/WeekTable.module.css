@@ -1,8 +1,8 @@
 @import url("../../assets/styles/reset.css");
 
-.DayTable {
+.WeekTable {
   display: grid;
-  grid-template-columns: 1fr 9fr;
+  grid-template-columns: 1fr repeat(7, 1fr);
   grid-template-rows: repeat(24, 30px);
   overflow: scroll;
   width: 70vw;
@@ -13,7 +13,7 @@
   font-weight: bold;
 }
 
-.DayTable div {
+.WeekTable div {
   display: flex;
   justify-content: center;
   align-items: center;

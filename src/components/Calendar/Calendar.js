@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Calendar.module.css";
 import { cloneDeep } from "lodash";
 import DayTable from "../DayTable/DayTable";
-import WeekTable from "../DayTable/DayTable";
+import WeekTable from "../WeekTable/WeekTable";
 import DateIndicator from "../DateIndicator/DateIndicator";
 import TwoOptionSelector from "../TwoOptionSelector/TwoOptionSelector";
 import IncDecrementControlBox from "../IncDecrementControlBox/IncDecrementControlBox";
@@ -14,6 +14,7 @@ export default function Calendar ({
   onEventDayClick,
   onEventWeekClick
 }) {
+  console.log(isDayCalendar)
   const [currentDate, setCurrentDate] = useState(new Date());
   const [formattedCurrentDate, setFormattedCurrentDate] = useState({
     year: currentDate.getFullYear(),
@@ -23,9 +24,9 @@ export default function Calendar ({
   });
 
   const handleArrowClick = (ev) => {
-    if (ev.target.dataset.type = "right-arrow") {
+    if (ev.target.dataset.type === "right-arrow") {
       currentDate.setDate(currentDate.getDate() + 1);
-    } else {
+    } else if ((ev.target.dataset.type === "left-arrow")) {
       currentDate.setDate(currentDate.getDate() - 1);
     }
 
