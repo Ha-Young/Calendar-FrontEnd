@@ -1,3 +1,5 @@
+@import "../../styles/colors.css";
+
 .loadingWrapper {
   position: fixed;
   top:0;
