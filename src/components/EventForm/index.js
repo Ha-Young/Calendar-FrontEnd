@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link, useParams, withRouter } from "react-router-dom";
 import styles from "./EventForm.module.css";
-import { addNewEventToFirebase, deleteUserEventFromFirebase } from "../../api";
+import {
+  addNewEventToFirebase,
+  updateUserEventinfoToFirebase,
+  deleteUserEventFromFirebase,
+} from "../../api";
 import { EVENT_FORM_TYPE } from "../../utils/constants";
 
 function EventForm ({
@@ -9,6 +13,7 @@ function EventForm ({
   formType,
   eventInfoList,
   deleteUserEvent,
+  updateUserEvent,
   history
 }) {
   const params = useParams();
@@ -16,7 +21,7 @@ function EventForm ({
 
   if (formType === EVENT_FORM_TYPE.UPDATING) {
     const selectedEvent = eventInfoList.filter((event) => event.id === Number(params.id));
-    initialUserInputSetting = { ...selectedEvent[0] }
+    initialUserInputSetting = { ...selectedEvent.pop() }
   } else if (formType === EVENT_FORM_TYPE.ADDING) {
     initialUserInputSetting = {
       title: "",
@@ -29,6 +34,7 @@ function EventForm ({
 
   const [userInputInfo, setUserInputInfo] = useState(initialUserInputSetting);
 
+
   function handleDeleteButtonClick(e) {
     e.preventDefault();
 
@@ -38,15 +44,23 @@ function EventForm ({
     history.push("/");
   }
 
+  const generateEventId = () => Math.floor(Math.random() * new Date());
+
   function handleFormSubmit(e) {
     e.preventDefault();
 
-    const id = Math.floor(Math.random() * new Date());
+    const id = generateEventId();
 
-    addNewEvent({...userInputInfo, id: id});
-    addNewEventToFirebase({...userInputInfo, id: id});
+    if (formType === EVENT_FORM_TYPE.UPDATING) {
+        updateUserEventinfoToFirebase(userInputInfo);
+        updateUserEvent([userInputInfo]);
+    } else if (formType === EVENT_FORM_TYPE.ADDING) {
+        addNewEvent({...userInputInfo, id: id});
+        addNewEventToFirebase({...userInputInfo, id: id});
+    }
 
-    history.push("/calendar");
+
+    history.push("/");
   }
 
   function handleUserInputChange(e) {
@@ -59,6 +73,8 @@ function EventForm ({
       ...userInputInfo,
       [userInputType]: value,
     });
+
+    console.log(userInputInfo);
   }
 
   return (
@@ -73,7 +89,7 @@ function EventForm ({
             type="text"
             placeholder="event title"
             name="title"
-            value={userInputInfo.title}
+            value={userInputInfo.title || ""}
             onChange={handleUserInputChange}
             required
           />
@@ -84,7 +100,7 @@ function EventForm ({
             type="text"
             placeholder="type your event desc"
             name="desc"
-            value={userInputInfo.desc}
+            value={userInputInfo.desc || ""}
             onChange={handleUserInputChange}
             required
           />
@@ -95,7 +111,7 @@ function EventForm ({
             type="date"
             placeholder="event description"
             name="date"
-            value={userInputInfo.date}
+            value={userInputInfo.date || ""}
             required
             onChange={handleUserInputChange}
           />
@@ -106,8 +122,8 @@ function EventForm ({
             type="time"
             placeholder="event start time"
             name="startTime"
-            value={userInputInfo.startTime}
-            step="3600000"
+            value={userInputInfo.startTime || ""}
+            step="3600"
             // min="01:00"
             // max="24:00"
             required
@@ -120,8 +136,8 @@ function EventForm ({
             type="time"
             placeholder="event end time"
             name="endTime"
-            value={userInputInfo.endTime}
-            step="3600000"
+            value={userInputInfo.endTime || ""}
+            step="3600"
             // min="01:00"
             // max="24:00"
             required
@@ -130,7 +146,10 @@ function EventForm ({
         </label>
 
         <input type="submit" value="submit!"></input>
-        <input onClick={handleDeleteButtonClick} type="submit" value="delete this event"></input>
+        { formType === EVENT_FORM_TYPE.UPDATING ?
+          <input type="submit" onClick={handleDeleteButtonClick} value="delete this event"></input>
+          : null
+        }
       </form>
     </div>
   );

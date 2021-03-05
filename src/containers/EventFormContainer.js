@@ -2,13 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import EventForm from "../components/EventForm";
-import { addNewEvent, getUserEvents, deleteUserEvent } from "../actions";
+import { addNewEvent, getUserEvents, updateUserEvent, deleteUserEvent } from "../actions";
 import { EVENT_FORM_TYPE } from "../utils/constants"
 
 function EventFormContainer({
   addNewEvent,
   EventInfoControlReducer,
   deleteUserEvent,
+  updateUserEvent,
 }) {
 
   return (
@@ -26,6 +27,7 @@ function EventFormContainer({
             formType={EVENT_FORM_TYPE.UPDATING}
             eventInfoList={EventInfoControlReducer}
             deleteUserEvent={deleteUserEvent}
+            updateUserEvent={updateUserEvent}
           />
         </Route>
       </Switch>
@@ -51,6 +53,9 @@ function mapDispatchToProps(dispatch) {
     },
     deleteUserEvent(targetEventId) {
       dispatch(deleteUserEvent(targetEventId));
+    },
+    updateUserEvent(updatedUserEventInfo) {
+      dispatch(updateUserEvent(updatedUserEventInfo));
     },
   }
 }

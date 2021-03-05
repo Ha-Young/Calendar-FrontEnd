@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import moment from "moment";
 import styles from "./Calendar.module.css";
 import OnedaySchedule from "../OnedaySchedule";
@@ -9,6 +9,7 @@ export default function Calendar ({
   calendarMode,
   eventInfoList,
 }) {
+
   return (
     <div className={styles.Calender}>
       { calendarMode === CALENDAR_MODE.WEEKLY ?

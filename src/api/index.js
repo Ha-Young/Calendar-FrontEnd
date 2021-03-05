@@ -31,8 +31,9 @@ export async function fetchEventsList() {
   return eventList;
 }
 
-export async function updateUserEventinfo(selectedEventInfo) {
-  await database.ref(`events/${selectedEventInfo.id}`).update(selectedEventInfo)
+export async function updateUserEventinfoToFirebase(selectedEventInfo) {
+  await deleteUserEventFromFirebase(selectedEventInfo.id);
+  await database.ref(`events/${selectedEventInfo.id}`).set(selectedEventInfo);
 }
 
 export async function deleteUserEventFromFirebase(targetEventId) {

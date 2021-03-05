@@ -19,6 +19,10 @@ export default function Header ({
           <Button title="Add new event!"/>
         </Link>
 
+        <Link to="/">
+          <Button title="TODAY"/>
+        </Link>
+
         <DateControlNav
           currentDate={currentDate}
           calendarMode={calendarMode}

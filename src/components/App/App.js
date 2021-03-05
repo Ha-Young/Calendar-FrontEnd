@@ -17,8 +17,8 @@ function App({
 }) {
 
   useEffect(() => {
-    onInitialLoad();
-  }, []);
+    // onInitialLoad();
+  }, [eventInfoList]);
 
   return (
     <div className={styles.App}>

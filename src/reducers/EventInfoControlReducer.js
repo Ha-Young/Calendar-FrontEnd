@@ -15,8 +15,11 @@ export default function EventInfoControlReducer(state = initialState, action) {
     case GET_USER_EVENTS:
       return [...state, ...action.fetchedUserEvents];
 
+    case UPDATE_USER_EVENT:
+      return action.updatedUserEventInfo;
+
     case DELETE_USER_EVENT:
-      return state.filter(event => event.id !== action.targetEventId)
+      return state.filter(event => event.id !== action.targetEventId);
 
     default: return state;
   }
