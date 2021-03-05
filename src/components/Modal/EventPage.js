@@ -25,11 +25,13 @@ const Event = ({ datesInfo }) => {
         <button
           className={styles.editButton}
           onClick={() => history.push(`/${calendarType}/${date}`)}
-        >EDIT</button>
+        >EDIT
+        </button>
         <button
           className={styles.exitButton}
           onClick={() => history.goBack()}
-        >EXIT</button>
+        >EXIT
+        </button>
       </div>
     </Modal>
   )

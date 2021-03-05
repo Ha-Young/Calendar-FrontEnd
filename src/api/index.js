@@ -1,4 +1,3 @@
-// TODO: Go to `./firebase.js` and update your firebase config.
 import firebase from "./firebase";
 
 export async function saveData(date, title, description, startTime, endTime) {

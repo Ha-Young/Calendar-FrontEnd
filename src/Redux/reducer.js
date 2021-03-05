@@ -1,4 +1,8 @@
-import { ADD_SUBMIT_DATA, SHOW_SCHEDULE_INFO , SET_INITIAL_DATA} from "./actionTypes";
+import {
+  ADD_SUBMIT_DATA,
+  SHOW_SCHEDULE_INFO ,
+  SET_INITIAL_DATA
+} from "./actionTypes";
 
 const initialState = {
   byDate: {},
@@ -18,6 +22,7 @@ const reducer = (state = initialState, action) => {
         allDates: [...state.allDates, action.schedule.date],
         isScheduleShown: false
       }
+
     case SHOW_SCHEDULE_INFO:
       return {
         byDate: {
@@ -26,6 +31,7 @@ const reducer = (state = initialState, action) => {
         allDates: state.allDates,
         isScheduleShown: true
       }
+
     case SET_INITIAL_DATA:
       let arr;
 
@@ -42,6 +48,7 @@ const reducer = (state = initialState, action) => {
         allDates: [...arr],
         isScheduleShown: true
       }
+
     default:
       return {...state};
   }

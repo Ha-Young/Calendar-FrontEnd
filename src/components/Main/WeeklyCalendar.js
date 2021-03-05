@@ -75,8 +75,8 @@ const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
 
             for (const event of schedules) {
               const eventDay = dateWithOutStartTime(event.date);
-
               const eventTitle = event.title;
+
               const showSchedule = isEventScheduled(
                 Number(time),
                 Number(event.startTime),

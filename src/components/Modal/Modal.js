@@ -58,6 +58,7 @@ const Modal = ({
     e.preventDefault();
 
     if (title.length === 0 || description.length === 0) return;
+
     if (Number(startTime) >= Number(endTime)) return;
 
     addsubmitdata({

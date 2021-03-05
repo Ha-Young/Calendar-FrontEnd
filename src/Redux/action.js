@@ -1,4 +1,8 @@
-import { ADD_SUBMIT_DATA, SHOW_SCHEDULE_INFO, SET_INITIAL_DATA } from '../Redux/actionTypes';
+import {
+  ADD_SUBMIT_DATA,
+  SHOW_SCHEDULE_INFO,
+  SET_INITIAL_DATA
+} from '../Redux/actionTypes';
 
 export const addsubmitdata = (scheduleInfo) => (
   {

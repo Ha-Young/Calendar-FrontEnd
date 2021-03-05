@@ -2,7 +2,6 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-// TODO: Enter your own config object
 const firebaseConfig = {
   apiKey: "AIzaSyCg7LdWWFq-pWBsykO-2w5I-bcZP5dvAlo",
   authDomain: "calendar-viewer-1d702.firebaseapp.com",

@@ -12,7 +12,6 @@ const DailyCalendar = ({ schedules, showscheduleinfo }) => {
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   const timeCells = [];
   const eventCells = [];
-  let daysList;
   let firstKeyId;
 
   for (let i = 0; i < TIME_TABLE; i++) {
@@ -46,7 +45,7 @@ const DailyCalendar = ({ schedules, showscheduleinfo }) => {
     )
   });
 
-  daysList = (
+  const daysList = (
     <div className={styles.weekDay}>
       <div className={styles.dayDateWrapper}>
         <div className={styles.dayDate}>
@@ -88,7 +87,7 @@ const DailyCalendar = ({ schedules, showscheduleinfo }) => {
           }
 
           return (
-            <div key={keyId}>
+            <div key={keyId * item}>
               <Link to={`/dailycalendar/${keyId}`}>
                 <div className={styles.event} />
               </Link>
