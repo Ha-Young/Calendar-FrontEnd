@@ -8,7 +8,7 @@ import AppHeader from "../Header/AppHeader";
 import Weekly from "../Weekly/Weekly";
 import Daily from "../Daily/Daily";
 import Event from "../Event/index";
-import EventInfo from "../Event/EventInfo";
+import EventInfo from "../Event/EventInfo/index";
 import FlexColumnBox from "../../shared/FlexColumnBox";
 
 const App = ({
@@ -41,7 +41,7 @@ const App = ({
           <Weekly count={countOfWeek} onPage={setWeekly} events={events} />
         </Route>
         <Route path="/Event/new">
-          <Event onSubmit={onSubmit} onPage={setEvent}/>
+          <Event onSubmit={onSubmit} onPage={setEvent} />
         </Route>
         <Route path="/Event/:day" children={<EventInfo events={events} />} />
       </Switch>

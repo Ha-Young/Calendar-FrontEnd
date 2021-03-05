@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Input from "../../shared/Input";
 
-const Title = ({ saveData }) => {
+const Title = ({ saveData, value }) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current.value = value;
+  }, [value]);
+
   return (
     <Input>
       <label htmlFor="title">
@@ -10,6 +16,7 @@ const Title = ({ saveData }) => {
       <input
         type="text"
         id="title"
+        ref={ref}
         onChange={ev => saveData(ev.target.value)}
       />
     </Input>

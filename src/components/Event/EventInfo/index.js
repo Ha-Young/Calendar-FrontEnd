@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { convertHour } from "../../utils/convertHour";
-import convertTime from "../../utils/convertToAmPm";
+import { convertHour } from "../../../utils/convertHour";
+import convertTime from "../../../utils/convertToAmPm";
 
-const Wrapper = styled.div`
+const Warpper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,15 +24,21 @@ const EventInfo = ({ events }) => {
   const endHour = convertTime(convertHour(event.endHour));
 
   return (
-    <Wrapper>
+    <Warpper>
       <div>
         <div>Title: {title}</div>
         <div>Desc: {description}</div>
         <div>Start Time: {startHour}</div>
         <div>End Time: {endHour}</div>
       </div>
-      <button>Modify</button>
-    </Wrapper>
+      <Link
+        to={{
+          pathname: '/Event/new',
+          state: { modifyingEvent: event }
+        }}>
+        <button>Modify</button>
+      </Link>
+    </Warpper>
   );
 };
 

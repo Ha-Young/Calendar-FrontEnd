@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Input from "../../shared/Input";
 
-const Date = ({ saveData }) => {
+const Date = ({ saveData, value }) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current.value = value;
+  }, [value]);
+
   return (
     <Input>
       <label htmlFor="date">
@@ -10,6 +16,7 @@ const Date = ({ saveData }) => {
       <input
         type="date"
         id="date"
+        ref={ref}
         onChange={e => saveData(e.target.value)}
       />
     </Input>
