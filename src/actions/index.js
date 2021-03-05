@@ -57,7 +57,8 @@ export const deleteEvent = (date, startTime) => ({
   startTime,
 });
 
-export const saveUserId = (userId) => ({
-  type: types.SAVE_USER_ID,
+export const setUserId = (userId, loginState) => ({
+  type: types.SET_USER_ID,
   userId,
+  loginState,
 });

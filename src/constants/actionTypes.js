@@ -20,4 +20,4 @@ export const SET_UPDATE_EVENT_MODE = "SET_UPDATE_EVENT_MODE";
 export const SAVE_EVENT = "SAVE_EVENT";
 export const DELETE_EVENT = "DELETE_EVENT";
 
-export const SAVE_USER_ID = "SAVE_USER_ID"
+export const SET_USER_ID = "SET_USER_ID"

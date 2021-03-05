@@ -48,12 +48,3 @@ export const updateEvent = async (userId, date, startTime, event) => {
   await removeEvent(userId, date, startTime);
   await createEvent(event);
 };
-
-export const loginWithGoogleAccount = async () => {
-  console.log("login");
-  const provider = new firebase.auth.GoogleAuthProvider();
-  const result = await firebase.auth().signInWithPopup(provider).then((result) => result);
-  const userId = result.user.uid;
-
-  return userId;
-};

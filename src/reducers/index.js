@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import calendar from "./calendar";
 import event from "./event";
+import login from "./login";
 
 /*
 
@@ -15,7 +16,8 @@ import event from "./event";
 
 const rootReducer = combineReducers({
   calendar,
-  event
+  event,
+  login
 });
 
 export default rootReducer;

@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { setSelectedDate, setCreateEventMode, setUpdateEventMode, saveEvent, deleteEvent } from "../actions";
+import { setUserId, setSelectedDate, setCreateEventMode, setUpdateEventMode, saveEvent, deleteEvent } from "../actions";
 
 const mapStateToProps = (state) => ({
   selectedDate: state.calendar.selectedDate,
   eventMode: state.event.eventMode,
   eventsInStore: state.event.events,
-  userId: state.event.userId,
+  userId: state.login.userInfo.userId,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -25,6 +25,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteEventInStore(date, startTime) {
       dispatch(deleteEvent(date, startTime));
+    },
+    setUserId(id, loginState) {
+      dispatch(setUserId(id, loginState));
     },
   }
 };
