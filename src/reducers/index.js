@@ -69,6 +69,9 @@ export default function reducer(state = initialState, action) {
     }
 
     case types.SET_EVENT_INFORMATION: {
+      if (!action) {
+        return initialState;
+      }
       const { data } = action;
       const mockById = {};
       const mockState2 = {};

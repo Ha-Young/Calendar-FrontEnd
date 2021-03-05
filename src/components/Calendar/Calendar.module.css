@@ -43,11 +43,12 @@
   position: relative;
 }
 
-.dayBox, .day, .day1 {
+.dayBox, .day {
   width: 100%;
-  height: 3.5em;
+  height: 3.65em;
   margin-bottom: -5px;
   display: inline-block;
+  background-color: #DDD;
   box-sizing: border-box;
   border: 0.5px solid rgb(100, 100, 100);
   transition: 0.8s;

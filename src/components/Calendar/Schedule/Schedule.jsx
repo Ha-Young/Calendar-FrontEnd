@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   position: absolute;
-  top: ${props => props.startTime * 3.5}em;
+  top: ${props => props.startTime * 3.55}em;
   width: 100%;
-  height: ${props => props.event * 3.5}em;
+  height: ${props => props.event * 3.45}em;
   background-color: #fbc531;
 
   .eventInformation {
@@ -22,7 +22,6 @@ export default function Schedule({ event }) {
     startTime,
     endTime,
     title,
-    description,
     eventId
   } = event;
 
@@ -41,8 +40,7 @@ export default function Schedule({ event }) {
         className={styled.eventInformation}
         onClick={() => history.push(`/event/${eventId}`)}
       >
-        {title}<br />
-        {description}
+        {title}
       </div>
     </Wrapper>
   );

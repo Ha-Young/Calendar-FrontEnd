@@ -3,13 +3,12 @@
   align-items: flex-end;
   margin: 0;
   padding: 0;
-  text-decoration: none;
   border-bottom: 1px solid black;
 }
 
 .navigationItem {
   margin: 1em;
   padding: 0.5em;
-  border: 1px solid black;
+  text-decoration: none;
   list-style-type: none;
 }
