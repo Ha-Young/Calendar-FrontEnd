@@ -17,7 +17,7 @@ export default function Daily({ role, eventDate, userEvents, dispatch }) {
     const fromHour = new Date(userEvent.period.from).getHours();
     const toHour = new Date(userEvent.period.to).getHours();
     const numberOfColumns = toHour - fromHour;
-    const copyTable = {...table};
+    const copyTable = { ...table };
 
     for (let i = 0; i < numberOfColumns; i++) {
       const eventTime = fromHour + i;

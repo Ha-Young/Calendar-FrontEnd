@@ -14,7 +14,7 @@
 
  export const userEvent = {
    SET_EVENT: "SET_EVENT",
-   CLEAR_EVENT: "CLEAR_EVENT",
+   DELETE_EVENT: "DELETE_EVENT",
  };
 
  export const SET_CURRENT_DATE = "SET_CURRENT_DATE";
