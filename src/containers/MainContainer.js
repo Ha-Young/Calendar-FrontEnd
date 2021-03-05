@@ -5,7 +5,7 @@ import Day from "../components/Calendar/Day/Day";
 import Week from "../components/Calendar/Week/Week";
 import AddEventButton from "../components/Button/AddEventButton";
 import styles from "./MainContainer.module.css";
-import EventModal from "../components/Modal/Modal";
+import EventModal from "../components/Modal/EventModal";
 
 import {
   NEXT,
@@ -13,10 +13,12 @@ import {
   TO_DAY_CALENDAR,
   TO_WEEK_CALENDAR,
   ADD_EVENT,
+  DELETE_EVENT,
 } from "../actions/index";
 
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import uuid from "react-uuid";
 
 const mapStateToProps = (state) => ({ state });
 
@@ -31,14 +33,17 @@ const mapDispatchToProps = (dispatch) => ({
     const eventStartHour = RangePicker[0].format("HH");
     const eventEndHour = RangePicker[1].format("HH");
     const event = {
+      Id: uuid(),
       Title: eventTitle,
       Description: eventDescription,
       Date: eventDate,
       StartHour: eventStartHour,
       EndHour: eventEndHour,
     };
-    console.log("final event is", event);
     dispatch({ type: ADD_EVENT, payload: event });
+  },
+  onDeleteEvent: (eventId) => {
+    dispatch({ type: DELETE_EVENT, payload: eventId });
   },
 });
 
@@ -49,12 +54,10 @@ const MainContainer = ({
   onChangeDayMode,
   onChangeWeekMode,
   onAddEvent,
+  onDeleteEvent,
 }) => {
-  console.log(state);
-  console.log(state.currentTime);
-  console.log(state.calendar.events[0]);
-
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [eventInfo, setEventInfo] = useState({});
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -91,6 +94,7 @@ const MainContainer = ({
               isDayCalendarShown={state.calendar.isDayCalendarShown}
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
+              onDeleteEvent={onDeleteEvent}
             />
           </Route>
           <Route path="/Week">
@@ -100,6 +104,7 @@ const MainContainer = ({
               isDayCalendarShown={state.calendar.isDayCalendarShown}
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
+              onDeleteEvent={onDeleteEvent}
             />
           </Route>
           <Route path="/Event">

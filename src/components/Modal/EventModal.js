@@ -28,7 +28,15 @@ export default function EventModal({
   handleOk,
   handleCancel,
   onAddEvent,
+  onDeleteEvent,
+  onEditEvent,
+  eventInfo,
 }) {
+  let isAddClicked = false;
+  let isEditClicked = false;
+  let isDeleteClicked = false;
+  console.log("eventInfo of element that you clicked", eventInfo);
+
   return (
     <Modal
       title="Add event!"
@@ -47,8 +55,19 @@ export default function EventModal({
     >
       <Form
         onFinish={(e) => {
-          onAddEvent(e);
-          handleOk();
+          if (isAddClicked) {
+            onAddEvent(e);
+            handleOk();
+          }
+          if (isEditClicked) {
+            console.log("edit clicked");
+          }
+
+          if (isDeleteClicked) {
+            console.log(eventInfo.id);
+            onDeleteEvent(eventInfo.id);
+            // handleOk();
+          }
         }}
         {...formItemLayout}
       >
@@ -63,9 +82,39 @@ export default function EventModal({
         </Form.Item>
         <TwitterPicker />
         <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Button
-          </Button>
+          {onAddEvent && (
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={(e) => {
+                isAddClicked = true;
+              }}
+            >
+              Add
+            </Button>
+          )}
+          {onEditEvent && (
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={(e) => {
+                isEditClicked = true;
+              }}
+            >
+              Edit
+            </Button>
+          )}
+          {onDeleteEvent && (
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={(e) => {
+                isDeleteClicked = true;
+              }}
+            >
+              Delete
+            </Button>
+          )}
         </Form.Item>
       </Form>
     </Modal>

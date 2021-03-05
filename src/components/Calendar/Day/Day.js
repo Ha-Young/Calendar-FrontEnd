@@ -10,7 +10,9 @@ export default function Day({
   events,
   onPrevClick,
   onNextClick,
+  onDeleteEvent,
   isDayCalendarShown,
+  showModal,
 }) {
   return (
     <div className={styles.wrapper}>
@@ -24,6 +26,8 @@ export default function Day({
         now={now}
         isDayCalendarShown={isDayCalendarShown}
         events={events}
+        showModal={showModal}
+        onDeleteEvent={onDeleteEvent}
       />
     </div>
   );

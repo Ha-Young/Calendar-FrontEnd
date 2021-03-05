@@ -1,9 +1,14 @@
 import React from "react";
 import { formatDate, getDaysInWeek } from "../../utils/utils";
 import styles from "./Calendar.module.css";
-import HourInDaysRow from "./HourInDaysColumn";
+import HourInDaysColumn from "./HourInDaysColumn";
 
-export default function DaysInWeekRow({ now, isDayCalendarShown, events }) {
+export default function DaysInWeekRow({
+  now,
+  isDayCalendarShown,
+  events,
+  onDeleteEvent,
+}) {
   const daysInWeek = getDaysInWeek(now).map((dayObj, index) => {
     return formatDate(dayObj);
   });
@@ -12,19 +17,21 @@ export default function DaysInWeekRow({ now, isDayCalendarShown, events }) {
   return (
     <div className={`${styles.rowWrapper}`}>
       {isDayCalendarShown ? (
-        <HourInDaysRow
+        <HourInDaysColumn
           day={today}
           isDayCalendarShown={isDayCalendarShown}
           events={events}
+          onDeleteEvent={onDeleteEvent}
         />
       ) : (
         daysInWeek.map((day, index) => {
           return (
-            <HourInDaysRow
+            <HourInDaysColumn
               day={day}
               key={index}
               isDayCalendarShown={isDayCalendarShown}
               events={events}
+              onDeleteEvent={onDeleteEvent}
             />
           );
         })

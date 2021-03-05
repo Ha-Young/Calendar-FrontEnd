@@ -2,7 +2,12 @@ import React from "react";
 import Event from "./Event";
 import styles from "./Calendar.module.css";
 
-export default function HourInDaysColumn({ day, isDayCalendarShown, events }) {
+export default function HourInDaysColumn({
+  day,
+  isDayCalendarShown,
+  events,
+  onDeleteEvent,
+}) {
   const hours = [
     "00",
     "01",
@@ -43,9 +48,6 @@ export default function HourInDaysColumn({ day, isDayCalendarShown, events }) {
               key={index}
               date={day}
               hour={hour}
-              onClick={() => {
-                console.log(`${day}`, `${hour}`);
-              }}
             >
               {!!events.length &&
                 events.map((e) => {
@@ -53,9 +55,11 @@ export default function HourInDaysColumn({ day, isDayCalendarShown, events }) {
                     return (
                       <Event
                         title={e.Title}
+                        id={e.Id}
                         description={e.Description}
                         height={e.EndHour - e.StartHour}
                         key={index}
+                        onDeleteEvent={onDeleteEvent}
                       />
                     );
                   }

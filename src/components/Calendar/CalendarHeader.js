@@ -10,8 +10,6 @@ export default function CalendarHeader({
   onNextClick,
   isDayCalendarShown,
 }) {
-  console.log(isDayCalendarShown);
-
   return (
     <div className={`${styles.headerWrapper}`}>
       <Aioutline.AiFillLeftCircle
