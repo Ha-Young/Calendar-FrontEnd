@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-export default function Button({ title }) {
+export default function Button({
+  title,
+  onClick,
+}) {
 
   return (
-    <button className={styles.Button} title={title}>
+    <button onClick={onClick} className={styles.Button} title={title}>
       {title}
     </button>
   )

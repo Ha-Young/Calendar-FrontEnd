@@ -4,7 +4,8 @@ import TimeIndicator from "../TimeIndicator";
 import Calendar from "../Calendar";
 
 export default function Main({
-  calendarMode
+  calendarMode,
+  currentDate,
 }) {
 
   return (
@@ -13,6 +14,7 @@ export default function Main({
         <TimeIndicator />
         <Calendar
           calendarMode={calendarMode}
+          currentDate={currentDate}
         />
         </div>
       </>

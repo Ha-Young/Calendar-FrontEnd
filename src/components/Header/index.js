@@ -9,8 +9,10 @@ export default function Header ({
   currentDate,
   calendarMode,
   changeCalendarMode,
+  moveToPrevDate,
+  moveToNextDate,
 }) {
-  console.log(changeCalendarMode)
+console.log(moveToNextDate, "!!")
   return (
     <header className={styles.Header}>
 
@@ -22,6 +24,8 @@ export default function Header ({
         <DateControlNav
           currentDate={currentDate}
           calendarMode={calendarMode}
+          moveToPrevDate={moveToPrevDate}
+          moveToNextDate={moveToNextDate}
         />
       </div>
 

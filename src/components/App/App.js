@@ -12,10 +12,12 @@ function App({
   currentDate,
   calendarMode,
   changeCalendarMode,
+  moveToPrevDate,
+  moveToNextDate,
 }) {
-  console.log(changeCalendarMode, "3")
+console.log(moveToNextDate,"??")
   return (
-
+    
     <div className={styles.App}>
 
       <Switch>
@@ -24,6 +26,8 @@ function App({
             currentDate={currentDate}
             calendarMode={calendarMode}
             changeCalendarMode={changeCalendarMode}
+            moveToPrevDate={moveToPrevDate}
+            moveToNextDate={moveToNextDate}
           />
           <Main
             currentDate={currentDate}
