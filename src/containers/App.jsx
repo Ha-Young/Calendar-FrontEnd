@@ -9,7 +9,7 @@ import { actionCreators } from "actions/actionCreators";
 import { authService } from "api/firebaseService";
 import { initializeApp } from "api/firebaseAPIs";
 
-const App = ({ onLoggedIn }) => {
+const App = ({ setInitialize }) => {
   const [ready, setReady] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -17,7 +17,7 @@ const App = ({ onLoggedIn }) => {
     authService.onAuthStateChanged((user) => {
       if (user) {
         initializeApp((initialEvent) => {
-          onLoggedIn(initialEvent, authService.currentUser.uid);
+          setInitialize(initialEvent, authService.currentUser.uid);
           setIsLoggedIn(true);
           setReady(true);
         });
@@ -26,7 +26,7 @@ const App = ({ onLoggedIn }) => {
         setReady(true);
       }
     });
-  }, [onLoggedIn]);
+  }, [setInitialize]);
 
   return (
     <>
@@ -42,14 +42,10 @@ const App = ({ onLoggedIn }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  state,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  onLoggedIn: (initialEvent, userId) => {
+  setInitialize: (initialEvent, userId) => {
     dispatch(actionCreators.setInitialize(initialEvent, userId));
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

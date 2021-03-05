@@ -1,9 +1,9 @@
 import React from "react";
 import EventCardStyled from "components/EventCard/EventCardStyled";
 import { dateConst } from "constants/constants";
-import styles from "./DailySchedule.module.css";
+import styles from "./DailyCalender.module.css";
 
-const DailySchedule = ({ dailyEvent }) => {
+const DailyCalender = ({ dailyEvent }) => {
   return (
     <>
       <section className={styles.container}>
@@ -30,4 +30,4 @@ const DailySchedule = ({ dailyEvent }) => {
   );
 };
 
-export default DailySchedule;
+export default DailyCalender;

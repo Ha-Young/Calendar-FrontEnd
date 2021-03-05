@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 
 import Header from "components/Header/Header";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
-import DailySchedule from "components/DailySchedule/DailySchedule";
-import WeeklySchedule from "components/WeeklySchedule/WeeklySchedule";
+import DailySchedule from "components/DailyCalender/DailyCalender";
+import WeeklySchedule from "components/WeeklyCalender/WeeklyCalender";
 import HandleEvent from "containers/HandleEvent";
 import EventDetail from "components/EventDetail/EventDetail";
 import Login from "components/Login/Login";
@@ -26,9 +26,9 @@ import {
 } from "utils/utilFunction";
 
 const AppRouter = ({
-  dailyEvent,
   showDaily,
   showWeekly,
+  dailyEvent,
   weeklyEvent,
   deleteEvent,
   isLoggedIn,

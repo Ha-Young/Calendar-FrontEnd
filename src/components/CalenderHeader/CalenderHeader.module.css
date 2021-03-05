@@ -1,3 +1,5 @@
+@import "../../common/font.module.css";
+
 .headerContainer {
   display: flex;
   justify-content: center;

@@ -1,9 +1,9 @@
 import React from "react";
 import EventCardStyled from "components/EventCard/EventCardStyled";
 import { dateConst } from "constants/constants";
-import styles from "./WeeklySchedule.module.css";
+import styles from "./WeeklyCalender.module.css";
 
-const WeeklyScedule = ({ daysOfWeek, weeklyEvent }) => {
+const WeeklyCalender = ({ daysOfWeek, weeklyEvent }) => {
   return (
     <>
       <section className={styles.container}>
@@ -39,4 +39,4 @@ const WeeklyScedule = ({ daysOfWeek, weeklyEvent }) => {
   );
 };
 
-export default WeeklyScedule;
+export default WeeklyCalender;
