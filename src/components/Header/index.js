@@ -16,7 +16,7 @@ export default function Header ({
     <header className={styles.Header}>
       <div className={styles.NavBar}>
         <Link to="/events/new">
-          <Button title="새로운 이벤트"/>
+          <Button title="Add new event!"/>
         </Link>
 
         <DateControlNav

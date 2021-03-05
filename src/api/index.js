@@ -8,5 +8,12 @@ export async function saveSampleData() {
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
   await database.ref("test/123").set({
     test: "text",
+    hi: "hi"
   });
+}
+
+const database = firebase.database();
+
+export async function addNewEventToFirebase(addedUserEventInfo) {
+  await database.ref(`events/${addedUserEventInfo.id}`).set(addedUserEventInfo);
 }

@@ -7,7 +7,22 @@ import { CALENDAR_MODE } from "../../utils/constants";
 export default function Calendar ({
   currentDate,
   calendarMode,
+  // GET ARR
 }) {
+
+  // EVENT ?
+
+  // DAT MATCHING -> CURRENTDATE || TITLE === ? 
+
+  // YES
+  // MATHCED ARR -> EXTRACT
+  // EVENT TIME 
+
+
+
+
+
+
   return (
     <div className={styles.Calender}>
       { calendarMode === CALENDAR_MODE.WEEKLY ?

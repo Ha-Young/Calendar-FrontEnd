@@ -1,76 +1,119 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import EventInfoControlReducer from "../../reducers/EventInfoControlReducer";
 import styles from "./EventForm.module.css";
+import { addNewEventToFirebase } from "../../api";
 
-export default function EventForm() {
+
+export default function EventForm({
+  addNewEvent,
+}) {
+
+  const initialUserInputInfo = {
+    title: "",
+    desc: "",
+    date: "",
+    startTime: "",
+    endTime: "",
+  }
+
+  const [userInputInfo, setUserInputInfo] = useState(initialUserInputInfo);
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+
+    const id = Math.floor(Math.random() * new Date());
+
+    addNewEvent({...userInputInfo, id: id});
+    addNewEventToFirebase({...userInputInfo, id: id});
+
+  }
+
+
+
+  function handleUserInputChange(e) {
+    e.preventDefault();
+
+    const userInputType = e.target.name;
+    const value = e.target.value;
+
+    setUserInputInfo({
+      ...userInputInfo,
+      [userInputType]: value,
+    });
+  }
 
   return (
     <div className={styles.formWrap}>
       <Link to="/calendar">
-        Back
+        Go Back
       </Link>
 
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <label>
-            <input
+          <input
             type="text"
             placeholder="event title"
             name="title"
+            value={userInputInfo.title}
+            onChange={handleUserInputChange}
             required
-            // onChange={handleUserInputChange}
-            // value={userEventInfo.title}
-             />
+          />
         </label>
 
         <label>
-            <input
+          <input
             type="text"
-            placeholder="event description"
-            name="description"
-            // value={userEventInfo.description}
+            placeholder="type your event desc"
+            name="desc"
+            value={userInputInfo.desc}
+            onChange={handleUserInputChange}
             required
-            // onChange={handleUserInputChange}
-             />
+          />
         </label>
 
         <label>
-            <input
+          <input
             type="date"
             placeholder="event description"
             name="date"
             // value={userEventInfo.date}
             required
-            // onChange={handleUserInputChange}
-             />
+            onChange={handleUserInputChange}
+          />
         </label>
 
         <label>
-            <input
+          <input
             type="time"
             placeholder="event start time"
             name="startTime"
-            // value={userEventInfo.startTime}
-            step="3600"
+            value={userInputInfo.startTime}
+            step="3600000"
+            // min="01:00"
+            // max="24:00"
             required
-            // onChange={handleUserInputChange}
+            onChange={handleUserInputChange}
              />
         </label>
 
         <label>
-            <input 
-            type="time" 
+          <input
+            type="time"
             placeholder="event end time"
             name="endTime"
-            // value={userEventInfo.endTime}
-            step="3600"
+            value={userInputInfo.endTime}
+            step="3600000"
+            // min="01:00"
+            // max="24:00"
             required
-            // onChange={handleUserInputChange}
-             />
+            onChange={handleUserInputChange}
+          />
         </label>
 
-        <input type="submit" value="제출!"></input>
-        <input type="submit" value="delete"></input>
+        <input type="submit" value="submit!"></input>
+        <input type="submit" value="delete this event"></input>
       </form>
     </div>
-  )
+  );
 }

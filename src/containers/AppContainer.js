@@ -6,6 +6,7 @@ import {
   moveToPrevDate,
   moveToNextDate,
 } from "../actions/index";
+import { saveSampleData } from "../api";
 
 function AppContainer({
     currentDate,
@@ -13,6 +14,7 @@ function AppContainer({
     changeCalendarMode,
     moveToPrevDate,
     moveToNextDate,
+    onInitialLoad,
 }) {
   return (
     <App
@@ -21,6 +23,7 @@ function AppContainer({
       changeCalendarMode={changeCalendarMode}
       moveToPrevDate={moveToPrevDate}
       moveToNextDate={moveToNextDate}
+      onInitialLoad={onInitialLoad}
     />
   );
 }
@@ -47,6 +50,10 @@ function mapDispatchToProps(dispatch) {
     },
     moveToNextDate(newDate){
       dispatch(moveToNextDate(newDate));
+    },
+
+    onInitialLoad: () => {
+        saveSampleData();
     },
   };
 }

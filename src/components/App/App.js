@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header";
 import Main from "../Main/"
 import EventForm from "../EventForm";
+import EventFormContainer from "../../containers/EventFormContainer";
 
 function App({
   currentDate,
@@ -11,7 +12,12 @@ function App({
   changeCalendarMode,
   moveToPrevDate,
   moveToNextDate,
+  onInitialLoad,
 }) {
+
+  useEffect(() => {
+    onInitialLoad()
+  }, [])
 
   return (
     <div className={styles.App}>
@@ -32,11 +38,7 @@ function App({
         </Route>
 
         <Route path="/events">
-          <EventForm />
-        </Route>
-
-        <Route path="/event/:id">
-          <EventForm />
+          <EventFormContainer/>
         </Route>
 
         <Redirect path="/" to="/calender"/>

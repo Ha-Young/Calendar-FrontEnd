@@ -4,22 +4,18 @@ import {
     CHANGE_CALENDAR_MODE,
     MOVE_TO_PREV_DATE,
     MOVE_TO_NEXT_DATE,
+    ADD_NEW_EVENT,
 } from "../actions/actionTypes";
 
-const initialState = {
-    currentDate: moment().toISOString(),
-    calendarMode: CALENDAR_MODE.DAILY,
-}
+const initialState = [];
 
 export default function EventInfoControlReducer(state = initialState, action) {
-    switch (action.type) {
-        case CHANGE_CALENDAR_MODE:
-            return {
-                ...state,
-                calendarMode: action.calendarMode,
-            }
-        default: return state;
+  switch (action.type) {
+    case ADD_NEW_EVENT:
+      return [...state, action.userInputInfo]
 
-    }
+    default: return state;
+
+  }
 }
 
