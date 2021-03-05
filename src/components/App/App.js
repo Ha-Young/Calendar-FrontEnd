@@ -6,7 +6,7 @@ import { Route } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
-import Event from "../Event/Event";
+import Event from "../../containers/Event";
 import { getRecord } from "../../api";
 
 function App({ onInitialLoad }) {

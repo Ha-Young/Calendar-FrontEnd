@@ -14,20 +14,20 @@ let initialState = {
   currentPageDate: getToday(),
   eventList: {},
   eventKeyList: [],
-  selectedEventKey: "",
+  selectedEvent: {},
 };
 
 export default function reducer(state = initialState, action) {
   const newState = { ...state };
 
-  function removeFirebaseId(Id) {
-    const removed = {};
+  function modifiedFirebaseId(Id) {
+    const modified = {};
 
     for (let key in Id) {
-      removed[key] = Id[key];
+      modified[key] = Id[key];
     }
 
-    return removed;
+    return modified;
   }
 
   switch (action.type) {
@@ -40,11 +40,11 @@ export default function reducer(state = initialState, action) {
         newState.eventKeyList.push(key);
 
         for (let id in firebaseData[key]) {
-          const event = removeFirebaseId(firebaseData[key][id]);
+          const event = modifiedFirebaseId(firebaseData[key][id]);
+          event.Id = id;
           newState.eventList[key].push(event);
         }                                
       }
-      
       break;
     case "ON_SUBMIT":
       if (state.eventKeyList.includes(action.key)) {
@@ -54,19 +54,19 @@ export default function reducer(state = initialState, action) {
         newState.eventKeyList.push(action.key);
       }
       break;
-
     case "CLICK_LEFT":
       newState.currentPageDate = addDate(state.currentPageDate, {days: action.value});
       break;
     case "CLICK_RIGHT":
       newState.currentPageDate = addDate(state.currentPageDate, {days: action.value});
       break;
-    case "SAVE_DATA_TO_REDUX_STATE":
-      newState.eventlist = action.eventlist;
+    case "SET_SELECTED_EVENT":
+      newState.selectedEvent = action.selectedEvent;
+      console.log(action.selectedEvent);
       break;
     default:
       break;
   }
-  console.log(newState);
+
   return newState;
 }

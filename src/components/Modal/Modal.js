@@ -1,16 +1,18 @@
 import React from "react";
 import "./style.css";
 
-export default function Modal({selected, setIsModalShown}) {
+export default function Modal({ event }) {
 
+  console.log(event);
   return (
     <div className="modal-container">
-      <div onClick={() => {setIsModalShown(false)}}>x</div>
       <div className="modal-content-container">
-        <div>{selected.title}</div>
-        <div>{selected.date}</div>
-        <div>{selected.description}</div>
-        </div>
+        <span>{event.startDate}</span>
+        <span>{event.startHour}</span>
+        <span>{event.endHour}</span>
+      </div>
+      <div>{event.title}</div>
+      <div>{event.description}</div>
     </div>
   );
 }

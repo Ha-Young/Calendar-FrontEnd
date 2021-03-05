@@ -5,7 +5,7 @@
   ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/actions/index.js
 
  */
-import { ON_INITIAL_LOAD, ON_SUBMIT, CLICK_LEFT, CLICK_RIGHT, SHOW_MODAL } from "../constants/actionTypes";
+import { ON_INITIAL_LOAD, ON_SUBMIT, CLICK_LEFT, CLICK_RIGHT, SHOW_MODAL, SET_SELECTED_EVENT } from "../constants/actionTypes";
 
 export const onInitialLoad = (allEvent) => (
   {
@@ -35,9 +35,17 @@ export const handleClickRight = (value) => (
    value: value
   });
 
-export const showModal = (value) => (
+export const showModal = (selectedEvenId) => (
   {
     type: SHOW_MODAL,
-    key: value,
+    eventId: selectedEvenId,
+  });
+
+export const handleClickEvent = (event) => (
+  {
+    type: SET_SELECTED_EVENT,
+    selectedEvent: event,
   }
 )
+
+

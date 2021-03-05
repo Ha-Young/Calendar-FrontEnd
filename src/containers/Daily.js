@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Daily from "../components/Daily/Daily";
-import { handleClickLeft, handleClickRight } from "../actions";
+import { handleClickLeft, handleClickRight, handleClickEvent } from "../actions";
 
 const mapStateToProps = (state) => ({
   eventList: state.eventList,
@@ -8,4 +8,4 @@ const mapStateToProps = (state) => ({
   currentPageDate: state.currentPageDate                                                                                                     
 });
 
-export default connect(mapStateToProps, {handleClickLeft, handleClickRight })(Daily);
+export default connect(mapStateToProps, {handleClickLeft, handleClickRight,  handleClickEvent})(Daily);
