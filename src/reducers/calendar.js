@@ -6,6 +6,7 @@ import {
   ADD_EVENT,
   DELETE_EVENT,
   EDIT_EVENT,
+  RECEIVE_EVENTS,
 } from "../actions/index";
 
 import { addDay, subDay, addWeek, subWeek, format } from "../utils/utils";
@@ -68,6 +69,16 @@ export default function reducer(state = initialState, action) {
             return (event = Object.assign(event, event));
           }
         }),
+      };
+
+    //firebase 데이터를 받아와서 리덕스 스토어에 fetch 넣어야됨
+
+    case RECEIVE_EVENTS:
+      console.log("in redux", action.payload);
+
+      return {
+        ...state,
+        events: action.payload,
       };
 
     default:

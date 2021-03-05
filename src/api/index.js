@@ -17,3 +17,12 @@ export async function uploadData(event) {
 export async function deleteData(eventId) {
   await database.ref(`event/${eventId}`).remove();
 }
+
+export async function fetchData() {
+  return database
+    .ref(`event/`)
+    .once("value")
+    .then((snapshot) => {
+      return snapshot.val();
+    });
+}
