@@ -1,4 +1,7 @@
+@value calenderBlack, calenderBlue, calenderSkyBlue, calenderPink, calenderRed, calenderGray, calenderLightBlue from "../../common/main.module.css";
+
 .headerContainer {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,13 +9,15 @@
 }
 
 .currentPeriod {
+  width: 20%;
+  text-align: center;
   margin: 0 2vw;
   font-size: 1.3em;
   font-weight: 600;
 }
 
 .icon {
-  color: skyblue;
+  color: calenderBlue;
   cursor: pointer;
   font-size: 1.3em;
 }

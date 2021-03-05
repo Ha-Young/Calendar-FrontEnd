@@ -1,0 +1,84 @@
+@value calenderDeepDarkGary, calenderGray, calenderLightGray, calenderBlue, calenderValidRed, calenderValidGreen, calenderSkyBlue, calenderBrightBlue from "../../common/main.module.css";
+
+.formTitle {
+  margin: 0 auto;
+  margin-top: 150px;
+  width: 60vw;
+  text-align: center;
+}
+
+.formContainer {
+  margin: 0 auto;
+  width: 60vw;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 2vw 0;
+  color: calenderDeepDarkGary;
+}
+
+.inputContainer {
+  width: 100%;
+  margin-bottom: 1vw;
+  font-size: 0.8em;
+}
+
+.inputType {
+  margin-right: 20px;
+}
+
+.title {
+  height: 40px;
+  width: 400px;
+  border-radius: 20px;
+  padding: 0 20px;
+  border: 0.5px calenderGray solid;
+}
+
+.description {
+  height: 120px;
+  width: 400px;
+  border-radius: 20px;
+  padding: 0 20px;
+  border: 0.5px calenderGray solid;
+}
+
+.date {
+  height: 40px;
+  width: 400px;
+  border-radius: 20px;
+  padding: 0 20px;
+  border: 0.5px calenderGray solid;
+}
+
+.startTime,
+.endTime {
+  height: 40px;
+  width: 100px;
+  border-radius: 20px;
+  padding: 0 20px;
+  border: 0.5px calenderGray solid;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.alertMessage {
+  color: calenderValidRed;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.addButton {
+  height: 40px;
+  width: 90px;
+  margin-top: 40px;
+  border-radius: 20px;
+  background-color: calenderBlue;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
+}

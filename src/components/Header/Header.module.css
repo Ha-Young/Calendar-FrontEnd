@@ -1,28 +1,52 @@
 @import "../../common/main.module.css";
-@value calenderLightBlue from "../../common/main.module.css";
+@value calenderBlack, calenderBlue, calenderSkyBlue, calenderPink, calenderRed, calenderGray, calenderLightBlue from "../../common/main.module.css";
+
+.navContainer {
+  margin: 0 50px;
+  height: 8vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .dailyButton {
-  position: absolute;
+  height: 30px;
+  width: 70px;
+  border-radius: 20px;
+  background-color: calenderBlue;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
+  margin-right: 10px;
 }
 
 .weeklyButton {
-  position: absolute;
-  top: 3vh;
-  left: 30vw;
-  font-size: 1em;
+  height: 30px;
+  width: 70px;
+  border-radius: 20px;
+  background-color: calenderBlue;
+  font-size: 0.9em;
   font-weight: 600;
+  color: white;
 }
 
 .addButton {
-  position: absolute;
-  background-color: inherit;
-  border: none;
-  font-size: 40px;
-  color: calenderLightBlue;
-  top: 3vh;
-  left: 92vw;
+  height: 30px;
+  width: 120px;
+  border-radius: 20px;
+  background-color: calenderPink;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
+  margin-right: 10px;
 }
 
 .profileButton {
-  position: absolute;
+  height: 30px;
+  width: 90px;
+  border-radius: 20px;
+  background-color: calenderGray;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
 }

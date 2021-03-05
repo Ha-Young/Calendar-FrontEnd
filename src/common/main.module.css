@@ -7,6 +7,7 @@
 @value calenderBrightGray: #ecf0f1;
 @value calenderRed: #e74c3c;
 @value calenderValidRed: #EA2027;
+@value calenderValidGreen: #27ae60;
 @value calenderBlue: #3498db;
 @value calenderValidBlue: #3742fa;
 @value calenderLightBlue: #1e90ff;
@@ -32,6 +33,11 @@ button {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  box-shadow: 0px 3px 4px rgba(50, 50, 50, 0.6);
+}
+
+button:active {
+  box-shadow: inset 0px 0px 4px -1px rgb(0, 0, 0);
 }
 
 button:hover {
