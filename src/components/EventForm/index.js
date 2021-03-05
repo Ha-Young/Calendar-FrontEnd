@@ -5,7 +5,7 @@ import { DATE_FORMAT_WITH_HOUR } from "../../constants/common";
 import {
   ERROR_MSG_EVENT_DAY_OVER,
   ERROR_MSG_OVER_START_DAY,
-} from "../../constants/errorMsg";
+} from "../../constants/error";
 import { getMoment } from "../../utils/date";
 import styles from "./EventForm.module.css";
 import {

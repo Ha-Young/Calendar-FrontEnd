@@ -5,6 +5,9 @@ import React, { useEffect } from "react";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 
 import { auth } from "../../api/firebase";
+import { SIDER_WIDTH } from "../../constants/common";
+import { ERROR_VIEW_SECOND } from "../../constants/error";
+import { PATH_CALENDAR } from "../../constants/path";
 import { VIEW_OPTION } from "../../constants/stateTypes";
 import EventsContainer from "../../containers/EventsContainer";
 import ScheduleContainer from "../../containers/ScheduleContainer";
@@ -56,7 +59,7 @@ function App({
     changeCurrentDate({ viewOption, currentDate: newCurrentDate });
     const diffDay = getDiffDay(currentDate, newCurrentDate);
 
-    if ( diffDay > 1 && viewOption === VIEW_OPTION.WEEKLY) {
+    if (diffDay > 1 && viewOption === VIEW_OPTION.WEEKLY) {
       getWeeklyDateList();
       return;
     }
@@ -83,7 +86,7 @@ function App({
 
   function handleErrorViewTimeEnd() {
     stopErrorView();
-    history.push('/calendar');
+    history.push(PATH_CALENDAR);
   }
 
   function handleLoginComplete(user) {
@@ -92,14 +95,20 @@ function App({
 
   return (
     <Layout className={styles.App}>
-      {!!user || <Login onLoginComplete={handleLoginComplete}/>}
-      {(loading && !error) && <Loading />}
-      {error && <ErrorView onErrorViewTimeEnd={handleErrorViewTimeEnd} errMsg={error} viewSecond={3} />}
-      <Header className={styles.header}>
+      {!!user || <Login onLoginComplete={handleLoginComplete} />}
+      {loading && !error && <Loading />}
+      {error && (
+        <ErrorView
+          onErrorViewTimeEnd={handleErrorViewTimeEnd}
+          errMsg={error}
+          viewSecond={ERROR_VIEW_SECOND}
+        />
+      )}
+      <Header className={styles.header} user={user}>
         <AppHeader currentDate={currentDate} updateDate={updateCurrentDate} />
       </Header>
       <Layout className={styles.main}>
-        <Sider className={styles.sidebar} width="300">
+        <Sider className={styles.sidebar} width={SIDER_WIDTH}>
           <AppSider
             viewOption={viewOption}
             onChangeViewOption={updateViewOption}
@@ -118,7 +127,7 @@ function App({
         </Content>
       </Layout>
       <Footer className={styles.footer}>
-        Copyright @hychoi-vannillacoding
+        Copyright @hychoi-vanillacoding
       </Footer>
     </Layout>
   );

@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import { PATH_EVENTS } from "../../constants/path";
 import { getRandomHSLColor } from "../../utils/common";
 import { getHour } from "../../utils/date";
 import styles from "./EventSticker.module.css";
@@ -50,7 +51,7 @@ function EventSticker({ event, color, hoverColor }) {
         style={inlineStyle}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
-        onClick={() => history.push(`/events/${event.id}`)}
+        onClick={() => history.push(`${PATH_EVENTS}/${event.id}`)}
       >
         {event.title}
       </div>

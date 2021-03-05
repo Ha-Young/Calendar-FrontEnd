@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { ERROR_TITLE_DEFAULT } from "../../constants/errorMsg";
+import { ERROR_TITLE_DEFAULT } from "../../constants/error";
 import styles from "./ErrorView.module.css";
 
 function ErrorView({ errMsg, onErrorViewTimeEnd, viewSecond }) {

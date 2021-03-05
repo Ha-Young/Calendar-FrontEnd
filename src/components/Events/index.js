@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
+import { PATH_CALENDAR } from "../../constants/path";
 import EventForm from "../EventForm";
 import styles from "./Events.module.css";
 
@@ -10,7 +11,7 @@ function Events({ createEvent, updateEvent, deleteEvent, user, events }) {
   const history = useHistory();
 
   function goHome() {
-    history.push("/calendar");
+    history.push(PATH_CALENDAR);
   }
 
   function handleEventFormSubmit(newEvent, isUpdate) {
