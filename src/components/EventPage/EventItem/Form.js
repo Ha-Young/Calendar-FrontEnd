@@ -4,39 +4,52 @@ import { getTimeIndex } from "../../../utils/getTimeIndex";
 import Selector from "./Selector";
 import TextArea from "./TextArea";
 import { addEvent } from "../../../actions/index";
+import { FORM_ID } from "../../../constants/common";
 
 function Form({
   currentDay,
   dispatchedAddEvent,
+  dispatchedEditEvent,
   history,
   formId,
+  date = currentDay,
   title = "",
   description = "",
   from = null,
   to = null,
+  id = new Date().toISOString(),
 }) {
   const [text, setText] = useState({ title, description });
   const fromRef = useRef();
   const toRef = useRef();
 
-  function addEvent(e) {
-    e.preventDefault();
-
+  function handleSubmit() {
     const event = {
-      currentDay,
+      id,
+      date,
       ...text,
-      from: getTimeIndex.from(fromRef.current.value),
-      to: getTimeIndex.to(toRef.current.value) + 1,
+      from: getTimeIndex.fromIndex(fromRef.current.value),
+      to: getTimeIndex.toIndex(toRef.current.value) + 1,
     };
 
-    dispatchedAddEvent(event);
+    if (formId === FORM_ID.ADD) {
+      dispatchedAddEvent(event);
+    }
+
+    if (formId === FORM_ID.EDIT) {
+      dispatchedEditEvent(event);
+    }
+
     history.goBack();
   }
 
   return (
     <form
       id={formId}
-      onSubmit={(e) => addEvent(e)}>
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit();
+      }}>
       <TextArea
         text={{...text}}
         updateText={setText}

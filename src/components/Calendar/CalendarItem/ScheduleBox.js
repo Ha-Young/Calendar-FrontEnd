@@ -44,7 +44,7 @@ function mapDispatchToProps(dispatch, { id: { date, time } }) {
   return {
     periodToDay: () => dispatch(periodUnit()),
     updateCurrentDay: () => dispatch(selectDate(date)),
-    updateSelectedTime: () => dispatch(selectTime(getTimeIndex.from(time))),
+    updateSelectedTime: () => dispatch(selectTime(getTimeIndex.fromIndex(time))),
   };
 }
 

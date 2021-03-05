@@ -25,3 +25,9 @@ export const MODIFY_BUTTON = {
   EDIT: "EDIT",
   REMOVE: "REMOVE",
 };
+
+// Form Id
+export const FORM_ID = {
+  ADD: "ADD",
+  EDIT: "EDIT",
+};

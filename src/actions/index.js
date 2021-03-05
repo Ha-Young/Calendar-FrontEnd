@@ -6,16 +6,14 @@
 
  */
 
-import { ADD_EVENT, DAY, NEXT_DATE, PREV_DATE, SELECT_DATE, SELECT_TIME, WEEK } from "../constants/actionTypes";
+import { ADD_EVENT, DAY, EDIT_EVENT, NEXT_DATE, PREV_DATE, REMOVE_EVENT, SELECT_DATE, SELECT_TIME, WEEK } from "../constants/actionTypes";
 
-export const prevDate = (date) => ({
+export const prevDate = () => ({
   type: PREV_DATE,
-  date,
 });
 
-export const nextDate = (date) => ({
+export const nextDate = () => ({
   type: NEXT_DATE,
-  date,
 });
 
 export const selectDate = (date) => ({
@@ -44,5 +42,15 @@ export const periodUnit = (unit = DAY) => {
 
 export const addEvent = (event) => ({
   type: ADD_EVENT,
+  event,
+});
+
+export const editEvent = (event) => ({
+  type: EDIT_EVENT,
+  event,
+});
+
+export const removeEvent = (event) => ({
+  type: REMOVE_EVENT,
   event,
 });

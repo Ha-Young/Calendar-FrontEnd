@@ -7,13 +7,27 @@ import { connect } from "react-redux";
 import EventBox from "./EventBox";
 
 function ScheduleContainer({ events, dateId }) {
+  function findEvent(daySchedule, index) {
+    if (!daySchedule) {
+      return;
+    }
+
+    for (const event in daySchedule) {
+      if (daySchedule[event].from === index) {
+        return daySchedule[event];
+      }
+    }
+  }
+
   return (
     <div className={styles.scheduleContainer} id={dateId}>
-      {TIME_FROM.map((time, index) => (
-        (events[dateId] && events[dateId][index])
+      {TIME_FROM.map((time, index) => {
+        const foundEvent = findEvent(events[dateId], index);
+
+        return foundEvent
         ?
         <div className={styles.eventBox} key={time}>
-          <EventBox {...events[dateId][index]} />
+          <EventBox {...foundEvent} />
           <ScheduleBox
             id={{ date: dateId, time }}
           />
@@ -23,7 +37,7 @@ function ScheduleContainer({ events, dateId }) {
           id={{ date: dateId, time }}
           key={time}
         />
-      ))}
+      })}
     </div>
   );
 }

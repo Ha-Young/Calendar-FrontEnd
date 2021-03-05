@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { getTimeIndex } from "../../../utils/getTimeIndex";
 import { selectTime } from "../../../actions";
 import styles from "./Selector.module.css";
-import { SELECT_TIME } from "../../../constants/actionTypes";
 import { SELECTOR_NAME } from "../../../constants/common";
 
 function Selector({ props: {
@@ -23,7 +22,7 @@ function Selector({ props: {
         <select
           defaultValue={TIME_FROM[from] || TIME_FROM[selectedTime]}
           onChange={(e) =>
-            updateSelectedTime(getTimeIndex.from(e.target.value))
+            updateSelectedTime(getTimeIndex.fromIndex(e.target.value))
           }
           ref={fromRef}
         >
