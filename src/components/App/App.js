@@ -12,7 +12,7 @@ import EventView from "../Event/EventView";
 import PageNotFound from "../Error/PageNotFound";
 import Login from "../Login/Login";
 
-function App({
+export default function App({
   userId,
   setUserId,
   selectedDate,
@@ -37,7 +37,7 @@ function App({
       <Switch>
         <Route path="/" exact>
           {userId !== ""
-            ? <Redirect to="/calendar"/>
+            ? <Redirect to="/calendar" />
             : <Redirect to="/login" />
           }
         </Route>
@@ -68,11 +68,9 @@ function App({
           />
         </Route>
         <Route>
-          <PageNotFound text="존재하지 않는 페이지입니다."/>
+          <PageNotFound text="존재하지 않는 페이지입니다." />
         </Route>
       </Switch>
     </div>
   );
 }
-
-export default App;

@@ -42,7 +42,8 @@ export default function Dates({ calendarMode, today, selectedDate, week }) {
             </span>
             <span className={styles.day}>{day}</span>
           </li>
-        )}
+        )
+      }
     </ul>
   );
 }

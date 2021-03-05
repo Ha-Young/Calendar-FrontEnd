@@ -78,7 +78,7 @@ export default function EventEdit({
   };
 
   const saveEvent = async () => {
-    if (currentEvent.startTime > currentEvent.endTime) {
+    if (currentEvent.startTime >= currentEvent.endTime) {
       setValidationText(validationTextList.startTimeError);
       return;
     }
@@ -110,40 +110,43 @@ export default function EventEdit({
     <div className={styles.NewEvent}>
       <div className={styles.header}>
         <p className={styles.eventMode}>{eventMode === "create" ? "NEW EVENT" : "EDIT EVENT"}</p>
-        <p className={styles.validationGuide}><CgAsterisk className={styles.asterisk}/> 필수값</p>
+        <p className={styles.validationGuide}>
+          <CgAsterisk className={styles.asterisk} />
+          필수값
+        </p>
       </div>
       <Container className={styles.Title}>
         <div>
-          <label>Event Title <CgAsterisk className={styles.asterisk}/></label>
-          <InputText name="title" handleChange={handleChange} value={currentEvent.title} required={true}/>
+          <label>Event Title <CgAsterisk className={styles.asterisk} /></label>
+          <InputText name="title" handleChange={handleChange} value={currentEvent.title} required={true} />
         </div>
       </Container>
       <Container className={styles.Date}>
         <div>
-          <label>Date <CgAsterisk className={styles.asterisk}/></label>
-          <InputDate name="date" handleChange={handleChange} value={currentEvent.date}/>
+          <label>Date <CgAsterisk className={styles.asterisk} /></label>
+          <InputDate name="date" handleChange={handleChange} value={currentEvent.date} />
         </div>
       </Container>
       <Container className={styles.Time}>
         <div>
-          <label>Start Time <CgAsterisk className={styles.asterisk}/></label>
-          <InputTime name="startTime" isStartTime={true} handleChange={handleChange} value={currentEvent.startTime}/>
+          <label>Start Time <CgAsterisk className={styles.asterisk} /></label>
+          <InputTime name="startTime" isStartTime={true} handleChange={handleChange} value={currentEvent.startTime} />
         </div>
         <div>
-          <label>End Time <CgAsterisk className={styles.asterisk}/></label>
-          <InputTime name="endTime" isEndTime={true} handleChange={handleChange} value={currentEvent.endTime}/>
+          <label>End Time <CgAsterisk className={styles.asterisk} /></label>
+          <InputTime name="endTime" isEndTime={true} handleChange={handleChange} value={currentEvent.endTime} />
         </div>
       </Container>
       <Container className={styles.Location}>
         <div>
           <label>Location</label>
-          <InputText name="location" handleChange={handleChange} value={currentEvent.location}/>
+          <InputText name="location" handleChange={handleChange} value={currentEvent.location} />
         </div>
       </Container>
       <Container className={styles.Description}>
         <div>
           <label>Description</label>
-          <Textarea name="description" rows="4" handleChange={handleChange} value={currentEvent.description}/>
+          <Textarea name="description" rows="4" handleChange={handleChange} value={currentEvent.description} />
         </div>
       </Container>
       <Container>

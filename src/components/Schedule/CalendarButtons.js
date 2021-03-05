@@ -7,12 +7,12 @@ export default function CalendarButtons({ goPrev, goNext }) {
     <ul className={styles.Buttons}>
       <li className={styles.prevButton}>
         <button type="button" onClick={goPrev}>
-          <HiOutlineChevronLeft className={styles.icon}/>
+          <HiOutlineChevronLeft className={styles.icon} />
         </button>
       </li>
       <li className={styles.nextButton}>
         <button type="button" onClick={goNext}>
-          <HiOutlineChevronRight className={styles.icon}/>
+          <HiOutlineChevronRight className={styles.icon} />
         </button>
       </li>
     </ul>

@@ -84,7 +84,7 @@ export default function EventView({
           <dd>{currentEvent.location}</dd>
         </dl>
         <dl>
-          <dt><IoPencilSharp className="icon" /> Description</dt>
+          <dt><IoPencilSharp className="icon"/> Description</dt>
           <dd>{currentEvent.description}</dd>
         </dl>
         <div className={styles.Buttons}>
