@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styles from "./EventDetail.module.css";
 import { setEvent, removeEvent } from "../../api";
+import Error from "../Error/Error";
+import Event from "../Event/Event";
 
 // TODO onchange에 setState걸어놔서 사용자가 뭐 입력할때마다 리랜더링됨. 디바운스 적용하면 좋을듯?? 아닌가?
 // 디바운스 짧게 안하면 submit하기전에 업데이트 안돼서 누락될수도 잇겟다.
@@ -9,6 +11,9 @@ import { setEvent, removeEvent } from "../../api";
 export default function EventDetail({ events, selectedEventInfo }) {
   const history = useHistory();
   const currentUrl = useLocation();
+
+  const isWrongUrl = (selectedEventInfo && currentUrl.pathname !== `/events/${selectedEventInfo.selectedEventId}`) && currentUrl.pathname !== "/events/new";
+
   const selectedEvent = currentUrl.pathname === "/events/new"
   ? null
   : events[selectedEventInfo.selectedEventDayIndex][selectedEventInfo.selectedEventId];
@@ -47,71 +52,76 @@ export default function EventDetail({ events, selectedEventInfo }) {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className={styles.formArea}>
-          <div className={styles.formItemWrapper}>
-            <div className={styles.formLeftItem}>Title:</div>
-            <div className={styles.formRightItem}>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
+    isWrongUrl
+    ? <Error />
+    :
+    (
+      <div className={styles.wrapper}>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className={styles.formArea}>
+            <div className={styles.formItemWrapper}>
+              <div className={styles.formLeftItem}>Title:</div>
+              <div className={styles.formRightItem}>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <div className={styles.formItemWrapper}>
+              <div className={styles.formLeftItem}>Description:</div>
+              <div className={styles.formRightItem}>
+                <textarea
+                  rows="10"
+                  cols="30" 
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <div className={styles.formItemWrapper}>
+              <div className={styles.formLeftItem}>Start</div>
+              <div className={styles.formRightItem}>
+                <input
+                  type="datetime-local" 
+                  value={startDateTime}
+                  onChange={(e) => setStartDateTime(e.target.value.slice(0,14)+"00")}
+                  required
+                />
+              </div>
+            </div>
+            <div className={styles.formItemWrapper}>
+              <div className={styles.formLeftItem}>End</div>
+              <div className={styles.formRightItem}>
+                <input
+                  type="datetime-local" 
+                  value={endDateTime}
+                  onChange={(e) => setEndDateTime(e.target.value.slice(0,14)+"00")}
+                  min={startDateTime}
+                  max={startDateTime.slice(0,11) + "23:59"}
+                  required
+                />
+              </div>
+            </div>
+            <div className={styles.formButtonWrapper}>
+              <p>시간은 정각 단위로 버림되어 입력됩니다. 분 단위는 입력해도 적용되지 않습니다.</p>
+              <input type="submit" value="Submit" />
             </div>
           </div>
-          <div className={styles.formItemWrapper}>
-            <div className={styles.formLeftItem}>Description:</div>
-            <div className={styles.formRightItem}>
-              <textarea
-                rows="10"
-                cols="30" 
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
+        </form>
+        {currentUrl.pathname === "/events/new"
+        ? null
+        : (
+            <div className={styles.formButtonWrapper}>
+              <button onClick={handleClick}>Remove</button>
             </div>
-          </div>
-          <div className={styles.formItemWrapper}>
-            <div className={styles.formLeftItem}>Start</div>
-            <div className={styles.formRightItem}>
-              <input
-                type="datetime-local" 
-                value={startDateTime}
-                onChange={(e) => setStartDateTime(e.target.value.slice(0,14)+"00")}
-                required
-              />
-            </div>
-          </div>
-          <div className={styles.formItemWrapper}>
-            <div className={styles.formLeftItem}>End</div>
-            <div className={styles.formRightItem}>
-              <input
-                type="datetime-local" 
-                value={endDateTime}
-                onChange={(e) => setEndDateTime(e.target.value.slice(0,14)+"00")}
-                min={startDateTime}
-                max={startDateTime.slice(0,11) + "23:59"}
-                required
-              />
-            </div>
-          </div>
-          <div className={styles.formButtonWrapper}>
-            <p>시간은 정각 단위로 버림되어 입력됩니다. 분 단위는 입력해도 적용되지 않습니다.</p>
-            <input type="submit" value="Submit" />
-          </div>
-        </div>
-      </form>
-      {currentUrl.pathname === "/events/new"
-      ? null
-      : (
-          <div className={styles.formButtonWrapper}>
-            <button onClick={handleClick}>Remove</button>
-          </div>
-        )
-      }
-      
-    </div>
+          )
+        }
+        
+      </div>
+    )
   );
 }

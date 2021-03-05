@@ -6,9 +6,9 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
-import CreateEvent from "../CreateEvent/CreateEvent";
 import Calendar from "../Calendar/Calendar";
 import EventDetail from "../EventDetail/EventDetail";
+import Error from "../Error/Error";
 // TODO remove useless props
 function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, calculatedDates, events, selectedEventInfo, isDailyView }) {
   return (
@@ -17,17 +17,20 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
       <div className={styles.bodyWrapper}>
         <SideBar selectDay={selectDay} />
         <Switch>
+          <Route exact path="/calendar">
+            <Calendar selectedDate={selectedDate} toggleCalendarView={toggleCalendarView} isDailyView={isDailyView}/>
+          </Route>
           <Route path="/events/new">
             <EventDetail />
           </Route>
           <Route path="/events/:eventId">
             <EventDetail events={events} selectedEventInfo={selectedEventInfo} />
           </Route>
-          <Route path="/calendar">
-            <Calendar selectedDate={selectedDate} toggleCalendarView={toggleCalendarView} isDailyView={isDailyView}/>
+          <Route path="/error">
+            <Error />
           </Route>
           <Route>
-            <Redirect to="/calendar" />
+            <Redirect to="/error" />
           </Route>
         </Switch>
       </div>
