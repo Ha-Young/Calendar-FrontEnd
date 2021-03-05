@@ -2,6 +2,15 @@ export const dateConst = {
   TIME_LIST: [],
   MS_OF_DAY: 1000 * 24 * 3600,
   DAY_OF_WEEK: 7,
+  DAYS: {
+    SUN: 0,
+    MON: 1,
+    TUE: 2,
+    WED: 3,
+    THU: 4,
+    FRI: 5,
+    SAT: 6,
+  },
 };
 
 for (let i = 0; i < 25; i++) {

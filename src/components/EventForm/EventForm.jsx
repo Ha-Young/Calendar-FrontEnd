@@ -12,11 +12,11 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
   const [date, setDate] = useState(getDateISO(0));
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const param = useParams();
+  const { eventId } = useParams();
 
   useEffect(() => {
     if (type === typeConst.EDIT) {
-      const currentEvent = weeklyEvent[param.eventId];
+      const currentEvent = weeklyEvent[eventId];
       const { title, description, date, startTime, endTime } = currentEvent;
 
       setTitle(title);
@@ -25,7 +25,7 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
       setStartTime(("0" + startTime + "시").slice(-3));
       setEndTime(("0" + endTime + "시").slice(-3));
     }
-  }, [param.eventId, type, weeklyEvent]);
+  }, [eventId, type, weeklyEvent]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,7 +40,7 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
     };
 
     if (type === typeConst.EDIT) {
-      newEvent.id = param.eventId;
+      newEvent.id = eventId;
     }
 
     onSubmit(newEvent, type);

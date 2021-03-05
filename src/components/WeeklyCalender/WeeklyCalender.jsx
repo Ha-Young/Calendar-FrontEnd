@@ -28,13 +28,14 @@ const WeeklyCalender = ({ daysOfWeek, weeklyEvent }) => {
             ))}
           </div>
         ))}
+        <div>
+          {weeklyEvent &&
+            Object.values(weeklyEvent).map((event) => (
+              <EventCardStyled key={event.id} {...event} />
+            ))}
+        </div>
       </section>
-      <section>
-        {weeklyEvent &&
-          Object.values(weeklyEvent).map((event) => (
-            <EventCardStyled key={event.id} {...event} />
-          ))}
-      </section>
+      ㄴ
     </>
   );
 };

@@ -13,7 +13,7 @@ export const parseDate = (date = "") => {
     year: moment(date).day(0).format("YYYY"),
     month: moment(date).format("MM"),
     date: moment(date).format("DD"),
-    day: moment(date).format("ddd"),
+    day: moment(date).format("ddd").toUpperCase(),
     monthInFirebase: weekOfMonth.month,
     weekOfMonth: weekOfMonth.week,
   };
@@ -68,4 +68,17 @@ export const generateKey = () => {
   }
 
   return key;
+};
+
+export const generateColor = () => {
+  const option = "789abc";
+  let color = "#";
+
+  for (let i = 0; i < 6; i++) {
+    color += option.charAt(Math.round(Math.random() * option.length));
+  }
+
+  console.log(color);
+
+  return color;
 };
