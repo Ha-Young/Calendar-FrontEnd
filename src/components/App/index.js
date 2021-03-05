@@ -11,6 +11,7 @@ import { getDiffDay, getWeekDateListBasedOnDate } from "../../utils/date";
 import AppHeader from "../AppHeader";
 import AppSider from "../AppSider";
 import styles from "./App.module.css";
+import Loading from "../Loading";
 
 const { Header, Footer, Content, Sider } = Layout;
 
@@ -19,6 +20,7 @@ function App({
   currentDate,
   date,
   user,
+  loading,
   changeViewOption,
   changeCurrentDate,
   getDate,
@@ -64,9 +66,10 @@ function App({
       endDate,
     });
   }
-
+  console.log(loading);
   return (
     <Layout className={styles.App}>
+      {loading && <Loading />}
       <Header className={styles.header}>
         <AppHeader currentDate={currentDate} updateDate={updateCurrentDate} />
       </Header>
