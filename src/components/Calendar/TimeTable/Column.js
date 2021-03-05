@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Column({ day, isEventBarWide, events, isColorReverse }) {
   const cells = Array.from({ length: 24 });
-  const COLOR_SET_LENGTH = 4
+  const COLOR_SET_LENGTH = 5
 
   if (events) {
     for (const [i, event] of events.entries()) {
@@ -43,7 +43,7 @@ export default function Column({ day, isEventBarWide, events, isColorReverse }) 
               pathname:"/events/new",
               state: { selectedEvent: {
                 date: format(day, "yyyy-MM-dd"),
-                startTime: hour < 10 ? `0${hour}` : `${hour}:00`,
+                startTime: hour < 10 ? `0${hour}` : `${hour}`,
               }},
             }}
             key={hour}

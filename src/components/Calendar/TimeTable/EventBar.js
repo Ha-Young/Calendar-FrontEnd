@@ -7,7 +7,7 @@ export default function EventBar({ isWide, event, colorNum }) {
     ? event.title.slice(0,6) + "..." 
     : event.title;
   
-  const COLOR_SET_LENGTH = 4
+  const COLOR_SET_LENGTH = 5
   const circularColorNum = colorNum % COLOR_SET_LENGTH;
   const classList = [styles.EventBar, styles[`Color${circularColorNum}`]];
   if (isWide) {

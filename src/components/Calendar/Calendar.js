@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { format, getMonth, getYear, sub, add } from "date-fns";
 import styles from "./Calendar.module.css";
@@ -82,7 +82,7 @@ export default function Calender(props) {
   }
 
   return (
-    <div className={styles.Calendar}>
+    <>
       <div className={styles.ControlBox}>
         <Dropdown 
           name="date-unit" 
@@ -96,21 +96,23 @@ export default function Calender(props) {
           nextButtonText={isWeekMode ? "Next week" : "Next day"}
         />
       </div>
-      <div className={styles.DayBoxesContainer}>
-        {isCurrentWeekLoad && <DayBox 
-          title={currentMonth}
-          description={currentYear}
-          hasActiveToggle={false}
-        />}
-        <DayBoxes 
-          days={currentWeek}
-          hasLink={!isWeekMode}
-          onLinkClick={handleDayBoxClick}
+      <div className={styles.Calendar}>
+        <div className={styles.DayBoxesContainer}>
+          {isCurrentWeekLoad && <DayBox 
+            title={currentMonth}
+            description={currentYear}
+            hasActiveToggle={false}
+          />}
+          <DayBoxes 
+            days={currentWeek}
+            hasLink={!isWeekMode}
+            onLinkClick={handleDayBoxClick}
+          />
+        </div>
+        <TimeTableBox 
+          isWeek={isWeekMode}
         />
       </div>
-      <TimeTableBox 
-        isWeek={isWeekMode}
-      />
-    </div>
+    </>
   );
 }

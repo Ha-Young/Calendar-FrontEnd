@@ -1,5 +1,24 @@
-.App {
-  text-align: center;
-
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
+html, body {
+  margin: 0;;
+}
+
+a {
+  text-decoration: none;
+}
+
+.App {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin-top: 80px;
+  padding-top: 70px;
+  padding-bottom: 80px;
+  background-color: #ebebf4;
+}

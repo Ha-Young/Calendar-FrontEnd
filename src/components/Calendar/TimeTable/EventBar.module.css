@@ -13,23 +13,23 @@
 .Color0 {
   background-color: #68bee1;
 }
+
 .Color1 {
   background-color: #f4a149;
 }
+
 .Color2 {
-  background-color: #f28183;
+  background-color: #2a498e;
 }
+
 .Color3 {
   background-color: #9cd67f;
+}
+
+.Color4 {
+  background-color: #f28183;
 }
 
 .IsWide {
   width: 100%;
 }
-
-/*
-68bee1 하늘색
-f4a149 주황색
-f28183 분홍색
-9cd67f 연두색
-*/

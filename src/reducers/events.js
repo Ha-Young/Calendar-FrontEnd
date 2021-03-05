@@ -4,37 +4,6 @@ import produce from "immer";
 import makeDateIndex from "../util/makeTreeBranch";
 import getDateInfoFromId from "../util/getDateInfoFromId";
 
-const eventListMock = {
-  "2021-03-03-09-18" : {
-    title: "커피는 더 맛있다.",
-    description: "차가운 커피도 맛있다. 따듯한 커피도 맛있다. 에헤헤헤",
-    date: "2021-03-03",
-    startTime:"09",
-    endTime:"18",
-    length: 12,
-    id: "2021-03-03-09-18",
-  },
-
-  "2021-03-02-15-18" : {
-    title: "맹물 맛있다.",
-    description: "따듯한 물 맛있다 에헤헤헤",
-    date:"2021-03-02",
-    startTime:"15",
-    endTime:"18",
-    length: 3,
-    id: "2021-03-02-15-18",
-  }
-}
-
-const dateIndexMock = {
-  "2021": {
-    "03": {
-      "02": ["2021-03-02-15-18"],
-      "03": ["2021-03-03-09-18"],
-    }
-  }
-}
-
 const eventList = (state = {}, action) => {
   switch (action.type) {
     case CREATE_EVENT: {
@@ -90,7 +59,7 @@ const dateIndex = (state = {}, action) => {
       
       const idsNotFiltered = state[prevYear][prevMonth][prevDay];
       let idsFiltered = idsNotFiltered.filter((id) => id !== prevId);
-      if (!idsFiltered.length) {
+      if (!(idsFiltered.length)) {
         idsFiltered = null;
       }
 
@@ -116,12 +85,12 @@ const dateIndex = (state = {}, action) => {
     }
 
     case DELETE_EVENT: {
-      const id = action.event.id;
-      const { year, month, day } = getDateInfoFromId(id);
+      const idToBeDeleted = action.event.id;
+      const { year, month, day } = getDateInfoFromId(idToBeDeleted);
 
       const prevIds = state[year][month][day];
-      let newIds = prevIds.filter((id) => id !== id);
-      if (!newIds.length) {
+      let newIds = prevIds.filter((id) => id !== idToBeDeleted);
+      if (!(newIds.length)) {
         newIds = null;
       }
 

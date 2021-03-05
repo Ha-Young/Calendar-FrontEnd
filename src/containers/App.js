@@ -10,28 +10,25 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   // This function is passed to App component.
-  createEventInFirebase: (userId, event) => {
-    writeEventFb(userId, event);
-  },
-
-  deleteEventInFirebase: (userId, event) => {
-    deleteEventFb(userId, event.id);
-  },
 
   initialLoadFromFirebase: async (userId) => {
     return await readEventsFb(userId);
   },
 
-  createEvent: (event) => {
+  createEvent: (userId, event) => {
     dispatch(createEvent(event));
+    writeEventFb(userId, event);
   },
 
-  updateEvent: (prevEvent, newEvent) => {
+  updateEvent: (userId, prevEvent, newEvent) => {
     dispatch(updateEvent(prevEvent, newEvent));
+    deleteEventFb(userId, prevEvent.id);
+    writeEventFb(userId, newEvent);
   },
 
-  deleteEvent: (event) => {
+  deleteEvent: (userId, event) => {
     dispatch(deleteEvent(event));
+    deleteEventFb(userId, event.id);
   },
 
   initEvents: (events) => {

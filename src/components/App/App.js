@@ -17,8 +17,6 @@ function App(props) {
     updateEvent, 
     deleteEvent,
     initEvents,
-    createEventInFirebase,
-    deleteEventInFirebase,
   } = props;
 
   useEffect(() => {
@@ -43,8 +41,6 @@ function App(props) {
             createEvent={createEvent}
             updateEvent={updateEvent}
             deleteEvent={deleteEvent}
-            createEventInFirebase={createEventInFirebase}
-            deleteEventInFirebase={deleteEventInFirebase}
           />
         </Route>
         <Redirect path="*" to="/calendar/week" />

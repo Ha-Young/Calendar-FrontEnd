@@ -11,8 +11,6 @@ export default function EventEditor(props) {
     createEvent,
     updateEvent,
     deleteEvent,
-    createEventInFirebase,
-    deleteEventInFirebase,
   } = props;
 
   const history = useHistory();
@@ -49,7 +47,8 @@ export default function EventEditor(props) {
       $inputDate.current.value = selectedEvent.date ?? "";
       $inputStartTime.current.value = selectedEvent.startTime ? `${selectedEvent.startTime}:00` : "";
       $inputEndTime.current.value = selectedEvent.endTime ? `${selectedEvent.endTime}:00` : "";
-    } else {
+    } 
+    else {
       $inputTitle.current.value = "";
       $inputDescription.current.value = "";
       $inputDate.current.value = "";
@@ -84,15 +83,12 @@ export default function EventEditor(props) {
     }
 
     if (isUpdate) {
-      updateEvent(selectedEvent, newEvent);
-      deleteEventInFirebase(userId, selectedEvent);
-      createEventInFirebase(userId, newEvent);
+      updateEvent(userId, selectedEvent, newEvent);
     } else {
-      createEvent(newEvent);
-      createEventInFirebase(userId, newEvent);
+      createEvent(userId, newEvent);
     }
 
-    history.push("/calendar/week")
+    history.push("/calendar/week");
   }
   
   const handleDateChange = (e) => {
@@ -106,8 +102,7 @@ export default function EventEditor(props) {
   }
 
   const handleDeleteButtonClick = (e) => {
-    deleteEvent(selectedEvent);
-    deleteEventInFirebase(userId, selectedEvent);
+    deleteEvent(userId, selectedEvent);
     history.push("/calendar/week")
   }
 
@@ -189,7 +184,7 @@ export default function EventEditor(props) {
 
         {isReadMode 
           ? <div className={styles.ButtonBox}>
-              <Link to={linkToEdit}>
+              <Link to={linkToEdit} className={styles.Link}>
                 <button 
                   className={styles.Button} 
                   type="button"

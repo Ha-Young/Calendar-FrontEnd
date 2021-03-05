@@ -8,6 +8,8 @@
   flex-flow: column;
   width: 550px;
   padding: 50px;
+  border-radius: 15px;
+  background-color: white;
   box-shadow: 0px 3px 10px -4px #000000;
 }
 
@@ -27,7 +29,8 @@
   border: none;
   border-bottom: solid 3px dodgerblue;
   border-radius: 5px;
-  background-color: #f5f5f5;
+  background-color: #f4f5f8;
+  box-shadow: 0px 2px 5px -4px #000000;
 }
 
 .InputDate {
@@ -37,7 +40,9 @@
   border: none;
   border-bottom: solid 3px dodgerblue;
   border-radius: 5px;
-  background-color: #f5f5f5;
+  background-color: #f4f5f8;
+  box-shadow: 0px 2px 5px -4px #000000;
+  text-align: center;
 }
 
 .InputTime {
@@ -47,7 +52,9 @@
   border: none;
   border-bottom: solid 3px dodgerblue;
   border-radius: 5px;
-  background-color: #f5f5f5;
+  background-color: #f4f5f8;
+  box-shadow: 0px 2px 5px -4px #000000;
+  text-align: center;
 }
 
 .InputStartEndTimeBox {
@@ -69,7 +76,12 @@
 .Button {
   width: 150px;
   padding: 8px;
+  border: none;
+  color: white;
   font-size: 1rem;
+  background-color:dodgerblue;
+  box-shadow: 0px 2px 5px -4px #000000;
+  cursor: pointer;
 }
 
 .MessageBox {
@@ -80,10 +92,14 @@
 }
 
 .ReadModeInput {
-  border-bottom: solid 3px crimson;
+  border-bottom: solid 3px #183c7e;
   outline: none;
 }
 
 hr {
   width: 100%;
+}
+
+.Link {
+  margin-right: 20px;
 }

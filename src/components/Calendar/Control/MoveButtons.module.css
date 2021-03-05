@@ -1,0 +1,14 @@
+.MoveButtonBox {
+  display: flex;
+  align-items: flex-end;
+}
+
+.MoveButton {
+  border-radius: 50%;
+  color: #5d5d61;
+}
+
+.MoveButton:hover {
+  background-color: #dddddd;
+}
+

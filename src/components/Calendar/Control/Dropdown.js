@@ -1,5 +1,5 @@
 import React from "react";
-// import styles from "./Dropdown.module.css";
+import styles from "./Dropdown.module.css";
 
 export default function Dropdown({ name, optionList, onChange }) {
   if (!Array.isArray(optionList)) {
@@ -7,20 +7,23 @@ export default function Dropdown({ name, optionList, onChange }) {
   }
   
   return (
-    <select 
-      name={name}
-      onChange={onChange}
-    >
-      {optionList.map((option, i) => {
-        return (
-          <option 
+    <div className={styles.Dropdown}>
+      <select 
+        name={name}
+        onChange={onChange}
+        className={styles.Select}
+        >
+        {optionList.map((option, i) => {
+          return (
+            <option 
             value={option}
             key={i}
-          >
-            {option}
-          </option>
-        );
-      })}
-    </select>
+            >
+              {option}
+            </option>
+          );
+        })}
+      </select>
+    </div>  
   );
 }

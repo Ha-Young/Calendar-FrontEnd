@@ -3,19 +3,18 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  /* width: 800px; */
+  box-shadow: 0px 3px 10px -4px #000000;
 }
 
 .ControlBox {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   width: 800px;
+  margin-bottom: 10px;
 }
 
 .DayBoxesContainer {
   display: flex;
   flex-flow: nowrap row;
 }
-
-/* border #4e505a
-background #3b3f4b */
