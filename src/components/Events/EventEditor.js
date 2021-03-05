@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, } from "react";
 import { useLocation, useHistory } from "react-router-dom";
+import { parse } from "date-fns";
 import styles from "./EventEditor.module.css";
 import testEventValidation from "../../util/testEventValidation";
 import InputTitle from "./InputTitle";
@@ -15,6 +16,7 @@ export default function EventEditor(props) {
     createEvent,
     updateEvent,
     deleteEvent,
+    setCurrentDay,
   } = props;
 
   const history = useHistory();
@@ -86,6 +88,9 @@ export default function EventEditor(props) {
       return;
     }
 
+    const currentDate = parse(newEvent.date, "yyyy-MM-dd", new Date());
+    setCurrentDay(currentDate);
+    
     if (isUpdate) {
       updateEvent(userId, selectedEvent, newEvent);
     } else {

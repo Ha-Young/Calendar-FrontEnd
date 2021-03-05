@@ -17,6 +17,7 @@ function App(props) {
     updateEvent, 
     deleteEvent,
     initEvents,
+    setCurrentDay,
   } = props;
 
   useEffect(() => {
@@ -38,6 +39,7 @@ function App(props) {
           <EventEditor
             userId={userId}
             allEvents={allEvents}
+            setCurrentDay={setCurrentDay}
             createEvent={createEvent}
             updateEvent={updateEvent}
             deleteEvent={deleteEvent}

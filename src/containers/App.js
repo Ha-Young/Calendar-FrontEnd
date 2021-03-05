@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
 import { writeEventFb, readEventsFb, deleteEventFb } from "../api";
-import { createEvent, updateEvent, deleteEvent, initEvents } from "../actions/index";
+import { createEvent, updateEvent, deleteEvent, initEvents, setCurrentDay } from "../actions/index";
 
 const mapStateToProps = (state) => ({
   allEvents: state.events,
@@ -34,6 +34,10 @@ const mapDispatchToProps = (dispatch) => ({
   initEvents: (events) => {
     dispatch(initEvents(events));
   },
+
+  setCurrentDay: (date) => {
+    dispatch(setCurrentDay(date));
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
