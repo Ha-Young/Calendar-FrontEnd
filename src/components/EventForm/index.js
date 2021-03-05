@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams, withRouter } from "react-router-dom";
 import styles from "./EventForm.module.css";
 import { addNewEventToFirebase, deleteUserEventFromFirebase } from "../../api";
 import { EVENT_FORM_TYPE } from "../../utils/constants";
 
-export default function EventForm({
+function EventForm ({
   addNewEvent,
   formType,
   eventInfoList,
   deleteUserEvent,
+  history
 }) {
   const params = useParams();
-  const histroy = useHistory();
-
   let initialUserInputSetting;
 
   if (formType === EVENT_FORM_TYPE.UPDATING) {
@@ -35,8 +34,9 @@ export default function EventForm({
 
     deleteUserEventFromFirebase(Number(params.id));
     deleteUserEvent(Number(params.id));
-  }
 
+    history.push("/");
+  }
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -46,7 +46,7 @@ export default function EventForm({
     addNewEvent({...userInputInfo, id: id});
     addNewEventToFirebase({...userInputInfo, id: id});
 
-    histroy.push("/calendar");
+    history.push("/calendar");
   }
 
   function handleUserInputChange(e) {
@@ -135,3 +135,5 @@ export default function EventForm({
     </div>
   );
 }
+
+export default withRouter(EventForm);
