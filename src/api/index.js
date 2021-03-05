@@ -2,15 +2,38 @@
 import firebase from "./firebase";
 
 const auth = firebase.auth();
+const database = firebase.database();
 
-export async function saveSampleData() {
-  const database = firebase.database();
+export async function saveEventInDatabase(event) {
+  await database.ref(`events/byIds/${event.id}`).set(event);
+  await database.ref(`events/byDates/${event.date}/${event.id}`).set(event);
+};
 
-  // Note: `set` method returns a promise.
-  // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.ref("test/123").set({
-    test: "text",
-  });
+export async function getAllEvents() {
+  const events = [];
+  const snapshot = await database
+    .ref(`events/byIds/`)
+    .once("value")
+    .then((snapshot) => snapshot);
+  const snapshotObject = snapshot.val();
+
+  for (const key in snapshotObject) {
+    if (Object.hasOwnProperty.call(snapshotObject, key)) {
+      events.push(snapshotObject[key]);
+    }
+  }
+
+  return events;
+}
+
+export async function removeEventFromDatabase(event) {
+  await database.ref(`events/byIds/${event.id}`).remove();
+  await database.ref(`events/byDates/${event.date}/${event.id}`).remove();
+}
+
+export async function updateEventAtDatabase(prevEvent, updatedEvent) {
+  removeEventFromDatabase(prevEvent);
+  saveEventInDatabase(updatedEvent);
 }
 
 export async function createUser(email, password, handleError) {

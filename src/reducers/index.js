@@ -28,6 +28,20 @@ export default function reducer(state = initialState, action) {
   const dateNumber = state.date.getDate();
 
   switch (action.type) {
+    case types.SET_EVENTS:
+      const settedState = produce(state, draft => {
+        action.payload.map(event => {
+          draft.events.byIds[event.id] = event;
+          draft.events.allIds.push(event.id);
+
+          if (!draft.events.allDates.includes(event.date)) draft.events.allDates.push(event.date);
+          if (!draft.events.byDates[event.date]) draft.events.byDates[event.date] = [];
+
+          draft.events.byDates[event.date].push(event);
+        });
+      });
+
+      return settedState;
     case types.UPDATE_LAST_WEEK:
       return {
         ...state,
@@ -66,8 +80,6 @@ export default function reducer(state = initialState, action) {
         isSchedule
       };
     case types.ADD_EVENT:
-      //error handling추가해야됨 update도 같이 ㅇㅇ
-      // ex) 겹치는 시간대
       const addedState = produce(state, draft => {
         const id = action.payload.id;
         const date = action.payload.date;

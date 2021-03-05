@@ -6,6 +6,7 @@ import { START_TIME_LIST, END_TIME_LIST } from "../../../constants/calendarConst
 import { generateDateAndTimeString } from "../../../utils/calendarUtils";
 import { generateRandomColor } from "../../../utils/uiUtils";
 import styles from "./EventForm.module.css";
+import { saveEventInDatabase } from "../../../api";
 
 const EventForm = function ({ addEvent, date, setIsSchedule }) {
   const [initialDate, initialStartTime, initialEndTime] = generateDateAndTimeString(date);
@@ -15,7 +16,7 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   let location = useLocation();
-  const { push, goBack } = useHistory();
+  const { goBack } = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -35,6 +36,7 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
       description,
     };
 
+    saveEventInDatabase(eventObject);
     addEvent(eventObject);
     goBack();
   }

@@ -4,6 +4,7 @@ import Dropdown from "../../Dropdown/Dropdown";
 import { START_TIME_LIST, END_TIME_LIST } from "../../../constants/calendarConstants";
 import styles from "./DetailEvent.module.css"
 import Button from "../../Button/Button";
+import { removeEventFromDatabase, updateEventAtDatabase } from "../../../api";
 
 const DetailEvent = function ({ events, updateEvent, removeEvent }) {
   let { eventId } = useParams();
@@ -51,10 +52,12 @@ const DetailEvent = function ({ events, updateEvent, removeEvent }) {
         description,
       } : null;
 
+      updateEventAtDatabase(selectedEvent, updatedEvent);
       updateEvent(selectedEvent, updatedEvent);
     }
 
     if (submitType === "remove") {
+      removeEventFromDatabase(selectedEvent);
       removeEvent(selectedEvent);
     }
 

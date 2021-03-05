@@ -5,6 +5,7 @@
   ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/constants/ActionTypes.js
 
  */
+export const SET_EVENTS = "SET_EVENTS";
 export const UPDATE_NEXT_WEEK = "UPDATE_NEXT_WEEK";
 export const UPDATE_LAST_WEEK = "UPDATE_LAST_WEEK";
 export const UPDATE_NEXT_DAY = "UPDATE_NEXT_DAY";

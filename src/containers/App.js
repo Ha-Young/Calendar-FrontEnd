@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { saveSampleData } from "../api";
+import { getAllEvents } from "../api";
 import * as types from "../constants/actionTypes";
 
 const mapStateToProps = function (state) {
@@ -13,8 +13,13 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    onInitialLoad: () => {
-      saveSampleData();
+    onInitialLoad: async () => {
+      const fetchedEvents = await getAllEvents();
+
+      dispatch({
+        type: types.SET_EVENTS,
+        payload: fetchedEvents
+      });
     },
     setIsSchedule: path => {
       dispatch({
@@ -26,7 +31,7 @@ const mapDispatchToProps = function (dispatch) {
       dispatch({
         type: types.ADD_EVENT,
         payload: event
-      })
+      });
     },
     updateEvent: (prevEvent, updatedEvent) => {
       dispatch({
@@ -35,13 +40,13 @@ const mapDispatchToProps = function (dispatch) {
           prevEvent,
           updatedEvent
         }
-      })
+      });
     },
     removeEvent: (event) => {
       dispatch({
         type: types.REMOVE_EVENT,
         payload: event
-      })
+      });
     },
   }
 };
