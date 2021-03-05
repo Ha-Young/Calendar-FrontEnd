@@ -15,16 +15,29 @@ export default function Calendar ({
   onEventWeekClick
 }) {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [formattedCurrentDate, setFormattedCurrentDate] = useState({
+    year: currentDate.getFullYear(),
+    month: currentDate.getMonth() + 1,
+    date: currentDate.getDate(),
+    day: currentDate.getDay(),
+  });
 
-  const handleIncreaseClick = () => {
-    currentDate.setDate(currentDate.getDate() + 1);
+  const handleArrowClick = (ev) => {
+    if (ev.target.dataset.type = "right-arrow") {
+      currentDate.setDate(currentDate.getDate() + 1);
+    } else {
+      currentDate.setDate(currentDate.getDate() - 1);
+    }
+
+    setFormattedCurrentDate({
+      year: currentDate.getFullYear(),
+      month: currentDate.getMonth() + 1,
+      date: currentDate.getDate(),
+      day: currentDate.getDay(),
+    });
+
     setCurrentDate(cloneDeep(currentDate));
   };
-
-  const handleDecreaseClick = () => {
-    currentDate.setDate(currentDate.getDate() - 1);
-    setCurrentDate(cloneDeep(currentDate));
-  }
 
   return (
     <>
@@ -37,33 +50,23 @@ export default function Calendar ({
             onSecondOptionClick={onEventWeekClick}
           />
           <DateIndicator
-            year={currentDate.getFullYear()}
-            month={currentDate.getMonth() + 1}
-            date={currentDate.getDate()}
-            day={currentDate.getDay()}
+            time = {formattedCurrentDate}
           />
         </header>
         <div className={styles.tableContainer}>
           <div className={styles.tableIndex}>
             <IncDecrementControlBox
               value={currentDate.getDate()}
-              onIncreaseClick={handleIncreaseClick}
-              onDecreaseClick={handleDecreaseClick}
+              onArrowClick={handleArrowClick}
             />
           </div>
           {isDayCalendar && <DayTable
-            year={currentDate.getFullYear()}
-            month={currentDate.getMonth() + 1}
-            date={currentDate.getDate()}
-            day={currentDate.getDay()}
+            currentDate={formattedCurrentDate}
             eventInfo={eventInfo}
             onEventIdClick={onEventIdClick}
           />}
           {!isDayCalendar && <WeekTable
-            year={currentDate.getFullYear()}
-            month={currentDate.getMonth() + 1}
-            date={currentDate.getDate()}
-            day={currentDate.getDay()}
+            currentDate={formattedCurrentDate}
             eventInfo={eventInfo}
             onEventIdClick={onEventIdClick}
           />}

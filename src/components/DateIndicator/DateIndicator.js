@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./DateIndicator.module.css";
 
-export default function DateIndicator ({ year, month, date, day }) {
+export default function DateIndicator ({ time }) {
+  const { year, month, date, day } = time;
   const ENG_DAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const KOR_DAY = ["일", "월", "화", "수", "목", "금", "토"];
   return (

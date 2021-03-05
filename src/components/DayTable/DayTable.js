@@ -2,13 +2,8 @@ import React from "react";
 import styles from "./DayTable.module.css";
 import { Link } from "react-router-dom";
 
-export default function DayTable ({
-  year,
-  month,
-  date,
-  eventInfo,
-  onEventIdClick
-}) {
+export default function DayTable ({ currentDate, eventInfo, onEventIdClick }) {
+  const { year, month, date } = currentDate;
   const CELL_NUMBER = 24;
   const timeCells = [];
   const todayEvent = eventInfo[`id-${year}-${month}-${date}`];
