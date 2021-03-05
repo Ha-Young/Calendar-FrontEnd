@@ -3,28 +3,37 @@ import styles from "./Row.module.css";
 import { connect } from "react-redux";
 
 function Row({ currentDate, ...eventInfo }) {
-  const nums = [1, 2, 3, 4, 5, 
+  const hours = [1, 2, 3, 4, 5, 
                 6, 7, 8, 9, 10, 
                 11, 12, 13, 14, 
                 15, 16, 17, 18, 
                 19, 20, 21, 22, 
                 23, 24];
+  //console.log(eventInfo[currentDate]);
+  const dailyEvents = eventInfo[currentDate];
 
   return (
     <>
-      {nums.map((num) => {
-        if (eventInfo[currentDate]) {
-          eventInfo[currentDate].map((info) => {
-            if (info.startTime === num) {
-              return (
-                <div className={styles.pick} key={num} data-id={num}></div>
-              );
+      {hours.map((hour) => {
+        let isColored = false;
+        let text = "";
+      
+        if (dailyEvents) {
+          dailyEvents.map((dailyEvent) => {
+            const start = dailyEvent.startTime;
+            const end = dailyEvent.endTime;
+
+            if (start <= hour && end >= hour) {
+              isColored = true;
+              if (start === hour) {
+                text = dailyEvent.title;
+              }
             }
           });
         }
 
         return (
-          <div className={styles.row} key={num} data-id={num}></div>
+          <div className={isColored ? styles.pick : styles.row} key={hour} data-id={hour}>{text}</div>
         );
       })}
     </>
@@ -46,9 +55,19 @@ export default connect(mapStateToProps)(Row);
 
 
 // if (eventInfo[currentDate]) {
-//   if (eventInfo[currentDate][0].startTime === num) {
+//   if (eventInfo[currentDate][0].startTime === hour) {
 //     return (
-//       <div className={styles.pick} key={num} data-id={num}></div>
+//       <div className={styles.pick} key={hour} data-id={hour}></div>
 //     );
 //   }
+// }
+
+// if (eventInfo[currentDate]) {
+//   eventInfo[currentDate].map((info) => {
+//     if (info.startTime === hour) {
+//       return (
+//         <div className={styles.pick} key={hour} data-id={hour}></div>
+//       );
+//     }
+//   });
 // }
