@@ -1,17 +1,13 @@
 import { startOfWeek, endOfWeek, eachDayOfInterval, formatISO, format } from "date-fns";
 import { viewMode } from "../constants/viewMode";
-
-const DAY_LENGTH = 24;
-const INITIAL_VALUE = 0;
-const LENGTH_FLAG = 10;
-const DAY_FORMAT = "PP";
+import * as dates from "../constants/date";
 
 export const today = new Date();
 
-export const hours = new Array(DAY_LENGTH).fill(INITIAL_VALUE).map((_, index) => 
-  index < LENGTH_FLAG ? `0${index}:00` : `${index}:00`);
+export const hours = new Array(dates.DAY_LENGTH).fill(dates.INITIAL_VALUE).map((_, index) => 
+  index < dates.LENGTH_FLAG ? `0${index}:00` : `${index}:00`);
 
-export const currentDay = (today) => formatISO(today).slice(0, 10);
+export const currentDay = (today) => formatISO(today).slice(dates.FIRST_DATE_INDEX, dates.LAST_DATE_INDEX);
 
 export const getWeek = (today) => {
   const week = eachDayOfInterval({
@@ -46,4 +42,4 @@ export const setCalendarDate = (cb, isDailyCalendar, currentDate) => {
   };
 };
 
-export const generateTitleDate = (date) => format(date, DAY_FORMAT);
+export const generateTitleDate = (date) => format(date, dates.DAY_FORMAT);

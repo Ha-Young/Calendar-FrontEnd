@@ -4,7 +4,7 @@ import { addDays, subDays } from "date-fns";
 import { setCalendarDate } from "../../utils/date";
 
 const CalendarHeader = ({ 
-  sideBar, 
+  headerInfo, 
   onClick, 
   selectedDate, 
   isDailyCalendar, 
@@ -39,8 +39,8 @@ const CalendarHeader = ({
   return (
     <>
       <div className={styles.navigation}>
-        {sideBar?.map((date) => (
-          <div key={date} className={styles.date}>{date}</div>
+        {headerInfo?.map((info) => (
+          <div key={info} className={styles.info}>{info}</div>
         ))}
       </div>
       <div className={styles.buttons}>

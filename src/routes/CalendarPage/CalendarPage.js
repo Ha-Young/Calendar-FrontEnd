@@ -26,7 +26,7 @@ const CalendarPage = ({
       <div className={styles.wrapper}>
         <CalendarHeader
           checkNeedLoad={checkNeedLoad}
-          sideBar={dateList} 
+          headerInfo={dateList} 
           onClick={handleCalendarType} 
           selectedDate={selectedDate} 
           isDailyCalendar={isDailyCalendar} 
@@ -34,7 +34,11 @@ const CalendarPage = ({
         <div className={styles.content}>
           <CalendarSideBar />
           {dateList?.map((date, index) => (
-            <ScheduleBar key={index} schedules={getEventByCurrentDate(date)} dayLength={hours} />
+            <ScheduleBar 
+              key={index} 
+              schedules={getEventByCurrentDate(date)} 
+              dayLength={hours} 
+            />
           ))}
         </div>
       </div>

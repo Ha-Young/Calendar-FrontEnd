@@ -1,0 +1,9 @@
+export const TITLE = "title";
+export const DESCRIPTION = "description";
+export const DATE = "date";
+export const TIME_STEP = 3600;
+export const START_TIME = "startTime";
+export const END_TIME = "endTime";
+export const COLOR_PICKER_WIDTH = 200;
+export const COLOR_PICKER_HEIGHT = 100;
+export const FORM_ERROR_MESSAGE = "error";

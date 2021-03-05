@@ -11,7 +11,7 @@ const Header = ({ onClickButton, currentDate }) => {
   const handleClickDayButton = () => onClickButton(viewMode.DAILYMODE.isDaily);
   const handleClickWeekButton = () => onClickButton(viewMode.WEEKLYMODE.isDaily);
 
-  const titleDate = generateTitleDate(currentDate); // week일때 안움직이게 currentDate로 유지..
+  const titleDate = generateTitleDate(currentDate);
   
   return (
     <div className={styles.navigation}>

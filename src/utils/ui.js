@@ -1,11 +1,9 @@
-const BLOCK_SIZE = 51;
-const FIRST_TIME_INDEX = 0;
-const LAST_TIME_INDEX = 2;
+import * as ui from "../constants/ui";
 
 export const generateCardHeight = (start, end) => {
-  return (end.slice(FIRST_TIME_INDEX, LAST_TIME_INDEX) - start.slice(FIRST_TIME_INDEX, LAST_TIME_INDEX)) * BLOCK_SIZE;
+  return (end.slice(ui.FIRST_TIME_INDEX, ui.LAST_TIME_INDEX) - start.slice(ui.FIRST_TIME_INDEX, ui.LAST_TIME_INDEX)) * ui.BLOCK_SIZE;
 };
 
 export const generateCardLocation = (top) => {
-  return top.slice(FIRST_TIME_INDEX, LAST_TIME_INDEX) * BLOCK_SIZE;
+  return top.slice(ui.FIRST_TIME_INDEX, ui.LAST_TIME_INDEX) * ui.BLOCK_SIZE;
 };

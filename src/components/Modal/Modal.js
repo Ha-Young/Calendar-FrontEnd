@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Modal.module.css";
 
-const Modal = ({ children, onClick }) => { // 포탈깔기..
+const Modal = ({ children, onClick }) => {
   const closeModal = () => {
     onClick();
   };

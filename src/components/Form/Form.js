@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import ColorPicker, { useColor } from "react-color-palette";
 import TextInput from "../TextInput/TextInput";
 import styles from "./Form.module.css";
 import { validateText, validateTime } from "../../utils/vailidation";
-import { useHistory } from "react-router";
+import * as form from "../../constants/form";
 
 const Form = ({ onSubmit, initialState, children }) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -41,7 +42,7 @@ const Form = ({ onSubmit, initialState, children }) => {
     setErrorMessage("");
 
     if (!validateData(newEventData)) {
-      setErrorMessage("error");
+      setErrorMessage(form.FORM_ERROR_MESSAGE);
       return;
     }
 
@@ -60,12 +61,12 @@ const Form = ({ onSubmit, initialState, children }) => {
       <form onSubmit={handleSubmit}>
         <div className={styles.column}>
           <TextInput 
-            name={"title"} 
+            name={form.TITLE} 
             onChange={handleInputChange} 
             value={newEventData.title} 
           />
           <TextInput 
-            name={"description"} 
+            name={form.DESCRIPTION} 
             onChange={handleInputChange} 
             value={newEventData.description} 
           />
@@ -73,32 +74,32 @@ const Form = ({ onSubmit, initialState, children }) => {
         <div className={styles[`same-type`]}>
           <input
             className={styles.input}
-            name="date"
+            name={form.DATE}
             type="date"
             onChange={handleInputChange}
             value={newEventData.date}
           />
           <input
             className={styles.input}
-            name="startTime"
+            name={form.START_TIME}
             type="time"
-            step="3600"
+            step={form.TIME_STEP}
             onChange={handleInputChange}
             value={newEventData.startTime}
           />
           <input
             className={styles.input}
-            name="endTime"
+            name={form.END_TIME}
             type="time"
-            step="3600"
+            step={form.TIME_STEP}
             onChange={handleInputChange}
             value={newEventData.endTime}
           />
         </div>
         <div className={styles.center}>
           <ColorPicker
-            width={200}
-            height={100}
+            width={form.COLOR_PICKER_WIDTH}
+            height={form.COLOR_PICKER_HEIGHT}
             color={color}
             onChange={setColor}
             white
