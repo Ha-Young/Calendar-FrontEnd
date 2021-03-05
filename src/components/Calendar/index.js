@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import styles from "./Calendar.module.css";
 import OnedaySchedule from "../OnedaySchedule";
-import { CALENDAR_MODE } from "../../utils/constants";
+import { CALENDAR_MODE, DATE_UNIT } from "../../utils/constants";
 
 export default function Calendar ({
   currentDate,
@@ -18,7 +18,7 @@ export default function Calendar ({
               key={idx}
               currentDate={currentDate}
               calendarMode={calendarMode}
-              title={moment(currentDate).add(idx-2, "days").format("MM-DD")}
+              title={moment(currentDate).add(idx-2, DATE_UNIT).format("MM-DD")}
               eventInfoList={eventInfoList}
             />)
           }

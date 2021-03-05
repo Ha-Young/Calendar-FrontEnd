@@ -4,6 +4,7 @@ import styles from "./App.module.css";
 import Header from "../Header";
 import Main from "../Main/";
 import EventFormContainer from "../../containers/EventFormContainer";
+import InvaildIdModal from "../InvailIdModal";
 
 function App({
   currentDate,
@@ -37,7 +38,9 @@ function App({
           <EventFormContainer/>
         </Route>
 
-        <Redirect path="/" to="/calendar"/>
+        <Route>
+          <InvaildIdModal/>
+        </Route>
       </Switch>
     </div>
   );

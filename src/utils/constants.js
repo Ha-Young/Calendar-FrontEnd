@@ -9,6 +9,10 @@ export const BUTTON_TYPE = {
   TODAY: "TODAY",
 }
 
+export const DATE_UNIT = {
+  DAYS: "days",
+}
+
 export const BUTTON_PAYLOAD = {
   DAILY_PAYLOAD: 1,
   WEEKLY_PAYLOAD: 7,
@@ -37,4 +41,9 @@ export const EVENT_FORM_PLACEHOLDER = {
 
 export const BUTTON_PLACEHOLDER = {
   SUBMIT: "Add new event!",
+  GO_BACK: "GO BACK"
+}
+
+export const INVAILD_MODAL_MESSAGE = {
+  MESSAGE: "wrong path, click the button below to go back calendar! 👾",
 }

@@ -47,7 +47,7 @@ function EventForm ({
     deleteUserEventFromFirebase(Number(params.id));
     deleteUserEvent(Number(params.id));
 
-    history.push("/");
+    history.push("/calendar");
   }
 
   function handleFormSubmit(e) {
@@ -63,7 +63,7 @@ function EventForm ({
       addNewEventToFirebase({...userInputInfo, id: id});
     }
 
-    history.push("/");
+    history.push("/calendar");
   }
 
   function handleUserInputChange(e) {

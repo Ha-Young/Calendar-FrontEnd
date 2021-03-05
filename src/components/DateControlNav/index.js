@@ -6,6 +6,7 @@ import {
   CALENDAR_MODE,
   BUTTON_TYPE,
   BUTTON_PAYLOAD,
+  DATE_UNIT,
 } from "../../utils/constants";
 
 export default function DateContorlNav({
@@ -24,18 +25,18 @@ export default function DateContorlNav({
       moveToToday(newDate);
     } else if (buttonType === BUTTON_TYPE.PREV) {
       if (calendarMode === CALENDAR_MODE.DAILY) {
-        newDate = moment(currentDate).subtract(BUTTON_PAYLOAD.DAILY_PAYLOAD, "days").toISOString();
+        newDate = moment(currentDate).subtract(BUTTON_PAYLOAD.DAILY_PAYLOAD, DATE_UNIT).toISOString();
         moveToPrevDate(newDate);
       } else {
-        newDate = moment(currentDate).subtract(BUTTON_PAYLOAD.WEEKLY_PAYLOAD, "days").toISOString();
+        newDate = moment(currentDate).subtract(BUTTON_PAYLOAD.WEEKLY_PAYLOAD, DATE_UNIT).toISOString();
         moveToPrevDate(newDate);
       }
     } else if (buttonType === BUTTON_TYPE.NEXT) {
       if (calendarMode === CALENDAR_MODE.DAILY) {
-        newDate = moment(currentDate).add(BUTTON_PAYLOAD.DAILY_PAYLOAD, "days").toISOString();
+        newDate = moment(currentDate).add(BUTTON_PAYLOAD.DAILY_PAYLOAD, DATE_UNIT).toISOString();
         moveToNextDate(newDate);
       } else {
-        newDate = moment(currentDate).add(BUTTON_PAYLOAD.WEEKLY_PAYLOAD, "days").toISOString();
+        newDate = moment(currentDate).add(BUTTON_PAYLOAD.WEEKLY_PAYLOAD, DATE_UNIT).toISOString();
         moveToNextDate(newDate);
       }
      }
