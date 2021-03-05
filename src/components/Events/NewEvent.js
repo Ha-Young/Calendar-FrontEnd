@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Redirect, useHistory, useLocation } from "react-router-dom";
 
 import Form from "./Form";
 import styles from "./Events.module.css";
@@ -8,6 +8,7 @@ import { deleteTargetData, writeUserData } from "../../api";
 
 export default function NewEvent({ userId }) {
   const location = useLocation();
+  const history = useHistory();
 
   let initialInputValues = {
     date: "",
@@ -48,6 +49,7 @@ export default function NewEvent({ userId }) {
     }
 
     writeUserData(userId, date, title, detail, getOnlyHours(startAt), getOnlyHours(endAt));
+    history.push("/calendar");
   }
 
   function onChangeInputValues(e) {
