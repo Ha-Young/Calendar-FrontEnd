@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Calendar.module.css";
-import { hours } from "../../utils/date";
+import styles from "./CalendarPage.module.css";
+import { hours } from "../../utils/date"
 
 const CalendarSideBar = () => {
   return (

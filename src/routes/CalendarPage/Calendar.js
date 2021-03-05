@@ -1,14 +1,25 @@
 import React from "react";
 import CalendarHeader from "./CalendarHeader";
 import CalendarSideBar from "./CalendarSideBar";
-import ScheduleBar from "../ScheduleBar/ScheduleBar";
-import styles from "./Calendar.module.css";
+import ScheduleBar from "../../components/ScheduleBar/ScheduleBar";
+import styles from "./CalendarPage.module.css";
 import { hours } from "../../utils/date";
 
-const Calendar = ({ dateList, handleSchedule }) => {
+const Calendar = ({ 
+  dateList, 
+  handleSchedule, 
+  handleCalendarType, 
+  selectedDate, 
+  calendarType 
+}) => {
   return (
     <div className={styles.wrapper}>
-      <CalendarHeader nav={dateList} />
+      <CalendarHeader 
+        sideBar={dateList} 
+        onToggle={handleCalendarType} 
+        selectedDate={selectedDate} 
+        calendarType={calendarType} 
+      />
       <div className={styles.content}>
         <CalendarSideBar />
         {dateList?.map((date, index) => (

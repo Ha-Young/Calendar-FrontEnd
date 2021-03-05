@@ -23,7 +23,7 @@ const EventDetailPage = ({ getEventById, onSubmit, onRemove }) => {
   const handleEditPage = () => {
     setShowEditWindow(true);
   };
-
+  
   return (
     <Modal onClick={handleGoBack}>
       <div className={styles.wrapper}>

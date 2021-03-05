@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./SideBar.module.css";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const SideBar = () => {  
   return (
     <div className={styles.wrapper}>
       <ul>
-        <li><Link to="/calendar">Calendar</Link></li>
-        <li><Link to="/events/new">New Event</Link></li>
+        <li><NavLink to="/calendar">Calendar</NavLink></li>
+        <li><NavLink to="/events/new">New Event</NavLink></li>
       </ul>
     </div>
   );

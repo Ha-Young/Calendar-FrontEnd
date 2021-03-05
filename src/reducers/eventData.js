@@ -6,7 +6,7 @@ export const byId = (state = {}, actions) => {
     case types.GET_EVENT_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
 
-      if (events === null) return { ...state }; // null 처리 해줘도 되는지..?
+      if (events === null) return { ...state };
 
       return {
         ...state,
@@ -35,19 +35,14 @@ export const byId = (state = {}, actions) => {
   }
 };
 
-export const allIds = (state = [], actions) => {
+export const visibleIds = (state = [], actions) => {
   switch (actions.type) {
     case types.GET_EVENT_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
 
-      if (events === null) return [...state]; // null 처리 해줘도 되는지..?
+      if (events === null) return [...state];
 
-      const eventIds = {
-        ...state,
-        ...Object.keys(events),
-      };
-      
-      return Object.values(eventIds);
+      return Object.keys(events);
     }
     case types.SET_EVENT_DATA_SUCCESS: {
       const { payLoad: { events } } = actions;
@@ -108,7 +103,7 @@ export const errorMessage = (state = "", actions) => {
 
 export default combineReducers({
   byId,
-  allIds,
+  visibleIds,
   isLoading,
   errorMessage,
 });
@@ -116,7 +111,7 @@ export default combineReducers({
 export const getEventById = (state, id) => state.byId[id];
 
 export const getEventByCurrentDate = (state, date) => {
-  return state.allIds.reduce((acc, val) => {
+  return state.visibleIds.reduce((acc, val) => {
     if (getEventById(state, val)?.date === date) {
       acc.push(getEventById(state, val));
     }

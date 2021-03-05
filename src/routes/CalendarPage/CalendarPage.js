@@ -1,11 +1,23 @@
 import React from "react";
-import Calendar from "../../components/Calendar/Calendar";
+import Calendar from "./Calendar";
 import styles from "./CalendarPage.module.css";
 
-const CalendarPage = ({ getEventByCurrentDate, dateList }) => { // toglebutton으로 바꾸기..
+const CalendarPage = ({ 
+  getEventByCurrentDate, 
+  dateList, 
+  handleCalendarType, 
+  selectedDate, 
+  isDailyCalendar 
+}) => {
   return (
-    <div className={styles.wrapper}>
-      <Calendar handleSchedule={getEventByCurrentDate} dateList={dateList} />
+    <div className={styles[`page-wrapper`]}>
+      <Calendar 
+        handleSchedule={getEventByCurrentDate} 
+        dateList={dateList} 
+        handleCalendarType={handleCalendarType} 
+        selectedDate={selectedDate} 
+        calendarType={isDailyCalendar} 
+      />
     </div>
   );
 };

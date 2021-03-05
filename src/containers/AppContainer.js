@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
+import App from "../components/App/App";
 import { loadEventData, saveEventData } from "../api";
 import {
   changeCalendarType,
-  changeCalendarPage,
   getEventDataSuccess,
   getEventDataFail,
   getEventData,
@@ -10,15 +10,10 @@ import {
   setEventDataFail,
   setEventData,
 } from "../actions/index";
-import App from "../components/App/App";
-import { getEventByCurrentDate } from "../reducers/eventData";
 
 const mapDispatchToProps = (dispatch) => ({
   handleChangeCalendarType(info) {
     dispatch(changeCalendarType(info));
-  },
-  handleChangeCalendarPage(info) {
-    dispatch(changeCalendarPage(info));
   },
   async onLoad(dateShown) {
     try {
@@ -47,15 +42,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = ({ calendarDate, eventData }) => ({
-  getEventByCurrentDate: (date) => getEventByCurrentDate(eventData, date),
+  currentDate: calendarDate.date,
+  isLoading: eventData.isLoading,
+  errorMessage: eventData.errorMessage,
   dateList: calendarDate.isDaily
     ? calendarDate.daily
     : calendarDate.weekly,
-  isDailyCalendar: calendarDate.isDaily,
-  currentDate: calendarDate.date,
-  selectedDate: calendarDate.selectedDate,
-  isLoading: eventData.isLoading,
-  errorMessage: eventData.errorMessage,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

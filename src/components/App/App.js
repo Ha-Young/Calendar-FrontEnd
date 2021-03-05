@@ -3,20 +3,16 @@ import styles from "./App.module.css";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import NewEventPage from "../../routes/NewEventPage/NewEventPage";
-import CalendarPage from "../../routes/CalendarPage/CalendarPage";
+import CalendarPageContainer from "../../containers/CalendarPageContainer";
 import EventDetailPageContainer from "../../containers/EventDetailPageContainer";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 
 const App = ({
-  getEventByCurrentDate,
   dateList,
-  isDailyCalendar,
   currentDate,
   handleChangeCalendarType,
-  handleChangeCalendarPage,
   onLoad,
   saveNewEventData,
-  selectedDate,
   isLoading,
   errorMessage,
 }) => {
@@ -26,37 +22,28 @@ const App = ({
 
   const location = useLocation();
   const background = location.state?.background;
-  
+ 
   return (
     <div className={styles.App}>
       {isLoading && "isLoading.."}
       {errorMessage && errorMessage}
-      <Header
-        onClickButton={handleChangeCalendarType}
-        onToggle={handleChangeCalendarPage}
-        type={isDailyCalendar}
-        currentDate={currentDate}
-        selectedDate={selectedDate}
-      />
+      <Header onClickButton={handleChangeCalendarType} currentDate={currentDate} />
       <SideBar />
       <Switch location={background || location}>
         <Route path="/calendar" exact>
-          <CalendarPage
-            getEventByCurrentDate={getEventByCurrentDate}
-            dateList={dateList}
-          />
+          <CalendarPageContainer />
         </Route>
         <Route path="/events/new">
           <NewEventPage onSubmit={saveNewEventData} />
         </Route>
+        <Redirect path="*" to="/calendar" />
       </Switch>
       {
         background && 
-          <Route path="/events/:event">
+          <Route path="/events/:event?">
             <EventDetailPageContainer />     
           </Route>
       }
-      <Redirect path="*" to="/calendar" />
     </div>
   );
 };

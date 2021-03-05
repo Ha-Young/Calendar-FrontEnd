@@ -13,7 +13,7 @@ const EventDetail = ({ onEdit, event, onGoBack }) => {
   const handleGoBackClick = () => {
     onGoBack();
   };
-
+  
   return (
     <div>
       <div className={styles.column}>
