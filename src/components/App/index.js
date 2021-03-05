@@ -2,7 +2,7 @@ import "antd/dist/antd.css";
 
 import { Layout } from "antd";
 import React, { useEffect } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 
 import { VIEW_OPTION } from "../../constants/stateTypes";
 import EventsContainer from "../../containers/EventsContainer";
@@ -27,7 +27,10 @@ function App({
   changeCurrentDate,
   getDate,
   getDateListOnRange,
+  stopErrorView,
 }) {
+  const history = useHistory();
+
   useEffect(() => {
     getDate({ userId: user.id, currentDate });
   }, []);
@@ -69,10 +72,15 @@ function App({
     });
   }
 
+  function handleOnErrorViewTimeEnd() {
+    stopErrorView();
+    history.push('/calendar');
+  }
+
   return (
     <Layout className={styles.App}>
       {(loading && !error) && <Loading />}
-      {(!loading && error) && <ErrorView errMsg={error} />}
+      {error && <ErrorView onErrorViewTimeEnd={handleOnErrorViewTimeEnd} errMsg={error} viewSecond={3} />}
       <Header className={styles.header}>
         <AppHeader currentDate={currentDate} updateDate={updateCurrentDate} />
       </Header>

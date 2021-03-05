@@ -2,6 +2,7 @@ export const CHANGE_VIEW_OPTION = 'CHANGE_VIEW_OPTION';
 export const CHANGE_DATE = 'CHANGE_DATE';
 
 export const START_LOADING = 'START_LOADING';
+export const STOP_LOADING = 'STOP_LOADING';
 
 export const VIEW_ERROR = 'VIEW_ERROR';
 export const RESET_ERROR = 'RESET_ERROR';

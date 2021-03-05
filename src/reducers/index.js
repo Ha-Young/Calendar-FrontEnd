@@ -4,6 +4,7 @@ import { CHANGE_DATE, CHANGE_VIEW_OPTION } from "../constants/actionTypes";
 import { VIEW_OPTION } from "../constants/stateTypes";
 import { getCurrentDateStr } from "../utils/date";
 import date, { getEventsOnDate } from "./date";
+import error from "./error";
 import events, { getEvent } from "./events";
 import loading from "./loading";
 import user from "./user";
@@ -35,6 +36,7 @@ export default combineReducers({
   events,
   user,
   loading,
+  error,
 });
 
 export function getVisibleEventsEachDay(dateState, eventsState) {

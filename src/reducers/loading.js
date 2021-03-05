@@ -1,15 +1,12 @@
-import { CREATED_EVNETS, DELETED_EVENTS, RECEIVE_DATE, RECEIVE_DATE_LIST, START_LOADING, UPDATED_EVENTS } from "../constants/actionTypes";
+import { START_LOADING, STOP_LOADING, VIEW_ERROR } from "../constants/actionTypes";
 
 export default function loading(state = false, action) {
   switch (action.type) {
     case START_LOADING:
       return true;
 
-    case CREATED_EVNETS:
-    case UPDATED_EVENTS:
-    case DELETED_EVENTS:
-    case RECEIVE_DATE:
-    case RECEIVE_DATE_LIST:
+    case VIEW_ERROR:
+    case STOP_LOADING:
       return false;
 
     default:
