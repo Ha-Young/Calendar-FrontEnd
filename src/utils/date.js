@@ -16,8 +16,8 @@ export function getCurrentDateStr(format = DATE_FORMAT) {
   return moment().format(format);
 }
 
-export function getCurrentMoment() {
-  return moment();
+export function getMoment(date, format = DATE_FORMAT) {
+  return date ? moment(date, format) : moment();
 }
 
 export function getCalcDay(date, calcDay) {

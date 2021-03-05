@@ -5,11 +5,11 @@ import React, { useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import { VIEW_OPTION } from "../../constants/stateTypes";
+import EventsContainer from "../../containers/EventsContainer";
 import ScheduleContainer from "../../containers/ScheduleContainer";
 import { getDiffDay, getWeekDateListBasedOnDate } from "../../utils/date";
 import AppHeader from "../AppHeader";
 import AppSider from "../AppSider";
-import Events from "../Events";
 import styles from "./App.module.css";
 
 const { Header, Footer, Content, Sider } = Layout;
@@ -18,12 +18,9 @@ function App({
   viewOption,
   currentDate,
   date,
-  events,
   user,
   changeViewOption,
   changeCurrentDate,
-  moveAddEventPage,
-  createEvent,
   onInitLoad,
   getDate,
   getDateListOnRange,
@@ -87,7 +84,8 @@ function App({
               <ScheduleContainer />
             </Route>
             <Route path="/events">
-              <Events user={user} createEvent={createEvent} />
+              <EventsContainer />
+              {/* <Events user={user} createEvent={createEvent} getEventById={getEventById}/> */}
             </Route>
             <Redirect from="/" exact to="/calendar" />
           </Switch>
