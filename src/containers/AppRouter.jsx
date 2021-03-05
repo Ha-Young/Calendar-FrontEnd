@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Header from "components/Header/Header";
 import CalenderHeader from "components/CalenderHeader/CalenderHeader";
 import DailySchedule from "components/DailyCalender/DailyCalender";
 import WeeklySchedule from "components/WeeklyCalender/WeeklyCalender";
-import HandleEvent from "containers/HandleEvent";
 import EventDetail from "components/EventDetail/EventDetail";
 import Login from "components/Login/Login";
 import Profile from "components/Profile/Profile";
+import EventForm from "components/EventForm/EventForm";
 
 import { actionCreators } from "actions/actionCreators";
 import { fetchDailyEvent } from "api/firebaseAPIs";
 import { fetchWeeklyEvent } from "api/firebaseAPIs";
 
 import routes from "constants/routes";
-import { dateConst, directionConst } from "constants/constants";
-import { typeConst } from "constants/constants";
+import { typeConst, dateConst, directionConst } from "constants/constants";
 import {
   getDateISO,
   parseDate,
   getMonthAndWeek,
   getDaysOfWeek,
+  generateKey,
 } from "utils/utilFunction";
 
 const AppRouter = ({
@@ -30,6 +31,8 @@ const AppRouter = ({
   showWeekly,
   dailyEvent,
   weeklyEvent,
+  addEvent,
+  editEvent,
   deleteEvent,
   isLoggedIn,
 }) => {
@@ -40,6 +43,7 @@ const AppRouter = ({
   const [daysOfWeek, setDaysOfWeek] = useState(getDaysOfWeek(0));
   const [dateCount, setDateCount] = useState(0);
   const [date, setDate] = useState(parseDate(getDateISO(0)));
+  const history = useHistory();
 
   useEffect(() => {
     fetchDailyEvent((events) => {
@@ -82,6 +86,19 @@ const AppRouter = ({
 
     setDateCount(currentDateCount);
     setDate(parseDate(getDateISO(currentDateCount)));
+  };
+
+  const handleSubmit = (newEvent, type) => {
+    if (type === typeConst.ADD) {
+      const id = generateKey();
+      addEvent(newEvent, id);
+    } else if (type === typeConst.EDIT) {
+      const id = newEvent.id;
+      editEvent(newEvent, id);
+      history.push(`/events/${id}`);
+    }
+
+    alert("submit complete");
   };
 
   return (
@@ -131,11 +148,19 @@ const AppRouter = ({
             </Route>
 
             <Route path={routes.ADD_EVENT}>
-              <HandleEvent type={typeConst.ADD} />
+              <EventForm
+                type={typeConst.ADD}
+                weeklyEvent={weeklyEvent}
+                onSubmit={handleSubmit}
+              />
             </Route>
 
             <Route exact path={routes.EDIT_EVENT}>
-              <HandleEvent type={typeConst.EDIT} />
+              <EventForm
+                type={typeConst.EDIT}
+                weeklyEvent={weeklyEvent}
+                onSubmit={handleSubmit}
+              />
             </Route>
 
             <Route exact path={routes.EVENT_DETAIL}>
@@ -173,6 +198,9 @@ const mapDispatchToProps = (dispatch) => {
     showDaily: (events) => dispatch(actionCreators.showDaily(events)),
     showWeekly: (events) => dispatch(actionCreators.showWeekly(events)),
     deleteEvent: (id, date) => dispatch(actionCreators.deleteEvent(id, date)),
+    addEvent: (newEvent, id) => dispatch(actionCreators.addEvent(newEvent, id)),
+    editEvent: (editedEvent, id) =>
+      dispatch(actionCreators.editEvent(editedEvent, id)),
   };
 };
 

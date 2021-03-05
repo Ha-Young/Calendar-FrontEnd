@@ -1,0 +1,9 @@
+@import "./colors.module.css";
+@import "./font.module.css";
+@import "./size.module.css";
+
+* {
+  /* font-family: "Nanum Gothic", sans-serif;
+  font-family: "Roboto", sans-serif; */
+  box-sizing: border-box;
+}

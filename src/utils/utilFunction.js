@@ -13,7 +13,7 @@ export const parseDate = (date = "") => {
     year: moment(date).day(0).format("YYYY"),
     month: moment(date).format("MM"),
     date: moment(date).format("DD"),
-    day: moment(date).format("dddd"),
+    day: moment(date).format("ddd"),
     monthInFirebase: weekOfMonth.month,
     weekOfMonth: weekOfMonth.week,
   };
@@ -27,7 +27,9 @@ export const getDaysOfWeek = (ref = 0) => {
   const daysOfTargetWeek = [];
 
   for (let i = ref; i < ref + dateConst.DAY_OF_WEEK; i++) {
-    daysOfTargetWeek.push(moment().day(i).format("MM DD dddd").split(" "));
+    daysOfTargetWeek.push(
+      moment().day(i).format("MM DD ddd").toUpperCase().split(" ")
+    );
   }
 
   return daysOfTargetWeek;
@@ -57,8 +59,8 @@ export const makeFirebaseURL = (
 };
 
 export const generateKey = () => {
-  let key = new Date().getTime().toString();
-  const fullLength = 20;
+  let key = new Date().getTime().toString().slice(-9);
+  const fullLength = 16;
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
   for (let i = key.length; i < fullLength; i++) {
