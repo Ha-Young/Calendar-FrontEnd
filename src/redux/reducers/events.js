@@ -1,4 +1,4 @@
-import { ADD_TO_EVENTS, REMOVE_EVENTS } from "../../constants/actionTypes"
+import { ADD_TO_EVENTS, REMOVE_ALL_EVENTS, REMOVE_EVENTS } from "../../constants/actionTypes"
 
 const initialState = {};
 
@@ -20,6 +20,8 @@ export default function events(state = initialState, action) {
 
       return newState;
     }
+    case REMOVE_ALL_EVENTS:
+      return initialState;
     default:
       return {
         ...state,

@@ -14,9 +14,7 @@ export default function NewEvent({ userId }) {
     detail: "",
     startAt: "",
     endAt: "",
-  }
-
-  // refactor: time;
+  };
 
   if (location.state) {
     initialInputValues = {

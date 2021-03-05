@@ -8,10 +8,11 @@ import NewEvent from "../Events/NewEvent";
 import Events from "../Events/Events";
 import Dashboard from "../Dashboard/Dashboard";
 import Login from "../Login/Login";
+import EventDetail from "../Events/EventDetail";
 
 function App({ events, addEvents, removeEvents, onClickLogin, auth }) {
   const { userId } = auth;
-
+  
   return (
     <div className={styles.App}>
       <Header />
@@ -27,6 +28,9 @@ function App({ events, addEvents, removeEvents, onClickLogin, auth }) {
         </Route>
         <Route exact path="/event/new">
           <NewEvent userId={userId} />
+        </Route>
+        <Route exact path="/event/detail/:date/:hours">
+          <EventDetail userId={userId} removeEvents={removeEvents} />
         </Route>
         <Route exact path="/event/:date/:hours">
           <NewEvent userId={userId} /> 

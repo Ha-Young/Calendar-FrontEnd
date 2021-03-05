@@ -11,14 +11,15 @@
   --neu-purple: #4B70E2;
 }
 
-html {
-  /* background-color: var(--neu-background); */
-}
-
 .App {
   text-align: center;
 }
 
 * {
   box-sizing: border-box;
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
 }

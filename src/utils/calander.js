@@ -10,8 +10,8 @@ export function getFutureDate(date, num) {
   return result;
 }
 
-export function getDivsFor24Hours() {
-  let array = new Array(24).fill(0);
+export function getNumberOfDivs(num) {
+  let array = new Array(num).fill(0);
   let count = 0;
   array = array.map(() => count++);
 

@@ -61,8 +61,8 @@ export function deleteTargetData(userId, date, startAt, endAt) {
 export async function moveDataToLoggedInUser(userId) {
   const guestRef = firebase.database().ref(`users/${GUEST}`);
   const snapshot = await guestRef.once("value", (snapShot) => snapShot);
-  const guestData = snapshot.val();
-
+  const guestData = snapshot.val() ?? {};
+  console.log(guestData);
   firebase.database().ref(`users/${userId}`).update(guestData, (error) => {
     if (error) {
       console.error(error);

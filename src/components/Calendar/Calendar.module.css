@@ -81,4 +81,5 @@
 .haveEvent {
   border: 1px solid tomato;
   background-color: tomato;
+  cursor: pointer;
 }

@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import styles from "./Calendar.module.css";
-import { getDivsFor24Hours } from "../../utils/calander";
-import { getDailyData } from "../../api";
+
+import { getNumberOfDivs } from "../../utils/calander";
 import { isObj } from "../../utils/typeCheck";
+import { getDailyData } from "../../api";
+import styles from "./Calendar.module.css";
+import WithEvent from "./WithEvent";
 
 export default function DailyBody({ userId, today, isDaily, addEvents, events }) {
   const todayISO = today.toISOString().substring(0, 10);
-  const hoursDiv = getDivsFor24Hours();
-
+  const arrayOf24Hours = getNumberOfDivs(24);
   const todayEvent = events[todayISO];
 
   async function fetchDailyData() {
@@ -27,12 +28,13 @@ export default function DailyBody({ userId, today, isDaily, addEvents, events })
   return (
     <div className={styles.eventsContainer}>
       <div className={styles.hoursSideBar}>
-          {isDaily && hoursDiv.map(each => <div className={styles.eachHour} key={each}>{each}</div>)}
+        {isDaily && arrayOf24Hours.map(each => <div className={styles.eachHour} key={each}>{each}</div>)}
       </div>
       <div className={styles.dailyEventTd}>
-        {hoursDiv.map((each, index) => {
+        {arrayOf24Hours.map((each, index) => {
           let haveEvent = false;
-          let haveText = "";
+          let eventText = "";
+          let eventData = {};
           
           for (const key in todayEvent) {
             const startHour = todayEvent[key]["startAt"];
@@ -40,18 +42,25 @@ export default function DailyBody({ userId, today, isDaily, addEvents, events })
 
             if (each >= Number(startHour) && each <= Number(endHour)) {
               haveEvent = true;
+              eventData = todayEvent[key];
               if (each === Number(startHour)) {
-                haveText = todayEvent[key]["title"];
+                eventText = todayEvent[key]["title"];
               }
             }
           }
 
           return (
-            <div 
-              key={each + index}
-              className={`${styles.dailyHourDiv} ${haveEvent ? styles.haveEvent : styles.eachHour}`}>
-              {haveText && haveText}
-            </div>
+            haveEvent
+            ? <WithEvent 
+                key={each + index}
+                text={eventText}
+                eventData={eventData}
+                className={`${styles.haveEvent} ${styles.dailyHourDiv}`} 
+              /> 
+            : <div 
+                key={each + index} 
+                className={`${styles.dailyHourDiv} ${styles.eachHour}`}
+              ></div>
             );
         })}
        </div>

@@ -10,6 +10,10 @@ export default function Calendar({ userId, events, addEvents }) {
   const [today, setToday] = useState(new Date());
   const [isDaily, setIsDaily] = useState(false);
 
+  const thisYear = today.getFullYear();
+  const thisMonth = today.getMonth() + 1;
+  const dateOfToday = today.getDate();
+
   const GAP = isDaily ? CALENDAR.ONEDAY : CALENDAR.ONEWEEK;
 
   function handleClickPrev() {
@@ -40,7 +44,7 @@ export default function Calendar({ userId, events, addEvents }) {
         <span>next</span>
       </button>
       <div className={styles.todayDiv}>
-        <span>{today.getFullYear()}년 {today.getMonth() + 1}월 {today.getDate()}일</span>
+        <span>{thisYear}-{thisMonth}-{dateOfToday}</span>
         <button onClick={handleClickToday}>TODAY</button>
       </div>
       <div className={styles.table}>

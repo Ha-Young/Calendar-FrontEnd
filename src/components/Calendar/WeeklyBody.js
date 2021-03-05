@@ -1,5 +1,5 @@
 import React from "react";
-import { getDivsFor24Hours, getFutureDate, getPastDate } from "../../utils/calander";
+import { getNumberOfDivs, getFutureDate, getPastDate } from "../../utils/calander";
 import Header from "./Header";
 import styles from "./Calendar.module.css";
 import DailyBody from "./DailyBody";
@@ -14,7 +14,7 @@ export default function WeeklyBody({ userId, today, addEvents, events, isDaily }
     thisWeek.push(date);
   }
 
-  const hoursDiv = getDivsFor24Hours();
+  const arrayOf24Hours = getNumberOfDivs(24);
   
   return (
     <>
@@ -33,7 +33,7 @@ export default function WeeklyBody({ userId, today, addEvents, events, isDaily }
       <tbody>
       <tr>
         <td className={styles.hoursSideBar}>
-          {hoursDiv.map((each, index) => <div key={each + index} className={styles.eachHour}>{each}</div>)}
+          {arrayOf24Hours.map((each, index) => <div key={each + index} className={styles.eachHour}>{each}</div>)}
         </td>
         {thisWeek.map((date, index) => {
           return (

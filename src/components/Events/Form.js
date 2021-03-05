@@ -3,7 +3,6 @@ import styles from "./Events.module.css";
 
 export default function Form({ onSubmit, inputValues, onChangeInputValues}) {
   const { date, title, detail, startAt, endAt } = inputValues;
-
   return (
     <form
       onSubmit={onSubmit} 

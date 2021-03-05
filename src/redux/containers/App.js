@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
+
 import { deleteTargetData, moveDataToLoggedInUser } from "../../api";
 import { loginWithGoogle } from "../../api/google-login";
 import App from "../../components/App/App";
-import { ADD_TO_EVENTS, ERROR, LOGIN, LOGOUT, REMOVE_EVENTS } from "../../constants/actionTypes";
+import { ADD_TO_EVENTS, ERROR, LOGIN, LOGOUT, REMOVE_ALL_EVENTS, REMOVE_EVENTS } from "../../constants/actionTypes";
 
 const mapStateToProps = (state) => ({
   events: state.events,
@@ -25,6 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
 
     if (type === LOGOUT) {
       dispatch({type: LOGOUT});
+      dispatch({type: REMOVE_ALL_EVENTS});
       localStorage.setItem("userId", "");
       return;
     }
@@ -32,8 +34,9 @@ const mapDispatchToProps = (dispatch) => ({
     const [isSuccess, data] = await loginWithGoogle();
   
     if (isSuccess) {
-      dispatch({type: LOGIN, payload: { userId: data }});
       moveDataToLoggedInUser(data);
+      dispatch({type: REMOVE_ALL_EVENTS});
+      dispatch({type: LOGIN, payload: { userId: data }});
       localStorage.setItem("userId", data);
       return;
     }
