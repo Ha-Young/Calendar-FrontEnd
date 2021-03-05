@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeSundayDate, setLastWeek, setNextWeek, makeWeekFullDate, isEventScheduled } from '../../utils';
+import { makeSundayDate, setLastWeek, setNextWeek, makeWeekFullDate, isEventScheduled, dateWithOutStartTime } from '../../utils';
 import styles from './WeeklyCalendar.module.css';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { TIME_TABLE, SCHEDULE_BOX } from '../../constant';
@@ -57,7 +57,7 @@ const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
   });
 
   daysList = days.map((day, index) => {
-    let startDate = sundayDate.getDate();
+    let startDate = todayDate.getDate();
 
     sundayDate.setDate(++startDate);
     const currentDate = startDate - 1;
@@ -71,32 +71,36 @@ const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
         <div className={styles.eventWrapper}>
           {eventCells.map((item, time) => {
             const fullDate = makeWeekFullDate(year, month, startDate, time);
+            const date = dateWithOutStartTime(fullDate);
+
+            console.log(schedules);
 
             for (const event of schedules) {
-              const eventDay = Number(event.date.split('-')[2]);
+              const eventDay = dateWithOutStartTime(event.date);
+
               const eventTitle = event.title;
               const showSchedule = isEventScheduled(
-                time,
-                event.startTime,
-                event.endTime,
+                Number(time),
+                Number(event.startTime),
+                Number(event.endTime),
                 eventDay,
-                currentDate
+                date
               );
-
+              console.log(showSchedule);
               if (showSchedule) {
                 if (Number(event.startTime) === time) firstKeyId = fullDate;
 
                 return (
-                  <div key={firstKeyId} onClick={showscheduleinfo}>
-                    <Link
-                      to={`/weeklycalendar/weeklyevent/${firstKeyId}`}
-                      style={{ textDecoration: 'none' }}
-                    >
+                  <Link
+                    to={`/weeklycalendar/weeklyevent/${firstKeyId}`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <div key={fullDate} onClick={showscheduleinfo}>
                       <div className={styles.scheduledEvent}>
                         {(Number(event.startTime) === time) && `${eventTitle}`}
                       </div>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 )
               }
             }

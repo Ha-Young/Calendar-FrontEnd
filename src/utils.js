@@ -8,7 +8,7 @@ export const makeSundayDate = (date) => {
 }
 
 export const setLastWeek = (dateObj, date) => {
-  dateObj.setDate(date - 7);
+  return dateObj.setDate(date - 7);
 }
 
 export const setNextWeek = (dateObj, date) => {
@@ -25,9 +25,19 @@ export const makeDailyFullDate = (year, month, startDate, time) => {
 
 export const isEventScheduled = (time, startTime, endTime, eventDay, currentDate) => {
   if ((time >= startTime && time < endTime) &&
-    eventDay === currentDate) {
+    (eventDay === currentDate)) {
       return true;
     }
 
   return false;
+}
+
+export const dateWithOutStartTime = (fullDate) => {
+  const date = fullDate.split('-').reduce((acc, item, index) => {
+    if (index === fullDate.split('-').length - 1) return acc;
+
+    return acc + item;
+  }, '');
+
+  return date;
 }
