@@ -6,20 +6,7 @@ import { VIEW_OPTION } from "../constants/stateTypes";
 import { concatOnNotExistElement } from "../utils/common";
 import { getCurrentDateStr, getWeekDateListBasedOnDate } from "../utils/date";
 
-const initialStatus_byId = {
-  // "2021-03-03": {
-  //   id: "2021-03-03",
-  //   events: ["2021-03-03_12:2"],
-  // },
-  // "2021-03-01": {
-  //   id: "2021-03-01",
-  //   events: ["2021-03-01_12:2"],
-  // },
-  // "2021-03-04": {
-  //   id: "2021-03-04",
-  //   events: ["2021-03-04_13:4", "2021-03-04_18:3"],
-  // },
-};
+const initialStatus_byId = {};
 
 function byId(state = initialStatus_byId, action) {
   switch(action.type) {

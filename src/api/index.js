@@ -79,8 +79,6 @@ export async function removeEvent(userId, eventId, date) {
 }
 
 export async function readDate(userId, currentDate) {
-  console.log('getReadDate API');
-
   const database = firebase.database();
   const snapshot = await database.ref(`/${ROOT_DIR}/${userId}/${currentDate}`).once('value');
 
