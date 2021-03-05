@@ -1,6 +1,5 @@
 // TODO: Go to `./firebase.js` and update your firebase config.
 import firebase from "./firebase";
-import { endsOfWeek } from "../utils/date";
 
 export const saveEventData = async (data) => {
   const database = firebase.database();
