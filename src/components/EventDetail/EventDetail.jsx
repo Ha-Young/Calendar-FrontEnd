@@ -19,10 +19,12 @@ function EventDetail({ event = {}, onEditSubmit, onDeleteEvent, match}) {
   const prevId = event.start;
 
   function handleInputSubmit(input) {
+    const keyFormatDate = getKeyFormat(date);
+
     if (isDelete) {
-      onDeleteEvent(getKeyFormat(date), prevId);
+      onDeleteEvent(keyFormatDate, prevId);
       deleteData({
-        date: getKeyFormat(date),
+        date: keyFormatDate,
         prevId,
       });
     } else {
@@ -30,14 +32,9 @@ function EventDetail({ event = {}, onEditSubmit, onDeleteEvent, match}) {
 
       onEditSubmit(event, prevId);
       updateData({
-        date: getKeyFormat(date),
+        date: keyFormatDate,
         id: start,
-        event: {
-          ...input,
-          date: getKeyFormat(date),
-          start,
-          end,
-        },
+        event: {...input, date: keyFormatDate, start, end},
         prevId,
       });
     }
@@ -68,15 +65,12 @@ function EventDetail({ event = {}, onEditSubmit, onDeleteEvent, match}) {
               <button
                 className={`${styles.button} ${styles.deleteButton}`}
                 onClick={() => setIsDelete((prev) => !prev)}
-              >
-                <FaTrashAlt />
-              </button>
+              ><FaTrashAlt /></button>
             </div>
           : <button
               className={styles.button}
               onClick={() => setEdit((prev) => !prev)}
-            >수정
-            </button>
+            >수정</button>
         }
       </InputForm>
     </div>

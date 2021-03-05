@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 import WithLabel from "../WithLabel/WithLabel";
 import styles from "./InputForm.module.css";
