@@ -1,0 +1,23 @@
+.OnedaySchedule {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  background-color: tomato;
+}
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: turquoise;
+}
+
+.title {
+  height: 50px;
+}
+
+.text {
+  font-size: medium;
+}
