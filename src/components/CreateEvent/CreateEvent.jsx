@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./CreateEvent.module.css";
 import { saveData } from "../../api";
+import { DateTime } from "luxon";
 
 // TODO onchange에 setState걸어놔서 사용자가 뭐 입력할때마다 리랜더링됨. 디바운스 적용하면 좋을듯?? 아닌가?
 // 디바운스 짧게 안하면 submit하기전에 업데이트 안돼서 누락될수도 잇겟다.
@@ -13,6 +14,7 @@ export default function CreateEvent() {
   const [endDateTime, setEndDateTime] = useState("");
   const history = useHistory();
   console.log(startDateTime)
+  console.log(DateTime.fromISO(startDateTime).plus({ days: 1 }).toISODate()+"T00:00")
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,16 +32,6 @@ export default function CreateEvent() {
     saveData(newEvent, date).then(() => {
       history.push("/calendar");
     });
-  }
-
-  const startDateValidation = (e) => {
-    setStartDateTime(e.target.value)
-    console.log(startDateTime)
-    console.log(endDateTime)
-    console.log(startDateTime > endDateTime)
-    if (startDateTime > endDateTime) {
-      console.log('시작시간이 끝시간보다 뒤다..')
-    }
   }
 
   return (
@@ -75,7 +67,7 @@ export default function CreateEvent() {
               <input
                 type="datetime-local" 
                 value={startDateTime}
-                onChange={(e) => startDateValidation(e)}
+                onChange={(e) => setStartDateTime(e.target.value.slice(0,14)+"00")}
                 required
               />
             </div>
@@ -87,6 +79,8 @@ export default function CreateEvent() {
                 type="datetime-local" 
                 value={endDateTime}
                 onChange={(e) => setEndDateTime(e.target.value.slice(0,14)+"00")}
+                min={startDateTime}
+                max={DateTime.fromISO(startDateTime).plus({ days: 1 }).toISODate()+"T00:00"}
                 required
               />
             </div>
