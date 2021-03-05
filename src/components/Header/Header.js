@@ -7,7 +7,7 @@ function Header () {
     <header>
       <nav>
         <div>
-          <button><Link to='/event'>Day</Link></button>
+          <button><Link to='/calendar'>Day</Link></button>
           <button><Link to='/event/new'>Form</Link></button>
         </div>
       </nav>
