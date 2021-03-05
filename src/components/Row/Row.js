@@ -33,7 +33,7 @@ function Row({ currentDate, ...eventInfo }) {
         }
 
         return (
-          <div className={isColored ? styles.pick : styles.row} key={hour} data-id={hour}>{text}</div>
+          <div className={isColored ? styles.pick : styles.row} key={hour}>{text}</div>
         );
       })}
     </>
