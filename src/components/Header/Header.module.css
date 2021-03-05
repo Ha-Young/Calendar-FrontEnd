@@ -2,7 +2,7 @@
   display: flex;
   border-bottom: 1px solid lightgray;
   align-items: center;
-  height: 50px;
+  height: 60px;
 }
 
 .navItemWrapper {
@@ -15,4 +15,9 @@
 
 .changeBtn {
   padding: 0;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
 }

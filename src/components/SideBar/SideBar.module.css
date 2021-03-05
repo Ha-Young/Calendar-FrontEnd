@@ -1,7 +1,39 @@
 .sidebarWrapper {
   display: flex;
   flex-direction: column;
-  width: 20%;
+  width: 250px;
   overflow-y: hidden;
-  margin: 20px 20px 20px 5px;
+  margin: 8px 20px 20px 5px;
+}
+
+.btnWrapper {
+  margin-bottom: 20px;
+}
+
+.createBtn {
+  width: 110px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  border: 0px;
+}
+
+.calendarWrapper {
+  padding: 20px;
+  border: 0;
+}
+
+.textWrapper {
+  margin-left: 10px;
+}
+
+.calendar {
+  margin: 0;
+  font-size: 5px;
+}
+
+.calendarItem {
+  text-align: center;
+  padding: 0;
 }
