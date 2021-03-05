@@ -30,3 +30,11 @@ export async function fetchEventsList() {
 
   return eventList;
 }
+
+export async function updateUserEventinfo(selectedEventInfo) {
+  await database.ref(`events/${selectedEventInfo.id}`).update(selectedEventInfo)
+}
+
+export async function deleteUserEventFromFirebase(targetEventId) {
+  await database.ref(`events/${targetEventId}`).remove();
+}

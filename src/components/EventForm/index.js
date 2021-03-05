@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import styles from "./EventForm.module.css";
-import { addNewEventToFirebase } from "../../api";
+import { addNewEventToFirebase, deleteUserEventFromFirebase } from "../../api";
 import { EVENT_FORM_TYPE } from "../../utils/constants";
 
 export default function EventForm({
   addNewEvent,
   formType,
   eventInfoList,
+  deleteUserEvent,
 }) {
   const params = useParams();
+  const histroy = useHistory();
+
   let initialUserInputSetting;
 
   if (formType === EVENT_FORM_TYPE.UPDATING) {
@@ -27,6 +30,14 @@ export default function EventForm({
 
   const [userInputInfo, setUserInputInfo] = useState(initialUserInputSetting);
 
+  function handleDeleteButtonClick(e) {
+    e.preventDefault();
+
+    deleteUserEventFromFirebase(Number(params.id));
+    deleteUserEvent(Number(params.id));
+  }
+
+
   function handleFormSubmit(e) {
     e.preventDefault();
 
@@ -34,6 +45,8 @@ export default function EventForm({
 
     addNewEvent({...userInputInfo, id: id});
     addNewEventToFirebase({...userInputInfo, id: id});
+
+    histroy.push("/calendar");
   }
 
   function handleUserInputChange(e) {
@@ -117,7 +130,7 @@ export default function EventForm({
         </label>
 
         <input type="submit" value="submit!"></input>
-        <input type="submit" value="delete this event"></input>
+        <input onClick={handleDeleteButtonClick} type="submit" value="delete this event"></input>
       </form>
     </div>
   );

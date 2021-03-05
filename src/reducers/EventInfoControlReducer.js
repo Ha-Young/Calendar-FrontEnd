@@ -1,6 +1,8 @@
 import {
   ADD_NEW_EVENT,
+  UPDATE_USER_EVENT,
   GET_USER_EVENTS,
+  DELETE_USER_EVENT,
 } from "../actions/actionTypes";
 
 const initialState = [];
@@ -12,6 +14,9 @@ export default function EventInfoControlReducer(state = initialState, action) {
 
     case GET_USER_EVENTS:
       return [...state, ...action.fetchedUserEvents];
+
+    case DELETE_USER_EVENT:
+      return state.filter(event => event.id !== action.targetEventId)
 
     default: return state;
   }

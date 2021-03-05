@@ -24,7 +24,7 @@ function App({
     <div className={styles.App}>
 
       <Switch>
-        <Route path="/calender" exact>
+        <Route path="/calendar" exact>
           <Header
             currentDate={currentDate}
             calendarMode={calendarMode}
@@ -43,7 +43,7 @@ function App({
           <EventFormContainer/>
         </Route>
 
-        <Redirect path="/" to="/calender"/>
+        <Redirect path="/" to="/calendar"/>
       </Switch>
     </div>
   );
