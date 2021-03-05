@@ -12,7 +12,6 @@ const SETTING = {
   APP_ID: process.env.REACT_APP_APP_ID,
 }
 
-// TODO: Enter your own config object
 const firebaseConfig = {
   apiKey: SETTING.API_KEY,
   authDomain: SETTING.AUTH_DOMAIN,

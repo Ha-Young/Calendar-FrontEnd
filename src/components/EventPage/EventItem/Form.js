@@ -17,7 +17,7 @@ function Form({
   description = "",
   from = null,
   to = null,
-  id = new Date().toISOString(),
+  id = new Date().getTime()
 }) {
   const [text, setText] = useState({ title, description });
   const fromRef = useRef();

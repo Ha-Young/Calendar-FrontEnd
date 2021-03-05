@@ -1,18 +1,19 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { saveSampleData } from "../api";
+import { getDBData } from "../api";
+import { getDBEvent } from "../actions";
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    something: "Mapping redux state to App component props.",
-  }
+    onInitialLoad: () => {
+      getDBData()
+      .then(result => {
+        if (result) {
+          dispatch(getDBEvent(result));
+        }
+      });
+    },
+  };
 };
 
-const mapDispatchToProps = () => ({
-  // This function is passed to App component.
-  onInitialLoad: () => {
-    saveSampleData();
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

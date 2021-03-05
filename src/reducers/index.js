@@ -9,14 +9,15 @@
 
  */
 
-import { DAY, NEXT_DATE, PREV_DATE, WEEK, SELECT_TIME, SELECT_DATE, ADD_EVENT, EDIT_EVENT, REMOVE_EVENT } from "../constants/actionTypes";
-import { getCurrentWeek, getLastWeek, getNextWeek, getTomorrow, getYesterday } from "../utils/getDate";
+import { DAY, NEXT_DATE, PREV_DATE, WEEK, SELECT_TIME, SELECT_DATE, ADD_EVENT, EDIT_EVENT, REMOVE_EVENT, GET_DB_EVENT } from "../constants/actionTypes";
+import { getCurrentWeek, getISOString, getLastWeek, getNextWeek, getTomorrow, getYesterday } from "../utils/getDate";
 import _ from "lodash";
+import { saveData } from "../api";
 
 const initialState = {
   period: DAY,
-  today: new Date().toLocaleDateString(),
-  currentDay: new Date().toLocaleDateString(),
+  today: getISOString(),
+  currentDay: getISOString(),
   currentWeek: getCurrentWeek(new Date()),
   events: {},
 };
@@ -48,7 +49,7 @@ export default function reducer(state = initialState, action) {
       return copy;
 
     case SELECT_DATE:
-      copy.currentDay = new Date(action.date).toLocaleDateString();
+      copy.currentDay = getISOString(action.date);
       return copy;
     case SELECT_TIME:
       copy.selectedTime = action.time;
@@ -78,6 +79,8 @@ export default function reducer(state = initialState, action) {
         length: to - from,
       };
 
+      saveData(copy.events);
+
       return copy;
     }
     case EDIT_EVENT:{
@@ -85,6 +88,8 @@ export default function reducer(state = initialState, action) {
 
       action.event.length = to - from;
       copy.events[date][id] = action.event;
+
+      saveData(copy.events);
 
       return copy;
     }
@@ -96,8 +101,15 @@ export default function reducer(state = initialState, action) {
 
       delete copy.events[date][id];
 
+      saveData(copy.events);
+
       return copy;
     }
+
+    case GET_DB_EVENT:
+      copy.events = action.data;
+
+      return copy;
 
     default:
       return state;

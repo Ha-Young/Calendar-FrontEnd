@@ -1,5 +1,11 @@
 import { MONTH, WEEK } from "../constants/time";
 
+export function getISOString(date) {
+  const newDate = date ? new Date(date) : new Date();
+
+  return `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate()}`;
+}
+
 export function getCurrentDate(date) {
   const currentDate = new Date(date);
 
@@ -12,7 +18,7 @@ export function getCurrentDay(date) {
   return {
     string: WEEK[currentDate.getDay()],
     number: currentDate.getDate(),
-    id: currentDate.toLocaleDateString(),
+    id: getISOString(currentDate),
   };
 }
 
@@ -34,7 +40,7 @@ export function getYesterday(date) {
 
   today.setDate(today.getDate() - 1);
 
-  return today.toLocaleDateString();
+  return getISOString(today);
 }
 
 export function getTomorrow(date) {
@@ -42,7 +48,7 @@ export function getTomorrow(date) {
 
   today.setDate(today.getDate() + 1);
 
-  return today.toLocaleDateString();
+  return getISOString(today);
 }
 
 export function getLastWeek(date) {
@@ -50,7 +56,7 @@ export function getLastWeek(date) {
 
   today.setDate(today.getDate() - 7);
 
-  return today.toLocaleDateString();
+  return getISOString(today);
 }
 
 export function getNextWeek(date) {
@@ -58,5 +64,5 @@ export function getNextWeek(date) {
 
   today.setDate(today.getDate() + 7);
 
-  return today.toLocaleDateString();
+  return getISOString(today);
 }

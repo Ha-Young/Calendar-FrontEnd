@@ -6,7 +6,7 @@
 
  */
 
-import { ADD_EVENT, DAY, EDIT_EVENT, NEXT_DATE, PREV_DATE, REMOVE_EVENT, SELECT_DATE, SELECT_TIME, WEEK } from "../constants/actionTypes";
+import { ADD_EVENT, DAY, EDIT_EVENT, GET_DB_EVENT, NEXT_DATE, PREV_DATE, REMOVE_EVENT, SELECT_DATE, SELECT_TIME, WEEK } from "../constants/actionTypes";
 
 export const prevDate = () => ({
   type: PREV_DATE,
@@ -53,4 +53,9 @@ export const editEvent = (event) => ({
 export const removeEvent = (event) => ({
   type: REMOVE_EVENT,
   event,
+});
+
+export const getDBEvent = (data) => ({
+  type: GET_DB_EVENT,
+  data,
 });
