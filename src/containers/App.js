@@ -1,16 +1,17 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { saveData } from "../api";
+import { getData } from "../api";
+import { setinitialdata } from '../Redux/action';
 
-const mapStateToProps = (state) => ({
-  something: "Mapping redux state to App component props.",
-});
-
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (dispatch) => ({
 
   onInitialLoad: () => {
-    saveData();
-  },
+    (async function () {
+      const data = await getData();
+
+      dispatch(setinitialdata(data));
+    })();
+  }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

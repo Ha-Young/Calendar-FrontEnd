@@ -16,5 +16,10 @@ export async function saveData(date, title, description, startTime, endTime) {
 }
 
 export async function getData() {
+  const database = firebase.database();
+  let data;
 
+  await database.ref('byDate').once('value').then((result) => data = result.val());
+
+  return data;
 }

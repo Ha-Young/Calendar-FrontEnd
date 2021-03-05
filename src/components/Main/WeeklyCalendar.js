@@ -73,8 +73,6 @@ const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
             const fullDate = makeWeekFullDate(year, month, startDate, time);
             const date = dateWithOutStartTime(fullDate);
 
-            console.log(schedules);
-
             for (const event of schedules) {
               const eventDay = dateWithOutStartTime(event.date);
 
@@ -86,7 +84,7 @@ const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
                 eventDay,
                 date
               );
-              console.log(showSchedule);
+
               if (showSchedule) {
                 if (Number(event.startTime) === time) firstKeyId = fullDate;
 
