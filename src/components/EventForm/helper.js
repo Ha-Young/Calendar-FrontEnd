@@ -19,8 +19,12 @@ export const layout = {
   },
 };
 
-export function makeNewEvent(event) {
+export function makeNewEvent(event, originId) {
   let newEvent = null;
+
+  if (originId) {
+    event.id = originId;
+  }
 
   const date = event.startDate.format(DATE_FORMAT);
   const startDate = event.startDate.format(DATE_FORMAT_WITH_HOUR);
@@ -45,7 +49,6 @@ export function makeNewEvent(event) {
   return {
     newEvent: {
       ...event,
-      id: `${startDate}:${diffHours}`,
       date,
       startDate,
       endDate,

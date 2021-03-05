@@ -18,6 +18,39 @@ export async function writeEvent(userId, event) {
   const database = firebase.database();
 
   const {
+    title,
+    description,
+    date,
+    startDate,
+    endDate,
+    timeLength,
+  } = event;
+
+  const dateRefPath = `${ROOT_DIR}/${userId}/${date}`;
+
+  const generatedKey = (await database.ref(dateRefPath).push()).key;
+  const newEventRef = database.ref(`${dateRefPath}/${generatedKey}`);
+  await newEventRef.set({
+    id: generatedKey,
+    title,
+    description,
+    date,
+    startDate,
+    endDate,
+    timeLength,
+  }, error => {
+    if (error) {
+      throw new Error(error);
+    }
+  });
+
+  return generatedKey;
+}
+
+export async function updateEvent(userId, event) {
+  const database = firebase.database();
+
+  const {
     id,
     title,
     description,
@@ -27,7 +60,8 @@ export async function writeEvent(userId, event) {
     timeLength,
   } = event;
 
-  return await database.ref(`${ROOT_DIR}/${userId}/${date}/${id}`).update({
+  const eventRef = database.ref(`${ROOT_DIR}/${userId}/${date}/${id}`);
+  return await eventRef.update({
     id,
     title,
     description,
@@ -45,6 +79,8 @@ export async function removeEvent(userId, eventId, date) {
 }
 
 export async function readDate(userId, currentDate) {
+  console.log('getReadDate API');
+
   const database = firebase.database();
   const snapshot = await database.ref(`/${ROOT_DIR}/${userId}/${currentDate}`).once('value');
 

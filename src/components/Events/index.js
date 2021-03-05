@@ -13,11 +13,18 @@ function Events({ createEvent, updateEvent, deleteEvent, user, events }) {
     history.push("/calendar");
   }
 
-  function handleEventFormSubmit(newEvent) {
-    createEvent({
-      userId: user.id,
-      event: newEvent,
-    });
+  function handleEventFormSubmit(newEvent, isUpdate) {
+    if (isUpdate) {
+      updateEvent({
+        userId: user.id,
+        event: newEvent,
+      });
+    } else {
+      createEvent({
+        userId: user.id,
+        event: newEvent,
+      });
+    }
 
     goHome();
   }

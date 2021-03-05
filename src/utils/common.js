@@ -14,3 +14,10 @@ export function getRandomHSLColor(saturation, lightness, HoverLightness) {
 
   return { nomal, hover };
 }
+
+export function concatOnNotExistElement(array, newValues) {
+  const concated = array.concat(newValues);
+  const set = new Set(concated);
+
+  return Array.from(set);
+}
