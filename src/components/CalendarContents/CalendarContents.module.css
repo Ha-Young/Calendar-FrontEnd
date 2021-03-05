@@ -1,3 +1,9 @@
+.calendarContentsWrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
 .dayWrapper {
   display: flex;
   flex-direction: column;
@@ -13,7 +19,7 @@
   border-top: 1px solid black;
 }
 
-.fillItem {
+.filledItem {
   width: 100%;
   height: 50px;
   border-top: 1px solid black;

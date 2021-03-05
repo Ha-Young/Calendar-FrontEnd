@@ -1,18 +1,14 @@
-import * as types from "../constants/actionTypes";
 import { DateTime } from 'luxon';
+import * as types from "../constants/actionTypes";
+import { formatDate } from "../utils";
 
-const initialDay = DateTime.now();
-// REVIEW calendar contents 안에 data attribute 로 id랑 요일 index 갖고있으면 event에서 찾아서 detail로 넘겨주면 되니까 selectedEventInfo 굳이 필요 없을수도??
-// TODO selectedDate랑 isDailyView 같이 넘겨주면 calculatedDates를 안에서 계산할 수 있음. satate안늘리고 차라리 그게 나을수도?
 const initialState = {
-  selectedDate: initialDay,
-  calculatedDates: [],
+  selectedDate: DateTime.now(),
   events: [],
   selectedEventInfo: {},
   isDailyView: true,
 };
 
-// TODO newDate는 이제 필요없을듯? 바로 대입해도 될듯
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.SELECT_DAY: {
@@ -57,7 +53,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         isDailyView: !state.isDailyView,
-      }
+      };
     }
 
     case types.SELECT_EVENT: {
@@ -67,29 +63,10 @@ export default function reducer(state = initialState, action) {
           selectedEventId: action.payload.selectedEventId,
           selectedEventDayIndex: action.payload.selectedEventDayIndex,
         },
-      }
+      };
     }
 
     default:
       return state;
   }
-}
-
-function formatDate(date) {
-  return DateTime.fromJSDate(date);
-}
-
-// TODO util 만들어서 빼기.
-export function calculateWeek(date, isDailyView) {
-  if (isDailyView) return [date];
-
-  const weekYear = date.weekYear;
-  const weekNumber = date.weekNumber;
-  const selectedWeek = [];
-
-  for (let i = 1; i <= 7; i++) {
-    selectedWeek.push(DateTime.fromObject({ weekYear: weekYear, weekNumber: weekNumber, weekday: i }));
-  }
-
-  return selectedWeek;
 }

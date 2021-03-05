@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./CalendarHeader.module.css";
-import { calculateWeek } from "../../reducers";
+import { calculateWeek } from "../../utils";
 
-// TODO rename function
-const CalendarDate = (localDate) => {
+const createCalendarHeader = (localDate) => {
   const head = localDate.map((item, index) => {
     return (
       <div key={index} className={styles.calendarItem}>
@@ -24,7 +23,7 @@ export default function CalendarHeader({ selectedDate, isDailyView }) {
       <div className={styles.timeZone}>
         GMT+09
       </div>
-      {CalendarDate(localDate)}
+      {createCalendarHeader(localDate)}
     </div>
   );
 }

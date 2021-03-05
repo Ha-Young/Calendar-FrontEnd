@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { DateTime } from "luxon";
 import styles from "./CalendarContents.module.css";
 
-export default function CalendarContents({ localDates, events, selectEvent }) {
+export default function CalendarContents({ toDisplayDates, events, selectEvent }) {
   const history = useHistory();
 
   // TODO remove e if you don't use
@@ -14,7 +14,7 @@ export default function CalendarContents({ localDates, events, selectEvent }) {
 
 
 // TODO map안쪽 for loop 따로 뺄 수 있을듯? 
-  const days = localDates.map((date, index) => {
+  const days = toDisplayDates.map((date, index) => {
     const event = events[index];
     const items = [];
 
@@ -27,9 +27,9 @@ export default function CalendarContents({ localDates, events, selectEvent }) {
           isEvent = true;
           // REVIEW id가 어떻게 제대로 들어가지?? 이거 느낌이 전부 클로저 박아둔 삘인디,, 그냥 data-attribute 에 넣어두고 e.target으로 잡는것도 괜찮을듯??
           if (DateTime.fromISO(event[eventKey].startDateTime).hour === hour) {
-            items.push(<div key={hour}className={styles.fillItem} onClick={(e) => handleEventClick(e, event[eventKey].uid, index)}>{event[eventKey].title}</div>);
+            items.push(<div key={hour}className={styles.filledItem} onClick={(e) => handleEventClick(e, event[eventKey].uid, index)}>{event[eventKey].title}</div>);
           } else {
-            items.push(<div key={hour} className={styles.fillItem} onClick={(e) => handleEventClick(e, event[eventKey].uid, index)} />);
+            items.push(<div key={hour} className={styles.filledItem} onClick={(e) => handleEventClick(e, event[eventKey].uid, index)} />);
           }
         }
       }
@@ -51,5 +51,9 @@ export default function CalendarContents({ localDates, events, selectEvent }) {
     );
   });
 
-  return days;
+  return (
+    <div className={styles.calendarContentsWrapper}>
+      {days}
+    </div>
+  );
 }

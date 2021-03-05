@@ -3,6 +3,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import styles from "./EventForm.module.css";
 import { setEvent, removeEvent } from "../../api";
 
+//TODO create EventForm container
+
 // TODO onchange에 setState걸어놔서 사용자가 뭐 입력할때마다 리랜더링됨. 디바운스 적용하면 좋을듯?? 아닌가?
 // 디바운스 짧게 안하면 submit하기전에 업데이트 안돼서 누락될수도 잇겟다.
 
@@ -31,6 +33,7 @@ export default function EventForm({ events, selectedEventInfo }) {
     };
 
     // TODO err 핸들링 추가
+    // TODO API 함수는 connect의 mapDispatchToProps에 올려서, helper함수로 묶어서 내려줘야 할수도 있음.
     setEvent(newEvent, date, key).then(() => {
       history.push("/calendar");
     });
