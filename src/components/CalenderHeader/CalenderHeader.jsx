@@ -1,11 +1,11 @@
 import React from "react";
 import { directionConst } from "constants/constants";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles from "./CalenderHeader.module.css";
 import {
   faChevronCircleLeft,
   faChevronCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import styles from "./CalenderHeader.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CalenderHeader = ({ onClick, currentPeriod }) => {
   return (

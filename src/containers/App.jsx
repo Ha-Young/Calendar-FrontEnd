@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+
 import AppRouter from "containers/AppRouter";
 import Footer from "components/Footer/Footer";
 import Loading from "components/Loading/Loading";
+
+import { actionCreators } from "actions/actionCreators";
 import { authService } from "api/firebaseService";
 import { initializeApp } from "api/firebaseAPIs";
-import { actionCreators } from "actions/actionCreators";
 
 const App = ({ onLoggedIn }) => {
   const [ready, setReady] = useState(false);

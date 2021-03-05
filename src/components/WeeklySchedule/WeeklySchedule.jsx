@@ -1,7 +1,7 @@
 import React from "react";
+import EventCardStyled from "components/EventCard/EventCardStyled";
 import { dateConst } from "constants/constants";
 import styles from "./WeeklySchedule.module.css";
-import EventCardStyled from "components/EventCard/EventCardStyled";
 
 const WeeklyScedule = ({ daysOfWeek, weeklyEvent }) => {
   return (

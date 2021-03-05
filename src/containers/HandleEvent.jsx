@@ -1,10 +1,12 @@
-import EventForm from "components/EventForm/EventForm";
-import { inputConst, typeConst } from "constants/constants";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { actionCreators } from "actions/actionCreators";
-import { generateKey, getDateISO } from "utils/utilFunction";
 import { useHistory, useParams } from "react-router-dom";
+
+import EventForm from "components/EventForm/EventForm";
+
+import { actionCreators } from "actions/actionCreators";
+import { inputConst, typeConst } from "constants/constants";
+import { generateKey, getDateISO } from "utils/utilFunction";
 
 const HandleEvent = ({ type, weeklyEvent, addEvent, editEvent }) => {
   const [title, setTitle] = useState("");
