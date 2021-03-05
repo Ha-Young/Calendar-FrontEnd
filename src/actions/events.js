@@ -6,3 +6,17 @@ export const createEvent = event => {
     payload: event,
   };
 };
+
+export const updateEvent = event => {
+  return {
+    type: types.UPDATE_EVENTS,
+    payload: event,
+  };
+};
+
+export const deleteEvent = eventId => {
+  return {
+    type: types.DELETE_EVENTS,
+    payload: eventId,
+  };
+};

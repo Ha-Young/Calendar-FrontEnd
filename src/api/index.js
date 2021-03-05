@@ -1,5 +1,5 @@
 // TODO: Go to `./firebase.js` and update your firebase config.
-import { getDateListBasedOnRange, getWeekDateListBasedOnDate } from "../utils/date";
+import { getDateListBasedOnRange } from "../utils/date";
 import firebase from "./firebase";
 
 const ROOT_DIR = 'schedule';
@@ -27,7 +27,7 @@ export async function writeEvent(userId, event) {
     timeLength,
   } = event;
 
-  return await database.ref(`${ROOT_DIR}/${userId}/${date}/${id}`).set({
+  return await database.ref(`${ROOT_DIR}/${userId}/${date}/${id}`).update({
     id,
     title,
     description,
@@ -36,6 +36,12 @@ export async function writeEvent(userId, event) {
     endDate,
     timeLength,
   });
+}
+
+export async function removeEvent(userId, eventId, date) {
+  const database = firebase.database();
+
+  return await database.ref(`${ROOT_DIR}/${userId}/${date}/${eventId}`).remove();
 }
 
 export async function readDate(userId, currentDate) {
