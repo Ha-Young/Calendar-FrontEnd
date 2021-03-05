@@ -4,44 +4,7 @@ import { combineReducers } from "redux";
 import { CREATED_EVNETS, DELETED_EVENTS, RECEIVE_DATE, RECEIVE_DATE_LIST, UPDATED_EVENTS } from "../constants/actionTypes";
 import { concatOnNotExistElement } from "../utils/common";
 
-const initialStatus_byId = {
-  // "2021-03-03_12:2": {
-  //   id: "2021-03-03_12:2",
-  //   title: "밥먹기",
-  //   description: "밥먹기",
-  //   date: "2021-03-03",
-  //   startDate: "2021-03-03_12",
-  //   endDate: "2021-03-03_14",
-  //   timeLength: 2,
-  // },
-  // "2021-03-01_12:2": {
-  //   id: "2021-03-01_12:2",
-  //   title: "밥먹기",
-  //   description: "밥먹기",
-  //   date: "2021-03-01",
-  //   startDate: "2021-03-01_12",
-  //   endDate: "2021-03-01_14",
-  //   timeLength: 2,
-  // },
-  // "2021-03-04_13:4": {
-  //   id: "2021-03-04_13:4",
-  //   title: "밥먹기2",
-  //   description: "밥먹기2",
-  //   date: "2021-03-04",
-  //   startDate: "2021-03-04_13",
-  //   endDate: "2020-03-04_17",
-  //   timeLength: 4,
-  // },
-  // "2021-03-04_18:3": {
-  //   id: "2021-03-04_18:3",
-  //   title: "집에가기",
-  //   description: "집에가기",
-  //   date: "2021-03-04",
-  //   startDate: "2021-03-04_18",
-  //   endDate: "2020-03-04_21",
-  //   timeLength: 3,
-  // },
-};
+const initialStatus_byId = {};
 
 function byId(state = initialStatus_byId, action) {
   switch(action.type) {
@@ -111,9 +74,7 @@ function byId(state = initialStatus_byId, action) {
   }
 }
 
-const initialStatus_allIds = [
-  // "2021-03-01_12:2", "2021-03-03_12:2", "2020-03-04_13:4", "2021-03-04_18:3"
-];
+const initialStatus_allIds = [];
 
 function allIds(state = initialStatus_allIds, action) {
   switch(action.type) {
