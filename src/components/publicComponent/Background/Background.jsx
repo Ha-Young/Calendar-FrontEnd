@@ -1,9 +1,9 @@
 import React from 'react';
-import './Background.scss';
+import styles from './Background.module.scss';
 
 const Background = ({ id, children }) => {
   return (
-    <div className="background" id={id}>
+    <div className={styles.background} id={id}>
       {children}
     </div>
   );

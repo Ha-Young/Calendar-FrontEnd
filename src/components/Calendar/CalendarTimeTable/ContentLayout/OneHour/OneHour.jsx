@@ -1,26 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styles from './OneHour.module.scss';
 
 import Content from '../../../../publicComponent/Content/Content';
 
-const OneHourContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 30px;
-  border-right: solid 1px black;
-  text-align: center;
-
-  a {
-    width: 99%;
-    text-decoration: none;
-    color: inherit;
-  }
-`;
-
 const OneHour = ({ oneData, isEdge, isWeek, callback }) => {
-  console.log('ONEHOUR : ', oneData);
   let color;
   let content;
   let onClickEvent = null;
@@ -34,18 +18,18 @@ const OneHour = ({ oneData, isEdge, isWeek, callback }) => {
 
   const contentJSX = (
     <Content 
-        className={"context"} 
-        textContent={content} 
-        color={color}
-        borderFlg={isEdge}
-        onClickEvent={onClickEvent}
-      />
+      className={"context"} 
+      textContent={content} 
+      color={color}
+      borderFlg={isEdge}
+      onClickEvent={onClickEvent}
+    />
   );
 
   return (
-    <OneHourContainer>
+    <div className={styles.oneHourContainer}>
       {onClickEvent ? <Link to={`/event/${key}`}>{contentJSX}</Link> : contentJSX}
-    </OneHourContainer>
+    </div>
   );
 };
 

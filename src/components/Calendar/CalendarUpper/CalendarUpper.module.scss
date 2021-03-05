@@ -1,0 +1,16 @@
+.calendarUpper {
+  display: flex;
+  height: 30%;
+  margin-top: 7px;
+  margin-right: 17px;
+
+  &Month {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    width: 25%;
+    height: 4.5rem;
+    margin-top: 0.5%;
+  }
+}

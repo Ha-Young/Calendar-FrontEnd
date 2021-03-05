@@ -1,0 +1,18 @@
+.calendarUpperDays {
+  display: flex;
+  justify-content: space-around;
+  width: 75%;
+  height: 100%;
+  
+  .dayInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    .date {
+      font-size: 20px;
+    }
+  }
+}
+

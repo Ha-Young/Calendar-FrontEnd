@@ -1,18 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './CalendarUpperDays.module.scss';
 
 import RoundShape from '../../../publicComponent/RoundShape/RoundShape';
-
-const OneDay = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .date {
-    font-size: 20px;
-  }
-`;
 
 const CalendarUpperDays = ({ dateArr }) => {
   function getDayArray() {
@@ -20,10 +9,10 @@ const CalendarUpperDays = ({ dateArr }) => {
     
     dateArr.forEach((el, index) => {
       dayArray.push(
-        <OneDay key={index}>
+        <div key={index} className={styles.dayInfoContainer}>
           <RoundShape textContext={el.day}></RoundShape>
-          <div className="date">{el.date}</div>
-        </OneDay>
+          <div className={styles.date}>{el.date}</div>
+        </div>
       )
     })
 
@@ -31,7 +20,7 @@ const CalendarUpperDays = ({ dateArr }) => {
   }
 
   return (
-    <div className="calendar__upper__days">
+    <div className={styles.calendarUpperDays}>
       {getDayArray()}
     </div>
   );

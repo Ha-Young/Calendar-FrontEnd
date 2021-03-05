@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-// TODO: We are using CSS Modules here.
-// Do your own research about CSS Modules.
-// For example, what is it? what are benefits?
-import styles from "./App.module.css";
+import styles from "./App.module.scss";
 import moment from 'moment';
 import { DAILY_MODE, YYYYMD } from "../../constants/dateFormats";
 import { LEFT, RIGHT } from "../../constants/constants";

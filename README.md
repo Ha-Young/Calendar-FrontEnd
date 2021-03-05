@@ -120,3 +120,17 @@ Firebase를 이용하여 호스팅 또한 쉽게 할 수 있습니다. [Firebase
 [connect가 가장 잘 설명되어 있음](https://react.vlpt.us/redux/09-connect.html)
 
 [https://medium.com/@ca3rot/%EC%95%84%EB%A7%88-%EC%9D%B4%EA%B2%8C-%EC%A0%9C%EC%9D%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EC%89%AC%EC%9A%B8%EA%B1%B8%EC%9A%94-react-redux-%ED%94%8C%EB%A1%9C%EC%9A%B0%EC%9D%98-%EC%9D%B4%ED%95%B4-1585e911a0a6]
+
+# CSS module 사용 후기
+
+## 장점
+
+- 항상 className이 고민이고 하나씩 지어줄 때마다 DOM 전역의 namespace가 줄어들었지만 moudle을 통해 그런 걱정이 사라졌다.
+
+- scss와도 잘 호환된다.
+
+- styled component와 비교해서 style에 대한 '관심사의 분리'가 확실해서 component 자체의 코드가 깔끔해진다.
+
+## 단점
+
+- styled component 처럼 변수를 css에 적용해주지 못한다.

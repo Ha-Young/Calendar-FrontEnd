@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Container.module.scss';
 
-const Container = ({ className, children, onClickEvent }) => {
+const Container = ({ className, children, onClickEvent, id }) => {
   return (
-    <div className={`${styles.container} ${className}`} onClick={onClickEvent}>
+    <div className={`${className} ${styles.container}`} onClick={onClickEvent} id={id}>
       {children}
     </div>
   )

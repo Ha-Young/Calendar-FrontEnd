@@ -1,13 +1,13 @@
 import React from 'react';
 import Icon from '../../publicComponent/Icon/Icon';
-import './ToggleIcon.scss'
+import styles from './ToggleIcon.module.scss';
 
 const ToggleIcon = ({ iconClassName, textContent, fontSize }) => {
   return (
-    <div className="toggleIcon">
+    <div className={styles.toggleIcon}>
       <Icon className={iconClassName} fontSize={fontSize}>
       </Icon>
-      <span className="toggleIcon__text">{textContent}</span>
+      <span className={styles.toggleIcon__text}>{textContent}</span>
     </div>
   );
 }

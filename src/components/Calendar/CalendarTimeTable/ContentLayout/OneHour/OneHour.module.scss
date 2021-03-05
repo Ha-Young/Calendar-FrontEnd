@@ -1,0 +1,14 @@
+.oneHourContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+  border-right: solid 1px black;
+  text-align: center;
+  
+  a {
+    width: 99%;
+    text-decoration: none;
+    color: inherit;
+  } 
+}
