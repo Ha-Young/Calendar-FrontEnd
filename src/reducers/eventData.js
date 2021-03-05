@@ -62,7 +62,6 @@ export const allIds = (state = [], actions) => {
       const copiedState = new Set(concatedState);
 
       return [...copiedState];
-      // return Object.keys(events);
     }
     case types.SET_EVENT_DATA_SUCCESS: {
       const { 

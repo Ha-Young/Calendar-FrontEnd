@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./CalendarPage.module.css";
 import { addDays, subDays } from "date-fns";
 import { setCalendarDate } from "../../utils/date";
-import { currentDay } from "../../utils/date";
 
 const CalendarHeader = ({ 
   sideBar, 

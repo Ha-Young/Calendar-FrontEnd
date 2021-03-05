@@ -4,7 +4,7 @@ import Form from "../../components/Form/Form";
 import { currentDay, today } from "../../utils/date";
 
 const NewEventPage = ({ onSubmit }) => {
-  const initialFormState = { // 상수로 빼줄지 말지..
+  const initialFormState = {
     id: "",
     title: "",
     description: "",

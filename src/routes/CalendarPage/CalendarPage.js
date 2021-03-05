@@ -13,7 +13,6 @@ const CalendarPage = ({
   isDailyCalendar,
   onLoadMore,
 }) => {
-
   const checkNeedLoad = (dates) => {
     for (const date of dates) {
       if (getEventByCurrentDate(date).length === 0) {
@@ -41,19 +40,6 @@ const CalendarPage = ({
       </div>
     </div>
   );
-
-  // return (
-  //   <div className={styles[`page-wrapper`]}>
-  //     <Calendar 
-  //       handleSchedule={getEventByCurrentDate}
-  //       checkNeedLoad={checkNeedLoad}
-  //       dateList={dateList} 
-  //       handleCalendarType={handleCalendarType} 
-  //       selectedDate={selectedDate} 
-  //       calendarType={isDailyCalendar} 
-  //     />
-  //   </div>
-  // );
 };
 
 export default CalendarPage;
