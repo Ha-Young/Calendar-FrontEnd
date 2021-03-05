@@ -3,14 +3,11 @@ import { Link } from "react-router-dom";
 import styles from "./EventBox.module.css";
 
 function EventBox(props) {
-  console.log(props)
   return (
     <Link
       to={{
         pathname: `/events/:${props.id}`,
-        state: {
-          ...props
-        },
+        state: {...props},
       }}
       className={styles.link}>
       <div

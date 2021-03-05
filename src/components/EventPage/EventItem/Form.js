@@ -15,7 +15,6 @@ function Form({
   from = null,
   to = null,
 }) {
-  console.log(formId)
   const [text, setText] = useState({ title, description });
   const fromRef = useRef();
   const toRef = useRef();
