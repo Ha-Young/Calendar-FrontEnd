@@ -1,42 +1,23 @@
 import React, { useState } from "react";
 import styles from "./EventForm.module.css";
-import firebase from "../../api/firebase";
 
 export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo, eventIdRoute }) {
-  let initialEventData = {};
+  const currentDate = new Date().toISOString();
 
-  if (isCreateMode) {
-    initialEventData = {
-      "event-title": "",
-      "event-description": "",
-      "event-start-year": new Date().getFullYear(),
-      "event-start-month": new Date().getMonth() + 1,
-      "event-start-date": new Date().getDate(),
-      "event-start-hour": new Date().getHours(),
-      "event-end-year": new Date().getFullYear(),
-      "event-end-month": new Date().getMonth() + 1,
-      "event-end-date": new Date().getDate(),
-      "event-end-hour": new Date().getHours() + 1,
-    }
-  } else {
-    const eventDateId = "id-".concat(eventIdRoute.substring(3, 11));
-    const eventHourId = "id-".concat(eventIdRoute.substring(12));
+  const initialEventData = {
+    "title": "",
+    "description": "",
+    "start-year": parseInt(currentDate.slice(0, 4), 10),
+    "start-month": parseInt(currentDate.slice(5, 7), 10),
+    "start-date": parseInt(currentDate.slice(8, 10), 10),
+    "start-hour": parseInt(currentDate.slice(11, 13), 10),
+    "end-year": parseInt(currentDate.slice(0, 4), 10),
+    "end-month": parseInt(currentDate.slice(5, 7), 10),
+    "end-date": parseInt(currentDate.slice(8, 10), 10),
+    "end-hour": parseInt(currentDate.slice(11, 13), 10) + 1
+  };
 
-    initialEventData = {
-      "event-title": eventInfo[eventDateId][eventHourId]["eventTitle"],
-      "event-description": eventInfo[eventDateId][eventHourId]["eventDescription"],
-      "event-start-year": eventInfo[eventDateId][eventHourId]["eventStartYear"],
-      "event-start-month": eventInfo[eventDateId][eventHourId]["eventStartMonth"],
-      "event-start-date": eventInfo[eventDateId][eventHourId]["eventStartDate"],
-      "event-start-hour": eventInfo[eventDateId][eventHourId]["eventStartHour"],
-      "event-end-year": eventInfo[eventDateId][eventHourId]["eventEndYear"],
-      "event-end-month": eventInfo[eventDateId][eventHourId]["eventEndMonth"],
-      "event-end-date": eventInfo[eventDateId][eventHourId]["eventEndDate"],
-      "event-end-hour": eventInfo[eventDateId][eventHourId]["eventEndHour"],
-    }
-  }
-
-  const [eventData, setEventIfo] = useState(initialEventData);
+  const [eventData, setEventData] = useState(initialEventData);
 
   const handleChange = (ev) => {
     const { name } = ev.target;
@@ -46,7 +27,7 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
       value = parseInt(value, 10);
     }
 
-    setEventIfo({...eventData, [name]: value});
+    setEventData({...eventData, [name]: value});
   }
 
   const handleSubmit = (ev) => {
@@ -62,8 +43,8 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
           일정 제목
           <input
             type="text"
-            name="event-title"
-            value={eventData["event-title"]}
+            name="title"
+            value={eventData["title"]}
             placeholder="일정 제목을 입력하세요."
             autoComplete="off"
             onChange={handleChange}
@@ -73,8 +54,8 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
           일정 내용
           <input
             type="text"
-            name="event-description"
-            value={eventData["event-description"]}
+            name="description"
+            value={eventData["description"]}
             placeholder="일정 내용을 입력하세요."
             autoComplete="off"
             onChange={handleChange}
@@ -85,15 +66,15 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
           <div className={styles.timeInputContainer}>
             <input
               type="number"
-              name="event-start-year"
-              value={eventData["event-start-year"]}
+              name="start-year"
+              value={eventData["start-year"]}
               onChange={handleChange}
             />
               년
             <input
               type="number"
-              name="event-start-month"
-              value={eventData["event-start-month"]}
+              name="start-month"
+              value={eventData["start-month"]}
               max="12"
               min="1"
               onChange={handleChange}
@@ -101,8 +82,8 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
               월
             <input
               type="number"
-              name="event-start-date"
-              value={eventData["event-start-date"]}
+              name="start-date"
+              value={eventData["start-date"]}
               max="31"
               min="1"
               onChange={handleChange}
@@ -110,8 +91,8 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
               일
             <input
               type="number"
-              name="event-start-hour"
-              value={eventData["event-start-hour"]}
+              name="start-hour"
+              value={eventData["start-hour"]}
               max="23"
               min="1"
               onChange={handleChange}
@@ -124,15 +105,15 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
           <div className={styles.timeInputContainer}>
             <input
               type="number"
-              name="event-end-year"
-              value={eventData["event-end-year"]}
+              name="end-year"
+              value={eventData["end-year"]}
               onChange={handleChange}
             />
               년
             <input
               type="number"
-              name="event-end-month"
-              value={eventData["event-end-month"]}
+              name="end-month"
+              value={eventData["end-month"]}
               max="12"
               min="1"
               onChange={handleChange}
@@ -140,8 +121,8 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
               월
             <input
               type="number"
-              name="event-end-date"
-              value={eventData["event-end-date"]}
+              name="end-date"
+              value={eventData["end-date"]}
               max="31"
               min="1"
               onChange={handleChange}
@@ -149,8 +130,8 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
               일
             <input
               type="number"
-              name="event-end-hour"
-              value={eventData["event-end-hour"]}
+              name="end-hour"
+              value={eventData["end-hour"]}
               max="23"
               min="0"
               onChange={handleChange}

@@ -2,11 +2,16 @@ import React from "react";
 import styles from "./DayTable.module.css";
 import { Link } from "react-router-dom";
 
-export default function DayTable ({ year, month, date, eventInfo, onEventIdClick }) {
+export default function DayTable ({
+  year,
+  month,
+  date,
+  eventInfo,
+  onEventIdClick
+}) {
   const CELL_NUMBER = 24;
   const timeCells = [];
-  const eventDateId = `id-${year}-${month}-${date}`;
-  const todayEvent = eventInfo[eventDateId];
+  const todayEvent = eventInfo[`id-${year}-${month}-${date}`];
   const todayEvents = new Array(CELL_NUMBER).fill("");
 
   const handleEventIdClick = (ev) => {
@@ -24,12 +29,13 @@ export default function DayTable ({ year, month, date, eventInfo, onEventIdClick
   }
 
   for (const event in todayEvent) {
-    const {eventId, eventStartHour, eventEndHour, eventTitle, eventDescription } = todayEvent[event];
-    const duration = eventEndHour - eventStartHour;
-    const content = `${eventTitle} - ${eventDescription}`;
+    const eventInfo = todayEvent[event];
+    const duration = eventInfo["end-hour"] - eventInfo["start-hour"];
+    const content = `${eventInfo["title"]} - ${eventInfo["description"]}`;
+    const eventId = `${eventInfo["start-year"]}-${eventInfo["start-month"]}-${eventInfo["start-date"]}-${eventInfo["start-hour"]}`;
 
     for (let i = 0; i < duration; i++) {
-      todayEvents[eventStartHour + i] = {
+      todayEvents[eventInfo["start-hour"] + i] = {
         content,
         eventId
       }
@@ -56,10 +62,8 @@ export default function DayTable ({ year, month, date, eventInfo, onEventIdClick
   });
 
   return (
-    // <Link to='/event' className={styles.link}>
-      <div className={styles.DayTable}>
-        {timeTable}
-      </div>
-    // </Link>
+    <div className={styles.DayTable}>
+      {timeTable}
+    </div>
   );
 }

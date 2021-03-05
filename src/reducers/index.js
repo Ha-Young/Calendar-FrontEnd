@@ -13,36 +13,19 @@ import { combineReducers } from "redux";
 const eventInfo = (state = {}, action) => {
   switch (action.type) {
     case "SUBMIT_EVENTINFO":
-      const eventTitle = action.eventInfo["event-title"];
-      const eventDescription = action.eventInfo["event-description"];
-      const eventStartYear = action.eventInfo["event-start-year"];
-      const eventStartMonth = action.eventInfo["event-start-month"];
-      const eventStartDate = action.eventInfo["event-start-date"];
-      const eventStartHour = action.eventInfo["event-start-hour"];
-      const eventEndYear = action.eventInfo["event-end-year"];
-      const eventEndMonth = action.eventInfo["event-end-month"];
-      const eventEndDate = action.eventInfo["event-end-date"];
-      const eventEndHour = action.eventInfo["event-end-hour"];
-      const eventDateId = `id-${eventStartYear}-${eventStartMonth}-${eventStartDate}`;
-      const eventHourId = `id-${eventStartHour}`;
-      const eventId = `id-${eventStartYear}-${eventStartMonth}-${eventStartDate}-${eventStartHour}`;
+      const eventInfo = action.eventInfo;
+      const startYear = eventInfo["start-year"];
+      const startMonth = eventInfo["start-month"];
+      const startDate = eventInfo["start-date"];
+      const startHour = eventInfo["start-hour"];
+      const dateId = `id-${startYear}-${startMonth}-${startDate}`;
+      const hourId = `id-${startHour}`;
 
-      state[eventDateId] = {
-        ...state[eventDateId],
-        [eventHourId]: {
-          eventId,
-          eventTitle,
-          eventDescription,
-          eventStartYear,
-          eventStartMonth,
-          eventStartDate,
-          eventStartHour,
-          eventEndYear,
-          eventEndMonth,
-          eventEndDate,
-          eventEndHour
-        }
+      state[dateId] = {
+        ...state[dateId],
+        [hourId]: eventInfo
       };
+      console.log(state);
       return state;
     default:
       return state;
