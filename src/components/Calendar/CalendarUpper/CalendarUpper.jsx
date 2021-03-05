@@ -4,7 +4,6 @@ import styles from './CalendarUpper.module.scss';
 import CalendarUpperDays from './CalendarUpperDays/CalendarUpperDays';
 
 const CalendarUpper = ({ dateArr }) => {
-  console.log(dateArr);
   const year = dateArr.length ? dateArr[0].year : '';
   const month = dateArr.length ? dateArr[0].monthAlphaBet : '';
   return (

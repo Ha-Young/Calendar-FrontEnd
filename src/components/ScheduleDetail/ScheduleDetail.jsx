@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import Container from '../publicComponent/Container/Container';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './ScheduleDetail.module.scss';
 import styled from 'styled-components';
 import { dateAssemble, plusFrontZero } from '../../utils/dateUtil';
-import ButtonComponent from '../publicComponent/ButtonComponent/ButtonComponent';
 import { deleteSchedule } from '../../api';
-import { Link, Redirect } from 'react-router-dom';
+
+import Container from '../publicComponent/Container/Container';
+import ButtonComponent from '../publicComponent/ButtonComponent/ButtonComponent';
 
 const ColorBlock = styled.div`
   width: 40px;
@@ -14,31 +15,15 @@ const ColorBlock = styled.div`
   background-color: ${({ color }) => color};
 `;
 
-const testData = {
-  color: '#cad624',
-  content: 'test data dgouaundfgo inseropgijseo irgnosp;eirg nop;seirngopiusenrgio;uesnrgpiuo esrngiunsepo rgjoeirw gj[oeirmgpoiuhj',
-  day: 5,
-  endHour: 9,
-  key: "123123",
-  month: 3,
-  startHour: 7,
-  year: 2021
-};
-
 const ScheduleDetail = ({ targetScheduleData, setTargetScheduleData }) => {
-  const [isUpdate, setIsUpdate] = useState(false);
-
-  const data = targetScheduleData ? JSON.parse(JSON.stringify(targetScheduleData)) : testData;
+  const data = targetScheduleData;
   const date = dateAssemble(data.year, data.month, data.day);
+  const startHour = ((data.startHour / 10) < 1 ? plusFrontZero(data.startHour) : data.startHour) + ':00';
+  const endHour = ((data.endHour / 10) < 1 ? plusFrontZero(data.endHour) : data.endHour) + ':00';
   
   useEffect(() => {
-    console.log('isUpdate : ',isUpdate);
-    return (isUpdate ? null : () => setTargetScheduleData(null));
-  }, [isUpdate]);
-
-  function handleUpdateButtonClick() {
-    setIsUpdate(true);
-  }
+    return () => setTargetScheduleData(null);
+  }, []);
 
   function handleDeleteButtonClick() {
     deleteSchedule(data);
@@ -52,7 +37,7 @@ const ScheduleDetail = ({ targetScheduleData, setTargetScheduleData }) => {
           <ColorBlock color={data.color} className={styles.colorBlock}></ColorBlock>
           <div className={styles.dateSection}>
             <div className={styles.dateTimeWrapper}>{date}</div>
-            <div className={styles.dateTimeWrapper}>{plusFrontZero(data.startHour) + ':00'} ~ {plusFrontZero(data.endHour) + ':00'}</div>
+            <div className={styles.dateTimeWrapper}>{startHour} ~ {endHour}</div>
           </div>
         </div>
         <div className={styles.contentSection}>
@@ -60,7 +45,7 @@ const ScheduleDetail = ({ targetScheduleData, setTargetScheduleData }) => {
         </div>
         <div className={styles.buttonsSection}>
           <Link to={{pathname: "/event/new", state: data}}>
-            <ButtonComponent textContent={'Update'} onClickEvent={handleUpdateButtonClick} className={styles.button}></ButtonComponent>
+            <ButtonComponent textContent={'Update'} className={styles.button}></ButtonComponent>
           </Link>
           <Link to="/">
             <ButtonComponent textContent={'Delete'} onClickEvent={handleDeleteButtonClick} className={styles.button}></ButtonComponent>
