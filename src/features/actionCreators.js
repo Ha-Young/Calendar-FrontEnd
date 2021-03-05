@@ -9,6 +9,7 @@ export const setEventFormFor = {
   fromHour: (hour) => ({type: eventForm.SET_FROM_HOUR, payload: hour}),
   toHour: (hour) => ({type: eventForm.SET_TO_HOUR, payload: hour}),
   fromToHour: (hour) => ({type: eventForm.SET_FROM_TO_HOUR, payload: hour}),
+  correct: (form) => ({type: eventForm.CORRECT_EVENT, payload: form}),
 };
 
 export const setUserEventFor = {

@@ -8,6 +8,7 @@
    SET_TITLE: "SET_TITLE",
    SET_CONTENT: "SET_CONTENT",
    SET_EVENT: "SET_EVENT",
+   CORRECT_EVENT: "CORRECT_EVENT",
  };
 
  export const userEvent = {SET_EVENT: "SET_EVENT"};

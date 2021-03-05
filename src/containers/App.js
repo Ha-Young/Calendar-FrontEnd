@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
       setToHour: (hour) => dispatch(setEventFormFor.toHour(hour)),
       setTitle: (title) => dispatch(setEventFormFor.title(title)),
       setContent: (content) => dispatch(setEventFormFor.content(content)),
+      correct: (form) => dispatch(setEventFormFor.correct(form)),
     },
     actToUserEvent: {
       setEvent: (event) => dispatch(setUserEventFor.register(event)),

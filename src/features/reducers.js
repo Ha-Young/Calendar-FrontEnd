@@ -81,6 +81,12 @@ export default function reducer(state = initiateState, action) {
       const to = fromHour > payload ? fromHour : payload;
       return setEventForm(state, TO_HOUR, to);
 
+    case eventForm.CORRECT_EVENT:
+      return {
+        ...state,
+        eventForm: {...payload},
+      };
+
     case userEvent.SET_EVENT:
       return setUserEvent(state, payload);
 

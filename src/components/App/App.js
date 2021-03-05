@@ -33,7 +33,10 @@ function App(props) {
             userEventAll={props.copyUserEvent}/>
         </Route>
         <Route path="/events/:eventId">
-          <EventDetails inputData={props.eventFormInfo} />
+          <EventDetails
+            inputData={props.eventFormInfo}
+            setEventForm={props.actToEventForm.correct}
+          />
         </Route>
       </Switch>
     </div>

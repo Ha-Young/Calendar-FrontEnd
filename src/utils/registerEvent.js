@@ -19,6 +19,7 @@ const registerEvent = (dateInfo, eventInfo, setEvent) => {
     content: content,
     timeStamp: timeStatmp,
   });
+
 }
 
 export default registerEvent;
