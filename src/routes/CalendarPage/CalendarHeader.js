@@ -2,22 +2,35 @@ import React from "react";
 import styles from "./CalendarPage.module.css";
 import { addDays, subDays } from "date-fns";
 import { setCalendarDate } from "../../utils/date";
+import { currentDay } from "../../utils/date";
 
 const CalendarHeader = ({ 
   sideBar, 
   onClick, 
   selectedDate, 
-  calendarType, 
+  isDailyCalendar, 
+  checkNeedLoad,
 }) => {
+  const checkNeedLoadByCalendarType = (date) => {
+    if (isDailyCalendar) {
+      checkNeedLoad(date.daily);
+    } else {
+      checkNeedLoad(date.weekly);
+    }
+  };
+  
   const handlePrevButton = () => {
-    const newCalendarDate = setCalendarDate(subDays, calendarType, selectedDate);
+    const newCalendarDate = setCalendarDate(subDays, isDailyCalendar, selectedDate);
+    checkNeedLoadByCalendarType(newCalendarDate);
+
     onClick({
       ...newCalendarDate,
     });
   };
 
   const handleNextButton = () => {
-    const newCalendarDate = setCalendarDate(addDays, calendarType, selectedDate);
+    const newCalendarDate = setCalendarDate(addDays, isDailyCalendar, selectedDate);
+    checkNeedLoadByCalendarType(newCalendarDate);
 
     onClick({
       ...newCalendarDate,
@@ -36,7 +49,6 @@ const CalendarHeader = ({
         <button value="next" onClick={handleNextButton}>next</button>
       </div>
     </>
-
   );
 };
 
