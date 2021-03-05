@@ -14,13 +14,10 @@ const reducer = (state = {}, action) => {
     case "ADD_EVENT":
       const { eventInfo } = action;
       const { date } = eventInfo;
-      if (state.hasOwnProperty(eventInfo.date)) {
-        return {...state,
-          date,
-          [date]: [...state[date], eventInfo]
-        };
+      if (state.hasOwnProperty(date)) {
+        return {...state, date, [date]: [...state[date], eventInfo]};
       }
-      return {...state, date: date, [date]: [eventInfo]};
+      return {...state, date, [date]: [eventInfo]};
     default:
       return state;
   }
