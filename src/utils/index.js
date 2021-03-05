@@ -1,4 +1,4 @@
-import { DateTime } from 'luxon';
+import { DateTime } from "luxon";
 
 export function formatDate(date) {
   return DateTime.fromJSDate(date);

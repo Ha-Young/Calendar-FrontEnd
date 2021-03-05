@@ -7,7 +7,7 @@ export async function setEvent(data, date, key) {
   if (key) {
     event["uid"] = key;
   } else {
-    const newEventKey = firebase.database().ref().child('test/' + date).push().key;
+    const newEventKey = firebase.database().ref().child("test/" + date).push().key;
     event["uid"] = newEventKey;
   }
 

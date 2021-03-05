@@ -1,8 +1,7 @@
 .sidebarWrapper {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  border: 1px solid black;
+  width: 20%;
   overflow-y: hidden;
   margin: 20px 20px 20px 5px;
 }

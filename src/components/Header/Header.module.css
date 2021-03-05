@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
-  border: 1px solid black;
-  margin: 5px;
+  border-bottom: 1px solid lightgray;
   align-items: center;
   height: 50px;
 }
