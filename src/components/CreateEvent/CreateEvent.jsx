@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styles from "./CreateEvent.module.css";
-import { saveData } from "../../api";
+// import { saveData } from "../../api";
 import { DateTime } from "luxon";
 
 // TODO onchange에 setState걸어놔서 사용자가 뭐 입력할때마다 리랜더링됨. 디바운스 적용하면 좋을듯?? 아닌가?
@@ -29,9 +29,9 @@ export default function CreateEvent() {
 
     // TODO err 핸들링 추가
     // TODO API 함수는 connect의 mapDispatchToProps에 올려서, helper함수로 묶어서 내려줘야 할수도 있음.
-    saveData(newEvent, date).then(() => {
-      history.push("/calendar");
-    });
+    // saveData(newEvent, date).then(() => {
+    //   history.push("/calendar");
+    // });
   }
 
   return (

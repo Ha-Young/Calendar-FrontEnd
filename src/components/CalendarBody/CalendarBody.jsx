@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import CalendarContents from "../CalendarContents/CalendarContents";
 import styles from "./CalendarBody.module.css";
-import { readWeeklyData } from "../../api";
+import { getEvents } from "../../api";
 import { calculateWeek } from "../../reducers";
 
 // TODO component로 빼기
@@ -27,7 +27,7 @@ export default function CalendarBody({ selectedDate, calculatedDates, events, is
 
   useEffect(() => {
     const readData = async () => {
-      const events = await readWeeklyData(localDates.map(date => date.toFormat("yyyy-LL-dd")));
+      const events = await getEvents(localDates.map(date => date.toFormat("yyyy-LL-dd")));
       loadEvents(events);
     }
 

@@ -1,19 +1,9 @@
 import firebase from "./firebase";
 
-export async function saveData(data, date) {
-  const newEvent = { ...data };
-  const database = firebase.database();
-  const newEventKey = firebase.database().ref().child('test/' + date).push().key;
-
-  newEvent["uid"] = newEventKey;
-
-  return database.ref('test/' + date + "/" + newEventKey).set(newEvent);
-}
-
-export async function updateEvent(data, date, key) {
+export async function setEvent(data, date, key) {
   const event = { ...data };
   const database = firebase.database();
-  // TODO 그냥 data에 key 넣어서 주면 이렇게 안하고 key도 따로 인자로 안받아도 될듯?
+
   if (key) {
     event["uid"] = key;
   } else {
@@ -24,7 +14,7 @@ export async function updateEvent(data, date, key) {
   return database.ref("test/" + date + "/" + event["uid"]).set(event);
 }
 
-export async function readWeeklyData(dateList) {
+export async function getEvents(dateList) {
   const database = firebase.database();
 
   const promises = dateList.map(date => {
@@ -33,4 +23,10 @@ export async function readWeeklyData(dateList) {
 
   const response = Promise.all(promises).then(response => response);
   return response;
+}
+
+export async function removeEvent(date, key) {
+  const database = firebase.database();
+
+  return database.ref("test/" + date + "/" + key).remove();
 }

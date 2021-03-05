@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styles from "./EventDetail.module.css";
-import { updateEvent } from "../../api";
+import { setEvent, removeEvent } from "../../api";
 
 // TODO onchange에 setState걸어놔서 사용자가 뭐 입력할때마다 리랜더링됨. 디바운스 적용하면 좋을듯?? 아닌가?
 // 디바운스 짧게 안하면 submit하기전에 업데이트 안돼서 누락될수도 잇겟다.
@@ -31,14 +31,20 @@ export default function EventDetail({ events, selectedEventInfo }) {
     };
 
     // TODO err 핸들링 추가
-    updateEvent(newEvent, date, key).then(() => {
+    setEvent(newEvent, date, key).then(() => {
       history.push("/calendar");
     });
-  }
+  };
 
   const handleClick = () => {
+    const date = startDateTime.slice(0, 10);
     const key = selectedEvent.uid;
-  }
+
+    // TODO err 핸들링 추가
+    removeEvent(date, key).then(() => {
+      history.push("/calendar");
+    });
+  };
 
   return (
     <div className={styles.wrapper}>
