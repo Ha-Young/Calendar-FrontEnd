@@ -1,10 +1,10 @@
-import { waitForElementToBeRemoved } from "@testing-library/react";
 import React, { useState } from "react";
 import styles from "./EventForm.module.css";
+import firebase from "../../api/firebase";
 
 export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo, eventIdRoute }) {
-  let initialEventData = {}
-  console.log(eventInfo)
+  let initialEventData = {};
+
   if (isCreateMode) {
     initialEventData = {
       "event-title": "",

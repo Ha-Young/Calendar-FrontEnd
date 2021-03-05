@@ -2,15 +2,14 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-// TODO: Enter your own config object
 const firebaseConfig = {
-  apiKey: "AIzaSyCIgtbQFASJKG4WQ-_HXlyWO-4hS9SVsJw",
-  authDomain: "calendar-d255d.firebaseapp.com",
-  projectId: "calendar-d255d",
-  storageBucket: "calendar-d255d.appspot.com",
-  messagingSenderId: "802260962582",
-  appId: "1:802260962582:web:bc80f12ea779acfd485437",
-  measurementId: "G-028E39V14H"
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_APPID,
+  measurementId: process.env.REACT_APP_MEASUREMENTID
 };
 
 firebase.initializeApp(firebaseConfig);
