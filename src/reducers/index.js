@@ -16,7 +16,7 @@ const reducer = (state = {}, action) => {
       const { date } = eventInfo;
       if (state.hasOwnProperty(eventInfo.date)) {
         return {...state,
-          date: date,
+          date,
           [date]: [...state[date], eventInfo]
         };
       }
