@@ -2,10 +2,12 @@ import { connect } from "react-redux";
 
 import { changeCurrentDate, changeViewOption } from "../actions";
 import { receiveDate, receiveDateList } from "../actions/date";
+import { resetError, viewError } from "../actions/error";
 import { createdEvent } from "../actions/events";
-import { startLoading } from "../actions/loading";
+import { startLoading, stopLoading } from "../actions/loading";
 import { readDate, readDateListRange, writeEvent } from "../api";
 import App from "../components/App";
+import { ERROR_MSG_GET_API_ERROR } from "../constants/errorMsg";
 
 const mapStateToProps = state => ({
   viewOption: state.viewOption,
@@ -14,6 +16,7 @@ const mapStateToProps = state => ({
   events: state.events,
   user: state.user,
   loading: state.loading,
+  error: state.error,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -25,18 +28,40 @@ const mapDispatchToProps = dispatch => ({
   },
   // 질문. userId도 같이?
   createEvent: async ({ userId, event }) => {
-    await writeEvent(userId, event);
-    dispatch(createdEvent(event));
+    dispatch(startLoading());
+    try {
+      await writeEvent(userId, event);
+      dispatch(createdEvent(event));
+    } catch {
+      dispatch(viewError(ERROR_MSG_GET_API_ERROR));
+    } finally {
+      dispatch(stopLoading());
+    }
   },
   getDate: async ({ userId, currentDate }) => {
     dispatch(startLoading());
-    const date = await readDate(userId, currentDate);
-    dispatch(receiveDate(date));
+    try {
+      const date = await readDate(userId, currentDate);
+      dispatch(receiveDate(date));
+    } catch {
+      dispatch(viewError(ERROR_MSG_GET_API_ERROR));
+    } finally {
+      dispatch(stopLoading());
+    }
   },
   getDateListOnRange: async ({ userId, startDate, endDate }) => {
     dispatch(startLoading());
-    const dateList = await readDateListRange(userId, startDate, endDate);
-    dispatch(receiveDateList(dateList));
+    try {
+      const dateList = await readDateListRange(userId, startDate, endDate);
+      dispatch(receiveDateList(dateList));
+    } catch {
+      dispatch(viewError(ERROR_MSG_GET_API_ERROR));
+    } finally {
+      dispatch(stopLoading());
+    }
+  },
+  stopErrorView: () => {
+    dispatch(resetError());
   },
 });
 
