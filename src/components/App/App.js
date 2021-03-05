@@ -5,19 +5,10 @@ import { Route, Switch } from "react-router-dom";
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../Header/Header";
-import Calendar from "../Calendar/Calendar";
+import Calendar from "../../containers/Calendar";
 import EventForm from "../EventForm/EventForm";
 
-function App({
-  onInitialLoad,
-  eventInfo,
-  onEventInfoSubmit,
-  eventIdRoute,
-  onEventIdClick,
-  onEventDayClick,
-  onEventWeekClick,
-  isDayCalendar
-}) {
+function App({ onInitialLoad, onEventInfoSubmit, eventIdRoute }) {
   useEffect(() => {
     onInitialLoad();
   }, []);
@@ -30,13 +21,7 @@ function App({
           <div>Main</div>
         </Route>
         <Route path="/calendar" exact>
-          <Calendar
-            eventInfo={eventInfo}
-            onEventIdClick={onEventIdClick}
-            onEventDayClick={onEventDayClick}
-            onEventWeekClick={onEventWeekClick}
-            isDayCalendar={isDayCalendar}
-          />
+          <Calendar />
         </Route>
         <Route path="/event/new">
           <EventForm
@@ -48,8 +33,6 @@ function App({
           <EventForm
             onEventInfoSubmit={onEventInfoSubmit}
             isCreateMode={false}
-            eventInfo={eventInfo}
-            eventIdRoute={eventIdRoute}
           />
         </Route>
       </Switch>

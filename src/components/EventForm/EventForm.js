@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styles from "./EventForm.module.css";
 
-export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo, eventIdRoute }) {
+export default function EventForm ({ onEventInfoSubmit, isCreateMode }) {
   const currentDate = new Date().toISOString();
-
   const initialEventData = {
     "title": "",
     "description": "",
