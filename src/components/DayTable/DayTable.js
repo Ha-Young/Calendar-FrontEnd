@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./DayTable.module.css";
 import { Link } from "react-router-dom";
+import weekOfMonth from "../../utils/weekOfMonth"
 
 export default function DayTable ({ currentDate, eventInfo, onEventIdClick }) {
   const { year, month, date } = currentDate;

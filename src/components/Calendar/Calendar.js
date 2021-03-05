@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import styles from "./Calendar.module.css";
 import { cloneDeep } from "lodash";
+import moment from "moment";
 import DayTable from "../DayTable/DayTable";
 import WeekTable from "../WeekTable/WeekTable";
 import DateIndicator from "../DateIndicator/DateIndicator";
 import TwoOptionSelector from "../TwoOptionSelector/TwoOptionSelector";
 import IncDecrementControlBox from "../IncDecrementControlBox/IncDecrementControlBox";
+import weekOfMonth from "../../utils/weekOfMonth"
 
 export default function Calendar ({
   eventInfo,
@@ -15,26 +17,27 @@ export default function Calendar ({
   onEventWeekClick
 }) {
   console.log(isDayCalendar)
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(moment());
   const [formattedCurrentDate, setFormattedCurrentDate] = useState({
-    year: currentDate.getFullYear(),
-    month: currentDate.getMonth() + 1,
-    date: currentDate.getDate(),
-    day: currentDate.getDay(),
+    year: currentDate.format("YYYY"),
+    month: currentDate.format("M"),
+    date: currentDate.format("D"),
+    day: currentDate.format("E"),
   });
 
   const handleArrowClick = (ev) => {
+    const dayIncrement = isDayCalendar ? 1 : 7;
     if (ev.target.dataset.type === "right-arrow") {
-      currentDate.setDate(currentDate.getDate() + 1);
+      currentDate.add(dayIncrement, "day");
     } else if ((ev.target.dataset.type === "left-arrow")) {
-      currentDate.setDate(currentDate.getDate() - 1);
+      currentDate.subtract(dayIncrement, "day");
     }
 
     setFormattedCurrentDate({
-      year: currentDate.getFullYear(),
-      month: currentDate.getMonth() + 1,
-      date: currentDate.getDate(),
-      day: currentDate.getDay(),
+      year: currentDate.format("YYYY"),
+      month: currentDate.format("M"),
+      date: currentDate.format("D"),
+      day: currentDate.format("E"),
     });
 
     setCurrentDate(cloneDeep(currentDate));
@@ -57,7 +60,11 @@ export default function Calendar ({
         <div className={styles.tableContainer}>
           <div className={styles.tableIndex}>
             <IncDecrementControlBox
-              value={currentDate.getDate()}
+              value={
+                isDayCalendar
+                  ? currentDate.format("E")
+                  : weekOfMonth(currentDate)
+              }
               onArrowClick={handleArrowClick}
             />
           </div>
