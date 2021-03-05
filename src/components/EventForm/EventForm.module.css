@@ -3,4 +3,28 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 100vh;
+  height: 90vh;
+}
+
+.input {
+  width: 15em;
+  height: 2em;
+  margin: 0 0 1em 1em;
+  border-radius: 0;
+  border: 1px solid black;
+  border-style: none none solid none;
+  outline: none;
+  font-weight: 100;
+}
+
+.button {
+  width: 10em;
+  height: 2.5em;
+  background-color: rgb(114, 174, 241);
+  border: 1px solid rgb(114, 174, 241);
+  outline: none;
+  cursor: pointer;
+  font-weight: 100;
+  font-size: 1em;
 }
