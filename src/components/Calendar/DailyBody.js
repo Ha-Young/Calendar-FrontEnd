@@ -38,7 +38,7 @@ export default function DailyBody({ userId, today, isDaily, addEvents, events })
           for (const key in todayEvent) {
             const startHour = todayEvent[key]["startAt"];
             const endHour = todayEvent[key]["endAt"];
-            console.log(startHour)
+
             if (each >= Number(startHour) && each <= Number(endHour)) {
               haveEvent = true;
               eventData = todayEvent[key];

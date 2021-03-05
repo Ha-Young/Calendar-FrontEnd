@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import { deleteTargetData, moveDataToLoggedInUser } from "../../api";
 import { loginWithGoogle } from "../../api/google-login";
 import App from "../../components/App/App";
-import { addEvents, error, login, logout, removeAllEvents, removeEvents } from "../actions";
+import { addEvents, login, logout, newError, noError, removeAllEvents, removeEvents } from "../actions";
 
 const mapStateToProps = (state) => ({
   events: state.events,
   auth: state.login,
   userId: state.login.userId,
+  error: state.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -38,8 +39,11 @@ const mapDispatchToProps = (dispatch) => ({
       return;
     }
 
-    error(data);
+    dispatch(newError(data));
     return;
+  },
+  offError: () => {
+    dispatch(noError());
   },
 });
 

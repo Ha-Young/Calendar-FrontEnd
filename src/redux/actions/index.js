@@ -1,4 +1,4 @@
-import { ADD_TO_EVENTS, ERROR, LOGIN, LOGOUT, REMOVE_ALL_EVENTS, REMOVE_EVENTS } from "../../constants/actionTypes";
+import { ADD_TO_EVENTS, ERROR, LOGIN, LOGOUT, NEW_ERROR, NO_ERROR, REMOVE_ALL_EVENTS, REMOVE_EVENTS } from "../../constants/actionTypes";
 
 export const addEvents = (date, event) => ({
   type: ADD_TO_EVENTS, payload: { date, event },
@@ -22,4 +22,12 @@ export const removeAllEvents = (date, time) => ({
 
 export const error = (error) => ({
   type: ERROR, payload: { error },
+});
+
+export const newError = (error) => ({
+  type: NEW_ERROR, payload: {message: error.message, code: error.code},
+});
+
+export const noError = () => ({
+  type: NO_ERROR, 
 });

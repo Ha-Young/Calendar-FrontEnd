@@ -1,11 +1,12 @@
 const EVENT = {
-  O_CLOCK: ":00",
+ ZERO_MINS: ":00",
 }
 
 export function getOnlyHours(time) {
   return time.substring(0, 2);
 }
 
-export function makeOClock(time) {
-  return time.substring(0, 2) + EVENT.O_CLOCK;
+export function floorMinutes(time) {
+  return time.substring(0, 2) + EVENT.ZERO_MINS;
 }
+

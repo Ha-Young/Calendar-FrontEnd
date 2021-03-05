@@ -12,10 +12,8 @@ export async function loginWithGoogle() {
     const { user } = await firebase.auth().signInWithPopup(provider);
     isSuccess = true;
     return [isSuccess, user.uid];
-    
   } catch (error) {
     isSuccess = false;
-
     const errorInfo = {
       errorCode: error.code,
       errorMessage: error.message,

@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import Form from "./Form";
 import styles from "./Events.module.css";
-import { getOnlyHours, makeOClock } from "../../utils/event";
+import { getOnlyHours, floorMinutes } from "../../utils/event";
 import { deleteTargetData, writeUserData } from "../../api";
 
 export default function NewEvent({ userId }) {
@@ -20,8 +20,8 @@ export default function NewEvent({ userId }) {
   if (location.state) {
     initialInputValues = {
       ...location.state,
-      startAt: makeOClock(location.state.startAt),
-      endAt: makeOClock(location.state.endAt),
+      startAt: floorMinutes(location.state.startAt),
+      endAt: floorMinutes(location.state.endAt),
     };
   }
 
@@ -54,7 +54,7 @@ export default function NewEvent({ userId }) {
     let { value, name } = e.target;
 
     if (name === "startAt" || name === "endAt") {
-      value = makeOClock(value);
+      value = floorMinutes(value);
     }
 
     setInputValues(prev => {

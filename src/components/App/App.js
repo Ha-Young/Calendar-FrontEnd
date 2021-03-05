@@ -1,5 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from "./App.module.css";
 import Header from "../Header/Header";
@@ -10,9 +12,17 @@ import Dashboard from "../Dashboard/Dashboard";
 import Login from "../Login/Login";
 import EventDetail from "../Events/EventDetail";
 
-function App({ events, addEvents, removeEvents, onClickLogin, auth, userId }) {
+function App({ events, addEvents, removeEvents, onClickLogin, auth, userId, error, offError }) {
+  const notify = () => {
+    offError();
+    return toast("ERROR TRY AGAIN");
+  }
   return (
     <div className={styles.App}>
+      <div>
+        {error.isError && notify()}
+        <ToastContainer />
+      </div>
       <Header />
       <Switch>
         <Route exact path="/calendar">
