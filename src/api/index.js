@@ -32,17 +32,18 @@ export const removeEventData = async (data) => {
   await database.ref(`userId/events/${data.id}`).remove();
 };
 
-export const loadEventData = async (date) => {
-  const [startOfWeek, endOfWeek] = endsOfWeek(date);
+export const loadEventData = async (dates) => {
+  const firstEventIndex = dates[0];
+  const lastEventIndex = dates[dates.length - 1];
 
-  const database = firebase
+  const queryData = firebase
     .database()
     .ref("userId/events/")
     .orderByChild("date")
-    .startAt(startOfWeek)
-    .endAt(endOfWeek);
+    .startAt(firstEventIndex)
+    .endAt(lastEventIndex);
 
-  const data = await database.once("value");
+  const data = await queryData.once("value");
   
   return data.val();
 };

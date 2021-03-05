@@ -21,8 +21,8 @@ const App = ({
   errorMessage,
 }) => {
   useEffect(() => {
-    onLoad(selectedDate);
-  }, [selectedDate]);
+    onLoad(dateList);
+  }, [dateList]);
 
   const location = useLocation();
   const background = location.state?.background;
