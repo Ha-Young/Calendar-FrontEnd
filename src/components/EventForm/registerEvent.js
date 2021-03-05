@@ -1,7 +1,8 @@
-import { getDateISOstring } from "../utils";
-import { EVENT_INIT_ID } from "../constants";
+import { getDateISOstring } from "../../utils";
+import { EVENT_INIT_ID } from "../../constants";
 
 const registerEvent = (dateInfo, eventInfo, setEvent) => {
+
   const { eventId, year, month, date, fromHour, toHour} = dateInfo;
   const { title, content } = eventInfo;
   const eventFrom = getDateISOstring(year, month, date, fromHour);
@@ -19,7 +20,6 @@ const registerEvent = (dateInfo, eventInfo, setEvent) => {
     content: content,
     timeStamp: timeStatmp,
   });
-
-}
+};
 
 export default registerEvent;

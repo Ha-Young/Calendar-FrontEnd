@@ -32,10 +32,7 @@ export default function Daily({ role, eventDate, userEvents }) {
       <div className={dailyStyles.column} key={i}>
         {eventTable[i]
           ? <Link to={`/events/${id}`}>
-              <div
-                id={id}
-                onClick={(e) => console.log(e.target.id)}
-              >{title}</div>
+              <div id={id}>{title}</div>
             </Link>
           : i
         }

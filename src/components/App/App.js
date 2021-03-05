@@ -27,16 +27,17 @@ function App(props) {
         </Route>
         <Route path="/events/new">
           <EventForm
-            inputData={props.eventFormInfo}
+            inputData={props.eventInfo}
             setEventForm={props.actToEventForm}
             setUserEvent={props.actToUserEvent}
-            userEventAll={props.copyUserEvent}/>
+            userEventAll={props.userEventById}/>
         </Route>
         <Route path="/events/:eventId">
           <EventDetails
-            inputData={props.eventFormInfo}
+            inputData={props.eventInfo}
             setEventForm={props.actToEventForm.correct}
             clearEvent={props.actToUserEvent.clearEvent}
+            userEventAll={props.userEventById}
           />
         </Route>
       </Switch>

@@ -1,4 +1,4 @@
-export default function checkValidEvent(userEventAll, eventData, setState) {
+export default function checkValidEvent(userEventAll, eventData) {
   const {
     year,
     month,
@@ -6,6 +6,7 @@ export default function checkValidEvent(userEventAll, eventData, setState) {
     fromHour,
     toHour,
   } = eventData;
+
   const fromISOString = new Date(year, month - 1, date, fromHour).toISOString();
   const toISOString = new Date(year, month - 1, date, toHour).toISOString();
   const parsedNewFrom = Date.parse(fromISOString);
@@ -33,6 +34,5 @@ export default function checkValidEvent(userEventAll, eventData, setState) {
     }
   }
 
-  setState(isValid);
   return isValid;
 }

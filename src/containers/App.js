@@ -2,15 +2,15 @@ import { connect } from "react-redux";
 import App from "../components/App/App";
 import "../css/reset.css";
 import { setEventFormFor, setUserEventFor, setCurrentDate } from "../features/actionCreators";
-import { getDailyEvents, getWeeklyEvents } from "../utils/mapStateSupportors";
+import { getEventForm, getCurrentDate, getUserEventById, getDailyEvents, getWeeklyEvents } from "../features/selectors";
 
 const mapStateToProps = (state) => {
-  const eventFormInfo = {...state.eventForm};
-  const currentDate = state.currentDate;
-  const copyUserEvent = {...state.userEvent.byId};
-  const dailyEvents = getDailyEvents(currentDate, copyUserEvent);
-  const weeklyEvents = getWeeklyEvents(currentDate, copyUserEvent);
-  return {eventFormInfo, currentDate, dailyEvents, weeklyEvents, copyUserEvent};
+  const eventInfo = getEventForm(state);
+  const currentDate = getCurrentDate(state);
+  const userEventById = getUserEventById(state);
+  const dailyEvents = getDailyEvents(currentDate, userEventById);
+  const weeklyEvents = getWeeklyEvents(currentDate, userEventById);
+  return {eventInfo, currentDate, dailyEvents, weeklyEvents, userEventById};
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -29,7 +29,6 @@ export function setUserEvent(state, userEvent) {
 }
 
 export function clearUserEvent(state, eventId) {
-  debugger;
   const copyUserEventById = {...state.userEvent.byId};
   const copyUserEventAllId = [...state.userEvent.allId];
   delete copyUserEventById[eventId];

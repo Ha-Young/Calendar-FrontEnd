@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
-export default function EventDetails({ inputData, setEventForm, clearEvent}) {
+export default function EventDetails({ inputData, eventAllIds, setEventForm, clearEvent}) {
   const { eventId } = useParams();
   const {
     title,
@@ -13,6 +13,8 @@ export default function EventDetails({ inputData, setEventForm, clearEvent}) {
     toHour,
   } = inputData;
 
+  // for (const userEvent in ) {
+  // }
   return (
     <>
       <header>Event Details</header>
@@ -39,7 +41,7 @@ export default function EventDetails({ inputData, setEventForm, clearEvent}) {
       <Link to="/events/new">
         <button onClick={() => setEventForm({...inputData, eventId})}>수정</button>
       </Link>
-      <Link to="/events/new">
+      <Link to="/calendar">
         <button onClick={() => clearEvent(eventId)}>삭제</button>
       </Link>
     </>

@@ -1,5 +1,5 @@
 import { eventForm, userEvent, SET_CURRENT_DATE } from "../constants/actionTypes";
-import { setEventForm, setUserEvent, setCurrentDate, clearUserEvent } from "../utils/reducerSupportors";
+import { setEventForm, setUserEvent, setCurrentDate, clearUserEvent } from "./reducerSupportors";
 import { EVENT_FORM_STATE_KEY, EVENT_INIT_ID, MAX_MIN_DATE } from "../constants";
 const current = new Date();
 const initiateState = {

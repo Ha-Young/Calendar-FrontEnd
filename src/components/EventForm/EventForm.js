@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { MAX_MIN_DATE } from "../../constants";
-import registerEvent from "../../utils/registerEvent";
-import checkValidEvent from "../../utils/checkValidEvent";
+import registerEvent from "./registerEvent";
+import checkValidEvent from "./checkValidEvent";
 
 
 function EventForm({inputData, setEventForm, setUserEvent, userEventAll}) {
   const [isValidEvent, setIsValidEvent] = useState(true);
+  const history = useHistory();
 
   const {
     setTitle,
@@ -106,10 +107,12 @@ function EventForm({inputData, setEventForm, setUserEvent, userEventAll}) {
           />
         </label>
       </fieldset>
-      {isValidEvent ? null : <div>중복된 이벤트입니다.</div>}
+      {isValidEvent ? null : <span>중복된 이벤트입니다.</span>}
         <button onClick={() => {
-          checkValidEvent(userEventAll, inputData, setIsValidEvent)
-            && registerEvent(inputData, {title, content}, setEvent)
+          const isValid = checkValidEvent(userEventAll, inputData);
+          if (!isValid) return setIsValidEvent(isValid);
+          registerEvent(inputData, {title, content}, setEvent);
+          history.push("/calendar");
         }}>
           등록
         </button>
