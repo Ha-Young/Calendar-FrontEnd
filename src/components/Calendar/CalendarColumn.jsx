@@ -4,7 +4,7 @@ import Schedule from "./Schedule/Schedule";
 
 import CALENDAR from "../../constants/calendarConstants";
 
-function CalendarColumn({ events, colummDay, dayID }) {
+function CalendarColumn({ events, columnDay, dayID }) {
   const hasEvent = events && events.byId[dayID];
   const result = [];
 
@@ -15,7 +15,7 @@ function CalendarColumn({ events, colummDay, dayID }) {
   return (
     <>
       <div className={styles.day}>
-        {colummDay}
+        {columnDay}
       </div>
       <div className={styles.columnList}>
         {result.map((time) => {

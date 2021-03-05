@@ -36,7 +36,7 @@ export default function WeeklyCalendar() {
               {week.map((day) => (
                 <div key={day} className={styles.day}>
                   <CalendarColumn
-                    colummDay={day.format("D").toString()}
+                    columnDay={day.format("D").toString()}
                     dayID={day.format("YYYY-MM-DD")}
                   />
                 </div>

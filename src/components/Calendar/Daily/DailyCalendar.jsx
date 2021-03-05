@@ -25,7 +25,7 @@ export default function DailyCalendar() {
         <TimeSidebar />
         <div className={styles.columnDay}>
           <CalendarColumn
-            colummDay={columnDay}
+            columnDay={columnDay}
             dayID={yearMonthDate}
           />
         </div>
