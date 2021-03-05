@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./Calendar.module.css";
-import moment from "moment";
 import { cloneDeep } from "lodash";
 import DayTable from "../DayTable/DayTable";
 import DateIndicator from "../DateIndicator/DateIndicator";
@@ -14,14 +13,16 @@ export default function Calendar ({
   onEventDayClick,
   onEventWeekClick
 }) {
-  const [currentDate, setCurrentDate] = useState(moment());
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   const handleIncreaseClick = () => {
-    setCurrentDate(cloneDeep(currentDate.add(1, "days")));
+    currentDate.setDate(currentDate.getDate() + 1);
+    setCurrentDate(cloneDeep(currentDate));
   };
 
   const handleDecreaseClick = () => {
-    setCurrentDate(cloneDeep(currentDate.subtract(1, "days")));
+    currentDate.setDate(currentDate.getDate() - 1);
+    setCurrentDate(cloneDeep(currentDate));
   }
 
   return (
@@ -35,25 +36,25 @@ export default function Calendar ({
             onSecondOptionClick={onEventWeekClick}
           />
           <DateIndicator
-            year={currentDate.format("YYYY")}
-            month={currentDate.format("M")}
-            date={currentDate.format("D")}
-            day={currentDate.format("E")}
+            year={currentDate.getFullYear()}
+            month={currentDate.getMonth() + 1}
+            date={currentDate.getDate()}
+            day={currentDate.getDay()}
           />
         </header>
         <div className={styles.tableContainer}>
           <div className={styles.tableIndex}>
             <IncDecrementControlBox
-              value={currentDate.format("D")}
+              value={currentDate.getDate()}
               onIncreaseClick={handleIncreaseClick}
               onDecreaseClick={handleDecreaseClick}
             />
           </div>
           {isDayCalendar && <DayTable
-            year={currentDate.format("YYYY")}
-            month={currentDate.format("M")}
-            date={currentDate.format("D")}
-            day={currentDate.format("E")}
+            year={currentDate.getFullYear()}
+            month={currentDate.getMonth() + 1}
+            date={currentDate.getDate()}
+            day={currentDate.getDay()}
             eventInfo={eventInfo}
             onEventIdClick={onEventIdClick}
           />}
