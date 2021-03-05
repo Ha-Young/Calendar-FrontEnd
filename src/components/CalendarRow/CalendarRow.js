@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./CalendarRow.module.css";
-import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-function CalendarRow({ currentDate, ...eventInfo }) {
+function CalendarRow({ currentDate, eventInfo }) {
   const hours = [1, 2, 3, 4, 5,
                 6, 7, 8, 9, 10,
                 11, 12, 13, 14,
@@ -24,6 +24,8 @@ function CalendarRow({ currentDate, ...eventInfo }) {
 
             if (start <= hour && end >= hour) {
               isColored = true;
+              date = dailyEvent.date;
+              startTime = dailyEvent.startTime;
               if (start === hour) {
                 text = dailyEvent.title;
               }
@@ -32,17 +34,17 @@ function CalendarRow({ currentDate, ...eventInfo }) {
         }
 
         return (
-          <div className={isColored ? styles.pick : styles.row} key={hour}>{text}</div>
+          <div className={isColored ? styles.pick : styles.row} key={hour}>
+            {isColored &&
+              <Link to={`/event/:${date}+${startTime}`}>{text}</Link>
+            }
+          </div>
         );
       })}
     </>
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    ...state
-  };
-}
+export default CalendarRow;
 
-export default connect(mapStateToProps)(CalendarRow);
+
