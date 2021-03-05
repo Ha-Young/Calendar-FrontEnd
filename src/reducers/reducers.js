@@ -12,7 +12,6 @@ const reducer = (state = initialState, action) => {
     case ACTION.SET_INITIALIZE:
       return {
         ...state,
-
         dailyEvent: action.dailyEvent,
         weeklyEvent: action.weeklyEvent,
       };

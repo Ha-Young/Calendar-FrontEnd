@@ -22,7 +22,7 @@ const EventDetail = ({ weeklyEvent, deleteEvent }) => {
 
   const handleDelete = () => {
     deleteEvent(param.eventId, event.date);
-    history.push("/");
+    history.push("/weekly");
     alert("event deleted");
   };
 
@@ -37,11 +37,13 @@ const EventDetail = ({ weeklyEvent, deleteEvent }) => {
           <section className={styles.eventContainer}>
             <h1 className={styles.title}>{event.title}</h1>
             <div className={styles.time}>
-              <span clasName={styles.data}>{event.date}&nbsp;&nbsp;&nbsp;</span>
-              <span clasName={styles.startTime}>{event.startTime}시 ~ </span>
-              <span clasName={styles.endTime}>{event.endTime}시</span>
+              <span className={styles.data}>
+                {event.date}&nbsp;&nbsp;&nbsp;
+              </span>
+              <span className={styles.startTime}>{event.startTime}시 ~ </span>
+              <span className={styles.endTime}>{event.endTime}시</span>
             </div>
-            <p clasName={styles.description}>{event.description}</p>
+            <p className={styles.description}>{event.description}</p>
           </section>
           <section className={styles.eventButtonContainer}>
             <button

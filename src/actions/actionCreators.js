@@ -17,7 +17,6 @@ const setInitialize = (initialEvent) => {
 
   const today = getDateISO(0);
   const dailyEvent = {};
-  const { displayName, email, photoURL, phoneNumber } = authService.currentUser;
 
   for (const [key, value] of Object.entries(initialEvent)) {
     if (value.date === today) {
@@ -27,7 +26,6 @@ const setInitialize = (initialEvent) => {
 
   return {
     type: ACTION.SET_INITIALIZE,
-    userData: { displayName, email, photoURL, phoneNumber },
     weeklyEvent: initialEvent,
     dailyEvent,
   };

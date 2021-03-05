@@ -99,7 +99,7 @@ const AppRouter = ({
       history.push(`/events/${id}`);
     }
 
-    alert("submit complete");
+    alert("제출이 완료되었습니다");
   };
 
   return (
