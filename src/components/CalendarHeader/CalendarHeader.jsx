@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./CalendarHeader.module.css";
 import { calculateDisplayDates } from "../../utils";
 
-const createCalendarHeader = (localDate) => {
-  const head = localDate.map((item, index) => {
+const createCalendarHeader = (displayDates) => {
+  const head = displayDates.map((item, index) => {
     return (
       <div key={index} className={styles.calendarItem}>
         <div>{item.weekdayShort}</div>
@@ -16,14 +16,14 @@ const createCalendarHeader = (localDate) => {
 }
 
 export default function CalendarHeader({ selectedDate, isDailyView }) {
-  let localDate = calculateDisplayDates(selectedDate, isDailyView);
+  let displayDates = calculateDisplayDates(selectedDate, isDailyView);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.timeZone}>
-        GMT+09
+        <span>GMT+09</span>
       </div>
-      {createCalendarHeader(localDate)}
+      {createCalendarHeader(displayDates)}
     </div>
   );
 }

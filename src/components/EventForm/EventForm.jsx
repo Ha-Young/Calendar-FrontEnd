@@ -3,11 +3,6 @@ import { useHistory, useLocation } from "react-router-dom";
 import styles from "./EventForm.module.css";
 import { setEvent, removeEvent } from "../../api";
 
-//TODO create EventForm container
-
-// TODO onchange에 setState걸어놔서 사용자가 뭐 입력할때마다 리랜더링됨. 디바운스 적용하면 좋을듯?? 아닌가?
-// 디바운스 짧게 안하면 submit하기전에 업데이트 안돼서 누락될수도 잇겟다.
-
 export default function EventForm({ events, selectedEventInfo }) {
   const history = useHistory();
   const currentUrl = useLocation();
@@ -32,21 +27,18 @@ export default function EventForm({ events, selectedEventInfo }) {
       endDateTime: endDateTime,
     };
 
-    // TODO err 핸들링 추가
-    // TODO API 함수는 connect의 mapDispatchToProps에 올려서, helper함수로 묶어서 내려줘야 할수도 있음.
-    setEvent(newEvent, date, key).then(() => {
-      history.push("/calendar");
-    });
+    setEvent(newEvent, date, key)
+    .then(() => history.push("/calendar"))
+    .catch(() => history.push("/error"));
   };
 
-  const handleClick = () => {
+  const handleRemove = () => {
     const date = startDateTime.slice(0, 10);
     const key = selectedEvent.uid;
 
-    // TODO err 핸들링 추가
-    removeEvent(date, key).then(() => {
-      history.push("/calendar");
-    });
+    removeEvent(date, key)
+    .then(() => history.push("/calendar"))
+    .catch(() => history.push("/error"));
   };
 
   return (
@@ -110,11 +102,10 @@ export default function EventForm({ events, selectedEventInfo }) {
       ? null
       : (
           <div className={styles.formButtonWrapper}>
-            <button onClick={handleClick}>Remove</button>
+            <button onClick={handleRemove}>Remove</button>
           </div>
         )
       }
-      
     </div>
   );
 }

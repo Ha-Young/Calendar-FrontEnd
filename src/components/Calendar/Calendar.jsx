@@ -7,7 +7,9 @@ export default function Calendar({ selectedDate, toggleCalendarView, isDailyView
   return (
     <div className={styles.calendarWrapper}>
       <div>
-        <button onClick={() => toggleCalendarView()}>Daily / Weekly Toggle</button>
+        <button onClick={() => toggleCalendarView()}>
+          <span>Daily / Weekly Toggle</span>
+        </button>
       </div>
       <CalendarHeader selectedDate={selectedDate} isDailyView={isDailyView} />
       <CalendarBody />

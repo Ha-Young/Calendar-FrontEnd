@@ -13,10 +13,14 @@ export default function Header({ prevButtonClicked, nextButtonClicked }) {
         <Link to='/events/new'>Create Event</Link>
       </div>
       <div className={styles.navButtonWrapper}>
-        <button><MdNavigateBefore onClick={() => prevButtonClicked()} /></button>
+        <button className={styles.changeBtn}>
+          <MdNavigateBefore onClick={() => prevButtonClicked()} />
+        </button>
       </div>
       <div className={styles.navButtonWrapper}>
-        <button><MdNavigateNext onClick={() => nextButtonClicked()} /></button>
+        <button className={styles.changeBtn}>
+          <MdNavigateNext onClick={() => nextButtonClicked()} />
+        </button>
       </div>
     </header>
   );

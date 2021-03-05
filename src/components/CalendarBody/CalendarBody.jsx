@@ -9,12 +9,12 @@ export default function CalendarBody({ selectedDate, events, isDailyView, loadEv
   const displayDates = calculateDisplayDates(selectedDate, isDailyView);
 
   useEffect(() => {
-    const readData = async () => {
+    const fetchEvents = async () => {
       const events = await getEvents(displayDates.map(date => date.toFormat("yyyy-LL-dd")));
       loadEvents(events);
     }
 
-    readData();
+    fetchEvents();
   }, [selectedDate, isDailyView]);
 
   return (

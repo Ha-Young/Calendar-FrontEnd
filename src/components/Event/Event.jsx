@@ -4,7 +4,6 @@ import Error from "../Error/Error";
 import EventForm from "../EventForm/EventForm";
 
 export default function Event({ events, selectedEventInfo }) {
-  // const history = useHistory();
   const currentUrl = useLocation();
   const isWrongUrl = (selectedEventInfo && currentUrl.pathname !== `/events/${selectedEventInfo.selectedEventId}`) && currentUrl.pathname !== "/events/new";
 
