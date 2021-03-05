@@ -3,8 +3,9 @@ import styles from "./DailyCalendar.module.css"
 import CalendarRow from "../CalendarRow/CalendarRow";
 import TimeSidebar from "../TimeSidebar/TimeSidebar";
 import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 
-function DailyCalendar() {
+function DailyCalendar({ eventInfo }) {
   const [todayDate, setTodayDate] = useState(dayjs());
   const [date, setDate] = useState(todayDate.format("YYYY-MM-DD"));
 
@@ -32,9 +33,9 @@ function DailyCalendar() {
       </div>
       <div className={styles.div}>
         <TimeSidebar />
-        <div className={styles.grid}>
-          <CalendarRow currentDate={date}/>
-        </div>
+          <div className={styles.grid}>
+              <CalendarRow currentDate={date} eventInfo={eventInfo}/>
+          </div>
       </div>
     </>
   );
