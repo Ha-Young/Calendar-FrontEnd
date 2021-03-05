@@ -26,7 +26,6 @@ function EventForm({ onSubmit, onCancel, onDelete, event }) {
     const { newEvent, errorType } = makeNewEvent(values, exisitId);
 
     if (!newEvent) {
-      //todo. constant화
       if (errorType === ERROR_TYPE_EVENT_DAY_OVER) {
         viewErrMsg(ERROR_MSG_EVENT_DAY_OVER);
       } else if (errorType === ERROR_TYPE_OVER_START_DAY) {
@@ -36,7 +35,7 @@ function EventForm({ onSubmit, onCancel, onDelete, event }) {
     }
 
     const isUpdate = event ? true : false;
-    // 질문 userId도 같이?
+
     onSubmit(newEvent, isUpdate);
   }
 

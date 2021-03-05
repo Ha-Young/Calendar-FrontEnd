@@ -5,7 +5,7 @@ import { getRandomHSLColor } from "../../utils/common";
 import { getHour } from "../../utils/date";
 import styles from "./EventSticker.module.css";
 
-const START_POS = 100; //Todo. constant로 빼기
+const START_POS = 100;
 const SCHEDULE_ROW_HEIGHT = 48;
 const WIDTH = "60%";
 const STICKER_POSITION = "absolute";

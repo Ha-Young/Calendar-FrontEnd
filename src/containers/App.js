@@ -27,7 +27,6 @@ const mapDispatchToProps = dispatch => ({
   changeCurrentDate: ({ viewOption, currentDate }) => {
     dispatch(changeCurrentDate({ viewOption, currentDate }));
   },
-  // 질문. userId도 같이?
   createEvent: async ({ userId, event }) => {
     dispatch(startLoading());
     try {
@@ -69,5 +68,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-//Todo. HOC으로 routerhistory props에 담아 내려줄 수 있게 하기.
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import {
   BrowserRouter as Router,
-  // HashRouter as Router
 } from "react-router-dom";
 
 import App from "./containers/App";

@@ -1,8 +1,8 @@
 import moment from "moment";
 
 import { DATE_FORMAT, DATE_FORMAT_WITH_HOUR } from "../constants/common";
+import { ERROR_MSG_DATE_RANGE } from "../constants/errorMsg";
 
-// Todo. constant로?
 const HOUR = 24;
 const AM = "AM";
 const PM = "PM";
@@ -52,11 +52,17 @@ export function getDiffHour(startMoment, endMoment) {
   return Math.ceil(moment.duration(endMoment.diff(startMoment)).asHours());
 }
 
-export function getDiffDay(dateA, dateB) {
+export function getDiffDay(dateA, dateB, isGetAbs = true) {
   const momentDateA = moment(dateA);
   const momentDateB = moment(dateB);
 
-  return Math.abs(moment.duration(momentDateB.diff(momentDateA)).asDays());
+  const dayDiff = moment.duration(momentDateB.diff(momentDateA)).asDays();
+
+  if (isGetAbs) {
+    return Math.abs(dayDiff);
+  }
+
+  return dayDiff;
 }
 
 export function getWeekDateListBasedOnDate(baseDate) {
@@ -67,7 +73,10 @@ export function getWeekDateListBasedOnDate(baseDate) {
 }
 
 export function getDateListBasedOnRange(startDate, endDate) {
-  //todo. startDate, endDate date인지 체크, endDate가 더 이후인지 체크
+  if (getDiffDay(startDate, endDate) < 0) {
+    throw new Error(ERROR_MSG_DATE_RANGE);
+  }
+
   const dateList = [startDate];
 
   let calcDate = startDate;
