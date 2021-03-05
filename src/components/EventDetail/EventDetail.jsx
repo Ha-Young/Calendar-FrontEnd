@@ -1,35 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styles from "./EventDetail.module.css";
 
 const EventDetail = ({ weeklyEvent, deleteEvent }) => {
+  const [event, setEvent] = useState({});
+  const [invalidEvent, setInvalidEvent] = useState(false);
   const param = useParams();
   const history = useHistory();
-  const { title, description, date, startTime, endTime } = weeklyEvent[
-    param.eventId
-  ];
+
+  useEffect(() => {
+    if (!weeklyEvent[param.eventId]) {
+      setInvalidEvent(true);
+    } else {
+      const { title, description, date, startTime, endTime } = weeklyEvent[
+        param.eventId
+      ];
+
+      setEvent({ title, description, date, startTime, endTime });
+    }
+  }, [param.id, weeklyEvent, param.eventId]);
 
   const handleDelete = () => {
-    deleteEvent(param.eventId, date);
+    deleteEvent(param.eventId, event.date);
     history.push("/");
     alert("event deleted");
   };
 
   return (
     <>
-      <section className={styles.eventDetail}>
-        <h1>제목 : {title}</h1>
-        <p>날짜 : {date}</p>
-        <p>시작시간 : {startTime}시</p>
-        <p>종료시간 : {endTime}시</p>
-        <p>내용 : {description}</p>
-      </section>
-      <section className={styles.eventOptions}>
-        <button onClick={() => history.push(`/events/edit/${param.eventId}`)}>
-          수정
-        </button>
-        <button onClick={handleDelete}>삭제</button>
-      </section>
+      {invalidEvent ? (
+        <div className={styles.invalidMessage}>
+          해당 이벤트가 존재하지 않습니다.
+        </div>
+      ) : (
+        <>
+          <section className={styles.eventContainer}>
+            <h1 className={styles.title}>{event.title}</h1>
+            <div className={styles.time}>
+              <span clasName={styles.data}>{event.date}&nbsp;&nbsp;&nbsp;</span>
+              <span clasName={styles.startTime}>{event.startTime}시 ~ </span>
+              <span clasName={styles.endTime}>{event.endTime}시</span>
+            </div>
+            <p clasName={styles.description}>{event.description}</p>
+          </section>
+          <section className={styles.eventButtonContainer}>
+            <button
+              className={styles.editButton}
+              onClick={() => history.push(`/events/edit/${param.eventId}`)}
+            >
+              수정
+            </button>
+            <button className={styles.deleteButton} onClick={handleDelete}>
+              삭제
+            </button>
+          </section>
+        </>
+      )}
     </>
   );
 };

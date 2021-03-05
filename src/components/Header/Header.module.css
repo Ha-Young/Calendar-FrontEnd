@@ -1,5 +1,5 @@
 @import "../../common/main.module.css";
-@value calenderBlack, calenderBlue, calenderSkyBlue, calenderPink, calenderRed, calenderGray, calenderLightBlue from "../../common/main.module.css";
+@value calenderBlack, calenderDarkGray, calenderBlue, calenderSkyBlue, calenderPink, calenderRed, calenderGray, calenderLightBlue from "../../common/main.module.css";
 
 .navContainer {
   margin: 0 50px;
@@ -34,7 +34,7 @@
   height: 30px;
   width: 120px;
   border-radius: 20px;
-  background-color: calenderPink;
+  background-color: calenderDarkGray;
   font-size: 0.9em;
   font-weight: 600;
   color: white;
@@ -45,7 +45,7 @@
   height: 30px;
   width: 90px;
   border-radius: 20px;
-  background-color: calenderGray;
+  background-color: calenderDarkGray;
   font-size: 0.9em;
   font-weight: 600;
   color: white;

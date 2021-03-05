@@ -1,0 +1,60 @@
+@value calenderBlack, calenderDeepDarkGray, calenderDarkGray, calenderGray, calenderBlue, calenderRed, calenderLightBlue from "../../common/main.module.css";
+
+.invalidMessage {
+  width: 100%;
+  margin-top: 100px;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.eventContainer {
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 70px;
+  font-size: 1.3em;
+  color: calenderBlack;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 30px;
+  color: calenderBlack;
+}
+
+.time {
+  font-size: 0.75em;
+  color: calenderDarkGray;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.description {
+  font-size: 0.9em;
+  color: calenderBlack;
+}
+
+.eventButtonContainer {
+  width: 22vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.editButton,
+.deleteButton {
+  height: 40px;
+  width: 90px;
+  margin-top: 40px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
+}
+
+.editButton {
+  background-color: calenderGray;
+}
+
+.deleteButton {
+  background-color: calenderRed;
+}

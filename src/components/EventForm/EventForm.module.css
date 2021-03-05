@@ -61,15 +61,15 @@
   border: 0.5px calenderGray solid;
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .alertMessage {
   color: calenderValidRed;
   font-size: 0.8em;
   font-weight: 600;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .addButton {
