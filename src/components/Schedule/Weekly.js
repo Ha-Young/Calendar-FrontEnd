@@ -24,5 +24,5 @@ export default function Weekly ({
       goPrev={goLastWeek}
       goNext={goNextWeek}
     />
-  )
-};
+  );
+}

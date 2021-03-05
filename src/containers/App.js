@@ -1,6 +1,13 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { setUserId, setSelectedDate, setCreateEventMode, setUpdateEventMode, saveEvent, deleteEvent } from "../actions";
+import {
+  setUserId,
+  setSelectedDate,
+  setCreateEventMode,
+  setUpdateEventMode,
+  saveEvent,
+  deleteEvent
+} from "../actions";
 
 const mapStateToProps = (state) => ({
   selectedDate: state.calendar.selectedDate,

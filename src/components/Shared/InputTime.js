@@ -24,5 +24,5 @@ export default function InputTime({ name, value, handleChange, isStartTime, isEn
       {isStartTime && startTimeOptions}
       {isEndTime && endTimeOptions}
     </select>
-  )
+  );
 }

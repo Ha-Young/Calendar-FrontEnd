@@ -6,5 +6,5 @@ export default function Container({ children }) {
     <div className={styles.FormContainer}>
       {children}
     </div>
-  )
+  );
 }

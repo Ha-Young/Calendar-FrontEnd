@@ -10,8 +10,16 @@ import { IoLocationSharp, IoTimeSharp, IoCalendarClearSharp, IoPencilSharp } fro
 
 import styles from "./EventView.module.scss";
 
-export default function EventView({ userId, setUpdateEventMode, eventsInStore, saveEventInStore, deleteEventInStore, setSelectedDate }) {
+export default function EventView({
+  userId,
+  eventsInStore,
+  setUpdateEventMode,
+  saveEventInStore,
+  deleteEventInStore,
+  setSelectedDate
+}) {
   const [ currentEvent, setCurrentEvent ] = useState("");
+
   const history = useHistory();
   const params = useParams();
   const eventDate = params.event_id.slice(6, 16);
@@ -21,13 +29,15 @@ export default function EventView({ userId, setUpdateEventMode, eventsInStore, s
     if (eventsInStore.byDates.hasOwnProperty(eventDate)) {
       const event = eventsInStore.byDates[eventDate][eventStartTime];
       setCurrentEvent(event);
-    } else {
-      fetchEvents(eventDate);
+      return;
     }
+
+    fetchEvents(eventDate);
   }, []);
 
   const fetchEvents = async (date) => {
     const eventList = await getEvents(userId, date);
+
     for (let i = 0; i < eventList.length; i++) {
       if (eventList[i].startTime === eventStartTime) {
         setCurrentEvent(eventList[i]);
@@ -44,10 +54,6 @@ export default function EventView({ userId, setUpdateEventMode, eventsInStore, s
     deleteEventInStore(currentEvent.date, currentEvent.startTime);
     setSelectedDate(new Date(currentEvent.date));
     history.push("/daily");
-  };
-
-  const handleEditEvent = () => {
-    setUpdateEventMode();
   };
 
   const renderSwitchComponent = () => {
@@ -83,12 +89,12 @@ export default function EventView({ userId, setUpdateEventMode, eventsInStore, s
         </dl>
         <div className={styles.Buttons}>
           <Link to={`/events/edit/event-${currentEvent.date}-${currentEvent.startTime}`}>
-            <Button handleClickEvent={handleEditEvent}>EDIT</Button>
+            <Button handleClickEvent={setUpdateEventMode}>EDIT</Button>
           </Link>
           <Button handleClickEvent={deleteEvent}>DELETE</Button>
         </div>
       </div>
-    )
+    );
   };
 
   return (

@@ -9,7 +9,6 @@ export default function Daily ({
   goNextDate,
   setDailyCalendarMode
 }) {
-
   if (calendarMode === "weekly") {
     setDailyCalendarMode();
   }
@@ -21,5 +20,5 @@ export default function Daily ({
       goPrev={goPrevDate}
       goNext={goNextDate}
     />
-  )
-};
+  );
+}

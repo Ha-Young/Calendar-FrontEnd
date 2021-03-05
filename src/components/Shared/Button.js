@@ -6,5 +6,5 @@ export default function Button({ handleClickEvent, children }) {
     <button className={styles.Button} type="button" onClick={handleClickEvent}>
       {children}
     </button>
-  )
+  );
 }

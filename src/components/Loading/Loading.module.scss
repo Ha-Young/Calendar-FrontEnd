@@ -7,27 +7,29 @@
   background: #f5f5f5;
   text-align: center;
 
-  .Spinner{
+  .Spinner {
     margin: 3em 0;
     display: flex;
     justify-content: center;
-    .circle{
+
+    .circle {
       width: 1rem;
       height: 1rem;
       background-color: #B721FF;
       border-radius:50%;
       margin:0.1rem;
       animation: up 0.3s linear 0s infinite alternate;
-      &.one{
+      &.one {
         animation-delay:0s;
       }
-      &.two{
+      &.two {
         animation-delay:0.2s;
       }
-      &.three{
+      &.three {
         animation-delay:0.4s;
       }
     }
+
   }
 
   @keyframes up{
@@ -42,4 +44,5 @@
       font-weight: bold;
     }
   }
+
 }

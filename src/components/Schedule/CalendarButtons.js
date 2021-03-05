@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./CalendarButtons.module.scss";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
+import styles from "./CalendarButtons.module.scss";
 
 export default function CalendarButtons({ goPrev, goNext }) {
   return (
@@ -16,5 +16,5 @@ export default function CalendarButtons({ goPrev, goNext }) {
         </button>
       </li>
     </ul>
-  )
+  );
 }

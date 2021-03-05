@@ -18,7 +18,7 @@ export default function Dates({ calendarMode, today, selectedDate, week }) {
     } else {
       return `${styles.number}`;
     }
-  }
+  };
 
   return (
     <ul className={styles.Dates}>
@@ -31,7 +31,7 @@ export default function Dates({ calendarMode, today, selectedDate, week }) {
                 <span className={checkTodayClass(date)}>{dateNumber}</span>
                 <span className={styles.day}>{day}</span>
               </li>
-            )
+            );
           })
         )
         : (
@@ -44,5 +44,5 @@ export default function Dates({ calendarMode, today, selectedDate, week }) {
           </li>
         )}
     </ul>
-  )
+  );
 }

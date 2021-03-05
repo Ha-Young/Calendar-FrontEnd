@@ -53,4 +53,4 @@ export default function calendar(state = initialState, action) {
     default:
       return state;
   }
-}
+};

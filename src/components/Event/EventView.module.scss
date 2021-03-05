@@ -16,13 +16,11 @@
 
   dl {
     margin: 0 0 1.5em 0;
-
     dt {
       margin: 0 0 0.5em 0;
       font-weight: bold;
       font-size: 1.2em;
     }
-
     dd {
       margin: 0;
       padding: 0.5em;
@@ -37,13 +35,12 @@
 
   .Buttons {
     text-align: center;
-
     button {
       margin: 0 0.5em 0 0;
-
       & :last-child {
         margin: 0;
       }
     }
   }
+
 }

@@ -12,7 +12,6 @@ export default function Schedule({ userId, eventDate, saveEventInStore, eventsIn
     if (eventsInStore.byDates.hasOwnProperty(eventDate)) {
       return;
     }
-    console.log("fetch!");
     fetchEvents(userId, eventDate);
   }, [eventDate]);
 
@@ -20,13 +19,14 @@ export default function Schedule({ userId, eventDate, saveEventInStore, eventsIn
     if (eventsInStore.byDates.hasOwnProperty(eventDate)) {
       const eventList = eventsInStore.byDates[eventDate];
       let result = [];
+
       for (const event in eventList) {
         result.push(eventList[event]);
       }
+
       setEvents(result);
-      return;
     }
-  }, [eventDate])
+  }, [eventDate]);
 
   const renderScheduleBoxes = () => {
     return eventBoxes.map((box) => (
@@ -51,5 +51,5 @@ export default function Schedule({ userId, eventDate, saveEventInStore, eventsIn
         })
       )}
     </div>
-  )
+  );
 }

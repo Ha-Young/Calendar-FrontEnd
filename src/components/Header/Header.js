@@ -1,21 +1,28 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+
 import Button from "../../components/Shared/Button";
 import { formatDate } from "../../utils/SetDate";
 import { logoutWithGoogleAccount } from "../../api/googleLogin";
+
 import styles from "./Header.module.scss";
 
 const today = new Date();
 
 // TODO: Create your own header.
-export default function Header ({ setUserId, selectedDate, setSelectedDate, setCreateEventMode }) {
+export default function Header ({
+  setUserId,
+  selectedDate,
+  setSelectedDate,
+  setCreateEventMode
+}) {
   const formattedDate = formatDate(selectedDate, "yyyy-MM-dd-E");
   const [ year, month ] = formattedDate.split("-").slice(0, 2);
 
   const logOut = async () => {
     await logoutWithGoogleAccount();
     setUserId("", false);
-  }
+  };
 
   return (
     <header className={styles.Header}>

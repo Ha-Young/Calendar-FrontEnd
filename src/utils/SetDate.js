@@ -2,15 +2,15 @@ import { format, subDays, addDays, endOfWeek, startOfWeek, eachDayOfInterval } f
 
 export const formatDate = (date, setting) => {
   return format(date, setting);
-}
+};
 
 export const subDate = (date, days) => {
   return subDays(date, days);
-}
+};
 
 export const addDate = (date, days) => {
   return addDays(date, days);
-}
+};
 
 export const getCurrentWeek = (date) => {
   const startDate = startOfWeek(date);
@@ -20,7 +20,7 @@ export const getCurrentWeek = (date) => {
     start: startDate,
     end: endDate,
   });
-}
+};
 
 export const getLastWeek = (week) => {
   const startDate = subDays(week[0], 7);
@@ -30,7 +30,7 @@ export const getLastWeek = (week) => {
     start: startDate,
     end: endDate,
   });
-}
+};
 
 export const getNextWeek = (week) => {
   const startDate = addDays(week[0], 7);
@@ -40,4 +40,4 @@ export const getNextWeek = (week) => {
     start: startDate,
     end: endDate,
   });
-}
+};

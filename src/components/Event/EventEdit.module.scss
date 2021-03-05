@@ -1,15 +1,16 @@
 .NewEvent {
   max-width: 600px;
   margin: 0 auto;
+
   .asterisk {
     color: red;
     width: 20px;
     height: 20px;
     vertical-align: text-bottom;
   }
+
   .header {
     margin: 1em 1em 0em 1em;
-
     .eventMode {
       margin: 0 0 0.5em 0;
       padding: 0 0 0.5em 0;
@@ -43,19 +44,15 @@
     display: inline-block;
     border-radius: 5px;
     vertical-align: text-top;
-
     &.purple {
       background: #B721FF;
     }
-
     &.blue {
       background: #21D4FD;
     }
-
     &.orange {
       background: #F39237;
     }
-
     &.pink {
       background: #ff6c91;
     }
@@ -69,13 +66,12 @@
 
   .Buttons {
     text-align: center;
-
     button {
       margin: 0 0.5em 0 0;
-
       & :last-child {
         margin: 0;
       }
     }
   }
+
 }

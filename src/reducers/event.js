@@ -49,4 +49,4 @@ export default function event(state = initialState, action) {
     default:
       return state;
   }
-}
+};

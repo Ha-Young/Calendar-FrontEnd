@@ -18,7 +18,14 @@ const validationTextList = {
   requiredError: "필수값을 모두 입력해주세요."
 };
 
-export default function EventEdit({ userId, eventMode, eventsInStore, saveEventInStore, deleteEventInStore, setSelectedDate }) {
+export default function EventEdit({
+  userId,
+  eventMode,
+  eventsInStore,
+  saveEventInStore,
+  deleteEventInStore,
+  setSelectedDate
+}) {
   const [ validationText, setValidationText ] = useState("");
   const [ currentEvent, setCurrentEvent ] = useState({
     userId,
@@ -47,18 +54,19 @@ export default function EventEdit({ userId, eventMode, eventsInStore, saveEventI
           userId,
         }
       });
-    } else {
-      setCurrentEvent({
-        userId,
-        title: "",
-        date: "",
-        startTime: "",
-        endTime: "",
-        location: "",
-        eventColor: "#B721FF",
-        description: "",
-      });
+      return;
     }
+
+    setCurrentEvent({
+      userId,
+      title: "",
+      date: "",
+      startTime: "",
+      endTime: "",
+      location: "",
+      eventColor: "#B721FF",
+      description: "",
+    });
   }, [eventMode]);
 
   const handleChange = (event) => {
@@ -75,13 +83,17 @@ export default function EventEdit({ userId, eventMode, eventsInStore, saveEventI
       return;
     }
 
-    if (currentEvent.title === "" || currentEvent.date === "" || currentEvent.startTime === "" || currentEvent.endTime === "") {
+    if (
+      currentEvent.title === ""
+      || currentEvent.date === ""
+      || currentEvent.startTime === ""
+      || currentEvent.endTime === ""
+    ) {
       setValidationText(validationTextList.requiredError);
       return;
     }
 
     if (eventMode === "update") {
-      console.log(currentEvent);
       updateEvent(userId, oldEvent.current.date, oldEvent.current.startTime, currentEvent);
       deleteEventInStore(oldEvent.current.date, oldEvent.current.startTime);
       saveEventInStore(currentEvent.date, [currentEvent]);
@@ -155,5 +167,5 @@ export default function EventEdit({ userId, eventMode, eventsInStore, saveEventI
         </Button>
       </div>
     </div>
-  )
+  );
 }

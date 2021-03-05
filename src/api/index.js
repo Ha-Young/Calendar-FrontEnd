@@ -17,9 +17,8 @@ export const createEvent = async ({ userId, title, date, startTime, endTime, loc
 
 export const getEvents = async (userId, date) => {
   const eventsRef = data.ref(`events/${userId}/${date}`);
-  const result = [];
-
   const snapshot = await eventsRef.once("value").then((snapshot) => snapshot);
+  const result = [];
 
   snapshot.forEach((data) => {
     const event = data.val();

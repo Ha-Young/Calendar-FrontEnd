@@ -12,7 +12,7 @@ const EventBox = styled.span`
   background: ${props => props.eventColor};
   color: #ffffff;
   overflow: hidden;
-`
+`;
 
 const EventInfo = styled.ul`
   padding: 10px !important;
@@ -41,7 +41,7 @@ const EventInfo = styled.ul`
     vertical-align: middle;
     color: #ffffff;
   }
-`
+`;
 
 export default function ScheduleEvent({ event }) {
   return (
@@ -66,5 +66,5 @@ export default function ScheduleEvent({ event }) {
         </EventInfo>
       </EventBox>
     </Link>
-  )
+  );
 }
