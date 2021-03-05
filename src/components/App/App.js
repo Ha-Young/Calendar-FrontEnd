@@ -8,7 +8,7 @@ import AppHeader from "../Header/AppHeader";
 import Weekly from "../Weekly/Weekly";
 import Daily from "../Daily/Daily";
 import Event from "../Event/index";
-import EventInfo from "../Event/EventInfo/index";
+import EventInfo from "../Event/EventInfo";
 import FlexColumnBox from "../../shared/FlexColumnBox";
 
 const App = ({
@@ -19,6 +19,7 @@ const App = ({
   countOfWeek,
   onSubmit,
   setEvent,
+  deleteEvent,
   events,
 }) => {
   useEffect(() => {
@@ -43,7 +44,7 @@ const App = ({
         <Route path="/Event/new">
           <Event onSubmit={onSubmit} onPage={setEvent} />
         </Route>
-        <Route path="/Event/:day" children={<EventInfo events={events} />} />
+        <Route path="/Event/:day" children={<EventInfo events={events} deleteEvent={deleteEvent} />} />
       </Switch>
     </FlexColumnBox>
   );

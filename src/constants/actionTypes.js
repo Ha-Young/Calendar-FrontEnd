@@ -18,3 +18,4 @@ export const MOVE_NEXT_WEEK = "MOVE_NEXT_WEEK";
 export const RESET_DAY = "RESET_DAY";
 
 export const ADD_EVENT = "ADD_EVENT";
+export const DELETE_EVENT = "DELETE_EVENT";

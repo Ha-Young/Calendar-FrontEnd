@@ -16,6 +16,7 @@ import {
   SET_WEEK_PAGE,
   SET_EVENT_PAGE,
   ADD_EVENT,
+  DELETE_EVENT,
 } from "../constants/actionTypes";
 
 export const setDayPage = () => ({
@@ -54,5 +55,12 @@ export const addEvent = (event) => ({
   type: ADD_EVENT,
   payload: {
     [event.date]: event
+  },
+});
+
+export const deleteEvent = (event) => ({
+  type: DELETE_EVENT,
+  payload: {
+    key: event.date
   },
 });

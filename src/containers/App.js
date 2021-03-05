@@ -6,6 +6,7 @@ import {
   setDayPage,
   setWeekPage,
   setEventPage,
+  deleteEvent,
 } from "../actions";
 
 const mapStateToProps = (state) => ({
@@ -30,6 +31,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setEvent: () => {
     dispatch(setEventPage());
+  },
+  deleteEvent: (event) => {
+    dispatch(deleteEvent(event));
   },
   onSubmit: (event) => {
     dispatch(addEvent(event));
