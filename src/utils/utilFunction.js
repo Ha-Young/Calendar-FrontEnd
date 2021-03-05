@@ -70,8 +70,26 @@ export const generateKey = () => {
   return key;
 };
 
+export const getWeeklyPosition = (startTime, endTime, date) => {
+  const cardWidth = Math.floor((window.innerWidth * 81) / 100 / 7);
+  const cardHeight = (endTime - startTime) * 32;
+  const positionLeft = cardWidth * dateConst.DAYS[parseDate(date).day];
+  const positionTop = 60 + startTime * 32;
+
+  return { cardWidth, cardHeight, positionLeft, positionTop };
+};
+
+export const getDailyPosition = (startTime, endTime) => {
+  const cardWidth = Math.floor((window.innerWidth * 81) / 100);
+  const cardHeight = (endTime - startTime) * 32;
+  const positionLeft = 0;
+  const positionTop = startTime * 32;
+
+  return { cardWidth, cardHeight, positionLeft, positionTop };
+};
+
 export const generateColor = () => {
-  const option = "789abc";
+  const option = "345678";
   let color = "#";
 
   for (let i = 0; i < 6; i++) {

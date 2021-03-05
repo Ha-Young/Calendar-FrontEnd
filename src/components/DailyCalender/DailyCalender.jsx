@@ -5,28 +5,26 @@ import styles from "./DailyCalender.module.css";
 
 const DailyCalender = ({ dailyEvent }) => {
   return (
-    <>
-      <section className={styles.container}>
-        <div className={styles.timeContainer}>
-          {dateConst.TIME_LIST.map((time) => (
-            <div key={time} className={styles.eachTime}>
-              {time}시
-            </div>
-          ))}
-        </div>
-        <div className={styles.eventContainer}>
-          {dateConst.TIME_LIST.map((time) => (
-            <div key={time} className={styles.eachTime}></div>
-          ))}
+    <div className={styles.container}>
+      <section className={styles.timeContainer}>
+        {dateConst.TIME_LIST.map((time) => (
+          <div key={time} className={styles.eachTime}>
+            {time}시
+          </div>
+        ))}
+      </section>
+      <section className={styles.scheduleContainer}>
+        {dateConst.TIME_LIST.map((time) => (
+          <div key={time} className={styles.eachTime}></div>
+        ))}
+        <div>
+          {dailyEvent &&
+            Object.values(dailyEvent).map((event) => (
+              <EventCardStyled key={event.id} {...event} />
+            ))}
         </div>
       </section>
-      <section>
-        {dailyEvent &&
-          Object.values(dailyEvent).map((event) => (
-            <EventCardStyled key={event.id} {...event} />
-          ))}
-      </section>
-    </>
+    </div>
   );
 };
 

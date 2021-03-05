@@ -6,14 +6,14 @@ import styles from "./WeeklyCalender.module.css";
 const WeeklyCalender = ({ daysOfWeek, weeklyEvent }) => {
   return (
     <div className={styles.container}>
-      <div className={styles.timeContainer}>
+      <section className={styles.timeContainer}>
         <div className={styles.tableHeader}></div>
         {dateConst.TIME_LIST.map((time) => (
           <div key={time} className={styles.eachTime}>
             {time}시
           </div>
         ))}
-      </div>
+      </section>
       <section className={styles.scheduleContainer}>
         {daysOfWeek.map((date) => (
           <div key={date} className={styles.eachDay}>

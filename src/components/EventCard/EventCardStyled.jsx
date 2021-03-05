@@ -1,9 +1,11 @@
-import { dateConst } from "constants/constants";
-import routes from "constants/routes";
 import React, { useEffect, useState } from "react";
-import { useHistory, useLocation, useParams } from "react-router-dom";
-import { generateColor, parseDate } from "utils/utilFunction";
-import styles from "./EventCardStyled.module.css";
+import { useHistory, useLocation } from "react-router-dom";
+import routes from "constants/routes";
+import {
+  generateColor,
+  getWeeklyPosition,
+  getDailyPosition,
+} from "utils/utilFunction";
 
 const EventCardStyled = ({ id, title, date, startTime, endTime }) => {
   const history = useHistory();
@@ -11,41 +13,34 @@ const EventCardStyled = ({ id, title, date, startTime, endTime }) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    let positionTop, positionLeft, cardWidth, cardHeight;
+    let sizeAndPosition = {};
 
     if (pathname === routes.WEEKLY) {
-      cardWidth = Math.floor((window.innerWidth * 81) / 100 / 7);
-      cardHeight = (endTime - startTime) * 32;
-      positionLeft = cardWidth * dateConst.DAYS[parseDate(date).day];
-      positionTop = 60 + startTime * 32;
+      sizeAndPosition = { ...getWeeklyPosition(startTime, endTime, date) };
     } else if (pathname === routes.DAILY) {
-      cardWidth = Math.floor((window.innerWidth * 81) / 100 / 7);
-      cardHeight = (endTime - startTime) * 32;
-      positionLeft = cardWidth * dateConst.DAYS[parseDate(date).day];
-      positionTop = 60 + startTime * 32;
+      sizeAndPosition = { ...getDailyPosition(startTime, endTime) };
     }
 
     const cardStyle = {
       position: "absolute",
-      top: `${positionTop}px`,
-      left: `${positionLeft}px`,
-      width: `${cardWidth}px`,
-      height: `${cardHeight}px`,
+      top: `${sizeAndPosition.positionTop}px`,
+      left: `${sizeAndPosition.positionLeft}px`,
+      width: `${sizeAndPosition.cardWidth}px`,
+      height: `${sizeAndPosition.cardHeight}px`,
       backgroundColor: generateColor(),
       opacity: 0.9,
+      padding: "4px",
+      fontSize: "0.8em",
+      color: "white",
       cursor: "pointer",
     };
 
     setCardStyle(cardStyle);
-  }, [pathname]);
+  }, [pathname, date, startTime, endTime]);
 
   return (
-    <div
-      className={styles.eventCard}
-      style={cardStyle}
-      onClick={() => history.push(`/events/${id}`)}
-    >
-      <h1 className={styles.title}>{title}</h1>
+    <div style={cardStyle} onClick={() => history.push(`/events/${id}`)}>
+      <h1>{title}</h1>
       <span>
         {startTime}시 ~ {endTime}시
       </span>

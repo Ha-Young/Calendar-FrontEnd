@@ -1,4 +1,4 @@
-div {
+.container div {
   border: lightgray 0.1px solid;
   box-sizing: border-box;
 }
