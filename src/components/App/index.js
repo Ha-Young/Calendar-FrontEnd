@@ -10,8 +10,9 @@ import ScheduleContainer from "../../containers/ScheduleContainer";
 import { getDiffDay, getWeekDateListBasedOnDate } from "../../utils/date";
 import AppHeader from "../AppHeader";
 import AppSider from "../AppSider";
-import styles from "./App.module.css";
+import ErrorView from "../ErrorView";
 import Loading from "../Loading";
+import styles from "./App.module.css";
 
 const { Header, Footer, Content, Sider } = Layout;
 
@@ -21,6 +22,7 @@ function App({
   date,
   user,
   loading,
+  error,
   changeViewOption,
   changeCurrentDate,
   getDate,
@@ -66,10 +68,11 @@ function App({
       endDate,
     });
   }
-  console.log(loading);
+
   return (
     <Layout className={styles.App}>
-      {loading && <Loading />}
+      {(loading && !error) && <Loading />}
+      {(!loading && error) && <ErrorView errMsg={error} />}
       <Header className={styles.header}>
         <AppHeader currentDate={currentDate} updateDate={updateCurrentDate} />
       </Header>
