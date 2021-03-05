@@ -8,7 +8,7 @@ import styles from "./MainContainer.module.css";
 import EventModal from "../components/Modal/EventModal";
 import { formatUserInput } from "../utils/utils";
 
-import { uploadData } from "../api/index";
+import { uploadData, deleteData } from "../api/index";
 
 import {
   NEXT,
@@ -44,6 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onDeleteEvent: (eventId) => {
+    deleteData(eventId);
     dispatch({ type: DELETE_EVENT, payload: eventId });
   },
 });

@@ -4,7 +4,6 @@ import Sidebar from "../components/Sidebar/Sidebar";
 
 import { connect } from "react-redux";
 import { uploadData } from "../api";
-import { receiveEvents } from "../actions/index";
 
 const mapStateToProps = (state) => ({ app: state });
 
@@ -12,14 +11,12 @@ const mapDispatchToProps = (dispatch) => ({
   // This function is passed to App component.
 
   onInitialLoad: () => {
-    uploadData();
+    fetchData();
   },
 });
 
 const AppContainer = ({ onInitialLoad }) => {
-  useEffect(() => {
-    // onInitialLoad();
-  }, []);
+  useEffect(() => {}, []);
   return (
     <>
       <Sidebar />
