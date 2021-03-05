@@ -41,7 +41,19 @@ const eventIdRoute = (state = "", action) => {
   }
 };
 
+const isDayCalendar = (state = true, action) => {
+  switch (action.type) {
+    case "SHOW_DAYCALENDAR":
+      return state = true;
+    case "SHOW_WEEKCALENDAR":
+      return state = false;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   eventInfo,
-  eventIdRoute
+  eventIdRoute,
+  isDayCalendar
 });

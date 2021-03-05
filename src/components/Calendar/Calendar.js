@@ -4,9 +4,16 @@ import moment from "moment";
 import { cloneDeep } from "lodash";
 import DayTable from "./DayTable";
 import DateIndicator from "./DateIndicator";
+import TwoOptionSelector from "./TwoOptionSelector";
 import IncDecrementControlBox from "./IncDecrementControlBox";
 
-export default function Calendar ({ eventInfo, onEventIdClick }) {
+export default function Calendar ({
+  eventInfo,
+  isDayCalendar,
+  onEventIdClick,
+  onEventDayClick,
+  onEventWeekClick
+}) {
   const [currentDate, setCurrentDate] = useState(moment());
 
   const handleIncreaseClick = () => {
@@ -22,6 +29,12 @@ export default function Calendar ({ eventInfo, onEventIdClick }) {
       <div className={styles.Calender}>
         <header className={styles.headerContainer}>
           <div className={styles.dateIndicatorContainer}>
+            <TwoOptionSelector
+              firstOption="일간"
+              secondOption="주간"
+              onFirstOptionClick={onEventDayClick}
+              onSecondOptionClick={onEventWeekClick}
+            />
             <DateIndicator
               year={currentDate.format("YYYY")}
               month={currentDate.format("M")}
@@ -38,14 +51,14 @@ export default function Calendar ({ eventInfo, onEventIdClick }) {
               onDecreaseClick={handleDecreaseClick}
             />
           </div>
-          <DayTable
+          {isDayCalendar && <DayTable
             year={currentDate.format("YYYY")}
             month={currentDate.format("M")}
             date={currentDate.format("D")}
             day={currentDate.format("E")}
             eventInfo={eventInfo}
             onEventIdClick={onEventIdClick}
-          />
+          />}
         </div>
       </div>
     </>

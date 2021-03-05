@@ -8,7 +8,16 @@ import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
 import EventForm from "../Event/EventForm";
 
-function App({ onInitialLoad, eventInfo, onEventInfoSubmit, eventIdRoute, onEventIdClick }) {
+function App({
+  onInitialLoad,
+  eventInfo,
+  onEventInfoSubmit,
+  eventIdRoute,
+  onEventIdClick,
+  onEventDayClick,
+  onEventWeekClick,
+  isDayCalendar
+}) {
   useEffect(() => {
     onInitialLoad();
   }, []);
@@ -24,6 +33,9 @@ function App({ onInitialLoad, eventInfo, onEventInfoSubmit, eventIdRoute, onEven
           <Calendar
             eventInfo={eventInfo}
             onEventIdClick={onEventIdClick}
+            onEventDayClick={onEventDayClick}
+            onEventWeekClick={onEventWeekClick}
+            isDayCalendar={isDayCalendar}
           />
         </Route>
         <Route path="/event/new">

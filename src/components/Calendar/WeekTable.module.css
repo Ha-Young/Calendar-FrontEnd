@@ -1,0 +1,27 @@
+@import url("../../assets/styles/reset.css");
+
+.DayTable {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  grid-template-rows: repeat(24, 30px);
+  overflow: scroll;
+  width: 70vw;
+  height: 50vh;
+  border-left: 1px solid #BDBDBD;
+  box-sizing: border-box;
+  background-color: #FFF8E1;
+  font-weight: bold;
+}
+
+.DayTable div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #BDBDBD;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}

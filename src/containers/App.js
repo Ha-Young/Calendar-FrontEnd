@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
 import { saveSampleData } from "../api";
-import { submitEventInfo, routeEventId } from "../actions"
+import { submitEventInfo, routeEventId, showDayCalendar, showWeekCalendar } from "../actions"
 
 const mapStateToProps = (state) => ({
   eventInfo: state.eventInfo,
-  eventIdRoute: state.eventIdRoute
+  eventIdRoute: state.eventIdRoute,
+  isDayCalendar: state.isDayCalendar
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,6 +20,14 @@ const mapDispatchToProps = (dispatch) => ({
 
   onEventIdClick: (eventId) => {
     dispatch(routeEventId(eventId));
+  },
+
+  onEventDayClick: () => {
+    dispatch(showDayCalendar());
+  },
+
+  onEventWeekClick: () => {
+    dispatch(showWeekCalendar());
   }
 });
 
