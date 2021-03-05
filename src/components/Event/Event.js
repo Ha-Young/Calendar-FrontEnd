@@ -14,7 +14,6 @@ export default function Event({ event }) {
         </nav>
       </div>
       <Switch>
-        {console.log(event)}
         <Route path={`${match.url}/${event.Id}`}><Modal event={event}/></Route>
         <Route path={`${match.url}/new`}><Form /></Route>
       </Switch>

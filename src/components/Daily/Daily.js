@@ -1,13 +1,14 @@
-import React, { Fragment, useState } from "react";
-import { hour} from "../../constants/DateConstants";
+import React, { Fragment } from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 import { getFormat } from "../../api/date";
+import { hour} from "../../constants/DateConstants";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import "./style.css";
-import { Link } from "react-router-dom";
 
 export default function Daily({ eventList, eventKeyList, currentPageDate, handleClickLeft, handleClickRight, handleClickEvent }) {
   const currentDate = getFormat(currentPageDate);
   const currentEventList = eventKeyList.includes(currentDate) ? eventList[currentDate] : [];
+  const match = useRouteMatch();
   let until;
   let firstId;
 
@@ -15,11 +16,16 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
     const className = event.target.className.split(" ");
     const selectedEventId = className.length === 3 ? className[0] : "";
     let selectedEvent;
+    
     for (let i = 0; i < currentEventList.length; i++) {
       if (currentEventList[i].Id === selectedEventId) {
         selectedEvent = currentEventList[i];
         break;
       }
+    }
+
+    if(!selectedEvent) {
+      return;
     }
 
     handleClickEvent(selectedEvent);
@@ -58,13 +64,12 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
             }
 
             return (
-              <Link to={`/event/${firstId}`}>
+              <Link to={firstId ? `/event/${firstId}` : `${match.url}`}>
                 <div key={time} className={[firstId, "time-div", isColor].join(" ")} onClick={handleClick}>
-                  <div className="event-title">{title}</div>
-                  <div className="event-hour">{time}시</div>
+                  <div className="disable-click event-title">{title}</div>
+                  <div className="disable-click event-hour">{time}시</div>
                 </div>
               </Link>
-                
             );
           })
         }

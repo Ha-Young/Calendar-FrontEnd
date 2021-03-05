@@ -73,7 +73,9 @@ export default function Weekly({ events, keys, currentPageDate, handleClickLeft,
                     }
                   }
 
-                  return <div className={["box", isColor].join(" ")}>{title}</div>
+                  return (
+                    <div className={["box", isColor].join(" ")}>{title}</div>
+                  ) 
                   })}
                 </div>
               );

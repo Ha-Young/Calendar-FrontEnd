@@ -31,5 +31,4 @@ export const convertToReduxStateForm = function (data) {
    const eventId = data[hour];
    const event = eventId
  }
-
 }

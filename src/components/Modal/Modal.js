@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 export default function Modal({ event }) {
@@ -6,13 +7,14 @@ export default function Modal({ event }) {
   console.log(event);
   return (
     <div className="modal-container">
+      <Link to="/calendar/daily">x</Link>
       <div className="modal-content-container">
-        <span>{event.startDate}</span>
-        <span>{event.startHour}</span>
-        <span>{event.endHour}</span>
+      <h3>title: {event.title}</h3>
+        <h4>date: {event.date}</h4>
+        <h4>start hour: {event.startHour}</h4>
+        <h4>end hour: {event.endHour}</h4>
+        <h4>description: {event.description}</h4>
       </div>
-      <div>{event.title}</div>
-      <div>{event.description}</div>
     </div>
   );
 }

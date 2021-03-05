@@ -1,16 +1,12 @@
 .modal-container {
-  position: fixed;
-  margin: 0 auto;
-  top: 200px;
-  left: 0;
-  right: 0;
+  display: flex;
+  margin: auto auto;
   width: 400px;
   height: 500px;
   background-color: #ccff99;
-  z-index: 2;
+  padding: 10px;
 }
 
-
 .modal-content-container {
-  
+  margin: 20px;
 }

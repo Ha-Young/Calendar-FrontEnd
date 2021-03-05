@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Weekly from "../components/Weekly/Weekly";
-import { handleClickLeft, handleClickRight } from "../actions";
+import { handleClickLeft, handleClickRight, handleClickEvent } from "../actions";
 
 const mapStateToProps = (state) => {
   return {
@@ -10,4 +10,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {handleClickLeft, handleClickRight })(Weekly);
+export default connect(mapStateToProps, {handleClickLeft, handleClickRight, handleClickEvent })(Weekly);
