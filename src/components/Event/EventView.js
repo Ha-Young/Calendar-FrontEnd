@@ -5,6 +5,7 @@ import Button from "../Shared/Button";
 import PageNotFound from "../Error/PageNotFound";
 import Loading from "../Loading/Loading";
 import { getEvents, removeEvent } from "../../api/index";
+
 import { IoLocationSharp, IoTimeSharp, IoCalendarClearSharp, IoPencilSharp } from "react-icons/io5";
 
 import styles from "./EventView.module.scss";
@@ -21,7 +22,6 @@ export default function EventView({ userId, setUpdateEventMode, eventsInStore, s
       const event = eventsInStore.byDates[eventDate][eventStartTime];
       setCurrentEvent(event);
     } else {
-      console.log("fetch");
       fetchEvents(eventDate);
     }
   }, []);
@@ -34,7 +34,6 @@ export default function EventView({ userId, setUpdateEventMode, eventsInStore, s
         saveEventInStore(date, [eventList[i]]);
         break;
       } else {
-        console.log("work??");
         setCurrentEvent("Not Found");
       }
     }

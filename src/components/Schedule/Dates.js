@@ -5,7 +5,7 @@ import styles from "./Dates.module.scss";
 export default function Dates({ calendarMode, today, selectedDate, week }) {
   const formattedTodayDate = formatDate(today, "yyyy-MM-dd-E");
   const formattedSelectedDate = formatDate(selectedDate, "yyyy-MM-dd-E");
-  const [ year, month, dateNumber, day ] = formattedSelectedDate.split("-");
+  const [ dateNumber, day ] = formattedSelectedDate.split("-").slice(2);
 
   const formatWeek = (weekList) => {
     const formattedWeek = weekList.map((date) => formatDate(date, "yyyy-MM-dd-E"));
@@ -25,7 +25,7 @@ export default function Dates({ calendarMode, today, selectedDate, week }) {
       {calendarMode === "weekly"
        ? (
           formatWeek(week).map((date) => {
-            const [ year, month, dateNumber, day ] = date.split("-");
+            const [ dateNumber, day ] = date.split("-").slice(2);
             return (
               <li key={date}>
                 <span className={checkTodayClass(date)}>{dateNumber}</span>

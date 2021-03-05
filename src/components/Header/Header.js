@@ -10,7 +10,7 @@ const today = new Date();
 // TODO: Create your own header.
 export default function Header ({ setUserId, selectedDate, setSelectedDate, setCreateEventMode }) {
   const formattedDate = formatDate(selectedDate, "yyyy-MM-dd-E");
-  const [ year, month, dateNumber, day ] = formattedDate.split("-");
+  const [ year, month ] = formattedDate.split("-").slice(0, 2);
 
   const logOut = async () => {
     await logoutWithGoogleAccount();
