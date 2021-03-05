@@ -1,4 +1,5 @@
 import { EVENT_INIT_ID } from "../constants";
+
 export function setEventForm(state, key, value) {
   if (key) {
     return {
@@ -16,7 +17,7 @@ export function setEventForm(state, key, value) {
       ...state.eventForm,
       ...value,
     }
-  }
+  };
 }
 
 export function setUserEvent(state, userEvent) {
@@ -41,7 +42,7 @@ export function setUserEvent(state, userEvent) {
       title: "",
       content: "",
       eventId: EVENT_INIT_ID,
-    }
+    },
   };
 }
 
@@ -56,7 +57,7 @@ export function clearUserEvent(state, eventId) {
     userEvent: {
       byId: copyUserEventById,
       allId: copyUserEventAllId,
-    }
+    },
   };
 }
 
@@ -71,5 +72,5 @@ export function setCurrentDate(state) {
   return {
     ...state,
     currentDate: current,
-  }
+  };
 }

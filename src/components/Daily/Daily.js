@@ -1,9 +1,9 @@
 import React from "react";
-import dailyStyles from "./Daily.module.css";
-import weeklyStyles from "../Weekly/Weekly.module.css";
-import { MAX_MIN_DATE, DAYS } from "../../constants";
-import CalendarHeader from "../shared/CalendarHeader";
 import { Link, useHistory } from 'react-router-dom';
+import dailyStyles from "./Daily.module.css";
+import { MAX_MIN_DATE, DAYS } from "../../constants";
+import weeklyStyles from "../Weekly/Weekly.module.css";
+import CalendarHeader from "../shared/CalendarHeader";
 
 export default function Daily({ role, eventDate, userEvents, dispatch }) {
   const history = useHistory();
@@ -32,7 +32,12 @@ export default function Daily({ role, eventDate, userEvents, dispatch }) {
     const { id, title } = eventTable[i] ?? {id: null, title: null};
 
     hourColumns.push(
-      <div key={i} id={i} className={dailyStyles.column} onClick={handleClick}>
+      <div
+        key={i}
+        id={i}
+        className={dailyStyles.column}
+        onClick={handleClick}
+      >
         {eventTable[i]
           ? <Link to={`/events/${id}`}>
               <div id={id}>{title}</div>
@@ -45,7 +50,9 @@ export default function Daily({ role, eventDate, userEvents, dispatch }) {
 
   function handleClick(e) {
     const hour = Number(e.target.id);
+
     if (Number.isNaN(hour)) return;
+
     const payload = {year, month, date, fromHour: hour, toHour: hour + 1};
     dispatch(payload);
     history.push("/events/new");

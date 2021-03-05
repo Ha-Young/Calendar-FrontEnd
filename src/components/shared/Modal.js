@@ -1,5 +1,6 @@
 import React from "react";
-export default function ({ children }) {
+
+export default function Modal({ children }) {
   return (
     <div>
     <>

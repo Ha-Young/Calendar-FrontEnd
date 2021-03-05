@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
   const eventById = selectors.getUserEventById(state);
   const dailyEvents = selectors.getDailyEvents(currentDate, eventById);
   const weeklyEvents = selectors.getWeeklyEvents(currentDate, eventById);
+
   return {eventInfo, currentDate, dailyEvents, weeklyEvents, eventById};
 };
 
@@ -29,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     actToUserEvent: {
       setEvent: (event) => dispatch(setUserEventFor.register(event)),
-      clearEvent: (eventId) => dispatch(setUserEventFor.clear(eventId)),
+      deleteEvent: (eventId) => dispatch(setUserEventFor.delete(eventId)),
     },
     actToCurrentDate: (dateBundle) => dispatch(setCurrentDate(dateBundle)),
   };

@@ -2,8 +2,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-// TODO: Enter your own config object
 const env = process.env;
+
 const firebaseConfig = {
   apiKey: env.REACT_APP_API_KEY,
   authDomain: env.REACT_APP_AUTH_DOMAIN,

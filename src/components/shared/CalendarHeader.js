@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ({ children }) {
+export default function CalendarHeader({ children }) {
   return (
     <div>
       {children}

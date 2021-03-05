@@ -1,14 +1,14 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
-export default function EventDetails({ eventById, setEventForm, clearEvent}) {
+export default function EventDetails({ eventById, setEventForm, deleteEvent}) {
   const { eventId } = useParams();
 
-  if (!Object.keys(eventById).length) return <div>유효하지 않음!</div>
+  if (!Object.keys(eventById).length) return <div>유효하지 않음!</div>;
 
   for (const id in eventById) {
     if (eventId === id) break;
-    return <div>유효하지 않음!!</div>
+    return <div>유효하지 않음!!</div>;
   }
 
   const { title, content, period } = eventById[eventId];
@@ -47,8 +47,8 @@ export default function EventDetails({ eventById, setEventForm, clearEvent}) {
         <button onClick={() => setEventForm({eventId, title, content, year, month, date, fromHour, toHour})}>수정</button>
       </Link>
       <Link to="/calendar">
-        <button onClick={() => clearEvent(eventId)}>삭제</button>
+        <button onClick={() => deleteEvent(eventId)}>삭제</button>
       </Link>
     </>
-  )
+  );
 }

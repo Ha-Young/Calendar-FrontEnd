@@ -19,6 +19,7 @@ export function getDailyEvents(date, userEvent) {
   const currentMonth = date.getMonth();
   const currentDate = date.getDate();
   const events = [];
+
   for (const key in userEvent) {
     const event = new Date(userEvent[key].period.from);
     const eventYear = event.getFullYear();
@@ -28,7 +29,7 @@ export function getDailyEvents(date, userEvent) {
       && currentMonth === eventMonth
       && currentDate === eventDate;
 
-      if (isDailyEvent) events.push(userEvent[key]);
+    if (isDailyEvent) events.push(userEvent[key]);
   }
   return events;
 }

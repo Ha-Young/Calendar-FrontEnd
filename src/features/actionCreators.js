@@ -15,7 +15,7 @@ export const setEventFormFor = {
 
 export const setUserEventFor = {
   register: (event) => ({type: userEvent.SET_EVENT, payload: event}),
-  clear: (eventId) => ({type: userEvent.CLEAR_EVENT, payload: eventId}),
+  delete: (eventId) => ({type: userEvent.CLEAR_EVENT, payload: eventId}),
 };
 
 export const setCurrentDate = (dateBundle) => ({type: SET_CURRENT_DATE, payload: dateBundle});
