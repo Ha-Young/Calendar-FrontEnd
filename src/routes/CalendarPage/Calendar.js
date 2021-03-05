@@ -16,7 +16,7 @@ const Calendar = ({
     <div className={styles.wrapper}>
       <CalendarHeader 
         sideBar={dateList} 
-        onToggle={handleCalendarType} 
+        onClick={handleCalendarType} 
         selectedDate={selectedDate} 
         calendarType={calendarType} 
       />

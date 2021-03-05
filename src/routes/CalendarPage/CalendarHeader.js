@@ -5,14 +5,13 @@ import { setCalendarDate } from "../../utils/date";
 
 const CalendarHeader = ({ 
   sideBar, 
-  onToggle, 
+  onClick, 
   selectedDate, 
   calendarType, 
-  children 
 }) => {
   const handlePrevButton = () => {
     const newCalendarDate = setCalendarDate(subDays, calendarType, selectedDate);
-    onToggle({
+    onClick({
       ...newCalendarDate,
     });
   };
@@ -20,20 +19,24 @@ const CalendarHeader = ({
   const handleNextButton = () => {
     const newCalendarDate = setCalendarDate(addDays, calendarType, selectedDate);
 
-    onToggle({
+    onClick({
       ...newCalendarDate,
     });
   };
-  
+
   return (
-    <div className={styles.navigation}>
-      <button value="prev" onClick={handlePrevButton}>prev</button>
-      <button value="next" onClick={handleNextButton}>next</button>
-      {sideBar?.map((date) => (
-        <div key={date} className={styles.date}>{date}</div>
-      ))}
-      {children}
-    </div>
+    <>
+      <div className={styles.navigation}>
+        {sideBar?.map((date) => (
+          <div key={date} className={styles.date}>{date}</div>
+        ))}
+      </div>
+      <div className={styles.buttons}>
+        <button value="prev" onClick={handlePrevButton}>prev</button>
+        <button value="next" onClick={handleNextButton}>next</button>
+      </div>
+    </>
+
   );
 };
 

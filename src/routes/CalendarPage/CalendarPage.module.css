@@ -3,15 +3,30 @@
   padding-top: 71px;
 }
 
+.buttons {
+  display: flex;
+}
+
 .navigation {
   display: flex;
   position: fixed;
   width: calc(100% - 285.5px);
   height: 100px;
   padding-left: 35.05px;
+  border-bottom: 1px solid #EEEEEE;
   align-items: center;
   background: #ffffff;
-  border-bottom: 1px solid #EEEEEE;
+  z-index: 10;
+}
+
+.buttons {
+  display: flex;
+  position: fixed;
+  width: calc(100% - 285.5px);
+  height: 20px;
+  padding-left: 35.05px;
+  justify-content: space-between;
+  background: #ffffff;
   z-index: 10;
 }
 
@@ -44,4 +59,9 @@
 
 .date {
   width: 100%;
+}
+
+.header-wrapper {
+  display: flex;
+  height: 10%;
 }

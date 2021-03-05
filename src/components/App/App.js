@@ -25,8 +25,6 @@ const App = ({
  
   return (
     <div className={styles.App}>
-      {isLoading && "isLoading.."}
-      {errorMessage && errorMessage}
       <Header onClickButton={handleChangeCalendarType} currentDate={currentDate} />
       <SideBar />
       <Switch location={background || location}>
@@ -44,6 +42,8 @@ const App = ({
             <EventDetailPageContainer />     
           </Route>
       }
+      {isLoading && "isLoading.."}
+      {errorMessage && errorMessage}
     </div>
   );
 };
