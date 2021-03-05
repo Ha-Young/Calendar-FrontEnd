@@ -10,6 +10,8 @@ import EventDetail from "components/EventDetail/EventDetail";
 import Login from "components/Login/Login";
 import { typeConst } from "constants/constants";
 import { actionCreators } from "actions/actionCreators";
+import routes from "constants/routes";
+import Profile from "components/Profile/Profile";
 
 const AppRouter = ({ weeklyEvent, deleteEvent, isLoggedIn }) => {
   return (
@@ -18,44 +20,46 @@ const AppRouter = ({ weeklyEvent, deleteEvent, isLoggedIn }) => {
         <section>
           <Header />
           <Switch>
-            <Route exact path="/">
+            <Route exact path={routes.HOME}>
               <Weekly />
             </Route>
 
-            <Route path="/daily">
+            <Route path={routes.DAILY}>
               <Daily />
             </Route>
 
-            <Route path="/weekly">
+            <Route path={routes.WEEKLY}>
               <Weekly />
             </Route>
 
-            <Route path="/events/new">
+            <Route path={routes.ADD_EVENT}>
               <HandleEvent type={typeConst.ADD} />
             </Route>
 
-            <Route exact path="/events/edit/:eventId">
+            <Route exact path={routes.EDIT_EVENT}>
               <HandleEvent type={typeConst.EDIT} />
             </Route>
 
-            <Route exact path="/events/:eventId">
+            <Route exact path={routes.EVENT_DETAIL}>
               <EventDetail
                 weeklyEvent={weeklyEvent}
                 deleteEvent={(id, date) => deleteEvent(id, date)}
               />
             </Route>
 
-            <Route exact path="/profile"></Route>
+            <Route exact path={routes.PROFILE}>
+              <Profile />
+            </Route>
 
-            <Redirect from="/calender" to="/" />
+            <Redirect from="/calender" to={routes.HOME} />
           </Switch>
         </section>
       ) : (
         <Switch>
-          <Route path="/">
+          <Route path={routes.HOME}>
             <Login />
           </Route>
-          <Redirect from="*" to="/" />
+          <Redirect from="*" to={routes.HOME} />
         </Switch>
       )}
     </>
@@ -68,6 +72,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    showDaily: (events) => dispatch(actionCreators.showDaily(events)),
     deleteEvent: (id, date) => dispatch(actionCreators.deleteEvent(id, date)),
   };
 };

@@ -1,12 +1,9 @@
 import React from "react";
 import { dateConst } from "constants/constants";
 import styles from "./WeeklySchedule.module.css";
-import { useHistory } from "react-router-dom";
 import EventCardStyled from "components/EventCard/EventCardStyled";
 
 const WeeklyScedule = ({ daysOfWeek, weeklyEvent }) => {
-  const history = useHistory();
-
   return (
     <>
       <section className={styles.container}>
