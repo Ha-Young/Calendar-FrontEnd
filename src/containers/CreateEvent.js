@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import CreateEvent from "../components/CreateEvent/CreateEvent";
 import { createEvent } from "../actions";
-import * as db from "../api";
 
 const mapStateToProps = (state) => ({
   currentDay: state.currentDay,

@@ -1,0 +1,17 @@
+.daily_hour {
+  flex-basis: 8%;
+  justify-content: center;
+}
+
+.daily_event {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  align-items: center;
+  border-radius: 2vw;
+  color: #F8F6F1;
+  font-weight: 400;
+  font-size: medium;
+  background-color: #084c616c;
+}

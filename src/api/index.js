@@ -8,7 +8,7 @@ export async function saveEvents() {
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
 
   await database.ref("userId/user1").set({
-    "2021-03-05" : ["bcd"]
+    "2021-03-05" : "abc"
   });
 
   await database.ref("eventId/bcd").set({
@@ -24,13 +24,4 @@ export async function readTest(cb) {
   .on("value", (result) => {
     if (result) cb(result.val());
   });
-
-  // return await database.ref("eventId/" + result).on("value", (nextData) => {
-  //   const secondResult = nextData.val();
-  //   console.log(secondResult);
-  // });
-  // return await database.ref("test").on("value", (text) => {
-  //   const data = text.val();
-  //   cb(data);
-  // });
 }

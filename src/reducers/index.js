@@ -9,7 +9,7 @@
 
  */
 import { combineReducers } from "redux";
-import { GET_DATA, CREATE_EVENT, NEXT_DAY, YESTER_DAY } from "../constants/actionTypes";
+import { CREATE_EVENT, NEXT_DAY, YESTER_DAY } from "../constants/actionTypes";
 import _ from "lodash";
 
 const initialState = new Date().toISOString().slice(0, 10);
@@ -30,13 +30,22 @@ const currentDay = (state = initialState, action) => {
 };
 
 const initialEvent = {
-  "2021-03-05" : [{
-    eventId: "firstEvent",
-    title: "go",
-    description: "asdf",
-    start: 8,
-    end: 9,
-  }],
+  "2021-03-05" : {
+    "8" : {
+      title: "go",
+      description: "asdf",
+      start: 8,
+      end: 9,
+    },
+  },
+  "2021-03-04" : {
+    "10" : {
+      title: "back",
+      description: "eeee",
+      start: 10,
+      end: 11,
+    },
+  },
 };
 
 const events = (state = initialEvent, action) =>{
@@ -45,29 +54,15 @@ const events = (state = initialEvent, action) =>{
     //   console.log('here is store', action.data)
     //   return action.data;
     case CREATE_EVENT:
-      if (!state[action.event.eventDate]) {
-        state[action.event.eventDate] = [];
-      }
-      console.log(state[action.event.eventDate])
-
-      state[action.event.eventDate].push({
-        eventId: action.event.eventId,
-        title: action.event.title,
-        description: action.event.description,
-        start: action.event.start,
-        end: action.event.end,
-      });
-
-      console.log(state)
-      // return Object.assign({}, state, {
-      //   [action.event.eventDate]: {
-      //     eventId: action.event.eventId,
-      //     title: action.event.title,
-      //     description: action.event.description,
-      //     start: action.event.start,
-      //     end: action.event.end,
-      //   }
-      // });
+      const { title, description, start, end, eventDate } = action.event;
+      const newstate = {
+        ...state[eventDate],
+        [start]: {
+          title, description, start, end
+        }
+      };
+      state[eventDate] = newstate;
+      return state;
     default:
       return state;
   }
