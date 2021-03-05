@@ -13,3 +13,5 @@ export const RECEIVE_DATE_LIST = 'RECEIVE_DATE_LIST';
 export const CREATED_EVNETS = 'CREATE_EVENTS';
 export const UPDATED_EVENTS = 'UPDATE_EVENTS';
 export const DELETED_EVENTS = 'DELETE_EVENTS';
+
+export const LOGIN_USER = 'LOGIN_USER';

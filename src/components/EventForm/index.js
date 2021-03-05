@@ -68,13 +68,13 @@ function EventForm({ onSubmit, onCancel, onDelete, event }) {
   return (
     <>
       <h2>{`${FORM_DEFAULT_TITLE} ${event ? FORM_TYPE_UPDATE : FORM_TYPE_CREATE}`}</h2>
+      {event && <Button onClick={handleDeleteClick} danger>{FORM_TYPE_DELETE}</Button>}
       <Form
         {...layout}
         className={styles.addForm}
         onFinish={handleSubmitClick}
         initialValues={initialValues}
       >
-        {event && <Button onClick={handleDeleteClick} danger>{FORM_TYPE_DELETE}</Button>}
         <Form.Item
           label="제목"
           name="title"
