@@ -1,31 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
-import { IoMenuOutline, IoSettingsOutline } from "react-icons/io5";
-import { BsQuestionCircle } from "react-icons/bs";
-import { AiOutlineSearch } from "react-icons/ai";
-import { CgMenuGridO } from "react-icons/cg";
+import { IoMenuOutline } from "react-icons/io5";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.png";
 
-export default function Header({ prevButtonClicked, nextButtonClicked }) {
+export default function Header({ prevButtonClicked, nextButtonClicked, selectedDate, isDailyView }) {
+  const history = useHistory();
+
   return (
     <header className={styles.wrapper}>
-      <div className={styles.navItemWrapper}>
+      <div className={styles.sideBarToggleWrapper}>
         <button className={styles.changeBtn}>
           <IoMenuOutline />
         </button>
       </div>
-      <div className={styles.navItemWrapper}>
+      <div className={styles.logoWrapper}>
         <img className={styles.logo} src={logo} alt="logo" />
       </div>
-      <div className={styles.navItemWrapper}>
+      <div className={styles.titleWrapper}>
         <span>캘린더</span>
       </div>
-      <div className={styles.navItemWrapper}>
-        <button>오늘</button>
+      <div className={styles.todayBtnWrapper}>
+        <button onClick={() => history.push("/calendar")}>
+          <span>오늘</span>
+        </button>
       </div>
-      <div className={styles.navButtonWrapper}>
+      <div className={styles.prevButtonWrapper}>
         <button className={styles.changeBtn}>
           <MdNavigateBefore onClick={() => prevButtonClicked()} />
         </button>
@@ -35,11 +36,10 @@ export default function Header({ prevButtonClicked, nextButtonClicked }) {
           <MdNavigateNext onClick={() => nextButtonClicked()} />
         </button>
       </div>
-      <div className={styles.navItemWrapper}>
-        <Link to="/calendar">Calendar</Link>
-      </div>
-      <div className={styles.navItemWrapper}>
-        <Link to="/events/new">Create Event</Link>
+      <div className={styles.selectedDateWrapper}>
+        <span>
+          {isDailyView ? selectedDate.toFormat("yyyy'년' L'월' d'일") : selectedDate.toFormat("yyyy'년' L'월'")}
+        </span>
       </div>
     </header>
   );

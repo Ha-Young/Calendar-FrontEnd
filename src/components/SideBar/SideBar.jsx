@@ -1,13 +1,19 @@
 import React from "react";
 import Calendar from "react-calendar";
-import MonthView from "react-calendar";
+import { useHistory } from "react-router-dom";
 import styles from "./SideBar.module.css";
 
 export default function SideBar({ selectDay }) {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/events/new");
+  };
+
   return (
     <div className={styles.sidebarWrapper}>
       <div className={styles.btnWrapper}>
-        <button className={styles.createBtn}>
+        <button className={styles.createBtn} onClick={handleClick}>
           <div>
             <svg width="36" height="36" viewBox="0 0 36 36">
               <path fill="#34A853" d="M16 16v14h4V20z"></path>
@@ -18,7 +24,7 @@ export default function SideBar({ selectDay }) {
             </svg>
           </div>
           <div className={styles.textWrapper}>
-            만들기
+            <span>만들기</span>
           </div>
         </button>
       </div>

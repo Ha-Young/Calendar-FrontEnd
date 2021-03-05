@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid #dadce0;
   align-items: center;
   height: 60px;
 }
@@ -9,8 +9,40 @@
   width: 150px;
 }
 
+.sideBarToggleWrapper {
+  width: 40px;
+  padding: 12px 8px 12px 12px;
+  margin-top: 5px;
+}
+
+.titleWrapper {
+  width: 70px;
+  font-size: 20px;
+  color: #5f6368;
+}
+
+.logoWrapper {
+  width: 30px;
+  margin-right: 5px;
+  margin-top: 5px
+}
+
+.todayBtnWrapper {
+  border: 1px solid #dadce0;
+  border-radius: 3px;
+  margin-left: 70px;
+  padding: 2px 4px;
+}
+
 .navButtonWrapper {
   width: 30px;
+  margin-top: 5px;
+}
+
+.prevButtonWrapper {
+  width: 30px;
+  margin-left: 20px;
+  margin-top: 5px;
 }
 
 .changeBtn {
@@ -20,4 +52,11 @@
 .logo {
   width: 32px;
   height: 32px;
+}
+
+.selectedDateWrapper {
+  width: 200px;
+  font-size: 20px;
+  margin-left: 10px;
+  text-align: left;
 }

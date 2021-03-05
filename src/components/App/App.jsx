@@ -10,12 +10,21 @@ import Error from "../Error/Error";
 function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, events, selectedEventInfo, isDailyView }) {
   return (
     <div className={styles.App}>
-      <Header nextButtonClicked={nextButtonClicked} prevButtonClicked={prevButtonClicked} />
+      <Header
+        nextButtonClicked={nextButtonClicked}
+        prevButtonClicked={prevButtonClicked}
+        selectedDate={selectedDate}
+        isDailyView={isDailyView}
+      />
       <div className={styles.bodyWrapper}>
         <SideBar selectDay={selectDay} />
         <Switch>
           <Route exact path="/calendar">
-            <Calendar selectedDate={selectedDate} toggleCalendarView={toggleCalendarView} isDailyView={isDailyView}/>
+            <Calendar
+              selectedDate={selectedDate}
+              toggleCalendarView={toggleCalendarView}
+              isDailyView={isDailyView}
+            />
           </Route>
           <Route exact path="/events/new">
             <Event />
