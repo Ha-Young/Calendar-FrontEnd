@@ -9,6 +9,6 @@
 export const addEvent = (eventInfo) => {
   return {
     type: "ADD_EVENT",
-    eventInfo
+    eventInfo,
   }
 }
