@@ -1,19 +1,20 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./Error.module.css";
+import { DEFAULT_ERROR_MESSAGE } from "../../constants/string";
 
-export default function Error() {
+export default function Error({ text = DEFAULT_ERROR_MESSAGE }) {
   const history = useHistory();
 
   useEffect(() => {
     setTimeout(() => {
       history.push("/calendar");
     }, 1000);
-  }, [history])
+  }, [history]);
   
   return(
     <div className={styles.wrapper}>
-      <span>잘못된 접근입니다. 홈페이지로 돌아갑니다.</span>
+      <span>{text}</span>
     </div>
   );
 }

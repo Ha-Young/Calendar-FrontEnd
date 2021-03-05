@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CalendarHeader.module.css";
-import { calculateWeek } from "../../utils";
+import { calculateDisplayDates } from "../../utils";
 
 const createCalendarHeader = (localDate) => {
   const head = localDate.map((item, index) => {
@@ -16,7 +16,7 @@ const createCalendarHeader = (localDate) => {
 }
 
 export default function CalendarHeader({ selectedDate, isDailyView }) {
-  let localDate = calculateWeek(selectedDate, isDailyView);
+  let localDate = calculateDisplayDates(selectedDate, isDailyView);
 
   return (
     <div className={styles.wrapper}>

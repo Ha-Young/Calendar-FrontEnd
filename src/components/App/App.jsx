@@ -27,7 +27,7 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
             <Error />
           </Route>
           <Route>
-            <Redirect to="/error" />
+            <Redirect to="/calendar" />
           </Route>
         </Switch>
       </div>

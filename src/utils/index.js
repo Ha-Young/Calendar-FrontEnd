@@ -4,7 +4,7 @@ export function formatDate(date) {
   return DateTime.fromJSDate(date);
 }
 
-export function calculateWeek(date, isDailyView) {
+export function calculateDisplayDates(date, isDailyView) {
   if (isDailyView) return [date];
 
   const weekYear = date.weekYear;
