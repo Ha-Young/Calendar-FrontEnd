@@ -5,13 +5,13 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 
-import App from "./containers/App";
+import AppContainer from "./containers/AppContainer";
 import store from "./store";
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <AppContainer />
     </Router>
   </Provider>,
   document.getElementById("root")
