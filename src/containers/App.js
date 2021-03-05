@@ -27,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     actToUserEvent: {
       setEvent: (event) => dispatch(setUserEventFor.register(event)),
+      clearEvent: (eventId) => dispatch(setUserEventFor.clear(eventId)),
     },
     actToCurrentDate: (dateBundle) => dispatch(setCurrentDate(dateBundle)),
   };

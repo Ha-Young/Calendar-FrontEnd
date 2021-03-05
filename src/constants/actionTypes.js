@@ -11,6 +11,9 @@
    CORRECT_EVENT: "CORRECT_EVENT",
  };
 
- export const userEvent = {SET_EVENT: "SET_EVENT"};
+ export const userEvent = {
+   SET_EVENT: "SET_EVENT",
+   CLEAR_EVENT: "CLEAR_EVENT",
+ };
 
  export const SET_CURRENT_DATE = "SET_CURRENT_DATE";

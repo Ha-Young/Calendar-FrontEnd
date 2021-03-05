@@ -36,6 +36,7 @@ function App(props) {
           <EventDetails
             inputData={props.eventFormInfo}
             setEventForm={props.actToEventForm.correct}
+            clearEvent={props.actToUserEvent.clearEvent}
           />
         </Route>
       </Switch>

@@ -28,6 +28,22 @@ export function setUserEvent(state, userEvent) {
   };
 }
 
+export function clearUserEvent(state, eventId) {
+  debugger;
+  const copyUserEventById = {...state.userEvent.byId};
+  const copyUserEventAllId = [...state.userEvent.allId];
+  delete copyUserEventById[eventId];
+  copyUserEventAllId.splice(copyUserEventAllId.indexOf(eventId), 1);
+
+  return {
+    ...state,
+    userEvent: {
+      byId: copyUserEventById,
+      allId: copyUserEventAllId,
+    }
+  };
+}
+
 export function setCurrentDate(state) {
   const {
     year,

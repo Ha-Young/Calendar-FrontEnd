@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
-export default function EventDetails({ inputData, setEventForm }) {
+export default function EventDetails({ inputData, setEventForm, clearEvent}) {
   const { eventId } = useParams();
   const {
     title,
@@ -39,7 +39,9 @@ export default function EventDetails({ inputData, setEventForm }) {
       <Link to="/events/new">
         <button onClick={() => setEventForm({...inputData, eventId})}>수정</button>
       </Link>
-      <button>삭제</button>
+      <Link to="/events/new">
+        <button onClick={() => clearEvent(eventId)}>삭제</button>
+      </Link>
     </>
   )
 }
