@@ -6,6 +6,7 @@ import reducer from "./reducers";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router, 
+  Route,
   // HashRouter as Router
 } from "react-router-dom";
 import App from "./containers/App";

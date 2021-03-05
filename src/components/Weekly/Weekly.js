@@ -4,13 +4,21 @@ import { days, hour } from "../../constants/DateConstants";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import "./style.css";
 
-export default function Weekly({ events, keys, currentPageDate, handleClickLeft, handleClickRight }) {
+export default function Weekly(props) {
+  const { 
+    events, 
+    keys, 
+    currentPageDate, 
+    handleClickLeft, 
+    handleClickRight 
+  } = {props};
+
   const currentDay = currentPageDate;
   const currentYear = currentDay.getFullYear();
   const currentMonth = currentDay.getMonth();
   const currentDate = currentDay.getDate();
   const CurrentDayOfWeek = currentDay.getDay();
-  const currentWeek = [-1];
+  const currentWeek = [];
   const currentWeekKey = [];
   let i = 0;
 
@@ -54,28 +62,25 @@ export default function Weekly({ events, keys, currentPageDate, handleClickLeft,
 
               return (
                 <div className="vertical">
-                  {hour.map((time) => {
-                    let isColor = "";
-                    let title = "";
+                  {
+                    hour.map((time) => {
+                      let isColor = "";
+                      let title = "";
 
-                  for (let i = 0; i < currentEventList.length; i++) {
-                    const event = currentEventList[i];
-                    const start = parseInt(event.startHour);
-                    const end = parseInt(event.endHour);
+                    for (let i = 0; i < currentEventList.length; i++) {
+                      const event = currentEventList[i];
+                      const start = parseInt(event.startHour);
+                      const end = parseInt(event.endHour);
 
-                    if (time === start) {
-                      until = end;
-                      title = event.title;
+                      if (time === start) {
+                        until = end;
+                        title = event.title;
+                      }
+
+                      if (time <= until) isColor = "box-colored";
                     }
 
-                    if (time <= until) {
-                      isColor = "box-colored";
-                    }
-                  }
-
-                  return (
-                    <div className={["box", isColor].join(" ")}>{title}</div>
-                  ) 
+                    return <div className={["box", isColor].join(" ")}>{title}</div>;
                   })}
                 </div>
               );

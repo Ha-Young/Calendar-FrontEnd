@@ -1,16 +1,25 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { getFormat } from "../../api/date";
 import { hour} from "../../constants/DateConstants";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import "./style.css";
 
-export default function Daily({ eventList, eventKeyList, currentPageDate, handleClickLeft, handleClickRight, handleClickEvent }) {
+export default function Daily(props) {
+  const {
+    eventList, 
+    eventKeyList, 
+    currentPageDate, 
+    handleClickLeft, 
+    handleClickRight, 
+    handleClickEvent,
+  } = { props };
+
   const currentDate = getFormat(currentPageDate);
   const currentEventList = eventKeyList.includes(currentDate) ? eventList[currentDate] : [];
   const match = useRouteMatch();
-  let until;
-  let firstId;
+  let iterateUntil;
+  let currentEventId;
 
   function handleClick(event) {
     const className = event.target.className.split(" ");
@@ -24,9 +33,7 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
       }
     }
 
-    if(!selectedEvent) {
-      return;
-    }
+    if(!selectedEvent) return;
 
     handleClickEvent(selectedEvent);
   }
@@ -40,7 +47,8 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
           <AiOutlineArrowRight className="next" onClick={() => {handleClickRight(1)}} />
         </div>
         <div className="row-container">
-          {hour.map((time) => {
+          {
+            hour.map((time) => {
             let isColor = "";
             let title = "";
 
@@ -51,28 +59,27 @@ export default function Daily({ eventList, eventKeyList, currentPageDate, handle
               const Id = event.Id;
 
               if (time === start) {
-                until = end;
+                iterateUntil = end;
                 title = event.title;
-                firstId = Id;
+                currentEventId = Id;
               }
 
-              if (time <= until) {
+              if (time <= iterateUntil) {
                 isColor = "colored";
               } else {
-                firstId = "";
+                currentEventId = "";
               }
             }
 
             return (
-              <Link to={firstId ? `/event/${firstId}` : `${match.url}`}>
-                <div key={time} className={[firstId, "time-div", isColor].join(" ")} onClick={handleClick}>
+              <Link to={currentEventId ? `/event/${currentEventId}` : `${match.url}`}>
+                <div key={time} className={[currentEventId, "time-div", isColor].join(" ")} onClick={handleClick}>
                   <div className="disable-click event-title">{title}</div>
                   <div className="disable-click event-hour">{time}시</div>
                 </div>
               </Link>
             );
-          })
-        }
+          })}
         </div>
       </div>
     </Fragment>
