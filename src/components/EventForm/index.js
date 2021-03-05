@@ -1,6 +1,7 @@
 import { Button, DatePicker, Form, Input } from "antd";
 import React from "react";
 
+import { DATE_FORMAT_WITH_HOUR } from "../../constants/common";
 import {
   ERROR_MSG_EVENT_DAY_OVER,
   ERROR_MSG_OVER_START_DAY,
@@ -21,7 +22,8 @@ import {
 
 function EventForm({ onSubmit, onCancel, onDelete, event }) {
   function handleSubmitClick(values) {
-    const { newEvent, errorType } = makeNewEvent(values);
+    const exisitId = event ? event.id : null;
+    const { newEvent, errorType } = makeNewEvent(values, exisitId);
 
     if (!newEvent) {
       //todo. constant화
@@ -33,8 +35,9 @@ function EventForm({ onSubmit, onCancel, onDelete, event }) {
       return;
     }
 
+    const isUpdate = event ? true : false;
     // 질문 userId도 같이?
-    onSubmit(newEvent);
+    onSubmit(newEvent, isUpdate);
   }
 
   function handleCancelClick() {
@@ -52,8 +55,8 @@ function EventForm({ onSubmit, onCancel, onDelete, event }) {
     ? {
       title: event.title,
       description: event.description,
-      startDate: getMoment(event.startDate),
-      endDate: getMoment().add(1, "hour"),
+      startDate: getMoment(event.startDate, DATE_FORMAT_WITH_HOUR),
+      endDate: getMoment(event.endDate, DATE_FORMAT_WITH_HOUR),
     }
     : {
       title: "",

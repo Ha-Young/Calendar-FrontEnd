@@ -1,7 +1,9 @@
+import { cloneDeep } from "lodash";
 import { combineReducers } from "redux";
 
-import { CHANGE_DATE, CHANGE_VIEW_OPTION, CREATE_EVNETS,  RECEIVE_DATE,  RECEIVE_DATE_LIST,  RECEIVE_EVENTS } from "../constants/actionTypes";
+import { CHANGE_DATE, CHANGE_VIEW_OPTION, CREATED_EVNETS, DELETED_EVENTS, RECEIVE_DATE,  RECEIVE_DATE_LIST, UPDATED_EVENTS } from "../constants/actionTypes";
 import { VIEW_OPTION } from "../constants/stateTypes";
+import { concatOnNotExistElement } from "../utils/common";
 import { getCurrentDateStr, getWeekDateListBasedOnDate } from "../utils/date";
 
 const initialStatus_byId = {
@@ -21,27 +23,41 @@ const initialStatus_byId = {
 
 function byId(state = initialStatus_byId, action) {
   switch(action.type) {
-    case CREATE_EVNETS: {
-      const event = action.payload;
-      const eventId = event.id;
-      const dateId = event.date;
-      const newState = { ...state };
+    case CREATED_EVNETS:
+    case UPDATED_EVENTS: {
+      if (action.payload) {
+        const event = action.payload;
+        const eventId = event.id;
+        const dateId = event.date;
+        const newDateById = cloneDeep(state);
 
-      if (dateId in newState) {
-        newState[dateId].events = newState[dateId].events.concat(eventId);
-      } else {
-        newState[dateId] = {
-          id: dateId,
-          events: [eventId],
-        };
+        if (dateId in newDateById) {
+          newDateById[dateId].events = concatOnNotExistElement(newDateById[dateId].events, eventId);
+        } else {
+          newDateById[dateId] = {
+            id: dateId,
+            events: [eventId],
+          };
+        }
+        return newDateById;
       }
-      return newState;
+      return state;
+    }
+    case DELETED_EVENTS: {
+      if (action.payload) {
+        const newDateById = cloneDeep(state);
+        const { eventId, date } = action.payload;
+        newDateById[date].events = newDateById[date].events.filter(id => id !== eventId);
+
+        return newDateById;
+      }
+      return state;
     }
     case RECEIVE_DATE: {
       //ToDo. 아래 DATELIST 중복 합치기
-      const newDateById = { ...state };
-
       if (action.payload) {
+        const newDateById = cloneDeep(state);
+
         const [dateKey] = Object.keys(action.payload);
         const eventKeys = Object.keys(action.payload[dateKey]);
 
@@ -49,7 +65,7 @@ function byId(state = initialStatus_byId, action) {
 
         const newDate = {
           id: dateKey,
-          events: prevEventList.concat(eventKeys),
+          events: concatOnNotExistElement(prevEventList, eventKeys),
         };
 
         newDateById[dateKey] = newDate;
@@ -57,12 +73,12 @@ function byId(state = initialStatus_byId, action) {
         return newDateById;
       }
 
-      return newDateById;
+      return state;
     }
 
     case RECEIVE_DATE_LIST: {
       if (action.payload) {
-        const newDateById = { ...state };
+        const newDateById = cloneDeep(state);
 
         const dateList = action.payload;
 
@@ -72,19 +88,19 @@ function byId(state = initialStatus_byId, action) {
               id: dateKey,
               events: [],
             };
-  
+
             continue;
           }
-  
+
           const eventKeys = Object.keys(dateList[dateKey]);
-  
+
           const prevEventList = state[dateKey] ? state[dateKey].events : [];
-  
+
           const newDate = {
             id: dateKey,
-            events: prevEventList.concat(eventKeys),
+            events: concatOnNotExistElement(prevEventList, eventKeys),
           };
-  
+
           newDateById[dateKey] = newDate;
         }
 
@@ -103,9 +119,6 @@ function visibleId(state = [getCurrentDateStr()], action) {
 
   switch(action.type) {
     case CHANGE_DATE:
-      newVisibleId = getVisibleId({ ...action.payload });
-      return newVisibleId;
-
     case CHANGE_VIEW_OPTION:
       newVisibleId = getVisibleId({ ...action.payload });
       return newVisibleId;

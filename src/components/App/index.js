@@ -21,13 +21,12 @@ function App({
   user,
   changeViewOption,
   changeCurrentDate,
-  onInitLoad,
   getDate,
   getDateListOnRange,
 }) {
   useEffect(() => {
-    onInitLoad({ userId: user.id, currentDate });
-  }, [currentDate, onInitLoad, user.id]);
+    getDate({ userId: user.id, currentDate });
+  }, []);
 
   function updateViewOption(newViewOption) {
     changeViewOption({ currentDate, viewOption: newViewOption });
@@ -85,7 +84,6 @@ function App({
             </Route>
             <Route path="/events">
               <EventsContainer />
-              {/* <Events user={user} createEvent={createEvent} getEventById={getEventById}/> */}
             </Route>
             <Redirect from="/" exact to="/calendar" />
           </Switch>

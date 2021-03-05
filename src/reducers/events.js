@@ -1,6 +1,8 @@
+import { cloneDeep } from "lodash";
 import { combineReducers } from "redux";
 
-import { CREATE_EVNETS, RECEIVE_DATE, RECEIVE_DATE_LIST } from "../constants/actionTypes";
+import { CREATED_EVNETS, DELETED_EVENTS, RECEIVE_DATE, RECEIVE_DATE_LIST, UPDATED_EVENTS } from "../constants/actionTypes";
+import { concatOnNotExistElement } from "../utils/common";
 
 const initialStatus_byId = {
   // "2021-03-03_12:2": {
@@ -43,44 +45,66 @@ const initialStatus_byId = {
 
 function byId(state = initialStatus_byId, action) {
   switch(action.type) {
-    case CREATE_EVNETS: {
-      const event = action.payload;
+    case CREATED_EVNETS:
+    case UPDATED_EVENTS: {
+      if (action.payload) {
+        const event = action.payload;
 
-      const newState = { ...state };
-      newState[event.id] = event;
+        const newEventsById = cloneDeep(state);
+        newEventsById[event.id] = event;
 
-      return newState;
+        return newEventsById;
+      }
+      return state;
+    }
+    case DELETED_EVENTS: {
+      if (action.payload) {
+        const newEventsById = cloneDeep(state);
+        const { eventId } = action.payload;
+
+        delete newEventsById[eventId];
+
+        return newEventsById;
+      }
+      return state;
     }
     case RECEIVE_DATE: {
-      const newEventsById = { ...state };
+      if (action.payload) {
+        const newEventsById = cloneDeep(state);
 
-      const [dateKey] = Object.keys(action.payload);
-      const events = action.payload[dateKey];
-
-      for (const [key, value] of Object.entries(events)) {
-        newEventsById[key] = value;
-      }
-
-      return newEventsById;
-    }
-    case RECEIVE_DATE_LIST: {
-      const newEventsById = { ...state };
-
-      const dateList = action.payload;
-
-      for (const dateKey of Object.keys(dateList)) {
-        if (!dateList[dateKey]) {
-          continue;
-        }
-
-        const events = dateList[dateKey];
+        const [dateKey] = Object.keys(action.payload);
+        const events = action.payload[dateKey];
 
         for (const [key, value] of Object.entries(events)) {
           newEventsById[key] = value;
         }
+
+        return newEventsById;
+      }
+      return state;
+    }
+    case RECEIVE_DATE_LIST: {
+      if (action.payload) {
+        const newEventsById = cloneDeep(state);
+
+        const dateList = action.payload;
+
+        for (const dateKey of Object.keys(dateList)) {
+          if (!dateList[dateKey]) {
+            continue;
+          }
+
+          const events = dateList[dateKey];
+
+          for (const [key, value] of Object.entries(events)) {
+            newEventsById[key] = value;
+          }
+        }
+
+        return newEventsById;
       }
 
-      return newEventsById;
+      return state;
     }
     default:
       return state;
@@ -93,10 +117,21 @@ const initialStatus_allIds = [
 
 function allIds(state = initialStatus_allIds, action) {
   switch(action.type) {
-    case CREATE_EVNETS:
-      const event = action.payload;
+    case CREATED_EVNETS:
+      if (action.payload) {
+        const event = action.payload;
 
-      return state.concat(event.id);
+        return concatOnNotExistElement(state, event.id);
+      }
+      return state;
+
+    case DELETED_EVENTS:
+      if (action.payload) {
+        const { eventId } = action.payload;
+
+        return state.filter(id => id !== eventId);
+      }
+      return state;
 
     case RECEIVE_DATE: {
       //Todo. 중복코드 제거 아래 LIST
@@ -104,9 +139,7 @@ function allIds(state = initialStatus_allIds, action) {
         const [dateKey] = Object.keys(action.payload);
         const eventKeys = Object.keys(action.payload[dateKey]);
 
-        const newState = state.concat(eventKeys);
-
-        return newState;
+        return concatOnNotExistElement(state, eventKeys);
       }
       return state;
     }
@@ -125,7 +158,7 @@ function allIds(state = initialStatus_allIds, action) {
 
           const eventKeys = Object.keys(action.payload[dateKey]);
 
-          newState = newState.concat(eventKeys);
+          newState = concatOnNotExistElement(newState, eventKeys);
         }
 
         return newState;
