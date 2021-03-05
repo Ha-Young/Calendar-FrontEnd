@@ -5,6 +5,7 @@ import { receiveDate, receiveDateList } from "../actions/date";
 import { resetError, viewError } from "../actions/error";
 import { createdEvent } from "../actions/events";
 import { startLoading, stopLoading } from "../actions/loading";
+import { loginUser } from "../actions/user";
 import { readDate, readDateListRange, writeEvent } from "../api";
 import App from "../components/App";
 import { ERROR_MSG_GET_API_ERROR } from "../constants/errorMsg";
@@ -62,6 +63,9 @@ const mapDispatchToProps = dispatch => ({
   },
   stopErrorView: () => {
     dispatch(resetError());
+  },
+  loginUser: user => {
+    dispatch(loginUser(user));
   },
 });
 
