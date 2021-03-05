@@ -1,23 +1,31 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import EventInfoControlReducer from "../../reducers/EventInfoControlReducer";
+import { Link, useParams } from "react-router-dom";
 import styles from "./EventForm.module.css";
 import { addNewEventToFirebase } from "../../api";
-
+import { EVENT_FORM_TYPE } from "../../utils/constants";
 
 export default function EventForm({
   addNewEvent,
+  formType,
+  eventInfoList,
 }) {
+  const params = useParams();
+  let initialUserInputSetting;
 
-  const initialUserInputInfo = {
-    title: "",
-    desc: "",
-    date: "",
-    startTime: "",
-    endTime: "",
+  if (formType === EVENT_FORM_TYPE.UPDATING) {
+    const selectedEvent = eventInfoList.filter((event) => event.id === Number(params.id));
+    initialUserInputSetting = { ...selectedEvent[0] }
+  } else if (formType === EVENT_FORM_TYPE.ADDING) {
+    initialUserInputSetting = {
+      title: "",
+      desc: "",
+      date: "",
+      startTime: "",
+      endTime: "",
+    }
   }
 
-  const [userInputInfo, setUserInputInfo] = useState(initialUserInputInfo);
+  const [userInputInfo, setUserInputInfo] = useState(initialUserInputSetting);
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -26,10 +34,7 @@ export default function EventForm({
 
     addNewEvent({...userInputInfo, id: id});
     addNewEventToFirebase({...userInputInfo, id: id});
-
   }
-
-
 
   function handleUserInputChange(e) {
     e.preventDefault();
@@ -77,7 +82,7 @@ export default function EventForm({
             type="date"
             placeholder="event description"
             name="date"
-            // value={userEventInfo.date}
+            value={userInputInfo.date}
             required
             onChange={handleUserInputChange}
           />

@@ -1,5 +1,3 @@
-import moment from "moment";
-import { CALENDAR_MODE } from "../utils/constants";
 import {
   ADD_NEW_EVENT,
   GET_USER_EVENTS,
@@ -16,7 +14,5 @@ export default function EventInfoControlReducer(state = initialState, action) {
       return [...state, ...action.fetchedUserEvents];
 
     default: return state;
-
   }
 }
-

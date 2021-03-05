@@ -31,7 +31,7 @@ export default function OnedaySchedule({
         {
           onedayScheduleCells.map((event, idx) =>
             event ?
-              <Link to={`events/${event.id}`}>
+              <Link key={idx} to={`events/${event.id}`}>
                 <div key={idx} className={styles.cell}>{event.title}</div>
               </Link> :
                 <div key={idx} className={styles.cell}>{event.title}</div>

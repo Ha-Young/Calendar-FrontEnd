@@ -15,7 +15,6 @@ export default function DateContorlNav({
   moveToNextDate,
 }) {
   function handleButtonClick(e) {
-
     const buttonType = e.target.title;
     let newDate;
 

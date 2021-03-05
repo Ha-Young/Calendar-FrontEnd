@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header";
-import Main from "../Main/"
-import EventForm from "../EventForm";
+import Main from "../Main/";
 import EventFormContainer from "../../containers/EventFormContainer";
 
 function App({
@@ -18,8 +17,8 @@ function App({
 }) {
 
   useEffect(() => {
-    onInitialLoad()
-  }, [])
+    onInitialLoad();
+  }, []);
 
   return (
     <div className={styles.App}>

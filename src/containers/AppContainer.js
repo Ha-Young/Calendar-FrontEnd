@@ -30,7 +30,6 @@ function AppContainer({
     getUserEventsFromFirebase();
   }, []);
 
-
   return (
     <App
       currentDate={currentDate}

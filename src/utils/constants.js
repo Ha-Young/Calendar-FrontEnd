@@ -12,3 +12,8 @@ export const BUTTON_PAYLOAD = {
   DAILY_PAYLOAD: 1,
   WEEKLY_PAYLOAD: 7,
 }
+
+export const EVENT_FORM_TYPE = {
+  ADDING: "ADDING",
+  UPDATING: "UPDATING",
+}

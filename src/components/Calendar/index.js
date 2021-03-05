@@ -3,34 +3,12 @@ import moment from "moment";
 import styles from "./Calendar.module.css";
 import OnedaySchedule from "../OnedaySchedule";
 import { CALENDAR_MODE } from "../../utils/constants";
-import EventInfoControlReducer from "../../reducers/EventInfoControlReducer";
 
 export default function Calendar ({
   currentDate,
   calendarMode,
   eventInfoList,
-  // GET ARR
 }) {
-
-
-  console.log(eventInfoList, "???")
-
-  // eventInfoList.filter(event => {
-  //   console.log(event)
-  //   event.date.substr(5) === 
-  // })
-  // DAT MATCHING -> CURRENTDATE || TITLE === ? 
-
-  // YES
-  // MATHCED ARR -> EXTRACT
-  // EVENT TIME 
-  
-
-
-
-
-
-
   return (
     <div className={styles.Calender}>
       { calendarMode === CALENDAR_MODE.WEEKLY ?
