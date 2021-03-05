@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { addEvent } from "../../actions/index";
 import styles from "./EventForm.module.css";
 
-
 function EventForm({ addEvent, ...eventInfo }) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-
   function handleChange(e) {
     switch (e.target.name) {
       case "title":
-        setTitle(e.target.value);
+        eventInfo.title = e.target.value
         break;
       case "content":
-        setContent(e.target.value);
+        eventInfo.content = e.target.value;
         break;
       case "date":
         eventInfo.date = e.target.value;
@@ -26,27 +22,23 @@ function EventForm({ addEvent, ...eventInfo }) {
         eventInfo.endTime = Number(e.target.value);
         break;
       default:
-        return eventInfo;
+        return;
     }
-
-    eventInfo.title = title;
-    eventInfo.content = content;
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     addEvent(eventInfo);
-    setTitle("");
   }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <label>제목<input type="text" name="title" onChange={handleChange}/></label>
-      <label>내용<input type="text" name="content" onChange={handleChange}/></label>
-      <label>날짜<input type="date" name="date" onChange={handleChange}/></label>
-      <label>시작시간<input type="number" name="starttime" onChange={handleChange}/></label>
-      <label>종료시간<input type="number" name="endtime" onChange={handleChange}/></label>
-      <input type="submit"/>
+      <label>제목<input className={styles.input} type="text" name="title" onChange={handleChange}/></label>
+      <label>내용<input className={styles.input} type="text" name="content" onChange={handleChange}/></label>
+      <label>날짜<input className={styles.input} type="date" name="date" onChange={handleChange}/></label>
+      <label>시작<input className={styles.input} type="number" name="starttime" onChange={handleChange}/></label>
+      <label>종료<input className={styles.input} type="number" name="endtime" onChange={handleChange}/></label>
+      <button type="submmit" className={styles.button}>저장</button>
     </form>
   );
 }
@@ -62,10 +54,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { addEvent })(EventForm);
-
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     addEvent: (eventInfo) => dispatch(addEvent(eventInfo))
-//   }
-// }
