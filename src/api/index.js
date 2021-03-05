@@ -9,12 +9,9 @@ export async function saveSampleData() {
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
 
   const initialData = database.ref("events");
+  const data = await initialData.once("value");
 
-  initialData.on("value", (snapshot) => {
-    const data = snapshot.val();
-
-    return data;
-  });
+  return data.val();
 }
 
 export async function addEvent(event, newPostKey) {

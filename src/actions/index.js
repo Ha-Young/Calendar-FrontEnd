@@ -10,15 +10,15 @@ import * as types from "../constants/actionTypes";
 
 export const addToEvent = event => ({
   type: types.ADD_EVENT_INFORMATION,
-  event,
+  event
 });
 
 export const removeToEvent = dateInformation => ({
   type: types.REMOVE_EVENT_INFORMATION,
-  dateInformation,
+  dateInformation
 });
 
-export const setToInitialData = data => ({
+export const setInitialData = data => ({
   type: types.SET_EVENT_INFORMATION,
   data
 });

@@ -7,7 +7,7 @@ function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }
   const history = useHistory();
   const { id } = useParams();
   const targetEvent = eventInformation[id];
-
+  console.log(eventInformation);
   const [eventDate, setEventDate] = useState(targetEvent.eventDate);
   const [startTime, setStartTime] = useState(targetEvent.startTime);
   const [endTime, setEndTime] = useState(targetEvent.endTime);

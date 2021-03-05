@@ -68,6 +68,33 @@ export default function reducer(state = initialState, action) {
       };
     }
 
+    case types.SET_EVENT_INFORMATION: {
+      const { data } = action;
+      const mockById = {};
+      const mockState2 = {};
+
+      for (const date in data) {
+        const event = Object.entries(data[date]);
+
+        for (let i = 0; i < event.length; i++) {
+          if (mockById.hasOwnProperty(date)) {
+            mockById[date] = [...mockById[date], event[i][1]];
+            mockState2[event[i][0]] = event[i][1];
+          } else {
+            mockById[date] = [event[i][1]];
+            mockState2[event[i][0]] = event[i][1];
+          }
+        }
+      }
+
+      return {
+        byId: {
+          ...mockById
+        },
+        ...mockState2
+      };
+    }
+
     default:
       return state;
   }
