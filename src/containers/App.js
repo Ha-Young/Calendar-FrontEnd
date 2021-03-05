@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
   date: state.date,
   events: state.events,
   user: state.user,
+  loading: state.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
