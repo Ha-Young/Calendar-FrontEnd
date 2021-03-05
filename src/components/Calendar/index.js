@@ -1,14 +1,19 @@
 import React from "react";
-import styles from "./Calender.module.css";
+import styles from "./Calendar.module.css";
 import OnedaySchedule from "../OnedaySchedule";
+import { CALENDAR_MODE } from "../../utils/constants";
 
-export default function Calender () {
-    let week = true;
+export default function Calendar ({
+  currentDate,
+  calendarMode,
+}) {
+    console.log("calender", calendarMode)
+  let week = true;
 
   return (
     <div className={styles.Calender}>
 
-      { week ?
+      { calendarMode === CALENDAR_MODE.WEEKLY ?
         <div className={styles.onedayWrap}>
           <OnedaySchedule />
           <OnedaySchedule />

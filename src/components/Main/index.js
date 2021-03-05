@@ -1,16 +1,20 @@
 import React from "react";
 import styles from "./Main.module.css"
 import TimeIndicator from "../TimeIndicator";
-import Calender from "../Calender";
+import Calendar from "../Calendar";
 
-export default function Main() {
+export default function Main({
+  calendarMode
+}) {
 
-    return (
-        <>
-        <div className={styles.Main}>
-          <TimeIndicator />
-          <Calender />
-          </div>
-        </>
-    )
+  return (
+    <>
+      <div className={styles.Main}>
+        <TimeIndicator />
+        <Calendar
+          calendarMode={calendarMode}
+        />
+        </div>
+      </>
+  )
 }

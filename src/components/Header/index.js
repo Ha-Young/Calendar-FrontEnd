@@ -5,20 +5,31 @@ import CalenderModeSelector from "../CalenderModeSelector";
 import Button from "../Button";
 import DateControlNav from "../DateControlNav"
 
-export default function Header () {
+export default function Header ({
+  currentDate,
+  calendarMode,
+  changeCalendarMode,
+}) {
+  console.log(changeCalendarMode)
   return (
     <header className={styles.Header}>
 
-    <div className={styles.NavBar}>
-      <Link to="/events/new">
-        <Button title="새로운 이벤트"/>
-      </Link>
+      <div className={styles.NavBar}>
+        <Link to="/events/new">
+          <Button title="새로운 이벤트"/>
+        </Link>
 
-      <DateControlNav />
-    </div>
+        <DateControlNav
+          currentDate={currentDate}
+          calendarMode={calendarMode}
+        />
+      </div>
 
       <div className={styles.Selector}>
-        <CalenderModeSelector />
+        <CalenderModeSelector
+          changeCalendarMode={changeCalendarMode}
+
+        />
       </div>
   
     </header>

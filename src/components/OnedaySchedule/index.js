@@ -7,7 +7,7 @@ export default function OnedaySchedule() {
     <div className={styles.OnedaySchedule}>
       <div className={styles.title}><p className={styles.text}>title</p></div>
         {
-          Array(24).fill(0).map((x, idx) => 
+          Array(24).fill(0).map((x, idx) =>
             <div key={idx} className={styles.cell}>{x}</div>
           )
         }

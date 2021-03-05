@@ -8,19 +8,27 @@ import Header from "../Header";
 import Main from "../Main/"
 import EventForm from "../EventForm";
 
-function App({ onInitialLoad }) {
-  useEffect(() => {
-    onInitialLoad();
-  }, []);
-
+function App({
+  currentDate,
+  calendarMode,
+  changeCalendarMode,
+}) {
+  console.log(changeCalendarMode, "3")
   return (
 
     <div className={styles.App}>
 
       <Switch>
         <Route path="/calender" exact>
-          <Header />
-          <Main/>
+          <Header
+            currentDate={currentDate}
+            calendarMode={calendarMode}
+            changeCalendarMode={changeCalendarMode}
+          />
+          <Main
+            currentDate={currentDate}
+            calendarMode={calendarMode}
+          />
         </Route>
 
         <Route path="/events">

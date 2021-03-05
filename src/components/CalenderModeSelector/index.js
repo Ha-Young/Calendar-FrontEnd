@@ -1,12 +1,22 @@
 import React from "react";
 import styles from "./CalenderModeSelector.module.css";
+import { CALENDAR_MODE } from "../../utils/constants";
 
-export default function CalenderModeSelector() {
+export default function CalenderModeSelector({
+    changeCalendarMode
+}) {
+  function handleSelectChange(e) {
+    let mode = e.target.value;
+
+    mode === CALENDAR_MODE.DAILY ?
+    changeCalendarMode(CALENDAR_MODE.DAILY) :
+    changeCalendarMode(CALENDAR_MODE.WEEKLY)
+  }
 
   return (
-    <select>
-      <option value="daily" defaultValue>Daily</option>
-      <option value="weekly">Weekly</option>
+    <select onChange={handleSelectChange}>
+      <option value={CALENDAR_MODE.DAILY} defaultValue>Daily</option>
+      <option value={CALENDAR_MODE.WEEKLY}>Weekly</option>
     </select>
   )
 }

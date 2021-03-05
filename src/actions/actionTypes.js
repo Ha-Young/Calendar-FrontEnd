@@ -1,7 +1,6 @@
-/*
 
-  Action Types
+export const CHANGE_CALENDAR_MODE = "CHANGE_CALENDAR_MODE";
 
-  ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/constants/ActionTypes.js
+export const MOVE_TO_PREV_DATE = "MOVE_TO_PREV_DATE";
+export const MOVE_TO_NEXT_DATE = "MOVE_TO_NEXT_DATE";
 
- */

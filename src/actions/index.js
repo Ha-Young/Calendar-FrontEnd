@@ -1,7 +1,13 @@
-/*
+import {
+  CHANGE_CALENDAR_MODE,
+  MOVE_TO_PREV_DATE,
+  MOVE_TO_NEXT_DATE,
+} from "./actionTypes";
 
-  Action Creators
-
-  ref: https://github.com/reduxjs/redux/blob/master/examples/shopping-cart/src/actions/index.js
-
- */
+export function changeCalendarMode(calendarMode) {
+  console.log(calendarMode, "c")
+  return {
+    type: CHANGE_CALENDAR_MODE,
+    calendarMode,
+  }
+}
