@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import styles from "./CreateEvent.module.css";
 import { saveData } from "../../api";
 import { DateTime } from "luxon";
@@ -13,10 +13,12 @@ export default function CreateEvent() {
   const [startDateTime, setStartDateTime] = useState("");
   const [endDateTime, setEndDateTime] = useState("");
   const history = useHistory();
+  const currentUrl = useLocation();
+  console.log(currentUrl)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO 데이터 쏘기 전에 form에서 input validation 필요함.
+
     const newEvent = {
       title: title,
       description: description,

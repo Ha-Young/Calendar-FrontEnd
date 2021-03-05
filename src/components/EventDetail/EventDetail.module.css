@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: center;
 }
@@ -15,11 +16,11 @@
 }
 
 .formLeftItem {
-  width: 100px;
+  width: 100%;
 }
 
 .formRightItem {
-  
+  width: 100%;
 }
 
 .formButtonWrapper {

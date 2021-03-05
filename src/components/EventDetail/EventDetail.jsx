@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styles from "./EventDetail.module.css";
 import { updateEvent } from "../../api";
 
@@ -7,29 +7,37 @@ import { updateEvent } from "../../api";
 // 디바운스 짧게 안하면 submit하기전에 업데이트 안돼서 누락될수도 잇겟다.
 
 export default function EventDetail({ events, selectedEventInfo }) {
-  const selectedEvent = events[selectedEventInfo.selectedEventDayIndex][selectedEventInfo.selectedEventId];
-
-  const [title, setTitle] = useState(selectedEvent.title);
-  const [description, setDescription] = useState(selectedEvent.description);
-  const [startDateTime, setStartDateTime] = useState(selectedEvent.startDateTime);
-  const [endDateTime, setEndDateTime] = useState(selectedEvent.endDateTime);
   const history = useHistory();
+  const currentUrl = useLocation();
+  const selectedEvent = currentUrl.pathname === "/events/new"
+  ? null
+  : events[selectedEventInfo.selectedEventDayIndex][selectedEventInfo.selectedEventId];
 
+  const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
+  const [description, setDescription] = useState(selectedEvent ? selectedEvent.description : "");
+  const [startDateTime, setStartDateTime] = useState(selectedEvent ? selectedEvent.startDateTime : "");
+  const [endDateTime, setEndDateTime] = useState(selectedEvent ? selectedEvent.endDateTime : "");
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO 데이터 쏘기 전에 form에서 input validation 필요함.
+
+    const key = currentUrl.pathname === "/events/new" ? null : selectedEvent.uid;
+    const date = startDateTime.slice(0, 10);
     const newEvent = {
       title: title,
       description: description,
       startDateTime: startDateTime,
       endDateTime: endDateTime,
     };
-    const date = startDateTime.slice(0, 10);
 
     // TODO err 핸들링 추가
-    updateEvent(newEvent, date, selectedEvent.uid).then(() => {
+    updateEvent(newEvent, date, key).then(() => {
       history.push("/calendar");
     });
+  }
+
+  const handleClick = () => {
+    const key = selectedEvent.uid;
   }
 
   return (
@@ -43,6 +51,7 @@ export default function EventDetail({ events, selectedEventInfo }) {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -54,6 +63,7 @@ export default function EventDetail({ events, selectedEventInfo }) {
                 cols="30" 
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -63,7 +73,8 @@ export default function EventDetail({ events, selectedEventInfo }) {
               <input
                 type="datetime-local" 
                 value={startDateTime}
-                onChange={(e) => setStartDateTime(e.target.value)}
+                onChange={(e) => setStartDateTime(e.target.value.slice(0,14)+"00")}
+                required
               />
             </div>
           </div>
@@ -73,7 +84,10 @@ export default function EventDetail({ events, selectedEventInfo }) {
               <input
                 type="datetime-local" 
                 value={endDateTime}
-                onChange={(e) => setEndDateTime(e.target.value)}
+                onChange={(e) => setEndDateTime(e.target.value.slice(0,14)+"00")}
+                min={startDateTime}
+                max={startDateTime.slice(0,11) + "23:59"}
+                required
               />
             </div>
           </div>
@@ -83,6 +97,15 @@ export default function EventDetail({ events, selectedEventInfo }) {
           </div>
         </div>
       </form>
+      {currentUrl.pathname === "/events/new"
+      ? null
+      : (
+          <div className={styles.formButtonWrapper}>
+            <button onClick={handleClick}>Remove</button>
+          </div>
+        )
+      }
+      
     </div>
   );
 }

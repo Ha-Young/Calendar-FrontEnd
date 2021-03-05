@@ -18,7 +18,7 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
         <SideBar selectDay={selectDay} />
         <Switch>
           <Route path="/events/new">
-            <CreateEvent />
+            <EventDetail />
           </Route>
           <Route path="/events/:eventId">
             <EventDetail events={events} selectedEventInfo={selectedEventInfo} />
