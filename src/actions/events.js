@@ -1,22 +1,22 @@
 import * as types from "../constants/actionTypes";
 
-export const createEvent = event => {
+export const createdEvent = event => {
   return {
-    type: types.CREATE_EVNETS,
+    type: types.CREATED_EVNETS,
     payload: event,
   };
 };
 
-export const updateEvent = event => {
+export const updatedEvent = event => {
   return {
-    type: types.UPDATE_EVENTS,
+    type: types.UPDATED_EVENTS,
     payload: event,
   };
 };
 
-export const deleteEvent = eventId => {
+export const deletedEvent = ({ eventId, date }) => {
   return {
-    type: types.DELETE_EVENTS,
-    payload: eventId,
+    type: types.DELETED_EVENTS,
+    payload: { eventId, date },
   };
 };

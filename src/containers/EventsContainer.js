@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
-import { createEvent, deleteEvent, updateEvent } from "../actions/events";
-import { removeEvent, writeEvent } from "../api";
+import { createdEvent, deletedEvent, updatedEvent } from "../actions/events";
+import { removeEvent, updateEvent, writeEvent } from "../api";
 import Events from "../components/Events";
 
 const mapStateToProps = state => ({
@@ -10,17 +10,18 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createEvent: ({ userId, event }) => {
-    dispatch(createEvent(event));
-    writeEvent(userId, event);
+  createEvent: async ({ userId, event }) => {
+    const newEventId = await writeEvent(userId, event);
+    event.id = newEventId;
+    dispatch(createdEvent(event));
   },
-  updateEvent: ({ userId, event }) => {
-    dispatch(updateEvent(event));
-    writeEvent(userId, event);
+  updateEvent: async ({ userId, event }) => {
+    await updateEvent(userId, event);
+    dispatch(updatedEvent(event));
   },
-  deleteEvent: ({ userId, eventId, date }) => {
-    dispatch(deleteEvent(eventId));
-    removeEvent(userId, eventId, date);
+  deleteEvent: async ({ userId, eventId, date }) => {
+    await removeEvent(userId, eventId, date);
+    dispatch(deletedEvent({ date, eventId }));
   },
 });
 
