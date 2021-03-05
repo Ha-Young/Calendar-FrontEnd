@@ -10,20 +10,20 @@ import moment from "moment";
 export default function DailyCalendar() {
   const [day, setDay] = useState(moment());
 
-  const startDay = day.clone().startOf("day");
-  const columnDay = startDay.format("D").toString();
-  const yearMonthDate = startDay.format("YYYY-MM-DD");
+  const referenceDay = day.clone().startOf("day");
+  const columnDay = referenceDay.format("D").toString();
+  const yearMonthDate = referenceDay.format("YYYY-MM-DD");
 
   return (
-    <div className={styles.calendar}>
+    <div>
       <CalendarHeader
         calendarDate={day}
-        setCalendarDate={setDay}
+        onButtonClick={setDay}
         typeOfTime="day"
       />
-      <section className={styles.content}>
+      <section className={styles.calendar}>
         <TimeSidebar />
-        <div className={styles.flexItem}>
+        <div className={styles.columnDay}>
           <CalendarColumn
             colummDay={columnDay}
             dayID={yearMonthDate}

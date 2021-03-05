@@ -1,8 +1,7 @@
 // TODO: Go to `./firebase.js` and update your firebase config.
-import { database } from "firebase";
 import firebase from "./firebase";
 
-export async function saveSampleData() {
+export async function fetchEventData() {
   const database = firebase.database();
 
   // Note: `set` method returns a promise.
@@ -14,7 +13,7 @@ export async function saveSampleData() {
   return data.val();
 }
 
-export async function addEvent(event, newPostKey) {
+export async function addEventDatabase(event, newPostKey) {
   const database = firebase.database();
   const { eventDate } = event;
 
@@ -28,7 +27,7 @@ export function getEventKey() {
   return newPostKey;
 }
 
-export async function removeEvent(event) {
+export async function removeEventDatabase(event) {
   const database = firebase.database();
   const { eventDate, eventId } = event;
 

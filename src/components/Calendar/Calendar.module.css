@@ -32,30 +32,26 @@
 .sidebar {
   width: 3em;
   height: 3.5em;
-  margin: 0 1em;
+  margin: 0.1em 1.5em;
 }
 
 .sidebar:first-child {
   margin-top: 5em;
 }
 
-.boxList {
+.columnList {
   position: relative;
 }
 
-.dayBox, .day {
+.day {
   width: 100%;
-  height: 3.65em;
-  margin-bottom: -5px;
-  display: inline-block;
+  height: 3.6em;
+  margin-top: 0;
+  display: block;
   background-color: #DDD;
   box-sizing: border-box;
   border: 0.5px solid rgb(100, 100, 100);
   transition: 0.8s;
-}
-
-.dayBox:first-child {
-  margin-top: 0.2em;
 }
 
 .dayBox:hover {

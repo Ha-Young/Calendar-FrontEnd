@@ -1,11 +1,27 @@
-.textBox {
-  width: 500px;
-  height: 400px;
-}
-
 .button {
   display: block;
-  width: 3em;
-  height: 3em;
+  width: 8em;
+  height: 4em;
   margin: 2em auto;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input {
+  width: 10rem;
+  height: 1rem;
+  border: none;
+  outline: none;
+}
+
+.textBox {
+  width: 40em;
+  height: 25rem;
+  border-radius: 3rem;
+  border: none;
+}
+
+.submitButton {
+  display: flex;
 }

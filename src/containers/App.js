@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
 import { setInitialData } from "../actions";
-import { saveSampleData } from "../api";
+import { fetchEventData } from "../api";
 
 const mapDispatchToProps = dispatch => ({
   onInitialLoad: () => {
     (async function () {
-      const data = await saveSampleData();
+      const data = await fetchEventData();
 
       dispatch(setInitialData(data));
     })();

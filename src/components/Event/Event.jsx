@@ -11,8 +11,8 @@ function Event({ onSubmitAddEvent }) {
 
   const history = useHistory();
 
-  function onClickInputButton(e) {
-    e.preventDefault();
+  function onClickInputButton(event) {
+    event.preventDefault();
 
     const editStartTime = `${startTime.slice(0, 2)}:00`;
     const editEndClock = `${endTime.slice(0, 2)}:00`;
@@ -23,7 +23,6 @@ function Event({ onSubmitAddEvent }) {
       eventDate,
       title,
       description,
-      eventDate
     };
 
     history.push("/weekly");
@@ -62,30 +61,38 @@ function Event({ onSubmitAddEvent }) {
   }
 
   return (
-    <div>
-      <div className={styles.dateBoxs}>
+    <div className={styles.dateBoxs}>
+      <div>
         <p>이벤트 날짜</p>
         <input type="date" name="date" onChange={handleChangeInput} />
-        <p>시작 시간</p>
-        <input type="time" name="startTime" onChange={handleChangeInput} />
-        <p>종료 시간</p>
-        <input type="time" name="endTime" onChange={handleChangeInput} />
-        <p>이벤트 제목</p>
-        <input type="text" name="title" onChange={handleChangeInput} />
-        <p>이벤트 내용 작성</p>
+        <p>시작 시간 (0부터 24까지 입력해주세요)</p>
         <input
-          className={styles.textBox}
           type="text"
-          name="description"
+          name="startTime"
           onChange={handleChangeInput}
         />
+        <p>종료 시간 (0부터 24까지 입력해주세요)</p>
         <input
-          onClick={onClickInputButton}
-          className={styles.button}
-          type="submit"
-          value="제출"
+          type="text"
+          name="endTime"
+          onChange={handleChangeInput}
         />
+        <p>이벤트 제목</p>
+        <input type="text" name="title" onChange={handleChangeInput} />
       </div>
+      <p>이벤트 내용 작성</p>
+      <input
+        className={styles.textBox}
+        type="text"
+        name="description"
+        onChange={handleChangeInput}
+      />
+      <input
+        onClick={onClickInputButton}
+        className={styles.button}
+        type="submit"
+        value="제출"
+      />
     </div>
   );
 }

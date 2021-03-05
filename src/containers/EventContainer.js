@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Event from "../components/Event/Event";
-import { addToEvent } from "../actions";
-import { addEvent, getEventKey } from "../api";
+import { addEvent } from "../actions";
+import { addEventDatabase, getEventKey } from "../api";
 
 const mapDispatchToProps = dispatch => ({
   onSubmitAddEvent: (eventInformation) => {
@@ -11,8 +11,8 @@ const mapDispatchToProps = dispatch => ({
       eventId: eventKey
     };
 
-    addEvent(event, eventKey);
-    dispatch(addToEvent(event));
+    addEventDatabase(event, eventKey);
+    dispatch(addEvent(event));
   }
 });
 

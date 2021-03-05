@@ -8,12 +8,12 @@
 
 import * as types from "../constants/actionTypes";
 
-export const addToEvent = event => ({
+export const addEvent = event => ({
   type: types.ADD_EVENT_INFORMATION,
   event
 });
 
-export const removeToEvent = dateInformation => ({
+export const removeEvent = dateInformation => ({
   type: types.REMOVE_EVENT_INFORMATION,
   dateInformation
 });

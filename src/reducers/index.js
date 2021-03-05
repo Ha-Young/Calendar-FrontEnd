@@ -65,6 +65,9 @@ export default function reducer(state = initialState, action) {
 
       return {
         ...mockState,
+        byId: {
+          ...state.byId
+        }
       };
     }
 
@@ -72,9 +75,10 @@ export default function reducer(state = initialState, action) {
       if (!action) {
         return initialState;
       }
+
       const { data } = action;
       const mockById = {};
-      const mockState2 = {};
+      const mockState = {};
 
       for (const date in data) {
         const event = Object.entries(data[date]);
@@ -82,10 +86,10 @@ export default function reducer(state = initialState, action) {
         for (let i = 0; i < event.length; i++) {
           if (mockById.hasOwnProperty(date)) {
             mockById[date] = [...mockById[date], event[i][1]];
-            mockState2[event[i][0]] = event[i][1];
+            mockState[event[i][0]] = event[i][1];
           } else {
             mockById[date] = [event[i][1]];
-            mockState2[event[i][0]] = event[i][1];
+            mockState[event[i][0]] = event[i][1];
           }
         }
       }
@@ -94,7 +98,7 @@ export default function reducer(state = initialState, action) {
         byId: {
           ...mockById
         },
-        ...mockState2
+        ...mockState
       };
     }
 

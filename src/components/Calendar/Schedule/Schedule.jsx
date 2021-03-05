@@ -1,13 +1,18 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+
+import CALENDAR from "../../../constants/calendarConstants";
+import COLOR from "../../../constants/color";
+
 import styled from "styled-components";
 
 const Wrapper = styled.div`
   position: absolute;
-  top: ${props => props.startTime * 3.55}em;
+  top: ${props => props.startTime * CALENDAR.SCHEDULE_TOP}em;
   width: 100%;
-  height: ${props => props.event * 3.45}em;
-  background-color: #fbc531;
+  height: ${props => props.event * CALENDAR.SCHEDULE_HEIGHT}em;
+  background-color: ${COLOR.YELLOW};
+  cursor: pointer;
 
   .eventInformation {
     position: absolute;
@@ -35,11 +40,9 @@ export default function Schedule({ event }) {
     <Wrapper
       startTime={editStartTime}
       event={eventTime}
+      onClick={() => history.push(`/event/${eventId}`)}
     >
-      <div
-        className={styled.eventInformation}
-        onClick={() => history.push(`/event/${eventId}`)}
-      >
+      <div className={styled.eventInformation}>
         {title}
       </div>
     </Wrapper>

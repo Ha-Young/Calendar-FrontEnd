@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
+import { addEvent, removeEvent } from "../actions";
 import DetailEvent from "../components/Event/DetailEvent";
-import { addToEvent, removeToEvent } from "../actions";
-import { addEvent, getEventKey, removeEvent } from "../api";
+import { addEventDatabase, getEventKey, removeEventDatabase } from "../api";
 
 const mapStateToProps = state => ({
   eventInformation: state
@@ -15,12 +15,12 @@ const mapDispatchToProps = dispatch => ({
       eventId: eventKey
     };
 
-    addEvent(event, eventKey);
-    dispatch(addToEvent(event));
+    addEventDatabase(event, eventKey);
+    dispatch(addEvent(event));
   },
   onSubmitRemoveEvent: (eventInformation) => {
-    removeEvent(eventInformation);
-    dispatch(removeToEvent(eventInformation));
+    removeEventDatabase(eventInformation);
+    dispatch(removeEvent(eventInformation));
   }
 });
 

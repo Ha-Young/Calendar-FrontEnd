@@ -1,18 +1,9 @@
-.content {
+.calendar {
   display: flex;
 }
 
-.flexItem {
+.columnDay {
   flex: 1;
   margin-top: 2em;
   margin-right: 3em;
-}
-
-.today {
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-  margin-top: 2em;
-  float: left;
-  border: 1px solid rgb(100, 100, 100);
 }

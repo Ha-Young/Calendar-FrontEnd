@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./WeeklyCalendar.module.css";
 
-import buildWeekly from "./buildWeekly";
+import buildWeekly from "../../../util/buildWeekly";
 import CalendarHeader from "../CalendarHeader";
 import TimeSidebar from "../SidebarTime";
 import CalendarColumn from "../../../containers/CalendarColumnContainer";
@@ -18,23 +18,23 @@ export default function WeeklyCalendar() {
     <div className={styles.calendar}>
       <CalendarHeader
         calendarDate={weekly}
-        setCalendarDate={setWeekly}
+        onButtonClick={setWeekly}
         typeOfTime="week"
       />
-      <section className={styles.contents}>
+      <section className={styles.content}>
         <TimeSidebar />
-        <div className={styles.flexItem}>
+        <div className={styles.colummDay}>
           <div className={styles.weeks}>
             {
               dayOfWeek.map(day => (
-                <div className={styles.dayWeek}>{day}</div>
+                <div key={day} className={styles.dayWeek}>{day}</div>
               ))
             }
           </div>
           {weekList.map((week) => (
-            <div>
+            <div key={week}>
               {week.map((day) => (
-                <div className={styles.day}>
+                <div key={day} className={styles.day}>
                   <CalendarColumn
                     colummDay={day.format("D").toString()}
                     dayID={day.format("YYYY-MM-DD")}

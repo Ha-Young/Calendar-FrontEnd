@@ -10,29 +10,6 @@
   text-align: center;
 }
 
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5em;
-}
-
-.current {
-  width: 100px;
-  margin: 0 3em;
-}
-
-.previous, .next {
-  margin: 0;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
 .weeks .dayWeek {
   width: calc(100% / 7);
   height: 2em;
@@ -41,11 +18,11 @@
   border: 1px solid rgb(100, 100, 100);
 }
 
-.contents {
+.content {
   display: flex;
 }
 
-.flexItem {
+.colummDay {
   flex: 1;
   margin-right: 3em;
 }
