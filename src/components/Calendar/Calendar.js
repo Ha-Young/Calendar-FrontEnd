@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Calendar.module.css";
 import { cloneDeep } from "lodash";
 import DayTable from "../DayTable/DayTable";
+import WeekTable from "../DayTable/DayTable";
 import DateIndicator from "../DateIndicator/DateIndicator";
 import TwoOptionSelector from "../TwoOptionSelector/TwoOptionSelector";
 import IncDecrementControlBox from "../IncDecrementControlBox/IncDecrementControlBox";
@@ -51,6 +52,14 @@ export default function Calendar ({
             />
           </div>
           {isDayCalendar && <DayTable
+            year={currentDate.getFullYear()}
+            month={currentDate.getMonth() + 1}
+            date={currentDate.getDate()}
+            day={currentDate.getDay()}
+            eventInfo={eventInfo}
+            onEventIdClick={onEventIdClick}
+          />}
+          {!isDayCalendar && <WeekTable
             year={currentDate.getFullYear()}
             month={currentDate.getMonth() + 1}
             date={currentDate.getDate()}

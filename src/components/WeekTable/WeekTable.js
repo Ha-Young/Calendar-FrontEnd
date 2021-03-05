@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./DayTable.module.css";
+import styles from "./WeekTable.module.css";
 import { Link } from "react-router-dom";
 
-export default function DayTable ({
+export default function WeekTable ({
   year,
   month,
   date,
