@@ -7,7 +7,7 @@ import styles from "./App.module.css";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import Calendar from "../Calendar/Calendar";
-import EventDetail from "../EventDetail/EventDetail";
+import Event from "../Event/Event";
 import Error from "../Error/Error";
 // TODO remove useless props
 function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, calculatedDates, events, selectedEventInfo, isDailyView }) {
@@ -21,10 +21,10 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
             <Calendar selectedDate={selectedDate} toggleCalendarView={toggleCalendarView} isDailyView={isDailyView}/>
           </Route>
           <Route path="/events/new">
-            <EventDetail />
+            <Event />
           </Route>
           <Route path="/events/:eventId">
-            <EventDetail events={events} selectedEventInfo={selectedEventInfo} />
+            <Event events={events} selectedEventInfo={selectedEventInfo} />
           </Route>
           <Route path="/error">
             <Error />
