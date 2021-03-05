@@ -8,6 +8,8 @@ import styles from "./Weekly.module.css";
 function Weekly({ date, weeklyEvents }) {
   const weekList = getWeekList();
 
+  console.log(weeklyEvents);
+
   return (
     <div className={styles.weekly}>
       <HoursBar />

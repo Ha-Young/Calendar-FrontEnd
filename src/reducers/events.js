@@ -10,17 +10,32 @@ function eventsById(state = {}, action) {
   const { payload } = action;
 
   switch (action.type) {
-    case SUBMIT_EVENT:
+    case SUBMIT_EVENT: {
+      const { date, title, content, start, end } = payload;
+
       return {
         ...state,
         [payload.start] : {
-          date: payload.date,
-          title: payload.title,
-          content: payload.content,
-          start: payload.start,
-          end: payload.end,
+          date,
+          title,
+          content,
+          start,
+          end,
         }
       };
+    }
+    case EDIT_EVENT: {
+      const { event, prevId } = payload;
+      const copy = Object.assign({}, state);
+
+      if (prevId !== event.start) {
+        delete copy[prevId];
+      }
+
+      copy[event.start] = event;
+
+      return copy;
+    }
     default:
       return state;
   }
@@ -30,11 +45,31 @@ function eventsAllIds(state = [], action) {
   const { payload } = action;
 
   switch (action.type) {
-    case SUBMIT_EVENT:
+    case SUBMIT_EVENT: {
+      const { start } = payload;
+
       return [
         ...state,
-        payload.start,
+        start,
       ];
+    }
+    case EDIT_EVENT: {
+      const { prevId, event: { start } } = payload;
+      const copy = state.slice();
+
+      if (prevId === start) {
+        return state;
+      }
+
+      for (let i = 0; i < copy.length; i ++) {
+        if (copy[i] === prevId) {
+          copy.splice(i, 1, start);
+          break;
+        }
+      }
+
+      return copy;
+    }
     default:
       return state;
   }
@@ -49,18 +84,30 @@ export default function events(state = {}, action) {
   const { payload } = action;
 
   switch (action.type) {
-    case SUBMIT_EVENT:
+    case SUBMIT_EVENT: {
+      const { date } = payload;
+
       return {
         ...state,
-        [payload.date]: eventsOfDay(state[payload.date], action),
+        [date]: eventsOfDay(state[date], action),
       };
-    case DETAIL_EVENT:
+    }
+    case DETAIL_EVENT: {
+      const { date, id } = payload;
+
       return {
         ...state,
-        targetEvent: state[payload.date].byId[payload.id],
+        targetEvent: state[date].byId[id],
       };
-    case EDIT_EVENT:
-      return {};
+    }
+    case EDIT_EVENT: {
+      const { date } = payload.event;
+
+      return {
+        ...state,
+        [date]: eventsOfDay(state[date], action),
+      };
+    }
     default:
       return state;
   }
@@ -79,14 +126,16 @@ export function getWeeklyEvents(date, events) {
   return weeklyKeys.map((date) => events[date])
                   .map((eventsOfDay) => {
                     if (!eventsOfDay) {
-                      return;
+                      return null;
                     }
 
                     const eventList = eventsOfDay.allIds;
-                    const result = [];
+                    const result = {};
 
                     for (const key of eventList) {
-                      result.push(eventsOfDay.byId[key]);
+                      const event = eventsOfDay.byId[key];
+
+                      result[event.start] = event;
                     }
 
                     return result;

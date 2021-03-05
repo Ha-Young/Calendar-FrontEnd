@@ -9,12 +9,13 @@ import DaysAndTimeForm from "../DaysAndTimeForm/DaysAndTimeForm";
 import InputForm from "../InputForm/InputForm";
 import styles from "./EventDetail.module.css";
 
-function EventDetail({ event = {}, onSubmit, match}) {
+function EventDetail({ event = {}, onEditSubmit, match}) {
   const [edit, setEdit] = useState(false);
-  const [start, setStart] = useState(event.start ? event.start : 0);
-  const [end, setEnd] = useState(event.end ? event.end : 1);
+  const [start, setStart] = useState(event.start ?? 0);
+  const [end, setEnd] = useState(event.end ?? 1);
   const history = useHistory();
   const date = moment(event.date);
+  const prevId = event.start;
 
   console.log(event);
 
@@ -47,7 +48,7 @@ function EventDetail({ event = {}, onSubmit, match}) {
       end,
     };
 
-    onSubmit(event);
+    onEditSubmit(event, prevId);
     updateData({
       date: getKeyFormat(date),
       id: start,
@@ -70,13 +71,13 @@ function EventDetail({ event = {}, onSubmit, match}) {
         end={end}
         handleStartChange={handleStartChange}
         handleEndChange={handleEndChange}
-        disable={!edit}
+        disabled={!edit}
       />
       <InputForm
         onSubmit={handleInputSubmit}
         title={event.title}
         content={event.content}
-        disable={!edit}
+        disabled={!edit}
       >
         {edit
           ? <button className={styles.button}><FaPaperPlane /></button>

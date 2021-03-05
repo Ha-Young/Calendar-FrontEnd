@@ -3,10 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import WithLabel from "../WithLabel/WithLabel";
 import styles from "./InputForm.module.css";
 
-function InputForm({ onSubmit, title = "", content = "", disable, children }) {
+function InputForm({ onSubmit, title = "", content = "", disabled, children }) {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
-  const [holdSubmit, setHoldSubmit] = useState(disable);
+  const [holdSubmit, setHoldSubmit] = useState(disabled);
 
   useEffect(() => {
     titleRef.current.value = title;
@@ -37,14 +37,14 @@ function InputForm({ onSubmit, title = "", content = "", disable, children }) {
           className={styles.title}
           ref={titleRef}
           type="text"
-          disabled={disable}
+          disabled={disabled}
         />
       </WithLabel>
       <WithLabel label="내용">
         <textarea
           className={styles.content}
           ref={contentRef}
-          disabled={disable}
+          disabled={disabled}
         />
       </WithLabel>
       {children}

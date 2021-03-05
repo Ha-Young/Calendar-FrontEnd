@@ -26,7 +26,10 @@ export const eventDetail = (date, id) => ({
     id,
   },
 });
-export const editEvent = (event) => ({
+export const editEvent = (event, prevId) => ({
   type: actionTypes.EDIT_EVENT,
-  payload: event,
+  payload: {
+    event,
+    prevId,
+  },
 });

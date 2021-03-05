@@ -7,7 +7,7 @@ import styles from "./Schedule.module.css";
 
 function Schedule({ event, date, setTargetEvent }) {
   const { title, content, start, end } = event;
-  const height = (end - start) * 50;
+  const height = (end - start) * 52 - 4;
   const history = useHistory();
 
   function handleClick() {

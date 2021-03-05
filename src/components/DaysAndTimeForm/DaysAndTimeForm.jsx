@@ -11,7 +11,7 @@ function DaysAndTimeForm({
   end,
   handleStartChange,
   handleEndChange,
-  disable = false,
+  disabled = false,
 }) {
   return (
     <div className={styles.daysAndTimeForm}>
@@ -20,12 +20,12 @@ function DaysAndTimeForm({
           <TimeSelector
             time={start}
             onChange={handleStartChange}
-            disable={disable}
+            disabled={disabled}
           />
           <TimeSelector
             time={end}
             onChange={handleEndChange}
-            disable={disable}
+            disabled={disabled}
           />
         </span>
       </div>

@@ -5,7 +5,7 @@ import DaysBoard from "../DaysBoard/DaysBoard";
 import Schedule from "../../containers/Schedule";
 import styles from "./SchedulesBar.module.css";
 
-function SchedulesBar({ date, isTheDay, events = [] }) {
+function SchedulesBar({ date, isTheDay, events = {} }) {
   const hourList = getHourList();
   const dateKeyFormat = getKeyFormat(date);
 
@@ -18,7 +18,7 @@ function SchedulesBar({ date, isTheDay, events = [] }) {
         />
       </div>
       {hourList.map((v) => {
-        const hasEvent = !!events[v];
+        const hasEvent = events && !!events[v];
 
         return (
           <li key={v} >

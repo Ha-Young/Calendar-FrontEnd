@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { submitEvent } from "../actions/index";
+import { editEvent } from "../actions/index";
 import { sortEvent } from "../reducers/events";
 import EventDetail from "../components/EventDetail/EventDetail";
 
@@ -9,10 +9,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (event) => {
+  onEditSubmit: (event, prevId) => {
     const sorted = sortEvent(event);
 
-    return dispatch(submitEvent(sorted));
+    return dispatch(editEvent(sorted, prevId));
   },
 });
 

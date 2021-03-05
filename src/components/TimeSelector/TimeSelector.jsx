@@ -6,7 +6,7 @@ import {
 
 import styles from "./TimeSelector.module.css";
 
-function TimeSelector({ time = 0, onChange, disable}) {
+function TimeSelector({ time = 0, onChange, disabled}) {
   function handlePrevClick() {
     if (time === 0) {
       return;
@@ -23,11 +23,11 @@ function TimeSelector({ time = 0, onChange, disable}) {
 
   return (
     <span className={styles.timeSelector}>
-      <button onClick={handlePrevClick} disabled={disable}>
+      <button onClick={handlePrevClick} disabled={disabled}>
         <FaAngleLeft />
       </button>
       <span>{`${time}시`}</span>
-      <button onClick={handleNextClick} disabled={disable}>
+      <button onClick={handleNextClick} disabled={disabled}>
         <FaAngleRight />
       </button>
     </span>
