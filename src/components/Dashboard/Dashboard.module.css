@@ -1,0 +1,20 @@
+.container {
+  width:90%;
+  height: 90%;
+}
+
+.leftSideBar {
+  width: 30%;
+}
+
+.userInfo {
+  height: 20%;
+}
+
+.eventsInfo {
+  height: 50%;
+}
+
+.miniCalander {
+  height: 30%;
+}

@@ -3,9 +3,9 @@ import Form from "./Form";
 import styles from "./Events.module.css";
 import { useLocation } from "react-router-dom";
 import { getOnlyHours, makeOClock } from "../../utils/event";
-import { deleteTargetData } from "../../api";
+import { deleteTargetData, writeUserData } from "../../api";
 
-export default function NewEvent({ writeUserData }) {
+export default function NewEvent({ userId }) {
   const location = useLocation();
 
   let initialInputValues = {
@@ -41,20 +41,20 @@ export default function NewEvent({ writeUserData }) {
 
     if (location.state) {
       deleteTargetData(
-        "guest", 
+        userId, 
         initialInputValues.date,
         getOnlyHours(initialInputValues.startAt), 
         getOnlyHours(initialInputValues.endAt)
       );
     }
 
-    writeUserData("guest", date, title, detail, getOnlyHours(startAt), getOnlyHours(endAt));
+    writeUserData(userId, date, title, detail, getOnlyHours(startAt), getOnlyHours(endAt));
   }
 
   function onChangeInputValues(e) {
     let { value, name } = e.target;
 
-    if (name === "startAt" || name === "endAt") {  //상수관리하기
+    if (name === "startAt" || name === "endAt") {
       value = makeOClock(value);
     }
 

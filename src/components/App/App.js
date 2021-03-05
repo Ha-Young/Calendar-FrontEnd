@@ -1,33 +1,35 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-// TODO: We are using CSS Modules here.
-// Do your own research about CSS Modules.
-// For example, what is it? what are benefits?
+
 import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
 import NewEvent from "../Events/NewEvent";
 import Events from "../Events/Events";
+import Dashboard from "../Dashboard/Dashboard";
+import Login from "../Login/Login";
 
-function App({ writeUserData, getUserData }) {
+function App({ events, addEvents, removeEvents, onClickLogin, auth }) {
+  const { userId } = auth;
+
   return (
     <div className={styles.App}>
       <Header />
       <Switch>
         <Route path="/calendar">
-          <Calendar getUserData={getUserData} />
+          <Dashboard 
+            main={<Calendar userId={userId} events={events} addEvents={addEvents} />}
+            login={<Login onClickLogin={onClickLogin} auth={auth} />}
+          />
         </Route>
         <Route exact path="/event">
-          <Events getUserData={getUserData} />
+          <Events userId={userId} removeEvents={removeEvents} />
         </Route>
         <Route exact path="/event/new">
-          <NewEvent writeUserData={writeUserData} />
-        </Route>
-        <Route exact path="/event/:date">
-          <div>EVENT of selected date</div>
+          <NewEvent userId={userId} />
         </Route>
         <Route exact path="/event/:date/:hours">
-          <NewEvent writeUserData={writeUserData} /> 
+          <NewEvent userId={userId} /> 
         </Route>
         <Route path="*">
           <Redirect to="/calendar" />

@@ -1,48 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./Calendar.module.css";
-import firebase from "../../api/firebase"
 import { getDivsFor24Hours } from "../../utils/calander";
+import { getDailyData } from "../../api";
+import { isObj } from "../../utils/typeCheck";
 
-export default function DailyBody({ today, isSideBarOn = true }) {
-  const [allEvents, setAllEvents] = useState({});
-  
+export default function DailyBody({ userId, today, isDaily, addEvents, events }) {
   const todayISO = today.toISOString().substring(0, 10);
   const hoursDiv = getDivsFor24Hours();
 
-  useEffect(() => {
-    const userId = "guest";
-    const userRef = firebase.database().ref(`users/${userId}/${todayISO}`);
-    
-    userRef.on("value", (snapshot) => {
-      const events = snapshot.val();
-      const result = {};
+  const todayEvent = events[todayISO];
 
-      for (const date in events) {
-        result[date] = events[date];
-      }
-      setAllEvents(result);
-    });
-  }, [today]);
+  async function fetchDailyData() {
+    const result = await getDailyData(userId, todayISO);
+
+    if(isObj(result)) {
+      addEvents(todayISO, result);
+    }
+  }
+
+  useEffect(() => {
+    if (!todayEvent) {
+      fetchDailyData();
+    }
+  }, []);
 
   return (
-    <tbody className={styles.dailyTbody}>
-      <tr className={styles.dailyTr}>
-        <td className={styles.hoursSideBar}>
-          {isSideBarOn && hoursDiv.map(each => <div className={styles.eachHour} key={each}>{each}</div>)}
-        </td>
-      <td className={styles.dailyEventTd}>
+    <div className={styles.eventsContainer}>
+      <div className={styles.hoursSideBar}>
+          {isDaily && hoursDiv.map(each => <div className={styles.eachHour} key={each}>{each}</div>)}
+      </div>
+      <div className={styles.dailyEventTd}>
         {hoursDiv.map((each, index) => {
           let haveEvent = false;
           let haveText = "";
           
-          for (const key in allEvents) {
-            const startHour = allEvents[key]["startAt"];
-            const endHour = allEvents[key]["endAt"];
+          for (const key in todayEvent) {
+            const startHour = todayEvent[key]["startAt"];
+            const endHour = todayEvent[key]["endAt"];
 
             if (each >= Number(startHour) && each <= Number(endHour)) {
               haveEvent = true;
               if (each === Number(startHour)) {
-                haveText = allEvents[key]["title"];
+                haveText = todayEvent[key]["title"];
               }
             }
           }
@@ -55,8 +54,7 @@ export default function DailyBody({ today, isSideBarOn = true }) {
             </div>
             );
         })}
-      </td>
-      </tr>
-    </tbody>
+       </div>
+    </div>
   );
 }

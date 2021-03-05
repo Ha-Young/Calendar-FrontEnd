@@ -1,3 +1,20 @@
+:root {
+  --neu-background: #EDF2F0;
+
+  --neu-color-one: #ecf0f3;
+  --neu-color-two: #d1d9e6;
+
+  --neu-white: #f9f9f9;
+  --neu-grey: #a0a5a8;
+  --neu-black: #181818;
+
+  --neu-purple: #4B70E2;
+}
+
+html {
+  /* background-color: var(--neu-background); */
+}
+
 .App {
   text-align: center;
 }

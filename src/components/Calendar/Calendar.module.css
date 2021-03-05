@@ -8,6 +8,15 @@
   padding: 1rem;
 }
 
+.eventsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 50vw;
+}
+
 /* Weekly */
 
 .table {

@@ -1,18 +1,8 @@
-// TODO: Go to `./firebase.js` and update your firebase config.
+import { GUEST } from "../constants/login";
 import firebase from "./firebase";
 
-export async function saveSampleData() {
-  const database = firebase.database();
-
-  // Note: `set` method returns a promise.
-  // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.ref("test/123").set({
-    test: "text",
-  });
-}
-
 // what if startAt + endAt end up 2 digit
-export function writeUserData(userId = "guest", date, title, detail, startAt, endAt) {
+export function writeUserData(userId, date, title, detail, startAt, endAt) {
   firebase.database().ref(`users/${userId}/${date}/${startAt + endAt}`).set({
     date,
     userId,
@@ -23,24 +13,38 @@ export function writeUserData(userId = "guest", date, title, detail, startAt, en
   }, (error) => {
     if (error) {
       console.error(error);
-      // error handle
     }
   });
 };
 
-export async function getUserData(userId = "guest", date, startAt, endAt) {  // date default value needed
-  const userRef = firebase.database().ref(`users/${userId}/${date}/${startAt+endAt}`);
+export async function getUserData(userId, date, startAt, endAt) {  
+  const userRef = firebase.database().ref(`users/${userId}/${date}/${startAt + endAt}`);
   const snapshot = await userRef.once("value");
   const values = snapshot.val();
 
   return values;
 }
 
-export async function getAllUserData(userId = "guest") {  // date default value needed
+export async function getDailyData(userId, dateISO) {
+  const userRef = firebase.database().ref(`users/${userId}/${dateISO}`);
+  const snapshot = await userRef.once("value", (snapshot) => snapshot);
+  const values = snapshot.val();
+
+  const result = {};
+
+  for (const date in values) {
+    result[date] = values[date];
+  }
+
+  return result;
+}
+
+export async function getAllUserData(userId) {  // date default value needed
+  const result = [];
+
   const userRef = firebase.database().ref(`users/${userId}`);
   const snapshot = await userRef.once("value", (snapShot) => snapShot);
   const values = snapshot.val();
-  const result = [];
 
   for (const date in values) {
     result.push(...Object.values(values[date]));
@@ -49,7 +53,21 @@ export async function getAllUserData(userId = "guest") {  // date default value 
   return result;
 }
 
-export function deleteTargetData(userId = "guest", date, startAt, endAt) {
-  const userRef = firebase.database().ref(`users/${userId}/${date}/${startAt+endAt}`);
+export function deleteTargetData(userId, date, startAt, endAt) {
+  const userRef = firebase.database().ref(`users/${userId}/${date}/${startAt + endAt}`);
   userRef.remove();
+}
+
+export async function moveDataToLoggedInUser(userId) {
+  const guestRef = firebase.database().ref(`users/${GUEST}`);
+  const snapshot = await guestRef.once("value", (snapShot) => snapShot);
+  const guestData = snapshot.val();
+
+  firebase.database().ref(`users/${userId}`).update(guestData, (error) => {
+    if (error) {
+      console.error(error);
+    }
+  });
+
+  guestRef.remove();
 }

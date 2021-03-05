@@ -4,7 +4,7 @@ import Header from "./Header";
 import styles from "./Calendar.module.css";
 import DailyBody from "./DailyBody";
 
-export default function WeeklyBody({ today }) {
+export default function WeeklyBody({ userId, today, addEvents, events, isDaily }) {
   const dayOfToday = today.getDay();
   const firstDate = getPastDate(today, dayOfToday);
   const thisWeek = [];
@@ -31,18 +31,18 @@ export default function WeeklyBody({ today }) {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td className={styles.hoursSideBar}>
-            {hoursDiv.map((each, index) => <div key={each + index} className={styles.eachHour}>{each}</div>)}
-          </td>
-          {thisWeek.map((date, index) => {
-            return (
-              <td className={styles.weeklyEventTd} key={date + index}>
-                <DailyBody today={date} isSideBarOn={false} />
-              </td>
-            );
-          })}
-        </tr>
+      <tr>
+        <td className={styles.hoursSideBar}>
+          {hoursDiv.map((each, index) => <div key={each + index} className={styles.eachHour}>{each}</div>)}
+        </td>
+        {thisWeek.map((date, index) => {
+          return (
+            <td className={styles.weeklyEventTd} key={date + index}>
+              <DailyBody userId={userId} today={date} isDaily={isDaily} addEvents={addEvents} events={events} />
+            </td>
+          );
+        })}
+      </tr>
       </tbody>
     </>
   );
