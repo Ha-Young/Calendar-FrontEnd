@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from "./Header.module.css"
 import CalenderModeSelector from "../CalenderModeSelector";
 import Button from "../Button";
-import DateControlNav from "../DateControlNav"
+import DateControlNav from "../DateControlNav";
 
 export default function Header ({
   currentDate,
@@ -11,6 +11,7 @@ export default function Header ({
   changeCalendarMode,
   moveToPrevDate,
   moveToNextDate,
+  moveToToday,
 }) {
   return (
     <header className={styles.Header}>
@@ -19,15 +20,12 @@ export default function Header ({
           <Button title="Add new event!"/>
         </Link>
 
-        <Link to="/">
-          <Button title="TODAY"/>
-        </Link>
-
         <DateControlNav
           currentDate={currentDate}
           calendarMode={calendarMode}
           moveToPrevDate={moveToPrevDate}
           moveToNextDate={moveToNextDate}
+          moveToToday={moveToToday}
         />
       </div>
 

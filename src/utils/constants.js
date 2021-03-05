@@ -6,6 +6,7 @@ export const CALENDAR_MODE = {
 export const BUTTON_TYPE = {
   PREV: "PREV",
   NEXT: "NEXT",
+  TODAY: "TODAY",
 }
 
 export const BUTTON_PAYLOAD = {
@@ -17,3 +18,4 @@ export const EVENT_FORM_TYPE = {
   ADDING: "ADDING",
   UPDATING: "UPDATING",
 }
+

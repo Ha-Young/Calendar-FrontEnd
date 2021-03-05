@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header";
@@ -11,15 +11,10 @@ function App({
   changeCalendarMode,
   moveToPrevDate,
   moveToNextDate,
-  onInitialLoad,
+  moveToToday,
 
   eventInfoList,
 }) {
-
-  useEffect(() => {
-    // onInitialLoad();
-  }, [eventInfoList]);
-
   return (
     <div className={styles.App}>
 
@@ -31,6 +26,7 @@ function App({
             changeCalendarMode={changeCalendarMode}
             moveToPrevDate={moveToPrevDate}
             moveToNextDate={moveToNextDate}
+            moveToToday={moveToToday}
           />
           <Main
             currentDate={currentDate}

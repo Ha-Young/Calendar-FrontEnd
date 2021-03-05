@@ -13,23 +13,29 @@ export default function DateContorlNav({
   calendarMode,
   moveToPrevDate,
   moveToNextDate,
+  moveToToday,
 }) {
   function handleButtonClick(e) {
     const buttonType = e.target.title;
+    console.log(buttonType, "buttonType")
     let newDate;
 
-    if (calendarMode === CALENDAR_MODE.DAILY) {
-      if (buttonType === BUTTON_TYPE.PREV) {
+    if (buttonType === BUTTON_TYPE.TODAY) {
+        console.log("not inside?????????", buttonType)
+       newDate = moment().toISOString();
+       moveToToday(newDate);
+    } else if (buttonType === BUTTON_TYPE.PREV) {
+      if (calendarMode === CALENDAR_MODE.DAILY) {
         newDate = moment(currentDate).subtract(BUTTON_PAYLOAD.DAILY_PAYLOAD, "days").toISOString();
         moveToPrevDate(newDate);
       } else {
-        newDate = moment(currentDate).add(BUTTON_PAYLOAD.DAILY_PAYLOAD, "days").toISOString();
-        moveToNextDate(newDate);
-      }
-    } else {
-      if (buttonType === BUTTON_TYPE.PREV) {
         newDate = moment(currentDate).subtract(BUTTON_PAYLOAD.WEEKLY_PAYLOAD, "days").toISOString();
         moveToPrevDate(newDate);
+      }
+    } else if (buttonType === BUTTON_TYPE.NEXT) {
+      if (calendarMode === CALENDAR_MODE.DAILY) {
+        newDate = moment(currentDate).add(BUTTON_PAYLOAD.DAILY_PAYLOAD, "days").toISOString();
+        moveToNextDate(newDate);
       } else {
         newDate = moment(currentDate).add(BUTTON_PAYLOAD.WEEKLY_PAYLOAD, "days").toISOString();
         moveToNextDate(newDate);
@@ -39,6 +45,7 @@ export default function DateContorlNav({
 
   return (
     <div className={styles.DateControlNav}>
+      <Button title={BUTTON_TYPE.TODAY} onClick={handleButtonClick}></Button>
       <Button title={BUTTON_TYPE.PREV} onClick={handleButtonClick}></Button>
       <Button title={BUTTON_TYPE.NEXT} onClick={handleButtonClick}></Button>
       { calendarMode === CALENDAR_MODE.DAILY ?

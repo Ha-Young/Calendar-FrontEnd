@@ -2,8 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import EventForm from "../components/EventForm";
-import { addNewEvent, getUserEvents, updateUserEvent, deleteUserEvent } from "../actions";
-import { EVENT_FORM_TYPE } from "../utils/constants"
+import { EVENT_FORM_TYPE } from "../utils/constants";
+import {
+  addNewEvent,
+  getUserEvents,
+  updateUserEvent,
+  deleteUserEvent,
+} from "../actions";
 
 function EventFormContainer({
   addNewEvent,

@@ -2,6 +2,7 @@ import {
   CHANGE_CALENDAR_MODE,
   MOVE_TO_PREV_DATE,
   MOVE_TO_NEXT_DATE,
+  MOVE_TO_TODAY,
 
   ADD_NEW_EVENT,
   GET_USER_EVENTS,
@@ -55,5 +56,12 @@ export function deleteUserEvent(targetEventId) {
   return {
     type: DELETE_USER_EVENT,
     targetEventId,
+  }
+}
+
+export function moveToToday(currentDate) {
+  return {
+    type: MOVE_TO_TODAY,
+    currentDate,
   }
 }

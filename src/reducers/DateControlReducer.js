@@ -4,6 +4,7 @@ import {
   CHANGE_CALENDAR_MODE,
   MOVE_TO_PREV_DATE,
   MOVE_TO_NEXT_DATE,
+  MOVE_TO_TODAY,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -29,6 +30,12 @@ export default function DateControlReducer(state = initialState, action) {
       return {
         ...state,
         currentDate: action.newDate,
+      }
+
+    case MOVE_TO_TODAY:
+      return {
+        ...state,
+        currentDate: action.currentDate,
       }
 
     default: return state;

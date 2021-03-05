@@ -6,8 +6,9 @@ import {
   moveToPrevDate,
   moveToNextDate,
   getUserEvents,
-} from "../actions/index";
-import { saveSampleData, fetchEventsList } from "../api";
+  moveToToday
+} from "../actions";
+import { fetchEventsList } from "../api";
 
 function AppContainer({
     currentDate,
@@ -15,6 +16,7 @@ function AppContainer({
     changeCalendarMode,
     moveToPrevDate,
     moveToNextDate,
+    moveToToday,
     onInitialLoad,
 
     EventInfoControlReducer,
@@ -37,6 +39,7 @@ function AppContainer({
       changeCalendarMode={changeCalendarMode}
       moveToPrevDate={moveToPrevDate}
       moveToNextDate={moveToNextDate}
+      moveToToday={moveToToday}
       onInitialLoad={onInitialLoad}
 
       eventInfoList={EventInfoControlReducer}
@@ -60,21 +63,20 @@ function mapStateToProps({
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeCalendarMode(calendarMode){
+    changeCalendarMode(calendarMode) {
       dispatch(changeCalendarMode(calendarMode));
     },
-    moveToPrevDate(newDate){
+    moveToPrevDate(newDate) {
       dispatch(moveToPrevDate(newDate));
     },
-    moveToNextDate(newDate){
+    moveToNextDate(newDate) {
       dispatch(moveToNextDate(newDate));
     },
-    getUserEvents(fetchedUserEvents){
-      dispatch(getUserEvents(fetchedUserEvents));
+    moveToToday(currentDate) {
+      dispatch(moveToToday(currentDate));
     },
-
-    onInitialLoad: () => {
-      saveSampleData();
+    getUserEvents(fetchedUserEvents) {
+      dispatch(getUserEvents(fetchedUserEvents));
     },
   };
 }
