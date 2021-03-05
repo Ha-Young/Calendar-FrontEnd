@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./OnedaySchedule.module.css";
+import { Link } from "react-router-dom";
 
 export default function OnedaySchedule({ 
   title,
@@ -29,7 +30,11 @@ export default function OnedaySchedule({
       <div className={styles.title}><p className={styles.text}>{title}</p></div>
         {
           onedayScheduleCells.map((event, idx) =>
-            <div key={idx} className={styles.cell}>{event.title}</div>
+            event ?
+              <Link to={`events/${event.id}`}>
+                <div key={idx} className={styles.cell}>{event.title}</div>
+              </Link> :
+                <div key={idx} className={styles.cell}>{event.title}</div>
           )
         }
     </div>
