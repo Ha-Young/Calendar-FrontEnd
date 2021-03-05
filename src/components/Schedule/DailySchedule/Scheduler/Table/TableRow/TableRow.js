@@ -4,6 +4,7 @@ import styles from "./TableRow.module.css";
 
 const TableRow = function ({ updateDateWithTime, rowId }) {
   let history = useHistory();
+
   function handleRowClick() {
     updateDateWithTime(rowId)
     history.push("/events/new");

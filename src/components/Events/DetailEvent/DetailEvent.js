@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Dropdown from "../../Dropdown/Dropdown";
 import { START_TIME_LIST, END_TIME_LIST } from "../../../constants/calendarConstants";
@@ -7,7 +7,7 @@ import Button from "../../Button/Button";
 
 const DetailEvent = function ({ events, updateEvent, removeEvent }) {
   let { eventId } = useParams();
-  const { push } = useHistory();
+  const { goBack } = useHistory();
   const selectedEvent = events.byIds[eventId];
   const isValidEventId = !!selectedEvent;
   const [date, setDate] = useState(selectedEvent?.date);
@@ -17,13 +17,6 @@ const DetailEvent = function ({ events, updateEvent, removeEvent }) {
   const [description, setDescription] = useState(selectedEvent?.description);
   const [submitType, setSubmitType] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false);
-
-  useEffect(() => {
-    if (!isValidEventId) {
-      alert("NOT VALID EVENT ID");
-      push("/calendar");
-    }
-  }, [isValidEventId]);
 
   function createItemTag(item) {
     return (
@@ -65,7 +58,7 @@ const DetailEvent = function ({ events, updateEvent, removeEvent }) {
       removeEvent(selectedEvent);
     }
 
-    push("/calendar");
+    goBack();
   }
 
   function handleChanges(type, value) {

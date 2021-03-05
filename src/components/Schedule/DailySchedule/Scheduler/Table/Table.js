@@ -10,7 +10,7 @@ const Table = function ({
   events
 }) {
 
-  const eventsOfDate = events.byDates[tableId];
+  const eventsByDate = events.byDates[tableId];
 
   return (
     <div className={styles["table"]}>
@@ -22,7 +22,7 @@ const Table = function ({
           updateDateWithTime={updateDateWithTime}
         />
       ))}
-      {!!eventsOfDate && eventsOfDate.map(event => (
+      {!!eventsByDate && eventsByDate.map(event => (
         <EntryBox event={event} key={event.id} isWeeklySchedule={false} />
       ))}
     </div>

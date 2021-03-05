@@ -15,7 +15,7 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   let location = useLocation();
-  const { push } = useHistory();
+  const { push, goBack } = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -36,7 +36,7 @@ const EventForm = function ({ addEvent, date, setIsSchedule }) {
     };
 
     addEvent(eventObject);
-    push("/calendar");
+    goBack();
   }
 
   function createItemTag(item) {

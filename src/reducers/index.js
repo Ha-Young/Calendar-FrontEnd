@@ -1,3 +1,4 @@
+import produce from "immer";
 import * as types from "../constants/actionTypes";
 /*
 
@@ -67,74 +68,70 @@ export default function reducer(state = initialState, action) {
     case types.ADD_EVENT:
       //error handling추가해야됨 update도 같이 ㅇㅇ
       // ex) 겹치는 시간대
-      const eventsOfDate = state.events.byDates[action.payload.date] ?? [];
+      const addedState = produce(state, draft => {
+        const id = action.payload.id;
+        const date = action.payload.date;
+        const allIdsOfEvents = draft.events.allIds;
+        const allDatesOfEvents = draft.events.allDates;
 
-      return {
-        ...state,
-        events: {
-          byIds: {
-            ...state.events.byIds,
-            [action.payload.id]: action.payload,
-          },
-          byDates: {
-            ...state.events.byDates,
-            [action.payload.date]: [...eventsOfDate, action.payload]
-          },
-          allIds: [...state.events.allIds, action.payload.id],
-          allDates: [...state.events.allDates, action.payload.date],
-        },
-      };
+        draft.events.byIds[id] = action.payload;
+
+        if (!draft.events.byDates[date]) draft.events.byDates[date] = [];
+
+        draft.events.byDates[date].push(action.payload);
+        allIdsOfEvents.push(id);
+
+        if (!allDatesOfEvents.includes(date)) allDatesOfEvents.push(date);
+      });
+
+      return addedState;
     case types.UPDATE_EVENT:
-      if (action.payload.updatedEvent === null) {
+      if (action.payload === null) {
         return state;
       }
 
-      const prevEventsOfDate = state.events.byDates[action.payload.prevEvent.date];
-      const filteredPrevEventsOfDate = prevEventsOfDate.filter(event => event.id !== action.payload.prevEvent.id);
-      const updatedEventsOfDate = state.events.byDates[action.payload.updatedEvent.date] ?? [];
-      const filtedAllDates = state.events.allDates.filter(date => date !== action.payload.prevEvent.date);
+      const prevEvent = action.payload.prevEvent;
+      const updatedEvent = action.payload.updatedEvent;
 
-      return {
-        ...state,
-        events: {
-          ...state.events,
-          byIds: {
-            ...state.events.byIds,
-            [action.payload.updatedEvent.id]: action.payload.updatedEvent,
-          },
-          byDates: {
-            ...state.events.byDates,
-            [action.payload.prevEvent.date]: filteredPrevEventsOfDate.length === 0 ? null : filteredPrevEventsOfDate,
-            [action.payload.updatedEvent.date]: [...updatedEventsOfDate, action.payload.updatedEvent]
-          },
-          allDates: [...filtedAllDates, action.payload.updatedEvent.date],
-        },
-      };
+      const updatedState = produce(state, draft => {
+        const id = updatedEvent.id;
+        const date = updatedEvent.date;
+        const prevDate = prevEvent.date;
+        const filteredPrevEventsByDate = draft.events.byDates[prevDate]
+          .filter(event => event.id !== id);
+
+        draft.events.allDates = draft.events.allDates.filter(date => date !== prevDate);
+        draft.events.byIds[id] = updatedEvent;
+
+        draft.events.byDates[prevDate] = filteredPrevEventsByDate.length === 0 ? null : filteredPrevEventsByDate;
+
+        if (!draft.events.byDates[date]) draft.events.byDates[date] = [];
+
+        draft.events.byDates[date].push(updatedEvent);
+
+        if (!draft.events.allDates.includes(date)) draft.events.allDates.push(date);
+      });
+
+      return updatedState;
     case types.REMOVE_EVENT:
-      const eventsByIds = { ...state.events.byIds };
-      delete eventsByIds[action.payload.id];
-      const eventsByDate = [...state.events.byDates[action.payload.date]];
-      const filteredEventsByDate = eventsByDate.filter(event => event.id !== action.payload.id);
+      const removedState = produce(state, draft => {
+        const removedEventId = action.payload.id;
+        const removedEventDate = action.payload.date;
+        const filteredEventsByDate = draft.events.byDates[removedEventDate].filter(event => event.id !== action.payload.id);
 
-      return {
-        ...state,
-        events: {
-          byIds: eventsByIds,
-          byDates: {
-            ...state.events.byDates,
-            [action.payload.date]: filteredEventsByDate.length === 0 ? null : filteredEventsByDate,
-          },
-          allDates: state.events.allDates.filter(date => {
-            if (filteredEventsByDate.length) {
-              return true;
-            }
+        delete draft.events.byIds[removedEventId];
+        draft.events.allIds = draft.events.allIds.filter(id => id !== removedEventId);
+        draft.events.byDates[removedEventDate] = filteredEventsByDate.length === 0 ? null : filteredEventsByDate;
+        draft.events.allDates = draft.events.allDates.filter(date => {
+          if (filteredEventsByDate.length) {
+            return true;
+          }
 
-            return date !== action.payload.date
-          }),
-          allIds: state.events.allIds.filter(id => id !== action.payload.id)
-        }
-      };
+          return date !== removedEventDate
+        });
+      });
 
+      return removedState;
     default:
       return state;
   }

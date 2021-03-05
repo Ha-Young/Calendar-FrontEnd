@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "../Button/Button";
 import styles from "./Dropdown.module.css";
 
@@ -15,10 +15,6 @@ const Dropdown = function ({ initialValue, chooseItem, list, createItemTag }) {
     setLabelItem(value);
     setIsOpen(isOpen => !isOpen);
   }
-
-  useEffect(() => {
-    chooseItem(labelItem);
-  }, [chooseItem, labelItem]);
 
   return (
     <div className={`${styles["dropdown"]} ${styles[isOpen ? "open" : ""]}`}>

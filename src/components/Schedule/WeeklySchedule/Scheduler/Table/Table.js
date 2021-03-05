@@ -19,18 +19,17 @@ const Table = function ({
 
         const dateString = `${year}-${month}-${dateNumberString}`;
         const eventsOfDate = events.byDates[dateString];
-        console.log(eventsOfDate);
 
         return (
           <Fragment key={`col${dateNumber}`}>
+            {!!eventsOfDate && eventsOfDate.map(event => (
+              <EntryBox event={event} key={event.id} isWeeklySchedule={true} />
+            ))}
             <TableColumn
               dateString={dateString}
               tableRow={tableRow}
               updateDateWithTime={updateDateWithTime}
             />
-            {!!eventsOfDate && eventsOfDate.map(event => (
-              <EntryBox event={event} key={event.id} isWeeklySchedule={true} />
-            ))}
           </Fragment>
         )
       })}

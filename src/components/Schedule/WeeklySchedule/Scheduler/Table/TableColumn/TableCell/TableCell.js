@@ -4,10 +4,10 @@ import styles from "./TableCell.module.css";
 
 const TableCell = function ({ updateDateWithTime, cellId }) {
   let history = useHistory();
+
   function handleCellClick() {
     updateDateWithTime(cellId);
     history.push("/events/new");
-    //events 받아와야됨
   }
 
   return (
