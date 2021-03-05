@@ -1,5 +1,10 @@
 import React from "react";
+import styles from "./Loading.module.css";
 
-const Loading = (props) => <h1>Loading</h1>;
+const Loading = (props) => (
+  <div className={styles.loading}>
+    <h1>Loading</h1>
+  </div>
+);
 
 export default Loading;

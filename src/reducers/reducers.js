@@ -12,10 +12,16 @@ const reducer = (state = initialState, action) => {
     case ACTION.SET_INITIALIZE:
       return {
         ...state,
-        userId: action.userId,
-        userData: action.userData,
+
         dailyEvent: action.dailyEvent,
         weeklyEvent: action.weeklyEvent,
+      };
+
+    case ACTION.SET_USER_DATA:
+      return {
+        ...state,
+        userId: action.userId,
+        userData: action.userData,
       };
 
     case ACTION.SHOW_DAILY:

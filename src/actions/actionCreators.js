@@ -2,12 +2,13 @@ import {
   addToFirebase,
   editAtFirebase,
   deleteAtFirebase,
+  addUserData,
 } from "api/firebaseAPIs";
 import { authService } from "api/firebaseService";
 import { ACTION } from "constants/actionTypes";
 import { getDateISO } from "utils/utilFunction";
 
-const setInitialize = (initialEvent, userId) => {
+const setInitialize = (initialEvent) => {
   if (!Object.keys(initialEvent).length) {
     return {
       type: ACTION.NO_EVENT,
@@ -29,7 +30,16 @@ const setInitialize = (initialEvent, userId) => {
     userData: { displayName, email, photoURL, phoneNumber },
     weeklyEvent: initialEvent,
     dailyEvent,
+  };
+};
+
+const setUserData = (userId) => {
+  const { displayName, email, photoURL, phoneNumber } = authService.currentUser;
+  addUserData(userId, { displayName, email, photoURL, phoneNumber });
+  return {
+    type: ACTION.SET_USER_DATA,
     userId,
+    userData: { displayName, email, photoURL, phoneNumber },
   };
 };
 
@@ -77,18 +87,12 @@ const editEvent = (editedEvent, id) => {
   };
 };
 
-const userLogin = () => {};
-const userLogout = () => {};
-const editProfile = () => {};
-
 export const actionCreators = {
   setInitialize,
+  setUserData,
   showDaily,
   showWeekly,
   addEvent,
   deleteEvent,
   editEvent,
-  userLogin,
-  userLogout,
-  editProfile,
 };

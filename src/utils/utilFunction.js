@@ -50,6 +50,10 @@ export const getMonthAndWeek = (
 export const makeFirebaseURL = (
   date = moment().day(0).format("YYYY-MM-DD")
 ) => {
+  if (!authService.currentUser) {
+    return;
+  }
+
   const userId = authService.currentUser.uid;
   const { year, monthInFirebase, weekOfMonth } = parseDate(date);
 

@@ -45,22 +45,26 @@ export const fetchWeeklyEvent = (callback, date) => {
   });
 };
 
-export const addToFirebase = async (newEvent, id) => {
+export const addUserData = (userId, userData) => {
+  database.ref("/userData").update({ [userId]: { ...userData } });
+};
+
+export const addToFirebase = (newEvent, id) => {
   const { date } = newEvent;
   const firebaseURL = makeFirebaseURL(date);
 
-  await database.ref(firebaseURL).update({ [id]: { ...newEvent, id } });
+  database.ref(firebaseURL).update({ [id]: { ...newEvent, id } });
 };
 
-export const editAtFirebase = async (editedEvent, id) => {
+export const editAtFirebase = (editedEvent, id) => {
   const { date } = editedEvent;
   const firebaseURL = makeFirebaseURL(date);
 
-  await database.ref(firebaseURL).update({ [id]: { ...editedEvent, id } });
+  database.ref(firebaseURL).update({ [id]: { ...editedEvent, id } });
 };
 
-export const deleteAtFirebase = async (id, date) => {
+export const deleteAtFirebase = (id, date) => {
   const firebaseURL = makeFirebaseURL(date);
 
-  await database.ref(firebaseURL).update({ [id]: null });
+  database.ref(firebaseURL).update({ [id]: null });
 };
