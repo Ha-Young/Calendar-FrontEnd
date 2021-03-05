@@ -3,7 +3,6 @@ import "firebase/database";
 
 import firebase from "firebase/app";
 
-// TODO: Enter your own config object
 const firebaseConfig = {
   apiKey: "AIzaSyAvhk_t4USS0XKZJea_pWHbcyjeDb_CrWw",
   authDomain: "vaco-calendar-7a9c7.firebaseapp.com",

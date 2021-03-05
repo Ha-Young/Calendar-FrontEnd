@@ -41,7 +41,6 @@ function byId(state = initialStatus_byId, action) {
       return state;
     }
     case RECEIVE_DATE: {
-      //ToDo. 아래 DATELIST 중복 합치기
       if (action.payload) {
         const newDateById = cloneDeep(state);
 

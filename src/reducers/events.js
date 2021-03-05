@@ -95,7 +95,6 @@ function allIds(state = initialStatus_allIds, action) {
       return state;
 
     case RECEIVE_DATE: {
-      //Todo. 중복코드 제거 아래 LIST
       if (action.payload) {
         const [dateKey] = Object.keys(action.payload);
         const eventKeys = Object.keys(action.payload[dateKey]);

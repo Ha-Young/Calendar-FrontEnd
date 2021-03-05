@@ -5,7 +5,6 @@ import logo from "../../assets/logo.png";
 import AppDatePicker from "../AppDatePicker";
 import styles from "./AppHeader.module.css";
 
-// TODO: Create your own header.
 export default function AppHeader ({ currentDate, updateDate }) {
   return (
     <>
