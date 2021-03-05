@@ -8,6 +8,8 @@ import styles from "./MainContainer.module.css";
 import EventModal from "../components/Modal/EventModal";
 import { formatUserInput } from "../utils/utils";
 
+import { uploadData } from "../api/index";
+
 import {
   NEXT,
   PREV,
@@ -28,13 +30,16 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeWeekMode: () => dispatch({ type: TO_WEEK_CALENDAR }),
   onPrevClick: () => dispatch({ type: PREV }),
   onNextClick: () => dispatch({ type: NEXT }),
+
   onAddEvent: (userInputEvent) => {
     const event = formatUserInput(null, userInputEvent);
+    uploadData(event);
     dispatch({ type: ADD_EVENT, payload: event });
   },
 
   onEditEvent: (eventId, userInputEvent) => {
     const event = formatUserInput(eventId, userInputEvent);
+    uploadData(event);
     dispatch({ type: EDIT_EVENT, payload: { eventId, event } });
   },
 
