@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import Description from "./Description";
 import EndHour from "./EndHour";
 import Date from "./Date";
@@ -24,7 +23,6 @@ const Form = styled.form`
 `;
 
 const Event = ({ onSubmit, onPage }) => {
-  const [redirect, setRedirect] = useState(false);
   const [event, setEvent] = useState({
     title: "",
     description: "",
@@ -35,12 +33,13 @@ const Event = ({ onSubmit, onPage }) => {
 
   useEffect(() => {
     onPage();
-  }, [])
+  }, []);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
     onSubmit(event);
-    setRedirect(true);
+    alert("Done!");
+    window.location.replace('/');
   };
 
   const onInputSubmit = (prop) => (value) => {
@@ -58,9 +57,7 @@ const Event = ({ onSubmit, onPage }) => {
         <Date saveData={onInputSubmit("date")} />
         <StartHour saveData={onInputSubmit("startHour")} />
         <EndHour saveData={onInputSubmit("endHour")} />
-          <SubmitBtn />
-        <Link to="/">
-        </Link>
+        <SubmitBtn />
       </div>
     </Form>
   );

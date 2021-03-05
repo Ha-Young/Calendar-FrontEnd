@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import EventBox from "./EventBox";
+import EventBox from "../../shared/EventBox";
 import { getDayIndex, getDayIso } from "../../utils/convertTime";
 import { DAY_COLORS } from "../../assets/colors";
 import { convertHour } from "../../utils/convertHour";

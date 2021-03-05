@@ -2,6 +2,16 @@ import {
   ADD_EVENT,
 } from "../constants/actionTypes";
 
+const EVENT_DATA_EXAMPLE = {
+  "YYYY-MM-DD": {
+    title: "title",
+    description: "desc",
+    date: "YYYY-MM-DD",
+    startHour: "00:00",
+    endHour: "00:00",
+  },
+};
+
 const initialState = {
   "2021-03-04": {
     title: "mock",

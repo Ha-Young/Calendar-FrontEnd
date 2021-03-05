@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import EventBox from "./EventBox";
+import EventBox from "../../shared/EventBox";
 import { convertHour } from "../../utils/convertHour";
 
 const Wrapper = styled.div`
@@ -45,7 +45,7 @@ const EventLine = ({ day, events, color }) => {
         return <EventBox
           key={n}
           title={eventTitle}
-          className={day}
+          ID={day}
           color={color}
           hasEvent={hasEvent}
           eventStart={eventStart === n}

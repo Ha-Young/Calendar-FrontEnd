@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -18,21 +19,23 @@ const Wrapper = styled.div`
   }
 `;
 
-const EventBox = ({ title, color, hasEvent, eventStart }) => {
+const EventBox = ({ title, color, hasEvent, eventStart, ID }) => {
   const background = hasEvent ? color : null;
   const text = hasEvent ? title : null;
 
-  const handleClick = (ev) => {
-    console.log(ev.target);
-  };
-
   return (
-    <Wrapper
-      onClick={handleClick}
-      style={{background}}
-    >
-      {eventStart ? text : null}
-    </Wrapper>
+    <>
+      {hasEvent ?
+        <Link to={"/Event/" + ID}>
+          <Wrapper style={{background}} >
+            {eventStart ? text : null}
+          </Wrapper>
+        </Link>
+      : <Wrapper style={{background}} >
+          {eventStart ? text : null}
+        </Wrapper>
+      }
+    </>
   );
 };
 
