@@ -10,7 +10,7 @@
 }
 
 .dailyButton {
-  height: 30px;
+  height: 36px;
   width: 70px;
   border-radius: 20px;
   background-color: calenderBlue;
@@ -21,7 +21,7 @@
 }
 
 .weeklyButton {
-  height: 30px;
+  height: 36px;
   width: 70px;
   border-radius: 20px;
   background-color: calenderBlue;
@@ -31,7 +31,7 @@
 }
 
 .addButton {
-  height: 30px;
+  height: 36px;
   width: 120px;
   border-radius: 20px;
   background-color: calenderDarkGray;
@@ -42,7 +42,7 @@
 }
 
 .profileButton {
-  height: 30px;
+  height: 36px;
   width: 90px;
   border-radius: 20px;
   background-color: calenderDarkGray;

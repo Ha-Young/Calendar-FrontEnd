@@ -33,6 +33,7 @@ const setInitialize = (initialEvent) => {
 
 const setUserData = (userId) => {
   const { displayName, email, photoURL, phoneNumber } = authService.currentUser;
+
   addUserData(userId, { displayName, email, photoURL, phoneNumber });
   return {
     type: ACTION.SET_USER_DATA,

@@ -190,8 +190,8 @@ const AppRouter = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return state;
+const mapStateToProps = ({ dailyEvent, weeklyEvent, userData }) => {
+  return { dailyEvent, weeklyEvent, userData };
 };
 
 const mapDispatchToProps = (dispatch) => {

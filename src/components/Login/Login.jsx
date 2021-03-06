@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { authService, firebaseInstance } from "api/firebaseService";
-// import styles from "./Login.module.css";
+import styles from "./Login.module.css";
 
-const Login = (props) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
@@ -34,7 +34,6 @@ const Login = (props) => {
       } else {
         data = await authService.signInWithEmailAndPassword(email, password);
       }
-      console.log(data);
     } catch (error) {
       setError(error.message);
     }
@@ -60,9 +59,14 @@ const Login = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className={styles.loginContainer}>
+      <h1 className={styles.loginTitle}>
+        CALENDER <br />
+        VIEWER
+      </h1>
+      <form onSubmit={onSubmit} className={styles.loginInput}>
         <input
+          className={styles.loginInputEmail}
           name="email"
           type="text"
           placeholder="Email"
@@ -71,6 +75,7 @@ const Login = (props) => {
           value={email}
         />
         <input
+          className={styles.loginInputPassword}
           name="password"
           type="password"
           placeholder="Password"
@@ -78,17 +83,28 @@ const Login = (props) => {
           required
           value={password}
         />
-        <input type="submit" value={newAccount ? "Create Account" : "Log In"} />
-        {error}
+        <button className={styles.loginButton}>
+          {newAccount ? "Create Account" : "Log In"}
+        </button>
+        {/* <input type="submit" value={newAccount ? "Create Account" : "Log In"} />
+        {error} */}
       </form>
-      <span onClick={toggleAccount}>
+      <button onClick={toggleAccount} className={styles.loginToggleButton}>
         {newAccount ? "Sign in" : "Create Account"}
-      </span>
-      <div>
-        <button name="google" onClick={onSocialClick}>
+      </button>
+      <div className={styles.socialLoginContainer}>
+        <button
+          name="google"
+          onClick={onSocialClick}
+          className={styles.loginByGoogle}
+        >
           Continue with Google
         </button>
-        <button name="github" onClick={onSocialClick}>
+        <button
+          name="github"
+          onClick={onSocialClick}
+          className={styles.loginByGithub}
+        >
           Continue with Github
         </button>
       </div>

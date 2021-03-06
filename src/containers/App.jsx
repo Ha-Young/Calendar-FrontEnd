@@ -27,7 +27,7 @@ const App = ({ setInitialize, setUserData }) => {
         setReady(true);
       }
     });
-  }, [setInitialize]);
+  }, [setInitialize, setUserData]);
 
   return (
     <>
