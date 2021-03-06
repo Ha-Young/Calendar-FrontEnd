@@ -1,19 +1,23 @@
 import React, { Fragment, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { getFormat } from "../../api/date";
-import { hour} from "../../constants/DateConstants";
+import { hour } from "../../constants/DateConstants";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import "./style.css";
 
 export default function Daily(props) {
   const {
-    eventList, 
-    eventKeyList, 
-    currentPageDate, 
-    handleClickLeft, 
-    handleClickRight, 
+    eventList,
+    eventKeyList,
+    currentPageDate,
+    handleClickLeft,
+    handleClickRight,
     handleClickEvent,
-  } = { props };
+  } = props;
+
+  console.log(props, currentPageDate);
+
+  debugger;
 
   const currentDate = getFormat(currentPageDate);
   const currentEventList = eventKeyList.includes(currentDate) ? eventList[currentDate] : [];
@@ -25,7 +29,7 @@ export default function Daily(props) {
     const className = event.target.className.split(" ");
     const selectedEventId = className.length === 3 ? className[0] : "";
     let selectedEvent;
-    
+
     for (let i = 0; i < currentEventList.length; i++) {
       if (currentEventList[i].Id === selectedEventId) {
         selectedEvent = currentEventList[i];
@@ -33,7 +37,7 @@ export default function Daily(props) {
       }
     }
 
-    if(!selectedEvent) return;
+    if (!selectedEvent) return;
 
     handleClickEvent(selectedEvent);
   }
@@ -42,46 +46,46 @@ export default function Daily(props) {
     <Fragment>
       <div className="daily">
         <div className="header">
-          <AiOutlineArrowLeft className="previous" onClick={() => {handleClickLeft(-1)}}/>
+          <AiOutlineArrowLeft className="previous" onClick={() => { handleClickLeft(-1) }} />
           {getFormat(currentPageDate)}
-          <AiOutlineArrowRight className="next" onClick={() => {handleClickRight(1)}} />
+          <AiOutlineArrowRight className="next" onClick={() => { handleClickRight(1) }} />
         </div>
         <div className="row-container">
           {
             hour.map((time) => {
-            let isColor = "";
-            let title = "";
+              let isColor = "";
+              let title = "";
 
-            for (let i = 0; i < currentEventList.length; i++) {
-              const event = currentEventList[i];
-              const start = parseInt(event.startHour);
-              const end = parseInt(event.endHour);
-              const Id = event.Id;
+              for (let i = 0; i < currentEventList.length; i++) {
+                const event = currentEventList[i];
+                const start = parseInt(event.startHour);
+                const end = parseInt(event.endHour);
+                const Id = event.Id;
 
-              if (time === start) {
-                iterateUntil = end;
-                title = event.title;
-                currentEventId = Id;
+                if (time === start) {
+                  iterateUntil = end;
+                  title = event.title;
+                  currentEventId = Id;
+                }
+
+                if (time <= iterateUntil) {
+                  isColor = "colored";
+                } else {
+                  currentEventId = "";
+                }
               }
 
-              if (time <= iterateUntil) {
-                isColor = "colored";
-              } else {
-                currentEventId = "";
-              }
-            }
-
-            return (
-              <Link to={currentEventId ? `/event/${currentEventId}` : `${match.url}`}>
-                <div key={time} className={[currentEventId, "time-div", isColor].join(" ")} onClick={handleClick}>
-                  <div className="disable-click event-title">{title}</div>
-                  <div className="disable-click event-hour">{time}시</div>
-                </div>
-              </Link>
-            );
-          })}
+              return (
+                <Link to={currentEventId ? `/event/${currentEventId}` : `${match.url}`}>
+                  <div key={time} className={[currentEventId, "time-div", isColor].join(" ")} onClick={handleClick}>
+                    <div className="disable-click event-title">{title}</div>
+                    <div className="disable-click event-hour">{time}시</div>
+                  </div>
+                </Link>
+              );
+            })}
         </div>
       </div>
     </Fragment>
-  );      
+  );
 }

@@ -5,13 +5,13 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import "./style.css";
 
 export default function Weekly(props) {
-  const { 
-    events, 
-    keys, 
-    currentPageDate, 
-    handleClickLeft, 
-    handleClickRight 
-  } = {props};
+  const {
+    events,
+    keys,
+    currentPageDate,
+    handleClickLeft,
+    handleClickRight
+  } = props;
 
   const currentDay = currentPageDate;
   const currentYear = currentDay.getFullYear();
@@ -34,11 +34,11 @@ export default function Weekly(props) {
     <Fragment>
       <div className="days">
         <div className="header">
-          <AiOutlineArrowLeft className="previous" onClick={() => {handleClickLeft(-7)}} />
+          <AiOutlineArrowLeft className="previous" onClick={() => { handleClickLeft(-7) }} />
           <span>{getFormat(currentPageDate)}</span>
-          <AiOutlineArrowRight className="next" onClick={() => {handleClickRight(7)}} />
+          <AiOutlineArrowRight className="next" onClick={() => { handleClickRight(7) }} />
         </div>
-       
+
         <div className="grid-container">
           <div className="time-col">
             {hour.map((hour) => {
@@ -48,9 +48,9 @@ export default function Weekly(props) {
           <div className="row week-header">
             {days.map((day) => {
               return (
-                <div key ={day} className="col">
+                <div key={day} className="col">
                   <div>{day}</div>
-                  <div>{day !=="시" && currentWeek[i++]}</div>
+                  <div>{day !== "시" && currentWeek[i++]}</div>
                 </div>
               );
             })}
@@ -67,21 +67,21 @@ export default function Weekly(props) {
                       let isColor = "";
                       let title = "";
 
-                    for (let i = 0; i < currentEventList.length; i++) {
-                      const event = currentEventList[i];
-                      const start = parseInt(event.startHour);
-                      const end = parseInt(event.endHour);
+                      for (let i = 0; i < currentEventList.length; i++) {
+                        const event = currentEventList[i];
+                        const start = parseInt(event.startHour);
+                        const end = parseInt(event.endHour);
 
-                      if (time === start) {
-                        until = end;
-                        title = event.title;
+                        if (time === start) {
+                          until = end;
+                          title = event.title;
+                        }
+
+                        if (time <= until) isColor = "box-colored";
                       }
 
-                      if (time <= until) isColor = "box-colored";
-                    }
-
-                    return <div className={["box", isColor].join(" ")}>{title}</div>;
-                  })}
+                      return <div className={["box", isColor].join(" ")}>{title}</div>;
+                    })}
                 </div>
               );
             })}
