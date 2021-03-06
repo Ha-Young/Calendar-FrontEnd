@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
-import Description from "./Description";
-import EndHour from "./EndHour";
-import Date from "./Date";
-import StartHour from "./StartHour";
 import SubmitBtn from "./SubmitBtn";
-import Title from "./Title";
+import Input from "./EventInput";
+import { MOCK_DATA, INPUT, INPUT_TYPE } from "../../assets/InputData";
 
 const Form = styled.form`
   position: sticky;
@@ -23,31 +20,22 @@ const Form = styled.form`
   }
 `;
 
-const MOCK_DATA = {
-  title: "",
-  description: "",
-  date: "",
-  startHour: "",
-  endHour: "",
-};
-
 const Event = ({ onSubmit, onPage }) => {
   const location = useLocation();
   const [event, setEvent] = useState(MOCK_DATA);
   const modifyingData = MOCK_DATA;
 
-  if (location.state) {
-    const modifyingEvent = location.state.modifyingEvent;
-    modifyingData.title = modifyingEvent.title;
-    modifyingData.description = modifyingEvent.description;
-    modifyingData.date = modifyingEvent.date;
-    modifyingData.startHour = modifyingEvent.startHour;
-    modifyingData.endHour = modifyingEvent.endHour;
-  }
-
   useEffect(() => {
     onPage();
   }, []);
+
+  if (location.state) {
+    const modifyingEvent = location.state.modifyingEvent;
+
+    INPUT_TYPE.forEach((type) => {
+      modifyingData[INPUT[type].dataType] = modifyingEvent[INPUT[type].dataType]
+    });
+  }
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -66,11 +54,14 @@ const Event = ({ onSubmit, onPage }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <div>
-        <Title saveData={onInputSubmit("title")} value={modifyingData.title} />
-        <Description saveData={onInputSubmit("description")} value={modifyingData.description} />
-        <Date saveData={onInputSubmit("date")} value={modifyingData.date} />
-        <StartHour saveData={onInputSubmit("startHour")} value={modifyingData.startHour} />
-        <EndHour saveData={onInputSubmit("endHour")} value={modifyingData.endHour} />
+        {INPUT_TYPE.map((type) => {
+          return <Input
+            name={INPUT[type].name}
+            type={INPUT[type].type}
+            saveData={onInputSubmit(INPUT[type].dataType)}
+            value={modifyingData.date}
+          />;
+        })}
         <SubmitBtn />
       </div>
     </Form>

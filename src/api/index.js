@@ -1,7 +1,7 @@
 // TODO: Go to `./firebase.js` and update your firebase config.
 import firebase from "./firebase";
 
-export async function saveSampleData() {
+export const saveSampleData = async () => {
   const database = firebase.database();
 
   // Note: `set` method returns a promise.
@@ -13,16 +13,16 @@ export async function saveSampleData() {
   });
 };
 
-export async function updateSample() {
+export const updateSample = async () => {
   const database = firebase.database();
 
   await database.ref("test").child("123").update({test: "Change?"});
 };
 
-export async function addSample() {
-  const database= firebase.database();
+export const addSample = async () => {
+const database= firebase.database();
 
-  const newKey = await database.ref("test").push().key;
+const newKey = await database.ref("test").push().key;
 
   const updates = {};
 
@@ -31,7 +31,7 @@ export async function addSample() {
   await database.ref().update(updates);
 };
 
-export async function getFirebaseData(setData) {
+export const getFirebaseData = async (setData) => {
   const databaseRef = firebase.database().ref();
 
   await databaseRef.on("value", (snapShot) => {
