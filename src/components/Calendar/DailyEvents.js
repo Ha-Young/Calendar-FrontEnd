@@ -7,7 +7,7 @@ import { getDailyData } from "../../api";
 import styles from "./Calendar.module.css";
 import WithEvent from "./WithEvent";
 
-export default function DailyBody({ userId, today, isDaily, addEvents, events }) {
+export default function DailyEvents({ userId, today, isDaily, addEvents, events }) {
   const todayInISO = today.toISOString().substring(0, 10);
   const arrayOf24Divs = getNumberOfDivs(24);
   const eventsOfToday = events[todayInISO];
@@ -51,25 +51,25 @@ export default function DailyBody({ userId, today, isDaily, addEvents, events })
 
           return (
             haveEvent
-            ? <WithEvent 
-                key={each + index}
-                userId={userId}
-                text={eventText}
-                eventData={eventData}
-                className={`${styles.haveEvent} ${styles.dailyHourDiv}`} 
-              /> 
-            : <div 
-                key={each + index} 
-                className={`${styles.dailyHourDiv} ${styles.eachHour}`}
-              ></div>
-            );
+              ? <WithEvent 
+                  key={each + index}
+                  userId={userId}
+                  text={eventText}
+                  eventData={eventData}
+                  className={`${styles.haveEvent} ${styles.dailyHourDiv}`} 
+                /> 
+              : <div 
+                  key={each + index} 
+                  className={`${styles.dailyHourDiv} ${styles.eachHour}`}
+                ></div>
+          );
         })}
        </div>
     </div>
   );
 }
 
-DailyBody.propTypes = {
+DailyEvents.propTypes = {
   userId: PropTypes.string.isRequired,
   today: PropTypes.string.isRequired,
   addEvents: PropTypes.func.isRequired,

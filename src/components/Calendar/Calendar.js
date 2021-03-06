@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from "./Calendar.module.css";
 import PropTypes from 'prop-types';
 
-import WeeklyBody from "./WeeklyBody";
-import DailyBody from "./DailyBody";
+import WeeklyEvents from "./WeeklyEvents";
+import DailyEvents from "./DailyEvents";
 import { getFutureDate, getPastDate } from "../../utils/calander";
 import CALENDAR from "../../constants/calendar";
 import Button from "./Button";
@@ -47,8 +47,8 @@ export default function Calendar({ userId, events, addEvents }) {
       </div>
       <div className={isDaily ? styles.dailyTable : styles.table}>
         {isDaily
-          ? <DailyBody userId={userId} today={today} addEvents={addEvents} events={events} isDaily={isDaily} />
-          : <WeeklyBody userId={userId} today={today} addEvents={addEvents} events={events} isDaily={isDaily} />
+          ? <DailyEvents userId={userId} today={today} addEvents={addEvents} events={events} isDaily={isDaily} />
+          : <WeeklyEvents userId={userId} today={today} addEvents={addEvents} events={events} isDaily={isDaily} />
         }
       </div>
     </>
