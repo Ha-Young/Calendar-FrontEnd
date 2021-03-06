@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   position: absolute;
-  top: ${props => props.startTime * CALENDAR.SCHEDULE_TOP}em;
+  top: ${props => props.startTime * CALENDAR.SCHEDULE_HEIGHT}em;
   width: 100%;
   height: ${props => props.event * CALENDAR.SCHEDULE_HEIGHT}em;
   background-color: ${COLOR.YELLOW};

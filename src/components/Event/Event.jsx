@@ -1,66 +1,9 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import PropTypes from "prop-types";
+
 import styles from "./Event.module.css";
 
-function Event({ onSubmitAddEvent }) {
-  const [eventDate, setEventDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
-  const history = useHistory();
-
-  function onClickInputButton(event) {
-    event.preventDefault();
-
-    const editStartTime = `${startTime.slice(0, 2)}:00`;
-    const editEndClock = `${endTime.slice(0, 2)}:00`;
-
-    const eventInformation = {
-      startTime: editStartTime,
-      endTime: editEndClock,
-      eventDate,
-      title,
-      description,
-    };
-
-    history.push("/weekly");
-    onSubmitAddEvent(eventInformation);
-  }
-
-  function handleChangeInput(event) {
-    event.preventDefault();
-
-    const { target } = event;
-
-    switch (target.name) {
-      case "date":
-        setEventDate(target.value);
-        break;
-
-      case "startTime":
-        setStartTime(target.value);
-        break;
-
-      case "endTime":
-        setEndTime(target.value);
-        break;
-
-      case "title":
-        setTitle(target.value);
-        break;
-
-      case "description":
-        setDescription(target.value);
-        break;
-
-      default:
-        break;
-    }
-  }
-
+function Event({ onClickInputButton, handleChangeInput }) {
   return (
     <div className={styles.dateBoxs}>
       <div>
@@ -99,7 +42,8 @@ function Event({ onSubmitAddEvent }) {
 }
 
 Event.propTypes = {
-  onSubmitAddEvent: PropTypes.func.isRequired,
+  onClickInputButton: PropTypes.func.isRequired,
+  handleChangeInput: PropTypes.func.isRequired
 };
 
 export default Event;

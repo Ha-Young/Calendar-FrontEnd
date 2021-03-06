@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./Calendar.module.css";
 import PropTypes from "prop-types";
 
 import CALENDAR from "../../constants/calendarConstants";
+
+import styles from "./Calendar.module.css";
 
 export default function CalendarHeader({ calendarTime, onButtonClick, typeOfTime }) {
   function currentMonthName() {

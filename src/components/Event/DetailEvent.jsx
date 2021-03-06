@@ -1,86 +1,19 @@
-import React, { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React from "react";
 import PropTypes from "prop-types";
 
 import styles from "./Event.module.css";
 
-
-function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }) {
-  const history = useHistory();
-  const { id } = useParams();
-  const targetEvent = eventInformation[id];
-
-  const [eventDate, setEventDate] = useState(targetEvent.eventDate);
-  const [startTime, setStartTime] = useState(targetEvent.startTime);
-  const [endTime, setEndTime] = useState(targetEvent.endTime);
-  const [title, setTitle] = useState(targetEvent.title);
-  const [description, setDescription] = useState(targetEvent.description);
-
-  function addEvent(event) {
-    event.preventDefault();
-
-    const editStartTime = `${startTime.slice(0, 2)}:00`;
-    const editEndClock = `${endTime.slice(0, 2)}:00`;
-
-    const eventInformation = {
-      startTime: editStartTime,
-      endTime: editEndClock,
-      eventDate,
-      title,
-      description,
-    };
-
-    onSubmitAddEvent(eventInformation);
-  }
-
-  function handleClickRemoveButton(event) {
-    event.preventDefault();
-
-    const defaultStartDate = targetEvent.eventDate;
-    const removeEvent = {
-      eventDate: defaultStartDate,
-      eventId: id,
-    };
-
-    history.push("/weekly");
-    onSubmitRemoveEvent(removeEvent);
-  };
-
-  function handleReviseButton(event) {
-    addEvent(event);
-    handleClickRemoveButton(event);
-  }
-
-  function handleChangeInput(event) {
-    event.preventDefault();
-
-    const { target } = event;
-
-    switch (target.name) {
-      case "date":
-        setEventDate(target.value);
-        break;
-
-      case "startTime":
-        setStartTime(target.value);
-        break;
-
-      case "endTime":
-        setEndTime(target.value);
-        break;
-
-      case "title":
-        setTitle(target.value);
-        break;
-
-      case "description":
-        setDescription(target.value);
-        break;
-
-      default:
-        break;
-    }
-  }
+function DetailEvent(props) {
+  const {
+    eventDate,
+    startTime,
+    endTime,
+    title,
+    description,
+    handleChangeInput,
+    handleReviseButton,
+    handleClickRemoveButton
+  } = props;
 
   return (
     <div>
@@ -141,11 +74,14 @@ function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }
 }
 
 DetailEvent.propTypes = {
-  eventInformation: PropTypes.shape({
-    byId: PropTypes.object.isRequired
-  }),
-  onSubmitAddEvent: PropTypes.func.isRequired,
-  onSubmitRemoveEvent: PropTypes.func.isRequired
+  eventDate: PropTypes.string.isRequired,
+  startTime: PropTypes.string.isRequired,
+  endTime: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  handleChangeInput: PropTypes.func.isRequired,
+  handleReviseButton: PropTypes.func.isRequired,
+  handleClickRemoveButton: PropTypes.func.isRequired,
 };
 
 export default DetailEvent;

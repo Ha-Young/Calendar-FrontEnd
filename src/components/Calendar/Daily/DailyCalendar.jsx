@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import styles from "./DailyCalendar.module.css";
 
 import CalendarHeader from "../CalendarHeader";
 import TimeSidebar from "../SidebarTime";
 import CalendarColumn from "../../../containers/CalendarColumnContainer";
 
 import moment from "moment";
+
+import styles from "./DailyCalendar.module.css";
 
 export default function DailyCalendar() {
   const [day, setDay] = useState(moment());

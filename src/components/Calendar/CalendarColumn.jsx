@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "./Calendar.module.css";
-import Schedule from "./Schedule/Schedule";
 import PropTypes from "prop-types";
 
+import Schedule from "./Schedule/Schedule";
 import CALENDAR from "../../constants/calendarConstants";
+
+import styles from "./Calendar.module.css";
 
 function CalendarColumn({ events, columnDay, dayID }) {
   const hasEvent = events && events.byId[dayID];

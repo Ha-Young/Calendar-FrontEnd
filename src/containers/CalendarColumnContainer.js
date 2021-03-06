@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+
 import CalendarColumn from "../components/Calendar/CalendarColumn";
 
 const mapStateToProps = state => {

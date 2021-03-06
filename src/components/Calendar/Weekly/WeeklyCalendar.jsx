@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import styles from "./WeeklyCalendar.module.css";
 
-import buildWeekly from "../../../util/buildWeekly";
+import buildWeekly from "./buildWeekly";
 import CalendarHeader from "../CalendarHeader";
 import TimeSidebar from "../SidebarTime";
 import CalendarColumn from "../../../containers/CalendarColumnContainer";
+
+import styles from "./WeeklyCalendar.module.css";
 
 import moment from "moment";
 
