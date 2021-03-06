@@ -67,19 +67,19 @@
 }
 
 .submit {
-	background-color: transparent;
-	color: #61677C;
-	font-size: 20px;
-	font-weight: bold;
-	letter-spacing: 0.07em;
-	text-shadow: 1px 1px 0 #FFF;
-	padding: 8px 20px;
-	border: 0;
-	border-radius: 30px;
-	box-shadow:  3px 3px 5px #BABECC,  -4px -4px 10px #FFF;
-	outline: 0;
-	cursor: pointer;
-	transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  color: #61677C;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.07em;
+  text-shadow: 1px 1px 0 #FFF;
+  padding: 8px 20px;
+  border: 0;
+  border-radius: 30px;
+  box-shadow:  3px 3px 5px #BABECC,  -4px -4px 10px #FFF;
+  outline: 0;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .submit:hover {

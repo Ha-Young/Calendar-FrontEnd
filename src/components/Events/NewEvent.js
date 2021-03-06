@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import Form from "./Form";
 import styles from "./Events.module.css";
@@ -63,8 +63,8 @@ export default function NewEvent({ userId }) {
       return {
         ...prev,
         [name]: value,
-      }
-    })
+      };
+    });
   }
 
   return (

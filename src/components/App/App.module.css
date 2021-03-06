@@ -28,7 +28,7 @@ a, a:hover, a:focus, a:active {
 
 .App {
   font-family: 'Roboto', sans-serif;
-  color:  var(--title-color);
+  color: var(--title-color);
   max-height: 100vh;
   text-align: center;
   display: flex;
