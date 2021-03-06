@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Calendar.module.css";
 import Schedule from "./Schedule/Schedule";
+import PropTypes from "prop-types";
 
 import CALENDAR from "../../constants/calendarConstants";
 
@@ -32,5 +33,13 @@ function CalendarColumn({ events, columnDay, dayID }) {
     </>
   );
 }
+
+CalendarColumn.propTypes = {
+  events: PropTypes.shape({
+    byId: PropTypes.object.isRequired
+  }),
+  columnDay: PropTypes.string.isRequired,
+  dayID: PropTypes.string.isRequired
+};
 
 export default CalendarColumn;

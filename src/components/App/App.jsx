@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
@@ -31,5 +32,9 @@ function App({ onInitialLoad }) {
     </div>
   );
 }
+
+App.proTypes = {
+  onInitialLoad: PropTypes.func.isRequired,
+};
 
 export default App;

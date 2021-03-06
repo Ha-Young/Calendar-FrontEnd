@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "./Event.module.css";
 
 function Event({ onSubmitAddEvent }) {
@@ -96,5 +97,9 @@ function Event({ onSubmitAddEvent }) {
     </div>
   );
 }
+
+Event.propTypes = {
+  onSubmitAddEvent: PropTypes.func.isRequired,
+};
 
 export default Event;

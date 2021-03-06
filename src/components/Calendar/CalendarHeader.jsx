@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Calendar.module.css";
+import PropTypes from "prop-types";
 
 import CALENDAR from "../../constants/calendarConstants";
 
@@ -40,3 +41,9 @@ export default function CalendarHeader({ calendarTime, onButtonClick, typeOfTime
     </div>
   );
 }
+
+CalendarHeader.propTypes = {
+  calendarTime: PropTypes.object.isRequired,
+  onButtonClick: PropTypes.func.isRequired,
+  typeOfTime: PropTypes.string.isRequired
+};

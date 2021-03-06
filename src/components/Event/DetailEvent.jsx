@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import styles from "./Event.module.css";
 
@@ -138,5 +139,13 @@ function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }
     </div>
   );
 }
+
+DetailEvent.propTypes = {
+  eventInformation: PropTypes.shape({
+    byId: PropTypes.object.isRequired
+  }),
+  onSubmitAddEvent: PropTypes.func.isRequired,
+  onSubmitRemoveEvent: PropTypes.func.isRequired
+};
 
 export default DetailEvent;
