@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import { Link, useLocation } from "react-router-dom";
 
 const StyledEvent = styled.div`
   position: absolute;
@@ -20,6 +21,8 @@ export default function Event({
   onClickGetEventInfo,
   showModal,
 }) {
+  const location = useLocation();
+
   return (
     <>
       <StyledEvent
@@ -36,3 +39,12 @@ export default function Event({
     </>
   );
 }
+
+// <Link
+// to={{
+//   pathname: `/Calendar/Modal/${id}`,
+//   state: { background: location },
+// }}
+// >
+
+// </Link>

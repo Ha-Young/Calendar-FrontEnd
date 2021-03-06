@@ -3,13 +3,9 @@ import sub from "date-fns/sub";
 import uuid from "react-uuid";
 import {
   eachDayOfInterval,
-  eachWeekOfInterval,
-  endOfMonth,
   endOfWeek,
   format,
-  startOfMonth,
   startOfWeek,
-  formatISO,
   getWeekOfMonth,
 } from "date-fns";
 

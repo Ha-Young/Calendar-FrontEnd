@@ -9,7 +9,7 @@ import {
   RECEIVE_EVENTS,
 } from "../actions/index";
 
-import { addDay, subDay, addWeek, subWeek, format } from "../utils/utils";
+import { addDay, subDay, addWeek, subWeek, format } from "utils";
 
 const initialState = {
   events: [],

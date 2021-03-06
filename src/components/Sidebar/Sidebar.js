@@ -1,16 +1,17 @@
 import React from "react";
+
 import styles from "./Sidebar.module.css";
-import TodayInfo from "./TodayInfo";
-import UpcomingEvent from "./UpcomingEvent";
+import SidebarInfoBoard from "components/Sidebar/SidebarInfoBoard";
+import SidebarUpcomingEventBoard from "components/Sidebar/SidebarUpcomingEventBoard";
 
 export default function Sidebar() {
   return (
     <div className={`${styles.sidebar}`}>
       <div className={`${styles.today}`}>
-        <TodayInfo />
+        <SidebarInfoBoard />
       </div>
       <div className={`${styles.events}`}>
-        <UpcomingEvent />
+        <SidebarUpcomingEventBoard />
       </div>
     </div>
   );

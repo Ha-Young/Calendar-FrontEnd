@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Sidebar.module.css";
 
-export default function UpcomingEvent() {
+export default function UpcomingEventBoard() {
   return (
     <>
       <h3 className={`${styles.font}`}>Upcoming Events</h3>

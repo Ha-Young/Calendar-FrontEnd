@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 
-import Navbar from "../components/Navbar/Navbar";
-import Day from "../components/Calendar/Day/Day";
-import Week from "../components/Calendar/Week/Week";
-import AddEventButton from "../components/Button/AddEventButton";
-import styles from "./MainContainer.module.css";
-import EventModal from "../components/Modal/EventModal";
-import { formatUserInput } from "../utils/utils";
+import Navbar from "components/Navbar";
+import Calendar from "components/Calendar";
+import ToggleButton from "components/Button";
+import EventModal from "components/Modal";
 
-import { uploadData, deleteData } from "../api/index";
-
+import { formatUserInput } from "utils";
+import { uploadData, deleteData } from "api";
+import { connect } from "react-redux";
 import {
   NEXT,
   PREV,
@@ -19,9 +17,8 @@ import {
   DELETE_EVENT,
   EDIT_EVENT,
 } from "../actions/index";
-
 import { Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
+import styles from "./MainContainer.module.css";
 
 const mapStateToProps = (state) => ({ state });
 
@@ -97,20 +94,8 @@ const MainContainer = ({
           eventInfo={eventInfo}
         />
         <Switch>
-          <Route path="/Day" exact>
-            <Day
-              now={state.calendar.currentTime}
-              events={state.calendar.events}
-              isDayCalendarShown={state.calendar.isDayCalendarShown}
-              onPrevClick={onPrevClick}
-              onNextClick={onNextClick}
-              onDeleteEvent={onDeleteEvent}
-              onClickGetEventInfo={onClickGetEventInfo}
-              showModal={showModal}
-            />
-          </Route>
-          <Route path="/Week">
-            <Week
+          <Route exact path={["/Calendar", "/Calendar/Day", "/Calendar/Week"]}>
+            <Calendar
               now={state.calendar.currentTime}
               events={state.calendar.events}
               isDayCalendarShown={state.calendar.isDayCalendarShown}
@@ -125,7 +110,7 @@ const MainContainer = ({
             <div>Event</div>
           </Route>
         </Switch>
-        <AddEventButton
+        <ToggleButton
           onClick={() => {
             showModal();
           }}

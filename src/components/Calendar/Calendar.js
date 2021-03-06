@@ -1,11 +1,11 @@
 import React from "react";
 
-import DaysInWeekRow from "../DaysInWeekRow";
-import CalendarHeader from "../CalendarHeader";
+import DaysInWeekRow from "components/Calendar/DaysInWeekRow";
+import CalendarHeader from "components/Calendar/CalendarHeader";
 
-import styles from "./Day.module.css";
+import styles from "./Calendar.module.css";
 
-export default function Day({
+export default function Calendar({
   now,
   events,
   onPrevClick,

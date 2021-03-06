@@ -1,7 +1,7 @@
 import React from "react";
 import * as Aioutline from "react-icons/ai";
 import styles from "./Calendar.module.css";
-import { formatDate, formatWeek } from "../../utils/utils";
+import { formatDate, formatWeek } from "utils";
 
 // TODO: Create your own header.
 export default function CalendarHeader({

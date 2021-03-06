@@ -1,4 +1,4 @@
 {
   "extends": ["react-app", "plugin:prettier/recommended"],
-  "rules": {}
+  "rules": {"no-console": 1}
 }

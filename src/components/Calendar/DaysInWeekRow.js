@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate, getDaysInWeek } from "../../utils/utils";
+import { formatDate, getDaysInWeek } from "utils";
 import styles from "./Calendar.module.css";
 import HourInDaysColumn from "./HourInDaysColumn";
 

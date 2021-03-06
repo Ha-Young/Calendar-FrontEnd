@@ -1,36 +1,30 @@
 import React from "react";
 import styles from "./Navbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // TODO: Create your own header.
 export default function Navbar({ onChangeDayMode, onChangeWeekMode }) {
+  let history = useHistory();
+
   return (
     <header className={`${styles.header}`}>
       <nav>
         <ul>
-          <li>
-            <Link
-              to="/Day"
-              onClick={() => {
-                onChangeDayMode();
-              }}
-            >
-              Day
-            </Link>
+          <li
+            onClick={() => {
+              onChangeDayMode();
+            }}
+          >
+            <Link to="/Calendar/Day">Day</Link>
           </li>
-          <li>
-            <Link
-              to="/Week"
-              onClick={() => {
-                onChangeWeekMode();
-              }}
-            >
-              Week
-            </Link>
+          <li
+            onClick={() => {
+              onChangeWeekMode();
+            }}
+          >
+            <Link to="/Calendar/Week">Week</Link>
           </li>
-          <li>
-            <Link to="/Event">Event</Link>
-          </li>
+          <li>Events</li>
         </ul>
       </nav>
     </header>

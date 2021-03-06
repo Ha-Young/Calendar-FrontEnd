@@ -2,6 +2,7 @@ import React from "react";
 
 import { Modal, Form, Input, Button, DatePicker } from "antd";
 import { TwitterPicker } from "react-color";
+import { useHistory } from "react-router-dom";
 
 const { RangePicker } = DatePicker;
 const formItemLayout = {
@@ -35,8 +36,7 @@ export default function EventModal({
   let isAddClicked = false;
   let isEditClicked = false;
   let isDeleteClicked = false;
-
-  console.log("eventInfo of element that you clicked", eventInfo);
+  const history = useHistory();
 
   return (
     <Modal
@@ -59,17 +59,20 @@ export default function EventModal({
         onFinish={(e) => {
           if (isAddClicked) {
             onAddEvent(e);
+            history.goBack();
             handleOk();
           }
           if (isEditClicked) {
             console.log("edit clicked");
             onEditEvent(eventInfo.id, e);
+            history.goBack();
             handleOk();
           }
 
           if (isDeleteClicked) {
             console.log(eventInfo.id);
             onDeleteEvent(eventInfo.id);
+            history.goBack();
             handleOk();
           }
         }}
