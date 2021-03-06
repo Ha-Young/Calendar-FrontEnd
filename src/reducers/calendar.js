@@ -53,7 +53,7 @@ const calendar = (state = initialState, action) => {
       return {
         ...state,
         currentPage: PAGE_TYPE.EVENT
-      }
+      };
     case MOVE_PREV_DAY:
       return {
         ...state,

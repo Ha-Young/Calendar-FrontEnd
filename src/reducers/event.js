@@ -45,7 +45,7 @@ const event = (state = initialState, action) => {
     case GET_FIREBASE_EVENTS:
       return {
         ...action.data
-      }
+      };
     default:
       return state;
   }

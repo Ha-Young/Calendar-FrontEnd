@@ -31,9 +31,9 @@ const Event = ({ onSubmit, onPage }) => {
 
   if (location.state) {
     const modifyingEvent = location.state.modifyingEvent;
+    
     INPUT_TYPE.forEach((type) => {
-      modifyingData[INPUT[type].dataType] = modifyingEvent[INPUT[type].dataType]
-      console.log(modifyingData[INPUT[type].dataType]);
+      modifyingData[INPUT[type].dataType] = modifyingEvent[INPUT[type].dataType];
     });
   }
 

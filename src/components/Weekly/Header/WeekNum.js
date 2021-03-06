@@ -35,6 +35,7 @@ const Wrapper = styled.div`
 
 const WeekNum = ({ count }) => {
   const newWeek = getWeekStr(count);
+  
   return (
     <Wrapper>
       {newWeek.map(num => {

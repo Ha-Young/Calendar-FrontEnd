@@ -20,6 +20,7 @@ const HeaderNav = styled.div`
 const Nav = ({ day, week, page }) => {
   const month = page === PAGE_TYPE.DAILY ? getMonth(day) : getMonth(week);
   const year = page === PAGE_TYPE.DAILY ? getYear(day) : getYear(week);
+  
   return (
     <HeaderNav>
       <p>{month}</p>

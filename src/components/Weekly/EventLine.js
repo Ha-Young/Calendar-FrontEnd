@@ -49,7 +49,7 @@ const EventLine = ({ day, events, color }) => {
           color={color}
           hasEvent={hasEvent}
           eventStart={eventStart === n}
-        />
+        />;
       })}
     </Wrapper>
   );
