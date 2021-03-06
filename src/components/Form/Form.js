@@ -56,7 +56,7 @@ const Form = ({
       ...formData,
       color: hexColor,
     });
-    console.log(formData);
+
     history.goBack();
   };
 
