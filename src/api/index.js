@@ -20,13 +20,6 @@ export async function addEventDatabase(event, newPostKey) {
   await database.ref(`events/${eventDate}/${newPostKey}`).set(event);
 }
 
-export function getEventKey() {
-  const database = firebase.database();
-  const newPostKey = database.ref().child("events").push().key;
-
-  return newPostKey;
-}
-
 export async function removeEventDatabase(event) {
   const database = firebase.database();
   const { eventDate, eventId } = event;
@@ -34,3 +27,9 @@ export async function removeEventDatabase(event) {
   await database.ref(`events/${eventDate}/${eventId}`).set(null);
 }
 
+export function getEventKey() {
+  const database = firebase.database();
+  const newPostKey = database.ref().child("events").push().key;
+
+  return newPostKey;
+}

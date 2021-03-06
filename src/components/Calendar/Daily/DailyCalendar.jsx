@@ -17,7 +17,7 @@ export default function DailyCalendar() {
   return (
     <div>
       <CalendarHeader
-        calendarDate={day}
+        calendarTime={day}
         onButtonClick={setDay}
         typeOfTime="day"
       />

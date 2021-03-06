@@ -17,7 +17,7 @@ export default function WeeklyCalendar() {
   return (
     <div className={styles.calendar}>
       <CalendarHeader
-        calendarDate={weekly}
+        calendarTime={weekly}
         onButtonClick={setWeekly}
         typeOfTime="week"
       />

@@ -3,21 +3,21 @@ import styles from "./Calendar.module.css";
 
 import CALENDAR from "../../constants/calendarConstants";
 
-export default function CalendarHeader({ calendarDate, onButtonClick, typeOfTime }) {
+export default function CalendarHeader({ calendarTime, onButtonClick, typeOfTime }) {
   function currentMonthName() {
-    return calendarDate.format("MMMM");
+    return calendarTime.format("MMMM");
   }
 
   function currentYear() {
-    return calendarDate.format("YYYY");
+    return calendarTime.format("YYYY");
   }
 
   function previousTime() {
-    return calendarDate.clone().subtract(1, typeOfTime);
+    return calendarTime.clone().subtract(1, typeOfTime);
   }
 
   function nextTime() {
-    return calendarDate.clone().add(1, typeOfTime);
+    return calendarTime.clone().add(1, typeOfTime);
   }
 
   return (
