@@ -10,6 +10,7 @@ import Event from "../../containers/EventContainer";
 import Weekly from "../Calendar/Weekly/WeeklyCalendar";
 import Daily from "../Calendar/Daily/DailyCalendar";
 import DetailEvent from "../../containers/DetailEventContainer";
+import PageNotFound from"../PageNotFound";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
@@ -25,9 +26,7 @@ function App({ onInitialLoad }) {
         <Route exact path="/event/:id" component={DetailEvent} />
         <Route path="/weekly" component={Weekly} />
         <Route path="/daily" component={Daily} />
-        <Route>
-          <div>잘못된 접근입니다.</div>
-        </Route>
+        <Route path="*" component={PageNotFound} />
       </Switch>
     </div>
   );

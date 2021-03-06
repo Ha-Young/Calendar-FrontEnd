@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+
 import styles from "./Event.module.css";
 
-import { useHistory, useParams } from "react-router-dom";
 
 function DetailEvent({ eventInformation, onSubmitAddEvent, onSubmitRemoveEvent }) {
   const history = useHistory();
