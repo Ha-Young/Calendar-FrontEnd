@@ -3,7 +3,6 @@ import styles from "./DailyCalendar.module.css"
 import CalendarRow from "../CalendarRow/CalendarRow";
 import TimeSidebar from "../TimeSidebar/TimeSidebar";
 import dayjs from "dayjs";
-import { Link } from "react-router-dom";
 
 function DailyCalendar({ eventInfo }) {
   const [todayDate, setTodayDate] = useState(dayjs());
