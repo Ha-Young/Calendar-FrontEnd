@@ -31,5 +31,4 @@ export function getEventKey() {
   const newPostKey = database.ref().child("events").push().key;
 
   return newPostKey;
-
 }
