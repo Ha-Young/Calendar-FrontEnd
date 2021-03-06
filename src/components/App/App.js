@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header";
 import Main from "../Main/";
@@ -38,11 +38,9 @@ function App({
           <EventFormContainer/>
         </Route>
 
-        {/* <Route>
+        <Route>
           <InvaildIdModal/>
-        </Route> */}
-
-        <Redirect path="/" to="calendar"></Redirect>
+        </Route>
       </Switch>
     </div>
   );

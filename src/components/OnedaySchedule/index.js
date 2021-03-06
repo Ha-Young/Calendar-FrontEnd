@@ -12,14 +12,15 @@ export default function OnedaySchedule({
   );
   let onedayScheduleCells = Array(24).fill(0);
 
-  matchedEvents.map((event) => {
-    let startTime = Number(event.startTime.substr(0, 2));
-    let endTime = Number(event.endTime.substr(0, 2));
-    let scheduledDuration = startTime + (endTime - startTime);
+  matchedEvents.map((matchedEvent) => {
+    let startTime = Number(matchedEvent.startTime.substr(0, 2));
+    let endTime = Number(matchedEvent.endTime.substr(0, 2));
+    let timeGap = endTime - startTime;
 
-    while (startTime < scheduledDuration) {
-      onedayScheduleCells[startTime] = { title: event.title, id: event.id, date: event.date }
+    while (timeGap > 0) {
+      onedayScheduleCells[startTime] = matchedEvent;
       startTime++;
+      timeGap--;
     }
   });
 
@@ -27,12 +28,12 @@ export default function OnedaySchedule({
     <div className={styles.OnedaySchedule}>
       <div className={styles.title}><div className={styles.text}>{title}</div></div>
         {
-          onedayScheduleCells.map((event, idx) =>
-            event ?
-              <Link className={styles.link} key={idx} to={`events/${event.id}`}>
-                <div key={idx} className={`${styles.cell} ${styles.eventCell}`}>{event.title}</div>
+          onedayScheduleCells.map((matchedEvent, idx) =>
+            matchedEvent ?
+              <Link className={styles.link} key={idx} to={`events/${matchedEvent.id}`}>
+                <div key={idx} className={`${styles.cell} ${styles.eventCell}`}>{matchedEvent.title}</div>
               </Link> :
-                <div key={idx} className={styles.cell}>{event.title}</div>
+                <div key={idx} className={styles.cell}>{matchedEvent.title}</div>
           )
         }
     </div>
