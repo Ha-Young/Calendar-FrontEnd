@@ -6,6 +6,7 @@ import WeeklyBody from "./WeeklyBody";
 import DailyBody from "./DailyBody";
 import { getFutureDate, getPastDate } from "../../utils/calander";
 import CALENDAR from "../../constants/calendar";
+import Button from "./Button";
 
 export default function Calendar({ userId, events, addEvents }) {
   const [today, setToday] = useState(new Date());
@@ -39,18 +40,10 @@ export default function Calendar({ userId, events, addEvents }) {
         <span>{thisYear}-{thisMonth}-{dateOfToday}</span>
       </div>
       <div className={styles.buttonContainer}>
-        <button onClick={handleClickPrev}>
-          <span>prev</span>
-        </button>
-        <button onClick={toggleCalendar}>
-          <span>WEEKLY / DAILY</span>
-        </button>
-        <button onClick={handleClickToday}>
-          TODAY
-        </button>
-        <button onClick={handleClickNext}>
-          <span>next</span>
-        </button>
+        <Button text="prev" onClick={handleClickPrev} />
+        <Button text="WEEKLY / DAILY" onClick={toggleCalendar} />
+        <Button text="TODAY" onClick={handleClickToday} />
+        <Button text="NEXT" onClick={handleClickNext} />
       </div>
       <div className={isDaily ? styles.dailyTable : styles.table}>
         {isDaily
