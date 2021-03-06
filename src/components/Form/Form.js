@@ -1,40 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styles from "./Form.module.css";
 
-export default function Form({ onSubmit, currentDay, getTimeEvent, oneEvent, type }) {
+export default function Form({ onSubmit, type }) {
   const history = useHistory();
   const params = useLocation();
-  const time = Number(params.pathname.split('/')[2]);
-
+  const eventDay = params.state.eventDay;
   const initialState = {
-    eventDate: currentDay,
-    title: "",
-    description: "",
-    start: time,
-    end: time + 1,
+    eventDay,
+    ...params.state.event,
   };
-
   const [values, setValues] = useState(initialState);
   const [isDisabled, setIsDisabled] = useState(type === "new" ? false : true);
-
-  useEffect(() => {
-    if (type === "update") {
-      getTimeEvent(currentDay, time);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (oneEvent) {
-      setValues({
-        eventDate: currentDay,
-        title: oneEvent.title || "",
-        description: oneEvent.description || "",
-        start: oneEvent.start || "",
-        end: oneEvent.end || "",
-      });
-    }
-  }, [oneEvent, currentDay]);
 
   function handleChange(ev) {
     const { name, value } = ev.target;
@@ -49,22 +26,21 @@ export default function Form({ onSubmit, currentDay, getTimeEvent, oneEvent, typ
 
   function handleClick(ev) {
     const buttonAction = ev.target.innerText;
-
-    if (buttonAction === "Update") {
-      setIsDisabled(false);
-    }
     if (buttonAction === "Submit") {
       handleSubmit(ev);
     }
+    if (buttonAction === "Update") {
+      setIsDisabled(false);
+    }
     if (buttonAction === "Delete") {
-      console.log('lets make delete action/reducer functions');
+      console.log("lets make delete action/reducer functions");
     }
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <fieldset disabled={isDisabled}>
-        <h1>{values.eventDate}</h1>
+        <h1>{values.eventDay}</h1>
         <label>
           Title :
           <input

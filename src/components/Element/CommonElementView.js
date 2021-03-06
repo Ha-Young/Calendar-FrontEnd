@@ -1,6 +1,6 @@
 import React from "react";
-import { HOURS } from "../../constants/CALENDAR_UNIT";
 import randomIndex from "../../utils/randomIndex";
+import { HOURS } from "../../constants/CALENDAR_UNIT";
 import EventElement from "../Element/EventElement";
 import styles from "./Element.module.css";
 

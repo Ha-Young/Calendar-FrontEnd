@@ -1,12 +1,17 @@
 import React from "react";
-import styles from "./Element.module.css";
 import { Link } from "react-router-dom";
+import styles from "./Element.module.css";
 
-export default function EventElement({ hour, event }) {
+export default function EventElement({ eventDay, hour, event }) {
   return (
     <>
       {event ? (
-        <Link to={`/event/${hour}`}>
+        <Link
+          to={{
+            pathname: `/event/${hour}`,
+            state: {eventDay, event}
+          }}
+        >
           <div className={styles.daily_hour}>
             {hour}
           </div>
@@ -15,7 +20,12 @@ export default function EventElement({ hour, event }) {
           </div>
         </Link>
       ):(
-        <Link to={`/event/${hour}/new`}>
+        <Link
+          to={{
+            pathname: `/event/${hour}/new`,
+            state: {eventDay, event}
+          }}
+        >
           <div className={styles.daily_hour}>
             {hour}
           </div>

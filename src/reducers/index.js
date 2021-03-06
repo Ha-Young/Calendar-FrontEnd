@@ -15,10 +15,7 @@ import {
   NEXT_DAY,
   YESTER_DAY,
   GET_WEEK_DATA,
-  // GET_NEXT_WEEK,
-  // GET_LAST_WEEK,
 } from "../constants/actionTypes";
-// import startOfWeek from "date-fns/startOfWeek";
 
 const initialState = new Date().toISOString().slice(0, 10);
 
@@ -91,7 +88,6 @@ const weekEvents = (state = initialEvent, action) => {
       action.week.forEach(day => {
         newState[day] = state[day];
       });
-
       return newState;
     default:
       return state;
@@ -102,6 +98,5 @@ export default combineReducers({
   currentDay,
   events,
   oneEvent,
-  // currentWeek,
   weekEvents,
 });
