@@ -48,5 +48,3 @@ function CalendarRow({ currentDate, eventInfo }) {
 }
 
 export default CalendarRow;
-
-
