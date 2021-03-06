@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ScheduleBar.module.css";
-import EventCard from "../EventCard/EventCard";
+import EventCard from "../EventCard";
 
 const ScheduleBar = ({ dayLength, schedules }) => {
   return (

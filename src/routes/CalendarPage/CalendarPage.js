@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./CalendarPage.module.css";
 import CalendarHeader from "./CalendarHeader";
 import CalendarSideBar from "./CalendarSideBar";
-import ScheduleBar from "../../components/ScheduleBar/ScheduleBar";
+import ScheduleBar from "../../components/ScheduleBar";
 import { hours } from "../../utils/date";
 
 const CalendarPage = ({

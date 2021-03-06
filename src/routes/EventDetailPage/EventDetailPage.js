@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import EventDetail from "./EventDetail";
-import Form from "../../components/Form/Form";
-import Modal from "../../components/Modal/Modal";
+import Form from "../../components/Form";
+import Modal from "../../components/Modal";
 import styles from "./EventDetailPage.module.css";
 
 const EventDetailPage = ({ getEventById, submitEventData, removeEventData }) => {

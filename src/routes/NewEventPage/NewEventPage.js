@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./NewEventPage.module.css";
-import Form from "../../components/Form/Form";
+import Form from "../../components/Form";
 import { currentDay, today } from "../../utils/date";
 
 const NewEventPage = ({ onSubmit, onLoad }) => {
-  const initialEventState = {
+  const initialEventDataState = {
     id: "",
     title: "",
     description: "",
@@ -23,7 +23,7 @@ const NewEventPage = ({ onSubmit, onLoad }) => {
     <div className={styles.wrapper}>
       <Form
         onSubmit={handleSubmittedEvent}
-        initialFormState={initialEventState}
+        initialFormState={initialEventDataState}
       />
     </div>
   );

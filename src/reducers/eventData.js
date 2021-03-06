@@ -139,7 +139,7 @@ export const getEventById = (state, id) => state.byId[id];
 
 export const getEventByCurrentDate = (state, date) => {
   return state.allIds.reduce((acc, val) => {
-    if (getEventById(state, val).date === date) {
+    if (getEventById(state, val)?.date === date) {
       acc.push(getEventById(state, val));
     }
 

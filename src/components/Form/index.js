@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import ColorPicker, { useColor } from "react-color-palette";
-import TextInput from "../TextInput/TextInput";
+import TextInput from "../TextInput";
 import styles from "./Form.module.css";
 import { validateText, validateTime } from "../../utils/vailidation";
 import * as form from "../../constants/form";

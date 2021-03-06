@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import styles from "./App.module.css";
 
-import Header from "../Header/Header";
-import SideBar from "../SideBar/SideBar";
+import Header from "../Header";
+import SideBar from "../SideBar";
 import NewEventPage from "../../routes/NewEventPage/NewEventPage";
 import CalendarPageContainer from "../../containers/CalendarPageContainer";
 import EventDetailPageContainer from "../../containers/EventDetailPageContainer";
