@@ -1,16 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { DateTime } from "luxon";
 import styles from "./CalendarContents.module.css";
 
-export default function CalendarContents({ displayDates, events, selectEvent }) {
-  const history = useHistory();
-
-  const handleEventClick = (id, dayIndex) => {
-    selectEvent(id, dayIndex);
-    history.push(`/events/${id}`);
-  }
-
+export default function CalendarContents({ displayDates, events, handleEventClick }) {
   const days = displayDates.map((date, index) => {
     const event = events[index];
     const items = [];

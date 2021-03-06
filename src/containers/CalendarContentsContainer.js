@@ -1,12 +1,19 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import CalendarBody from "../components/CalendarBody/CalendarBody.jsx";
+import { useHistory } from "react-router-dom";
+import CalendarContents from "../components/CalendarContents/CalendarContents.jsx";
 import { loadEvents, selectEvent } from "../actions/index";
 import { getEvents } from "../api";
 import { calculateDisplayDates } from "../utils";
 
-const CalendarBodyContainer = ({ selectedDate, events, isDailyView, loadEvents, selectEvent }) => {
+const CalendarContentsContainer = ({ selectedDate, events, isDailyView, loadEvents, selectEvent }) => {
+  const history = useHistory();
   const displayDates = calculateDisplayDates(selectedDate, isDailyView);
+
+  const handleEventClick = (id, dayIndex) => {
+    selectEvent(id, dayIndex);
+    history.push(`/events/${id}`);
+  }
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -18,7 +25,12 @@ const CalendarBodyContainer = ({ selectedDate, events, isDailyView, loadEvents, 
   }, [selectedDate, isDailyView]);
 
   return (
-    <CalendarBody displayDates={displayDates} events={events} selectEvent={selectEvent}/>
+    <CalendarContents
+      displayDates={displayDates}
+      events={events}
+      selectEvent={selectEvent}
+      handleEventClick={handleEventClick}
+    />
   );
 }
 
@@ -33,4 +45,4 @@ const mapDispatchToProps = {
   selectEvent,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarBodyContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarContentsContainer);

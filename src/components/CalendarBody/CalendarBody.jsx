@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./CalendarBody.module.css";
 import CalendarTimeLine from "../CalendarTimeLine/CalendarTimeLine";
-import CalendarContents from "../CalendarContents/CalendarContents";
+import CalendarContentsContainer from "../../containers/CalendarContentsContainer";
 
-export default function CalendarBody({ displayDates, events, selectEvent }) {
+export default function CalendarBody() {
   return (
     <div className={styles.wrapper}>
       <CalendarTimeLine />
-      <CalendarContents displayDates={displayDates} events={events} selectEvent={selectEvent} />
+      <CalendarContentsContainer />
     </div>
   );
 }
