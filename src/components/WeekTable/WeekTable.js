@@ -1,6 +1,8 @@
 import React from "react";
+import { IoHourglass } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import TimeTable from "../TimeTable/TimeTable";
 import styles from "./WeekTable.module.css";
-import TimeTable from "../TimeTable/TimeTable"
 
 export default function WeekTable ({ currentDate, eventInfo }) {
   const { year, month, date, day } = currentDate;
@@ -30,13 +32,16 @@ export default function WeekTable ({ currentDate, eventInfo }) {
     const date = day[2];
 
     const dayEvent = timeCells.map((item, hour) => {
+      const eventId = `id-${year}-${month}-${date}-${hour}`;
       const event = eventInfo[`id-${year}-${month}-${date}`]
         && eventInfo[`id-${year}-${month}-${date}`][`id-${hour}`]
         && eventInfo[`id-${year}-${month}-${date}`][`id-${hour}`]["title"];
 
       return (
-        <div className={styles.event}>
-          {event}
+        <div className={styles.event} key={eventId}>
+          <Link to={`/event/${eventId}`}>
+            {event}
+          </Link>
         </div>
       );
     });

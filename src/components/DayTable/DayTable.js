@@ -42,7 +42,6 @@ export default function DayTable ({ currentDate, eventInfo }) {
         <div key={todayEvents[index].eventId}>
           <Link
             to={`/event/${todayEvents[index].eventId}`}
-            data-event-id={`${todayEvents[index].eventId}`}
           >
             {todayEvents[index].content}
           </Link>

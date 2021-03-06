@@ -25,8 +25,8 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
     const numOfEventId = urlInfo.location.pathname.match(/\d+/g);
     const dateId = `id-${numOfEventId[0]}-${numOfEventId[1]}-${numOfEventId[2]}`;
     const hourId = `id-${numOfEventId[3]}`;
-    const selecteInfo = eventInfo[dateId][hourId];
-    initialEventData = selecteInfo;
+    const selectedInfo = eventInfo[dateId][hourId];
+    initialEventData = selectedInfo;
   }
 
   const [eventData, setEventData] = useState(initialEventData);
