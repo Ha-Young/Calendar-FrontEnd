@@ -3,11 +3,11 @@ import styles from "./CalendarPage.module.css";
 import { addDays, subDays } from "date-fns";
 import { setCalendarDate } from "../../utils/date";
 
-const CalendarHeader = ({ 
-  headerInfo, 
-  onClick, 
-  selectedDate, 
-  isDailyCalendar, 
+const CalendarHeader = ({
+  headerInfo,
+  onClick,
+  selectedDate,
+  isDailyCalendar,
   checkNeedLoad,
 }) => {
   const checkNeedLoadByCalendarType = (date) => {
@@ -17,7 +17,7 @@ const CalendarHeader = ({
       checkNeedLoad(date.weekly);
     }
   };
-  
+
   const handlePrevButton = () => {
     const newCalendarDate = setCalendarDate(subDays, isDailyCalendar, selectedDate);
     checkNeedLoadByCalendarType(newCalendarDate);
@@ -44,8 +44,8 @@ const CalendarHeader = ({
         ))}
       </div>
       <div className={styles.buttons}>
-        <button value="prev" onClick={handlePrevButton}>prev</button>
-        <button value="next" onClick={handleNextButton}>next</button>
+        <button className={styles[`button-left`]} onClick={handlePrevButton}>prev</button>
+        <button className={styles[`button-right`]} onClick={handleNextButton}>next</button>
       </div>
     </>
   );
