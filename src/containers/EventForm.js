@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Calendar from "../components/EventForm/EventForm";
+import EventForm from "../components/EventForm/EventForm";
 import { submitEventInfo } from "../actions"
 
 const mapStateToProps = (state) => ({
@@ -12,4 +12,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(EventForm);
