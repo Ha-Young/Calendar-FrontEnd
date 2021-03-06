@@ -12,7 +12,7 @@ const EventCard = ({ event }) => {
     title,
   } = event;
   const location = useLocation();
-  const cardLength = generateCardHeight(startTime, endTime);
+  const cardHeight = generateCardHeight(startTime, endTime);
   const cardLocation = generateCardLocation(startTime);
 
   return (
@@ -24,7 +24,7 @@ const EventCard = ({ event }) => {
         className={styles.card}
         style={{
           background: color,
-          height: `${cardLength}px`,
+          height: `${cardHeight}px`,
           top: `${cardLocation}px`
         }}
       >
