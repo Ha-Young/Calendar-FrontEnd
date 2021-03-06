@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styles from "./EventForm.module.css";
 
-export default function EventForm ({ onEventInfoSubmit, isCreateMode, urlInfo }) {
+export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo, urlInfo }) {
   const currentDate = new Date();
   const initialYear = currentDate.getFullYear();
   const initialMonth = currentDate.getMonth() + 1;
   const initialDate = currentDate.getDate();
   const initialHour = currentDate.getHours();
 
-  const initialEventData = {
+  let initialEventData = {
     "title": "",
     "description": "",
     "start-year": initialYear,
@@ -20,6 +20,14 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, urlInfo })
     "end-date": initialDate,
     "end-hour": initialHour + 1
   };
+
+  if (urlInfo) {
+    const numOfEventId = urlInfo.location.pathname.match(/\d+/g);
+    const dateId = `id-${numOfEventId[0]}-${numOfEventId[1]}-${numOfEventId[2]}`;
+    const hourId = `id-${numOfEventId[3]}`;
+    const selecteInfo = eventInfo[dateId][hourId];
+    initialEventData = selecteInfo;
+  }
 
   const [eventData, setEventData] = useState(initialEventData);
 
