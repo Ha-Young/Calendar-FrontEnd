@@ -1,4 +1,4 @@
-export function isObj(obj) {
+export function isObject(obj) {
   for (const prop in obj) {
     if (obj.hasOwnProperty(prop)) {
       return true;
