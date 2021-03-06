@@ -31,9 +31,9 @@ const Event = ({ onSubmit, onPage }) => {
 
   if (location.state) {
     const modifyingEvent = location.state.modifyingEvent;
-
     INPUT_TYPE.forEach((type) => {
       modifyingData[INPUT[type].dataType] = modifyingEvent[INPUT[type].dataType]
+      console.log(modifyingData[INPUT[type].dataType]);
     });
   }
 
@@ -58,8 +58,8 @@ const Event = ({ onSubmit, onPage }) => {
           return <Input
             name={INPUT[type].name}
             type={INPUT[type].type}
-            saveData={onInputSubmit(INPUT[type].dataType)}
-            value={modifyingData.date}
+            saveValue={onInputSubmit(INPUT[type].dataType)}
+            value={modifyingData[INPUT[type].dataType]}
           />;
         })}
         <SubmitBtn />
