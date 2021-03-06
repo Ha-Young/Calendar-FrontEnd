@@ -4,7 +4,6 @@ import { selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView } f
 
 const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
-  events: state.events,
   selectedEventInfo: state.selectedEventInfo,
   isDailyView: state.isDailyView,
 });

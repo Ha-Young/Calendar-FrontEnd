@@ -5,7 +5,7 @@ import { createLogger } from "redux-logger";
 import reducer from "./reducers";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import App from "./containers/App";
+import AppContainer from "./containers/AppContainer";
 
 const middleware = [];
 
@@ -18,7 +18,7 @@ const store = createStore(reducer, applyMiddleware(...middleware));
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <AppContainer />
     </Router>
   </Provider>,
   document.getElementById("root")

@@ -7,7 +7,7 @@ import Calendar from "../Calendar/Calendar";
 import Event from "../Event/Event";
 import Error from "../Error/Error";
 
-function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, events, selectedEventInfo, isDailyView }) {
+function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, selectedEventInfo, isDailyView }) {
   return (
     <div className={styles.App}>
       <Header
