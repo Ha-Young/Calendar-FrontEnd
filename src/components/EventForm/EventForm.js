@@ -7,6 +7,8 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
   const initialMonth = currentDate.getMonth() + 1;
   const initialDate = currentDate.getDate();
   const initialHour = currentDate.getHours();
+  let dateId = ""
+  let hourId = ""
 
   let initialEventData = {
     "eventId": `${initialYear}-${initialMonth}-${initialDate}-${initialHour}`,
@@ -24,8 +26,9 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
 
   if (!isCreateMode) {
     const numOfEventId = urlInfo.location.pathname.match(/\d+/g);
-    const dateId = `id-${numOfEventId[0]}-${numOfEventId[1]}-${numOfEventId[2]}`;
-    const hourId = `id-${numOfEventId[3]}`;
+    dateId = `id-${numOfEventId[0]}-${numOfEventId[1]}-${numOfEventId[2]}`;
+    hourId = `id-${numOfEventId[3]}`;
+
     const selectedInfo = eventInfo[dateId][hourId];
     initialEventData = selectedInfo;
   }
@@ -66,9 +69,6 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
   }
 
   const handleDeleteClcik = (ev) => {
-    const numOfEventId = urlInfo.location.pathname.match(/\d+/g);
-    const dateId = `id-${numOfEventId[0]}-${numOfEventId[1]}-${numOfEventId[2]}`;
-    const hourId = `id-${numOfEventId[3]}`;
     delete eventInfo[dateId][hourId];
   }
 
@@ -76,9 +76,6 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
     ev.preventDefault();
 
     if (!isCreateMode) {
-      const numOfEventId = urlInfo.location.pathname.match(/\d+/g);
-      const dateId = `id-${numOfEventId[0]}-${numOfEventId[1]}-${numOfEventId[2]}`;
-      const hourId = `id-${numOfEventId[3]}`;
       delete eventInfo[dateId][hourId];
     }
 
