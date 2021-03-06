@@ -32,7 +32,7 @@ function App({
           <Dashboard
             main={<Calendar userId={userId} events={events} addEvents={addEvents} />}
             login={<Login onClickLogin={toggleLogin} isLoggedIn={isLoggedIn}/>}
-            events={<Events userId={userId} events={events} removeEvents={removeEvents} />}
+            events={<Events userId={userId} removeEvents={removeEvents} />}
           />
         </Route>
         <Route exact path="/event/new">

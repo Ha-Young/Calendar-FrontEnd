@@ -1,15 +1,18 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import { getNumberOfDivs, getFutureDate, getPastDate } from "../../utils/calander";
 import Header from "./Header";
 import styles from "./Calendar.module.css";
 import DailyBody from "./DailyBody";
+import CALENDAR from "../../constants/calendar";
 
 export default function WeeklyBody({ userId, today, addEvents, events, isDaily }) {
   const dayOfToday = today.getDay();
   const firstDate = getPastDate(today, dayOfToday);
   const thisWeek = [];
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < CALENDAR.ONEWEEK; i++) {
     const date = getFutureDate(firstDate, i);
     thisWeek.push(date);
   }
@@ -45,3 +48,11 @@ export default function WeeklyBody({ userId, today, addEvents, events, isDaily }
     </>
   );
 }
+
+WeeklyBody.propTypes = {
+  userId: PropTypes.string.isRequired,
+  today: PropTypes.string.isRequired,
+  addEvents: PropTypes.func.isRequired,
+  events: PropTypes.func.isRequired,
+  isDaily: PropTypes.bool.isRequired,
+};

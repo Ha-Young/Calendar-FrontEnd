@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Calendar.module.css";
+import PropTypes from 'prop-types';
 
 import WeeklyBody from "./WeeklyBody";
 import DailyBody from "./DailyBody";
@@ -60,3 +61,9 @@ export default function Calendar({ userId, events, addEvents }) {
     </>
   );
 }
+
+Calendar.propTypes = {
+  userId: PropTypes.string.isRequired,
+  events: PropTypes.object,
+  addEvents: PropTypes.bool.isRequired,
+};

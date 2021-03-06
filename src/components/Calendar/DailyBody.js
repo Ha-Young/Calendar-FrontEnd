@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from 'prop-types';
 
 import { getNumberOfDivs } from "../../utils/calander";
 import { isObj } from "../../utils/typeCheck";
@@ -67,3 +68,11 @@ export default function DailyBody({ userId, today, isDaily, addEvents, events })
     </div>
   );
 }
+
+DailyBody.propTypes = {
+  userId: PropTypes.string.isRequired,
+  today: PropTypes.string.isRequired,
+  addEvents: PropTypes.func.isRequired,
+  events: PropTypes.func.isRequired,
+  isDaily: PropTypes.bool.isRequired,
+};
