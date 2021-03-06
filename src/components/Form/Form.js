@@ -6,7 +6,12 @@ import styles from "./Form.module.css";
 import { validateText, validateTime } from "../../utils/vailidation";
 import * as form from "../../constants/form";
 
-const Form = ({ onSubmit, initialState, children }) => {
+const Form = ({
+  onSubmit,
+  initialState,
+  children,
+  onLoad = () => {},
+}) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [newEventData, setNewEventData] = useState(initialState);
   const [color, setColor] = useColor(initialState.color);
@@ -53,6 +58,8 @@ const Form = ({ onSubmit, initialState, children }) => {
       color: hexColor,
     });
 
+    onLoad([newEventData.date]);
+
     history.goBack();
   };
 
@@ -60,15 +67,15 @@ const Form = ({ onSubmit, initialState, children }) => {
     <div className={styles.wrapper}>
       <form onSubmit={handleSubmit}>
         <div className={styles.column}>
-          <TextInput 
-            name={form.TITLE} 
-            onChange={handleInputChange} 
-            value={newEventData.title} 
+          <TextInput
+            name={form.TITLE}
+            onChange={handleInputChange}
+            value={newEventData.title}
           />
-          <TextInput 
-            name={form.DESCRIPTION} 
-            onChange={handleInputChange} 
-            value={newEventData.description} 
+          <TextInput
+            name={form.DESCRIPTION}
+            onChange={handleInputChange}
+            value={newEventData.description}
           />
         </div>
         <div className={styles[`same-type`]}>

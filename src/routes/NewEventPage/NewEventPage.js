@@ -3,7 +3,7 @@ import styles from "./NewEventPage.module.css";
 import Form from "../../components/Form/Form";
 import { currentDay, today } from "../../utils/date";
 
-const NewEventPage = ({ onSubmit }) => {
+const NewEventPage = ({ onSubmit, onLoad }) => {
   const initialFormState = {
     id: "",
     title: "",
@@ -16,7 +16,11 @@ const NewEventPage = ({ onSubmit }) => {
 
   return (
     <div className={styles.wrapper}>
-      <Form onSubmit={onSubmit} initialState={initialFormState} />
+      <Form
+        onSubmit={onSubmit}
+        onLoad={onLoad}
+        initialState={initialFormState}
+      />
     </div>
   );
 };

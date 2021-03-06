@@ -33,16 +33,23 @@
 .button-left {
   display: flex;
   position: absolute;
-  top: 200%;
+  top: 185%;
+  border-radius:75px;
   z-index: 10;
 }
 
 .button-right {
   display: flex;
   position: absolute;
-  top: 200%;
+  top: 185%;
   left: 97%;
+  border-radius:75px;
   z-index: 10;
+}
+
+.button-left:hover,
+.button-right:hover {
+  background-color: #F5F5F5;
 }
 
 .content {

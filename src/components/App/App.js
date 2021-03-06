@@ -24,7 +24,7 @@ const App = ({
 
   const location = useLocation();
   const background = location.state?.background;
- 
+
   return (
     <div className={styles.App}>
       <Header onClickButton={handleChangeCalendarType} currentDate={currentDate} />
@@ -34,14 +34,14 @@ const App = ({
           <CalendarPageContainer />
         </Route>
         <Route path="/events/new">
-          <NewEventPage onSubmit={saveNewEventData} />
+          <NewEventPage onSubmit={saveNewEventData} onLoad={onLoad} />
         </Route>
         <Redirect path="*" to="/calendar" />
       </Switch>
       {
-        background && 
+        background &&
           <Route path="/events/:event?">
-            <EventDetailPageContainer />     
+            <EventDetailPageContainer />
           </Route>
       }
       {isLoading && "isLoading.."}
