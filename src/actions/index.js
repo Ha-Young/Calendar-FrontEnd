@@ -22,8 +22,11 @@ export const loadEvents = (events) => ({
   }
 });
 
-export const toggleCalendarView = () => ({
+export const toggleCalendarView = (isDailyView) => ({
   type: types.TOGGLE_CALENDAR_VIEW,
+  payload: {
+    isDailyView: isDailyView,
+  }
 });
 
 export const selectEvent = (selectedEventId, selectedEventDayIndex) => ({

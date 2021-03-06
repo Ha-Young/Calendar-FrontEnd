@@ -16,6 +16,7 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
         selectedDate={selectedDate}
         isDailyView={isDailyView}
         selectDay={selectDay}
+        toggleCalendarView={toggleCalendarView}
       />
       <div className={styles.bodyWrapper}>
         <SideBar selectDay={selectDay} />
@@ -23,7 +24,6 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
           <Route exact path="/calendar">
             <Calendar
               selectedDate={selectedDate}
-              toggleCalendarView={toggleCalendarView}
               isDailyView={isDailyView}
             />
           </Route>

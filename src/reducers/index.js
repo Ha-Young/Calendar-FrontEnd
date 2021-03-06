@@ -52,7 +52,7 @@ export default function reducer(state = initialState, action) {
     case types.TOGGLE_CALENDAR_VIEW: {
       return {
         ...state,
-        isDailyView: !state.isDailyView,
+        isDailyView: action.payload.isDailyView === "daily" ? true : false,
       };
     }
 

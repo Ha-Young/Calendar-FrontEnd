@@ -20,10 +20,14 @@ export default function CalendarHeader({ selectedDate, isDailyView }) {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.timeZone}>
-        <span>GMT+09</span>
+      <div className={styles.leftPannel}>
+        <div className={styles.timeZone}>
+          GMT+09
+        </div>
       </div>
-      {createCalendarHeader(displayDates)}
+      <div className={styles.rightPannel}>
+        {createCalendarHeader(displayDates)}
+      </div>
     </div>
   );
 }
