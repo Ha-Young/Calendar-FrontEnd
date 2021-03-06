@@ -12,7 +12,7 @@ const Form = ({
   children,
 }) => {
   const [errorMessage, setErrorMessage] = useState("");
-  const [newEventData, setNewEventData] = useState(initialFormState);
+  const [formData, setFormData] = useState(initialFormState);
   const [color, setColor] = useColor(initialFormState.color);
   const history = useHistory();
 
@@ -22,18 +22,18 @@ const Form = ({
       value,
     },
   }) => {
-    setNewEventData((prev) => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const validateData = (eventData) => {
+  const validateData = (data) => {
     if
     (
-      !validateText(eventData.title) ||
-      !validateText(eventData.description) ||
-      !validateTime(eventData.startTime,eventData.endTime)
+      !validateText(data.title) ||
+      !validateText(data.description) ||
+      !validateTime(data.startTime,data.endTime)
     ) {
       return false;
     }
@@ -45,18 +45,18 @@ const Form = ({
     ev.preventDefault();
     setErrorMessage("");
 
-    if (!validateData(newEventData)) {
+    if (!validateData(formData)) {
       setErrorMessage(form.FORM_ERROR_MESSAGE);
       return;
     }
 
-    const hexColor = color.hex;
+    const hexColor = color?.hex;
 
     onSubmit({
-      ...newEventData,
+      ...formData,
       color: hexColor,
     });
-
+    console.log(formData);
     history.goBack();
   };
 
@@ -67,12 +67,12 @@ const Form = ({
           <TextInput
             name={form.TITLE}
             onChange={handleInputChange}
-            value={newEventData.title}
+            value={formData.title}
           />
           <TextInput
             name={form.DESCRIPTION}
             onChange={handleInputChange}
-            value={newEventData.description}
+            value={formData.description}
           />
         </div>
         <div className={styles[`same-type`]}>
@@ -81,7 +81,7 @@ const Form = ({
             name={form.DATE}
             type="date"
             onChange={handleInputChange}
-            value={newEventData.date}
+            value={formData.date}
           />
           <input
             className={styles.input}
@@ -89,7 +89,7 @@ const Form = ({
             type="time"
             step={form.TIME_STEP}
             onChange={handleInputChange}
-            value={newEventData.startTime}
+            value={formData.startTime}
           />
           <input
             className={styles.input}
@@ -97,7 +97,7 @@ const Form = ({
             type="time"
             step={form.TIME_STEP}
             onChange={handleInputChange}
-            value={newEventData.endTime}
+            value={formData.endTime}
           />
         </div>
         <div className={styles.center}>
