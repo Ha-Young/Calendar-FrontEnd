@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Button from "../Button";
 import styles from "./invaildIdModal.module.css";
 import { BUTTON_PLACEHOLDER, INVAILD_MODAL_MESSAGE } from "../../utils/constants";

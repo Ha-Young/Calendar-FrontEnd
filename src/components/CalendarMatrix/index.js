@@ -9,9 +9,6 @@ export default function CalendarMatrix ({
   calendarMode,
   eventInfoList,
 }) {
-
-  console.log("date in Calendar", currentDate)
-  console.log(moment(currentDate).day(), "??")
   return (
     <div className={styles.Calender}>
       { calendarMode === CALENDAR_MODE.WEEKLY ?

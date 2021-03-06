@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import CalendarTimeTable from "../components/CalendarMain";
 import CalendarMatrix from "../components/CalendarMatrix"
 import { fetchEventsList } from "../api"
 import { getUserEvents } from "../actions";
@@ -11,7 +10,6 @@ function CalendarTimeTableContainer({
   getUserEvents,
   EventInfoControlReducer,
 }) {
-
   async function getUserEventsFromFirebase() {
     const result = await fetchEventsList();
     getUserEvents(result);
@@ -21,7 +19,6 @@ function CalendarTimeTableContainer({
     getUserEventsFromFirebase();
   }, []);
 
-console.log(currentDate, "in container")
   return (
     <CalendarMatrix
       calendarMode={calendarMode}

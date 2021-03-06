@@ -5,7 +5,6 @@ import CalendarModeSelector from "../CalendarModeSelector";
 import Button from "../Button";
 import DateControlNav from "../DateControlNav";
 import { BUTTON_PLACEHOLDER } from "../../utils/constants";
-import moment from "moment";
 
 export default function CalendarPageHeader({
   currentDate,

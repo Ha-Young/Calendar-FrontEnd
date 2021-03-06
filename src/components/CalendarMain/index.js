@@ -4,6 +4,7 @@ import TimeIndicator from "../TimeIndicator";
 import CalendarTimeTableContainer from "../../containers/CalendarTimeTableContainer"
 
 export default function CalenderMain() {
+  console.log("main running")
   return (
     <>
       <div className={styles.Main}>
