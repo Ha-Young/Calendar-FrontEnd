@@ -67,14 +67,14 @@ const oneEvent = (state = initialEvent, action) => {
 const events = (state = initialEvent, action) => {
   switch (action.type) {
     case CREATE_EVENT:
-      const { title, description, start, end, eventDate } = action.event;
+      const { title, description, start, end, eventDay } = action.event;
       const newState = {
-        ...state[eventDate],
+        ...state[eventDay],
         [start]: {
           title, description, start, end
         }
       };
-      state[eventDate] = newState;
+      state[eventDay] = newState;
       return state;
     default:
       return state;
@@ -83,6 +83,15 @@ const events = (state = initialEvent, action) => {
 
 const weekEvents = (state = initialEvent, action) => {
   switch (action.type) {
+    case CREATE_EVENT:
+      const { title, description, start, end, eventDay } = action.event;
+      state[eventDay] = {
+        ...state[eventDay],
+        [start]: {
+          title, description, start, end
+        }
+      };
+      return state;
     case GET_WEEK_DATA:
       const newState = {};
       action.week.forEach(day => {

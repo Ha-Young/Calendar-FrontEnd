@@ -6,9 +6,13 @@ export default function Form({ onSubmit, type }) {
   const history = useHistory();
   const params = useLocation();
   const eventDay = params.state.eventDay;
+  const { title, description, start, end } = params.state.event;
   const initialState = {
-    eventDay,
-    ...params.state.event,
+    eventDay: eventDay || "",
+    title: title || "",
+    description: description || "",
+    start: start || "",
+    end: end || "",
   };
   const [values, setValues] = useState(initialState);
   const [isDisabled, setIsDisabled] = useState(type === "new" ? false : true);
