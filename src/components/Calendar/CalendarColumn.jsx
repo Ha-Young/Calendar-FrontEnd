@@ -20,11 +20,7 @@ function CalendarColumn({ events, columnDay, dayID }) {
       <div className={styles.columnList}>
         {result.map((time) => {
           return (
-            <div
-              key={time}
-              className={styles.day}
-            >
-            </div>
+            <div key={time} className={styles.day} />
           );
         })}
         {hasEvent &&
