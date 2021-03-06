@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import styles from "./EventForm.module.css";
 
 export default function EventForm ({ onEventInfoSubmit, isCreateMode }) {
-  const currentDate = new Date().toISOString();
+  const currentDate = new Date();
+  const initialYear = currentDate.getFullYear();
+  const initialMonth = currentDate.getMonth() + 1;
+  const initialDate = currentDate.getDate();
+  const initialHour = currentDate.getHours();
+
   const initialEventData = {
     "title": "",
     "description": "",
-    "start-year": parseInt(currentDate.slice(0, 4), 10),
-    "start-month": parseInt(currentDate.slice(5, 7), 10),
-    "start-date": parseInt(currentDate.slice(8, 10), 10),
-    "start-hour": parseInt(currentDate.slice(11, 13), 10),
-    "end-year": parseInt(currentDate.slice(0, 4), 10),
-    "end-month": parseInt(currentDate.slice(5, 7), 10),
-    "end-date": parseInt(currentDate.slice(8, 10), 10),
-    "end-hour": parseInt(currentDate.slice(11, 13), 10) + 1
+    "start-year": initialYear,
+    "start-month": initialMonth,
+    "start-date": initialDate,
+    "start-hour": initialHour,
+    "end-year": initialYear,
+    "end-month": initialMonth,
+    "end-date": initialDate,
+    "end-hour": initialHour + 1
   };
 
   const [eventData, setEventData] = useState(initialEventData);
