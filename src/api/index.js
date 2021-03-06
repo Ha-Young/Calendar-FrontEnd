@@ -2,10 +2,9 @@
 import firebase from "./firebase";
 
 export async function fetchEventData() {
-  const database = firebase.database();
-
   // Note: `set` method returns a promise.
   // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
+  const database = firebase.database();
 
   const initialData = database.ref("events");
   const data = await initialData.once("value");
@@ -28,8 +27,10 @@ export async function removeEventDatabase(event) {
 }
 
 export function getEventKey() {
+
   const database = firebase.database();
   const newPostKey = database.ref().child("events").push().key;
 
   return newPostKey;
+
 }

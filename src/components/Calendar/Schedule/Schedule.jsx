@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   width: 100%;
   height: ${props => props.event * CALENDAR.SCHEDULE_HEIGHT}em;
   background-color: ${COLOR.YELLOW};
+  border: 1px solid ${COLOR.BLACK};
+  box-sizing: border-box;
   cursor: pointer;
 
   .eventInformation {
