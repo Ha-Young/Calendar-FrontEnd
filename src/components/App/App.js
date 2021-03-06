@@ -6,6 +6,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Daily from "../../containers/Daily";
+import Weekly from "../../containers/Weekly";
 import UpdateEventForm from "../../containers/UpdateEventForm";
 import CreateEventForm from "../../containers/CreateEventForm";
 
@@ -22,7 +23,7 @@ function App() {
           <Daily />
         </Route>
         <Route path="/weekly">
-          <div>Weekly</div>
+          <Weekly />
         </Route>
         <Route path="/event/:time/new">
           <CreateEventForm type="new" />

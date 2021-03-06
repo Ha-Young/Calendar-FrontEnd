@@ -12,6 +12,11 @@ export const getEventData = (date, time) => ({
   payload: { date, time },
 });
 
+export const getWeekEventData = (week) => ({
+  type: types.GET_WEEK_DATA,
+  week,
+});
+
 export const createEvent = (event) => ({
   type: types.CREATE_EVENT,
   event,
@@ -37,3 +42,15 @@ export const nextDay = () => ({
 export const yesterDay = () => ({
   type: types.YESTER_DAY,
 });
+
+// export const currentWeek = () => ({
+//   type: types.GET_CURRENT_WEEK,
+// });
+
+// export const nextWeek = () => ({
+//   type: types.GET_NEXT_WEEK,
+// });
+
+// export const lastWeek = () => ({
+//   type: types.GET_LAST_WEEK,
+// });

@@ -30,11 +30,11 @@ export default function Form({ onSubmit, currentDay, getTimeEvent, oneEvent, typ
         eventDate: currentDay,
         title: oneEvent.title || "",
         description: oneEvent.description || "",
-        start: time,
-        end: time + 1,
+        start: oneEvent.start || "",
+        end: oneEvent.end || "",
       });
     }
-  }, [oneEvent]);
+  }, [oneEvent, currentDay]);
 
   function handleChange(ev) {
     const { name, value } = ev.target;

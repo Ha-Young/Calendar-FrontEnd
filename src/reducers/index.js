@@ -9,7 +9,16 @@
 
  */
 import { combineReducers } from "redux";
-import { GET_DATA, CREATE_EVENT, NEXT_DAY, YESTER_DAY } from "../constants/actionTypes";
+import {
+  GET_DATA,
+  CREATE_EVENT,
+  NEXT_DAY,
+  YESTER_DAY,
+  GET_WEEK_DATA,
+  // GET_NEXT_WEEK,
+  // GET_LAST_WEEK,
+} from "../constants/actionTypes";
+// import startOfWeek from "date-fns/startOfWeek";
 
 const initialState = new Date().toISOString().slice(0, 10);
 
@@ -62,14 +71,28 @@ const events = (state = initialEvent, action) => {
   switch (action.type) {
     case CREATE_EVENT:
       const { title, description, start, end, eventDate } = action.event;
-      const newstate = {
+      const newState = {
         ...state[eventDate],
         [start]: {
           title, description, start, end
         }
       };
-      state[eventDate] = newstate;
+      state[eventDate] = newState;
       return state;
+    default:
+      return state;
+  }
+};
+
+const weekEvents = (state = initialEvent, action) => {
+  switch (action.type) {
+    case GET_WEEK_DATA:
+      const newState = {};
+      action.week.forEach(day => {
+        newState[day] = state[day];
+      });
+
+      return newState;
     default:
       return state;
   }
@@ -79,4 +102,6 @@ export default combineReducers({
   currentDay,
   events,
   oneEvent,
+  // currentWeek,
+  weekEvents,
 });

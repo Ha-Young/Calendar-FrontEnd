@@ -1,4 +1,4 @@
-header {
+.header {
   height: 5%;
   background-color: #7E6C6C;
 }
@@ -11,7 +11,7 @@ nav {
   align-items: center;
 }
 
-header a {
+.header a {
   color: #F8F6F1;
   font-weight: 600;
 }

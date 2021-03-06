@@ -13,5 +13,26 @@
   color: #F8F6F1;
   font-weight: 400;
   font-size: medium;
-  background-color: #084c616c;
+  background-color: #084e63;
+}
+
+.daily_container {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #F8F6F1;
+}
+
+.daily_container a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-bottom: #2CA58D dashed 1px;
+  color: #2CA58D;
+  font-weight: 500;
+  font-size: larger;
+  padding: 0 2vw;
 }
