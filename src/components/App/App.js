@@ -70,6 +70,7 @@ function App(props) {
             setEventForm={props.actToEventForm.correct}
             deleteEvent={props.actToUserEvent.deleteEvent}
             eventById={props.eventById}
+            setEvent={props.actToUserEvent.setEvent}
           />
         </Route>
         <Route path="/page-error">

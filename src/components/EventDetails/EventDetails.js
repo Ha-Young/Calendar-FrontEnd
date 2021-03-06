@@ -1,7 +1,9 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
+import { fetchDataFromFirebaseDB } from "../../api";
+import { getPathString } from "../../utils";
 
-export default function EventDetails({ eventById, setEventForm, deleteEvent}) {
+export default function EventDetails({ eventById, setEventForm, deleteEvent, setEvent }) {
   const { eventId } = useParams();
 
   if (!Object.keys(eventById).length) return <div>유효하지 않음!</div>;
@@ -19,6 +21,16 @@ export default function EventDetails({ eventById, setEventForm, deleteEvent}) {
   const date = from.getDate();
   const fromHour = from.getHours();
   const toHour = to.getHours();
+
+  const path = getPathString(year, month, "contents", eventId);
+  fetchDataFromFirebaseDB(path)
+    .then((snapShot) => {
+      const content = snapShot.val().content;
+      setEvent({ ...eventById[eventId], content });
+    })
+    .catch((err) => {
+      // add Error Handling
+    });
 
   return (
     <>
