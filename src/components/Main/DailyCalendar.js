@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import styles from './DailyCalendar.module.css';
-import { Link } from 'react-router-dom';
-import { makeDailyFullDate, isEventScheduled } from '../../utils';
-import { TIME_TABLE, SCHEDULE_BOX } from '../../constant';
+import React, { useState } from "react";
+import styles from "./DailyCalendar.module.css";
+import { Link } from "react-router-dom";
+import { makeDailyFullDate, isEventScheduled } from "../../utils";
+import { TIME_TABLE, SCHEDULE_BOX } from "../../constant";
 
 const DailyCalendar = ({ schedules, showscheduleinfo }) => {
   const [todayDate, setTodayDate] = useState(new Date());
   const date = todayDate.getDate();
   const year = todayDate.getFullYear();
   const month = todayDate.getMonth();
-  const days = ['일', '월', '화', '수', '목', '금', '토'];
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
   const timeCells = [];
   const eventCells = [];
   let firstKeyId;
@@ -27,22 +27,21 @@ const DailyCalendar = ({ schedules, showscheduleinfo }) => {
     const resetDate = new Date(prevDate);
 
     setTodayDate(resetDate);
-  }
+  };
 
   const handleNextClick = () => {
     const nextDate = todayDate.setDate(date + 1);
     const resetDate = new Date(nextDate);
 
     setTodayDate(resetDate);
-  }
+  };
 
   const timeList = timeCells.map((time, index) => {
-
     return (
       <div key={index}>
         <div className={styles.time}>{time}</div>
       </div>
-    )
+    );
   });
 
   const daysList = (
@@ -58,7 +57,7 @@ const DailyCalendar = ({ schedules, showscheduleinfo }) => {
           const keyId = makeDailyFullDate(year, month, date, time);
 
           for (const event of schedules) {
-            const eventDay = Number(event.date.split('-')[2]);
+            const eventDay = Number(event.date.split("-")[2]);
             const eventTitle = event.title;
             const showSchedule = isEventScheduled(
               time,
@@ -72,32 +71,32 @@ const DailyCalendar = ({ schedules, showscheduleinfo }) => {
               if (Number(event.startTime) === time) firstKeyId = keyId;
 
               return (
-                <div key={keyId} onClick={showscheduleinfo}>
-                  <Link
-                    to={`/dailycalendar/dailyevent/${firstKeyId}`}
-                    style={{ textDecoration: 'none' }}
-                  >
+
+                <Link
+                  to={`/dailycalendar/dailyevent/${firstKeyId}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div key={keyId} onClick={showscheduleinfo}>
                     <div className={styles.scheduledEvent}>
-                      {(Number(event.startTime) === time) && `${eventTitle}`}
+                      {Number(event.startTime) === time && `${eventTitle}`}
                     </div>
-                  </Link>
-                </div>
-              )
+                  </div>
+                </Link>
+              );
             }
           }
 
           return (
-            <div key={keyId * item}>
+            <div key={keyId}>
               <Link to={`/dailycalendar/${keyId}`}>
                 <div className={styles.event} />
               </Link>
             </div>
-            )
-          })
-        }
+          );
+        })}
       </div>
     </div>
-  )
+  );
 
   return (
     <div className={styles.calendar}>
@@ -114,18 +113,14 @@ const DailyCalendar = ({ schedules, showscheduleinfo }) => {
       <div className={styles.days}>
         <div>
           <div className={styles.timeTableWrapper}>
-            <div>
-              timeTable
-            </div>
+            <div>timeTable</div>
           </div>
-          <div>
-            {timeList}
-          </div>
+          <div>{timeList}</div>
         </div>
         {daysList}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default DailyCalendar;
