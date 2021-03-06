@@ -24,7 +24,7 @@ input {
   right: 20%;
 }
 
-form button {
+.form_button {
   all: unset;
   width: 20vw;
   align-self: center;
@@ -32,4 +32,10 @@ form button {
   border-radius: 2vw;
   padding: 2vw;
   background-color: rgb(180, 182, 181);
+}
+
+.flex {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 3vw auto;
 }

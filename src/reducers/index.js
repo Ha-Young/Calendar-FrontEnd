@@ -9,8 +9,7 @@
 
  */
 import { combineReducers } from "redux";
-import { CREATE_EVENT, NEXT_DAY, YESTER_DAY } from "../constants/actionTypes";
-import _ from "lodash";
+import { GET_DATA, CREATE_EVENT, NEXT_DAY, YESTER_DAY } from "../constants/actionTypes";
 
 const initialState = new Date().toISOString().slice(0, 10);
 
@@ -48,11 +47,19 @@ const initialEvent = {
   },
 };
 
-const events = (state = initialEvent, action) =>{
+const oneEvent = (state = initialEvent, action) => {
   switch (action.type) {
-    // case GET_DATA:
-    //   console.log('here is store', action.data)
-    //   return action.data;
+    case GET_DATA:
+      const { date, time } = action.payload;
+      state = state[date][time];
+      return state;
+    default:
+      return state;
+  }
+};
+
+const events = (state = initialEvent, action) => {
+  switch (action.type) {
     case CREATE_EVENT:
       const { title, description, start, end, eventDate } = action.event;
       const newstate = {
@@ -71,4 +78,5 @@ const events = (state = initialEvent, action) =>{
 export default combineReducers({
   currentDay,
   events,
+  oneEvent,
 });

@@ -7,9 +7,9 @@
  */
 import * as types from "../constants/actionTypes";
 
-export const getData = (data) => ({
+export const getEventData = (date, time) => ({
   type: types.GET_DATA,
-  data,
+  payload: { date, time },
 });
 
 export const createEvent = (event) => ({

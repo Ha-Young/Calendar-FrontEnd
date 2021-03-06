@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import CreateEvent from "../components/CreateEvent/CreateEvent";
+import Form from "../components/Form/Form";
 import { createEvent } from "../actions";
 
 const mapStateToProps = (state) => ({
@@ -14,5 +14,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

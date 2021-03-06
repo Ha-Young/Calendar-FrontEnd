@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Daily.module.css";
-import TimeElement from "../Element/TimeElement";
+import { HOURS } from "../../constants/DailyTimesArray";
+import randomIndex from "../../utils/randomIndex";
+import EventElement from "../Element/EventElement";
 
 export default function Daily({ currentDay, events, goForward, goBackward }) {
   function handleClick(type) {
@@ -19,7 +21,15 @@ export default function Daily({ currentDay, events, goForward, goBackward }) {
         <span role="img" aria-label="arrow" onClick={() => handleClick("next")}>➡️</span>
       </div>
       <div className={styles.daily_container}>
-        <TimeElement list={events} />
+        {HOURS.map((hour) => {
+          return (
+            <EventElement
+            key={randomIndex()}
+            hour={hour}
+            event={events ? events[hour] : ""}
+            />
+          )
+        })}
       </div>
     </>
   );
