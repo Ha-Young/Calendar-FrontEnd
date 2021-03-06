@@ -52,13 +52,29 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
     const id = eventId ? eventId : "event" + timeStamp;
 
     setEvent({id, title, period, content, title, timeStamp});
-    saveToFirebaseDB({id, title, period, title, timeStamp}, year, month, date, id).catch(err => {
-      // Add error handling
-    });
-    saveToFirebaseDB({[id]: content}, year, month, date, "contents").catch(err => {
-      // Add error handling
-    });
-    history.push("/calendar");
+
+    const resultBySavingEvent = saveToFirebaseDB(
+      {id, title, period, title, timeStamp},
+      year,
+      month,
+      date,
+      id,
+    );
+    const resultBySavingContent = saveToFirebaseDB(
+      {[id]: content},
+      year,
+      month,
+      date,
+      "contents",
+    );
+
+    Promise.all([resultBySavingEvent, resultBySavingContent])
+      .then(res => {
+        history.push("/calendar");
+      })
+      .catch(err => {
+        // Add Error Handling
+      });
   }
 
   return (
