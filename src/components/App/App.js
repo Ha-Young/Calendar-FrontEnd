@@ -12,14 +12,14 @@ const App = ({
   dateList,
   currentDate,
   handleChangeCalendarType,
-  onLoad,
+  loadEventList,
   saveNewEventData,
   isLoading,
   errorMessage,
   calendarType,
 }) => {
   useEffect(() => {
-    onLoad(dateList);
+    loadEventList(dateList);
   }, [calendarType]);
 
   const location = useLocation();
@@ -34,7 +34,7 @@ const App = ({
           <CalendarPageContainer />
         </Route>
         <Route path="/events/new">
-          <NewEventPage onSubmit={saveNewEventData} onLoad={onLoad} />
+          <NewEventPage onSubmit={saveNewEventData} onLoad={loadEventList} />
         </Route>
         <Redirect path="*" to="/calendar" />
       </Switch>

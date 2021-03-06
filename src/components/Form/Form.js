@@ -8,13 +8,12 @@ import * as form from "../../constants/form";
 
 const Form = ({
   onSubmit,
-  initialState,
+  initialFormState,
   children,
-  onLoad = () => {},
 }) => {
   const [errorMessage, setErrorMessage] = useState("");
-  const [newEventData, setNewEventData] = useState(initialState);
-  const [color, setColor] = useColor(initialState.color);
+  const [newEventData, setNewEventData] = useState(initialFormState);
+  const [color, setColor] = useColor(initialFormState.color);
   const history = useHistory();
 
   const handleInputChange = ({
@@ -57,8 +56,6 @@ const Form = ({
       ...newEventData,
       color: hexColor,
     });
-
-    onLoad([newEventData.date]);
 
     history.goBack();
   };

@@ -14,12 +14,16 @@ const NewEventPage = ({ onSubmit, onLoad }) => {
     color: null,
   };
 
+  const handleSubmittedEvent = (eventData) => {
+    onSubmit(eventData);
+    onLoad([eventData.date]);
+  };
+
   return (
     <div className={styles.wrapper}>
       <Form
-        onSubmit={onSubmit}
-        onLoad={onLoad}
-        initialState={initialFormState}
+        onSubmit={handleSubmittedEvent}
+        initialFormState={initialFormState}
       />
     </div>
   );

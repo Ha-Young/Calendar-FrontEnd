@@ -10,7 +10,7 @@ const EventDetailPage = ({ getEventById, onSubmit, onRemove }) => {
   const { event } = useParams();
   const history = useHistory();
   const currentEvent = getEventById(event);
-  
+
   const handleRemoveButton = () => {
     onRemove(currentEvent);
     history.goBack();
@@ -23,24 +23,32 @@ const EventDetailPage = ({ getEventById, onSubmit, onRemove }) => {
   const handleEditPage = () => {
     setShowEditWindow(true);
   };
-  
+
+  const handleSubmittedEvent = (eventData) => {
+    onSubmit(eventData);
+  };
+
   return (
-    <Modal onClick={handleGoBack}>
-      <div className={styles.wrapper}>
-        {
-          showEditWindow
-            ? <Form onSubmit={onSubmit} initialState={currentEvent}>
-                <button type="submit" onClick={handleRemoveButton}>Remove</button>
-                <button onClick={handleGoBack}>Go Back!</button>
-              </Form>
-            : <EventDetail 
-                onEdit={handleEditPage} 
-                event={currentEvent} 
-                onGoBack={handleGoBack} 
-              />
-        }
-      </div>
-    </Modal>
+    <>
+      {currentEvent  &&
+        <Modal onClick={handleGoBack}>
+          <div className={styles.wrapper}>
+            {
+              showEditWindow
+                ? <Form onSubmit={handleSubmittedEvent} initialFormState={currentEvent}>
+                    <button type="submit" onClick={handleRemoveButton}>Remove</button>
+                    <button onClick={handleGoBack}>Go Back!</button>
+                  </Form>
+                : <EventDetail
+                    onEdit={handleEditPage}
+                    event={currentEvent}
+                    onGoBack={handleGoBack}
+                  />
+            }
+          </div>
+         </Modal>
+      }
+    </>
   );
 };
 
