@@ -17,7 +17,7 @@ function App({ state, onEventInfo }) {
           <DailyCalendar eventInfo={state}/>
         </Route>
         <Route path="/event/new">
-          <EventForm onEventInfo={onEventInfo}/>
+          <EventForm onEventInfo={onEventInfo} />
         </Route>
         <Route path="/event/:eventId">
           <EventForm />
