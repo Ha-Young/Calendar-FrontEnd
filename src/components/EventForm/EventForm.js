@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./EventForm.module.css";
 
-export default function EventForm ({ onEventInfoSubmit, isCreateMode }) {
+export default function EventForm ({ onEventInfoSubmit, isCreateMode, urlInfo }) {
   const currentDate = new Date();
   const initialYear = currentDate.getFullYear();
   const initialMonth = currentDate.getMonth() + 1;

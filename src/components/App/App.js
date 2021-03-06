@@ -6,9 +6,9 @@ import { Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header/Header";
 import Calendar from "../../containers/Calendar";
-import EventForm from "../EventForm/EventForm";
+import EventForm from "../../containers/EventForm";
 
-function App({ onInitialLoad, onEventInfoSubmit, eventIdRoute }) {
+function App({ onInitialLoad }) {
   useEffect(() => {
     onInitialLoad();
   }, []);
@@ -22,18 +22,22 @@ function App({ onInitialLoad, onEventInfoSubmit, eventIdRoute }) {
         <Route path="/calendar" exact>
           <Calendar />
         </Route>
-        <Route path="/event/new">
+        <Route path="/event/new" exact>
           <EventForm
-            onEventInfoSubmit={onEventInfoSubmit}
             isCreateMode={true}
           />
         </Route>
-        <Route path={`/event/${eventIdRoute}`}>
-          <EventForm
-            onEventInfoSubmit={onEventInfoSubmit}
-            isCreateMode={false}
-          />
-        </Route>
+        <Route
+          path="/event/"
+          component={
+            (urlInfo) => {
+              return <EventForm
+                isCreateMode={false}
+                urlInfo={urlInfo}
+              />
+            }
+          }
+        />
       </Switch>
     </div>
   );

@@ -9,13 +9,7 @@ import TwoOptionSelector from "../TwoOptionSelector/TwoOptionSelector";
 import IncDecrementControlBox from "../IncDecrementControlBox/IncDecrementControlBox";
 import weekOfMonth from "../../utils/weekOfMonth"
 
-export default function Calendar ({
-  eventInfo,
-  isDayCalendar,
-  onEventDayClick,
-  onEventWeekClick
-}) {
-
+export default function Calendar ({eventInfo, isDayCalendar, onEventDayClick, onEventWeekClick}) {
   const [currentDate, setCurrentDate] = useState(moment());
   const [formattedCurrentDate, setFormattedCurrentDate] = useState({
     year: currentDate.format("YYYY"),
