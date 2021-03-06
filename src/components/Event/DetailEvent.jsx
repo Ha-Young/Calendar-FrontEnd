@@ -28,14 +28,14 @@ function DetailEvent(props) {
         <p>시작 시간</p>
         <input
           value={startTime}
-          type="text"
+          type="time"
           name="startTime"
           onChange={handleChangeInput}
         />
         <p>종료 시간</p>
         <input
           value={endTime}
-          type="text"
+          type="time"
           name="endTime"
           onChange={handleChangeInput}
         />

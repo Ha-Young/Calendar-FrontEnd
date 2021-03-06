@@ -9,15 +9,15 @@ function Event({ onClickInputButton, handleChangeInput }) {
       <div>
         <p>이벤트 날짜</p>
         <input type="date" name="date" onChange={handleChangeInput} />
-        <p>시작 시간 (0부터 24까지 입력해주세요)</p>
+        <p>시작 시간 (분 단위는 포함하지 않습니다. 종료 시간도 동일합니다.)</p>
         <input
-          type="text"
+          type="time"
           name="startTime"
           onChange={handleChangeInput}
         />
-        <p>종료 시간 (0부터 24까지 입력해주세요)</p>
+        <p>종료 시간</p>
         <input
-          type="text"
+          type="time"
           name="endTime"
           onChange={handleChangeInput}
         />
