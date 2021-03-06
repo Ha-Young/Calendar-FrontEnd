@@ -5,7 +5,7 @@ import Form from "../../containers/Form";
 
 export default function Event({ event }) {
   const match = useRouteMatch();
-
+  console.log(match.url);
   return (
     <Router>
       <div>
@@ -14,7 +14,7 @@ export default function Event({ event }) {
         </nav>
       </div>
       <Switch>
-        <Route path={`${match.url}/${event.Id}`}><Modal event={event}/></Route>
+        <Route path={`${match.url}/${event.Id}`}><Modal event={event} /></Route>
         <Route path={`${match.url}/new`}><Form /></Route>
       </Switch>
     </Router>

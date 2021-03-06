@@ -1,28 +1,26 @@
 import React, { Fragment, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Header from "../Header/Header";
-import Calendar from "../Calendar/Calendar";
 import Event from "../../containers/Event";
+import Calendar from "../Calendar/Calendar";
 import { getRecord } from "../../api";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
-    (async function(){
+    (async function () {
       const data = await getRecord();
       onInitialLoad(data);
     })();
   }, []);
 
   return (
-   <Fragment>
-     <Header />
-        <Route path="/calendar">
-          <Calendar />
-        </Route>
-        <Route path="/event">
-          <Event />
-        </Route>
-   </Fragment>
+    <Fragment>
+      <Header />
+      <Switch>
+        <Route path="/calendar" component={Calendar}></Route>
+        <Route path="/event" component={Event}></Route>
+      </Switch>
+    </Fragment>
   );
 }
 

@@ -1,16 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import './style.css';
 
 // TODO: Create your own header.
 export default function Header() {
+  const match = useRouteMatch();
+  console.log(match.url);
+
   return (
     <header>
       <nav>
         <ul className="menu">
-          <li className="calendar-menu"><Link to='/calendar/daily'>Calendar</Link></li>
-          <li className="event-menu"><Link to='/event'>Event</Link></li>
-          <li className="home-menu"><Link to='/calendar/daily'>Home</Link></li>
+          <li className="calendar-menu">
+            <Link to="/calendar">Calendar</Link>
+          </li>
+          <li className="event-menu">
+            <Link to="/event">Event</Link>
+          </li>
         </ul>
       </nav>
     </header>

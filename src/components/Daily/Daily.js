@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { getFormat } from "../../api/date";
 import { hour } from "../../constants/DateConstants";
@@ -15,15 +15,13 @@ export default function Daily(props) {
     handleClickEvent,
   } = props;
 
-  console.log(props, currentPageDate);
-
-  debugger;
-
   const currentDate = getFormat(currentPageDate);
   const currentEventList = eventKeyList.includes(currentDate) ? eventList[currentDate] : [];
   const match = useRouteMatch();
   let iterateUntil;
   let currentEventId;
+
+  console.log(match.url);
 
   function handleClick(event) {
     const className = event.target.className.split(" ");
