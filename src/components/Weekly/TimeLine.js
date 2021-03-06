@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import convertTime from "../../utils/convertToAmPm";
+import { times } from "../../utils/makeSpace";
 
 const Wrapper = styled.div`
   .flex-box {
@@ -27,9 +28,6 @@ const Wrapper = styled.div`
     border-right: 1px solid #ABABAB;
   }
 `;
-
-const TIME = 24;
-const times = new Array(TIME).fill(undefined).map((v,idx) => idx);
 
 const TimeLine = () => {
   return (

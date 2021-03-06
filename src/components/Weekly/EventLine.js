@@ -2,14 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import EventBox from "../../shared/EventBox";
 import { convertHour } from "../../utils/convertHour";
+import { times } from "../../utils/makeSpace";
 
 const Wrapper = styled.div`
   width: 80%;
   height: 100%;
 `;
-
-const TIME = 24;
-const times = new Array(TIME).fill(undefined).map((v,idx) => idx);
 
 const EventLine = ({ day, events, color }) => {
   const todayEvent = events[day];

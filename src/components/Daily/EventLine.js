@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import EventBox from "../../shared/EventBox";
 import { getDayIndex, getDayIso } from "../../utils/convertTime";
-import { DAY_COLORS } from "../../assets/colors";
 import { convertHour } from "../../utils/convertHour";
+import { times } from "../../utils/makeSpace";
+import { DAY_COLORS } from "../../assets/colors";
 
 const Wrapper = styled.div`
   width: 80%;
@@ -21,9 +22,6 @@ const Wrapper = styled.div`
     }
   }
 `;
-
-const TIME = 24;
-const times = new Array(TIME).fill(undefined).map((v,idx) => idx);
 
 const EventLine = ({ count, events }) => {
   const dayOfWeek = getDayIndex(count);
