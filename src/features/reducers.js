@@ -1,4 +1,4 @@
-import { EVENT_FORM_STATE_KEY, EVENT_INIT_ID, MAX_MIN_DATE } from "../constants";
+import { EVENT_FORM_STATE_KEY, MAX_MIN_DATE } from "../constants";
 import { eventForm, userEvent, SET_CURRENT_DATE } from "../constants/actionTypes";
 import { setEventForm, setUserEvent, setCurrentDate, deleteUserEvent } from "./reducerSupportors";
 
@@ -9,7 +9,7 @@ const initiateState = {
     allId: [],
   },
   eventForm: {
-    eventId: EVENT_INIT_ID,
+    id: "",
     title: "",
     content: "",
     year: current.getFullYear(),

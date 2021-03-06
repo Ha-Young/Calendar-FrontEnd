@@ -27,5 +27,3 @@ export const EVENT_FORM_STATE_KEY = {
   FROM_HOUR: "fromHour",
   TO_HOUR: "toHour",
 };
-
-export const EVENT_INIT_ID = "event0";

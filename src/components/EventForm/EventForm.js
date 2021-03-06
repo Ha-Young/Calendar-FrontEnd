@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./EventForm.module.css";
-import { MAX_MIN_DATE, EVENT_INIT_ID } from "../../constants";
-import registerEvent from "./registerEvent";
+import { saveToFirebaseDB } from "../../api/index";
+import { MAX_MIN_DATE } from "../../constants";
+import { getDateISOstring } from "../../utils";
 import checkValidEvent from "./checkValidEvent";
 
 
@@ -29,6 +30,7 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
   const { setEvent } = setUserEvent;
 
   const {
+    id: eventId,
     title,
     content,
     year,
@@ -41,7 +43,21 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
   function handleOnClick() {
     const isValid = checkValidEvent(eventById, inputData);
     if (!isValid) return setIsValidEvent(isValid);
-    registerEvent(inputData, {title, content}, setEvent);
+
+    const period = {
+      from: getDateISOstring(year, month, date, fromHour),
+      to: getDateISOstring(year, month, date, toHour),
+    };
+    const timeStamp = Date.now();
+    const id = eventId ? eventId : "event" + timeStamp;
+
+    setEvent({id, title, period, content, title, timeStamp});
+    saveToFirebaseDB({id, title, period, title, timeStamp}, year, month, date, id).catch(err => {
+      // Add error handling
+    });
+    saveToFirebaseDB({[id]: content}, year, month, date, "contents").catch(err => {
+      // Add error handling
+    });
     history.push("/calendar");
   }
 
@@ -127,7 +143,7 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
           등록
         </button>
       <Link to="/calendar">
-        <button onClick={() => clearForm({ ...inputData, title: "", content: "", eventId: EVENT_INIT_ID })}>취소</button>
+        <button onClick={() => clearForm({ ...inputData, title: "", content: "", id: "" })}>취소</button>
       </Link>
     </>
   )

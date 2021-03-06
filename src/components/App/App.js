@@ -7,11 +7,10 @@ import Weekly from "../Weekly/Weekly";
 import EventForm from "../EventForm/EventForm";
 import EventDetails from "../EventDetails/EventDetails";
 import PageError from "../PageError/PageError";
-import { saveSampleData } from "../../api/index";
 
 function App(props) {
   const [isDaily, setIsDaily] = useState(true);
-  saveSampleData();
+
   return (
     <div className={styles.App}>
       <Header

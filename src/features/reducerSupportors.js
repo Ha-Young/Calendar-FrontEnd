@@ -1,5 +1,3 @@
-import { EVENT_INIT_ID } from "../constants";
-
 export function setEventForm(state, key, value) {
   if (key) {
     return {
@@ -41,7 +39,7 @@ export function setUserEvent(state, userEvent) {
       ...state.eventForm,
       title: "",
       content: "",
-      eventId: EVENT_INIT_ID,
+      id: "",
     },
   };
 }

@@ -1,5 +1,6 @@
 export default function checkValidEvent(userEventAll, eventData) {
   const {
+    id,
     year,
     month,
     date,
@@ -13,6 +14,8 @@ export default function checkValidEvent(userEventAll, eventData) {
   const parsedNewTo = Date.parse(toISOString);
 
   let isValid = true;
+
+  if (userEventAll[id]) return isValid;
 
   for (const key in userEventAll) {
     const { from, to } = userEventAll[key].period;
