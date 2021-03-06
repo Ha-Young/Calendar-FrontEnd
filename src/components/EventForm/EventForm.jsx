@@ -1,49 +1,15 @@
 import React, { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
 import styles from "./EventForm.module.css";
-import { setEvent, removeEvent } from "../../api";
 
-export default function EventForm({ events, selectedEventInfo }) {
-  const history = useHistory();
-  const currentUrl = useLocation();
-  const selectedEvent = currentUrl.pathname === "/events/new"
-  ? null
-  : events[selectedEventInfo.selectedEventDayIndex][selectedEventInfo.selectedEventId];
-
+export default function EventForm({ selectedEvent, handleSubmit, handleRemove, currentUrl }) {
   const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
   const [description, setDescription] = useState(selectedEvent ? selectedEvent.description : "");
   const [startDateTime, setStartDateTime] = useState(selectedEvent ? selectedEvent.startDateTime : "");
   const [endDateTime, setEndDateTime] = useState(selectedEvent ? selectedEvent.endDateTime : "");
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const key = currentUrl.pathname === "/events/new" ? null : selectedEvent.uid;
-    const date = startDateTime.slice(0, 10);
-    const newEvent = {
-      title: title,
-      description: description,
-      startDateTime: startDateTime,
-      endDateTime: endDateTime,
-    };
-
-    setEvent(newEvent, date, key)
-    .then(() => history.push("/calendar"))
-    .catch(() => history.push("/error"));
-  };
-
-  const handleRemove = () => {
-    const date = startDateTime.slice(0, 10);
-    const key = selectedEvent.uid;
-
-    removeEvent(date, key)
-    .then(() => history.push("/calendar"))
-    .catch(() => history.push("/error"));
-  };
 
   return (
     <div className={styles.wrapper}>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e, title, description, startDateTime, endDateTime)}>
         <div className={styles.formArea}>
           <div className={styles.formItemWrapper}>
             <div className={styles.formLeftItem}>Title:</div>
@@ -102,7 +68,7 @@ export default function EventForm({ events, selectedEventInfo }) {
       ? null
       : (
           <div className={styles.formButtonWrapper}>
-            <button onClick={handleRemove}>Remove</button>
+            <button onClick={() => handleRemove(startDateTime)}>Remove</button>
           </div>
         )
       }

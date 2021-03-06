@@ -31,7 +31,7 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
             <Event />
           </Route>
           <Route path="/events/:eventId">
-            <Event events={events} selectedEventInfo={selectedEventInfo} />
+            <Event selectedEventInfo={selectedEventInfo} />
           </Route>
           <Route exact path="/error">
             <Error />
