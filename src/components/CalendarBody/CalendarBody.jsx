@@ -1,22 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./CalendarBody.module.css";
-import { getEvents } from "../../api";
-import { calculateDisplayDates } from "../../utils";
 import CalendarTimeLine from "../CalendarTimeLine/CalendarTimeLine";
 import CalendarContents from "../CalendarContents/CalendarContents";
 
-export default function CalendarBody({ selectedDate, events, isDailyView, loadEvents, selectEvent }) {
-  const displayDates = calculateDisplayDates(selectedDate, isDailyView);
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const events = await getEvents(displayDates.map(date => date.toFormat("yyyy-LL-dd")));
-      loadEvents(events);
-    }
-
-    fetchEvents();
-  }, [selectedDate, isDailyView]);
-
+export default function CalendarBody({ displayDates, events, selectEvent }) {
   return (
     <div className={styles.wrapper}>
       <CalendarTimeLine />
