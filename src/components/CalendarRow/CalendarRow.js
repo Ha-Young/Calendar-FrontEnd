@@ -16,6 +16,8 @@ function CalendarRow({ currentDate, eventInfo }) {
       {hours.map(hour => {
         let isColored = false;
         let text = "";
+        let date;
+        let startTime;
       
         if (dailyEvents) {
           dailyEvents.map((dailyEvent) => {
