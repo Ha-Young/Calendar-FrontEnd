@@ -9,6 +9,7 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
   const initialHour = currentDate.getHours();
 
   let initialEventData = {
+    "eventId": `${initialYear}-${initialMonth}-${initialDate}-${initialHour}`,
     "title": "",
     "description": "",
     "start-year": initialYear,
@@ -34,12 +35,20 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
   const handleChange = (ev) => {
     const { name } = ev.target;
     let { value } = ev.target;
+    let eventId = `
+    ${eventData["start-year"]}
+    -${eventData["start-month"]}
+    -${eventData["start-date"]}
+    -${eventData["start-hour"]}
+  `;
+
+    eventId = eventId.replace(/\n| /g, "");
 
     if (ev.target.type === "number") {
       value = parseInt(value, 10);
     }
 
-    setEventData({...eventData, [name]: value});
+    setEventData({...eventData, [name]: value, "evnetId": eventId});
   }
 
   const handleSubmit = (ev) => {

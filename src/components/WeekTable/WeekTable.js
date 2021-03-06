@@ -32,7 +32,10 @@ export default function WeekTable ({ currentDate, eventInfo }) {
     const date = day[2];
 
     const dayEvent = timeCells.map((item, hour) => {
-      const eventId = `id-${year}-${month}-${date}-${hour}`;
+      const eventId = eventInfo[`id-${year}-${month}-${date}`]
+        && eventInfo[`id-${year}-${month}-${date}`][`id-${hour}`]
+        && eventInfo[`id-${year}-${month}-${date}`][`id-${hour}`]["evnetId"];
+
       const event = eventInfo[`id-${year}-${month}-${date}`]
         && eventInfo[`id-${year}-${month}-${date}`][`id-${hour}`]
         && eventInfo[`id-${year}-${month}-${date}`][`id-${hour}`]["title"];

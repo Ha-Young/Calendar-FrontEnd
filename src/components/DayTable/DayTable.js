@@ -23,7 +23,7 @@ export default function DayTable ({ currentDate, eventInfo }) {
     const eventInfo = todayEvent[event];
     const duration = eventInfo["end-hour"] - eventInfo["start-hour"];
     const content = `${eventInfo["title"]} - ${eventInfo["description"]}`;
-    const eventId = `${eventInfo["start-year"]}-${eventInfo["start-month"]}-${eventInfo["start-date"]}-${eventInfo["start-hour"]}`;
+    const eventId = eventInfo["eventId"];
 
     for (let i = 0; i < duration; i++) {
       todayEvents[eventInfo["start-hour"] + i] = {
@@ -40,9 +40,7 @@ export default function DayTable ({ currentDate, eventInfo }) {
           {item.time}
         </div>
         <div key={todayEvents[index].eventId}>
-          <Link
-            to={`/event/${todayEvents[index].eventId}`}
-          >
+          <Link to={`/event/${todayEvents[index].eventId}`}>
             {todayEvents[index].content}
           </Link>
         </div>
