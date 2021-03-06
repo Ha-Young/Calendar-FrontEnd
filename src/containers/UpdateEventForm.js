@@ -1,11 +1,14 @@
 import { connect } from "react-redux";
 import Form from "../components/Form/Form";
-import { createEvent } from "../actions";
+import { updateEvent, deleteEvent } from "../actions";
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (event) => {
-    dispatch(createEvent(event));
+  onUpdate: (from, to) => {
+    dispatch(updateEvent(from, to));
   },
+  onDelete: (event) => {
+    dispatch(deleteEvent(event));
+  }
 });
 
 export default connect(null, mapDispatchToProps)(Form);

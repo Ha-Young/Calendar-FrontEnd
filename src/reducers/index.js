@@ -11,21 +11,24 @@
 import { combineReducers } from "redux";
 import {
   GET_DATA,
-  CREATE_EVENT,
-  NEXT_DAY,
-  YESTER_DAY,
   GET_WEEK_DATA,
+  CREATE_EVENT,
+  UPDATE_EVENT,
+  TOMORROW,
+  YESTERDAY,
+  DELETE_EVENT,
 } from "../constants/actionTypes";
+import _ from "lodash";
 
 const initialState = new Date().toISOString().slice(0, 10);
 
 const currentDay = (state = initialState, action) => {
   switch (action.type) {
-    case NEXT_DAY:
-      const nextDay = new Date(state);
-      nextDay.setDate(nextDay.getDate() + 1);
-      return nextDay.toISOString().slice(0, 10);
-    case YESTER_DAY:
+    case TOMORROW:
+      const tomorrow = new Date(state);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      return tomorrow.toISOString().slice(0, 10);
+    case YESTERDAY:
       const prevDay = new Date(state);
       prevDay.setDate(prevDay.getDate() - 1);
       return prevDay.toISOString().slice(0, 10);
@@ -37,6 +40,7 @@ const currentDay = (state = initialState, action) => {
 const initialEvent = {
   "2021-03-05" : {
     "8" : {
+      eventDay: "2021-03-05",
       title: "go",
       description: "asdf",
       start: 8,
@@ -45,6 +49,7 @@ const initialEvent = {
   },
   "2021-03-04" : {
     "10" : {
+      eventDay: "2021-03-04",
       title: "back",
       description: "eeee",
       start: 10,
@@ -67,15 +72,31 @@ const oneEvent = (state = initialEvent, action) => {
 const events = (state = initialEvent, action) => {
   switch (action.type) {
     case CREATE_EVENT:
-      const { title, description, start, end, eventDay } = action.event;
-      const newState = {
+      const { eventDay, start } = action.event;
+      state[eventDay] = {
         ...state[eventDay],
         [start]: {
-          title, description, start, end
-        }
+          ...action.event,
+        },
       };
-      state[eventDay] = newState;
       return state;
+    case UPDATE_EVENT:
+      const fromEvent = action.payload.from;
+      const toEvent = action.payload.to;
+      const updateCopy =  Object.assign({}, state);
+      delete updateCopy[fromEvent.eventDay][fromEvent.start];
+      updateCopy[toEvent.eventDay] = {
+        ...updateCopy[toEvent.eventDay],
+        [toEvent.start]: {
+          ...toEvent,
+        },
+      };
+      return updateCopy;
+    case DELETE_EVENT:
+      const targetEvent = action.event;
+      const deletedCopy = Object.assign({}, state);
+      delete deletedCopy[targetEvent.eventDay][targetEvent.start];
+      return deletedCopy;
     default:
       return state;
   }
@@ -84,20 +105,42 @@ const events = (state = initialEvent, action) => {
 const weekEvents = (state = initialEvent, action) => {
   switch (action.type) {
     case CREATE_EVENT:
-      const { title, description, start, end, eventDay } = action.event;
+      const { eventDay, start } = action.event;
       state[eventDay] = {
         ...state[eventDay],
         [start]: {
-          title, description, start, end
-        }
+          ...action.event,
+        },
       };
       return state;
+    case UPDATE_EVENT:
+      const fromEvent = action.payload.from;
+      const toEvent = action.payload.to;
+      const updateCopy =  Object.assign({}, state);
+      delete updateCopy[fromEvent.eventDay][fromEvent.start];
+      updateCopy[toEvent.eventDay] = {
+        ...updateCopy[toEvent.eventDay],
+        [toEvent.start]: {
+          ...toEvent,
+        },
+      };
+      return updateCopy;
+    case DELETE_EVENT:
+      const targetEvent = action.event;
+      const deletedCopy = Object.assign({}, state);
+      delete deletedCopy[targetEvent.eventDay][targetEvent.start];
+      return deletedCopy;
     case GET_WEEK_DATA:
-      const newState = {};
-      action.week.forEach(day => {
-        newState[day] = state[day];
-      });
-      return newState;
+      if (action.week) {
+        const newState = {};
+        action.week.forEach(day => {
+          if (state[day]) {
+            newState[day] = state[day];
+          }
+        });
+        return newState;
+      }
+      return state;
     default:
       return state;
   }

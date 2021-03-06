@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styles from "./Form.module.css";
 
-export default function Form({ onSubmit, type }) {
+export default function Form({ onSubmit, onUpdate, onDelete, type }) {
   const history = useHistory();
   const params = useLocation();
   const eventDay = params.state.eventDay;
@@ -25,19 +25,21 @@ export default function Form({ onSubmit, type }) {
   function handleSubmit(ev) {
     ev.preventDefault();
     onSubmit(values);
-    history.push("/");
+    history.goBack();
   };
 
   function handleClick(ev) {
     const buttonAction = ev.target.innerText;
     if (buttonAction === "Submit") {
-      handleSubmit(ev);
+      onUpdate(params.state.event, values);
+      history.goBack();
     }
     if (buttonAction === "Update") {
       setIsDisabled(false);
     }
     if (buttonAction === "Delete") {
-      console.log("lets make delete action/reducer functions");
+      onDelete(params.state.event);
+      history.goBack();
     }
   }
 

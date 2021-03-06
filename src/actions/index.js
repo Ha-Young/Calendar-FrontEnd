@@ -22,35 +22,20 @@ export const createEvent = (event) => ({
   event,
 });
 
-export const deleteEvent = (eventId) => ({
+export const deleteEvent = (event) => ({
   type: types.DELETE_EVENT,
-  eventId,
-});
-export const updateEvent = (events) => ({
-  type: types.UPDATE_EVENT,
-  events,
+  event,
 });
 
-export const loadDate = () => ({
-  type: types.GET_DATE,
+export const updateEvent = (from, to) => ({
+  type: types.UPDATE_EVENT,
+  payload: { from, to },
 });
 
 export const nextDay = () => ({
-  type: types.NEXT_DAY,
+  type: types.TOMORROW,
 });
 
 export const yesterDay = () => ({
-  type: types.YESTER_DAY,
+  type: types.YESTERDAY,
 });
-
-// export const currentWeek = () => ({
-//   type: types.GET_CURRENT_WEEK,
-// });
-
-// export const nextWeek = () => ({
-//   type: types.GET_NEXT_WEEK,
-// });
-
-// export const lastWeek = () => ({
-//   type: types.GET_LAST_WEEK,
-// });
