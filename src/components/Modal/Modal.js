@@ -13,6 +13,7 @@ const Modal = ({ children, onClick }) => {
   const closeModal = () => {
     onClick();
   };
+
   return (
     <>
       <div className={styles.background} onClick={closeModal} />
