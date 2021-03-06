@@ -18,7 +18,7 @@ export default function Calendar ({
               key={idx}
               currentDate={currentDate}
               calendarMode={calendarMode}
-              title={moment(currentDate).add(idx-2, DATE_UNIT).format("MM-DD")}
+              title={moment(currentDate).add(idx-2, DATE_UNIT.DAYS).format("MM-DD")}
               eventInfoList={eventInfoList}
             />)
           }

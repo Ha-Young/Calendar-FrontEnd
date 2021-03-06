@@ -38,9 +38,11 @@ function App({
           <EventFormContainer/>
         </Route>
 
-        <Route>
+        {/* <Route>
           <InvaildIdModal/>
-        </Route>
+        </Route> */}
+
+        <Redirect path="/" to="calendar"></Redirect>
       </Switch>
     </div>
   );

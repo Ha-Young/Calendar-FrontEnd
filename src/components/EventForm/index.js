@@ -26,8 +26,8 @@ function EventForm ({
   let initialUserInputSetting;
 
   if (formType === EVENT_FORM_TYPE.UPDATING) {
-    const selectedEvent = eventInfoList.filter((event) => event.id === Number(params.id));
-    initialUserInputSetting = { ...selectedEvent.pop() }
+    const selectedEvent = eventInfoList.filter((event) => event.id === Number(params.id)).shift();
+    initialUserInputSetting = {...selectedEvent}
 
   } else if (formType === EVENT_FORM_TYPE.ADDING) {
     initialUserInputSetting = {

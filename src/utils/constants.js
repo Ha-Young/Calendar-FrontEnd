@@ -30,6 +30,7 @@ export const EVENT_FORM_NAME = {
   DESC: "desc",
   START_TIME: "startTime",
   END_TIME: "endTime",
+  DATE: "date",
 }
 
 export const EVENT_FORM_PLACEHOLDER = {
