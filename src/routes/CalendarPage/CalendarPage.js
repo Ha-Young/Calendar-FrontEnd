@@ -5,18 +5,18 @@ import CalendarSideBar from "./CalendarSideBar";
 import ScheduleBar from "../../components/ScheduleBar/ScheduleBar";
 import { hours } from "../../utils/date";
 
-const CalendarPage = ({ 
-  getEventByCurrentDate, 
-  dateList, 
-  handleCalendarType, 
-  selectedDate, 
+const CalendarPage = ({
+  getEventByCurrentDate,
+  dateList,
+  handleCalendarType,
+  selectedDate,
   isDailyCalendar,
-  onLoadMore,
+  loadMoreEventData,
 }) => {
   const checkNeedLoad = (dates) => {
     for (const date of dates) {
       if (getEventByCurrentDate(date).length === 0) {
-        return onLoadMore(dates);
+        return loadMoreEventData(dates);
       }
     }
   };
@@ -26,18 +26,18 @@ const CalendarPage = ({
       <div className={styles.wrapper}>
         <CalendarHeader
           checkNeedLoad={checkNeedLoad}
-          headerInfo={dateList} 
-          onClick={handleCalendarType} 
-          selectedDate={selectedDate} 
-          isDailyCalendar={isDailyCalendar} 
+          headerInfo={dateList}
+          onClick={handleCalendarType}
+          selectedDate={selectedDate}
+          isDailyCalendar={isDailyCalendar}
         />
         <div className={styles.content}>
           <CalendarSideBar />
           {dateList?.map((date, index) => (
-            <ScheduleBar 
-              key={index} 
-              schedules={getEventByCurrentDate(date)} 
-              dayLength={hours} 
+            <ScheduleBar
+              key={index}
+              schedules={getEventByCurrentDate(date)}
+              dayLength={hours}
             />
           ))}
         </div>

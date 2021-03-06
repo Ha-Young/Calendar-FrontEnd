@@ -5,14 +5,14 @@ import Form from "../../components/Form/Form";
 import Modal from "../../components/Modal/Modal";
 import styles from "./EventDetailPage.module.css";
 
-const EventDetailPage = ({ getEventById, onSubmit, onRemove }) => {
+const EventDetailPage = ({ getEventById, submitEventData, removeEventData }) => {
   const [showEditWindow, setShowEditWindow] = useState(false);
   const { event } = useParams();
   const history = useHistory();
   const currentEvent = getEventById(event);
 
   const handleRemoveButton = () => {
-    onRemove(currentEvent);
+    removeEventData(currentEvent);
     history.goBack();
   };
 
@@ -25,7 +25,7 @@ const EventDetailPage = ({ getEventById, onSubmit, onRemove }) => {
   };
 
   const handleSubmittedEvent = (eventData) => {
-    onSubmit(eventData);
+    submitEventData(eventData);
   };
 
   return (

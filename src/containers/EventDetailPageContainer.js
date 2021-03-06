@@ -16,7 +16,7 @@ const mapStateToProps = ({ eventData }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  async onSubmit(data) {
+  async submitEventData(data) {
     try {
       dispatch(updateEventData());
 
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(updateEventDataFail(error.message));
     }
   },
-  async onRemove(data) {
+  async removeEventData(data) {
     try {
       dispatch(deleteEventData());
 

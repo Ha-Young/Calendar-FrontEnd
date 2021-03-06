@@ -8,7 +8,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleCalendarType(info) {
     dispatch(changeCalendarPage(info));
   },
-  async onLoadMore(dateShown) {
+  async loadMoreEventData(dateShown) {
     try {
       dispatch((getEventData()));
       const data = await loadEventData(dateShown);
