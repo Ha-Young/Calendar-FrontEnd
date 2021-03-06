@@ -7,9 +7,7 @@ export default function OnedaySchedule({
   eventInfoList,
 }) {
 
-  const matchedEvents = eventInfoList.filter(
-    (event) => event.date.substr(5) === title
-  );
+  const matchedEvents = eventInfoList.filter((event) => event.date.substr(5) === title);
   let onedayScheduleCells = Array(24).fill(0);
 
   matchedEvents.map((matchedEvent) => {

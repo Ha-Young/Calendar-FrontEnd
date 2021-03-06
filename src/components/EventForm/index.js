@@ -6,7 +6,7 @@ import {
   updateUserEventinfoToFirebase,
   deleteUserEventFromFirebase,
 } from "../../api";
-import { 
+import {
   EVENT_FORM_TYPE,
   EVENT_FORM_NAME,
   EVENT_FORM_PLACEHOLDER,

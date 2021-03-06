@@ -13,8 +13,8 @@ export default function InvaildIdModal() {
 
   return (
     <div className={styles.InvaildIdModal}>
-        <p>{INVAILD_MODAL_MESSAGE.MESSAGE}</p>
-        <Button onClick={handleModalButtonClick} title={BUTTON_PLACEHOLDER.GO_BACK}/>
+      <p>{INVAILD_MODAL_MESSAGE.MESSAGE}</p>
+      <Button onClick={handleModalButtonClick} title={BUTTON_PLACEHOLDER.GO_BACK}/>
     </div>
   );
 }
