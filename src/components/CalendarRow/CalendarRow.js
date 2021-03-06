@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./CalendarRow.module.css";
 import { Link } from "react-router-dom";
 
-function CalendarRow({ currentDate, eventInfo }) {
+function CalendarRow({ currentDate, eventInfo, setId}) {
   const hours = [1, 2, 3, 4, 5,
                 6, 7, 8, 9, 10,
                 11, 12, 13, 14,
@@ -18,27 +18,30 @@ function CalendarRow({ currentDate, eventInfo }) {
         let text = "";
         let date;
         let startTime;
+        let id;
       
         if (dailyEvents) {
-          dailyEvents.map((dailyEvent) => {
-            const start = dailyEvent.startTime;
-            const end = dailyEvent.endTime;
+          dailyEvents.map((dailyEvent, index) => {
+            const startHour = dailyEvent.startTime;
+            const endHour = dailyEvent.endTime;
 
-            if (start <= hour && end >= hour) {
+            if (startHour <= hour && endHour >= hour) {
               isColored = true;
               date = dailyEvent.date;
               startTime = dailyEvent.startTime;
-              if (start === hour) {
+
+              if (startHour === hour) {
                 text = dailyEvent.title;
+                id = index;
               }
             }
           });
         }
 
         return (
-          <div className={isColored ? styles.pick : styles.row} key={hour}>
+          <div className={isColored ? styles.pick : styles.row} key={hour} onClick={() => setId(id)}>
             {isColored &&
-              <Link to={`/event/:${date}+${startTime}`}>{text}</Link>
+              <Link to={`/event/:${date}+${startTime}`} >{text}</Link>
             }
           </div>
         );
