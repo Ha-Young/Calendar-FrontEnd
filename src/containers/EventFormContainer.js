@@ -45,7 +45,7 @@ const EventFormContainer = ({ events, selectedEventInfo }) => {
       currentUrl={currentUrl}
     />
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   events: state.events,

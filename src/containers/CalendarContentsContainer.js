@@ -32,7 +32,7 @@ const CalendarContentsContainer = ({ selectedDate, events, isDailyView, loadEven
       handleEventClick={handleEventClick}
     />
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
@@ -43,6 +43,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadEvents,
   selectEvent,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarContentsContainer);

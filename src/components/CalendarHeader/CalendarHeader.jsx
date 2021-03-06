@@ -13,10 +13,10 @@ const createCalendarHeader = (displayDates) => {
   });
 
   return head;
-}
+};
 
 export default function CalendarHeader({ selectedDate, isDailyView }) {
-  let displayDates = calculateDisplayDates(selectedDate, isDailyView);
+  const displayDates = calculateDisplayDates(selectedDate, isDailyView);
 
   return (
     <div className={styles.wrapper}>

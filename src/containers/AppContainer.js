@@ -10,6 +10,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   selectDay,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

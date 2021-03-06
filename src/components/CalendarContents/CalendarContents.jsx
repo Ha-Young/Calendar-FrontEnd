@@ -10,7 +10,7 @@ export default function CalendarContents({ displayDates, events, handleEventClic
     for (let hour = 0; hour < 24; hour++) {
       let isEventExist = false;
 
-      for (let eventKey in event) {
+      for (const eventKey in event) {
         const isTimeToDisplayEvent = event.hasOwnProperty(eventKey) && (hour >= DateTime.fromISO(event[eventKey].startDateTime).hour && hour <= DateTime.fromISO(event[eventKey].endDateTime).hour);
 
         if (isTimeToDisplayEvent) {

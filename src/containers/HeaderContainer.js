@@ -5,13 +5,13 @@ import { connect } from "react-redux";
 import Header from "../components/Header/Header"
 import { selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView } from "../actions/index";
 
-const HeaderContainer = ({ nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, isDailyView }) => {
+const HeaderContainer = ({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, isDailyView }) => {
   const history = useHistory();
 
   const handleClick = () => {
     selectDay(DateTime.now().toJSDate());
     history.push("/calendar");
-  }
+  };
 
   return (
     <Header
@@ -31,6 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+  selectDay,
   nextButtonClicked,
   prevButtonClicked,
   toggleCalendarView,
