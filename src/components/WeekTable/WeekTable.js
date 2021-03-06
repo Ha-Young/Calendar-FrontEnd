@@ -9,57 +9,9 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
   const timeCells = [];
   const dayCells = ["", "일" , "월", "화", "수", "목", "금", "토"];
   const datesOfWeek = [];
-  const dayEvents = [];
-  const weekEvents = [];
-
-  for (let i = 0; i < DAYCELL_NUMBER; i++) {
-    weekEvents.push([]);
-  }
-
-  for (let i = 0; i < DAYCELL_NUMBER; i++) {
-    datesOfWeek.push(date - (day - 1 - i));
-  }
-
-  for (let i = 0; i < DAYCELL_NUMBER; i++) {
-    dayEvents[i] = eventInfo[`id-${year}-${month}-${datesOfWeek[i]}`];
-  }
-
-  for (let i = 0; i < dayEvents.length; i++) {
-    for (const event in dayEvents[i]) {
-      const eventInfo = dayEvents[i][event];
-      const duration = eventInfo["end-hour"] - eventInfo["start-hour"];
-      const content = `${eventInfo["title"]} - ${eventInfo["description"]}`;
-      const eventId = `${eventInfo["start-year"]}-${eventInfo["start-month"]}-${eventInfo["start-date"]}-${eventInfo["start-hour"]}`;
-      for (let j = 0; j < duration; j++) {
-        console.log(weekEvents[i]);
-        weekEvents[i][eventInfo["start-hour"] + j] = {
-          content,
-          eventId
-        }
-      }
-    }
-  }
-
-  const eventTable = [];
-  console.log(weekEvents);
-  for (let i = 0; i < weekEvents.length; i++) {
-    eventTable[i] = weekEvents[i].map((item, index) => {
-      return (
-        <>
-          <div key={weekEvents[i][index].eventId}>
-            <Link
-              to={`/event/${weekEvents[i][index].eventId}`}
-              data-event-id={`${weekEvents[i][index].eventId}`}
-              // onClick={handleEventIdClick}
-            >
-              {weekEvents[i][index].content}
-            </Link>
-          </div>
-        </>
-      );
-    });
-  }
-
+  // for (let i = 0; i < DAYCELL_NUMBER; i++) {
+  //   dayEvents[i] = eventInfo[`id-${year}-${month}-${datesOfWeek[i]}`];
+  // }
 
   for (let i = 0; i < TIMECELL_NUMBER; i++) {
     const time = i < 12 ? `${i} AM` : `${i % 12} PM`;
@@ -93,6 +45,15 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
     );
   });
 
+  for (let i = 0; i < DAYCELL_NUMBER; i++) {
+    const calendarDate = new Date(year, month, date);
+    calendarDate.setDate(calendarDate.getDate() - day + i);
+    datesOfWeek.push(calendarDate.getDate());
+  }
+
+console.log(datesOfWeek)
+
+console.log(eventInfo[`id-${year}-${month}-${date}`])
 
   return (
     <div className={styles.WeekTable}>
@@ -102,27 +63,6 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
       <div className={styles.contentContainer}>
         <div className={styles.timeTable}>
           {timeTable}
-        </div>
-        <div className={styles.eventTable}>
-          {eventTable[0]}
-        </div>
-        <div className={styles.eventTable}>
-          {eventTable[1]}
-        </div>
-        <div className={styles.eventTable}>
-          {eventTable[1]}
-        </div>
-        <div className={styles.eventTable}>
-          {eventTable[1]}
-        </div>
-        <div className={styles.eventTable}>
-          {eventTable[1]}
-        </div>
-        <div className={styles.eventTable}>
-          {eventTable[1]}
-        </div>
-        <div className={styles.eventTable}>
-          {eventTable[1]}
         </div>
       </div>
     </div>

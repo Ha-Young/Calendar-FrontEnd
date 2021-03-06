@@ -22,7 +22,7 @@ export default function Calendar ({
     year: currentDate.format("YYYY"),
     month: currentDate.format("M"),
     date: currentDate.format("D"),
-    day: currentDate.format("E"),
+    day: currentDate.format("d"),
   });
 
   const handleArrowClick = (ev) => {
@@ -37,7 +37,7 @@ export default function Calendar ({
       year: currentDate.format("YYYY"),
       month: currentDate.format("M"),
       date: currentDate.format("D"),
-      day: currentDate.format("E"),
+      day: currentDate.format("d"),
     });
 
     setCurrentDate(cloneDeep(currentDate));
@@ -62,7 +62,7 @@ export default function Calendar ({
             <IncDecrementControlBox
               value={
                 isDayCalendar
-                  ? currentDate.format("E")
+                  ? currentDate.format("D")
                   : weekOfMonth(currentDate)
               }
               onArrowClick={handleArrowClick}
