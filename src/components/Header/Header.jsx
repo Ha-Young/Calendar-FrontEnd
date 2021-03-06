@@ -1,18 +1,9 @@
 import React from "react";
-import { DateTime } from "luxon";
-import { useHistory } from "react-router-dom";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.png";
 
-export default function Header({ selectDay, prevButtonClicked, nextButtonClicked, selectedDate, isDailyView, toggleCalendarView }) {
-  const history = useHistory();
-
-  const handleClick = () => {
-    selectDay(DateTime.now().toJSDate());
-    history.push("/calendar");
-  }
-
+export default function Header({ prevButtonClicked, nextButtonClicked, toggleCalendarView, selectedDate, isDailyView, handleClick }) {
   return (
     <header className={styles.wrapper}>
       <div className={styles.leftHeaderWrapper}>

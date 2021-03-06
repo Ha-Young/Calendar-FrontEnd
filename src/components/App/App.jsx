@@ -1,23 +1,16 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import styles from "./App.module.css";
-import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import Calendar from "../Calendar/Calendar";
 import Event from "../Event/Event";
 import Error from "../Error/Error";
+import HeaderContainer from "../../containers/HeaderContainer";
 
-function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarView, selectedDate, selectedEventInfo, isDailyView }) {
+function App({ selectDay, selectedDate, selectedEventInfo, isDailyView }) {
   return (
     <div className={styles.App}>
-      <Header
-        nextButtonClicked={nextButtonClicked}
-        prevButtonClicked={prevButtonClicked}
-        selectedDate={selectedDate}
-        isDailyView={isDailyView}
-        selectDay={selectDay}
-        toggleCalendarView={toggleCalendarView}
-      />
+      <HeaderContainer />
       <div className={styles.bodyWrapper}>
         <SideBar selectDay={selectDay} />
         <Switch>
