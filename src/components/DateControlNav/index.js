@@ -24,12 +24,8 @@ export default function DateContorlNav({
       newDate = moment().toISOString();
       moveToToday(newDate);
     } else if (buttonType === BUTTON_TYPE.PREV) {
-      console.log(buttonType," ??")
       if (calendarMode === CALENDAR_MODE.DAILY) {
-        
         newDate = moment(currentDate).subtract(BUTTON_PAYLOAD.DAILY_PAYLOAD, DATE_UNIT.DAYS).toISOString();
-        console.log("!", newDate)
-        
         moveToPrevDate(newDate);
       } else {
         newDate = moment(currentDate).subtract(BUTTON_PAYLOAD.WEEKLY_PAYLOAD, DATE_UNIT.DAYS).toISOString();
