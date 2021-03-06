@@ -4,14 +4,13 @@ export const ADD_TO_EVENTS = "ADD_TO_EVENTS";
 export const REMOVE_EVENTS = "REMOVE_EVENTS";
 export const REMOVE_ALL_EVENTS = "REMOVE_ALL_EVENTS";
 
-// AUTH
+// LOGIN
 
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const ERROR = "ERROR";
 
+// NOTIFICATION
 
-// ERROR
-
-export const NEW_ERROR = "NEW_ERROR";
-export const NO_ERROR = "NO_ERROR";
+export const NEW_NOTIFICATION = "NEW_NOTIFICATION";
+export const INIT_NOTIFICATION = "INIT_NOTIFICATION";

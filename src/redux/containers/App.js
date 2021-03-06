@@ -1,15 +1,14 @@
 import { connect } from "react-redux";
 
-import { deleteTargetData, moveDataToLoggedInUser } from "../../api";
-import { loginWithGoogle } from "../../api/google-login";
 import App from "../../components/App/App";
-import { addEvents, login, logout, newError, noError, removeAllEvents, removeEvents } from "../actions";
+import { addEvents, removeAllEvents, removeEvents, login, logout, newNotification, offNotification } from "../actions";
+import { deleteTargetData, moveDataToLoggedInUser } from "../../api";
+import { googleAuthLogin } from "../../api/googleAuthLogin";
 
 const mapStateToProps = (state) => ({
   events: state.events,
-  auth: state.login,
-  userId: state.login.userId,
-  error: state.error,
+  login: state.login,
+  notification: state.notification,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,29 +20,27 @@ const mapDispatchToProps = (dispatch) => ({
     deleteTargetData(userId, date, startAt, endAt);
     dispatch(removeEvents(date, time));
   },
-  onClickLogin: async (isLoggedIn) => {
+  toggleLogin: async (isLoggedIn) => {
     if (isLoggedIn) {
       dispatch(logout());
       dispatch(removeAllEvents());
       localStorage.setItem("userId", "");
       return;
     }
+    
+    try {
+      const userId = await googleAuthLogin();
 
-    const [isSuccess, data] = await loginWithGoogle();
-  
-    if (isSuccess) {
-      moveDataToLoggedInUser(data);
+      moveDataToLoggedInUser(userId);
       dispatch(removeAllEvents());
-      dispatch(login(data));
-      localStorage.setItem("userId", data);
-      return;
+      dispatch(login(userId));
+      localStorage.setItem("userId", userId);
+    } catch (error) {
+      dispatch(newNotification(error.message));
     }
-
-    dispatch(newError(data));
-    return;
   },
-  offError: () => {
-    dispatch(noError());
+  offNotification: () => {
+    dispatch(offNotification());
   },
 });
 

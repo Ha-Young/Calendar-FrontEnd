@@ -1,34 +1,36 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 import styles from "./App.module.css";
-import Header from "../Header/Header";
 import Calendar from "../Calendar/Calendar";
-import NewEvent from "../Events/NewEvent";
-import Events from "../Events/Events";
 import Dashboard from "../Dashboard/Dashboard";
+import Header from "../Header/Header";
 import Login from "../Login/Login";
+import Events from "../Events/Events";
+import NewEvent from "../Events/NewEvent";
 import EventDetail from "../Events/EventDetail";
+import Notification from "../Notification/Notification";
 
-function App({ events, addEvents, removeEvents, onClickLogin, auth, userId, error, offError }) {
-  const notify = () => {
-    offError();
-    return toast("ERROR TRY AGAIN");
-  }
+function App({ 
+  events, addEvents, removeEvents,
+  login, toggleLogin,
+  notification, offNotification,
+}) {
+  const { userId, isLoggedIn } = login;
+  const { haveNotification, message } = notification;
+
   return (
-    <div className={styles.App}>
-      <div>
-        {error.isError && notify()}
-        <ToastContainer />
-      </div>
+    <div className={styles.App}> 
+      {haveNotification && 
+        <Notification message={message} offNotification={offNotification} />}
+      <ToastContainer />
       <Header />
       <Switch>
         <Route exact path="/calendar">
           <Dashboard
             main={<Calendar userId={userId} events={events} addEvents={addEvents} />}
-            login={<Login onClickLogin={onClickLogin} auth={auth}/>}
+            login={<Login onClickLogin={toggleLogin} isLoggedIn={isLoggedIn}/>}
             events={<Events userId={userId} removeEvents={removeEvents} />}
           />
         </Route>

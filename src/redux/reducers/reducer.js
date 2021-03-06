@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import events from "./events";
 import login from "./login";
-import error from "./error";
+import notification from "./notification";
 
 export default combineReducers({
   events,
   login,
-  error,
+  notification,
 });

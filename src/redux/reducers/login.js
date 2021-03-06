@@ -1,4 +1,4 @@
-import { ERROR, LOGIN, LOGOUT } from "../../constants/actionTypes";
+import { LOGIN, LOGOUT } from "../../constants/actionTypes";
 import { GUEST } from "../../constants/login";
 
 const initialUserId = localStorage.getItem("userId") || GUEST;
