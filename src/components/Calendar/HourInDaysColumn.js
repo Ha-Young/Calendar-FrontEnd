@@ -60,11 +60,12 @@ export default function HourInDaysColumn({
                       startHour={e.startHour}
                       endHour={e.endHour}
                       description={e.description}
+                      color={e.color}
                       height={e.endHour - e.startHour}
                       key={index}
                       onDeleteEvent={onDeleteEvent}
                       onClickGetEventInfo={onClickGetEventInfo}
-                      showModal={showModal}
+                      onEventClick={showModal}
                     />
                   );
                 }

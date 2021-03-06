@@ -8,6 +8,7 @@ import EventModal from "components/Modal";
 import { formatUserInput } from "utils";
 import { uploadData, deleteData } from "api";
 import { connect } from "react-redux";
+
 import {
   NEXT,
   PREV,
@@ -94,7 +95,10 @@ const MainContainer = ({
           eventInfo={eventInfo}
         />
         <Switch>
-          <Route exact path={["/Calendar", "/Calendar/Day", "/Calendar/Week"]}>
+          <Route
+            exact
+            path={["/", "/Calendar", "/Calendar/Day", "/Calendar/Week"]}
+          >
             <Calendar
               now={state.calendar.currentTime}
               events={state.calendar.events}

@@ -52,10 +52,16 @@ export function getDaysInWeek(dateObj) {
 }
 
 export function formatUserInput(eventId, userInputEvent) {
-  const { eventTitle, RangePicker, eventDescription } = userInputEvent;
+  const {
+    eventTitle,
+    RangePicker,
+    eventDescription,
+    colorPicker,
+  } = userInputEvent;
   const eventDate = RangePicker[0].format("YYYY/MM/DD");
   const eventStartHour = RangePicker[0].format("HH");
   const eventEndHour = RangePicker[1].format("HH");
+  const eventColor = colorPicker ? colorPicker.hex : "#00111e";
   const event = {
     id: eventId ? eventId : uuid(),
     title: eventTitle,
@@ -63,6 +69,7 @@ export function formatUserInput(eventId, userInputEvent) {
     date: eventDate,
     startHour: eventStartHour,
     endHour: eventEndHour,
+    color: eventColor,
   };
 
   return event;

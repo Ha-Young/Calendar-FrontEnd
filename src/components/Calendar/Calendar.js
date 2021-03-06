@@ -2,7 +2,7 @@ import React from "react";
 
 import DaysInWeekRow from "components/Calendar/DaysInWeekRow";
 import CalendarHeader from "components/Calendar/CalendarHeader";
-
+import HoursColumn from "components/Calendar/HoursColumn";
 import styles from "./Calendar.module.css";
 
 export default function Calendar({
@@ -31,6 +31,7 @@ export default function Calendar({
         onDeleteEvent={onDeleteEvent}
         onClickGetEventInfo={onClickGetEventInfo}
       />
+      <HoursColumn />
     </div>
   );
 }

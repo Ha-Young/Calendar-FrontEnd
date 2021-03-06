@@ -55,3 +55,8 @@
   );
   background-size: 4px 4px;
 }
+
+.eventFont {
+  color: white;
+  font-weight: 700;
+}

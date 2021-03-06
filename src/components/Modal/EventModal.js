@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Modal, Form, Input, Button, DatePicker } from "antd";
 import { TwitterPicker } from "react-color";
@@ -33,9 +33,7 @@ export default function EventModal({
   onEditEvent,
   eventInfo,
 }) {
-  let isAddClicked = false;
-  let isEditClicked = false;
-  let isDeleteClicked = false;
+  const [activeButton, setActiveButton] = useState({ buttonType: "null" });
   const history = useHistory();
 
   return (
@@ -57,22 +55,18 @@ export default function EventModal({
     >
       <Form
         onFinish={(e) => {
-          if (isAddClicked) {
+          console.log(e);
+          if (activeButton.buttonType === "add") {
             onAddEvent(e);
-            history.goBack();
             handleOk();
           }
-          if (isEditClicked) {
-            console.log("edit clicked");
+          if (activeButton.buttonType === "edit") {
             onEditEvent(eventInfo.id, e);
-            history.goBack();
             handleOk();
           }
 
-          if (isDeleteClicked) {
-            console.log(eventInfo.id);
+          if (activeButton.buttonType === "delete") {
             onDeleteEvent(eventInfo.id);
-            history.goBack();
             handleOk();
           }
         }}
@@ -87,41 +81,45 @@ export default function EventModal({
         <Form.Item name={"eventDescription"} label="eventDescription">
           <Input.TextArea />
         </Form.Item>
-        <TwitterPicker />
-        <Form.Item>
-          {onAddEvent && (
-            <Button
-              type="primary"
-              htmlType="submit"
-              onClick={(e) => {
-                isAddClicked = true;
-              }}
-            >
-              Add
-            </Button>
-          )}
-          {onEditEvent && (
-            <Button
-              type="primary"
-              htmlType="submit"
-              onClick={(e) => {
-                isEditClicked = true;
-              }}
-            >
-              Edit
-            </Button>
-          )}
-          {onDeleteEvent && (
-            <Button
-              type="primary"
-              htmlType="submit"
-              onClick={(e) => {
-                isDeleteClicked = true;
-              }}
-            >
-              Delete
-            </Button>
-          )}
+        <Form.Item name={"colorPicker"} label="colorPicker">
+          <TwitterPicker
+            onChangeComplete={(color, event) => {
+              console.log(color, event);
+              return color;
+            }}
+          />
+        </Form.Item>
+
+        <Form.Item name={"button"}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={(e) => {
+              setActiveButton({ buttonType: "add" });
+            }}
+          >
+            Add
+          </Button>
+
+          <Button
+            type="default"
+            htmlType="submit"
+            onClick={(e) => {
+              setActiveButton({ buttonType: "edit" });
+            }}
+          >
+            Edit
+          </Button>
+
+          <Button
+            type="default"
+            htmlType="submit"
+            onClick={(e) => {
+              setActiveButton({ buttonType: "delete" });
+            }}
+          >
+            Delete
+          </Button>
         </Form.Item>
       </Form>
     </Modal>

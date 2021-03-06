@@ -18,7 +18,7 @@ export async function deleteData(eventId) {
   await database.ref(`event/${eventId}`).remove();
 }
 
-export async function fetchData() {
+export async function fetchEvents() {
   return database
     .ref(`event/`)
     .once("value")

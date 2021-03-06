@@ -3,31 +3,40 @@ import React, { useEffect } from "react";
 import MainContainer from "containers/MainContainer";
 import Sidebar from "components/Sidebar";
 
-import { RECEIVE_EVENTS } from "actions";
+import * as actionTypes from "constants/actionTypes";
 import { connect } from "react-redux";
-import { fetchData } from "api";
+import { fetchEvents } from "api";
 import _ from "lodash";
 
-const mapStateToProps = (state) => ({ app: state });
+const mapStateToProps = (state) => {
+  return {
+    currentTime: state.calendar.currentTime,
+    events: state.calendar.events,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onInitialLoad: async () => {
-    const fetchedEvent = await fetchData();
-    const fetchedEvents = _.flatMapDeep(fetchedEvent, (n) => {
-      return [n];
-    });
-
-    dispatch({ type: RECEIVE_EVENTS, payload: fetchedEvents });
+    try {
+      const fetchedEvent = await fetchEvents();
+      const fetchedEvents = _.flatMapDeep(fetchedEvent, (n) => {
+        return [n];
+      });
+      dispatch({ type: actionTypes.RECEIVE_EVENTS, payload: fetchedEvents });
+    } catch (error) {
+      const receivedErr = error;
+      dispatch({ type: actionTypes.RECEIVE_ERROR, payload: receivedErr });
+    }
   },
 });
 
-const AppContainer = ({ onInitialLoad }) => {
+const AppContainer = ({ onInitialLoad, currentTime, events }) => {
   useEffect(() => {
     onInitialLoad();
   }, []);
   return (
     <>
-      <Sidebar />
+      <Sidebar currentTime={currentTime} events={events} />
       <MainContainer />
     </>
   );

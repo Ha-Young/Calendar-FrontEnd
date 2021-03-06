@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./Sidebar.module.css";
+import { format } from "date-fns";
 
-export default function SideInfoBoard() {
+export default function SideInfoBoard({ currentTime }) {
+  const today = format(currentTime, "LLLL dd");
+
   return (
     <div className={`${styles.box}`}>
       <h1 className={`${styles.today}`}>
@@ -9,7 +12,7 @@ export default function SideInfoBoard() {
         <br />
         is
         <br />
-        Feb 28
+        {today}
       </h1>
     </div>
   );

@@ -55,7 +55,7 @@
 
 .font {
   font-weight: 700;
-  font-size: 50px;
+  font-size: 55px;
 }
 
 .fontColor {
@@ -64,15 +64,24 @@
 
 .HoursColumn {
   position: absolute;
-  top: 170px;
-  left: 10;
+  top: 260px;
 
   font-weight: 300;
   font-size: 18px;
-  color: lightslategrey;
+  color: #dee0e6;
+  z-index: 10;
 }
 
 .dayFont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: lightsteelblue;
+  color: white;
+  font-size: 15px;
+  border-radius: 1px;
   height: 5%;
+
   margin: 0;
 }
