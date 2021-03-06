@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./EventForm.module.css";
+import FormInput from "../FormInput/FormInput";
 
 function EventForm({ onEventInfo }) {
   const eventInfo = {};
@@ -33,11 +34,11 @@ function EventForm({ onEventInfo }) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <label>제목<input className={styles.input} type="text" name="title" onChange={handleChange} /></label>
-      <label>내용<input className={styles.input} type="text" name="content" onChange={handleChange} /></label>
-      <label>날짜<input className={styles.input} type="date" name="date" onChange={handleChange} /></label>
-      <label>시작<input className={styles.input} type="number" name="startTime" onChange={handleChange} /></label>
-      <label>종료<input className={styles.input} type="number" name="endTime" onChange={handleChange} /></label>
+      <label>제목<FormInput type={"text"} name={"title"} onChange={handleChange} /></label>
+      <label>내용<FormInput type={"text"} name={"content"} onChange={handleChange} /></label>
+      <label>날짜<FormInput type={"date"} name={"date"} onChange={handleChange} /></label>
+      <label>시작<FormInput type={"number"} name={"startTime"} onChange={handleChange} /></label>
+      <label>종료<FormInput type={"number"} name={"endTime"} onChange={handleChange} /></label>
       <button type="submmit" className={styles.button}>저장</button>
     </form>
   );
