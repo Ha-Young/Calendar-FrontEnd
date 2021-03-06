@@ -25,7 +25,7 @@ const eventInfo = (state = {}, action) => {
         ...state[dateId],
         [hourId]: eventInfo
       };
-      console.log(state);
+
       return state;
     default:
       return state;

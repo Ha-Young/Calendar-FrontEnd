@@ -1,29 +1,14 @@
 import React from "react";
 import styles from "./WeekTable.module.css";
-import { Link } from "react-router-dom";
+import TimeTable from "../TimeTable/TimeTable"
 
 export default function WeekTable ({ currentDate, eventInfo }) {
   const { year, month, date, day } = currentDate;
-  const TIMECELL_NUMBER = 24;
   const DAYCELL_NUMBER = 7;
-  const timeCells = [];
+  const TIMECELL_NUMBER = 24;
+  const timeCells = new Array(TIMECELL_NUMBER).fill(0);
   const dayCells = ["", "일" , "월", "화", "수", "목", "금", "토"];
   const datesOfWeek = [];
-
-  for (let i = 0; i < TIMECELL_NUMBER; i++) {
-    const time = i < 12 ? `${i} AM` : `${i % 12} PM`;
-    const id = i < 12 ? `${i}-AM` : `${i % 12}-PM`;
-
-    timeCells.push({time, id});
-  }
-
-  const timeTable = timeCells.map((item) => {
-    return (
-    <div key={item.id} className={styles.timeCell}>
-      {item.time}
-    </div>
-    );
-  });
 
   const dayTable = dayCells.map((item, index) => {
     return (
@@ -69,9 +54,7 @@ export default function WeekTable ({ currentDate, eventInfo }) {
         {dayTable}
       </div>
       <div className={styles.contentContainer}>
-        <div className={styles.timeTable}>
-          {timeTable}
-        </div>
+        <TimeTable />
         <div className={styles.weekEvent}>
           {weekEvent}
         </div>

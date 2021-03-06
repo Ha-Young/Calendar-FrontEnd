@@ -42,26 +42,6 @@
   border-bottom: 1px solid #BDBDBD;
 }
 
-.timeTable {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 14%;
-  height: 100vh;
-  border-right: 1px solid #BDBDBD;
-  border-bottom: 1px solid #BDBDBD;
-}
-
-.timeCell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 10vh;
-  border-bottom: 1px solid #BDBDBD;
-}
-
 .event {
   display: flex;
   justify-content: center;
