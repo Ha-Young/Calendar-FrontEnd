@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "./EventForm.module.css";
 import { saveToFirebaseDB } from "../../api/index";
 import { MAX_MIN_DATE } from "../../constants";
-import { getDateISOstring } from "../../utils";
+import { getDateISOstring, getPathString } from "../../utils";
 import checkValidEvent from "./checkValidEvent";
 
 
@@ -51,29 +51,26 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
     const timeStamp = Date.now();
     const id = eventId ? eventId : "event" + timeStamp;
 
-    setEvent({id, title, period, content, title, timeStamp});
+    setEvent({id, title, period, content, timeStamp});
+
+    const pathForEvent = getPathString(year, month, date, "events", id);
+    const pathForContent = getPathString(year, month, date, "contents", id);
 
     const resultBySavingEvent = saveToFirebaseDB(
-      {id, title, period, title, timeStamp},
-      year,
-      month,
-      date,
-      id,
+      pathForEvent,
+      {id, title, period, timeStamp},
     );
     const resultBySavingContent = saveToFirebaseDB(
-      {[id]: content},
-      year,
-      month,
-      date,
-      "contents",
+      pathForContent,
+      {id, content},
     );
 
     Promise.all([resultBySavingEvent, resultBySavingContent])
-      .then(res => {
+      .then((res) => {
         history.push("/calendar");
       })
-      .catch(err => {
-        // Add Error Handling
+      .catch((err) => {
+        // Add Error Handling when got a failure to save a data
       });
   }
 

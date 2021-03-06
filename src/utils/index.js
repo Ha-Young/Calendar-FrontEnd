@@ -33,6 +33,6 @@ export const calculateYearMonthWeek = (dateObj) => {
   return [currentYear, currentMonth + 1, week];
 };
 
-export const getPathString = (paths) => {
-  return paths.reduce((fullPath, path) => `${fullPath}/${path}`);
+export const getPathString = (...paths) => {
+  return paths.reduce((fullPath, path) => `${fullPath}/${path}`, "");
 }

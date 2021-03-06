@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
 import Header from "../Header/Header";
@@ -9,7 +9,22 @@ import EventDetails from "../EventDetails/EventDetails";
 import PageError from "../PageError/PageError";
 
 function App(props) {
+  const currentYear = props.currentDate.getFullYear();
+  const currentMonth = props.currentDate.getMonth() + 1;
+
+  const [yearMonth, setYearMonth] = useState([currentYear, currentMonth]);
   const [isDaily, setIsDaily] = useState(true);
+
+  const beforeYear = yearMonth[0];
+  const beforeMonth = yearMonth[1];
+
+  if (currentYear !== beforeYear || currentMonth !== beforeMonth) {
+    setYearMonth([currentYear, currentMonth]);
+  }
+
+  useEffect(() => {
+    
+  }, [yearMonth]);
 
   return (
     <div className={styles.App}>

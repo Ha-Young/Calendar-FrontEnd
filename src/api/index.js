@@ -1,9 +1,15 @@
 import firebase from "./firebase";
-import { getPathString } from "../utils";
 
-export async function saveToFirebaseDB(data, ...paths) {
-  const database = firebase.database();
-  const pathString = getPathString(paths);
+const database = firebase.database();
 
-  database.ref(pathString).set(data);
+export async function saveToFirebaseDB(path, data) {
+  return database.ref(path).set(data);
 }
+
+// export async function fetchMonthlyEvent(path) {
+//   database.
+//   .then((snapshot) => {
+//     console.log(snapshot)
+//   })
+
+// }
