@@ -3,27 +3,43 @@ import firebase from "./firebase";
 const database = firebase.database();
 
 export async function addNewEventToFirebase(addedUserEventInfo) {
-  await database.ref(`events/${addedUserEventInfo.id}`).set(addedUserEventInfo);
+  try {
+    await database.ref(`events/${addedUserEventInfo.id}`).set(addedUserEventInfo);
+  } catch(error) {
+    console.warn("error", error);
+  }
 }
 
 export async function fetchEventsList() {
-  const eventList = [];
   const eventsRef = database.ref("events/");
+  const allEventsList = [];
 
-  await eventsRef.once("value", function(snapshot) {
-    snapshot.forEach((childSnapshot) => {
-      eventList.push(childSnapshot.val());
-    });
-  })
+  try {
+    await eventsRef.once("value", function(snapshot) {
+      snapshot.forEach((child) => {
+        allEventsList.push(child.val());
+      });
+    })
+  } catch(error) {
+    console.warn("error", error);
+  }
 
-  return eventList;
+  return allEventsList;
 }
 
 export async function updateUserEventinfoToFirebase(selectedEventInfo) {
-  await deleteUserEventFromFirebase(selectedEventInfo.id);
-  await database.ref(`events/${selectedEventInfo.id}`).set(selectedEventInfo);
+  try {
+    await deleteUserEventFromFirebase(selectedEventInfo.id);
+    await database.ref(`events/${selectedEventInfo.id}`).set(selectedEventInfo);
+  } catch(error) {
+    console.warn("error", error);
+  }
 }
 
 export async function deleteUserEventFromFirebase(targetEventId) {
-  await database.ref(`events/${targetEventId}`).remove();
+  try {
+    await database.ref(`events/${targetEventId}`).remove();
+  } catch(error) {
+    console.warn("error", error);
+  }
 }
