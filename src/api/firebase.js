@@ -3,13 +3,13 @@ import "firebase/auth";
 import "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB2eOak4H8L6Zubk_76y7rQfP-0qu_25d0",
-  authDomain: "kingcalendar.firebaseapp.com",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   databaseURL: "https://kingcalendar-default-rtdb.firebaseio.com",
-  projectId: "kingcalendar",
-  storageBucket: "kingcalendar.appspot.com",
-  messagingSenderId: "120802554404",
-  appId: "1:120802554404:web:18e0e3bfa02ee30f679eb1"
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 firebase.initializeApp(firebaseConfig);

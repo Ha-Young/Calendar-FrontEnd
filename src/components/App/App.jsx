@@ -7,7 +7,7 @@ import Event from "../Event/Event";
 import Error from "../Error/Error";
 import HeaderContainer from "../../containers/HeaderContainer";
 
-function App({ selectDay, selectedDate, selectedEventInfo, isDailyView }) {
+function App({ selectDay, selectedDate, selectedEventInfo, isDailyView, errorMessage }) {
   return (
     <div className={styles.App}>
       <HeaderContainer />
@@ -15,10 +15,7 @@ function App({ selectDay, selectedDate, selectedEventInfo, isDailyView }) {
         <SideBar selectDay={selectDay} />
         <Switch>
           <Route exact path="/calendar">
-            <Calendar
-              selectedDate={selectedDate}
-              isDailyView={isDailyView}
-            />
+            <Calendar selectedDate={selectedDate} isDailyView={isDailyView} />
           </Route>
           <Route exact path="/events/new">
             <Event />
@@ -27,7 +24,7 @@ function App({ selectDay, selectedDate, selectedEventInfo, isDailyView }) {
             <Event selectedEventInfo={selectedEventInfo} />
           </Route>
           <Route exact path="/error">
-            <Error />
+            <Error text={errorMessage}/>
           </Route>
           <Route>
             <Redirect to="/calendar" />

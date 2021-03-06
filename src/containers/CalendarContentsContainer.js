@@ -2,11 +2,17 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import CalendarContents from "../components/CalendarContents/CalendarContents.jsx";
-import { loadEvents, selectEvent } from "../actions/index";
+import { loadEvents, selectEvent, throwError } from "../actions/index";
 import { getEvents } from "../api";
 import { calculateDisplayDates } from "../utils";
 
-const CalendarContentsContainer = ({ selectedDate, events, isDailyView, loadEvents, selectEvent }) => {
+const CalendarContentsContainer = ({
+  selectedDate,
+  events,
+  isDailyView,
+  loadEvents,
+  selectEvent
+}) => {
   const history = useHistory();
   const displayDates = calculateDisplayDates(selectedDate, isDailyView);
 
@@ -21,7 +27,13 @@ const CalendarContentsContainer = ({ selectedDate, events, isDailyView, loadEven
       loadEvents(events);
     }
 
-    fetchEvents();
+    try {
+      fetchEvents();
+    } catch(err) {
+      throwError(err);
+      history.push("/error");
+    }
+    
   }, [selectedDate, isDailyView]);
 
   return (
@@ -43,6 +55,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadEvents,
   selectEvent,
+  throwError,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarContentsContainer);

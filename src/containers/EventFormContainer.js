@@ -3,6 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import EventForm from "../components/EventForm/EventForm.jsx";
 import { setEvent, removeEvent } from "../api";
+import { throwError } from "../actions/index";
 
 const EventFormContainer = ({ events, selectedEventInfo }) => {
   const history = useHistory();
@@ -25,7 +26,10 @@ const EventFormContainer = ({ events, selectedEventInfo }) => {
 
     setEvent(newEvent, date, key)
     .then(() => history.push("/calendar"))
-    .catch(() => history.push("/error"));
+    .catch((err) => {
+      throwError(err);
+      history.push("/error");
+    });
   };
 
   const handleRemove = (startDateTime) => {
@@ -34,7 +38,10 @@ const EventFormContainer = ({ events, selectedEventInfo }) => {
 
     removeEvent(date, key)
     .then(() => history.push("/calendar"))
-    .catch(() => history.push("/error"));
+    .catch((err) => {
+      throwError(err);
+      history.push("/error");
+    });
   };
 
   return (
@@ -50,6 +57,7 @@ const EventFormContainer = ({ events, selectedEventInfo }) => {
 const mapStateToProps = (state) => ({
   events: state.events,
   selectedEventInfo: state.selectedEventInfo,
+  errorMessage: state.errorMessage,
 });
 
 export default connect(mapStateToProps, null)(EventFormContainer);

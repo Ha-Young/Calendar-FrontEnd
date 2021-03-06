@@ -36,3 +36,10 @@ export const selectEvent = (selectedEventId, selectedEventDayIndex) => ({
     selectedEventDayIndex: selectedEventDayIndex,
   }
 });
+
+export const throwError = (err) => ({
+  type: types.ERROR_OCCUR,
+  payload: {
+    errorMessage: err,
+  }
+});

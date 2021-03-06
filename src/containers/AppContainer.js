@@ -6,6 +6,7 @@ const mapStateToProps = (state) => ({
   selectedDate: state.selectedDate,
   selectedEventInfo: state.selectedEventInfo,
   isDailyView: state.isDailyView,
+  errorMessage: state.errorMessage,
 });
 
 const mapDispatchToProps = {

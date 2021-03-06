@@ -3,7 +3,14 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.png";
 
-export default function Header({ prevButtonClicked, nextButtonClicked, toggleCalendarView, selectedDate, isDailyView, handleClick }) {
+export default function Header({
+  prevButtonClicked,
+  nextButtonClicked,
+  toggleCalendarView,
+  selectedDate,
+  isDailyView,
+  handleClick
+}) {
   return (
     <header className={styles.wrapper}>
       <div className={styles.leftHeaderWrapper}>
@@ -42,7 +49,11 @@ export default function Header({ prevButtonClicked, nextButtonClicked, toggleCal
         </div>
       </div>
       <div className={styles.rightHeaderWrapper}>
-        <select className={styles.viewSelector} name="isDaily" onChange={(e) => toggleCalendarView(e.target.value)}>
+        <select
+          className={styles.viewSelector}
+          name="isDaily"
+          onChange={(e) => toggleCalendarView(e.target.value)}
+        >
           <option value="daily">Daily</option>
           <option value="weekly">Weekly</option>
         </select>

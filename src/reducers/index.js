@@ -1,12 +1,14 @@
 import { DateTime } from "luxon";
 import * as types from "../constants/actionTypes";
 import { formatDate } from "../utils";
+import { DEFAULT_ERROR_MESSAGE } from "../constants/string";
 
 const initialState = {
   selectedDate: DateTime.now(),
   events: [],
   selectedEventInfo: {},
   isDailyView: true,
+  errorMessage: DEFAULT_ERROR_MESSAGE,
 };
 
 export default function reducer(state = initialState, action) {
@@ -63,6 +65,13 @@ export default function reducer(state = initialState, action) {
           selectedEventId: action.payload.selectedEventId,
           selectedEventDayIndex: action.payload.selectedEventDayIndex,
         },
+      };
+    }
+
+    case types.ERROR_OCCUR: {
+      return {
+        ...state,
+        errorMessage: action.payload.errorMessage,
       };
     }
 
