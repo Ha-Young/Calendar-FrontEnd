@@ -23,24 +23,22 @@ const CalendarPage = ({
 
   return (
     <div className={styles[`page-wrapper`]}>
-      <div className={styles.wrapper}>
-        <CalendarHeader
-          checkNeedLoad={checkNeedLoad}
-          headerInfo={dateList}
-          onClick={handleCalendarType}
-          selectedDate={selectedDate}
-          isDailyCalendar={isDailyCalendar}
-        />
-        <div className={styles.content}>
-          <CalendarSideBar />
-          {dateList?.map((date, index) => (
-            <ScheduleBar
-              key={index}
-              schedules={getEventByCurrentDate(date)}
-              dayLength={hours}
-            />
-          ))}
-        </div>
+      <CalendarHeader
+        checkNeedLoad={checkNeedLoad}
+        headerInfo={dateList}
+        onClick={handleCalendarType}
+        selectedDate={selectedDate}
+        isDailyCalendar={isDailyCalendar}
+      />
+      <div className={styles.content}>
+        <CalendarSideBar />
+        {dateList?.map((date, index) => (
+          <ScheduleBar
+            key={index}
+            schedules={getEventByCurrentDate(date)}
+            dayLength={hours}
+          />
+        ))}
       </div>
     </div>
   );
