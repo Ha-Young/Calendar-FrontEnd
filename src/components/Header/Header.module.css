@@ -8,6 +8,7 @@
   width: 100%;
   height: 5vw;
   background-color: #F1F8E9;
+  font-weight: bold;
 }
 
 .nav {
@@ -23,5 +24,10 @@
 }
 
 .ul li {
-  width: 50vw;
+  width: 30vw;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
 }

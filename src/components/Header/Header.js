@@ -8,9 +8,9 @@ export default function Header () {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
-          <li><Link to='/'>Main</Link></li>
-          <li><Link to='/event/new'>Event</Link></li>
-          <li><Link to='/calendar'>Calendar</Link></li>
+          <li><Link to='/' className={styles.link}>Main</Link></li>
+          <li><Link to='/event/new' className={styles.link}>Event</Link></li>
+          <li><Link to='/calendar' className={styles.link}>Calendar</Link></li>
         </ul>
       </nav>
     </header>

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./WeekTable.module.css";
 import { Link } from "react-router-dom";
 
-export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
+export default function WeekTable ({ currentDate, eventInfo }) {
   const { year, month, date, day } = currentDate;
   const TIMECELL_NUMBER = 24;
   const DAYCELL_NUMBER = 7;
@@ -14,18 +14,12 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
     const time = i < 12 ? `${i} AM` : `${i % 12} PM`;
     const id = i < 12 ? `${i}-AM` : `${i % 12}-PM`;
 
-    timeCells.push({
-      time,
-      id
-    });
+    timeCells.push({time, id});
   }
 
   const timeTable = timeCells.map((item) => {
     return (
-    <div
-      key={item.id}
-      className={styles.timeCell}
-    >
+    <div key={item.id} className={styles.timeCell}>
       {item.time}
     </div>
     );
@@ -33,10 +27,7 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
 
   const dayTable = dayCells.map((item, index) => {
     return (
-    <div
-      key={`${item}-${index}`}
-      className={styles.dayCell}
-    >
+    <div key={`${item}-${index}`} className={styles.dayCell}>
       {item}
     </div>
     );
@@ -56,16 +47,20 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
     const dayEvent = timeCells.map((item, hour) => {
       const event = eventInfo[`id-${year}-${month}-${date}`]
         && eventInfo[`id-${year}-${month}-${date}`][`id-${hour}`]
-        && eventInfo[`id-${year}-${month}-${date}`][`id-${hour}`]["title"]
+        && eventInfo[`id-${year}-${month}-${date}`][`id-${hour}`]["title"];
+
       return (
-        <div>{event}</div>
-      )
+        <div className={styles.event}>
+          {event}
+        </div>
+      );
     });
+
     return (
-      <div>
+      <div className={styles.dayEvent}>
         {dayEvent}
       </div>
-    )
+    );
   });
 
   return (
@@ -77,7 +72,7 @@ export default function WeekTable ({ currentDate, eventInfo, onEventIdClick }) {
         <div className={styles.timeTable}>
           {timeTable}
         </div>
-        <div>
+        <div className={styles.weekEvent}>
           {weekEvent}
         </div>
       </div>

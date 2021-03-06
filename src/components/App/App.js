@@ -18,7 +18,6 @@ function App({ onInitialLoad, onEventInfoSubmit, eventIdRoute }) {
       <Header />
       <Switch>
         <Route path="/" exact>
-          <div>Main</div>
         </Route>
         <Route path="/calendar" exact>
           <Calendar />

@@ -19,6 +19,7 @@
   align-items: center;
   width: 100%;
   height: 5vh;
+  background-color: #FFF3E0
 }
 
 .dayCell {
@@ -46,7 +47,7 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 12%;
+  width: 14%;
   height: 100vh;
   border-right: 1px solid #BDBDBD;
   border-bottom: 1px solid #BDBDBD;
@@ -61,13 +62,29 @@
   border-bottom: 1px solid #BDBDBD;
 }
 
-.eventTable {
+.event {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10%;
-  height: 10vh;
-  border: 1px solid #BDBDBD;
+  overflow: hidden;
+  width: 100%;
+  height: 5vh;
+  border-right: 1px solid #BDBDBD;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.dayEvent {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.weekEvent {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  height: 100vh;
 }
 
 .link {
