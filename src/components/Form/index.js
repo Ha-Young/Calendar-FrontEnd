@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import styles from "./Form.module.css";
+import PropTypes from "prop-types";
+
 import ColorPicker, { useColor } from "react-color-palette";
 import TextInput from "../TextInput";
-import styles from "./Form.module.css";
 import { validateText, validateTime } from "../../utils/vailidation";
 import * as form from "../../constants/form";
 
@@ -121,3 +123,16 @@ const Form = ({
 };
 
 export default Form;
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  initialFormState: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    startTime: PropTypes.string.isRequired,
+    endTime: PropTypes.string.isRequired,
+    color: PropTypes.string,
+  }),
+};

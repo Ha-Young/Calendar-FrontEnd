@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./Modal.module.css";
+import PropTypes from "prop-types";
 
 const Modal = ({ children, onClick }) => {
   useEffect(() => {
@@ -23,3 +24,7 @@ const Modal = ({ children, onClick }) => {
 };
 
 export default Modal;
+
+Modal.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

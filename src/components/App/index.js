@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import styles from "./App.module.css";
+import PropTypes from "prop-types";
 
 import Header from "../Header";
 import SideBar from "../SideBar";
 import NewEventPage from "../../routes/NewEventPage/NewEventPage";
 import CalendarPageContainer from "../../containers/CalendarPageContainer";
 import EventDetailPageContainer from "../../containers/EventDetailPageContainer";
+
 
 const App = ({
   dateList,
@@ -51,3 +53,16 @@ const App = ({
 };
 
 export default App;
+
+App.propTypes = {
+  dateList: PropTypes.arrayOf(
+    PropTypes.string.isRequired,
+  ),
+  currentDate: PropTypes.instanceOf(Date),
+  handleChangeCalendarType: PropTypes.func.isRequired,
+  loadEventList: PropTypes.func.isRequired,
+  saveNewEventData: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  calendarType: PropTypes.bool.isRequired,
+};

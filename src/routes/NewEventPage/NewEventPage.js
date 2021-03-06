@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./NewEventPage.module.css";
+import PropTypes from "prop-types";
 import Form from "../../components/Form";
 import { currentDay, today } from "../../utils/date";
 
@@ -30,3 +31,8 @@ const NewEventPage = ({ onSubmit, onLoad }) => {
 };
 
 export default NewEventPage;
+
+NewEventPage.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onLoad: PropTypes.func.isRequired,
+};

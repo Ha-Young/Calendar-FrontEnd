@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./EventCard.module.css";
+import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import { generateCardHeight, generateCardLocation } from "../../utils/ui";
 
@@ -36,3 +37,13 @@ const EventCard = ({ event }) => {
 };
 
 export default EventCard;
+
+EventCard.propTypes = {
+  event: PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    endTime: PropTypes.string.isRequired,
+    startTime: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
+};

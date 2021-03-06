@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ScheduleBar.module.css";
+import PropTypes from "prop-types";
 import EventCard from "../EventCard";
 
 const ScheduleBar = ({ dayLength, schedules }) => {
@@ -16,3 +17,18 @@ const ScheduleBar = ({ dayLength, schedules }) => {
 };
 
 export default ScheduleBar;
+
+ScheduleBar.propTypes = {
+  dayLength: PropTypes.arrayOf(
+    PropTypes.string.isRequired,
+  ),
+  schedules: PropTypes.arrayOf(
+    PropTypes.shape({
+      color: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      endTime: PropTypes.string.isRequired,
+      startTime: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
+  ),
+};

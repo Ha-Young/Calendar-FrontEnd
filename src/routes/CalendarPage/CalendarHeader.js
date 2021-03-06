@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./CalendarPage.module.css";
+import PropTypes from "prop-types";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { addDays, subDays } from "date-fns";
 import { setCalendarDate } from "../../utils/date";
@@ -62,3 +63,13 @@ const CalendarHeader = ({
 };
 
 export default CalendarHeader;
+
+CalendarHeader.propTypes = {
+  headerInfo: PropTypes.arrayOf(
+    PropTypes.string.isRequired,
+  ),
+  selectedDate: PropTypes.instanceOf(Date),
+  isDailyCalendar: PropTypes.bool.isRequired,
+  checkNeedLoad: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

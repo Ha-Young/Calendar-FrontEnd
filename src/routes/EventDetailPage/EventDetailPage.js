@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import styles from "./EventDetailPage.module.css";
+import PropTypes from "prop-types";
 import { useHistory, useParams } from "react-router-dom";
 import EventDetail from "./EventDetail";
 import Form from "../../components/Form";
 import Modal from "../../components/Modal";
-import styles from "./EventDetailPage.module.css";
 
 const EventDetailPage = ({ getEventById, submitEventData, removeEventData }) => {
   const [showEditWindow, setShowEditWindow] = useState(false);
@@ -53,3 +54,9 @@ const EventDetailPage = ({ getEventById, submitEventData, removeEventData }) => 
 };
 
 export default EventDetailPage;
+
+EventDetailPage.propTypes = {
+  getEventById: PropTypes.func.isRequired,
+  submitEventData: PropTypes.func.isRequired,
+  removeEventData: PropTypes.func.isRequired,
+};

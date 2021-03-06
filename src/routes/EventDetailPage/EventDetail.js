@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./EventDetailPage.module.css";
+import PropTypes from "prop-types";
 
 const EventDetail = ({ onEdit, event, onGoBack }) => {
   const {
@@ -13,7 +14,7 @@ const EventDetail = ({ onEdit, event, onGoBack }) => {
   const handleGoBackClick = () => {
     onGoBack();
   };
-  
+
   return (
     <div>
       <div className={styles.column}>
@@ -48,3 +49,15 @@ const EventDetail = ({ onEdit, event, onGoBack }) => {
 };
 
 export default EventDetail;
+
+EventDetail.propTypes = {
+  event: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    startTime: PropTypes.string.isRequired,
+    endTime: PropTypes.string.isRequired,
+  }),
+  onEdit: PropTypes.func.isRequired,
+  onGoBack: PropTypes.func.isRequired,
+};

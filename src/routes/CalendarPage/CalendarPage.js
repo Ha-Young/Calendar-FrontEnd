@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./CalendarPage.module.css";
+import PropTypes from "prop-types";
 import CalendarHeader from "./CalendarHeader";
 import CalendarSideBar from "./CalendarSideBar";
 import ScheduleBar from "../../components/ScheduleBar";
@@ -45,3 +46,14 @@ const CalendarPage = ({
 };
 
 export default CalendarPage;
+
+CalendarPage.propTypes = {
+  getEventByCurrentDate: PropTypes.func.isRequired,
+  dateList: PropTypes.arrayOf(
+    PropTypes.string.isRequired,
+  ),
+  handleCalendarType: PropTypes.func.isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
+  isDailyCalendar: PropTypes.bool.isRequired,
+  loadMoreEventData: PropTypes.func.isRequired,
+};

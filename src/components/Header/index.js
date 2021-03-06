@@ -1,9 +1,9 @@
 import React from "react";
+import styles from "./Header.module.css";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { viewMode } from "../../constants/viewMode";
 import { generateTitleDate } from "../../utils/date";
-
-import styles from "./Header.module.css";
 
 // TODO: Create your own header.
 
@@ -12,7 +12,7 @@ const Header = ({ onClickButton, currentDate }) => {
   const handleClickWeekButton = () => onClickButton(viewMode.WEEKLYMODE.isDaily);
 
   const titleDate = generateTitleDate(currentDate);
-  
+
   return (
     <div className={styles.navigation}>
       {titleDate}
@@ -25,3 +25,8 @@ const Header = ({ onClickButton, currentDate }) => {
 };
 
 export default Header;
+
+Header.propTypes = {
+  currentDate: PropTypes.instanceOf(Date),
+  onClickButton: PropTypes.func.isRequired,
+};
