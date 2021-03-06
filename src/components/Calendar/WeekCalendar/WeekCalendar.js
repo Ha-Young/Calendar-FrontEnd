@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { periodUnit } from "../../../actions";
-import { WEEK } from "../../../constants/time";
-import { getCurrentWeek } from "../../../utils/getDate";
-import ScheduleContainer from "../CalendarItem/ScheduleContainer";
+import ScheduleContainer from "../../../containers/CalendarContainer/ScheduleContainer";
 import TimeContainer from "../CalendarItem/TimeContainer";
+import { WEEK } from "../../../constants/time";
 import styles from "./WeekCalendar.module.css"
+import PropTypes from "prop-types";
 
 function WeekCalendar({ week, onLoad }) {
   useEffect(() => {
@@ -41,18 +39,9 @@ function WeekCalendar({ week, onLoad }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    week: getCurrentWeek(state.currentDay),
-  };
-}
+export default WeekCalendar;
 
-function mapDispatchToProps(dispatch, ownProps) {
-  const { match: { params: { unit } } } = ownProps;
-
-  return {
-    onLoad: () => dispatch(periodUnit(unit)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WeekCalendar);
+WeekCalendar.propTypes = {
+  week: PropTypes.array.isRequired,
+  onLoad: PropTypes.func.isRequired,
+};

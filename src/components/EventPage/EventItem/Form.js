@@ -1,17 +1,16 @@
 import React, { useRef, useState } from "react";
-import { connect } from "react-redux";
-import { getTimeIndex } from "../../../utils/getTimeIndex";
-import Selector from "./Selector";
+import Selector from "../../../containers/EventContainer/SelectorContainer";
 import TextArea from "./TextArea";
-import { addEvent } from "../../../actions/index";
 import { FORM_ID } from "../../../constants/common";
+import { getTimeIndex } from "../../../utils/getTimeIndex";
+import PropTypes from "prop-types";
 
 function Form({
   currentDay,
+  formId,
   dispatchedAddEvent,
   dispatchedEditEvent,
   history,
-  formId,
   date = currentDay,
   title = "",
   description = "",
@@ -23,7 +22,7 @@ function Form({
   const fromRef = useRef();
   const toRef = useRef();
 
-  function handleSubmit() {
+  const handleSubmit = () => {
     const event = {
       id,
       date,
@@ -41,7 +40,7 @@ function Form({
     }
 
     history.goBack();
-  }
+  };
 
   return (
     <form
@@ -59,14 +58,12 @@ function Form({
   );
 }
 
-function mapStateToProps({ currentDay }) {
-  return { currentDay };
-}
+export default Form;
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatchedAddEvent: (event) => dispatch(addEvent(event)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+Form.propTypes = {
+  currentDay: PropTypes.string.isRequired,
+  formId: PropTypes.string.isRequired,
+  dispatchedAddEvent: PropTypes.func,
+  dispatchedEditEvent: PropTypes.func,
+  history: PropTypes.object.isRequired,
+};

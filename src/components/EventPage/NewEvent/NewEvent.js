@@ -1,7 +1,8 @@
 import React from "react";
 import { FORM_ID } from "../../../constants/common";
-import Form from "../EventItem/Form";
+import Form from "../../../containers/EventContainer/FromContainer";
 import styles from "./NewEvent.module.css";
+import PropTypes from "prop-types";
 
 function NewEvent({ history }) {
   return (
@@ -16,3 +17,7 @@ function NewEvent({ history }) {
 }
 
 export default NewEvent;
+
+Form.propTypes = {
+  history: PropTypes.object.isRequired,
+};

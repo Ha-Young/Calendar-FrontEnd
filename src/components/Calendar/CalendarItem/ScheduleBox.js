@@ -1,21 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { EVENT } from "../../../constants/address";
 import styles from "./ScheduleBox.module.css";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { selectDate, periodUnit, selectTime } from "../../../actions";
-import { getTimeIndex } from "../../../utils/getTimeIndex";
 
 function ScheduleBox({
-  id,
-  address,
   periodToDay,
   updateCurrentDay,
   updateSelectedTime,
 }) {
   return (
     <Link
-      to={`/events/${address}`}
+      to={EVENT.NEW}
       className={styles.ScheduleBox}
       onClick={() => {
         periodToDay();
@@ -26,33 +22,15 @@ function ScheduleBox({
       <div
         role="button"
         className={styles.ScheduleBox}
-        id={id}
       />
     </Link>
   );
 }
 
-function mapStateToProps({ events }, { id: { date, time } }) {
-  if (events[date] && events[date][time]) {
-    return { address: `:${date}${time}` };
-  }
-
-  return { address: "new" };
-}
-
-function mapDispatchToProps(dispatch, { id: { date, time } }) {
-  return {
-    periodToDay: () => dispatch(periodUnit()),
-    updateCurrentDay: () => dispatch(selectDate(date)),
-    updateSelectedTime: () => dispatch(selectTime(getTimeIndex.fromIndex(time))),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ScheduleBox);
+export default ScheduleBox;
 
 ScheduleBox.propTypes = {
-  id: PropTypes.shape({
-    date: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-  }),
+  periodToDay: PropTypes.func.isRequired,
+  updateCurrentDay: PropTypes.func.isRequired,
+  updateSelectedTime: PropTypes.func.isRequired,
 };

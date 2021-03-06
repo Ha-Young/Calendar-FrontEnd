@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./EventBox.module.css";
+import PropTypes from "prop-types";
 
 function EventBox(props) {
   return (
@@ -21,3 +22,15 @@ function EventBox(props) {
 }
 
 export default EventBox;
+
+EventBox.propTypes = {
+  props: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    from: PropTypes.number.isRequired,
+    to: PropTypes.number.isRequired,
+    length: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+  }),
+};

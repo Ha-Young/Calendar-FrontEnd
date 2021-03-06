@@ -1,5 +1,5 @@
-import { TIME_FROM } from "../../../constants/time";
 import React from "react";
+import { TIME_FROM } from "../../../constants/time";
 import styles from "./TimeContainer.module.css"
 
 export default function TimeContainer() {
@@ -7,7 +7,9 @@ export default function TimeContainer() {
     <div className={styles.timeContainer}>
       {TIME_FROM.map((item) => (
         <div key={item}>
-          <span className={styles.timeRow}>{item}</span>
+          <span className={styles.timeRow}>
+            {item}
+          </span>
         </div>
       ))}
     </div>

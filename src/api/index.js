@@ -14,6 +14,6 @@ export function getDBData() {
     .ref("Calendar/userID")
     .once("value")
     .then((snapshot) =>
-      snapshot.val()
+    snapshot.val()
     );
 }

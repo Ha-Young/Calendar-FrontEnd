@@ -3,12 +3,13 @@ import { Redirect, Route, Switch } from "react-router-dom";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
-import Header from "../Header/Header";
-import styles from "./App.module.css";
-import DayCalendar from "../Calendar/DayCalendar/DayCalendar";
-import WeekCalendar from "../Calendar/WeekCalendar/WeekCalendar";
+import Header from "../../containers/Header/HeaderContainer";
+import DayCalendar from "../../containers/CalendarContainer/DayCalendar";
+import WeekCalendar from "../../containers/CalendarContainer/WeekCalendar";
 import NewEvent from "../EventPage/NewEvent/NewEvent";
-import EventDetail from "../EventPage/EventDetail/EventDetail"
+import EventDetail from "../../containers/EventContainer/EventDetail"
+import styles from "./App.module.css";
+import PropTypes from "prop-types";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
@@ -30,3 +31,7 @@ function App({ onInitialLoad }) {
 }
 
 export default App;
+
+App.propTypes = {
+  onInitialLoad: PropTypes.func.isRequired,
+};

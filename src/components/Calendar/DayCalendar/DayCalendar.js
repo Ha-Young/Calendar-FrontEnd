@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
-import ScheduleContainer from "../CalendarItem/ScheduleContainer";
+import ScheduleContainer from "../../../containers/CalendarContainer/ScheduleContainer";
 import TimeContainer from "../CalendarItem/TimeContainer";
 import styles from "./DayCalendar.module.css";
-import { getCurrentDay } from "../../../utils/getDate";
-import { connect } from "react-redux";
-import { periodUnit } from "../../../actions";
-
+import PropTypes from "prop-types";
 
 function DayCalendar({
   date,
@@ -33,17 +30,13 @@ function DayCalendar({
   );
 }
 
-function mapStateToProps({ currentDay }) {
-  return {
-    date: currentDay,
-    day: getCurrentDay(currentDay),
-  };
-}
+export default DayCalendar;
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onLoad: () => dispatch(periodUnit()),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DayCalendar);
+DayCalendar.propTypes = {
+  date: PropTypes.string.isRequired,
+  day: PropTypes.shape({
+    string: PropTypes.string.isRequired,
+    number: PropTypes.number.isRequired,
+  }).isRequired,
+  onLoad: PropTypes.func.isRequired,
+};

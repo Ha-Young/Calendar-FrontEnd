@@ -1,10 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { nextDate, prevDate } from '../../actions';
 import { MOVE_DATE_BUTTON, PERIOD_UNIT } from '../../constants/common';
-import { getCurrentDate } from '../../utils/getDate';
 import styles from "./Header.module.css";
+import PropTypes from "prop-types";
 
 function Header ({
    currentDate,
@@ -34,17 +32,10 @@ function Header ({
   );
 }
 
-function mapStateToProps(state) {
-  const currentDate = getCurrentDate(state.currentDay);
+export default Header;
 
-  return { currentDate };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onPrevButtonClick: () => dispatch(prevDate()),
-    onNextButtonClick: () => dispatch(nextDate()),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+Header.propTypes = {
+  currentDate: PropTypes.string.isRequired,
+  onPrevButtonClick: PropTypes.func.isRequired,
+  onNextButtonClick: PropTypes.func.isRequired,
+};

@@ -1,6 +1,7 @@
 import React from "react";
 import { PLACEHOLDER } from "../../../constants/common";
 import styles from "./TextArea.module.css";
+import PropTypes from "prop-types";
 
 function TextArea({ text, updateText }) {
   return (
@@ -33,3 +34,11 @@ function TextArea({ text, updateText }) {
 }
 
 export default TextArea;
+
+TextArea.propTypes = {
+  text: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+  updateText: PropTypes.func.isRequired,
+};

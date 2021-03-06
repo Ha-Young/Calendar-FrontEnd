@@ -1,16 +1,16 @@
 import React from "react";
 import { TIME_FROM, TIME_TO } from "../../../constants/time";
-import { connect } from "react-redux";
-import { getTimeIndex } from "../../../utils/getTimeIndex";
-import { selectTime } from "../../../actions";
-import styles from "./Selector.module.css";
 import { SELECTOR_NAME } from "../../../constants/common";
+import { getTimeIndex } from "../../../utils/getTimeIndex";
+import styles from "./Selector.module.css";
+import PropTypes from "prop-types";
 
-function Selector({ props: {
-    fromRef,
-    toRef,
+function Selector({
+  props: {
     from,
     to,
+    fromRef,
+    toRef,
   },
   selectedTime,
   updateSelectedTime,
@@ -50,14 +50,15 @@ function Selector({ props: {
   );
 }
 
-function mapStateToProps({ selectedTime }) {
-  return { selectedTime };
-}
+export default Selector;
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updateSelectedTime: (time) => dispatch(selectTime(time)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Selector);
+Selector.propTypes = {
+  props: PropTypes.shape({
+    from: PropTypes.number,
+    to: PropTypes.number,
+    fromRef: PropTypes.object.isRequired,
+    toRef: PropTypes.object.isRequired,
+  }),
+  selectedTime: PropTypes.number,
+  updateSelectedTime: PropTypes.func.isRequired,
+};

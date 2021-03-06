@@ -11,8 +11,8 @@
 
 import { DAY, NEXT_DATE, PREV_DATE, WEEK, SELECT_TIME, SELECT_DATE, ADD_EVENT, EDIT_EVENT, REMOVE_EVENT, GET_DB_EVENT } from "../constants/actionTypes";
 import { getCurrentWeek, getISOString, getLastWeek, getNextWeek, getTomorrow, getYesterday } from "../utils/getDate";
-import _ from "lodash";
 import { saveData } from "../api";
+import _ from "lodash";
 
 const initialState = {
   period: DAY,
@@ -22,7 +22,7 @@ const initialState = {
   events: {},
 };
 
-export default function reducer(state = initialState, action) {
+export default (state = initialState, action) => {
   const copy = _.cloneDeep(state);
 
   switch (action.type) {
@@ -114,4 +114,4 @@ export default function reducer(state = initialState, action) {
     default:
       return state;
   }
-}
+};
