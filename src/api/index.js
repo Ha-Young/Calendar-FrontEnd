@@ -2,7 +2,7 @@
 import firebase from "./firebase";
 
 // 질문! 스토어에서 상태값으로 에러핸들링을 하고자 API에서 try..catch를 하지 않고
-// API 실행 구간에서 start, success, error에 디스패치를 걸어줬는데 API에서도 해줘야 하는 것인지 궁금합니다.
+// API 실행 구간에서 start, success, error에 디스패치를 걸어줬는데 API 내부에서 해줘야 하는 것인지 궁금합니다.
 export const saveEventData = async (data) => {
   const database = firebase.database();
   const id = database.ref("userId/events/").push().key;

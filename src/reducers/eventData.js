@@ -4,10 +4,10 @@ import * as types from "../constants/actionTypes";
 export const byId = (state = {}, actions) => {
   switch (actions.type) {
     case types.GET_EVENT_DATA_SUCCESS: {
-      const { 
-        payLoad: { 
-          events, 
-        } 
+      const {
+        payLoad: {
+          events,
+        }
       } = actions;
 
       if (events === null) return state;
@@ -19,10 +19,10 @@ export const byId = (state = {}, actions) => {
     }
     case types.SET_EVENT_DATA_SUCCESS:
     case types.UPDATE_EVENT_DATA_SUCCESS: {
-      const { 
-        payLoad: { 
+      const {
+        payLoad: {
           events,
-        } 
+        }
       } = actions;
 
       return {
@@ -31,10 +31,10 @@ export const byId = (state = {}, actions) => {
       };
     }
     case types.DELETE_EVENT_DATA_SUCCESS: {
-      const { 
-        payLoad: { 
-          events, 
-        } 
+      const {
+        payLoad: {
+          events,
+        }
       } = actions;
 
       const savedEvents = { ...state };
@@ -50,10 +50,10 @@ export const byId = (state = {}, actions) => {
 export const allIds = (state = [], actions) => {
   switch (actions.type) {
     case types.GET_EVENT_DATA_SUCCESS: {
-      const { 
-        payLoad: { 
+      const {
+        payLoad: {
           events,
-        } 
+        }
       } = actions;
 
       if (events === null) return state;
@@ -64,19 +64,19 @@ export const allIds = (state = [], actions) => {
       return [...copiedState];
     }
     case types.SET_EVENT_DATA_SUCCESS: {
-      const { 
-        payLoad: { 
-          events, 
-        } 
+      const {
+        payLoad: {
+          events,
+        }
       } = actions;
 
       return [...state, events.id];
     }
     case types.DELETE_EVENT_DATA_SUCCESS: {
-      const { 
-        payLoad: { 
-          events, 
-        } 
+      const {
+        payLoad: {
+          events,
+        }
       } = actions;
 
       return state.filter((event) => event.id !== events.id);
@@ -139,7 +139,7 @@ export const getEventById = (state, id) => state.byId[id];
 
 export const getEventByCurrentDate = (state, date) => {
   return state.allIds.reduce((acc, val) => {
-    if (getEventById(state, val)?.date === date) {
+    if (getEventById(state, val).date === date) {
       acc.push(getEventById(state, val));
     }
 

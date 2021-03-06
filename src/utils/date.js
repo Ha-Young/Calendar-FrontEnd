@@ -4,7 +4,7 @@ import * as dates from "../constants/date";
 
 export const today = new Date();
 
-export const hours = new Array(dates.DAY_LENGTH).fill(dates.INITIAL_VALUE).map((_, index) => 
+export const hours = new Array(dates.DAY_LENGTH).fill(dates.INITIAL_VALUE).map((_, index) =>
   index < dates.LENGTH_FLAG ? `0${index}:00` : `${index}:00`);
 
 export const currentDay = (today) => formatISO(today).slice(dates.FIRST_DATE_INDEX, dates.LAST_DATE_INDEX);
@@ -28,10 +28,10 @@ export const endsOfWeek = (date) => {
   return [formatISO(startOfWeek(date)), formatISO(endOfWeek(date))];
 };
 
-export const setCalendarDate = (cb, isDailyCalendar, currentDate) => {
+export const setCalendarDate = (changeDate, isDailyCalendar, currentDate) => {
   const calendarGap = isDailyCalendar ? viewMode.DAILYMODE.gap : viewMode.WEEKLYMODE.gap;
 
-  const selectedDate = cb(currentDate, calendarGap);
+  const selectedDate = changeDate(currentDate, calendarGap);
   const daily = getDay(selectedDate);
   const weekly = getWeek(selectedDate);
 
