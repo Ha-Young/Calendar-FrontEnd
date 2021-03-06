@@ -1,15 +1,18 @@
 .content {
   display: flex;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   background: white;
   z-index: 8;
-  top: 20%;
+  top: 30%;
   left: 40%;
   max-width: 500px;
   min-height: 400px;
   padding: 10px;
-  box-shadow: 5px 2px 5px 2px #D3D3D3;
+  box-shadow:
+    0 24px 38px 3px rgb(0 0 0 / 14%),
+    0 9px 46px 8px rgb(0 0 0 / 12%),
+    0 11px 15px -7px rgb(0 0 0 / 20%);
   border-radius: 10px;
 }
 
