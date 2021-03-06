@@ -5,7 +5,7 @@ export default function Dashboard({ main, login, events}) {
   return (
     <div className={styles.container}>
       <div className={styles.leftSideBar}>
-        <div className={styles.nav}>
+        <div className={styles.login}>
           {login}
         </div>
         <div className={styles.info}>
@@ -20,5 +20,5 @@ export default function Dashboard({ main, login, events}) {
         {main}
       </main>
     </div>
-  )
+  );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import PropTypes from 'prop-types';
 
 import styles from "./App.module.css";
 import Calendar from "../Calendar/Calendar";
@@ -31,7 +32,7 @@ function App({
           <Dashboard
             main={<Calendar userId={userId} events={events} addEvents={addEvents} />}
             login={<Login onClickLogin={toggleLogin} isLoggedIn={isLoggedIn}/>}
-            events={<Events userId={userId} removeEvents={removeEvents} />}
+            events={<Events userId={userId} events={events} removeEvents={removeEvents} />}
           />
         </Route>
         <Route exact path="/event/new">
@@ -52,3 +53,19 @@ function App({
 }
 
 export default App;
+
+App.propTypes = {
+  events: PropTypes.object.isRequired,
+  addEvents: PropTypes.func.isRequired,
+  removeEvents: PropTypes.func.isRequired,
+  login: PropTypes.shape({
+    userId: PropTypes.string.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
+  }).isRequired,
+  toggleLogin: PropTypes.func.isRequired,
+  notification: PropTypes.shape({
+    haveNotification: PropTypes.bool.isRequired,
+    message: PropTypes.string,
+  }).isRequired,
+  offNotification: PropTypes.func.isRequired,
+};
