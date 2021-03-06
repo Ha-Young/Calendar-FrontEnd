@@ -46,6 +46,7 @@ const EventLine = ({ count, events }) => {
       startHour++;
     }
   }
+  
   eventStart = Number(eventStart);
 
   return (
