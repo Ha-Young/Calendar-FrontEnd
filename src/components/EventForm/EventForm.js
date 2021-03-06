@@ -22,7 +22,7 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
     "end-hour": initialHour + 1
   };
 
-  if (urlInfo) {
+  if (!isCreateMode) {
     const numOfEventId = urlInfo.location.pathname.match(/\d+/g);
     const dateId = `id-${numOfEventId[0]}-${numOfEventId[1]}-${numOfEventId[2]}`;
     const hourId = `id-${numOfEventId[3]}`;
@@ -35,24 +35,46 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
   const handleChange = (ev) => {
     const { name } = ev.target;
     let { value } = ev.target;
-    let eventId = `
-    ${eventData["start-year"]}
-    -${eventData["start-month"]}
-    -${eventData["start-date"]}
-    -${eventData["start-hour"]}
-  `;
+    let eventIds = [
+      eventData["start-year"],
+      eventData["start-month"],
+      eventData["start-date"],
+      eventData["start-hour"]
+    ];
 
-    eventId = eventId.replace(/\n| /g, "");
+    switch (name) {
+      case "start-year":
+        eventIds[0] = ev.target.value;
+        break;
+      case "start-month":
+        eventIds[1] = ev.target.value;
+        break;
+      case "start-date":
+        eventIds[2] = ev.target.value;
+        break;
+      case "start-hour":
+        eventIds[3] = ev.target.value;
+    }
+
+    const eventId = eventIds.join("-");
 
     if (ev.target.type === "number") {
       value = parseInt(value, 10);
     }
 
-    setEventData({...eventData, [name]: value, "evnetId": eventId});
+    setEventData({...eventData, [name]: value, "eventId": eventId});
   }
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
+
+    if (!isCreateMode) {
+      const numOfEventId = urlInfo.location.pathname.match(/\d+/g);
+      const dateId = `id-${numOfEventId[0]}-${numOfEventId[1]}-${numOfEventId[2]}`;
+      const hourId = `id-${numOfEventId[3]}`;
+      delete eventInfo[dateId][hourId];
+    }
+
     onEventInfoSubmit(eventData);
   }
 

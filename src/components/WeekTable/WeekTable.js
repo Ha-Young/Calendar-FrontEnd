@@ -1,5 +1,4 @@
 import React from "react";
-import { IoHourglass } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import TimeTable from "../TimeTable/TimeTable";
 import styles from "./WeekTable.module.css";
