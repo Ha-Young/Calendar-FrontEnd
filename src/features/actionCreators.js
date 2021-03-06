@@ -15,6 +15,7 @@ export const setEventFormFor = {
 
 export const setUserEventFor = {
   register: (event) => ({type: userEvent.SET_EVENT, payload: event}),
+  registerAll: (eventAll) => ({type: userEvent.SET_EVENT_ALL, payload: eventAll}),
   delete: (eventId) => ({type: userEvent.DELETE_EVENT, payload: eventId}),
 };
 

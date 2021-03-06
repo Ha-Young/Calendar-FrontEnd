@@ -14,6 +14,7 @@
 
  export const userEvent = {
    SET_EVENT: "SET_EVENT",
+   SET_EVENT_ALL: "SET_EVENT_ALL",
    DELETE_EVENT: "DELETE_EVENT",
  };
 

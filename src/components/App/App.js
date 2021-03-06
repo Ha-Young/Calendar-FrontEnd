@@ -25,10 +25,12 @@ function App(props) {
   }
 
   useEffect(() => {
-    const path = getPathString(yearMonth[0], yearMonth[1], "contents");
-    console.log(path);
+    const path = getPathString(yearMonth[0], yearMonth[1], "events");
     fetchDataFromFirebaseDB(path)
-      .then(res => console.log(res.val()));
+      .then((snapShot) => {
+        const eventAll = snapShot.val();
+        if (eventAll) props.actToUserEvent.setEventAll(eventAll);
+      });
   }, [yearMonth]);
 
   return (

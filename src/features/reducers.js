@@ -1,6 +1,6 @@
 import { EVENT_FORM_STATE_KEY, MAX_MIN_DATE } from "../constants";
 import { eventForm, userEvent, SET_CURRENT_DATE } from "../constants/actionTypes";
-import { setEventForm, setUserEvent, setCurrentDate, deleteUserEvent } from "./reducerSupportors";
+import { setEventForm, setUserEvent, setUserEventAll, setCurrentDate, deleteUserEvent } from "./reducerSupportors";
 
 const current = new Date();
 const initiateState = {
@@ -101,6 +101,9 @@ export default function reducer(state = initiateState, action) {
 
     case userEvent.SET_EVENT:
       return setUserEvent(state, payload);
+
+    case userEvent.SET_EVENT_ALL:
+      return setUserEventAll(state, payload);
 
     case userEvent.DELETE_EVENT:
       return deleteUserEvent(state, payload);

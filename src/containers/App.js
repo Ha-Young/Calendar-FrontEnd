@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     actToUserEvent: {
       setEvent: (event) => dispatch(setUserEventFor.register(event)),
+      setEventAll: (eventAll) => dispatch(setUserEventFor.registerAll(eventAll)),
       deleteEvent: (eventId) => dispatch(setUserEventFor.delete(eventId)),
     },
     actToCurrentDate: (dateBundle) => dispatch(setCurrentDate(dateBundle)),

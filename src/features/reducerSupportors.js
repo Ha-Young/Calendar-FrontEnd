@@ -44,6 +44,16 @@ export function setUserEvent(state, userEvent) {
   };
 }
 
+export function setUserEventAll(state, AllEvent) {
+  const events = [];
+
+  for (const key in AllEvent) events.push(AllEvent[key]);
+
+  return events.reduce((updatedState, userEvent) => {
+    return setUserEvent(updatedState, userEvent);
+  }, state);
+}
+
 export function deleteUserEvent(state, eventId) {
   const copyUserEventById = { ...state.userEvent.byId };
   const copyUserEventAllId = [ ...state.userEvent.allId ];
