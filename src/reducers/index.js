@@ -32,15 +32,6 @@ const eventInfo = (state = {}, action) => {
   }
 }
 
-const eventIdRoute = (state = "", action) => {
-  switch (action.type) {
-    case "ROUTE_EVENTID":
-      return state = action.eventId;
-    default:
-      return state;
-  }
-};
-
 const isDayCalendar = (state = true, action) => {
   switch (action.type) {
     case "SHOW_DAYCALENDAR":
@@ -54,6 +45,5 @@ const isDayCalendar = (state = true, action) => {
 
 export default combineReducers({
   eventInfo,
-  eventIdRoute,
   isDayCalendar
 });

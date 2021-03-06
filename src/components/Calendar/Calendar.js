@@ -12,7 +12,6 @@ import weekOfMonth from "../../utils/weekOfMonth"
 export default function Calendar ({
   eventInfo,
   isDayCalendar,
-  onEventIdClick,
   onEventDayClick,
   onEventWeekClick
 }) {
@@ -71,12 +70,10 @@ export default function Calendar ({
           {isDayCalendar && <DayTable
             currentDate={formattedCurrentDate}
             eventInfo={eventInfo}
-            onEventIdClick={onEventIdClick}
           />}
           {!isDayCalendar && <WeekTable
             currentDate={formattedCurrentDate}
             eventInfo={eventInfo}
-            onEventIdClick={onEventIdClick}
           />}
         </div>
       </div>

@@ -12,11 +12,6 @@ const submitEventInfo = (eventInfo) => ({
   eventInfo
 });
 
-const routeEventId = (eventId) => ({
-  type: types.ROUTE_EVENTID,
-  eventId
-});
-
 const showDayCalendar = () => ({
   type: types.SHOW_DAYCALENDAR
 });
@@ -27,7 +22,6 @@ const showWeekCalendar = () => ({
 
 export {
   submitEventInfo,
-  routeEventId,
   showDayCalendar,
   showWeekCalendar
 };

@@ -2,16 +2,12 @@ import React from "react";
 import styles from "./DayTable.module.css";
 import { Link } from "react-router-dom";
 
-export default function DayTable ({ currentDate, eventInfo, onEventIdClick }) {
+export default function DayTable ({ currentDate, eventInfo }) {
   const { year, month, date } = currentDate;
   const CELL_NUMBER = 24;
   const timeCells = [];
   const todayEvent = eventInfo[`id-${year}-${month}-${date}`];
   const todayEvents = new Array(CELL_NUMBER).fill("");
-
-  const handleEventIdClick = (ev) => {
-    onEventIdClick(ev.target.dataset.eventId);
-  }
 
   for (let i = 0; i < CELL_NUMBER; i++) {
     const time = i < 12 ? `${i} AM` : `${i % 12} PM`;
@@ -47,7 +43,6 @@ export default function DayTable ({ currentDate, eventInfo, onEventIdClick }) {
           <Link
             to={`/event/${todayEvents[index].eventId}`}
             data-event-id={`${todayEvents[index].eventId}`}
-            onClick={handleEventIdClick}
           >
             {todayEvents[index].content}
           </Link>

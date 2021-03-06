@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Calendar from "../components/Calendar/Calendar";
-import { routeEventId, showDayCalendar, showWeekCalendar } from "../actions"
+import { showDayCalendar, showWeekCalendar } from "../actions";
 
 const mapStateToProps = (state) => ({
   eventInfo: state.eventInfo,
@@ -8,10 +8,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onEventIdClick: (eventId) => {
-    dispatch(routeEventId(eventId));
-  },
-
   onEventDayClick: () => {
     dispatch(showDayCalendar());
   },
