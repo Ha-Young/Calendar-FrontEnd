@@ -1,14 +1,17 @@
 import React from "react";
 import moment from "moment";
-import styles from "./Calendar.module.css";
+import styles from "./CalendarMatrix.module.css";
 import OnedaySchedule from "../OnedaySchedule";
 import { CALENDAR_MODE, DATE_UNIT } from "../../utils/constants";
 
-export default function Calendar ({
+export default function CalendarMatrix ({
   currentDate,
   calendarMode,
   eventInfoList,
 }) {
+
+  console.log("date in Calendar", currentDate)
+  console.log(moment(currentDate).day(), "??")
   return (
     <div className={styles.Calender}>
       { calendarMode === CALENDAR_MODE.WEEKLY ?

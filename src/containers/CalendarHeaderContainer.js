@@ -1,45 +1,29 @@
+import React from "react";
 import { connect } from "react-redux";
-import React, { useEffect } from "react";
-import App from "../components/App/App";
+import CalendarHeader from "../components/CalendarHeader";
 import {
   changeCalendarMode,
   moveToPrevDate,
   moveToNextDate,
-  getUserEvents,
-  moveToToday
+  moveToToday,
 } from "../actions";
-import { fetchEventsList } from "../api";
 
-function AppContainer({
+function CalendarHeaderContainer({
   currentDate,
   calendarMode,
   changeCalendarMode,
   moveToPrevDate,
   moveToNextDate,
   moveToToday,
-  onInitialLoad,
-  EventInfoControlReducer,
-  getUserEvents,
 }) {
-  async function getUserEventsFromFirebase() {
-    const result = await fetchEventsList();
-    getUserEvents(result);
-  }
-
-  useEffect(() => {
-    getUserEventsFromFirebase();
-  }, []);
-
   return (
-    <App
+    <CalendarHeader
       currentDate={currentDate}
       calendarMode={calendarMode}
       changeCalendarMode={changeCalendarMode}
       moveToPrevDate={moveToPrevDate}
       moveToNextDate={moveToNextDate}
       moveToToday={moveToToday}
-      onInitialLoad={onInitialLoad}
-      eventInfoList={EventInfoControlReducer}
     />
   );
 }
@@ -49,12 +33,10 @@ function mapStateToProps({
     currentDate,
     calendarMode,
   },
-  EventInfoControlReducer,
 }) {
   return {
-    currentDate: currentDate,
-    calendarMode: calendarMode,
-    EventInfoControlReducer: EventInfoControlReducer,
+    currentDate,
+    calendarMode,
   };
 }
 
@@ -72,10 +54,7 @@ function mapDispatchToProps(dispatch) {
     moveToToday(currentDate) {
       dispatch(moveToToday(currentDate));
     },
-    getUserEvents(fetchedUserEvents) {
-      dispatch(getUserEvents(fetchedUserEvents));
-    },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarHeaderContainer);

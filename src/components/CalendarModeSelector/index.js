@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./CalenderModeSelector.module.css";
+import styles from "./CalendarModeSelector.module.css";
 import { CALENDAR_MODE } from "../../utils/constants";
 
-export default function CalenderModeSelector({ changeCalendarMode }) {
+export default function CalendarModeSelector({ changeCalendarMode }) {
   function handleSelectChange(e) {
     let mode = e.target.value;
 

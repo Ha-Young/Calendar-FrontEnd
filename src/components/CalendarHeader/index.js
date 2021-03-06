@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from "./Header.module.css"
-import CalenderModeSelector from "../CalenderModeSelector";
+import styles from "./CalendarHeader.module.css"
+import CalendarModeSelector from "../CalendarModeSelector";
 import Button from "../Button";
 import DateControlNav from "../DateControlNav";
 import { BUTTON_PLACEHOLDER } from "../../utils/constants";
+import moment from "moment";
 
-export default function Header ({
+export default function CalendarPageHeader({
   currentDate,
   calendarMode,
   changeCalendarMode,
@@ -31,7 +32,7 @@ export default function Header ({
       </div>
 
       <div className={styles.Selector}>
-        <CalenderModeSelector
+        <CalendarModeSelector
           changeCalendarMode={changeCalendarMode}
         />
       </div>

@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
 } from "react-router-dom";
-import AppContainer from "./containers/AppContainer";
+import App from "../src/components/App";
 import allReducers from "./reducers";
 
 const middleware = [];
@@ -23,7 +23,7 @@ const store = createStore(allReducers,
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <AppContainer />
+      <App />
     </Router>
   </Provider>,
   document.getElementById("root")

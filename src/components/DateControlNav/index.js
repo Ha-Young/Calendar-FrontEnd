@@ -16,6 +16,7 @@ export default function DateContorlNav({
   moveToNextDate,
   moveToToday,
 }) {
+  console.log("date in header", currentDate)
   function handleButtonClick(e) {
     const buttonType = e.target.title;
     let newDate;
@@ -48,7 +49,7 @@ export default function DateContorlNav({
       <Button title={BUTTON_TYPE.PREV} onClick={handleButtonClick}></Button>
       <Button title={BUTTON_TYPE.NEXT} onClick={handleButtonClick}></Button>
       { calendarMode === CALENDAR_MODE.DAILY ?
-        <div className={styles.currentDateTitle}>{currentDate.substr(0, 10)}</div> :
+        <div className={styles.currentDateTitle}>{moment(currentDate).format("YYYY-MM-DD")}</div> :
         <div className={styles.currentDateTitle}>{`${moment(currentDate).weeks()}th week!`}</div>
       }
     </div>
