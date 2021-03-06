@@ -27,7 +27,6 @@ export async function removeEventDatabase(event) {
 }
 
 export function getEventKey() {
-
   const database = firebase.database();
   const newPostKey = database.ref().child("events").push().key;
 
