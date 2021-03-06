@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import styles from "./App.module.css";
+import { fetchDataFromFirebaseDB } from "../../api";
+import { getPathString } from "../../utils";
 import Header from "../Header/Header";
 import Daily from "../Daily/Daily";
 import Weekly from "../Weekly/Weekly";
@@ -23,7 +25,10 @@ function App(props) {
   }
 
   useEffect(() => {
-    
+    const path = getPathString(yearMonth[0], yearMonth[1], "contents");
+    console.log(path);
+    fetchDataFromFirebaseDB(path)
+      .then(res => console.log(res.val()));
   }, [yearMonth]);
 
   return (

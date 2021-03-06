@@ -53,8 +53,8 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
 
     setEvent({id, title, period, content, timeStamp});
 
-    const pathForEvent = getPathString(year, month, date, "events", id);
-    const pathForContent = getPathString(year, month, date, "contents", id);
+    const pathForEvent = getPathString(year, month, "events", id);
+    const pathForContent = getPathString(year, month, "contents", id);
 
     const resultBySavingEvent = saveToFirebaseDB(
       pathForEvent,
