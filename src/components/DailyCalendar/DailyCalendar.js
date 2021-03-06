@@ -2,26 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "./DailyCalendar.module.css"
 import CalendarRow from "../CalendarRow/CalendarRow";
 import TimeSidebar from "../TimeSidebar/TimeSidebar";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 
-function DailyCalendar({ eventInfo }) {
-  const [todayDate, setTodayDate] = useState(dayjs());
-  const [date, setDate] = useState(todayDate.format("YYYY-MM-DD"));
-
+function DailyCalendar({ eventInfo, date, goNextDay, goPrevDay, setId }) {
   const prevMonthSelector = "<";
   const nextMonthSelector = ">";
-
-  function goNextDay() {
-    setTodayDate(todayDate.add(1, "day"));
-  }
-
-  function goPrevDay() {
-    setTodayDate(todayDate.subtract(1, "day"));
-  }
-
-  useEffect(() => {
-    setDate(todayDate.format("YYYY-MM-DD"));
-  }, [todayDate]);
 
   return (
     <>
@@ -33,7 +18,7 @@ function DailyCalendar({ eventInfo }) {
       <div className={styles.div}>
         <TimeSidebar />
           <div className={styles.grid}>
-              <CalendarRow currentDate={date} eventInfo={eventInfo}/>
+              <CalendarRow currentDate={date} eventInfo={eventInfo} setId={setId}/>
           </div>
       </div>
     </>
