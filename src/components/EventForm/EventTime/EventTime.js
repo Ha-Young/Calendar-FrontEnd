@@ -6,6 +6,7 @@ export default function EventTime({ name, value, onChange }) {
       <p>{name}</p>
       <input
         type="time"
+        required step="3600"
         value={value}
         onChange={onChange}
       />

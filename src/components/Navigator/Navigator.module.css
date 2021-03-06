@@ -1,4 +1,4 @@
-.Header {
+.Navigator {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -6,15 +6,16 @@
   background-color: #ffffff;
   width: 100%;
   top: 0;
+  left: 0;
   box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.1);
 }
 
-.Header ul {
+.Navigator ul {
   display: flex;
   padding : 0px;
   list-style: none;
 }
 
-.Header ul li {
+.Navigator ul li {
   margin :3px;
 }

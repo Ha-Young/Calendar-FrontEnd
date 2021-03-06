@@ -1,0 +1,18 @@
+.DateHeader {
+  display: flex;
+  margin-bottom: 50px;
+  justify-content: center;
+}
+
+.DateHeader button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.DateHeader div {
+  margin-left: 20px;
+  margin-right: 20px;
+  align-self: center;
+  font-size: 25px;
+}

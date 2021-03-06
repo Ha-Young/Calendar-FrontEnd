@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
 import styles from "./App.module.css";
-import Header from "../Header/Header";
+import Navigator from "../Navigator/Navigator";
 import Week from "../Week.js/Week";
 import Daily from "../../containers/Daily";
 import CalendarEvent from "../CalendarEvent/CalendarEvent";
@@ -16,7 +16,7 @@ function App({ onInitialLoad, something }) {
 
   return (
     <div className={styles.App}>
-      <Header />
+      <Navigator />
       <Switch>
         <Route exact path="/" component={Week} />
         <Route path="/week" component={Week} />

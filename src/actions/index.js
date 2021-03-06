@@ -8,10 +8,8 @@
 
 import * as types from "../constants/actionTypes";
 
-let nextEventId = 0;
-
 export const receiveEventData = (eventData) => ({
   type: types.RECEIVE_EVENT_DATA,
-  id: nextEventId++,
+  dateAndTime: `${eventData.date}-${eventData.startTime}-${eventData.endTime}`,
   eventData,
 });
