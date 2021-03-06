@@ -65,7 +65,14 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
     setEventData({...eventData, [name]: value, "eventId": eventId});
   }
 
-  const handleSubmit = (ev) => {
+  const handleDeleteClcik = (ev) => {
+    const numOfEventId = urlInfo.location.pathname.match(/\d+/g);
+    const dateId = `id-${numOfEventId[0]}-${numOfEventId[1]}-${numOfEventId[2]}`;
+    const hourId = `id-${numOfEventId[3]}`;
+    delete eventInfo[dateId][hourId];
+  }
+
+  const handleFormSubmit = (ev) => {
     ev.preventDefault();
 
     if (!isCreateMode) {
@@ -81,7 +88,7 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
   return (
     <>
       <div className={styles.EventForm}>
-      <form onSubmit={handleSubmit} className={styles.eventInput}>
+      <form onSubmit={handleFormSubmit} className={styles.eventInput}>
         <div className={styles.inputContainer}>
           일정 제목
           <input
@@ -193,11 +200,13 @@ export default function EventForm ({ onEventInfoSubmit, isCreateMode, eventInfo,
             type="submit"
             value="수정"
           />}
-          {!isCreateMode && <input
+          {!isCreateMode && <button
             className={styles.submitButton}
-            type="submit"
-            value="삭제"
-          />}
+            type="button"
+            onClick={handleDeleteClcik}
+          >
+            삭제
+          </button>}
         </div>
       </form>
       </div>
