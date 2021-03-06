@@ -2,7 +2,6 @@ import React from "react";
 import { DateTime } from "luxon";
 import { useHistory } from "react-router-dom";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
-import { IoMenuOutline } from "react-icons/io5";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.png";
 
@@ -18,7 +17,9 @@ export default function Header({ selectDay, prevButtonClicked, nextButtonClicked
     <header className={styles.wrapper}>
       <div className={styles.sideBarToggleWrapper}>
         <button className={styles.changeBtn}>
-          <IoMenuOutline />
+          <svg focusable="false" viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+          </svg>
         </button>
       </div>
       <div className={styles.logoWrapper}>
