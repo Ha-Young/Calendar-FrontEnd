@@ -12,7 +12,7 @@ export default function WeeklyCalendar() {
   const [weekly, setWeekly] = useState(moment());
 
   const weekList = buildWeekly(weekly);
-  const dayOfWeek = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
+  const week = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
 
   return (
     <div className={styles.calendar}>
@@ -26,22 +26,20 @@ export default function WeeklyCalendar() {
         <div className={styles.colummDay}>
           <div className={styles.weeks}>
             {
-              dayOfWeek.map(day => (
+              week.map(day => (
                 <div key={day} className={styles.dayWeek}>{day}</div>
               ))
             }
           </div>
           {weekList.map((week) => (
-            <div key={week}>
-              {week.map((day) => (
-                <div key={day} className={styles.day}>
-                  <CalendarColumn
-                    columnDay={day.format("D").toString()}
-                    dayID={day.format("YYYY-MM-DD")}
-                  />
-                </div>
-              ))}
-            </div>
+            week.map((day) => (
+              <div key={day} className={styles.day}>
+                <CalendarColumn
+                  columnDay={day.format("D").toString()}
+                  dayID={day.format("YYYY-MM-DD")}
+                />
+              </div>
+            ))
           ))}
         </div>
       </section>
