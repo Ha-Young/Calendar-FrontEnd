@@ -15,6 +15,7 @@ function App({ selectDay, nextButtonClicked, prevButtonClicked, toggleCalendarVi
         prevButtonClicked={prevButtonClicked}
         selectedDate={selectedDate}
         isDailyView={isDailyView}
+        selectDay={selectDay}
       />
       <div className={styles.bodyWrapper}>
         <SideBar selectDay={selectDay} />

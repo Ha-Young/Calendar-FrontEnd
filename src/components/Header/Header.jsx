@@ -1,12 +1,18 @@
-import React, {useState} from "react";
+import React from "react";
+import { DateTime } from "luxon";
 import { useHistory } from "react-router-dom";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { IoMenuOutline } from "react-icons/io5";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.png";
 
-export default function Header({ prevButtonClicked, nextButtonClicked, selectedDate, isDailyView }) {
+export default function Header({ selectDay, prevButtonClicked, nextButtonClicked, selectedDate, isDailyView }) {
   const history = useHistory();
+
+  const handleClick = () => {
+    selectDay(DateTime.now().toJSDate());
+    history.push("/calendar");
+  }
 
   return (
     <header className={styles.wrapper}>
@@ -22,7 +28,7 @@ export default function Header({ prevButtonClicked, nextButtonClicked, selectedD
         <span>캘린더</span>
       </div>
       <div className={styles.todayBtnWrapper}>
-        <button onClick={() => history.push("/calendar")}>
+        <button onClick={handleClick}>
           <span>오늘</span>
         </button>
       </div>
