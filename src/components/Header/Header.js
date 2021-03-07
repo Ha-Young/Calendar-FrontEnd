@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getYearMonthWeek } from "../../utils";
 
-export default function Header({ currentDate, dispatch}) {
+export default function Header({ currentDate, updateCurrentDate }) {
   const [calendarType, setCalendarType] = useState("daily");
   const date = currentDate.getDate();
   const { year, month, week } = getYearMonthWeek(currentDate);
@@ -60,12 +60,12 @@ export default function Header({ currentDate, dispatch}) {
             </Link>
           </li>
           <li>
-            <button onClick={() => dispatch(beforeDateBundle)}>
+            <button onClick={() => updateCurrentDate(beforeDateBundle)}>
               이전
             </button>
           </li>
           <li>
-            <button onClick={() => dispatch(afterDateBundle)}>
+            <button onClick={() => updateCurrentDate(afterDateBundle)}>
               다음
             </button>
           </li>

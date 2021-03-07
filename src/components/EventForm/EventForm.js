@@ -29,7 +29,7 @@ function EventForm({ inputData, updateEventForm, updateUserEvent, eventById }) {
 
   const maxDate = new Date(year, month, 0).getDate();
 
-  function handleOnClick() {
+  function addNewEvent() {
     const isValid = checkValidEvent(eventById, inputData);
     if (!isValid) return setIsValidEvent(isValid);
 
@@ -155,7 +155,10 @@ function EventForm({ inputData, updateEventForm, updateUserEvent, eventById }) {
         </label>
       </fieldset>
       {isValidEvent ? null : <span className={styles.alert}>중복된 이벤트입니다.</span>}
-        <button onClick={handleOnClick}>
+        <button onClick={() => {
+          addNewEvent();
+          updateEventForm({ ...inputData, id: "", title: "", content: "" })
+        }}>
           등록
         </button>
       <Link to="/calendar">

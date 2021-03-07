@@ -1,4 +1,4 @@
-import { UPDATE_EVENT_FORM, UPDATE_USER_EVENT, DELETE_USER_EVENT, SET_CURRENT_DATE } from "../constants/actionTypes";
+import { UPDATE_EVENT_FORM, UPDATE_USER_EVENT, DELETE_USER_EVENT, UPDATE_CURRENT_DATE } from "../constants/actionTypes";
 import { setEventForm, setUserEvent, deleteUserEvent, setCurrentDate } from "./reducerSupportors";
 
 const today = new Date();
@@ -34,7 +34,7 @@ export default function reducer(state = initiateState, action) {
     case DELETE_USER_EVENT:
       return deleteUserEvent(state, payload);
 
-    case SET_CURRENT_DATE:
+    case UPDATE_CURRENT_DATE:
       const { year, month, date } = payload;
       const updatedDate = new Date(year, month, date);
       return {

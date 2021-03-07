@@ -8,7 +8,7 @@ import Weekly from "../Weekly/Weekly";
 import EventForm from "../EventForm/EventForm";
 import EventDetails from "../EventDetails/EventDetails";
 
-function App({ updateEventForm, actToCurrentDate, updateUserEvent, deleteUserEvent, eventInfo, currentDate, dailyEvents, weeklyEvents, eventById }) {
+function App({ updateEventForm, updateCurrentDate, updateUserEvent, deleteUserEvent, eventInfo, currentDate, dailyEvents, weeklyEvents, eventById }) {
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth() + 1;
 
@@ -28,7 +28,7 @@ function App({ updateEventForm, actToCurrentDate, updateUserEvent, deleteUserEve
     <div>
       <Header
         currentDate={currentDate}
-        dispatch={actToCurrentDate}
+        updateCurrentDate={updateCurrentDate}
       />
       <Switch>
         <Route exact path="/" children={<Redirect to="/calendar"/>} />

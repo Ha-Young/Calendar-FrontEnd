@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
 import "../css/reset.css";
-import { setCurrentDate } from "../features/actionCreators";
+import { updateCurrentDate } from "../features/actions/currentDate";
 import { updateEventForm } from "../features/actions/eventForm";
 import { updateUserEvent, deleteUserEvent } from "../features/actions/userEvents";
 import * as selectors from "../features/selectors";
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
     updateEventForm: (formData) => dispatch(updateEventForm(formData)),
     updateUserEvent: (event) => dispatch(updateUserEvent(event)),
     deleteUserEvent: (eventId) => dispatch(deleteUserEvent(eventId)),
-    actToCurrentDate: (dateBundle) => dispatch(setCurrentDate(dateBundle)),
+    updateCurrentDate: (dateBundle) => dispatch(updateCurrentDate(dateBundle)),
   };
 };
 
