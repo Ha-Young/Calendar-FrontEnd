@@ -1,18 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchDataFromFirebaseDB } from "../../api";
 import { getPathString } from "../../utils";
 
 export default function EventDetails({ eventById, setEventForm, deleteEvent, setEvent }) {
   const { eventId } = useParams();
-
-  if (!Object.keys(eventById).length) return <div>유효하지 않음!</div>;
-
-  for (const id in eventById) {
-    if (eventId === id) break;
-    return <div>유효하지 않음!!</div>;
-  }
-
   const { title, content, period } = eventById[eventId];
   const from = new Date(period.from);
   const to = new Date(period.to);
@@ -22,15 +14,30 @@ export default function EventDetails({ eventById, setEventForm, deleteEvent, set
   const fromHour = from.getHours();
   const toHour = to.getHours();
 
-  const path = getPathString(year, month, "contents", eventId);
-  fetchDataFromFirebaseDB(path)
-    .then((snapShot) => {
-      const content = snapShot.val().content;
-      setEvent({ ...eventById[eventId], content });
-    })
-    .catch((err) => {
-      // add Error Handling
-    });
+  useEffect(processFetchingEvent, []);
+
+  function processFetchingEvent() {
+    const path = getPathString(year, month, "contents", eventId);
+    fetchDataFromFirebaseDB(path)
+      .then((snapShot) => {
+        if (!snapShot) return;
+        const content = snapShot.val().content;
+        setEvent({ ...eventById[eventId], content });
+      })
+      .catch((err) => {
+        // add Error Handling
+      });
+  }
+
+  let countOfEvent = Object.keys(eventById).length;
+  if (!countOfEvent) return <div>유효하지 않음!</div>;
+
+  for (const id in eventById) {
+    if (eventId === id) break;
+
+    countOfEvent--;
+    if (!countOfEvent) return <div>유효하지 않음!</div>;
+  }
 
   return (
     <>

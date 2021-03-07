@@ -31,13 +31,13 @@ function App(props) {
         const eventAll = snapShot.val();
         if (eventAll) props.actToUserEvent.setEventAll(eventAll);
       });
-  }, [yearMonth]);
+  }, [yearMonth, props.actToUserEvent]);
 
   return (
     <div className={styles.App}>
       <Header
-        isDaily = {isDaily}
-        setIsDaily = {setIsDaily}
+        isDaily={isDaily}
+        setIsDaily={setIsDaily}
         currentDate={props.currentDate}
         dispatch={props.actToCurrentDate}
       />
