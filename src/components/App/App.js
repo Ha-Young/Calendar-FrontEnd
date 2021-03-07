@@ -15,10 +15,10 @@ function App() {
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route path="/" exact>
-          <Redirect from="/" to="/calendar" />
+        <Route path="/calendar">
           <Daily />
         </Route>
+        <Redirect from="/" to="/calendar" />
         <Route path="/weekly">
           <Weekly />
         </Route>

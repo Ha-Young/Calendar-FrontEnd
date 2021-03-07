@@ -1,11 +1,3 @@
-.daily_container {
-  display: flex;
-  height: 90vh;
-  overflow: hidden;
-  padding-right: 10px;
-  /* background-color: #084e63; */
-}
-
 .flex {
   display: flex;
   justify-content: space-around;
@@ -13,4 +5,23 @@
   height: 5vh;
   color: #F8F6F1;
   background-color: #A9927D;
+}
+
+.flex div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex div:hover {
+  font-size: 3rem;
+}
+
+.daily_container {
+  display: flex;
+  height: 90vh;
+  overflow: hidden;
+  padding-right: 10px;
 }

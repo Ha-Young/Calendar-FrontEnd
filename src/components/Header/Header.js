@@ -15,8 +15,6 @@ export default function Header () {
     }
   }
 
-  console.log(isDailyView, '바뀌면 렌더 한번 더');
-
   return (
     <header className={styles.header}>
       <nav>
