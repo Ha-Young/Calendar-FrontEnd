@@ -6,13 +6,14 @@ export default function Form({ onSubmit, onUpdate, onDelete, type }) {
   const history = useHistory();
   const params = useLocation();
   const eventDay = params.state.eventDay;
-  const { title, description, start, end } = params.state.event;
+  const eventTime = params.state.hour;
+  const { title, description } = params.state.event;
   const initialState = {
     eventDay: eventDay || "",
     title: title || "",
     description: description || "",
-    start: start || "",
-    end: end || "",
+    start: eventTime,
+    end: eventTime + 1,
   };
   const [values, setValues] = useState(initialState);
   const [isDisabled, setIsDisabled] = useState(type === "new" ? false : true);

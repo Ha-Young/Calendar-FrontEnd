@@ -51,10 +51,7 @@ export default function Weekly({ currentDay, weekEvents, getWeekEventData }) {
         </div>
         <div className={styles.weekly_header_dayOfWeek}>
           {DAYS.map((day, index) => (
-            <div
-              // className={styles.weekly_dayOfWeek}
-              key={randomIndex()}
-            >
+            <div key={randomIndex()}>
               <div>{day}</div>
               <div>{dayOfMonth[index].slice(5)}</div>
             </div>
