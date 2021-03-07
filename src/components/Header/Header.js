@@ -1,38 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getYearMonthWeek } from "../../utils";
 
-export default function Header(props) {
-  const {
-    isDaily,
-    setIsDaily,
-    currentDate,
-    dispatch,
-  } = props;
+export default function Header({ currentDate, dispatch}) {
+  const [calendarType, setCalendarType] = useState("daily");
   const date = currentDate.getDate();
   const { year, month, week } = getYearMonthWeek(currentDate);
 
   const beforeDateBundle = {};
   const afterDateBundle = {};
+  let beforeDate;
+  let afterDate;
 
-  if (isDaily) {
-    const beforeDate = new Date(year, month - 1, date - 1);
-    const afterDate = new Date(year, month - 1, date + 1);
+  switch (calendarType) {
+    case "daily":
+    beforeDate = new Date(year, month - 1, date - 1);
+    afterDate = new Date(year, month - 1, date + 1);
     beforeDateBundle.year = beforeDate.getFullYear();
     beforeDateBundle.month = beforeDate.getMonth();
     beforeDateBundle.date = beforeDate.getDate();
     afterDateBundle.year = afterDate.getFullYear();
     afterDateBundle.month = afterDate.getMonth();
     afterDateBundle.date = afterDate.getDate();
-  } else {
-    const beforeDate = new Date(year, month - 1, date - 7);
-    const afterDate = new Date(year, month - 1, date + 7);
+    break;
+
+    case "weekly":
+    beforeDate = new Date(year, month - 1, date - 7);
+    afterDate = new Date(year, month - 1, date + 7);
     beforeDateBundle.year = beforeDate.getFullYear();
     beforeDateBundle.month = beforeDate.getMonth();
     beforeDateBundle.date = beforeDate.getDate();
     afterDateBundle.year = afterDate.getFullYear();
     afterDateBundle.month = afterDate.getMonth();
     afterDateBundle.date = afterDate.getDate();
+    break;
   }
 
   return (
@@ -41,12 +42,12 @@ export default function Header(props) {
       <nav>
         <ul>
           <li>
-            <Link to='/calendar' onClick={() => setIsDaily(true)}>
+            <Link to='/calendar' onClick={() => setCalendarType("daily")}>
               일간
             </Link>
           </li>
           <li>
-            <Link to="/calendar/weekly" onClick={() => setIsDaily(false)}>
+            <Link to="/calendar/weekly" onClick={() => setCalendarType("weekly")}>
               주간
             </Link>
           </li>

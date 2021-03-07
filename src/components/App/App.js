@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
-import styles from "./App.module.css";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { fetchDataFromFirebaseDB } from "../../api";
 import { getPathString } from "../../utils";
 import Header from "../Header/Header";
@@ -8,14 +7,12 @@ import Daily from "../Daily/Daily";
 import Weekly from "../Weekly/Weekly";
 import EventForm from "../EventForm/EventForm";
 import EventDetails from "../EventDetails/EventDetails";
-import PageError from "../PageError/PageError";
 
 function App(props) {
   const currentYear = props.currentDate.getFullYear();
   const currentMonth = props.currentDate.getMonth() + 1;
 
   const [yearMonth, setYearMonth] = useState([currentYear, currentMonth]);
-  const [isDaily, setIsDaily] = useState(true);
 
   const beforeYear = yearMonth[0];
   const beforeMonth = yearMonth[1];
@@ -34,14 +31,13 @@ function App(props) {
   }, [yearMonth, props.actToUserEvent]);
 
   return (
-    <div className={styles.App}>
+    <div>
       <Header
-        isDaily={isDaily}
-        setIsDaily={setIsDaily}
         currentDate={props.currentDate}
         dispatch={props.actToCurrentDate}
       />
       <Switch>
+        <Route exact path="/" children={<Redirect to="/calendar"/>} />
         <Route exact path="/calendar">
           <Daily
             role={"daily"}
@@ -73,8 +69,8 @@ function App(props) {
             setEvent={props.actToUserEvent.setEvent}
           />
         </Route>
-        <Route path="/page-error">
-          <PageError />
+        <Route path="*">
+          <Redirect to="/calendar" />
         </Route>
       </Switch>
     </div>
