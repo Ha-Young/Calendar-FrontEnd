@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import dailyStyles from "./Daily.module.css";
 import { MAX_MIN_DATE, DAYS } from "../../constants";
 import weeklyStyles from "../Weekly/Weekly.module.css";
-import CalendarHeader from "../shared/CalendarHeader";
+import CalendarHeader from "../CalendarHeader/CalendarHeader";
 
 export default function Daily({ role, eventDate, userEvents, dispatch }) {
   const history = useHistory();
