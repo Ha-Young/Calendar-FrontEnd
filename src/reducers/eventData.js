@@ -17,7 +17,6 @@ export const byId = (state = {}, actions) => {
         ...events,
       };
     }
-    case types.SET_EVENT_DATA_SUCCESS:
     case types.UPDATE_EVENT_DATA_SUCCESS: {
       const {
         payLoad: {
@@ -62,15 +61,6 @@ export const allIds = (state = [], actions) => {
       const copiedState = new Set(concatedState);
 
       return [...copiedState];
-    }
-    case types.SET_EVENT_DATA_SUCCESS: {
-      const {
-        payLoad: {
-          events,
-        }
-      } = actions;
-
-      return [...state, events.id];
     }
     case types.DELETE_EVENT_DATA_SUCCESS: {
       const {

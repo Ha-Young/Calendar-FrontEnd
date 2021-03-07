@@ -11,11 +11,6 @@ export const saveEventData = async (data) => {
     ...data,
     id,
   });
-
-  return {
-    ...data,
-    id,
-  };
 };
 
 export const changeEventData = async (data) => {
