@@ -3,8 +3,8 @@ form {
   height: 95vh;
   display: flex;
   flex-direction: column;
-  background-color: rgb(235, 241, 241);
-  color: rgb(87, 87, 87);
+  /* background-color: rgb(235, 241, 241); */
+  /* color: rgb(87, 87, 87); */
   font-weight: 600;
   font-size: 2.5vw;
 }
@@ -34,7 +34,7 @@ input {
   font-size: larger;
   border-radius: 2vw;
   padding: 2vw;
-  background-color: rgb(180, 182, 181);
+  /* background-color: rgb(180, 182, 181); */
 }
 
 .flex {

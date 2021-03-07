@@ -4,6 +4,7 @@
   width: 100%;
   height: 10vh;
   font-size: 2vw;
+  background-color: #F2F4F3;
 }
 
 .weekly_header_btn {
@@ -11,7 +12,9 @@
   height: 3vh;
   display: flex;
   justify-content: space-evenly;
-  background-color: #EF6F6C;
+  background-color: #5E503F;
+  border-top: #0A0908 solid 1px;
+  border-bottom: #0A0908 solid 1px;
 }
 
 .weekly_header_dayOfWeek {
@@ -21,8 +24,8 @@
   height: 7vh;
   padding-left: 5vw;
   font-size: 1rem;
-  color: #F8F6F1;
-  background-color: #9F9FED;
+  /* color: #F8F6F1; */
+  /* background-color: #9F9FED; */
 }
 
 .weekly_container {
@@ -30,7 +33,7 @@
   width: 100%;
   height: 85vh;
   overflow: hidden;
-  background-color: #084e63;
+  /* background-color: #084e63; */
 }
 
 .weekly_container_view {

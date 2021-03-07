@@ -3,7 +3,7 @@
   height: 90vh;
   overflow: hidden;
   padding-right: 10px;
-  background-color: #084e63;
+  /* background-color: #084e63; */
 }
 
 .flex {
@@ -12,5 +12,5 @@
   align-items: center;
   height: 5vh;
   color: #F8F6F1;
-  background-color: #9F9FED;
+  background-color: #A9927D;
 }
