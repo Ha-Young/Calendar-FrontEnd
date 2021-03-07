@@ -4,8 +4,9 @@ import styles from './WeeklyCalendar.module.css';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { TIME_TABLE, SCHEDULE_BOX } from '../../constant';
 
-const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
+const WeeklyCalendar = ({ schedules }) => {
   const [todayDate, setTodayDate] = useState(new Date());
+  console.log(todayDate);
   const currentDate = new Date();
   const date = todayDate.getDate();
   const year = todayDate.getFullYear();
@@ -15,7 +16,7 @@ const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
   const timeCells = [];
   const eventCells = [];
   let sundayDate = makeSundayDate(todayDate);
-  let daysList, prevMonth, prevYear, nextMonth, nextYear, firstKeyId;
+  let prevMonth, prevYear, nextMonth, nextYear, firstKeyId;
 
   for (let i = 0; i < TIME_TABLE; i++) {
     timeCells.push(i);
@@ -56,8 +57,8 @@ const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
     )
   });
 
-  daysList = days.map((day, index) => {
-    let startDate = todayDate.getDate();
+  const daysList = days.map((day, index) => {
+    let startDate = sundayDate.getDate();
 
     sundayDate.setDate(++startDate);
     const currentDate = startDate - 1;
@@ -93,7 +94,7 @@ const WeeklyCalendar = ({ schedules, showscheduleinfo }) => {
                     to={`/weeklycalendar/weeklyevent/${firstKeyId}`}
                     style={{ textDecoration: 'none' }}
                   >
-                    <div key={fullDate} onClick={showscheduleinfo}>
+                    <div key={fullDate}>
                       <div className={styles.scheduledEvent}>
                         {(Number(event.startTime) === time) && `${eventTitle}`}
                       </div>

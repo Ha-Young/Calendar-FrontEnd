@@ -7,10 +7,11 @@
 export const makeSundayDate = (date) => {
   const todayDay = date.getDay();
   const todayDate = date.getDate();
+  const newDate = new Date();
 
-  date.setDate(todayDate - todayDay);
+  newDate.setDate(todayDate - todayDay);
 
-  return date;
+  return newDate;
 }
 
 /**
