@@ -31,11 +31,10 @@ const Form = ({
   };
 
   const validateData = (data) => {
-    if
-    (
+    if (
       !validateText(data.title) ||
       !validateText(data.description) ||
-      !validateTime(data.startTime,data.endTime)
+      !validateTime(data.startTime, data.endTime)
     ) {
       return false;
     }
