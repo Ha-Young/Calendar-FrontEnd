@@ -27,7 +27,7 @@ const CalendarPage = ({
       <CalendarHeader
         checkNeedLoad={checkNeedLoad}
         headerInfo={dateList}
-        onClick={handleCalendarType}
+        onButtonClick={handleCalendarType}
         selectedDate={selectedDate}
         isDailyCalendar={isDailyCalendar}
       />
