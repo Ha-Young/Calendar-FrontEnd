@@ -9,8 +9,8 @@ const EventFormContainer = ({ events, selectedEventInfo }) => {
   const history = useHistory();
   const currentUrl = useLocation();
   const selectedEvent = currentUrl.pathname === "/events/new"
-  ? null
-  : events[selectedEventInfo.selectedEventDayIndex][selectedEventInfo.selectedEventId];
+    ? null
+    : events[selectedEventInfo.selectedEventDayIndex][selectedEventInfo.selectedEventId];
 
   const handleSubmit = (e, title, description, startDateTime, endDateTime) => {
     e.preventDefault();
@@ -18,18 +18,18 @@ const EventFormContainer = ({ events, selectedEventInfo }) => {
     const key = currentUrl.pathname === "/events/new" ? null : selectedEvent.uid;
     const date = startDateTime.slice(0, 10);
     const newEvent = {
-      title: title,
-      description: description,
-      startDateTime: startDateTime,
-      endDateTime: endDateTime,
+      title,
+      description,
+      startDateTime,
+      endDateTime,
     };
 
     setEvent(newEvent, date, key)
-    .then(() => history.push("/calendar"))
-    .catch((err) => {
-      throwError(err);
-      history.push("/error");
-    });
+      .then(() => history.push("/calendar"))
+      .catch((err) => {
+        throwError(err);
+        history.push("/error");
+      });
   };
 
   const handleRemove = (startDateTime) => {
@@ -37,11 +37,11 @@ const EventFormContainer = ({ events, selectedEventInfo }) => {
     const key = selectedEvent.uid;
 
     removeEvent(date, key)
-    .then(() => history.push("/calendar"))
-    .catch((err) => {
-      throwError(err);
-      history.push("/error");
-    });
+      .then(() => history.push("/calendar"))
+      .catch((err) => {
+        throwError(err);
+        history.push("/error");
+      });
   };
 
   return (

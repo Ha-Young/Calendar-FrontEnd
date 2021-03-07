@@ -25,15 +25,14 @@ const CalendarContentsContainer = ({
     const fetchEvents = async () => {
       const events = await getEvents(displayDates.map(date => date.toFormat("yyyy-LL-dd")));
       loadEvents(events);
-    }
+    };
 
     try {
       fetchEvents();
-    } catch(err) {
+    } catch (err) {
       throwError(err);
       history.push("/error");
     }
-    
   }, [selectedDate, isDailyView]);
 
   return (

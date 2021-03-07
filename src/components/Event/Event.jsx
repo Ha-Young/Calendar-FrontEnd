@@ -9,7 +9,7 @@ export default function Event({ selectedEventInfo }) {
 
   return (
     isWrongUrl
-    ? <Error />
-    : <EventFormContainer />
+      ? <Error />
+      : <EventFormContainer />
   );
 }

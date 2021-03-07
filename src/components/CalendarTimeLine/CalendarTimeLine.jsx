@@ -5,10 +5,7 @@ export default function CalendarTimeLine() {
   const timeLineItems = [];
 
   for (let i = 0; i < 24; i++) {
-    let prefix;
-
-    if (i < 12) prefix = "오전";
-    else prefix = "오후";
+    const prefix = i < 12 ? "오전" : "오후";
 
     timeLineItems.push(
       <div key={i * 2} className={styles.timeLineItem}>

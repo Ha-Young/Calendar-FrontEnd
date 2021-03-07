@@ -7,9 +7,11 @@ export default function Error({ text = DEFAULT_ERROR_MESSAGE }) {
   const history = useHistory();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timerId = window.setTimeout(() => {
       history.push("/calendar");
     }, 1000);
+    
+    return window.clearTimeout(timerId);
   }, [history]);
   
   return(

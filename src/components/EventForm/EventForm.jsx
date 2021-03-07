@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import styles from "./EventForm.module.css";
 
 export default function EventForm({ selectedEvent, handleSubmit, handleRemove, currentUrl }) {
-  const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
-  const [description, setDescription] = useState(selectedEvent ? selectedEvent.description : "");
-  const [startDateTime, setStartDateTime] = useState(selectedEvent ? selectedEvent.startDateTime : "");
-  const [endDateTime, setEndDateTime] = useState(selectedEvent ? selectedEvent.endDateTime : "");
+  const [title, setTitle] = useState(selectedEvent?.title ?? "");
+  const [description, setDescription] = useState(selectedEvent?.description ?? "");
+  const [startDateTime, setStartDateTime] = useState(selectedEvent?.startDateTime ?? "");
+  const [endDateTime, setEndDateTime] = useState(selectedEvent?.endDateTime ?? "");
+
+  const onTitleChange = (e) => setTitle(e.target.value);
+  const onDescriptionChange = (e) => setDescription(e.target.value);
+  const onStartDateTimeChange = (e) => setStartDateTime(e.target.value.slice(0,14)+"00");
+  const onEndDateTimeChange = (e) => setEndDateTime(e.target.value.slice(0,14)+"00");
 
   return (
     <div className={styles.wrapper}>
@@ -17,7 +22,7 @@ export default function EventForm({ selectedEvent, handleSubmit, handleRemove, c
               <input
                 type="text"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={onTitleChange}
                 required
               />
             </div>
@@ -29,7 +34,7 @@ export default function EventForm({ selectedEvent, handleSubmit, handleRemove, c
                 rows="10"
                 cols="30" 
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={onDescriptionChange}
                 required
               />
             </div>
@@ -40,7 +45,7 @@ export default function EventForm({ selectedEvent, handleSubmit, handleRemove, c
               <input
                 type="datetime-local" 
                 value={startDateTime}
-                onChange={(e) => setStartDateTime(e.target.value.slice(0,14)+"00")}
+                onChange={onStartDateTimeChange}
                 required
               />
             </div>
@@ -51,7 +56,7 @@ export default function EventForm({ selectedEvent, handleSubmit, handleRemove, c
               <input
                 type="datetime-local" 
                 value={endDateTime}
-                onChange={(e) => setEndDateTime(e.target.value.slice(0,14)+"00")}
+                onChange={onEndDateTimeChange}
                 min={startDateTime}
                 max={startDateTime.slice(0,11) + "23:59"}
                 required
@@ -64,14 +69,11 @@ export default function EventForm({ selectedEvent, handleSubmit, handleRemove, c
           </div>
         </div>
       </form>
-      {currentUrl.pathname === "/events/new"
-      ? null
-      : (
-          <div className={styles.formButtonWrapper}>
-            <button onClick={() => handleRemove(startDateTime)}>Remove</button>
-          </div>
-        )
-      }
+      {currentUrl.pathname === "/events/new" && (
+        <div className={styles.formButtonWrapper}>
+          <button onClick={() => handleRemove(startDateTime)}>Remove</button>
+        </div>
+      )}
     </div>
   );
 }

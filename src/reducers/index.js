@@ -23,9 +23,8 @@ export default function reducer(state = initialState, action) {
     }
 
     case types.NEXT_BUTTON_CLICKED: {
-      const newDate = state.isDailyView
-      ? state.selectedDate.plus({ days: 1 })
-      : state.selectedDate.plus({ days: 7 });
+      const dayToPlus = state.isDailyView ? { days: 1 } : { days: 7 };
+      const newDate = state.selectedDate.plus(dayToPlus);
 
       return {
         ...state,
@@ -34,9 +33,8 @@ export default function reducer(state = initialState, action) {
     }
 
     case types.PREV_BUTTON_CLICKED: {
-      const newDate = state.isDailyView
-      ? state.selectedDate.minus({ days: 1 })
-      : state.selectedDate.minus({ days: 7 });
+      const dayToMinus = state.isDailyView ? { days: 1 } : { days: 7 };
+      const newDate = state.selectedDate.minus(dayToMinus);
 
       return {
         ...state,
