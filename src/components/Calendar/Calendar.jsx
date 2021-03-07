@@ -10,17 +10,14 @@ import { getAllEventsByDates } from '../../api';
 const Calendar = ({ currentDate, calendarMode, scheduleData, dispatchScheduleData, setTargetScheduleData }) => {
   useEffect(() => {
     const dateArray = getDateArr();
-    function eventCallBack(value) {
-      dispatchScheduleData(value);
-    }
 
-    calendarMode.length && getAllEventsByDates(dateArray, eventCallBack);
-  }, [calendarMode, currentDate]);
+    calendarMode.length && getAllEventsByDates(dateArray, dispatchScheduleData);
+  }, [calendarMode.length]);
   
   function getDateArr() {
     return calendarMode === DAILY_MODE 
-    ? [dateInfoToObject(currentDate)] 
-    : dateInfoToObjectArr(currentDate)
+      ? [dateInfoToObject(currentDate)] 
+      : dateInfoToObjectArr(currentDate)
   }
   const dateArr = getDateArr();
 
@@ -30,9 +27,9 @@ const Calendar = ({ currentDate, calendarMode, scheduleData, dispatchScheduleDat
 
   return (
     <div className={styles.calendar}>
-      <CalendarUpper dateArr={dateArr}></CalendarUpper>
-      <hr></hr>
-      <CalendarTimeTable scheduleData={scheduleData} calendarMode={calendarMode} callback={handleSchduleClickEvent}></CalendarTimeTable>
+      <CalendarUpper dateArr={dateArr} />
+      <hr />
+      <CalendarTimeTable scheduleData={scheduleData} calendarMode={calendarMode} callback={handleSchduleClickEvent} />
     </div>
   );
 };

@@ -9,7 +9,7 @@
 
  */
 import { combineReducers } from 'redux';
-import { CHANGE_CALENDAR_MODE,  SET_SCHEDULE_DATA, GET_TARGET_SCHEDULE_DATA } from '../constants/actionTypes';
+import { CHANGE_CALENDAR_MODE,  SET_SCHEDULE_DATA, SET_TARGET_SCHEDULE_DATA } from '../constants/actionTypes';
 import dateReducer from './date';
 
 const initialState = {
@@ -30,7 +30,7 @@ function reducer(state = initialState, action) {
         ...state,
         scheduleData: action.scheduleData
       };
-    case GET_TARGET_SCHEDULE_DATA:
+    case SET_TARGET_SCHEDULE_DATA:
       return {
         ...state,
         targetScheduleData: action.targetScheduleData

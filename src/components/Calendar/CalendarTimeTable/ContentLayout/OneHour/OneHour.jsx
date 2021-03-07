@@ -4,24 +4,24 @@ import styles from './OneHour.module.scss';
 
 import Content from '../../../../publicComponent/Content/Content';
 
-const OneHour = ({ oneData, isEdge, isWeek, callback }) => {
+const OneHour = ({ oneData, edgeFlag, isWeek, callback }) => {
   let color;
   let content;
   let onClickEvent = null;
   let key = null;
   if (oneData) {
     color = oneData.color;
-    content = !isWeek && isEdge === 1 ? oneData.content : '';
+    content = !isWeek && edgeFlag === 1 ? oneData.content : '';
     onClickEvent = callback(oneData);
     key = oneData.key;
   }
 
   const contentJSX = (
     <Content 
-      className={"context"} 
+      className="context" 
       textContent={content} 
       color={color}
-      borderFlg={isEdge}
+      borderFlag={edgeFlag}
       onClickEvent={onClickEvent}
     />
   );

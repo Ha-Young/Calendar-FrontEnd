@@ -33,7 +33,7 @@ const ScheduleCreateForm = ({ currentDate }) => {
       const editedDate = changeDateFormatYYYYMMDD(currentDate);
       setDate(editedDate.toString());
     }
-  }, [currentDate]);
+  }, [currentDate, state]);
 
   function handleDateChange(event) {
     setDate(event.target.value);

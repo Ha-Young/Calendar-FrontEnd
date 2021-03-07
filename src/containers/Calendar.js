@@ -2,8 +2,7 @@ import { connect } from "react-redux";
 import { setScheduleData, setTargetScheduleData } from "../actions";
 import Calendar from '../components/Calendar/Calendar';
 
-const mapStateToProps = ({ rootStates, dateStates }) => (
-  {
+const mapStateToProps = ({ rootStates, dateStates }) => ({
   ...dateStates,
   calendarMode: rootStates.calendarMode,
   scheduleData: rootStates.scheduleData

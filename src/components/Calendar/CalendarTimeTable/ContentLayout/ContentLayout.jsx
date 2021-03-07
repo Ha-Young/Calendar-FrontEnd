@@ -22,7 +22,7 @@ const ContentLayout = ({ todayData, isWeek, callback }) => {
         <OneHour 
           key={i} 
           oneData={eachHour} 
-          isEdge={isEdge} 
+          edgeFlag={isEdge} 
           isWeek={isWeek} 
           callback={callback}
         />);

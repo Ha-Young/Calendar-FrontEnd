@@ -7,11 +7,11 @@ import ContentLayout from './ContentLayout/ContentLayout';
 
 const CalendarTimeTable = ({ scheduleData = [], calendarMode, callback }) => {
   function getOneDayLayoutArray() {
-    return scheduleData.map((el, index) => {
+    return scheduleData.map((todayData, i) => {
       return (
         <ContentLayout 
-          key={index} 
-          todayData={el} 
+          key={i} 
+          todayData={todayData} 
           isWeek={calendarMode === WEEKLY_MODE} 
           callback={callback}
         />
@@ -21,10 +21,10 @@ const CalendarTimeTable = ({ scheduleData = [], calendarMode, callback }) => {
 
   return (
     <div className={styles.calendarTimeTableContainer}>
-      <TimeLayout></TimeLayout>
+      <TimeLayout />
       {getOneDayLayoutArray()}
     </div>
-  )
+  );
 }
 
 export default CalendarTimeTable;

@@ -8,29 +8,21 @@ const LEFT_CLASSNAME = 'fas fa-chevron-left';
 const RIGHT_CLASSNAME = 'fas fa-chevron-right';
 
 const DateNavigator = ({ direction, onClick }) => {
-  function getDateNavigatorAttributes() {
-    const attributes = {};
-    if (direction === LEFT) {
-      attributes.iconClassName = LEFT_CLASSNAME;
-      attributes.id = styles.left;
-      attributes.isForward = false;
-    } else {
-      attributes.iconClassName = RIGHT_CLASSNAME;
-      attributes.id = styles.right;
-      attributes.isForward = true;
-    }
+  const isLeftDirection = direction === LEFT;
 
-    return attributes;
-  }
-  const attributes = getDateNavigatorAttributes();
+  const dateNavigatorAttributes = {
+    iconClassName: isLeftDirection ? LEFT_CLASSNAME : RIGHT_CLASSNAME,
+    id: isLeftDirection ? styles.left : styles.right,
+    isForward : isLeftDirection ? false : true,
+  };
 
   return (
     <div 
       className={styles.navigator} 
-      id={attributes.id} 
-      onClick={() => onClick(attributes.isForward)}
+      id={dateNavigatorAttributes.id} 
+      onClick={() => onClick(dateNavigatorAttributes.isForward)}
     >
-      <Icon className={attributes.iconClassName}></Icon>
+      <Icon className={dateNavigatorAttributes.iconClassName} />
     </div>
   );
 }

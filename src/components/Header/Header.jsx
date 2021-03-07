@@ -15,33 +15,28 @@ function Header ({ calendarMode, changeCalendarMode }) {
       case (DAILY_MODE):
         returnObject.className = 'fas fa-sun ' + styles.heder__toggleIcon;
         returnObject.textContent = DAILY_MODE
-        break;
+        return returnObject;
       case (WEEKLY_MODE):
         returnObject.className = 'fas fa-calendar-week ' + styles.header__toggleIcon;
         returnObject.textContent = WEEKLY_MODE
-        break;
+        return returnObject;
       default:
+        return returnObject;
     }
-
-    return returnObject;
   }
 
   function handleToggleIconClick() {
-    if (calendarMode === DAILY_MODE) {
-      changeCalendarMode(WEEKLY_MODE);
-      return;
-    }
-
-    changeCalendarMode(DAILY_MODE);
+    const isDailyMode = calendarMode === DAILY_MODE;
+    changeCalendarMode(isDailyMode ? WEEKLY_MODE : DAILY_MODE);
   }
 
   return (
     <header className={styles.header}>
-      <Link exact to='/'><Icon className={`far fa-calendar-check ${styles.header__homeIcon}`} fontSize={'3em'}></Icon></Link>
+      <Link exact to='/'><Icon className={`far fa-calendar-check ${styles.header__homeIcon}`} fontSize='3em' /></Link>
       <div className={styles.header__toggleIcon} onClick={handleToggleIconClick}>
-        <ToggleIcon iconClassName={toggleIcon.className} textContent={toggleIcon.textContent} fontSize={'2.5em'}></ToggleIcon>
+        <ToggleIcon iconClassName={toggleIcon.className} textContent={toggleIcon.textContent} fontSize='2.5em' />
       </div>
-      <Link exact to='/event/new'><Icon className={"fas fa-plus"} fontSize={'3em'}></Icon></Link>
+      <Link exact to='/event/new'><Icon className={"fas fa-plus"} fontSize='3em' /></Link>
     </header>
   );
 }
