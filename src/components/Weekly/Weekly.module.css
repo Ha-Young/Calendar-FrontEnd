@@ -2,36 +2,31 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 11vh;
+  height: 10vh;
   font-size: 2vw;
 }
 
-.weekly_dayOfWeek {
+.weekly_header_btn {
   width: 100%;
-  height: 7vh;
+  height: 3vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 2vw;
-}
-
-.flex {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: #F8F6F1;
-  background-color: #9F9FED;
-}
-
-.btn {
-  display: inline-block;
-  width: 100%;
-  height: 2vh;
+  justify-content: space-evenly;
   background-color: #EF6F6C;
 }
 
-.weekly_flex {
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+.weekly_header_dayOfWeek {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 7vh;
+  font-size: 1rem;
+  color: #F8F6F1;
+  background-color: #9F9FED;
+  padding-left: 5vw;
+}
+
+.weekly_container {
+  display: flex;
+  height: 85vh;
+  overflow: hidden;
 }

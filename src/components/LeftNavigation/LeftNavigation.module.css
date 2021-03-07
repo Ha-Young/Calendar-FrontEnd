@@ -1,8 +1,8 @@
 .left_nav {
   width: 5vw;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .left_nav div {

@@ -32,18 +32,27 @@ export default function Weekly({ currentDay, weekEvents, getWeekEventData }) {
   return (
     <>
       <div className={styles.weekly_header}>
-        <span
-          className={styles.btn}
-          role="img"
-          aria-label="arrow"
-          onClick={() => handleClick("prev")}
-        >
-          ⬅️
-        </span>
-        <div className={styles.flex}>
+        <div className={styles.weekly_header_btn}>
+          <span
+            role="img"
+            aria-label="arrow"
+            onClick={() => handleClick("prev")}
+          >
+            ⬅️
+          </span>
+          <div></div>
+          <span
+            role="img"
+            aria-label="arrow"
+            onClick={() => handleClick("next")}
+          >
+            ➡️
+          </span>
+        </div>
+        <div className={styles.weekly_header_dayOfWeek}>
           {DAYS.map((day, index) => (
             <div
-              className={styles.weekly_dayOfWeek}
+              // className={styles.weekly_dayOfWeek}
               key={randomIndex()}
             >
               <div>{day}</div>
@@ -51,18 +60,10 @@ export default function Weekly({ currentDay, weekEvents, getWeekEventData }) {
             </div>
           ))}
         </div>
-        <span
-          className={styles.btn}
-          role="img"
-          aria-label="arrow"
-          onClick={() => handleClick("next")}
-        >
-          ➡️
-        </span>
       </div>
 
-      <LeftNavigation />
-      <div className={styles.weekly_flex}>
+      <div className={styles.weekly_container}>
+        <LeftNavigation />
         {dayOfMonth.map(day => (
           <CommonElementView
             key={randomIndex()}
