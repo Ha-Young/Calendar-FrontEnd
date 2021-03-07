@@ -1,7 +1,14 @@
-.time_container div {
+.time_flex {
   width: 100%;
   height: 100%;
   border-bottom: #2CA58D dashed 1px;
+}
+
+.daily_flex {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .event {
@@ -17,5 +24,7 @@
 }
 
 .plain {
+  width: 100%;
   height: 100%;
+  display: inline-block;
 }

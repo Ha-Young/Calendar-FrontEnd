@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Daily.module.css";
 import CommonElementView from "../Element/CommonElementView";
+import LeftNavigation from "../LeftNavigation/LeftNavigation";
 
 export default function Daily({ currentDay, events, goForward, goBackward }) {
   function handleClick(type) {
@@ -13,7 +14,7 @@ export default function Daily({ currentDay, events, goForward, goBackward }) {
 
   return (
     <>
-      <div className={styles.daily_flex}>
+      <div className={styles.flex}>
         <span
           role="img"
           aria-label="arrow"
@@ -30,7 +31,10 @@ export default function Daily({ currentDay, events, goForward, goBackward }) {
           ➡️
         </span>
       </div>
-      <CommonElementView events={events} eventDay={currentDay} />
+      <div className={styles.daily_container}>
+        <LeftNavigation />
+        <CommonElementView events={events} eventDay={currentDay} />
+      </div>
     </>
   );
 }

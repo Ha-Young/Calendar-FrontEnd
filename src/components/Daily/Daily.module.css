@@ -1,8 +1,15 @@
-.daily_flex {
+.daily_container {
+  display: flex;
+  height: 90vh;
+  overflow: hidden;
+  padding-right: 10px;
+}
+
+.flex {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 5%;
+  height: 5vh;
   color: #F8F6F1;
   background-color: #9F9FED;
 }
