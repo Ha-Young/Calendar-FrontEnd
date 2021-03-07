@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
 const AppContainer = ({ onInitialLoad, currentTime, events }) => {
   useEffect(() => {
     onInitialLoad();
-  }, []);
+  }, [onInitialLoad]);
   return (
     <>
       <Sidebar currentTime={currentTime} events={events} />

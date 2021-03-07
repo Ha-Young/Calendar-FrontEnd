@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
   onAddEvent: (userInputEvent) => dispatch(actions.addEvent(userInputEvent)),
   onEditEvent: (eventId, userInputEvent) =>
     dispatch(actions.editEvent(eventId, userInputEvent)),
-  ondeleteEvent: (eventId) => {
+  onDeleteEvent: (eventId) => {
     dispatch(actions.deleteEvent(eventId));
   },
 });
@@ -105,6 +105,9 @@ const MainContainer = ({
           </Route>
           <Route path="/Event">
             <div>Event</div>
+          </Route>
+          <Route path="*">
+            <div>404 error</div>
           </Route>
         </Switch>
         <MainButton
