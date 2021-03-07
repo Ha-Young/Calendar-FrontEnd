@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { fetchDataFromFirebaseDB } from "../../api";
+import { fetchDataFromFirebaseDB, removeFromFirebaseDB } from "../../api";
 import { getPathString } from "../../utils";
 
 export default function EventDetails({ eventById, setEventForm, deleteEvent, setEvent }) {
@@ -29,15 +29,27 @@ export default function EventDetails({ eventById, setEventForm, deleteEvent, set
       });
   }
 
-  let countOfEvent = Object.keys(eventById).length;
-  if (!countOfEvent) return <div>유효하지 않음!</div>;
+  function processDeletingEvent() {
+    const path = getPathString(year, month);
+    const pathToContent = getPathString("contents", eventId);
+    const pathToEvents = getPathString("events", eventId);
+    const removeBundle = {
+      [pathToContent]: null,
+      [pathToEvents]: null,
+    };
 
-  for (const id in eventById) {
-    if (eventId === id) break;
-
-    countOfEvent--;
-    if (!countOfEvent) return <div>유효하지 않음!</div>;
+    removeFromFirebaseDB(path, removeBundle)
+      .then((res) => {
+        deleteEvent(eventId)
+      })
+      .catch((err) => {
+        //Add error handling.
+      });
   }
+
+  const isValidEvent = !!eventById[eventId];
+
+  if (!isValidEvent) return <div>유효하지 않음!</div>;
 
   return (
     <>
@@ -66,7 +78,7 @@ export default function EventDetails({ eventById, setEventForm, deleteEvent, set
         <button onClick={() => setEventForm({eventId, title, content, year, month, date, fromHour, toHour})}>수정</button>
       </Link>
       <Link to="/calendar">
-        <button onClick={() => deleteEvent(eventId)}>삭제</button>
+        <button onClick={processDeletingEvent}>삭제</button>
       </Link>
     </>
   );

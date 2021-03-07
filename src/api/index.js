@@ -9,3 +9,8 @@ export async function saveToFirebaseDB(path, data) {
 export async function fetchDataFromFirebaseDB(path) {
   return database.ref(path).once("value");
 }
+
+export async function removeFromFirebaseDB(path, bundle = null) {
+  if (bundle) return database.ref(path).update(bundle);
+  return database.ref(path).remove();
+}
