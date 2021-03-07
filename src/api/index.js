@@ -37,7 +37,7 @@ export const loadEventData = async (dates) => {
     .ref("userId/events/")
     .orderByChild("date")
     .startAt(firstEventDate)
-    .endAt(firstEventDate);
+    .endAt(lastEventDate);
 
   const data = await queryData.once("value");
 
