@@ -11,7 +11,7 @@ import Event from "../../containers/EventContainer";
 import Weekly from "../Calendar/Weekly/WeeklyCalendar";
 import Daily from "../Calendar/Daily/DailyCalendar";
 import DetailEvent from "../../containers/DetailEventContainer";
-import PageNotFound from"../PageNotFound";
+import PageNotFound from "../PageNotFound";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
