@@ -14,11 +14,7 @@ const CalendarHeader = ({
   checkNeedLoad,
 }) => {
   const checkNeedLoadByCalendarType = (date) => {
-    if (isDailyCalendar) {
-      checkNeedLoad(date.daily);
-    } else {
-      checkNeedLoad(date.weekly);
-    }
+    isDailyCalendar ? checkNeedLoad(date.daily) : checkNeedLoad(date.weekly);
   };
 
   const handlePrevButton = () => {
