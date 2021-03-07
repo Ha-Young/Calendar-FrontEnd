@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./Events.module.css";
 import { getAllUserData } from "../../api";
 
-export default function Events({ userId, removeEvents }) {
+export default function Events({ userId }) {
   const [allEvents, setAllEvents] = useState([]);
 
   useEffect(() => {
