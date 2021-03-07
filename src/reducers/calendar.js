@@ -1,65 +1,58 @@
-import {
-  NEXT,
-  PREV,
-  TO_DAY_CALENDAR,
-  TO_WEEK_CALENDAR,
-  ADD_EVENT,
-  DELETE_EVENT,
-  EDIT_EVENT,
-  RECEIVE_EVENTS,
-} from "../actions/index";
+import * as actionTypes from "constants/actionTypes";
 
-import { addDay, subDay, addWeek, subWeek, format } from "utils";
+import { addDay, subDay, addWeek, subWeek } from "utils";
 
 const initialState = {
   events: [],
   currentTime: new Date(),
-  isDayCalendarShown: true,
+  calendarMode: "day",
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case NEXT:
+    case actionTypes.NEXT:
       return {
         ...state,
-        currentTime: state.isDayCalendarShown
-          ? addDay(state.currentTime)
-          : addWeek(state.currentTime),
+        currentTime:
+          state.calendarMode === "day"
+            ? addDay(state.currentTime)
+            : addWeek(state.currentTime),
       };
 
-    case PREV:
+    case actionTypes.PREV:
       return {
         ...state,
-        currentTime: state.isDayCalendarShown
-          ? subDay(state.currentTime)
-          : subWeek(state.currentTime),
+        currentTime:
+          state.calendarMode === "day"
+            ? subDay(state.currentTime)
+            : subWeek(state.currentTime),
       };
 
-    case TO_DAY_CALENDAR:
+    case actionTypes.TO_DAY_CALENDAR:
       return {
         ...state,
-        isDayCalendarShown: true,
+        calendarMode: "day",
       };
 
-    case TO_WEEK_CALENDAR:
+    case actionTypes.TO_WEEK_CALENDAR:
       return {
         ...state,
-        isDayCalendarShown: false,
+        calendarMode: "week",
       };
 
-    case ADD_EVENT:
+    case actionTypes.ADD_EVENT:
       return {
         ...state,
         events: [...state.events, action.payload],
       };
 
-    case DELETE_EVENT:
+    case actionTypes.DELETE_EVENT:
       return {
         ...state,
         events: state.events.filter((event) => event.id !== action.payload),
       };
 
-    case EDIT_EVENT:
+    case actionTypes.EDIT_EVENT:
       return {
         ...state,
         events: state.events.map((event) => {
@@ -71,11 +64,7 @@ export default function reducer(state = initialState, action) {
         }),
       };
 
-    //firebase 데이터를 받아와서 리덕스 스토어에 fetch 넣어야됨
-
-    case RECEIVE_EVENTS:
-      console.log("in redux", action.payload);
-
+    case actionTypes.RECEIVE_EVENTS:
       return {
         ...state,
         events: action.payload,

@@ -24,6 +24,14 @@ const StyledTitle = styled.h3`
   font-weight: 700;
 `;
 
+const StyledEventTitle = styled.div`
+  color: white;
+`;
+
+const StyledEventDescription = styled.div`
+  color: white;
+`;
+
 export default function Event({
   id,
   height,
@@ -48,18 +56,9 @@ export default function Event({
         }}
       >
         <StyledTitle>{title}</StyledTitle>
-        <div style={{ color: "white" }}>{`${startHour}h ~ ${endHour}h`}</div>
-        <div style={{ color: "white" }}>{description}</div>
+        <StyledEventTitle>{`${startHour}h ~ ${endHour}h`}</StyledEventTitle>
+        <StyledEventDescription>{description}</StyledEventDescription>
       </StyledEvent>
     </>
   );
 }
-
-// <Link
-// to={{
-//   pathname: `/Calendar/Modal/${id}`,
-//   state: { background: location },
-// }}
-// >
-
-// </Link>

@@ -5,7 +5,7 @@ import HourInDaysColumn from "./HourInDaysColumn";
 
 export default function DaysInWeekRow({
   now,
-  isDayCalendarShown,
+  calendarMode,
   events,
   onDeleteEvent,
   onClickGetEventInfo,
@@ -18,10 +18,10 @@ export default function DaysInWeekRow({
 
   return (
     <div className={`${styles.rowWrapper}`}>
-      {isDayCalendarShown ? (
+      {calendarMode === "day" ? (
         <HourInDaysColumn
           day={today}
-          isDayCalendarShown={isDayCalendarShown}
+          calendarMode={calendarMode}
           events={events}
           onDeleteEvent={onDeleteEvent}
           onClickGetEventInfo={onClickGetEventInfo}
@@ -33,7 +33,7 @@ export default function DaysInWeekRow({
             <HourInDaysColumn
               day={day}
               key={index}
-              isDayCalendarShown={isDayCalendarShown}
+              calendarMode={calendarMode}
               events={events}
               onDeleteEvent={onDeleteEvent}
               onClickGetEventInfo={onClickGetEventInfo}

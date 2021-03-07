@@ -12,7 +12,7 @@ export default function Calendar({
   onNextClick,
   onDeleteEvent,
   onClickGetEventInfo,
-  isDayCalendarShown,
+  calendarMode,
   showModal,
 }) {
   return (
@@ -21,11 +21,11 @@ export default function Calendar({
         now={now}
         onPrevClick={onPrevClick}
         onNextClick={onNextClick}
-        isDayCalendarShown={isDayCalendarShown}
+        calendarMode={calendarMode}
       />
       <DaysInWeekRow
         now={now}
-        isDayCalendarShown={isDayCalendarShown}
+        calendarMode={calendarMode}
         events={events}
         showModal={showModal}
         onDeleteEvent={onDeleteEvent}

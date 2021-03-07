@@ -8,25 +8,15 @@ export default function CalendarHeader({
   now,
   onPrevClick,
   onNextClick,
-  isDayCalendarShown,
+  calendarMode,
 }) {
   return (
     <div className={`${styles.headerWrapper}`}>
-      <Aioutline.AiFillLeftCircle
-        fontSize={"30px"}
-        onClick={() => {
-          onPrevClick();
-        }}
-      />
+      <Aioutline.AiFillLeftCircle fontSize={"30px"} onClick={onPrevClick} />
       <h1 className={`${styles.font}`}>
-        {isDayCalendarShown ? formatDate(now) : formatWeek(now)}
+        {calendarMode === "day" ? formatDate(now) : formatWeek(now)}
       </h1>
-      <Aioutline.AiFillRightCircle
-        fontSize={"30px"}
-        onClick={() => {
-          onNextClick();
-        }}
-      />
+      <Aioutline.AiFillRightCircle fontSize={"30px"} onClick={onNextClick} />
     </div>
   );
 }

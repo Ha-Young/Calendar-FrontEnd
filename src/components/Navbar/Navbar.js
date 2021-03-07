@@ -3,7 +3,7 @@ import styles from "./Navbar.module.css";
 import { Link, useHistory } from "react-router-dom";
 
 // TODO: Create your own header.
-export default function Navbar({ onChangeDayMode, onChangeWeekMode }) {
+export default function Navbar({ onshowDayCalendar, onshowWeekCalendar }) {
   let history = useHistory();
 
   return (
@@ -12,17 +12,17 @@ export default function Navbar({ onChangeDayMode, onChangeWeekMode }) {
         <ul>
           <li
             onClick={() => {
-              onChangeDayMode();
+              onshowDayCalendar();
             }}
           >
-            <Link to="/Calendar/Day">Day</Link>
+            <Link to="/calendar/day">Day</Link>
           </li>
           <li
             onClick={() => {
-              onChangeWeekMode();
+              onshowWeekCalendar();
             }}
           >
-            <Link to="/Calendar/Week">Week</Link>
+            <Link to="/calendar/week">Week</Link>
           </li>
           <li>Events</li>
         </ul>

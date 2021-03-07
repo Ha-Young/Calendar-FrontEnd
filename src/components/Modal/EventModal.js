@@ -26,8 +26,8 @@ const formItemLayout = {
 
 export default function EventModal({
   isModalVisible,
-  handleOk,
-  handleCancel,
+  onClickOk,
+  onClickCancel,
   onAddEvent,
   onDeleteEvent,
   onEditEvent,
@@ -41,8 +41,8 @@ export default function EventModal({
       title="Add event!"
       centered={true}
       visible={isModalVisible}
-      onOk={handleOk}
-      onCancel={handleCancel}
+      onOk={onClickOk}
+      onCancel={onClickCancel}
       width={800}
       footer={null}
       bodyStyle={{
@@ -55,19 +55,18 @@ export default function EventModal({
     >
       <Form
         onFinish={(e) => {
-          console.log(e);
           if (activeButton.buttonType === "add") {
             onAddEvent(e);
-            handleOk();
+            onClickOk();
           }
           if (activeButton.buttonType === "edit") {
             onEditEvent(eventInfo.id, e);
-            handleOk();
+            onClickOk();
           }
 
           if (activeButton.buttonType === "delete") {
             onDeleteEvent(eventInfo.id);
-            handleOk();
+            onClickOk();
           }
         }}
         {...formItemLayout}
@@ -84,7 +83,6 @@ export default function EventModal({
         <Form.Item name={"colorPicker"} label="colorPicker">
           <TwitterPicker
             onChangeComplete={(color, event) => {
-              console.log(color, event);
               return color;
             }}
           />

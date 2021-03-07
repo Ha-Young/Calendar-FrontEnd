@@ -4,7 +4,7 @@ import styles from "./Calendar.module.css";
 
 export default function HourInDaysColumn({
   day,
-  isDayCalendarShown,
+  calendarMode,
   events,
   onDeleteEvent,
   onClickGetEventInfo,
@@ -40,7 +40,7 @@ export default function HourInDaysColumn({
 
   return (
     <div className={`${styles.dayWrapper}`}>
-      <h3 className={`${styles.dayFont}`}>{!isDayCalendarShown && day}</h3>
+      <h3 className={`${styles.dayFont}`}>{calendarMode === "week" && day}</h3>
 
       <div className={`${styles.hoursIndayWrapper}`} events={events}>
         {hours.map((hour, index) => {

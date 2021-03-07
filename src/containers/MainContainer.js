@@ -2,57 +2,46 @@ import React, { useState } from "react";
 
 import Navbar from "components/Navbar";
 import Calendar from "components/Calendar";
-import ToggleButton from "components/Button";
+import MainButton from "components/Button";
 import EventModal from "components/Modal";
 
-import { formatUserInput } from "utils";
-import { uploadData, deleteData } from "api";
-import { connect } from "react-redux";
+import * as actions from "actions";
 
-import {
-  NEXT,
-  PREV,
-  TO_DAY_CALENDAR,
-  TO_WEEK_CALENDAR,
-  ADD_EVENT,
-  DELETE_EVENT,
-  EDIT_EVENT,
-} from "../actions/index";
+import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import styles from "./MainContainer.module.css";
 
-const mapStateToProps = (state) => ({ state });
+const mapStateToProps = (state) => {
+  return {
+    currentTime: state.calendar.currentTime,
+    events: state.calendar.events,
+    calendarMode: state.calendar.calendarMode,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeDayMode: () => dispatch({ type: TO_DAY_CALENDAR }),
-  onChangeWeekMode: () => dispatch({ type: TO_WEEK_CALENDAR }),
-  onPrevClick: () => dispatch({ type: PREV }),
-  onNextClick: () => dispatch({ type: NEXT }),
+  onshowDayCalendar: () => dispatch(actions.toDayCalendar()),
+  onshowWeekCalendar: () => dispatch(actions.toWeekCalendar()),
 
-  onAddEvent: (userInputEvent) => {
-    const event = formatUserInput(null, userInputEvent);
-    uploadData(event);
-    dispatch({ type: ADD_EVENT, payload: event });
-  },
+  onPrevClick: () => dispatch(actions.prevClick()),
+  onNextClick: () => dispatch(actions.nextClick()),
 
-  onEditEvent: (eventId, userInputEvent) => {
-    const event = formatUserInput(eventId, userInputEvent);
-    uploadData(event);
-    dispatch({ type: EDIT_EVENT, payload: { eventId, event } });
-  },
-
-  onDeleteEvent: (eventId) => {
-    deleteData(eventId);
-    dispatch({ type: DELETE_EVENT, payload: eventId });
+  onAddEvent: (userInputEvent) => dispatch(actions.addEvent(userInputEvent)),
+  onEditEvent: (eventId, userInputEvent) =>
+    dispatch(actions.editEvent(eventId, userInputEvent)),
+  ondeleteEvent: (eventId) => {
+    dispatch(actions.deleteEvent(eventId));
   },
 });
 
 const MainContainer = ({
-  state,
+  currentTime,
+  events,
+  calendarMode,
   onNextClick,
   onPrevClick,
-  onChangeDayMode,
-  onChangeWeekMode,
+  onshowDayCalendar,
+  onshowWeekCalendar,
   onAddEvent,
   onDeleteEvent,
   onEditEvent,
@@ -80,15 +69,19 @@ const MainContainer = ({
     <div className={`${styles.wrapper}`}>
       <div className={`${styles.Navbar}`}>
         <Navbar
-          onChangeDayMode={onChangeDayMode}
-          onChangeWeekMode={onChangeWeekMode}
+          onshowDayCalendar={onshowDayCalendar}
+          onshowWeekCalendar={onshowWeekCalendar}
         />
       </div>
       <div className={`${styles.main}`}>
         <EventModal
           isModalVisible={isModalVisible}
-          handleOk={() => handleOk()}
-          handleCancel={() => handleCancel()}
+          onClickOk={() => {
+            handleOk();
+          }}
+          onClickCancel={() => {
+            handleCancel();
+          }}
           onAddEvent={onAddEvent}
           onDeleteEvent={onDeleteEvent}
           onEditEvent={onEditEvent}
@@ -97,12 +90,12 @@ const MainContainer = ({
         <Switch>
           <Route
             exact
-            path={["/", "/Calendar", "/Calendar/Day", "/Calendar/Week"]}
+            path={["/", "/calendar", "/calendar/day", "/calendar/week"]}
           >
             <Calendar
-              now={state.calendar.currentTime}
-              events={state.calendar.events}
-              isDayCalendarShown={state.calendar.isDayCalendarShown}
+              now={currentTime}
+              events={events}
+              calendarMode={calendarMode}
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
               onDeleteEvent={onDeleteEvent}
@@ -114,7 +107,7 @@ const MainContainer = ({
             <div>Event</div>
           </Route>
         </Switch>
-        <ToggleButton
+        <MainButton
           onClick={() => {
             showModal();
           }}

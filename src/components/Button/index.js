@@ -1,3 +1,3 @@
-import ToggleButton from "components/Button/ToggleButton";
+import MainButton from "components/Button/Mainbutton";
 
-export default ToggleButton;
+export default MainButton;
