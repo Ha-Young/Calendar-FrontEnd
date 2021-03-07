@@ -34,5 +34,18 @@ export const calculateYearMonthWeek = (dateObj) => {
 };
 
 export const getPathString = (...paths) => {
-  return paths.reduce((fullPath, path) => `${fullPath}/${path}`, "");
+
+  return paths.reduce((fullPath, path) => {
+    if (typeof path !== "string" && typeof path !== "number") {
+      throw new Error("Each argument must be type of string or number.");
+    }
+
+    const stringPath = "" + path;
+
+    if (stringPath.includes("/")) {
+      throw new Error("Should input each argument without `/`");
+    }
+
+    return fullPath + `/${stringPath}`;
+  }, "");
 }
