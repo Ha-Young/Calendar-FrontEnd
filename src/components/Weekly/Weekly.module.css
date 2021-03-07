@@ -19,14 +19,21 @@
   justify-content: space-around;
   align-items: center;
   height: 7vh;
+  padding-left: 5vw;
   font-size: 1rem;
   color: #F8F6F1;
   background-color: #9F9FED;
-  padding-left: 5vw;
 }
 
 .weekly_container {
   display: flex;
+  width: 100%;
   height: 85vh;
   overflow: hidden;
+  background-color: #084e63;
+}
+
+.weekly_container_view {
+  flex-basis: 96vw;
+  display: flex;
 }

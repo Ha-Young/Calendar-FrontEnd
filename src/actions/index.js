@@ -7,22 +7,17 @@
  */
 import * as types from "../constants/actionTypes";
 
-export const getEventData = (date, time) => ({
-  type: types.GET_DATA,
-  payload: { date, time },
-});
-
-export const getWeekEventData = (week) => ({
+export const getWeekEventData = (week, totalEvents) => ({
   type: types.GET_WEEK_DATA,
-  week,
+  payload: { week, totalEvents },
 });
 
-export const createEvent = (event) => ({
+export const createEvent = event => ({
   type: types.CREATE_EVENT,
   event,
 });
 
-export const deleteEvent = (event) => ({
+export const deleteEvent = event => ({
   type: types.DELETE_EVENT,
   event,
 });
@@ -38,4 +33,9 @@ export const nextDay = () => ({
 
 export const yesterDay = () => ({
   type: types.YESTERDAY,
+});
+
+export const setCurrentDay = days => ({
+  type: types.SET_CURRENT_DAY,
+  days,
 });

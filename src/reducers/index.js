@@ -10,15 +10,14 @@
  */
 import { combineReducers } from "redux";
 import {
-  GET_DATA,
   GET_WEEK_DATA,
   CREATE_EVENT,
   UPDATE_EVENT,
   TOMORROW,
   YESTERDAY,
   DELETE_EVENT,
+  SET_CURRENT_DAY,
 } from "../constants/actionTypes";
-import _ from "lodash";
 
 const initialState = new Date().toISOString().slice(0, 10);
 
@@ -32,6 +31,10 @@ const currentDay = (state = initialState, action) => {
       const prevDay = new Date(state);
       prevDay.setDate(prevDay.getDate() - 1);
       return prevDay.toISOString().slice(0, 10);
+    case SET_CURRENT_DAY:
+      const current = new Date(state);
+      current.setDate(current.getDate() + action.days);
+      return current.toISOString().slice(0, 10);;
     default:
       return state;
   }
@@ -56,17 +59,6 @@ const initialEvent = {
       end: 11,
     },
   },
-};
-
-const oneEvent = (state = initialEvent, action) => {
-  switch (action.type) {
-    case GET_DATA:
-      const { date, time } = action.payload;
-      state = state[date][time];
-      return state;
-    default:
-      return state;
-  }
 };
 
 const events = (state = initialEvent, action) => {
@@ -131,16 +123,18 @@ const weekEvents = (state = initialEvent, action) => {
       delete deletedCopy[targetEvent.eventDay][targetEvent.start];
       return deletedCopy;
     case GET_WEEK_DATA:
-      if (action.week) {
-        const newState = {};
-        action.week.forEach(day => {
-          if (state[day]) {
-            newState[day] = state[day];
+      const totalEvents = action.payload.totalEvents;
+      const week = action.payload.week;
+      const newState = {};
+      // if (action.payload.week) {
+        week.forEach(day => {
+          if (totalEvents[day]) {
+            newState[day] = totalEvents[day];
           }
         });
         return newState;
-      }
-      return state;
+      // }
+      // return state;
     default:
       return state;
   }
@@ -149,6 +143,5 @@ const weekEvents = (state = initialEvent, action) => {
 export default combineReducers({
   currentDay,
   events,
-  oneEvent,
   weekEvents,
 });
