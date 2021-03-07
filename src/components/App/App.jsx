@@ -13,14 +13,13 @@ import DateNavigator from '../DateNavigator/DateNavigator';
 import ScheduleCreateForm from '../../containers/ScheduleCreateForm';
 import ScheduleDetail from '../../containers/ScheduleDetail';
 
-function App({ currentDate, calendarMode, initStore, moveDate, onInitialLoad }) {
+function App({ currentDate, calendarMode, initStore, moveDate }) {
   
   useEffect(() => {
     const currentDate = moment().format(YYYYMD);
     const currentWeek = getThisWeekSunAndSat(currentDate);
     const initCalendarMode = DAILY_MODE;
     initStore(currentDate, currentWeek, initCalendarMode);
-    //onInitialLoad();
   }, []);
 
   return (

@@ -1,19 +1,12 @@
-import { getOneYearSchema } from "./dbSchema";
 import firebase from "./firebase";
 
 const database = firebase.database();
-
-export async function saveSampleData(setData = getOneYearSchema(2021)) {
-  await database.ref("calendar").set(setData);
-  await database.ref("calendar").on('value', (data) => console.log('fetched data : ',data.val()));
-}
 
 export async function getAllEventsByDates(dateArr, callback) {
   database.ref('/calendar')
     .once('value', (value) => {
       const resultArr = [];
       dateArr.forEach((el) => {
-        // TODO: 해당년, 월, 일 데이터가 없을 때 다시 만들어서 firebase에 넣고 다시 시작한다.
         resultArr.push(value.val()[el.year][el.month][el.day]);
       });
       callback(resultArr);
