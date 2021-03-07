@@ -48,7 +48,15 @@ export default function NewEvent({ userId }) {
       );
     }
 
-    writeUserData(userId, date, title, detail, getOnlyHours(startAt), getOnlyHours(endAt));
+    writeUserData({
+      userId,
+      date,
+      title,
+      detail,
+      startAt: getOnlyHours(startAt),
+      endAt: getOnlyHours(endAt),
+    });
+    
     history.push("/calendar");
   }
 

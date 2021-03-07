@@ -1,7 +1,16 @@
 import { GUEST } from "../constants/login";
 import firebase from "./firebase";
 
-export function writeUserData(userId, date, title, detail, startAt, endAt) {
+export function writeUserData(userData) {
+  const {
+    userId, 
+    date, 
+    title, 
+    detail, 
+    startAt, 
+    endAt, 
+  } = userData;
+  
   firebase.database().ref(`users/${userId}/${date}/${startAt + endAt}`).set({
     date,
     userId,
