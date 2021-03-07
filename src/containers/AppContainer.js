@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 import MainContainer from "containers/MainContainer";
 import Sidebar from "components/Sidebar";
 
-import * as actionTypes from "constants/actionTypes";
-import { connect } from "react-redux";
-import { fetchEvents } from "api";
-import _ from "lodash";
+import PropTypes from "prop-types";
+import * as actions from "actions";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,16 +16,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onInitialLoad: async () => {
-    try {
-      const fetchedEvent = await fetchEvents();
-      const fetchedEvents = _.flatMapDeep(fetchedEvent, (n) => {
-        return [n];
-      });
-      dispatch({ type: actionTypes.RECEIVE_EVENTS, payload: fetchedEvents });
-    } catch (error) {
-      const receivedErr = error;
-      dispatch({ type: actionTypes.RECEIVE_ERROR, payload: receivedErr });
-    }
+    const fetchedEvents = await actions.fetchEvents();
+    dispatch(fetchedEvents);
   },
 });
 
@@ -40,6 +31,12 @@ const AppContainer = ({ onInitialLoad, currentTime, events }) => {
       <MainContainer />
     </>
   );
+};
+
+AppContainer.propTypes = {
+  onInitialLoad: PropTypes.func,
+  currentTime: PropTypes.object,
+  events: PropTypes.array,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

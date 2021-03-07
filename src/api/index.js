@@ -14,11 +14,11 @@ export async function uploadData(event) {
   await database.ref("event").update(eventByid);
 }
 
-export async function deleteData(eventId) {
+export async function deleteEventbyId(eventId) {
   await database.ref(`event/${eventId}`).remove();
 }
 
-export async function fetchEvents() {
+export async function getEvents() {
   return database
     .ref(`event/`)
     .once("value")

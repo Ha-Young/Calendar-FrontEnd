@@ -1,6 +1,7 @@
 import * as actionTypes from "constants/actionTypes";
 import { formatUserInput } from "utils";
-import { uploadData, deleteData } from "api";
+import { uploadData, deleteEventbyId, getEvents } from "api";
+import _ from "lodash";
 
 export const toDayCalendar = () => ({ type: actionTypes.TO_DAY_CALENDAR });
 export const toWeekCalendar = () => ({ type: actionTypes.TO_WEEK_CALENDAR });
@@ -20,6 +21,19 @@ export const editEvent = (eventId, userInputEvent) => {
 };
 
 export const deleteEvent = (eventId) => {
-  deleteData(eventId);
+  deleteEventbyId(eventId);
   return { type: actionTypes.DELETE_EVENT, payload: eventId };
+};
+
+export const fetchEvents = async () => {
+  try {
+    const fetchedEvent = await getEvents();
+    const fetchedEvents = _.flatMapDeep(fetchedEvent, (n) => {
+      return [n];
+    });
+    return { type: actionTypes.RECEIVE_EVENTS, payload: fetchedEvents };
+  } catch (error) {
+    const receivedErr = error;
+    return { type: actionTypes.RECEIVE_ERROR, payload: receivedErr };
+  }
 };

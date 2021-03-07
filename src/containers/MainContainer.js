@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 
 import Navbar from "components/Navbar";
 import Calendar from "components/Calendar";
@@ -6,9 +8,7 @@ import MainButton from "components/Button";
 import EventModal from "components/Modal";
 
 import * as actions from "actions";
-
-import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
 import styles from "./MainContainer.module.css";
 
 const mapStateToProps = (state) => {
@@ -115,6 +115,19 @@ const MainContainer = ({
       </div>
     </div>
   );
+};
+
+MainContainer.propTypes = {
+  currentTime: PropTypes.object,
+  events: PropTypes.array,
+  calendarMode: PropTypes.string,
+  onNextClick: PropTypes.func,
+  onPrevClick: PropTypes.func,
+  onshowDayCalendar: PropTypes.func,
+  onshowWeekCalendar: PropTypes.func,
+  onAddEvent: PropTypes.func,
+  onDeleteEvent: PropTypes.func,
+  onEditEvent: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
