@@ -2,7 +2,7 @@ import firebase from "./firebase";
 
 const database = firebase.database();
 
-export async function getAllEventsByDates(dateArr, callback) {
+export function getAllEventsByDates(dateArr, callback) {
   database.ref('/calendar')
     .once('value', (value) => {
       const resultArr = [];
@@ -14,7 +14,7 @@ export async function getAllEventsByDates(dateArr, callback) {
 }
 
 /** 단 하나의 schedule을 넘겨주고  그것을 update한다. */
-export async function setSchedule(schedule, oldKey) {
+export function setSchedule(schedule, oldKey) {
   const returnObj = {};
   
   const databaseRef = database.ref(`calendar/${schedule.year}/${schedule.month}/${schedule.day}/datas`);
@@ -24,7 +24,7 @@ export async function setSchedule(schedule, oldKey) {
   databaseRef.update(returnObj);
 }
 
-export async function deleteSchedule(schedule) {
+export function deleteSchedule(schedule) {
   const databaseRef = database.ref(`calendar/${schedule.year}/${schedule.month}/${schedule.day}/datas/${schedule.key}`);
   databaseRef.remove()
     .then(function() {

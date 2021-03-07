@@ -2,8 +2,8 @@ import { connect } from "react-redux";
 import { setTargetScheduleData } from "../actions";
 import ScheduleDetail from '../components/ScheduleDetail/ScheduleDetail'
 
-const mapStateToProps = (state) => ({
-  targetScheduleData: state.targetScheduleData
+const mapStateToProps = ({ rootStates }) => ({
+  targetScheduleData: rootStates.targetScheduleData
 });
 
 const mapDispatchToProps = (dispatch) => ({

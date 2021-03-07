@@ -8,78 +8,39 @@
   - Don't optimize pre-maturely!
 
  */
-import { SET_CURRENT_DATE, SET_CURRENT_WEEK, CHANGE_CALENDAR_MODE, FORWARD_ONE_DAY, BACKWARD_ONE_DAY, FORWARD_ONE_WEEK, BACKWARD_ONE_WEEK, SET_SCHEDULE_DATA, GET_TARGET_SCHEDULE_DATA } from '../constants/actionTypes';
-import { DAYS, WEEKS } from '../constants/dateFormats';
-import { getThisWeekSunAndSat, moveDays } from '../utils/dateUtil';
+import { combineReducers } from 'redux';
+import { CHANGE_CALENDAR_MODE,  SET_SCHEDULE_DATA, GET_TARGET_SCHEDULE_DATA } from '../constants/actionTypes';
+import dateReducer from './date';
 
 const initialState = {
-  currentDate: '',
-  currentWeek: '',
   calendarMode: '',
   scheduleData: [],
   targetScheduleData: null
 };
 
-const FORWARD_ONE = 1;
-const BACKWARD_ONE = -1;
-
-export default function reducer(state = initialState, action) {
-  let movedDay;
+function reducer(state = initialState, action) {
   switch (action.type) {
-    case SET_CURRENT_DATE: 
-      return {
-        ...state,
-        currentDate: action.currentDate
-      }
-    case SET_CURRENT_WEEK:
-      return {
-        ...state,
-        currentWeek: action.currentWeek
-      }
     case CHANGE_CALENDAR_MODE:
       return {
         ...state,
         calendarMode: action.calendarMode
-      }
-    case FORWARD_ONE_DAY:
-      movedDay = moveDays(action.currentDate, FORWARD_ONE, DAYS);
-      return {
-        ...state,
-        currentDate: movedDay,
-        currentWeek: getThisWeekSunAndSat(movedDay)
-      }
-    case BACKWARD_ONE_DAY:
-      movedDay = moveDays(action.currentDate, BACKWARD_ONE, DAYS);
-      return {
-        ...state,
-        currentDate: movedDay,
-        currentWeek: getThisWeekSunAndSat(movedDay)
-      }
-    case FORWARD_ONE_WEEK:
-      movedDay = moveDays(action.currentDate, FORWARD_ONE, WEEKS);
-      return {
-        ...state,
-        currentDate: movedDay,
-        currentWeek: getThisWeekSunAndSat(movedDay)
-      }
-    case BACKWARD_ONE_WEEK:
-      movedDay = moveDays(action.currentDate, BACKWARD_ONE, WEEKS);
-      return {
-        ...state,
-        currentDate: movedDay,
-        currentWeek: getThisWeekSunAndSat(movedDay)
-      }
+      };
     case SET_SCHEDULE_DATA: 
       return {
         ...state,
         scheduleData: action.scheduleData
-      }
+      };
     case GET_TARGET_SCHEDULE_DATA:
       return {
         ...state,
         targetScheduleData: action.targetScheduleData
-      }
+      };
     default:
       return state;
   }
 }
+
+export default combineReducers({
+  rootStates: reducer,
+  dateStates: dateReducer
+});

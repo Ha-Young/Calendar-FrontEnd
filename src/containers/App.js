@@ -3,9 +3,9 @@ import App from "../components/App/App";
 import { changeCalendarMode, moveOneDay, moveOneWeek, setCurrentDate, setCurrentWeek } from "../actions";
 import { DAILY_MODE } from "../constants/dateFormats";
 
-const mapStateToProps = (state) => ({
-  currentDate: state.currentDate,
-  calendarMode: state.calendarMode
+const mapStateToProps = ({ rootStates, dateStates }) => ({
+  ...dateStates,
+  calendarMode: rootStates.calendarMode
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -67,9 +67,8 @@ const ScheduleCreateForm = ({ currentDate }) => {
       content: content,
       color: color
     };
-    setSchedule(newSchedule, newSchedule.key).then(() => {
-      window.location.href = "/";
-    });
+    setSchedule(newSchedule, newSchedule.key);
+    window.location.href = "/";
   }
 
   const dateHandlers = {

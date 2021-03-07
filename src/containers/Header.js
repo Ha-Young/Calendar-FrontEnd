@@ -2,8 +2,8 @@ import { connect } from "react-redux";
 import { changeCalendarMode } from "../actions";
 import Header from '../components/Header/Header';
 
-const mapStateToProps = (state) => ({
-  calendarMode: state.calendarMode
+const mapStateToProps = ({ rootStates }) => ({
+  calendarMode: rootStates.calendarMode
 });
 
 const mapDispatchToProps = (dispatch) => ({
