@@ -11,11 +11,9 @@ export default function EventElement({ eventDay, hour, event }) {
             pathname: `/event/${hour}`,
             state: {eventDay, event}
           }}
+          className={styles.time_container}
         >
-          <div className={styles.daily_hour}>
-            {hour}
-          </div>
-          <div className={styles.daily_event}>
+          <div className={styles.event}>
             {event.title}
           </div>
         </Link>
@@ -25,10 +23,9 @@ export default function EventElement({ eventDay, hour, event }) {
             pathname: `/event/${hour}/new`,
             state: {eventDay, event}
           }}
+          className={styles.time_container}
         >
-          <div className={styles.daily_hour}>
-            {hour}
-          </div>
+          <div className={styles.plain}></div>
         </Link>
       )}
     </>

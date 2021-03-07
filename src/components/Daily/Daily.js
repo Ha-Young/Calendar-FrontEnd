@@ -13,7 +13,7 @@ export default function Daily({ currentDay, events, goForward, goBackward }) {
 
   return (
     <>
-      <div className={styles.flex}>
+      <div className={styles.daily_flex}>
         <span
           role="img"
           aria-label="arrow"
