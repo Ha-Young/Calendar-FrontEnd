@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { getFirebaseData } from "../api";
+import { getFirebaseData, addEventAtFirebase, logFirebaseData } from "../api";
 import {
   addEvent,
   setDayPage,
@@ -19,11 +19,16 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   // This function is passed to App component.
   onInitialLoad: () => {
-    /* 현재 파이어베이스의 데이터로 state를 초기화하는것까지 구현되어 작동되지 않게 해두었습니다..
+    //현재 파이어베이스의 데이터로 state를 초기화하는것까지 구현되어 작동되지 않게 해두었습니다..
     getFirebaseData((data) => {
       dispatch(getEvents(data));
     }); 
-    */
+  },
+  sendEventToFirebase: (location, event) => {
+    addEventAtFirebase(location, event);
+  },
+  showFirebaseData: () => {
+    logFirebaseData();
   },
   setDaily: () => {
     dispatch(setDayPage());

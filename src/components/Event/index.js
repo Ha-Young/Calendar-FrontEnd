@@ -20,7 +20,7 @@ const Form = styled.form`
   }
 `;
 
-const Event = ({ onSubmit, onPage }) => {
+const Event = ({ onSubmit, onPage, onSendToFirebase, showFirebaseData }) => {
   const location = useLocation();
   const [event, setEvent] = useState(MOCK_DATA);
   const modifyingData = MOCK_DATA;
@@ -40,6 +40,8 @@ const Event = ({ onSubmit, onPage }) => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     onSubmit(event);
+    onSendToFirebase(event.date, event);
+    showFirebaseData();
     alert("Saved Successfully!");
     window.location.replace('/');
   };

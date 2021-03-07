@@ -21,6 +21,8 @@ const App = ({
   setEvent,
   deleteEvent,
   events,
+  sendEventToFirebase,
+  showFirebaseData,
 }) => {
   useEffect(() => {
     onInitialLoad();
@@ -42,7 +44,7 @@ const App = ({
           <Weekly count={countOfWeek} onPage={setWeekly} events={events} />
         </Route>
         <Route path="/Event/new">
-          <Event onSubmit={onSubmit} onPage={setEvent} />
+          <Event onSubmit={onSubmit} onPage={setEvent} onSendToFirebase={sendEventToFirebase} showFirebaseData={showFirebaseData} />
         </Route>
         <Route path="/Event/:day" children={<EventInfo events={events} deleteEvent={deleteEvent} />} />
       </Switch>

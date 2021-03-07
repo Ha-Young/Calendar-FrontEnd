@@ -29,7 +29,7 @@ const EventLine = ({ day, events, color }) => {
       startHour++;
     }
   }
-  
+
   eventStart = Number(eventStart);
 
   return (

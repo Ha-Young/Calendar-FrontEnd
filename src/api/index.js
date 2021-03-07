@@ -1,42 +1,55 @@
 // TODO: Go to `./firebase.js` and update your firebase config.
 import firebase from "./firebase";
 
-export const saveSampleData = async () => {
+export const addEventAtFirebase = async (location, event) => {
   const database = firebase.database();
 
-  // Note: `set` method returns a promise.
-  // Reference: https://firebase.google.com/docs/database/web/read-and-write#receive_a_promise
-  await database.ref("test/123").set({
-    test: "text",
-    hello: "hi",
-    text: "dummy",
-  });
+  const data = {
+    ...event
+  };
+
+  await 
+    database
+    .ref("/" + location)
+    .set(data)
+    .catch(e => {
+      throw new Error(e);
+    });
 };
 
-export const updateSample = async () => {
-  const database = firebase.database();
-
-  await database.ref("test").child("123").update({test: "Change?"});
-};
-
-export const addSample = async () => {
-const database= firebase.database();
-
-const newKey = await database.ref("test").push().key;
-
+export const addSample = async (location, event) => {
+  const database= firebase.database();
   const updates = {};
 
-  updates["/test/123/" + newKey] = "value";
+  updates["/" + location] = event;
 
-  await database.ref().update(updates);
+  await
+    database
+    .ref()
+    .update(updates)
+    .catch(e => {
+      throw new Error(e);
+    });
 };
 
 export const getFirebaseData = async (setData) => {
   const databaseRef = firebase.database().ref();
 
-  await databaseRef.on("value", (snapShot) => {
+  await databaseRef.once("value", (snapShot) => {
     const data = snapShot.val();
     
     setData(data);
+  }).catch(e => {
+    throw new Error(e);
+  });
+};
+
+export const logFirebaseData = async () => {
+  const databaseRef = firebase.database().ref();
+
+  await databaseRef.on("value", (snapShot) => {
+    const data = snapShot.val();
+
+    console.log(data);
   });
 };
