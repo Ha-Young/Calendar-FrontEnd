@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { fetchDataFromFirebaseDB, removeFromFirebaseDB } from "../../api";
 import { getPathString } from "../../utils";
 
-export default function EventDetails({ eventById, updateEventForm, deleteEvent, setEvent }) {
+export default function EventDetails({ eventById, updateEventForm, updateUserEvent, deleteUserEvent }) {
   const { eventId } = useParams();
   const { title, content, period } = eventById[eventId];
   const from = new Date(period.from);
@@ -22,7 +22,7 @@ export default function EventDetails({ eventById, updateEventForm, deleteEvent, 
       .then((snapShot) => {
         if (!snapShot) return;
         const content = snapShot.val().content;
-        setEvent({ ...eventById[eventId], content });
+        updateUserEvent({ [eventId]: { id: eventId, content } });
       })
       .catch((err) => {
         // add Error Handling
@@ -40,7 +40,7 @@ export default function EventDetails({ eventById, updateEventForm, deleteEvent, 
 
     removeFromFirebaseDB(path, removeBundle)
       .then((res) => {
-        deleteEvent(eventId)
+        deleteUserEvent(eventId)
       })
       .catch((err) => {
         //Add error handling.

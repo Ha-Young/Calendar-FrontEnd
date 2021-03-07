@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
 import "../css/reset.css";
-import { setUserEventFor, setCurrentDate } from "../features/actionCreators";
+import { setCurrentDate } from "../features/actionCreators";
 import { updateEventForm } from "../features/actions/eventForm";
+import { updateUserEvent, deleteUserEvent } from "../features/actions/userEvents";
 import * as selectors from "../features/selectors";
 
 const mapStateToProps = (state) => {
@@ -18,11 +19,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateEventForm: (formData) => dispatch(updateEventForm(formData)),
-    actToUserEvent: {
-      setEvent: (event) => dispatch(setUserEventFor.register(event)),
-      setEventAll: (eventAll) => dispatch(setUserEventFor.registerAll(eventAll)),
-      deleteEvent: (eventId) => dispatch(setUserEventFor.delete(eventId)),
-    },
+    updateUserEvent: (event) => dispatch(updateUserEvent(event)),
+    deleteUserEvent: (eventId) => dispatch(deleteUserEvent(eventId)),
     actToCurrentDate: (dateBundle) => dispatch(setCurrentDate(dateBundle)),
   };
 };

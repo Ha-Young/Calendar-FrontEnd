@@ -9,29 +9,23 @@ export function setEventForm(state, payload) {
 }
 
 export function setUserEvent(state, userEvent) {
-  const { id } =  userEvent;
-  let allId = [ ...state.userEvent.allId ];
+  const copyState = { ...state };
+  const allId = [ ...copyState.userEvent.allId ];
 
-  if (!state.userEvent.byId[id]) allId.push(id);
+  for (const key in userEvent) {
+    const { id, content } = userEvent[key];
+    const copyEvent = copyState.userEvent.byId[id];
 
-  return {
-    ...state,
-    userEvent: {
-      byId: {
-        ...state.userEvent.byId,
-        [id]: {
-          ...userEvent
-        }
-      },
-      allId,
-    },
-    eventForm: {
-      ...state.eventForm,
-      title: "",
-      content: "",
-      id: "",
-    },
-  };
+    if (!copyEvent) {
+      Object.assign(copyState.userEvent.byId, { [id]: userEvent[key] });
+      allId.push(id);
+      Object.assign(copyState.userEvent.allId, allId);
+    } else {
+      Object.assign(copyState.userEvent.byId[id], {...copyEvent, content});
+    }
+  }
+
+  return copyState;
 }
 
 export function setUserEventAll(state, AllEvent) {

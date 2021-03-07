@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { fetchDataFromFirebaseDB } from "../../api";
 import { getPathString } from "../../utils";
@@ -8,27 +8,21 @@ import Weekly from "../Weekly/Weekly";
 import EventForm from "../EventForm/EventForm";
 import EventDetails from "../EventDetails/EventDetails";
 
-function App({ updateEventForm, actToUserEvent, actToCurrentDate, eventInfo, currentDate, dailyEvents, weeklyEvents, eventById }) {
+function App({ updateEventForm, actToCurrentDate, updateUserEvent, deleteUserEvent, eventInfo, currentDate, dailyEvents, weeklyEvents, eventById }) {
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth() + 1;
 
-  const [yearMonth, setYearMonth] = useState([currentYear, currentMonth]);
-
-  const beforeYear = yearMonth[0];
-  const beforeMonth = yearMonth[1];
-
-  if (currentYear !== beforeYear || currentMonth !== beforeMonth) {
-    setYearMonth([currentYear, currentMonth]);
-  }
-
   useEffect(() => {
-    const path = getPathString(yearMonth[0], yearMonth[1], "events");
+    const path = getPathString(currentYear, currentMonth, "events");
     fetchDataFromFirebaseDB(path)
       .then((snapShot) => {
-        const eventAll = snapShot.val();
-        if (eventAll) actToUserEvent.setEventAll(eventAll);
+        const events = snapShot.val();
+        if (events) updateUserEvent(events);
+      })
+      .catch((err) => {
+        // add error handling
       });
-  }, [yearMonth, actToUserEvent]);
+  }, [currentYear, currentMonth, updateUserEvent]);
 
   return (
     <div>
@@ -57,16 +51,16 @@ function App({ updateEventForm, actToUserEvent, actToCurrentDate, eventInfo, cur
           <EventForm
             inputData={eventInfo}
             updateEventForm={updateEventForm}
-            setUserEvent={actToUserEvent}
+            updateUserEvent={updateUserEvent}
             eventById={eventById}
           />
         </Route>
         <Route path="/events/:eventId">
           <EventDetails
             updateEventForm={updateEventForm}
-            deleteEvent={actToUserEvent.deleteEvent}
+            updateUserEvent={updateUserEvent}
+            deleteUserEvent={deleteUserEvent}
             eventById={eventById}
-            setEvent={actToUserEvent.setEvent}
           />
         </Route>
         <Route path="*">

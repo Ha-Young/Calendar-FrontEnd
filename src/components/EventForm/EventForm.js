@@ -7,7 +7,7 @@ import { getDateISOstring, getPathString } from "../../utils";
 import checkValidEvent from "./checkValidEvent";
 
 
-function EventForm({inputData, updateEventForm, setUserEvent, eventById}) {
+function EventForm({ inputData, updateEventForm, updateUserEvent, eventById }) {
   const [isValidEvent, setIsValidEvent] = useState(true);
   const history = useHistory();
 
@@ -15,8 +15,6 @@ function EventForm({inputData, updateEventForm, setUserEvent, eventById}) {
     const timeoutId = setTimeout(() => setIsValidEvent(true), 2000);
     return () => clearTimeout(timeoutId);
   }, [isValidEvent]);
-
-  const { setEvent } = setUserEvent;
 
   const {
     id: eventId,
@@ -55,7 +53,9 @@ function EventForm({inputData, updateEventForm, setUserEvent, eventById}) {
 
     Promise.all([resultBySavingEvent, resultBySavingContent])
       .then((res) => {
-        setEvent({id, title, period, content, timeStamp});
+        updateUserEvent({
+          [id]: { id, title, period, content, timeStamp }
+        });
         history.push("/calendar");
       })
       .catch((err) => {
