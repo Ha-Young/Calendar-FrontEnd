@@ -2,7 +2,6 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-// TODO: Enter your own config object
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_CALENDAR_API_KEY,
   authDomain: process.env.REACT_APP_CALENDAR_AUTH_DOMAIN,
