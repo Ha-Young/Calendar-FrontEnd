@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { dateConst } from "constants/constants";
+import { DATE } from "constants/constants";
 
-import { inputConst, typeConst } from "constants/constants";
+import { INPUT_TYPE, FORM_TYPE } from "constants/constants";
 import { getDateISO } from "utils/utilFunction";
 import styles from "./EventForm.module.css";
 
@@ -10,102 +10,99 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(getDateISO(0));
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
+  const [startTime, setStartTime] = useState(0);
+  const [endTime, setEndTime] = useState(0);
   const [alertMessage, setAlertMessage] = useState("");
   const { eventId } = useParams();
 
   useEffect(() => {
-    if (type === typeConst.EDIT) {
+    if (type === FORM_TYPE.EDIT) {
       const currentEvent = weeklyEvent[eventId];
       const { title, description, date, startTime, endTime } = currentEvent;
 
       setTitle(title);
       setDescription(description);
       setDate(date);
-      setStartTime(("0" + startTime + "시").slice(-3));
-      setEndTime(("0" + endTime + "시").slice(-3));
+      setStartTime(startTime);
+      setEndTime(endTime);
     }
   }, [eventId, type, weeklyEvent]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (validateInput()) {
-      const parsedStartTime = parseInt(startTime.slice(0, 2));
-      const parsedEndTime = parseInt(endTime.slice(0, 2));
-      const newEvent = {
-        title,
-        description,
-        date,
-        startTime: parsedStartTime,
-        endTime: parsedEndTime,
-      };
+    const currentInput = { title, description, date, startTime, endTime };
+    const alertMessage = getAlertMessage(currentInput);
 
-      if (type === typeConst.EDIT) {
-        newEvent.id = eventId;
-      }
-
-      onSubmit(newEvent, type);
-
-      setTitle("");
-      setDescription("");
-      setDate(getDateISO(0));
-      setStartTime("");
-      setEndTime("");
-    } else {
+    if (alertMessage) {
+      setAlertMessage(alertMessage);
       return;
     }
-  };
 
-  const validateInput = () => {
-    if (title === "") {
-      setAlertMessage("제목을 입력하세요");
-      return false;
-    } else if (description === "") {
-      setAlertMessage("내용을 입력하세요");
-      return false;
-    } else if (startTime === "") {
-      setAlertMessage("시작 시간을 입력하세요");
-      return false;
-    } else if (endTime === "") {
-      setAlertMessage("종료 시간을 입력하세요");
-      return false;
-    } else if (
-      parseInt(startTime.slice(0, 2)) >= parseInt(endTime.slice(0, 2))
-    ) {
-      setAlertMessage("종료 시간은 시작 시간 이후여야 합니다");
-      return false;
-    } else {
-      setAlertMessage("");
-      return true;
+    if (type === FORM_TYPE.EDIT) {
+      currentInput.id = eventId;
     }
+
+    onSubmit(currentInput, type);
+
+    setTitle("");
+    setDescription("");
+    setDate(getDateISO(0));
+    setStartTime(0);
+    setEndTime(0);
+    setAlertMessage("");
   };
 
-  const handleInput = (event) => {
-    const {
-      target: { name, value },
-    } = event;
+  const getAlertMessage = ({
+    title,
+    description,
+    date,
+    startTime,
+    endTime,
+  }) => {
+    if (title === "") {
+      return "제목을 입력하세요";
+    }
 
+    if (description === "") {
+      return "내용을 입력하세요";
+    }
+
+    if (startTime === 0) {
+      return "시작 시간을 입력하세요";
+    }
+
+    if (endTime === 0) {
+      return "종료 시간을 입력하세요";
+    }
+
+    if (startTime >= endTime) {
+      return "종료 시간은 시작 시간 이후여야 합니다";
+    }
+
+    return null;
+  };
+
+  const handleInputChange = ({ target: { name, value } }) => {
     switch (name) {
-      case inputConst.TITLE:
+      case INPUT_TYPE.TITLE:
         setTitle(value);
         break;
 
-      case inputConst.DESCRIPTION:
+      case INPUT_TYPE.DESCRIPTION:
         setDescription(value);
         break;
 
-      case inputConst.DATE:
+      case INPUT_TYPE.DATE:
         setDate(value);
         break;
 
-      case inputConst.START_TIME:
-        setStartTime(value);
+      case INPUT_TYPE.START_TIME:
+        setStartTime(parseInt(value.slice(0, 2)));
         break;
 
-      case inputConst.END_TIME:
-        setEndTime(value);
+      case INPUT_TYPE.END_TIME:
+        setEndTime(parseInt(value.slice(0, 2)));
         break;
 
       default:
@@ -116,7 +113,7 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
   return (
     <>
       <h1 className={styles.formTitle}>
-        {type === typeConst.ADD ? "이벤트 추가하기" : "이벤트 수정하기"}
+        {type === FORM_TYPE.ADD ? "이벤트 추가하기" : "이벤트 수정하기"}
       </h1>
       <section className={styles.formContainer}>
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -124,11 +121,11 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
             <span className={styles.inputType}>제목</span>
             <input
               className={styles.title}
-              name="title"
+              name={INPUT_TYPE.TITLE}
               type="text"
               placeholder="Event Title"
               value={title}
-              onChange={(event) => handleInput(event)}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -136,11 +133,11 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
             <span className={styles.inputType}>상세</span>
             <input
               className={styles.description}
-              name="description"
+              name={INPUT_TYPE.DESCRIPTION}
               type="textarea"
               placeholder="Event Description"
               value={description}
-              onChange={(event) => handleInput(event)}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -148,10 +145,10 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
             <span className={styles.inputType}>날짜</span>
             <input
               className={styles.date}
-              name="date"
+              name={INPUT_TYPE.DATE}
               type="date"
               value={date}
-              onChange={(event) => handleInput(event)}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -159,13 +156,12 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
             <span className={styles.inputType}>시작</span>
             <select
               className={styles.startTime}
-              name="startTime"
-              id="start-time"
-              value={startTime}
-              onChange={(event) => handleInput(event)}
+              name={INPUT_TYPE.START_TIME}
+              value={("0" + startTime + "시").slice(-3)}
+              onChange={handleInputChange}
               required
             >
-              {dateConst.TIME_LIST.map((time) => (
+              {DATE.TIME_LIST.map((time) => (
                 <option key={time}>{time}시</option>
               ))}
             </select>
@@ -174,13 +170,12 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
             <span className={styles.inputType}>종료</span>
             <select
               className={styles.endTime}
-              name="endTime"
-              id="end-time"
-              onChange={(event) => handleInput(event)}
-              value={endTime}
+              name={INPUT_TYPE.END_TIME}
+              onChange={handleInputChange}
+              value={("0" + endTime + "시").slice(-3)}
               required
             >
-              {dateConst.TIME_LIST.map((time) => (
+              {DATE.TIME_LIST.map((time) => (
                 <option key={time}>{time}시</option>
               ))}
             </select>
@@ -189,7 +184,9 @@ const EventForm = ({ type, weeklyEvent, onSubmit }) => {
             <p className={styles.alertMessage}>{alertMessage}</p>
           )}
           <div className={styles.buttonContainer}>
-            <button className={styles.addButton}>제출하기</button>
+            <button type="submit" className={styles.addButton}>
+              제출하기
+            </button>
           </div>
         </form>
       </section>

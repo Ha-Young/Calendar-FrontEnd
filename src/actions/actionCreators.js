@@ -9,7 +9,7 @@ import { ACTION } from "constants/actionTypes";
 import { getDateISO } from "utils/utilFunction";
 
 const setInitialize = (initialEvent) => {
-  if (!Object.keys(initialEvent).length) {
+  if (Object.keys(initialEvent).length === 0) {
     return {
       type: ACTION.NO_EVENT,
     };
@@ -35,6 +35,7 @@ const setUserData = (userId) => {
   const { displayName, email, photoURL, phoneNumber } = authService.currentUser;
 
   addUserData(userId, { displayName, email, photoURL, phoneNumber });
+
   return {
     type: ACTION.SET_USER_DATA,
     userId,
@@ -42,19 +43,15 @@ const setUserData = (userId) => {
   };
 };
 
-const showDaily = (events) => {
-  return {
-    type: ACTION.SHOW_DAILY,
-    dailyEvent: events,
-  };
-};
+const showDaily = (events) => ({
+  type: ACTION.SHOW_DAILY,
+  dailyEvent: events,
+});
 
-const showWeekly = (events) => {
-  return {
-    type: ACTION.SHOW_WEEKLY,
-    weeklyEvent: events,
-  };
-};
+const showWeekly = (events) => ({
+  type: ACTION.SHOW_WEEKLY,
+  weeklyEvent: events,
+});
 
 const addEvent = (newEvent = {}, id) => {
   if (!Object.keys(newEvent).length) {
@@ -62,6 +59,7 @@ const addEvent = (newEvent = {}, id) => {
   }
 
   addToFirebase(newEvent, id);
+
   return {
     type: ACTION.ADD_EVENT,
     newEvent,
@@ -71,6 +69,7 @@ const addEvent = (newEvent = {}, id) => {
 
 const deleteEvent = (id, date) => {
   deleteAtFirebase(id, date);
+
   return {
     type: ACTION.DELETE_EVENT,
     id,
@@ -79,6 +78,7 @@ const deleteEvent = (id, date) => {
 
 const editEvent = (editedEvent, id) => {
   editAtFirebase(editedEvent, id);
+
   return {
     type: ACTION.EDIT_EVENT,
     editedEvent,

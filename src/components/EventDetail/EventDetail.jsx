@@ -4,21 +4,17 @@ import styles from "./EventDetail.module.css";
 
 const EventDetail = ({ weeklyEvent, deleteEvent }) => {
   const [event, setEvent] = useState({});
-  const [invalidEvent, setInvalidEvent] = useState(false);
+  const [isInvalidEvent, setIsInvalidEvent] = useState(false);
   const param = useParams();
   const history = useHistory();
 
   useEffect(() => {
-    if (!weeklyEvent[param.eventId]) {
-      setInvalidEvent(true);
+    if (weeklyEvent[param.eventId]) {
+      setEvent(weeklyEvent[param.eventId]);
     } else {
-      const { title, description, date, startTime, endTime } = weeklyEvent[
-        param.eventId
-      ];
-
-      setEvent({ title, description, date, startTime, endTime });
+      setIsInvalidEvent(true);
     }
-  }, [param.id, weeklyEvent, param.eventId]);
+  }, [weeklyEvent, param.eventId]);
 
   const handleDelete = () => {
     deleteEvent(param.eventId, event.date);
@@ -28,7 +24,7 @@ const EventDetail = ({ weeklyEvent, deleteEvent }) => {
 
   return (
     <>
-      {invalidEvent ? (
+      {isInvalidEvent ? (
         <div className={styles.invalidMessage}>
           해당 이벤트가 존재하지 않습니다.
         </div>

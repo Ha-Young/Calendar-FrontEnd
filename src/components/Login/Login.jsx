@@ -5,7 +5,7 @@ import styles from "./Login.module.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [newAccount, setNewAccount] = useState(true);
+  const [isNewAccount, setIsNewAccount] = useState(true);
   const [error, setError] = useState("");
 
   const onChange = (event) => {
@@ -26,7 +26,7 @@ const Login = () => {
     event.preventDefault();
     try {
       let data;
-      if (newAccount) {
+      if (isNewAccount) {
         data = await authService.createUserWithEmailAndPassword(
           email,
           password
@@ -40,22 +40,26 @@ const Login = () => {
   };
 
   const toggleAccount = () => {
-    setNewAccount((value) => !value);
+    setIsNewAccount((value) => !value);
   };
 
-  const onSocialClick = async (event) => {
-    const {
-      target: { name },
-    } = event;
-    let provider;
+  const handleSocialClick = async (event) => {
+    try {
+      const {
+        target: { name },
+      } = event;
+      let provider;
 
-    if (name === "google") {
-      provider = new firebaseInstance.auth.GoogleAuthProvider();
-    } else if (name === "github") {
-      provider = new firebaseInstance.auth.GithubAuthProvider();
+      if (name === "google") {
+        provider = new firebaseInstance.auth.GoogleAuthProvider();
+      } else if (name === "github") {
+        provider = new firebaseInstance.auth.GithubAuthProvider();
+      }
+
+      await authService.signInWithPopup(provider);
+    } catch (err) {
+      setError(err);
     }
-
-    await authService.signInWithPopup(provider);
   };
 
   return (
@@ -84,25 +88,24 @@ const Login = () => {
           value={password}
         />
         <button className={styles.loginButton}>
-          {newAccount ? "Create Account" : "Log In"}
+          {isNewAccount ? "Create Account" : "Log In"}
         </button>
-        {/* <input type="submit" value={newAccount ? "Create Account" : "Log In"} />
-        {error} */}
+        {error !== "" && <span className={styles.erroMessage}>{error}</span>}
       </form>
       <button onClick={toggleAccount} className={styles.loginToggleButton}>
-        {newAccount ? "Sign in" : "Create Account"}
+        {isNewAccount ? "Sign in" : "Create Account"}
       </button>
       <div className={styles.socialLoginContainer}>
         <button
           name="google"
-          onClick={onSocialClick}
+          onClick={handleSocialClick}
           className={styles.loginByGoogle}
         >
           Continue with Google
         </button>
         <button
           name="github"
-          onClick={onSocialClick}
+          onClick={handleSocialClick}
           className={styles.loginByGithub}
         >
           Continue with Github

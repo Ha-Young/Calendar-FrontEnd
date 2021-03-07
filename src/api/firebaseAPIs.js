@@ -46,7 +46,7 @@ export const fetchWeeklyEvent = (callback, date) => {
 };
 
 export const addUserData = (userId, userData) => {
-  database.ref("/userData").update({ [userId]: { ...userData } });
+  database.ref("/userData").update({ [userId]: userData });
 };
 
 export const addToFirebase = (newEvent, id) => {

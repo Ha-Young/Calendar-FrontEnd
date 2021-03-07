@@ -1,6 +1,6 @@
 import React from "react";
-import EventCardStyled from "components/EventCard/EventCardStyled";
-import { dateConst } from "constants/constants";
+import EventCardStyled from "components/EventCard/EventCard";
+import { DATE } from "constants/constants";
 import styles from "./WeeklyCalender.module.css";
 
 const WeeklyCalender = ({ daysOfWeek, weeklyEvent }) => {
@@ -8,7 +8,7 @@ const WeeklyCalender = ({ daysOfWeek, weeklyEvent }) => {
     <div className={styles.container}>
       <section className={styles.timeContainer}>
         <div className={styles.tableHeader}></div>
-        {dateConst.TIME_LIST.map((time) => (
+        {DATE.TIME_LIST.map((time) => (
           <div key={time} className={styles.eachTime}>
             {time}시
           </div>
@@ -23,7 +23,7 @@ const WeeklyCalender = ({ daysOfWeek, weeklyEvent }) => {
               </p>
               <span className={styles.day}>{date[2]}</span>
             </div>
-            {dateConst.TIME_LIST.map((time) => (
+            {DATE.TIME_LIST.map((time) => (
               <div key={time} className={styles.eachTime}></div>
             ))}
           </div>

@@ -17,7 +17,7 @@ import { fetchDailyEvent } from "api/firebaseAPIs";
 import { fetchWeeklyEvent } from "api/firebaseAPIs";
 
 import routes from "constants/routes";
-import { typeConst, dateConst, directionConst } from "constants/constants";
+import { FORM_TYPE, DATE, DIRECTION } from "constants/constants";
 import {
   getDateISO,
   parseDate,
@@ -61,12 +61,12 @@ const AppRouter = ({
   const setNewWeek = (direction) => {
     let currentWeekCount = weekCount;
 
-    if (direction === directionConst.PREV) {
-      currentWeekCount = currentWeekCount - dateConst.DAY_OF_WEEK;
+    if (direction === DIRECTION.PREV) {
+      currentWeekCount = currentWeekCount - DATE.DAY_OF_WEEK;
     }
 
-    if (direction === directionConst.NEXT) {
-      currentWeekCount = currentWeekCount + dateConst.DAY_OF_WEEK;
+    if (direction === DIRECTION.NEXT) {
+      currentWeekCount = currentWeekCount + DATE.DAY_OF_WEEK;
     }
 
     setWeekCount(currentWeekCount);
@@ -77,11 +77,11 @@ const AppRouter = ({
   const setNewDate = (direction) => {
     let currentDateCount = dateCount;
 
-    if (direction === directionConst.PREV) {
+    if (direction === DIRECTION.PREV) {
       currentDateCount--;
     }
 
-    if (direction === directionConst.NEXT) {
+    if (direction === DIRECTION.NEXT) {
       currentDateCount++;
     }
 
@@ -90,10 +90,10 @@ const AppRouter = ({
   };
 
   const handleSubmit = (newEvent, type) => {
-    if (type === typeConst.ADD) {
+    if (type === FORM_TYPE.ADD) {
       const id = generateKey();
       addEvent(newEvent, id);
-    } else if (type === typeConst.EDIT) {
+    } else if (type === FORM_TYPE.EDIT) {
       const id = newEvent.id;
       editEvent(newEvent, id);
       history.push(`/events/${id}`);
@@ -110,7 +110,7 @@ const AppRouter = ({
           <Switch>
             <Route exact path={routes.HOME}>
               <CalenderHeader
-                onClick={setNewWeek}
+                onMovePrevOrNext={setNewWeek}
                 currentPeriod={
                   monthAndWeek.month + "월 " + monthAndWeek.week + "주차"
                 }
@@ -123,7 +123,7 @@ const AppRouter = ({
 
             <Route path={routes.DAILY}>
               <CalenderHeader
-                onClick={setNewDate}
+                onMovePrevOrNext={setNewDate}
                 currentPeriod={
                   date.month +
                   "월 " +
@@ -150,7 +150,7 @@ const AppRouter = ({
 
             <Route path={routes.ADD_EVENT}>
               <EventForm
-                type={typeConst.ADD}
+                type={FORM_TYPE.ADD}
                 weeklyEvent={weeklyEvent}
                 onSubmit={handleSubmit}
               />
@@ -158,7 +158,7 @@ const AppRouter = ({
 
             <Route exact path={routes.EDIT_EVENT}>
               <EventForm
-                type={typeConst.EDIT}
+                type={FORM_TYPE.EDIT}
                 weeklyEvent={weeklyEvent}
                 onSubmit={handleSubmit}
               />
@@ -175,7 +175,9 @@ const AppRouter = ({
               <Profile userData={userData} />
             </Route>
 
-            <Redirect from="/calender" to={routes.HOME} />
+            <Route path="/calender">
+              <Redirect to={routes.HOME} />
+            </Route>
           </Switch>
         </section>
       ) : (
@@ -183,7 +185,6 @@ const AppRouter = ({
           <Route path={routes.HOME}>
             <Login />
           </Route>
-          <Redirect from="*" to={routes.HOME} />
         </Switch>
       )}
     </>

@@ -1,5 +1,5 @@
 @import "../../common/main.module.css";
-@value calenderBlack, calenderDarkGray, calenderBlue, calenderSkyBlue, calenderPink, calenderRed, calenderGray, calenderLightBlue from "../../common/main.module.css";
+@value calenderDarkGray, calenderBlue from "../../common/main.module.css";
 
 .navContainer {
   margin: 0 50px;

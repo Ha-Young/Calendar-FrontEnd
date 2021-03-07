@@ -3,7 +3,7 @@ import styles from "./Footer.module.css";
 
 const Footer = () => (
   <footer className={styles.footer}>
-    &copy; {new Date().getFullYear()} Vanilla Calender
+    &copy; {new Date().getFullYear()} Vanilla Calendar
   </footer>
 );
 

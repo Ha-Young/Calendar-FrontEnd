@@ -1,9 +1,9 @@
 import moment from "moment";
-import { dateConst } from "constants/constants";
+import { DATE } from "constants/constants";
 import { authService } from "api/firebaseService";
 
-export const getDateISO = (ref = 0) => {
-  return moment().add(ref, "days").format("YYYY-MM-DD");
+export const getDateISO = (day = 0) => {
+  return moment().add(day, "days").format("YYYY-MM-DD");
 };
 
 export const parseDate = (date = "") => {
@@ -23,10 +23,10 @@ export const getWeekOfMonth = (date = moment().day(0).format("YYYY-MM-DD")) => {
   return Math.ceil(moment(date).day(0).date() / 7).toString();
 };
 
-export const getDaysOfWeek = (ref = 0) => {
+export const getDaysOfWeek = (day = 0) => {
   const daysOfTargetWeek = [];
 
-  for (let i = ref; i < ref + dateConst.DAY_OF_WEEK; i++) {
+  for (let i = day; i < day + DATE.DAY_OF_WEEK; i++) {
     daysOfTargetWeek.push(
       moment().day(i).format("MM DD ddd").toUpperCase().split(" ")
     );
@@ -77,7 +77,7 @@ export const generateKey = () => {
 export const getWeeklyPosition = (startTime, endTime, date) => {
   const cardWidth = Math.floor((window.innerWidth * 81) / 100 / 7);
   const cardHeight = (endTime - startTime) * 32;
-  const positionLeft = cardWidth * dateConst.DAYS[parseDate(date).day];
+  const positionLeft = cardWidth * DATE.DAYS[parseDate(date).day];
   const positionTop = 60 + startTime * 32;
 
   return { cardWidth, cardHeight, positionLeft, positionTop };

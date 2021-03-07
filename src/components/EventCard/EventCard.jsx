@@ -15,10 +15,10 @@ const EventCardStyled = ({ id, title, date, startTime, endTime }) => {
   useEffect(() => {
     let sizeAndPosition = {};
 
-    if (pathname === routes.WEEKLY) {
-      sizeAndPosition = { ...getWeeklyPosition(startTime, endTime, date) };
+    if (pathname === routes.WEEKLY || pathname === routes.HOME) {
+      sizeAndPosition = getWeeklyPosition(startTime, endTime, date);
     } else if (pathname === routes.DAILY) {
-      sizeAndPosition = { ...getDailyPosition(startTime, endTime) };
+      sizeAndPosition = getDailyPosition(startTime, endTime);
     }
 
     const cardStyle = {
