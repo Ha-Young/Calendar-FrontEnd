@@ -44,7 +44,7 @@ const event = (state = initialState, action) => {
       return state;
     case GET_FIREBASE_EVENTS:
       return {
-        ...action.data
+        ...action.payload.data
       };
     default:
       return state;

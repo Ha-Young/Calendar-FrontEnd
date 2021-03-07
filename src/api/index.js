@@ -47,9 +47,11 @@ export const getFirebaseData = async (setData) => {
 export const logFirebaseData = async () => {
   const databaseRef = firebase.database().ref();
 
-  await databaseRef.on("value", (snapShot) => {
+  await databaseRef.once("value", (snapShot) => {
     const data = snapShot.val();
 
     console.log(data);
+  }).catch(e => {
+    throw new Error(e);
   });
 };

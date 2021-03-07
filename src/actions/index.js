@@ -67,5 +67,7 @@ export const deleteEvent = (event) => ({
 
 export const getEvents = (data) => ({
   type: GET_FIREBASE_EVENTS,
-  data,
+  payload: {
+    data
+  },
 });
