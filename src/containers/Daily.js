@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Daily from "../components/Daily/Daily";
-import { nextDay, yesterDay } from "../actions";
+import { setCurrentDay } from "../actions";
 
 const mapStateToProps = (state) => ({
   currentDay: state.currentDay,
@@ -8,11 +8,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  goForward: () => {
-    dispatch(nextDay());
-  },
-  goBackward: () => {
-    dispatch(yesterDay());
+  setCurrentDay: (days) => {
+    dispatch(setCurrentDay(days));
   },
 });
 

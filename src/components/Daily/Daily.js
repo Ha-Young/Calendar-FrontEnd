@@ -3,12 +3,12 @@ import styles from "./Daily.module.css";
 import CommonElementView from "../Element/CommonElementView";
 import LeftNavigation from "../LeftNavigation/LeftNavigation";
 
-export default function Daily({ currentDay, events, goForward, goBackward }) {
+export default function Daily({ currentDay, events, setCurrentDay }) {
   function handleClick(type) {
     if (type === "prev") {
-      goBackward();
+      setCurrentDay(-1);
     } else {
-      goForward();
+      setCurrentDay(1);
     }
   }
 

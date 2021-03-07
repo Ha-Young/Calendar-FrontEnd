@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "./Element.module.css";
 
 export default function EventElement({ eventDay, event, hour }) {
-  console.log('eventEl 새로들어옴', event);
   return (
     <div className={styles.time_flex}>
       {event

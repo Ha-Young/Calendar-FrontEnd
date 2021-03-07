@@ -27,14 +27,6 @@ export const updateEvent = (from, to) => ({
   payload: { from, to },
 });
 
-export const nextDay = () => ({
-  type: types.TOMORROW,
-});
-
-export const yesterDay = () => ({
-  type: types.YESTERDAY,
-});
-
 export const setCurrentDay = days => ({
   type: types.SET_CURRENT_DAY,
   days,

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import * as date from "date-fns";
 import randomIndex from "../../utils/randomIndex";
 import { DAYS } from "../../constants/CALENDAR_UNIT";
-import CommonElementView from "../Element/CommonElementView";
 import LeftNavigation from "../LeftNavigation/LeftNavigation";
+import WeekEvents from "./WeekEvents";
 import styles from "./Weekly.module.css";
 
 export default function Weekly({
@@ -73,20 +73,5 @@ export default function Weekly({
         <WeekEvents weekEvents={weekEvents} week={dayOfMonth} />
       </div>
     </>
-  );
-}
-
-function WeekEvents({ weekEvents, week }) {
-  console.log('week event 새로 들어옴', weekEvents)
-  return (
-    <div className={styles.weekly_container_view}>
-      {week.map(day => (
-        <CommonElementView
-          key={randomIndex()}
-          eventDay={day}
-          events={weekEvents[day]}
-        />
-      ))}
-    </div>
   );
 }
