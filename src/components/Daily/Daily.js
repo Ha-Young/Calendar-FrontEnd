@@ -21,11 +21,8 @@ export default function Daily(props) {
   let iterateUntil;
   let currentEventId;
 
-  console.log(match.url);
-
   function handleClick(event) {
-    const className = event.target.className.split(" ");
-    const selectedEventId = className.length === 3 ? className[0] : "";
+    const selectedEventId = event.target.id;
     let selectedEvent;
 
     for (let i = 0; i < currentEventList.length; i++) {
@@ -75,7 +72,12 @@ export default function Daily(props) {
 
               return (
                 <Link to={currentEventId ? `/event/${currentEventId}` : `${match.url}`}>
-                  <div key={time} className={[currentEventId, "time-div", isColor].join(" ")} onClick={handleClick}>
+                  <div 
+                    key={time} 
+                    id={currentEventId}
+                    className={[currentEventId, "time-div", isColor].join(" ")} 
+                    onClick={event => {handleClick(event)}}
+                  >
                     <div className="disable-click event-title">{title}</div>
                     <div className="disable-click event-hour">{time}시</div>
                   </div>

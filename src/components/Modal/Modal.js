@@ -3,7 +3,6 @@ import { Link, useRouteMatch } from "react-router-dom";
 import "./style.css";
 
 export default function Modal({ event }) {
-  console.log(useRouteMatch().url);
   return (
     <div className="modal-container">
       <Link to="/calendar/daily">x</Link>

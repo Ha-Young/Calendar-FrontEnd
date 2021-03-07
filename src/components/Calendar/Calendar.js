@@ -1,14 +1,13 @@
-import React, { Fragment, useState } from "react";
-import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Link, Route, useRouteMatch } from "react-router-dom";
 import Daily from "../../containers/Daily";
 import Weekly from "../../containers/Weekly";
 
 export default function Calendar() {
   const match = useRouteMatch();
-  console.log(match.url);
 
   return (
-    <Fragment>
+    <>
       <nav>
         <ul className="menu">
           <li className="daily-menu">
@@ -19,9 +18,9 @@ export default function Calendar() {
           </li>
         </ul>
       </nav>
-      <Route exact path={`${match.url}/daily`}><Daily /></Route>
-      <Route exact path={`${match.url}/weekly`}><Weekly /></Route>
-    </Fragment>
+      <Route exact path={`${match.url}/daily`} component={Daily} />
+      <Route exact path={`${match.url}/weekly`} component={Weekly} />
+    </>
   );
 }
 

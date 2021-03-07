@@ -5,7 +5,7 @@ import Form from "../../containers/Form";
 
 export default function Event({ event }) {
   const match = useRouteMatch();
-  console.log(match.url);
+  
   return (
     <Router>
       <div>

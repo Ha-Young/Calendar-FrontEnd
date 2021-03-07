@@ -7,10 +7,9 @@ import { getRecord } from "../../api";
 
 function App({ onInitialLoad }) {
   useEffect(() => {
-    (async function () {
-      const data = await getRecord();
+    getRecord().then(data => {
       onInitialLoad(data);
-    })();
+    });
   }, []);
 
   return (

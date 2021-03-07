@@ -18,7 +18,7 @@ let initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  const newState = { ...state };
+  let newState = { ...state };
 
   function modifiedFirebaseId(Id) {
     const modified = {};
@@ -62,7 +62,6 @@ export default function reducer(state = initialState, action) {
       break;
     case "SET_SELECTED_EVENT":
       newState.selectedEvent = action.selectedEvent;
-      console.log(action.selectedEvent);
       break;
     default:
       break;

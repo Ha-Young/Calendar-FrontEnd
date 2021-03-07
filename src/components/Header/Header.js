@@ -4,9 +4,6 @@ import './style.css';
 
 // TODO: Create your own header.
 export default function Header() {
-  const match = useRouteMatch();
-  console.log(match.url);
-
   return (
     <header>
       <nav>
