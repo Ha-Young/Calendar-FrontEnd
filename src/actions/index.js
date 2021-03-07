@@ -3,21 +3,23 @@ import { formatUserInput } from "utils";
 import { uploadData, deleteEventbyId, getEvents } from "api";
 import _ from "lodash";
 
-export const toDayCalendar = () => ({ type: actionTypes.TO_DAY_CALENDAR });
-export const toWeekCalendar = () => ({ type: actionTypes.TO_WEEK_CALENDAR });
+export const showDayCalendar = () => ({
+  type: actionTypes.TO_DAY_CALENDAR,
+});
+export const showWeekCalendar = () => ({
+  type: actionTypes.TO_WEEK_CALENDAR,
+});
+
 export const prevClick = () => ({ type: actionTypes.PREV });
+
 export const nextClick = () => ({ type: actionTypes.NEXT });
 
 export const addEvent = (userInputEvent) => {
-  const event = formatUserInput(null, userInputEvent);
-  uploadData(event);
-  return { type: actionTypes.ADD_EVENT, payload: event };
+  return { type: actionTypes.ADD_EVENT, payload: userInputEvent };
 };
 
 export const editEvent = (eventId, userInputEvent) => {
-  const event = formatUserInput(eventId, userInputEvent);
-  uploadData(event);
-  return { type: actionTypes.EDIT_EVENT, payload: { eventId, event } };
+  return { type: actionTypes.EDIT_EVENT, payload: { eventId, userInputEvent } };
 };
 
 export const deleteEvent = (eventId) => {

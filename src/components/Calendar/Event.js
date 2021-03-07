@@ -42,17 +42,15 @@ export default function Event({
   onClickGetEventInfo,
   onEventClick,
 }) {
+  const onClickEvent = (e) => {
+    e.stopPropagation();
+    onClickGetEventInfo({ id, title, startHour, endHour, description });
+    onEventClick();
+  };
+
   return (
     <>
-      <StyledEvent
-        height={height}
-        color={color}
-        onClick={(e) => {
-          e.stopPropagation();
-          onClickGetEventInfo({ id, title, startHour, endHour, description });
-          onEventClick();
-        }}
-      >
+      <StyledEvent height={height} color={color} onClick={onClickEvent}>
         <StyledTitle>{title}</StyledTitle>
         <StyledEventTitle>{`${startHour}h ~ ${endHour}h`}</StyledEventTitle>
         <StyledEventDescription>{description}</StyledEventDescription>

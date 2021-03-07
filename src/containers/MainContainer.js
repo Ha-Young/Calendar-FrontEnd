@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 import Navbar from "components/Navbar";
 import Calendar from "components/Calendar";
-import MainButton from "components/Button";
+import { MainButton } from "components/Button";
 import EventModal from "components/Modal";
 
 import * as actions from "actions";
@@ -20,8 +20,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onshowDayCalendar: () => dispatch(actions.toDayCalendar()),
-  onshowWeekCalendar: () => dispatch(actions.toWeekCalendar()),
+  onShowDayCalendar: () => dispatch(actions.showDayCalendar()),
+  onShowWeekCalendar: () => dispatch(actions.showWeekCalendar()),
 
   onPrevClick: () => dispatch(actions.prevClick()),
   onNextClick: () => dispatch(actions.nextClick()),
@@ -40,8 +40,8 @@ const MainContainer = ({
   calendarMode,
   onNextClick,
   onPrevClick,
-  onshowDayCalendar,
-  onshowWeekCalendar,
+  onShowDayCalendar,
+  onShowWeekCalendar,
   onAddEvent,
   onDeleteEvent,
   onEditEvent,
@@ -49,39 +49,26 @@ const MainContainer = ({
   const [eventInfo, getEventInfo] = useState({});
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const onClickGetEventInfo = (eventInfo) => {
+  const handleEventInfoClick = (eventInfo) => {
     getEventInfo(eventInfo);
   };
 
   const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
+    setIsModalVisible(!isModalVisible);
   };
 
   return (
     <div className={`${styles.wrapper}`}>
       <div className={`${styles.Navbar}`}>
         <Navbar
-          onshowDayCalendar={onshowDayCalendar}
-          onshowWeekCalendar={onshowWeekCalendar}
+          onShowDayCalendar={onShowDayCalendar}
+          onShowWeekCalendar={onShowWeekCalendar}
         />
       </div>
       <div className={`${styles.main}`}>
         <EventModal
           isModalVisible={isModalVisible}
-          onClickOk={() => {
-            handleOk();
-          }}
-          onClickCancel={() => {
-            handleCancel();
-          }}
+          onClickCloseModal={showModal}
           onAddEvent={onAddEvent}
           onDeleteEvent={onDeleteEvent}
           onEditEvent={onEditEvent}
@@ -99,22 +86,18 @@ const MainContainer = ({
               onPrevClick={onPrevClick}
               onNextClick={onNextClick}
               onDeleteEvent={onDeleteEvent}
-              onClickGetEventInfo={onClickGetEventInfo}
+              onClickGetEventInfo={handleEventInfoClick}
               showModal={showModal}
             />
           </Route>
-          <Route path="/Event">
+          <Route path="/event">
             <div>Event</div>
           </Route>
           <Route path="*">
             <div>404 error</div>
           </Route>
         </Switch>
-        <MainButton
-          onClick={() => {
-            showModal();
-          }}
-        />
+        <MainButton onClick={showModal} />
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
 import { Modal, Form, Input, Button, DatePicker } from "antd";
+import { uploadData, deleteEventbyId, getEvents } from "api";
 import { TwitterPicker } from "react-color";
+import { formatUserInput } from "utils";
 
 const { RangePicker } = DatePicker;
 const formItemLayout = {
@@ -25,8 +27,7 @@ const formItemLayout = {
 
 export default function EventModal({
   isModalVisible,
-  onClickOk,
-  onClickCancel,
+  onClickCloseModal,
   onAddEvent,
   onDeleteEvent,
   onEditEvent,
@@ -39,8 +40,8 @@ export default function EventModal({
       title="Add event!"
       centered={true}
       visible={isModalVisible}
-      onOk={onClickOk}
-      onCancel={onClickCancel}
+      onOk={onClickCloseModal}
+      onCancel={onClickCloseModal}
       width={800}
       footer={null}
       bodyStyle={{
@@ -54,17 +55,21 @@ export default function EventModal({
       <Form
         onFinish={(e) => {
           if (activeButton.buttonType === "add") {
-            onAddEvent(e);
-            onClickOk();
+            const event = formatUserInput(null, e);
+            uploadData(event);
+            onAddEvent(event);
+            onClickCloseModal();
           }
           if (activeButton.buttonType === "edit") {
-            onEditEvent(eventInfo.id, e);
-            onClickOk();
+            const event = formatUserInput(eventInfo.id, e);
+            uploadData(event);
+            onEditEvent(eventInfo.id, event);
+            onClickCloseModal();
           }
 
           if (activeButton.buttonType === "delete") {
             onDeleteEvent(eventInfo.id);
-            onClickOk();
+            onClickCloseModal();
           }
         }}
         {...formItemLayout}

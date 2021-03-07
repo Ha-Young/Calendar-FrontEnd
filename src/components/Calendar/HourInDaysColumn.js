@@ -43,26 +43,36 @@ export default function HourInDaysColumn({
       <h3 className={`${styles.dayFont}`}>{calendarMode === "week" && day}</h3>
 
       <div className={`${styles.hoursIndayWrapper}`} events={events}>
-        {hours.map((hour, index) => {
+        {hours.map((hour) => {
           return (
             <div
               className={`${styles.hourWrapper}`}
-              key={index}
+              key={hour}
               date={day}
               hour={hour}
             >
               {events.map((e) => {
-                if (hour === e.startHour && day === e.date) {
+                const {
+                  title,
+                  id,
+                  startHour,
+                  endHour,
+                  description,
+                  color,
+                  date,
+                } = e;
+
+                if (hour === startHour && day === date) {
                   return (
                     <Event
-                      title={e.title}
-                      id={e.id}
-                      startHour={e.startHour}
-                      endHour={e.endHour}
-                      description={e.description}
-                      color={e.color}
-                      height={e.endHour - e.startHour}
-                      key={index}
+                      title={title}
+                      id={id}
+                      startHour={startHour}
+                      endHour={endHour}
+                      description={description}
+                      color={color}
+                      height={endHour - startHour}
+                      key={hour}
                       onDeleteEvent={onDeleteEvent}
                       onClickGetEventInfo={onClickGetEventInfo}
                       onEventClick={showModal}

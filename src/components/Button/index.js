@@ -1,3 +1,3 @@
-import MainButton from "components/Button/Mainbutton";
+import MainButton from "components/Button/MainButton";
 
-export default MainButton;
+export { MainButton };

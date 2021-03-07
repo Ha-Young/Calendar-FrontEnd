@@ -12,11 +12,11 @@ export default function CalendarHeader({
 }) {
   return (
     <div className={`${styles.headerWrapper}`}>
-      <Aioutline.AiFillLeftCircle fontSize={"30px"} onClick={onPrevClick} />
+      <Aioutline.AiFillLeftCircle fontSize="30px" onClick={onPrevClick} />
       <h1 className={`${styles.font}`}>
         {calendarMode === "day" ? formatDate(now) : formatWeek(now)}
       </h1>
-      <Aioutline.AiFillRightCircle fontSize={"30px"} onClick={onNextClick} />
+      <Aioutline.AiFillRightCircle fontSize="30px" onClick={onNextClick} />
     </div>
   );
 }
