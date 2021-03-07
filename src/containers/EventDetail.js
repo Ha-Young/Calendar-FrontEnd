@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { deleteEvent, editEvent } from "../actions/index";
+import { deleteEvent, editEvent, eventDetail } from "../actions/index";
 import { updateData } from "../api/index"
 import EventDetail from "../components/EventDetail/EventDetail";
 
@@ -17,7 +17,17 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     return dispatch(editEvent(event, date, prevId));
   },
   onDeleteEvent: (date, prevId) => dispatch(deleteEvent(date, prevId)),
-  onLoadEvent: () => {},
+  onLoadEvent: () => {
+    try {
+      const [ date, id ] = ownProps.match.params.eventId.split("_");
+
+      dispatch(eventDetail(date, parseInt(id)));
+    } catch (error) {
+      const { history } = ownProps;
+
+      history.push("/");
+    }
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventDetail);
