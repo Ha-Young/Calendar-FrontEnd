@@ -32,7 +32,6 @@ const EventCard = ({ event }) => {
         {title}
       </div>
     </Link>
-
   );
 };
 
