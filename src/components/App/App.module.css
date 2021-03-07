@@ -12,7 +12,6 @@
 
 
 html, body {
-  /* background-color: var(--bg-color); */
   background-color: #D9E1EE;
   height: 100vh;
 }
@@ -52,5 +51,3 @@ a, a:hover, a:focus, a:active {
               inset -4px -4px 6px 0 rgba(255,255,255,.5),
               inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
 }
-
-
