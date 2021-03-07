@@ -5,7 +5,7 @@ const NavigationBar = () => {
   return (
     <>
       {hours.map((item) => (
-        <div>{item}</div>
+        <div key={item}>{item}</div>
       ))}
     </>
   );

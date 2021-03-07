@@ -1,13 +1,2 @@
-export const validateText = (text) => {
-  if (typeof text !== "string" || text.length === 0) {
-    return false;
-  }
-
-  return true;
-};
-
-export const validateTime = (start, end) => {
-  if (start >= end) return false;
-  
-  return true;
-};
+export const validateText = (text) => typeof text === 'string' && text.length > 0;
+export const validateTime = (start, end) => start < end;

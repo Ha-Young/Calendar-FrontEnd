@@ -29,15 +29,15 @@ export const removeEventData = async (data) => {
 };
 
 export const loadEventData = async (dates) => {
-  const firstEventIndex = dates[0];
-  const lastEventIndex = dates[dates.length - 1];
+  const firstEventDate = dates[0];
+  const lastEventDate = dates[dates.length - 1];
 
   const queryData = firebase
     .database()
     .ref("userId/events/")
     .orderByChild("date")
-    .startAt(firstEventIndex)
-    .endAt(lastEventIndex);
+    .startAt(firstEventDate)
+    .endAt(firstEventDate);
 
   const data = await queryData.once("value");
 

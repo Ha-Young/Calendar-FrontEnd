@@ -11,9 +11,8 @@ const Modal = ({ children, onClick }) => {
     };
   }, []);
 
-  const closeModal = () => {
-    onClick();
-  };
+  const closeModal = onClick;
+
 
   return (
     <>
