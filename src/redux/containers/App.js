@@ -26,12 +26,19 @@ const mapDispatchToProps = (dispatch) => ({
   },
   removeEvents: (userId, date, startAt, endAt) => {
     const time = startAt + endAt;
-    deleteTargetData(userId, date, startAt, endAt);
-    dispatch(removeEvents(date, time));
+    
+    try {
+      deleteTargetData(userId, date, startAt, endAt);
+      dispatch(removeEvents(date, time));
+      dispatch(newNotification("EVENT DELETED."));
+    } catch (error) {
+      dispatch(newNotification("FAILED TO DELETE EVENT."));
+    }
   },
   writeUserDataToFirebase: (userData) => {
     try {
       writeUserData(userData);
+      dispatch(newNotification("New event updated!"));
     } catch (error) {
       dispatch(newNotification(error.message));
     }
@@ -40,6 +47,7 @@ const mapDispatchToProps = (dispatch) => ({
     if (isLoggedIn) {
       dispatch(logout());
       dispatch(removeAllEvents());
+      dispatch(newNotification("Logged out"))
       localStorage.setItem("userId", "");
       return;
     }
@@ -50,6 +58,7 @@ const mapDispatchToProps = (dispatch) => ({
       moveDataToLoggedInUser(userId);
       dispatch(removeAllEvents());
       dispatch(login(userId));
+      dispatch(newNotification("Logged in!"));
       localStorage.setItem("userId", userId);
     } catch (error) {
       dispatch(newNotification(error.message));
