@@ -12,20 +12,12 @@ import DateSelector from "../../containers/DateSelector";
 import styles from "./Header.module.css";
 
 function Header ({ isDaily, toggleDay, moveToToday }) {
-  function handleToggleClick() {
-    toggleDay();
-  }
-
-  function handleTodayClick() {
-    moveToToday();
-  }
-
   return (
     <header className={styles.header}>
       <div className={styles.buttonContainer}>
         <Switch>
           <Route path="/calendar">
-            <button onClick={handleToggleClick}>
+            <button onClick={toggleDay}>
               {isDaily
                 ? <FaCalendarWeek size="4em" />
                 : <FaCalendarDay size="4em" />
@@ -38,7 +30,7 @@ function Header ({ isDaily, toggleDay, moveToToday }) {
                 </button>
               </Link>
             </nav>
-            <button onClick={handleTodayClick}>
+            <button onClick={moveToToday}>
               <FaCalendarCheck size="4em" />
             </button>
           </Route>

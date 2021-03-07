@@ -15,10 +15,11 @@ export const nextDate = () => ({type: actionTypes.NEXT_DATE});
 export const prevWeek = () => ({type: actionTypes.PREV_WEEK});
 export const nextWeek = () => ({type: actionTypes.NEXT_WEEK});
 
-export const submitEvent = (event) => ({
-  type: actionTypes.SUBMIT_EVENT,
+export const addEvent = (event) => ({
+  type: actionTypes.ADD_EVENT,
   payload: event,
 });
+
 export const eventDetail = (date, id) => ({
   type: actionTypes.DETAIL_EVENT,
   payload: {
@@ -26,17 +27,21 @@ export const eventDetail = (date, id) => ({
     id,
   },
 });
-export const editEvent = (event, prevId) => ({
+
+export const editEvent = (event, date, prevId) => ({
   type: actionTypes.EDIT_EVENT,
   payload: {
+    date,
     event,
     prevId,
   },
 });
+
 export const initEvent = (events) => ({
   type: actionTypes.INIT_EVENT,
   payload: events,
 });
+
 export const deleteEvent = (date, prevId) => ({
   type: actionTypes.DELETE_EVENT,
   payload: {

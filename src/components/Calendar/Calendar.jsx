@@ -5,8 +5,8 @@ import Weekly from "../../containers/Weekly";
 
 function Calendar({ isDaily }) {
   return isDaily
-    ? <Daily></Daily>
-    : <Weekly></Weekly>;
+    ? <Daily />
+    : <Weekly />;
 }
 
 export default Calendar;

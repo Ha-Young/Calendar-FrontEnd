@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { FaPaperPlane } from "react-icons/fa";
 
 import styles from "./NewEventForm.module.css";
-import { updateData } from "../../api/index";
 import DaysAndTimeForm from "../DaysAndTimeForm/DaysAndTimeForm";
 import InputForm from "../InputForm/InputForm";
 import { getKeyFormat } from "../../utils/date";
 
 function NewEventForm({ date, onSubmit }) {
-  const [start, setStart] = useState(Number(date.format("H")));
-  const [end, setEnd] = useState(Number(date.format("H")) + 1);
-  const history = useHistory();
+  const currentTime = Number(date.format("H"));
+  const [start, setStart] = useState(currentTime);
+  const [end, setEnd] = useState(currentTime + 1);
 
   function handleStartChange(time) {
     if (time === end) {
@@ -30,25 +28,10 @@ function NewEventForm({ date, onSubmit }) {
   }
 
   function handleInputSubmit(input) {
-    const event = {
-      ...input,
-      date,
-      start,
-      end,
-    };
+    const keyFormatDate = getKeyFormat(date);
+    const event = {...input, date: keyFormatDate, start, end};
 
     onSubmit(event);
-    updateData({
-      date: getKeyFormat(date),
-      id: start,
-      event: {
-        ...input,
-        date: getKeyFormat(date),
-        start,
-        end,
-      },
-    });
-    history.push("/");
   }
 
   return (
@@ -61,9 +44,7 @@ function NewEventForm({ date, onSubmit }) {
         handleStartChange={handleStartChange}
         handleEndChange={handleEndChange}
       />
-      <InputForm
-        onSubmit={handleInputSubmit}
-      >
+      <InputForm onSubmit={handleInputSubmit}>
         <button>
           <FaPaperPlane />
         </button>

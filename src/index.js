@@ -8,7 +8,7 @@ import {
   BrowserRouter as Router,
   // HashRouter as Router
 } from "react-router-dom";
-import App from "./containers/App";
+import App from "./containers/AppContainer";
 
 const middleware = [];
 

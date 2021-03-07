@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import { deleteEvent, editEvent } from "../actions/index";
-import { sortEvent } from "../reducers/events";
+import { updateData } from "../api/index"
 import EventDetail from "../components/EventDetail/EventDetail";
 
 const mapStateToProps = (state) => ({
@@ -10,9 +10,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onEditSubmit: (event, prevId) => {
-    const sorted = sortEvent(event);
+    const { date, start: id } = event;
 
-    return dispatch(editEvent(sorted, prevId));
+    updateData({date, id, event, prevId});
+
+    return dispatch(editEvent(event, date, prevId));
   },
   onDeleteEvent: (date, prevId) => dispatch(deleteEvent(date, prevId)),
 });

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { getHourList, getKeyFormat } from "../../utils/date";
-import DaysBoard from "../DaysBoard/DaysBoard";
+import DayBoard from "../DayBoard/DayBoard";
 import Schedule from "../../containers/Schedule";
 import styles from "./SchedulesBar.module.css";
 
@@ -12,7 +12,7 @@ function SchedulesBar({ date, isTheDay, events = {} }) {
   return (
     <div className={styles.schedulesBar}>
       <div className={styles.dateBox}>
-        <DaysBoard
+        <DayBoard
           date={date}
           isTheDay={isTheDay}
         />
@@ -22,10 +22,7 @@ function SchedulesBar({ date, isTheDay, events = {} }) {
 
         return (
           <li key={v} >
-            {hasEvent
-              ? <Schedule event={events[v]} date={dateKeyFormat} />
-              : ""
-            }
+            {hasEvent && <Schedule event={events[v]} date={dateKeyFormat} />}
           </li>
         );
       })}

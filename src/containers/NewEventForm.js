@@ -1,18 +1,22 @@
 import { connect } from "react-redux";
 
-import { submitEvent } from "../actions/index";
-import { sortEvent } from "../reducers/events";
+import { addEvent } from "../actions/index";
+import { updateData } from "../api/index";
 import NewEventForm from "../components/NewEventForm/NewEventForm";
 
 const mapStateToProps = (state) => ({
   date: state.date,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   onSubmit: (event) => {
-    const sorted = sortEvent(event);
+    const { date, start: id } = event;
+    const { history } = ownProps;
 
-    return dispatch(submitEvent(sorted));
+    updateData({date, id, event});
+    dispatch(addEvent(event));
+    history.push("/");
+    return;
   },
 });
 

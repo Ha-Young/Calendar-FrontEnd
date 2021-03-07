@@ -9,7 +9,7 @@ export function getWeekList() {
   return Array.from({length: WEEK}, (v, i) => i - 3);
 }
 
-export function getDays(date) {
+export function getDay(date) {
   return date.format("D");
 }
 
@@ -17,8 +17,8 @@ export function calculateDate(date, fromDate) {
   return date.clone().add(fromDate, "days");
 }
 
-export function getKeyFormat(date) {
-  return date.format("YYYY-MM-DD");
+export function getKeyFormat(date, format = "YYYY-MM-DD") {
+  return date.format(format);
 }
 
 export function getWeeklyKeyFormats(date) {
@@ -26,7 +26,7 @@ export function getWeeklyKeyFormats(date) {
   const result = [];
 
   for (let i = 0; i < WEEK; i++) {
-    result.push(tempDate.format("YYYY-MM-DD"));
+    result.push(getKeyFormat(tempDate));
     tempDate.add(1, "days");
   }
 
@@ -34,22 +34,7 @@ export function getWeeklyKeyFormats(date) {
 }
 
 export function getDayOfTheWeek(date) {
-  switch (date.day()) {
-    case 0:
-      return "일";
-    case 1:
-      return "월";
-    case 2:
-      return "화";
-    case 3:
-      return "수";
-    case 4:
-      return "목";
-    case 5:
-      return "금";
-    case 6:
-      return "토";
-    default:
-      throw new Error({message: "getDayOfTheWeek"});
-  }
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
+
+  return days[date.day()];
 }

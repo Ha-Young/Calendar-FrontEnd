@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-// TODO: We are using CSS Modules here.
-// Do your own research about CSS Modules.
-// For example, what is it? what are benefits?
 import styles from "./App.module.css";
 import Header from "../../containers/Header";
-import EventsRouter from "../EventsRouter/EventsRouter"
 import Calendar from "../../containers/Calendar";
+import NewEventForm from "../../containers/NewEventForm";
+import EventDetail from "../../containers/EventDetail";
 
 function App({ onInitialLoad }) {
   // useEffect(() => {
@@ -18,10 +16,14 @@ function App({ onInitialLoad }) {
       <Header />
       <Switch>
         <Route path="/calendar" exact component={Calendar} />
-        <Route path="/events" component={EventsRouter} />
-        <Route>
-          <Redirect to="/calendar" />
+        <Route path="/events">
+          <Switch>
+            <Route path="/events/new" exact component={NewEventForm} />
+            <Route path="/events/:eventId" component={EventDetail} />
+            <Redirect to="/events/new" />
+          </Switch>
         </Route>
+        <Redirect to="/calendar" />
       </Switch>
     </div>
   );

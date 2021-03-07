@@ -13,7 +13,7 @@ export const NEXT_DATE = "NEXT_DATE";
 export const PREV_WEEK = "PREV_WEEK";
 export const NEXT_WEEK = "NEXT_WEEK";
 
-export const SUBMIT_EVENT = "SUBMIT_EVENT";
+export const ADD_EVENT = "ADD_EVENT";
 export const DETAIL_EVENT = "DETAIL_EVENT";
 export const EDIT_EVENT = "EDIT_EVENT";
 export const INIT_EVENT = "INIT_EVENT";

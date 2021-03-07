@@ -3,7 +3,7 @@ import { FaPaperPlane, FaTrashAlt } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 
-import { deleteData, updateData } from "../../api/index";
+import { deleteData } from "../../api/index";
 import { getKeyFormat } from "../../utils/date";
 import DaysAndTimeForm from "../DaysAndTimeForm/DaysAndTimeForm";
 import InputForm from "../InputForm/InputForm";
@@ -28,15 +28,9 @@ function EventDetail({ event = {}, onEditSubmit, onDeleteEvent, match}) {
         prevId,
       });
     } else {
-      const event = {...input, date, start, end};
+      const event = {...input, date: keyFormatDate, start, end};
 
       onEditSubmit(event, prevId);
-      updateData({
-        date: keyFormatDate,
-        id: start,
-        event: {...input, date: keyFormatDate, start, end},
-        prevId,
-      });
     }
 
     history.push("/");

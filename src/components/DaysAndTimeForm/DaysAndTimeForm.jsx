@@ -1,6 +1,6 @@
 import React from "react";
 
-import TheDate from "../DaysBoard/DaysBoard";
+import DayBoard from "../DayBoard/DayBoard";
 import TimeSelector from "../TimeSelector/TimeSelector";
 import styles from "./DaysAndTimeForm.module.css";
 
@@ -15,20 +15,20 @@ function DaysAndTimeForm({
 }) {
   return (
     <div className={styles.daysAndTimeForm}>
-        <TheDate date={date} isTheDay={isTheDay} />
-        <span className={styles.timeSelectorContainer}>
-          <TimeSelector
-            time={start}
-            onChange={handleStartChange}
-            disabled={disabled}
-          />
-          <TimeSelector
-            time={end}
-            onChange={handleEndChange}
-            disabled={disabled}
-          />
-        </span>
-      </div>
+      <DayBoard date={date} isTheDay={isTheDay} />
+      <span className={styles.timeSelectorContainer}>
+        <TimeSelector
+          time={start}
+          onChange={handleStartChange}
+          disabled={disabled}
+        />
+        <TimeSelector
+          time={end}
+          onChange={handleEndChange}
+          disabled={disabled}
+        />
+      </span>
+    </div>
   );
 }
 

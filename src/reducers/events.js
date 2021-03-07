@@ -4,7 +4,7 @@ import {
   DETAIL_EVENT,
   EDIT_EVENT,
   INIT_EVENT,
-  SUBMIT_EVENT,
+  ADD_EVENT,
 } from "../constants/actionTypes";
 import { getWeeklyKeyFormats } from "../utils/date";
 
@@ -12,31 +12,23 @@ function eventsById(state = {}, action) {
   const { payload } = action;
 
   switch (action.type) {
-    case SUBMIT_EVENT: {
-      const { date, title, content, start, end } = payload;
-
+    case ADD_EVENT: {
       return {
         ...state,
-        [payload.start] : {
-          date,
-          title,
-          content,
-          start,
-          end,
-        }
+        [payload.start] : {...payload}
       };
     }
     case EDIT_EVENT: {
       const { event, prevId } = payload;
-      const copy = Object.assign({}, state);
+      const copiedState = Object.assign({}, state);
 
       if (prevId !== event.start) {
-        delete copy[prevId];
+        delete copiedState[prevId];
       }
 
-      copy[event.start] = event;
+      copiedState[event.start] = event;
 
-      return copy;
+      return copiedState;
     }
     case DELETE_EVENT: {
       const { prevId } = payload;
@@ -55,7 +47,7 @@ function eventsAllIds(state = [], action) {
   const { payload } = action;
 
   switch (action.type) {
-    case SUBMIT_EVENT: {
+    case ADD_EVENT: {
       const { start } = payload;
 
       return [
@@ -65,33 +57,16 @@ function eventsAllIds(state = [], action) {
     }
     case EDIT_EVENT: {
       const { prevId, event: { start } } = payload;
-      const copy = state.slice();
 
-      if (prevId === start) {
-        return state;
-      }
-
-      for (let i = 0; i < copy.length; i ++) {
-        if (copy[i] === prevId) {
-          copy.splice(i, 1, start);
-          break;
-        }
-      }
-
-      return copy;
+      return [
+        ...state.filter((id) => id !== prevId),
+        start,
+      ];
     }
     case DELETE_EVENT: {
       const { prevId } = payload;
-      const copy = state.slice();
 
-      for (let i = 0; i < copy.length; i ++) {
-        if (copy[i] === prevId) {
-          copy.splice(i, 1);
-          break;
-        }
-      }
-
-      return copy;
+      return state.filter((id) => id !== prevId);
     }
     default:
       return state;
@@ -107,7 +82,7 @@ export default function events(state = {}, action) {
   const { payload } = action;
 
   switch (action.type) {
-    case SUBMIT_EVENT:
+    case ADD_EVENT:
     case EDIT_EVENT:
     case DELETE_EVENT: {
       const { date } = payload;
@@ -135,31 +110,24 @@ export default function events(state = {}, action) {
   }
 }
 
-export function sortEvent(event) {
-  return {
-    ...event,
-    date: event.date.format("YYYY-MM-DD"),
-  };
-}
-
 export function getWeeklyEvents(date, events) {
   const weeklyKeys = getWeeklyKeyFormats(date);
 
-  return weeklyKeys.map((date) => events[date])
-                  .map((eventsOfDay) => {
-                    if (!eventsOfDay) {
-                      return null;
-                    }
+  return weeklyKeys.map((date) => {
+    const eventsOfDay = events[date];
+    const eventList = eventsOfDay?.allIds;
+    const result = {};
 
-                    const eventList = eventsOfDay.allIds;
-                    const result = {};
+    if (!eventsOfDay) {
+      return null;
+    }
 
-                    for (const key of eventList) {
-                      const event = eventsOfDay.byId[key];
+    for (const key of eventList) {
+      const event = eventsOfDay.byId[key];
 
-                      result[event.start] = event;
-                    }
+      result[event.start] = event;
+    }
 
-                    return result;
-                  });
+    return result;
+  });
 }

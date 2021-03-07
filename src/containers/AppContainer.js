@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import App from "../components/App/App.jsx";
+import App from "../components/App";
 import { init } from "../api";
 import { initEvent } from "../actions";
 

@@ -6,7 +6,7 @@ import {
 
 import styles from "./TimeSelector.module.css";
 
-function TimeSelector({ time = 0, onChange, disabled}) {
+function TimeSelector({ time = 0, onChange, disabled }) {
   function handlePrevClick() {
     if (time === 0) {
       return;
