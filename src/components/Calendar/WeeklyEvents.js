@@ -7,7 +7,7 @@ import styles from "./Calendar.module.css";
 import DailyEvents from "./DailyEvents";
 import CALENDAR from "../../constants/calendar";
 
-export default function WeeklyEvents({ userId, today, addEvents, events, isDaily }) {
+export default function WeeklyEvents({ userId, today, fetchDailyEvent, events, isDaily }) {
   const dayOfToday = today.getDay();
   const firstDateOfWeek = getPastDate(today, dayOfToday);
   const thisWeek = [];
@@ -30,7 +30,7 @@ export default function WeeklyEvents({ userId, today, addEvents, events, isDaily
         {thisWeek.map((date, index) => {
           return (
             <td className={styles.weeklyEventTd} key={date + index}>
-              <DailyEvents userId={userId} today={date} isDaily={isDaily} addEvents={addEvents} events={events} />
+              <DailyEvents userId={userId} today={date} isDaily={isDaily} fetchDailyEvent={fetchDailyEvent} events={events} />
             </td>
           );
         })}
@@ -43,7 +43,7 @@ export default function WeeklyEvents({ userId, today, addEvents, events, isDaily
 WeeklyEvents.propTypes = {
   userId: PropTypes.string.isRequired,
   today: PropTypes.string.isRequired,
-  addEvents: PropTypes.func.isRequired,
+  fetchDailyEvent: PropTypes.func.isRequired,
   events: PropTypes.func.isRequired,
   isDaily: PropTypes.bool.isRequired,
 };

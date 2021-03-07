@@ -2,26 +2,17 @@ import React, { useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { getNumberOfDivs } from "../../utils/calander";
-import { isObject } from "../../utils/typeCheck";
-import { getDailyData } from "../../api";
 import styles from "./Calendar.module.css";
 import WithEvent from "./WithEvent";
 
-export default function DailyEvents({ userId, today, isDaily, addEvents, events }) {
+export default function DailyEvents({ userId, today, isDaily, fetchDailyEvent, events }) {
   const todayInISO = today.toISOString().substring(0, 10);
   const arrayOf24Divs = getNumberOfDivs(24);
   const eventsOfToday = events[todayInISO];
 
-  async function fetchDailyData() {
-    const result = await getDailyData(userId, todayInISO);
-    if (isObject(result)) {
-      addEvents(todayInISO, result);
-    }
-  }
-
   useEffect(() => {
     if (!eventsOfToday) {
-      fetchDailyData();
+      fetchDailyEvent(userId, todayInISO);
     }
   }, []);
 
@@ -72,7 +63,7 @@ export default function DailyEvents({ userId, today, isDaily, addEvents, events 
 DailyEvents.propTypes = {
   userId: PropTypes.string.isRequired,
   today: PropTypes.string.isRequired,
-  addEvents: PropTypes.func.isRequired,
+  fetchDailyEvent: PropTypes.func.isRequired,
   events: PropTypes.func.isRequired,
   isDaily: PropTypes.bool.isRequired,
 };

@@ -8,7 +8,7 @@ import { getFutureDate, getPastDate } from "../../utils/calander";
 import CALENDAR from "../../constants/calendar";
 import Button from "./Button";
 
-export default function Calendar({ userId, events, addEvents }) {
+export default function Calendar({ userId, events, fetchDailyEvent }) {
   const [today, setToday] = useState(new Date());
   const [isDaily, setIsDaily] = useState(false);
 
@@ -47,8 +47,8 @@ export default function Calendar({ userId, events, addEvents }) {
       </div>
       <div className={isDaily ? styles.dailyTable : styles.table}>
         {isDaily
-          ? <DailyEvents userId={userId} today={today} addEvents={addEvents} events={events} isDaily={isDaily} />
-          : <WeeklyEvents userId={userId} today={today} addEvents={addEvents} events={events} isDaily={isDaily} />
+          ? <DailyEvents userId={userId} today={today} fetchDailyEvent={fetchDailyEvent} events={events} isDaily={isDaily} />
+          : <WeeklyEvents userId={userId} today={today} fetchDailyEvent={fetchDailyEvent} events={events} isDaily={isDaily} />
         }
       </div>
     </>
@@ -58,5 +58,5 @@ export default function Calendar({ userId, events, addEvents }) {
 Calendar.propTypes = {
   userId: PropTypes.string.isRequired,
   events: PropTypes.object,
-  addEvents: PropTypes.bool.isRequired,
+  fetchDailyEvent: PropTypes.bool.isRequired,
 };

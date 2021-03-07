@@ -11,6 +11,7 @@ export async function googleAuthLogin() {
     const { user } = await firebase.auth().signInWithPopup(provider);
     return user.uid;
   } catch (error) {
+    console.error(error);
     throw new Error("LOGIN FAILED! TRY AGAIN");
   }
 }

@@ -3,14 +3,14 @@ import firebase from "./firebase";
 
 export function writeUserData(userData) {
   const {
-    userId, 
     date, 
+    userId, 
     title, 
     detail, 
     startAt, 
     endAt, 
   } = userData;
-  
+
   firebase.database().ref(`users/${userId}/${date}/${startAt + endAt}`).set({
     date,
     userId,
@@ -21,29 +21,15 @@ export function writeUserData(userData) {
   }, (error) => {
     if (error) {
       console.error(error);
+      throw new Error("FAIL ON MAKING NEW EVENT! TRY AGAIN");
     }
   });
 };
 
-export async function getUserData(userId, date, startAt, endAt) {  
-  const userRef = firebase.database().ref(`users/${userId}/${date}/${startAt + endAt}`);
-  const snapshot = await userRef.once("value");
-  const values = snapshot.val();
-
-  return values;
-}
-
 export async function getDailyData(userId, dateISO) {
   const userRef = firebase.database().ref(`users/${userId}/${dateISO}`);
   const snapshot = await userRef.once("value", (snapshot) => snapshot);
-  const values = snapshot.val();
-
-  const result = {};
-
-  for (const date in values) {
-    result[date] = values[date];
-  }
-
+  const result = snapshot.val();
   return result;
 }
 

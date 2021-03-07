@@ -4,9 +4,9 @@ import { useHistory, useLocation } from "react-router-dom";
 import Form from "./Form";
 import styles from "./Events.module.css";
 import { getOnlyHours, floorMinutes } from "../../utils/event";
-import { deleteTargetData, writeUserData } from "../../api";
+import { deleteTargetData } from "../../api";
 
-export default function NewEvent({ userId }) {
+export default function NewEvent({ userId, writeUserDataToFirebase }) {
   const location = useLocation();
   const history = useHistory();
 
@@ -48,7 +48,7 @@ export default function NewEvent({ userId }) {
       );
     }
 
-    writeUserData({
+    writeUserDataToFirebase({
       userId,
       date,
       title,
@@ -56,7 +56,7 @@ export default function NewEvent({ userId }) {
       startAt: getOnlyHours(startAt),
       endAt: getOnlyHours(endAt),
     });
-    
+
     history.push("/calendar");
   }
 

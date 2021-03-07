@@ -14,9 +14,14 @@ import EventDetail from "../Events/EventDetail";
 import Notification from "../Notification/Notification";
 
 function App({ 
-  events, addEvents, removeEvents,
-  login, toggleLogin,
-  notification, offNotification,
+  events, 
+  login,
+  notification,
+  fetchDailyEvent,
+  removeEvents,
+  toggleLogin,
+  offNotification,
+  writeUserDataToFirebase,
 }) {
   const { userId, isLoggedIn } = login;
   const { haveNotification, message } = notification;
@@ -30,19 +35,19 @@ function App({
       <Switch>
         <Route exact path="/calendar">
           <Dashboard
-            main={<Calendar userId={userId} events={events} addEvents={addEvents} />}
+            main={<Calendar userId={userId} events={events} fetchDailyEvent={fetchDailyEvent} />}
             login={<Login onClickLogin={toggleLogin} isLoggedIn={isLoggedIn} />}
             events={<Events userId={userId} removeEvents={removeEvents} />}
           />
         </Route>
         <Route exact path="/event/new">
-          <NewEvent userId={userId} />
+          <NewEvent userId={userId} writeUserDataToFirebase={writeUserDataToFirebase} />
         </Route>
         <Route exact path="/event/detail/:date/:hours">
           <EventDetail userId={userId} removeEvents={removeEvents} />
         </Route>
         <Route exact path="/event/edit/:date/:hours">
-          <NewEvent userId={userId} /> 
+          <NewEvent userId={userId} writeUserDataToFirebase={writeUserDataToFirebase} /> 
         </Route>
         <Route path="*">
           <Redirect to="/calendar" />
@@ -56,7 +61,7 @@ export default App;
 
 App.propTypes = {
   events: PropTypes.object.isRequired,
-  addEvents: PropTypes.func.isRequired,
+  fetchDailyEvent: PropTypes.func.isRequired,
   removeEvents: PropTypes.func.isRequired,
   login: PropTypes.shape({
     userId: PropTypes.string.isRequired,
