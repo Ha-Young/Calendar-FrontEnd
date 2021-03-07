@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Day from "./Day"
 import EventPageBtn from "../../../shared/EventPageBtn";
@@ -27,3 +28,7 @@ const DayHeader = ({ count }) => {
 };
 
 export default DayHeader;
+
+DayHeader.propTypes = {
+  count: PropTypes.number.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { DAY_COLORS } from "../../assets/colors";
 import { getWeek } from "../../utils/convertTime";
@@ -31,3 +32,14 @@ const DayLine = ({ count, events }) => {
 };
 
 export default DayLine;
+
+DayLine.propTypes = {
+  count: PropTypes.number.isRequired,
+  events: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    startHour: PropTypes.string.isRequired,
+    endHour: PropTypes.string.isRequired,
+  }),
+};

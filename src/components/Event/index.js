@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import SubmitBtn from "./SubmitBtn";
@@ -71,3 +72,10 @@ const Event = ({ onSubmit, onPage, onSendToFirebase, showFirebaseData }) => {
 };
 
 export default Event;
+
+Event.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onPage: PropTypes.func.isRequired,
+  onSendToFirebase: PropTypes.func.isRequired,
+  showFirebaseData: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import Calendar from "../../shared/Calendar";
 import DayLine from "./DayLine";
 import TimeLine from "./TimeLine";
@@ -29,3 +30,9 @@ const Weekly = ({ count, onPage, events }) => {
 };
 
 export default Weekly;
+
+Weekly.propTypes = {
+  count: PropTypes.number.isRequired,
+  onPage: PropTypes.func.isRequired,
+  events: PropTypes.object.isRequired,
+}

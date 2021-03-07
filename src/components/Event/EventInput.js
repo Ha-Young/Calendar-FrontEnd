@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import Input from "../../shared/Input";
 
 const Date = ({ saveValue, value, name, type }) => {
@@ -24,3 +25,10 @@ const Date = ({ saveValue, value, name, type }) => {
 };
 
 export default Date;
+
+Date.propTypes = {
+  saveValue: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { PAGE_TYPE } from "../../../reducers/calendar";
 import { getMonth, getYear } from "../../../utils/convertTime";
@@ -30,3 +31,9 @@ const Nav = ({ day, week, page }) => {
 };
 
 export default Nav;
+
+Nav.propTypes = {
+  page: PropTypes.string.isRequired,
+  day: PropTypes.number.isRequired,
+  week: PropTypes.number.isRequired,
+};

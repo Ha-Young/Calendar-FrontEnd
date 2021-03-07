@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { getWeekStr } from "../../../utils/convertTime";
 
@@ -50,3 +51,7 @@ const WeekNum = ({ count }) => {
 };
 
 export default WeekNum;
+
+WeekNum.propTypes = {
+  count: PropTypes.number.isRequired,
+};

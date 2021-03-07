@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import EventBox from "../../shared/EventBox";
 import { convertHour } from "../../utils/convertHour";
@@ -55,3 +56,8 @@ const EventLine = ({ day, events, color }) => {
 };
 
 export default EventLine;
+
+EventLine.propTypes = {
+  day: PropTypes.string.isRequired,
+  events: PropTypes.object.isRequired,
+};

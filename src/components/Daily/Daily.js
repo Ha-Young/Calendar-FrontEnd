@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import Calendar from "../../shared/Calendar";
 import TimeLine from "./TimeLine";
 import EventLine from "./EventLine";
@@ -22,3 +23,9 @@ const Daily = ({ count, onPage, events }) => {
 };
 
 export default Daily;
+
+Daily.propTypes = {
+  count: PropTypes.number.isRequired,
+  onPage: PropTypes.func.isRequired,
+  events: PropTypes.object.isRequired,
+};

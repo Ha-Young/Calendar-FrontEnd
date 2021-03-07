@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import Input from "../../shared/Input";
 
 const Title = ({ saveData, value }) => {
@@ -24,3 +25,8 @@ const Title = ({ saveData, value }) => {
 };
 
 export default Title;
+
+Title.propTypes = {
+  saveData: PropTypes.func.isRequired,
+  value: PropTypes.string,
+};

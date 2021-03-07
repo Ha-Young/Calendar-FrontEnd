@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Button from "../../../shared/ArrowBtn";
@@ -25,3 +26,9 @@ const RightArrowButton = ({ nextDay, nextWeek, page }) => {
 };
 
 export default RightArrowButton;
+
+RightArrowButton.propTypes = {
+  page: PropTypes.string.isRequired,
+  nextDay: PropTypes.func.isRequired,
+  nextWeek: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import EventBox from "../../shared/EventBox";
 import { getDayIndex, getDayIso } from "../../utils/convertTime";
@@ -72,3 +73,8 @@ const EventLine = ({ count, events }) => {
 };
 
 export default EventLine;
+
+EventLine.propTypes = {
+  count: PropTypes.number.isRequired,
+  events: PropTypes.object.isRequired,
+};

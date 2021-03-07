@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import RemoteIcons from "./RemoteIcons";
-import Filter from "./Filter";
+import Filter from "../../../containers/Filter";
 
 const Wrapper = styled.div`
   display: flex;

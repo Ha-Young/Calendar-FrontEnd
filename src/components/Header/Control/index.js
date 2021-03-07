@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import RightArrowButton from "./RightArrowButton";
 import LeftArrowButton from "./LeftArrowButton";
@@ -35,3 +36,14 @@ const Control = ({
 };
 
 export default Control;
+
+Control.propTypes = {
+  currentPage: PropTypes.string.isRequired,
+  prevDay: PropTypes.func.isRequired,
+  nextDay: PropTypes.func.isRequired,
+  prevWeek: PropTypes.func.isRequired,
+  nextWeek: PropTypes.func.isRequired,
+  resetDay: PropTypes.func.isRequired,
+  day: PropTypes.number.isRequired,
+  week: PropTypes.number.isRequired,
+};

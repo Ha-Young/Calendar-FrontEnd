@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import WeekStr from "./WeekStr";
 import WeekNum from "./WeekNum";
@@ -31,3 +32,7 @@ const WeekHeader = ({ count }) => {
 };
 
 export default WeekHeader;
+
+WeekHeader.propTypes = {
+  count: PropTypes.number.isRequired,
+};

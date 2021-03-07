@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
 // For example, what is it? what are benefits?
@@ -53,3 +54,17 @@ const App = ({
 };
 
 export default App;
+
+App.propTypes = {
+  onInitialLoad: PropTypes.func.isRequired,
+  setDaily: PropTypes.func.isRequired,
+  setWeekly: PropTypes.func.isRequired,
+  countOfDay: PropTypes.number.isRequired,
+  countOfWeek: PropTypes.number.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  setEvent: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
+  events: PropTypes.object.isRequired,
+  sendEventToFirebase: PropTypes.func.isRequired,
+  showFirebaseData: PropTypes.func.isRequired,
+};

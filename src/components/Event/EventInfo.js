@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { convertHour } from "../../utils/convertHour";
@@ -51,3 +52,8 @@ const EventInfo = ({ events, deleteEvent }) => {
 };
 
 export default EventInfo;
+
+EventInfo.propTypes = {
+  events: PropTypes.object.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
+};

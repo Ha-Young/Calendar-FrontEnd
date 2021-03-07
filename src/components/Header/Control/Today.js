@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { PAGE_TYPE } from "../../../reducers/calendar";
 import HeaderBtn from "../../../shared/HeaderBtn";
@@ -16,3 +17,8 @@ const Today = ({ resetDay, page }) => {
 };
 
 export default Today;
+
+Today.propTypes = {
+  page: PropTypes.string.isRequired,
+  resetDay: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 import Button from "../../../shared/ArrowBtn";
@@ -26,3 +27,9 @@ const LeftArrowButton = ({ prevDay, prevWeek, page }) => {
 };
 
 export default LeftArrowButton;
+
+LeftArrowButton.propTypes = {
+  prevDay: PropTypes.func.isRequired,
+  prevWeek: PropTypes.func.isRequired,
+  page: PropTypes.string.isRequired,
+};
