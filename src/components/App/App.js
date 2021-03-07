@@ -11,15 +11,12 @@ import UpdateEventForm from "../../containers/UpdateEventForm";
 import CreateEventForm from "../../containers/CreateEventForm";
 
 function App() {
-
   return (
     <div className={styles.App}>
       <Header />
       <Switch>
         <Route path="/" exact>
-          <Redirect to="/calendar" />
-        </Route>
-        <Route path="/calendar">
+          <Redirect from="/" to="/calendar" />
           <Daily />
         </Route>
         <Route path="/weekly">

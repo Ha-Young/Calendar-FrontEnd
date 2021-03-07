@@ -17,11 +17,11 @@ export async function saveEvents() {
   });
 }
 
-export async function readTest(cb) {
+export async function readTest(updateStores) {
   const database = firebase.database();
 
   await database.ref("userId/user1")
   .on("value", (result) => {
-    if (result) cb(result.val());
+    if (result) updateStores(result.val());
   });
 }

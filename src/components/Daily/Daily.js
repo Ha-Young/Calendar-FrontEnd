@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Daily.module.css";
 import CommonElementView from "../Element/CommonElementView";
 import LeftNavigation from "../LeftNavigation/LeftNavigation";
+import styles from "./Daily.module.css";
 
 export default function Daily({ currentDay, events, setCurrentDay }) {
   function handleClick(type) {
@@ -18,7 +18,7 @@ export default function Daily({ currentDay, events, setCurrentDay }) {
         <span
           role="img"
           aria-label="arrow"
-          onClick={() => handleClick("prev")}
+          onClick={handleClick("prev")}
         >
           ⬅️
         </span>
@@ -26,7 +26,7 @@ export default function Daily({ currentDay, events, setCurrentDay }) {
         <span
           role="img"
           aria-label="arrow"
-          onClick={() => handleClick("next")}
+          onClick={handleClick("next")}
         >
           ➡️
         </span>
