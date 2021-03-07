@@ -9,9 +9,9 @@ export default function Error({ text = DEFAULT_ERROR_MESSAGE }) {
   useEffect(() => {
     const timerId = window.setTimeout(() => {
       history.push("/calendar");
-    }, 1000);
-    
-    return window.clearTimeout(timerId);
+    }, 2000);
+  
+    return () => window.clearTimeout(timerId);
   }, [history]);
   
   return(

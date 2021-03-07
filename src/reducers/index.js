@@ -69,7 +69,7 @@ export default function reducer(state = initialState, action) {
     case types.ERROR_OCCUR: {
       return {
         ...state,
-        errorMessage: action.payload.errorMessage,
+        errorMessage: action.payload.errorMessage.message,
       };
     }
 

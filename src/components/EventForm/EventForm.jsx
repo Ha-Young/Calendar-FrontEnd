@@ -69,7 +69,7 @@ export default function EventForm({ selectedEvent, handleSubmit, handleRemove, c
           </div>
         </div>
       </form>
-      {currentUrl.pathname === "/events/new" && (
+      {currentUrl.pathname !== "/events/new" && (
         <div className={styles.formButtonWrapper}>
           <button onClick={() => handleRemove(startDateTime)}>Remove</button>
         </div>

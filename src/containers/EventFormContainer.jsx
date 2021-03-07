@@ -5,14 +5,14 @@ import EventForm from "../components/EventForm/EventForm.jsx";
 import { setEvent, removeEvent } from "../api";
 import { throwError } from "../actions/index";
 
-const EventFormContainer = ({ events, selectedEventInfo }) => {
+const EventFormContainer = ({ events, selectedEventInfo, throwError }) => {
   const history = useHistory();
   const currentUrl = useLocation();
   const selectedEvent = currentUrl.pathname === "/events/new"
     ? null
     : events[selectedEventInfo.selectedEventDayIndex][selectedEventInfo.selectedEventId];
 
-  const handleSubmit = (e, title, description, startDateTime, endDateTime) => {
+  const handleSubmit = async (e, title, description, startDateTime, endDateTime) => {
     e.preventDefault();
 
     const key = currentUrl.pathname === "/events/new" ? null : selectedEvent.uid;
@@ -24,24 +24,26 @@ const EventFormContainer = ({ events, selectedEventInfo }) => {
       endDateTime,
     };
 
-    setEvent(newEvent, date, key)
-      .then(() => history.push("/calendar"))
-      .catch((err) => {
-        throwError(err);
-        history.push("/error");
-      });
+    try {
+      await setEvent(newEvent, date, key);
+      history.push("/calendar");
+    } catch (err) {
+      throwError(err);
+      history.push("/error");
+    }
   };
 
-  const handleRemove = (startDateTime) => {
+  const handleRemove = async (startDateTime) => {
     const date = startDateTime.slice(0, 10);
     const key = selectedEvent.uid;
 
-    removeEvent(date, key)
-      .then(() => history.push("/calendar"))
-      .catch((err) => {
-        throwError(err);
-        history.push("/error");
-      });
+    try {
+      await removeEvent(date, key);
+      history.push("/calendar")
+    } catch (err) {
+      throwError(err);
+      history.push("/error");
+    }
   };
 
   return (
@@ -60,4 +62,8 @@ const mapStateToProps = (state) => ({
   errorMessage: state.errorMessage,
 });
 
-export default connect(mapStateToProps, null)(EventFormContainer);
+const mapDispatchToProps = {
+  throwError,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventFormContainer);
