@@ -3,7 +3,7 @@ export const getDateISOstring = (year, month, date, hour) => {
   return new Date(year, mutatedMonth, date, hour).toISOString();
 };
 
-export const calculateYearMonthWeek = (dateObj) => {
+export const getYearMonthWeek = (dateObj) => {
   const currentDate = dateObj.getDate();
   const currentYear = dateObj.getFullYear();
   const currentMonth = dateObj.getMonth();
@@ -30,7 +30,7 @@ export const calculateYearMonthWeek = (dateObj) => {
     }
   }
 
-  return [currentYear, currentMonth + 1, week];
+  return {year: currentYear, month: currentMonth + 1, week};
 };
 
 export const getPathString = (...paths) => {

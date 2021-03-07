@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { calculateYearMonthWeek } from "../../utils";
+import { getYearMonthWeek } from "../../utils";
 
 export default function Header(props) {
   const {
@@ -10,7 +10,7 @@ export default function Header(props) {
     dispatch,
   } = props;
   const date = currentDate.getDate();
-  const [year, month, week] = calculateYearMonthWeek(currentDate);
+  const { year, month, week } = getYearMonthWeek(currentDate);
 
   const beforeDateBundle = {};
   const afterDateBundle = {};
