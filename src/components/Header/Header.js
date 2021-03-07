@@ -34,6 +34,9 @@ export default function Header({ currentDate, dispatch}) {
     afterDateBundle.month = afterDate.getMonth();
     afterDateBundle.date = afterDate.getDate();
     break;
+
+    default:
+      // add default case
   }
 
   return (

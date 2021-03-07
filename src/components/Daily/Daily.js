@@ -1,12 +1,13 @@
 import React from "react";
 import { Link, useHistory } from 'react-router-dom';
 import dailyStyles from "./Daily.module.css";
-import { MAX_MIN_DATE, DAYS } from "../../constants";
 import weeklyStyles from "../Weekly/Weekly.module.css";
+import { MAX_MIN_DATE, DAYS } from "../../constants";
 import CalendarHeader from "../CalendarHeader/CalendarHeader";
 
-export default function Daily({ role, eventDate, userEvents, dispatch }) {
+export default function Daily({ role, eventDate, userEvents, updateEventForm }) {
   const history = useHistory();
+
   const year = eventDate.getFullYear();
   const month = eventDate.getMonth() + 1;
   const date = eventDate.getDate();
@@ -53,8 +54,8 @@ export default function Daily({ role, eventDate, userEvents, dispatch }) {
 
     if (Number.isNaN(hour)) return;
 
-    const payload = {year, month, date, fromHour: hour, toHour: hour + 1};
-    dispatch(payload);
+    const eventForm = {year, month, date, fromHour: hour, toHour: hour + 1};
+    updateEventForm(eventForm);
     history.push("/events/new");
   }
 

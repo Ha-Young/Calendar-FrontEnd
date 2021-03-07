@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { fetchDataFromFirebaseDB, removeFromFirebaseDB } from "../../api";
 import { getPathString } from "../../utils";
 
-export default function EventDetails({ eventById, setEventForm, deleteEvent, setEvent }) {
+export default function EventDetails({ eventById, updateEventForm, deleteEvent, setEvent }) {
   const { eventId } = useParams();
   const { title, content, period } = eventById[eventId];
   const from = new Date(period.from);
@@ -75,7 +75,9 @@ export default function EventDetails({ eventById, setEventForm, deleteEvent, set
         <h3>{content}</h3>
       </div>
       <Link to="/events/new">
-        <button onClick={() => setEventForm({eventId, title, content, year, month, date, fromHour, toHour})}>수정</button>
+        <button onClick={() => {
+          updateEventForm({ eventId, title, content, year, month, date, fromHour, toHour });
+        }}>수정</button>
       </Link>
       <Link to="/calendar">
         <button onClick={processDeletingEvent}>삭제</button>

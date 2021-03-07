@@ -1,19 +1,9 @@
-export function setEventForm(state, key, value) {
-  if (key) {
-    return {
-      ...state,
-      eventForm: {
-        ...state.eventForm,
-        [key]: value,
-      }
-    };
-  }
-
+export function setEventForm(state, payload) {
   return {
     ...state,
     eventForm: {
       ...state.eventForm,
-      ...value,
+      ...payload,
     }
   };
 }
@@ -75,10 +65,9 @@ export function setCurrentDate(state) {
     month,
     date,
   } = state.eventForm;
-  const current = new Date(year, month - 1, date);
 
   return {
     ...state,
-    currentDate: current,
+    currentDate: new Date(year, month - 1, date),
   };
 }

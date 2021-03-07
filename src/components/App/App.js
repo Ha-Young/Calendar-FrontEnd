@@ -8,9 +8,9 @@ import Weekly from "../Weekly/Weekly";
 import EventForm from "../EventForm/EventForm";
 import EventDetails from "../EventDetails/EventDetails";
 
-function App(props) {
-  const currentYear = props.currentDate.getFullYear();
-  const currentMonth = props.currentDate.getMonth() + 1;
+function App({ updateEventForm, actToUserEvent, actToCurrentDate, eventInfo, currentDate, dailyEvents, weeklyEvents, eventById }) {
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1;
 
   const [yearMonth, setYearMonth] = useState([currentYear, currentMonth]);
 
@@ -26,47 +26,47 @@ function App(props) {
     fetchDataFromFirebaseDB(path)
       .then((snapShot) => {
         const eventAll = snapShot.val();
-        if (eventAll) props.actToUserEvent.setEventAll(eventAll);
+        if (eventAll) actToUserEvent.setEventAll(eventAll);
       });
-  }, [yearMonth, props.actToUserEvent]);
+  }, [yearMonth, actToUserEvent]);
 
   return (
     <div>
       <Header
-        currentDate={props.currentDate}
-        dispatch={props.actToCurrentDate}
+        currentDate={currentDate}
+        dispatch={actToCurrentDate}
       />
       <Switch>
         <Route exact path="/" children={<Redirect to="/calendar"/>} />
         <Route exact path="/calendar">
           <Daily
             role={"daily"}
-            eventDate={props.currentDate}
-            userEvents={props.dailyEvents}
-            dispatch={props.actToEventForm.setAllDate}
+            eventDate={currentDate}
+            userEvents={dailyEvents}
+            updateEventForm={updateEventForm}
           />
         </Route>
         <Route path="/calendar/weekly">
           <Weekly
-            eventDate={props.currentDate}
-            userEvents={props.weeklyEvents}
-            dispatch={props.actToEventForm.setAllDate}
+            eventDate={currentDate}
+            userEvents={weeklyEvents}
+            updateEventForm={updateEventForm}
           />
         </Route>
         <Route path="/events/new">
           <EventForm
-            inputData={props.eventInfo}
-            setEventForm={props.actToEventForm}
-            setUserEvent={props.actToUserEvent}
-            eventById={props.eventById}
+            inputData={eventInfo}
+            updateEventForm={updateEventForm}
+            setUserEvent={actToUserEvent}
+            eventById={eventById}
           />
         </Route>
         <Route path="/events/:eventId">
           <EventDetails
-            setEventForm={props.actToEventForm.correct}
-            deleteEvent={props.actToUserEvent.deleteEvent}
-            eventById={props.eventById}
-            setEvent={props.actToUserEvent.setEvent}
+            updateEventForm={updateEventForm}
+            deleteEvent={actToUserEvent.deleteEvent}
+            eventById={eventById}
+            setEvent={actToUserEvent.setEvent}
           />
         </Route>
         <Route path="*">

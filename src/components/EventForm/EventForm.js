@@ -7,7 +7,7 @@ import { getDateISOstring, getPathString } from "../../utils";
 import checkValidEvent from "./checkValidEvent";
 
 
-function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
+function EventForm({inputData, updateEventForm, setUserEvent, eventById}) {
   const [isValidEvent, setIsValidEvent] = useState(true);
   const history = useHistory();
 
@@ -15,17 +15,6 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
     const timeoutId = setTimeout(() => setIsValidEvent(true), 2000);
     return () => clearTimeout(timeoutId);
   }, [isValidEvent]);
-
-  const {
-    setTitle,
-    setContent,
-    setYear,
-    setMonth,
-    setDate,
-    setFromHour,
-    setToHour,
-    clearForm,
-  } = setEventForm;
 
   const { setEvent } = setUserEvent;
 
@@ -39,6 +28,8 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
     fromHour,
     toHour,
   } = inputData;
+
+  const maxDate = new Date(year, month, 0).getDate();
 
   function handleOnClick() {
     const isValid = checkValidEvent(eventById, inputData);
@@ -82,7 +73,9 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
             name="title"
             type="text"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+              updateEventForm({ title: e.target.value });
+            }}
           />
         </label>
         <label>
@@ -93,7 +86,9 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
             min={MAX_MIN_DATE.YEAR.MIN}
             max={MAX_MIN_DATE.YEAR.MAX}
             value={year}
-            onChange={(e) => setYear(Number(e.target.value))}
+            onChange={(e) => {
+              updateEventForm({ year: Number(e.target.value) });
+            }}
           />
         </label>
         <label>
@@ -104,7 +99,9 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
             min={MAX_MIN_DATE.MONTH.MIN}
             max={MAX_MIN_DATE.MONTH.MAX}
             value={month}
-            onChange={(e) => setMonth(Number(e.target.value))}
+            onChange={(e) => {
+              updateEventForm({ month: Number(e.target.value) });
+            }}
           />
         </label>
         <label>
@@ -113,9 +110,11 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
             name="date"
             type="number"
             min={MAX_MIN_DATE.DATE.MIN}
-            max={MAX_MIN_DATE.DATE.MAX}
-            value={date}
-            onChange={(e) => setDate(Number(e.target.value))}
+            max={maxDate}
+            value={date <= maxDate ? date : maxDate}
+            onChange={(e) => {
+              updateEventForm({ date: Number(e.target.value) });
+            }}
           />
         </label>
         <label>
@@ -126,7 +125,9 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
             min={MAX_MIN_DATE.HOUR.MIN}
             max={MAX_MIN_DATE.HOUR.MAX}
             value={fromHour}
-            onChange={(e) => setFromHour(Number(e.target.value))}
+            onChange={(e) => {
+              updateEventForm({ fromHour: Number(e.target.value) });
+            }}
           />
         </label>
         <label>
@@ -137,7 +138,9 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
             min={MAX_MIN_DATE.HOUR.MIN}
             max={MAX_MIN_DATE.HOUR.MAX}
             value={toHour}
-            onChange={(e) => setToHour(Number(e.target.value))}
+            onChange={(e) => {
+              updateEventForm({ toHour: Number(e.target.value) });
+            }}
           />
         </label>
         <label>
@@ -145,7 +148,9 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
           <textarea
             name="eventContent"
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={(e) => {
+              updateEventForm({ content: e.target.value });
+            }}
           />
         </label>
       </fieldset>
@@ -154,7 +159,14 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
           등록
         </button>
       <Link to="/calendar">
-        <button onClick={() => clearForm({ ...inputData, title: "", content: "", id: "" })}>취소</button>
+        <button onClick={() => {
+          updateEventForm({
+            ...inputData,
+            title: "",
+            content: "",
+            id: ""
+          });
+        }}>취소</button>
       </Link>
     </>
   )
