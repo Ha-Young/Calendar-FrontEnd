@@ -4,16 +4,13 @@ import PropTypes from 'prop-types';
 import styles from "./Calendar.module.css";
 
 export default function Header({ datesOfWeek }) {
+  const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   return (
     <>
       <div className={styles.DayHeader}>
-        <div className={styles.EachDay}>SUN</div>
-        <div className={styles.EachDay}>MON</div>
-        <div className={styles.EachDay}>TUE</div>
-        <div className={styles.EachDay}>WED</div>
-        <div className={styles.EachDay}>THU</div>
-        <div className={styles.EachDay}>FIR</div>
-        <div className={styles.EachDay}>SAT</div>
+        {daysOfWeek.map(day => {
+          return <div className={styles.EachDay} key={day}>{day}</div>
+        })}
       </div>
       <div className={styles.dateHeader}>
         {datesOfWeek.map((date, index) => {

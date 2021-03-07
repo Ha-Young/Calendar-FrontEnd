@@ -58,5 +58,5 @@ export default function Calendar({ userId, events, fetchDailyEvent }) {
 Calendar.propTypes = {
   userId: PropTypes.string.isRequired,
   events: PropTypes.object,
-  fetchDailyEvent: PropTypes.bool.isRequired,
+  fetchDailyEvent: PropTypes.func.isRequired,
 };

@@ -62,8 +62,8 @@ export default function DailyEvents({ userId, today, isDaily, fetchDailyEvent, e
 
 DailyEvents.propTypes = {
   userId: PropTypes.string.isRequired,
-  today: PropTypes.string.isRequired,
+  today: PropTypes.object.isRequired,
   fetchDailyEvent: PropTypes.func.isRequired,
-  events: PropTypes.func.isRequired,
+  events: PropTypes.object.isRequired,
   isDaily: PropTypes.bool.isRequired,
 };

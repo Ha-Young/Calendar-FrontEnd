@@ -18,10 +18,10 @@ export default function Events({ userId, removeEvents }) {
   return (
     <ul>
       {allEvents.length > 0 && 
-        allEvents.map(eachEvent => {
-          const { date, startAt, endAt, title, userId } = eachEvent;
+        allEvents.map((eachEvent, index) => {
+          const { date, startAt, endAt, title } = eachEvent;
           return (
-            <div className={styles.eachEvent}>
+            <div className={styles.eachEvent} key={index + startAt + endAt}>
               <span>{title}</span>
               <button>
                 <Link to={{
