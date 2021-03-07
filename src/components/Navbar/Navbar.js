@@ -1,11 +1,9 @@
 import React from "react";
 import styles from "./Navbar.module.css";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // TODO: Create your own header.
 export default function Navbar({ onshowDayCalendar, onshowWeekCalendar }) {
-  let history = useHistory();
-
   return (
     <header className={`${styles.header}`}>
       <nav>

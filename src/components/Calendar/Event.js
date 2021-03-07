@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
 
 const StyledEvent = styled.div`
   position: absolute;
@@ -12,7 +11,7 @@ const StyledEvent = styled.div`
 
   width: 100%;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
   height: ${(props) => `${25 * props.height}px`};
   background-color: ${(props) => `${props.color}`};
   z-index: 50;
@@ -43,7 +42,6 @@ export default function Event({
   onClickGetEventInfo,
   onEventClick,
 }) {
-  const location = useLocation();
   return (
     <>
       <StyledEvent

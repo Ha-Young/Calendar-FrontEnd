@@ -9,7 +9,6 @@ export default function SidebarUpcomingEventBoard({ events }) {
         <li>----------------------</li>
         {events.length &&
           events.map((event) => {
-            console.log(event);
             return (
               <li>
                 <span

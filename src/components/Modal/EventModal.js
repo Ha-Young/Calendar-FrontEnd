@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import { Modal, Form, Input, Button, DatePicker } from "antd";
 import { TwitterPicker } from "react-color";
-import { useHistory } from "react-router-dom";
 
 const { RangePicker } = DatePicker;
 const formItemLayout = {
@@ -34,7 +33,6 @@ export default function EventModal({
   eventInfo,
 }) {
   const [activeButton, setActiveButton] = useState({ buttonType: "null" });
-  const history = useHistory();
 
   return (
     <Modal
