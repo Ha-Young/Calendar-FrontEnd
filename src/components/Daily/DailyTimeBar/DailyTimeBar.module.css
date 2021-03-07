@@ -6,9 +6,13 @@
   margin-left: 50px;
 }
 
-span {
+.DailyTimeBar span {
   font-size: 13px;
   position: absolute;
   left: -55px;
   top: -8px;
+}
+
+.DailyTimeBar .eventSpace {
+  background-color: beige;
 }
