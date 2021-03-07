@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import PropTypes from 'prop-types';
 
-import { getNumberOfDivs } from "../../utils/calander";
+import { getArrayOfNumbers } from "../../utils/calander";
 import styles from "./Calendar.module.css";
 import WithEvent from "./WithEvent";
 
 export default function DailyEvents({ userId, today, isDaily, fetchDailyEvent, events }) {
   const todayInISO = today.toISOString().substring(0, 10);
-  const arrayOf24Divs = getNumberOfDivs(24);
+  const arrayOf24Divs = getArrayOfNumbers(24);
   const eventsOfToday = events[todayInISO];
 
   useEffect(() => {

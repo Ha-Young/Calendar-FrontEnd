@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-import { getNumberOfDivs, getFutureDate, getPastDate } from "../../utils/calander";
+import { getArrayOfNumbers, getFutureDate, getPastDate } from "../../utils/calander";
 import Header from "./Header";
 import styles from "./Calendar.module.css";
 import DailyEvents from "./DailyEvents";
@@ -17,7 +17,7 @@ export default function WeeklyEvents({ userId, today, fetchDailyEvent, events, i
     thisWeek.push(date);
   }
 
-  const arrayOf24Divs = getNumberOfDivs(24);
+  const arrayOf24Divs = getArrayOfNumbers(24);
   
   return (
     <>
