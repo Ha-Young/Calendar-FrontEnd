@@ -9,13 +9,13 @@
 
  */
 
-import { DAY, NEXT_DATE, PREV_DATE, WEEK, SELECT_TIME, SELECT_DATE, ADD_EVENT, EDIT_EVENT, REMOVE_EVENT, GET_DB_EVENT } from "../constants/actionTypes";
+import * as actionTypes from "../constants/actionTypes";
 import { getCurrentWeek, getISOString, getLastWeek, getNextWeek, getTomorrow, getYesterday } from "../utils/getDate";
-import { saveData } from "../api";
+import { saveEventList } from "../api";
 import _ from "lodash";
 
 const initialState = {
-  period: DAY,
+  period: actionTypes.DAY,
   today: getISOString(),
   currentDay: getISOString(),
   currentWeek: getCurrentWeek(new Date()),
@@ -23,93 +23,86 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  const copy = _.cloneDeep(state);
+  const copiedState = _.cloneDeep(state);
 
   switch (action.type) {
-    case DAY:
-      copy.period = DAY;
-      return copy;
-    case WEEK:
-      copy.period = action.unit;
-      return copy;
+    case actionTypes.DAY:
+      copiedState.period = actionTypes.DAY;
+      return copiedState;
+    case actionTypes.WEEK:
+      copiedState.period = action.unit;
+      return copiedState;
 
-    case PREV_DATE:
-      if (copy.period === DAY) {
-        copy.currentDay = getYesterday(copy.currentDay);
+    case actionTypes.GET_PREV_DATE:
+      if (copiedState.period === actionTypes.DAY) {
+        copiedState.currentDay = getYesterday(copiedState.currentDay);
       } else {
-        copy.currentDay = getLastWeek(copy.currentDay);
+        copiedState.currentDay = getLastWeek(copiedState.currentDay);
       }
-      return copy;
-    case NEXT_DATE:
-      if (copy.period === DAY) {
-        copy.currentDay = getTomorrow(copy.currentDay);
+      return copiedState;
+    case actionTypes.GET_NEXT_DATE:
+      if (copiedState.period === actionTypes.DAY) {
+        copiedState.currentDay = getTomorrow(copiedState.currentDay);
       } else {
-        copy.currentDay = getNextWeek(copy.currentDay);
+        copiedState.currentDay = getNextWeek(copiedState.currentDay);
       }
-      return copy;
+      return copiedState;
 
-    case SELECT_DATE:
-      copy.currentDay = getISOString(action.date);
-      return copy;
-    case SELECT_TIME:
-      copy.selectedTime = action.time;
-      return copy;
+    case actionTypes.SELECT_DATE:
+      copiedState.currentDay = getISOString(action.date);
+      return copiedState;
+    case actionTypes.SELECT_TIME:
+      copiedState.selectedTime = action.time;
+      return copiedState;
 
-    case ADD_EVENT: {
+    case actionTypes.ADD_EVENT: {
       const {
         date,
-        title,
-        description,
         from,
         to,
         id,
       } = action.event;
 
-      if (!copy.events[date]) {
-        copy.events[date] = {};
+      if (!copiedState.events[date]) {
+        copiedState.events[date] = {};
       }
 
-      copy.events[date][id] = {
-        date,
-        title,
-        description,
-        from,
-        to,
-        id,
+      copiedState.events[date][id] = {
+        ...action.event,
         length: to - from,
       };
 
-      saveData(copy.events);
+      saveEventList(copiedState.events);
 
-      return copy;
+      return copiedState;
     }
-    case EDIT_EVENT:{
+    case actionTypes.EDIT_EVENT:{
       const { date, id, from, to } = action.event;
 
       action.event.length = to - from;
-      copy.events[date][id] = action.event;
+      copiedState.events[date][id] = action.event;
 
-      saveData(copy.events);
+      saveEventList(copiedState.events);
 
-      return copy;
+      return copiedState;
     }
-    case REMOVE_EVENT: {
+    case actionTypes.REMOVE_EVENT: {
       const {
         date,
         id,
       } = action.event;
 
-      delete copy.events[date][id];
+      delete copiedState.events[date][id];
 
-      saveData(copy.events);
+      saveEventList(copiedState.events);
 
-      return copy;
+      return copiedState;
     }
 
-    case GET_DB_EVENT:
-      copy.events = action.data;
+    case actionTypes.GET_EVENT_LIST:
+      copiedState.events = action.data;
 
-      return copy;
+      return copiedState;
 
     default:
       return state;

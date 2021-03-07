@@ -6,11 +6,11 @@ import PropTypes from "prop-types";
 
 function DayCalendar({
   date,
-  day: { string, number },
-  onLoad,
+  day: { letterDate, numericDate },
+  checkPeriodUnit,
 }) {
   useEffect(() => {
-    onLoad();
+    checkPeriodUnit();
   }, []);
 
   return (
@@ -18,8 +18,8 @@ function DayCalendar({
       <div className={styles.top}>
         <div></div>
         <div className={styles.day}>
-          <h6>{string}</h6>
-          <h3>{number}</h3>
+          <h6>{letterDate}</h6>
+          <h3>{numericDate}</h3>
         </div>
       </div>
       <div className={styles.wrapper}>
@@ -35,8 +35,8 @@ export default DayCalendar;
 DayCalendar.propTypes = {
   date: PropTypes.string.isRequired,
   day: PropTypes.shape({
-    string: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
+    letterDate: PropTypes.string.isRequired,
+    numericDate: PropTypes.number.isRequired,
   }).isRequired,
-  onLoad: PropTypes.func.isRequired,
+  checkPeriodUnit: PropTypes.func.isRequired,
 };

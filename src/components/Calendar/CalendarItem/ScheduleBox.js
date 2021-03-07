@@ -20,7 +20,6 @@ function ScheduleBox({
       }}
     >
       <div
-        role="button"
         className={styles.ScheduleBox}
       />
     </Link>

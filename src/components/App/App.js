@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 // TODO: We are using CSS Modules here.
 // Do your own research about CSS Modules.
@@ -8,30 +8,22 @@ import DayCalendar from "../../containers/CalendarContainer/DayCalendar";
 import WeekCalendar from "../../containers/CalendarContainer/WeekCalendar";
 import NewEvent from "../EventPage/NewEvent/NewEvent";
 import EventDetail from "../../containers/EventContainer/EventDetail"
+import { CALENDAR, DEFAULT, EVENT } from "../../constants/address";
 import styles from "./App.module.css";
-import PropTypes from "prop-types";
 
-function App({ onInitialLoad }) {
-  useEffect(() => {
-    onInitialLoad();
-  }, []);
-
+function App() {
   return (
     <div className={styles.App}>
       <Header />
       <Switch>
-        <Route exact path="/calendar" component={DayCalendar} />
-        <Route path="/calendar/:unit" component={WeekCalendar} />
-        <Route path="/events/new" component={NewEvent} />
-        <Route path="/events/:eventId" component={EventDetail} />
-        <Redirect from="/" to="/calendar" />
+        <Route exact path={CALENDAR.DAY} component={DayCalendar} />
+        <Route path={CALENDAR.WEEK} component={WeekCalendar} />
+        <Route path={EVENT.NEW} component={NewEvent} />
+        <Route path={EVENT.DETAIL} component={EventDetail} />
+        <Redirect from={DEFAULT} to={CALENDAR.DAY} />
       </Switch>
     </div>
   );
 }
 
 export default App;
-
-App.propTypes = {
-  onInitialLoad: PropTypes.func.isRequired,
-};

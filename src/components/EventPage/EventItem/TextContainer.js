@@ -1,9 +1,9 @@
 import React from "react";
 import { PLACEHOLDER } from "../../../constants/common";
-import styles from "./TextArea.module.css";
+import styles from "./TextContainer.module.css";
 import PropTypes from "prop-types";
 
-function TextArea({ text, updateText }) {
+function TextContainer({ text, updateText }) {
   return (
     <div className={styles.TextArea}>
       <textarea
@@ -12,10 +12,12 @@ function TextArea({ text, updateText }) {
         placeholder={PLACEHOLDER.TITLE}
         value={text.title}
         onChange={(e) => {
-          text.title = e.target.value;
-          updateText(text);
+          updateText({
+            ...text,
+            title: e.target.value,
+          });
         }}
-        required={true}
+        required
       />
       <textarea
         className={styles.description}
@@ -24,18 +26,20 @@ function TextArea({ text, updateText }) {
         placeholder={PLACEHOLDER.DESCRIPTION}
         value={text.description}
         onChange={(e) => {
-          text.description = e.target.value;
-          updateText(text);
+          updateText({
+            ...text,
+            description: e.target.value,
+          });
         }}
-        required={true}
+        required
       />
     </div>
   );
 }
 
-export default TextArea;
+export default TextContainer;
 
-TextArea.propTypes = {
+TextContainer.propTypes = {
   text: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

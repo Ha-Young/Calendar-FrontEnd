@@ -12,19 +12,25 @@ function ScheduleContainer({ events, dateId }) {
       {TIME_FROM.map((time, index) => {
         const foundEvent = findEvent(events[dateId], index);
 
-        return foundEvent
-        ?
-        (<div className={styles.eventBox} key={time}>
-          <EventBox {...foundEvent} />
+        if (foundEvent) {
+          return (
+            <div className={styles.eventBox} key={time}>
+              <EventBox {...foundEvent} />
+              <ScheduleBox
+                date={dateId}
+                time={time}
+              />
+            </div>
+          );
+        }
+
+        return (
           <ScheduleBox
-            id={{ date: dateId, time }}
+            date={dateId}
+            time={time}
+            key={time}
           />
-        </div>)
-        :
-        (<ScheduleBox
-          id={{ date: dateId, time }}
-          key={time}
-        />)
+        );
       })}
     </div>
   );

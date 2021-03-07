@@ -1,19 +1,11 @@
 import { connect } from "react-redux";
 import App from "../components/App/App";
-import { getDBData } from "../api";
-import { getDBEvent } from "../actions";
+import { init } from "../api";
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    onInitialLoad: () => {
-      getDBData()
-      .then(result => {
-        if (result) {
-          dispatch(getDBEvent(result));
-        }
-      });
-    },
-  };
+  init(dispatch);
+
+  return {};
 };
 
 export default connect(null, mapDispatchToProps)(App);

@@ -5,9 +5,9 @@ import { WEEK } from "../../../constants/time";
 import styles from "./WeekCalendar.module.css"
 import PropTypes from "prop-types";
 
-function WeekCalendar({ week, onLoad }) {
+function WeekCalendar({ week, checkPeriodUnit }) {
   useEffect(() => {
-    onLoad();
+    checkPeriodUnit();
   }, []);
 
   return (
@@ -15,10 +15,10 @@ function WeekCalendar({ week, onLoad }) {
       <div className={styles.top}>
         <div></div>
         <div className={styles.week}>
-          {week.map(({string, number, id}) => (
+          {week.map(({letterDate, numericDate, id}) => (
             <div className={styles.day} key={id}>
-              <h6>{string}</h6>
-              <h3>{number}</h3>
+              <h6>{letterDate}</h6>
+              <h3>{numericDate}</h3>
             </div>
           ))}
         </div>
@@ -43,5 +43,5 @@ export default WeekCalendar;
 
 WeekCalendar.propTypes = {
   week: PropTypes.array.isRequired,
-  onLoad: PropTypes.func.isRequired,
+  checkPeriodUnit: PropTypes.func.isRequired,
 };

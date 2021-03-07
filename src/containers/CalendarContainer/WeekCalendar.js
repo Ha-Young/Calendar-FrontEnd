@@ -1,19 +1,18 @@
 import { connect } from "react-redux";
 import WeekCalendar from "../../components/Calendar/WeekCalendar/WeekCalendar";
-import { periodUnit } from "../../actions";
+import { PERIOD_UNIT } from "../../constants/common";
 import { getCurrentWeek } from "../../utils/getDate";
+import { periodUnit } from "../../actions";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ currentDay }) => {
   return {
-    week: getCurrentWeek(state.currentDay),
+    week: getCurrentWeek(currentDay),
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  const { match: { params: { unit } } } = ownProps;
-
+const mapDispatchToProps = (dispatch) => {
   return {
-    onLoad: () => dispatch(periodUnit(unit)),
+    checkPeriodUnit: () => dispatch(periodUnit(PERIOD_UNIT.WEEK)),
   };
 };
 

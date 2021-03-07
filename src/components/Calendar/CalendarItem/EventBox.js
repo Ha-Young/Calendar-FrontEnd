@@ -7,7 +7,7 @@ function EventBox(props) {
   return (
     <Link
       to={{
-        pathname: `/events/:${props.id}`,
+        pathname: `/events/${props.id}`,
         state: {...props},
       }}
       className={styles.link}>

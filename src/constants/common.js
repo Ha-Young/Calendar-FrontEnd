@@ -5,20 +5,20 @@ export const MOVE_DATE_BUTTON = {
 };
 
 export const PERIOD_UNIT = {
-  DAY: "Day",
-  WEEK: "Week",
+  DAY: "DAY",
+  WEEK: "WEEK",
 };
 
 // TextArea
 export const PLACEHOLDER = {
-  TITLE: "제목 추가",
-  DESCRIPTION: "내용 추가",
+  TITLE: "TITLE",
+  DESCRIPTION: "DESCRIPTION",
 };
 
 // Event Form
 export const SELECTOR_NAME = {
-  START: "시작 시간",
-  END: "종료 시간",
+  START: "START TIME",
+  END: "END TIME",
 };
 
 export const MODIFY_BUTTON = {

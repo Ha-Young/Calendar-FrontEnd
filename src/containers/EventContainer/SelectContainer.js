@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Selector from "../../components/EventPage/EventItem/Selector";
+import SelectContainer from "../../components/EventPage/EventItem/SelectContainer";
 import { selectTime } from "../../actions";
 
 const mapStateToProps = ({ selectedTime }) => {
@@ -12,4 +12,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Selector);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectContainer);

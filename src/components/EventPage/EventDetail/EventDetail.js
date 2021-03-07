@@ -1,28 +1,32 @@
 import React from "react";
+import { useHistory } from "react-router";
 import Form from "../../../containers/EventContainer/FromContainer";
 import { FORM_ID, MODIFY_BUTTON } from "../../../constants/common";
 import styles from "./EventDetail.module.css";
 import PropTypes from "prop-types";
 
 function EventDetail({
-  history,
   location: { state },
   dispatchedEditEvent,
   deleteEvent,
 }) {
+  const history = useHistory();
+
   return (
     <div className={styles.detailContainer}>
       <div className={styles.detailBox}>
         <Form
           {...state}
           formId={FORM_ID.EDIT}
-          history={history}
           dispatchedEditEvent={dispatchedEditEvent}
         />
         <button form={FORM_ID.EDIT}>
           {MODIFY_BUTTON.EDIT}
         </button>
-        <button onClick={() => deleteEvent()}>
+        <button onClick={() => {
+          deleteEvent();
+          history.goBack();
+        }}>
           {MODIFY_BUTTON.REMOVE}
         </button>
       </div>
@@ -33,7 +37,6 @@ function EventDetail({
 export default EventDetail;
 
 EventDetail.propTypes = {
-  history: PropTypes.object.isRequired,
   location: PropTypes.shape({
     state: PropTypes.shape({
       title: PropTypes.string.isRequired,

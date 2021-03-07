@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {object} daySchedule event list
+ * @param {number} index target day
+ * @returns {object} event of target day
+ */
 export function findEvent(daySchedule, index) {
   if (!daySchedule) {
     return;

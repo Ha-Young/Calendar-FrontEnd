@@ -2,13 +2,13 @@ import { connect } from "react-redux";
 import Form from "../../components/EventPage/EventItem/Form";
 import { addEvent } from "../../actions";
 
-const mapStateToProps = ({ currentDay }) => {
-  return { currentDay };
+const mapStateToProps = ({ period ,currentDay }) => {
+  return { period, currentDay };
 };
 
 const  mapDispatchToProps = (dispatch) => {
   return {
-    dispatchedAddEvent: (event) => dispatch(addEvent(event)),
+    dispatchAddEvent: (event) => dispatch(addEvent(event)),
   };
 };
 

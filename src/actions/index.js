@@ -6,56 +6,57 @@
 
  */
 
-import { ADD_EVENT, DAY, EDIT_EVENT, GET_DB_EVENT, NEXT_DATE, PREV_DATE, REMOVE_EVENT, SELECT_DATE, SELECT_TIME, WEEK } from "../constants/actionTypes";
+import * as actionTypes from "../constants/actionTypes";
 
-export const prevDate = () => ({
-  type: PREV_DATE,
+export const getPrevDate = () => ({
+  type: actionTypes.GET_PREV_DATE,
 });
 
-export const nextDate = () => ({
-  type: NEXT_DATE,
+export const getNextDate = () => ({
+  type: actionTypes.GET_NEXT_DATE,
 });
 
 export const selectDate = (date) => ({
-  type: SELECT_DATE,
+  type: actionTypes.SELECT_DATE,
   date,
 });
 
 export const selectTime = (time) => ({
-  type: SELECT_TIME,
+  type: actionTypes.SELECT_TIME,
   time,
 });
 
-export const periodUnit = (unit = DAY) => {
-  if (unit === WEEK) {
-    return {
-      type: WEEK,
-      unit,
-    };
+export const periodUnit = (unit = actionTypes.DAY) => {
+  switch (unit) {
+    case actionTypes.DAY:
+      return {
+        type: actionTypes.DAY,
+        unit,
+      };
+    case actionTypes.WEEK:
+      return {
+        type: actionTypes.WEEK,
+        unit,
+      };
   }
-
-  return {
-    type: DAY,
-    unit,
-  };
 };
 
 export const addEvent = (event) => ({
-  type: ADD_EVENT,
+  type: actionTypes.ADD_EVENT,
   event,
 });
 
 export const editEvent = (event) => ({
-  type: EDIT_EVENT,
+  type: actionTypes.EDIT_EVENT,
   event,
 });
 
 export const removeEvent = (event) => ({
-  type: REMOVE_EVENT,
+  type: actionTypes.REMOVE_EVENT,
   event,
 });
 
-export const getDBEvent = (data) => ({
-  type: GET_DB_EVENT,
+export const getEventList = (data) => ({
+  type: actionTypes.GET_EVENT_LIST,
   data,
 });

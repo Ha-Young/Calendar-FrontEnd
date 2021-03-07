@@ -2,10 +2,10 @@ import React from "react";
 import { TIME_FROM, TIME_TO } from "../../../constants/time";
 import { SELECTOR_NAME } from "../../../constants/common";
 import { getTimeIndex } from "../../../utils/getTimeIndex";
-import styles from "./Selector.module.css";
+import styles from "./SelectContainer.module.css";
 import PropTypes from "prop-types";
 
-function Selector({
+function SelectContainer({
   props: {
     from,
     to,
@@ -36,7 +36,7 @@ function Selector({
       <div>
         <h3>{SELECTOR_NAME.END}</h3>
         <select
-          defaultValue={TIME_TO[to - 1] || null}
+          defaultValue={TIME_TO[to - 1] || TIME_TO[to]}
           ref={toRef}
         >
           {TIME_TO.slice(selectedTime).map(time => (
@@ -50,9 +50,9 @@ function Selector({
   );
 }
 
-export default Selector;
+export default SelectContainer;
 
-Selector.propTypes = {
+SelectContainer.propTypes = {
   props: PropTypes.shape({
     from: PropTypes.number,
     to: PropTypes.number,

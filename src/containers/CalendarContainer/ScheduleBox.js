@@ -3,7 +3,7 @@ import ScheduleBox from "../../components/Calendar/CalendarItem/ScheduleBox";
 import { getTimeIndex } from "../../utils/getTimeIndex";
 import { periodUnit, selectDate, selectTime } from "../../actions";
 
-const mapDispatchToProps = (dispatch, { id: { date, time } }) => {
+const mapDispatchToProps = (dispatch, { date, time }) => {
   return {
     periodToDay: () => dispatch(periodUnit()),
     updateCurrentDay: () => dispatch(selectDate(date)),

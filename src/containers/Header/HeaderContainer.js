@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Header from "../../components/Header/Header";
 import { getCurrentDate } from "../../utils/getDate";
-import { nextDate, prevDate } from "../../actions";
+import { getNextDate, getPrevDate } from "../../actions";
 
 const mapStateToProps = (state) => {
   const currentDate = getCurrentDate(state.currentDay);
@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPrevButtonClick: () => dispatch(prevDate()),
-    onNextButtonClick: () => dispatch(nextDate()),
+    handlePrevButtonClick: () => dispatch(getPrevDate()),
+    handleNextButtonClick: () => dispatch(getNextDate()),
   };
 }
 
