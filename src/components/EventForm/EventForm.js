@@ -50,9 +50,6 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
     };
     const timeStamp = Date.now();
     const id = eventId ? eventId : "event" + timeStamp;
-
-    setEvent({id, title, period, content, timeStamp});
-
     const pathForEvent = getPathString(year, month, "events", id);
     const pathForContent = getPathString(year, month, "contents", id);
 
@@ -67,6 +64,7 @@ function EventForm({inputData, setEventForm, setUserEvent, eventById}) {
 
     Promise.all([resultBySavingEvent, resultBySavingContent])
       .then((res) => {
+        setEvent({id, title, period, content, timeStamp});
         history.push("/calendar");
       })
       .catch((err) => {
