@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-* {
+html, body, div, ul, li, form, nav {
   margin: 0px;
   padding: 0px;
   border: none;

@@ -4,15 +4,14 @@ import PropTypes from "prop-types";
 
 const Modal = ({ children, onClick }) => {
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.classList.add(styles.hidden);
 
     return () => {
-      document.body.style.removeProperty("overflow");
+      document.body.classList.remove(styles.hidden);
     };
   }, []);
 
   const closeModal = onClick;
-
 
   return (
     <>
