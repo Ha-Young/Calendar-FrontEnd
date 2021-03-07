@@ -15,14 +15,5 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-console.log(
-  `REACT_APP_FIREBASE_DATA_BASE_URL = ${process.env.REACT_APP_FIREBASE_DATA_BASE_URL}`
-);
 
-console.log(
-  process.env.REACT_APP_FIREBASE_DATA_BASE_URL ===
-    "https://vanillacoding-calendar-viewer-default-rtdb.firebaseio.com"
-);
-
-console.log(typeof process.env.REACT_APP_FIREBASE_DATA_BASE_URL);
 export default firebase;
