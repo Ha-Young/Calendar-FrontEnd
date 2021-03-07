@@ -8,10 +8,10 @@ import { ICON_SIZE } from "../../constants/ui";
 
 const CalendarHeader = ({
   headerInfo,
-  onButtonClick,
   selectedDate,
   isDailyCalendar,
   checkNeedLoad,
+  onButtonClick,
 }) => {
   const checkNeedLoadByCalendarType = (date) => {
     isDailyCalendar ? checkNeedLoad(date.daily) : checkNeedLoad(date.weekly);
@@ -45,12 +45,12 @@ const CalendarHeader = ({
       <div className={styles.buttons}>
         <GrFormPrevious
           className={styles[`button-left`]}
-          onButtonClick={handlePrevButton}
+          onClick={handlePrevButton}
           size={`${ICON_SIZE}px`}
         />
         <GrFormNext
           className={styles[`button-right`]}
-          onButtonClick={handleNextButton}
+          onClick={handleNextButton}
           size={`${ICON_SIZE}px`}
         />
       </div>
