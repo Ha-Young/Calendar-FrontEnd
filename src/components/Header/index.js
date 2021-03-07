@@ -7,9 +7,9 @@ import { generateTitleDate } from "../../utils/date";
 
 // TODO: Create your own header.
 
-const Header = ({ onClickButton, currentDate }) => {
-  const handleClickDayButton = () => onClickButton(viewMode.DAILYMODE.isDaily);
-  const handleClickWeekButton = () => onClickButton(viewMode.WEEKLYMODE.isDaily);
+const Header = ({ onButtonClick, currentDate }) => {
+  const handleClickDayButton = () => onButtonClick(viewMode.DAILYMODE.isDaily);
+  const handleClickWeekButton = () => onButtonClick(viewMode.WEEKLYMODE.isDaily);
 
   const titleDate = generateTitleDate(currentDate);
 
@@ -28,5 +28,5 @@ export default Header;
 
 Header.propTypes = {
   currentDate: PropTypes.instanceOf(Date),
-  onClickButton: PropTypes.func.isRequired,
+  onButtonClick: PropTypes.func.isRequired,
 };

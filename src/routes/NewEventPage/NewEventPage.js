@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Form from "../../components/Form";
 import { currentDay, today } from "../../utils/date";
 
-const NewEventPage = ({ onSubmit, onLoad }) => {
+const NewEventPage = ({ onSubmit, loadMoreEventData }) => {
   const initialEventDataState = {
     id: "",
     title: "",
@@ -17,7 +17,7 @@ const NewEventPage = ({ onSubmit, onLoad }) => {
 
   const handleSubmittedEvent = (eventData) => {
     onSubmit(eventData);
-    onLoad([eventData.date]);
+    loadMoreEventData([eventData.date]);
   };
 
   return (
@@ -34,5 +34,5 @@ export default NewEventPage;
 
 NewEventPage.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  onLoad: PropTypes.func.isRequired,
+  loadMoreEventData: PropTypes.func.isRequired,
 };

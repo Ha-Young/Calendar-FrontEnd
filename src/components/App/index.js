@@ -13,12 +13,12 @@ import EventDetailPageContainer from "../../containers/EventDetailPageContainer"
 const App = ({
   dateList,
   currentDate,
+  calendarType,
   handleChangeCalendarType,
   loadEventList,
   saveNewEventData,
   isLoading,
   errorMessage,
-  calendarType,
 }) => {
   useEffect(() => {
     loadEventList(dateList);
@@ -29,14 +29,14 @@ const App = ({
 
   return (
     <div className={styles.App}>
-      <Header onClickButton={handleChangeCalendarType} currentDate={currentDate} />
+      <Header onButtonClick={handleChangeCalendarType} currentDate={currentDate} />
       <SideBar />
       <Switch location={background || location}>
         <Route path="/calendar">
           <CalendarPageContainer />
         </Route>
         <Route path="/events/new">
-          <NewEventPage onSubmit={saveNewEventData} onLoad={loadEventList} />
+          <NewEventPage onSubmit={saveNewEventData} loadMoreEventData={loadEventList} />
         </Route>
         <Redirect path="*" to="/calendar" />
       </Switch>
@@ -47,7 +47,7 @@ const App = ({
           </Route>
       }
       {isLoading && "isLoading.."}
-      {errorMessage && errorMessage}
+      {errorMessage && <div>{errorMessage}</div>}
     </div>
   );
 };
