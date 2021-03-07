@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import CALENDAR from "../../../constants/calendarConstants";
 import COLOR from "../../../constants/color";
@@ -25,6 +26,8 @@ const Wrapper = styled.div`
 `;
 
 export default function Schedule({ event }) {
+  const history = useHistory();
+
   const {
     startTime,
     endTime,
@@ -35,8 +38,6 @@ export default function Schedule({ event }) {
   const editStartTime = Number(startTime.slice(0, 2));
   const editEndTime = Number(endTime.slice(0, 2));
   const eventTime = editEndTime - editStartTime;
-
-  const history = useHistory();
 
   return (
     <Wrapper
@@ -50,3 +51,13 @@ export default function Schedule({ event }) {
     </Wrapper>
   );
 }
+
+Schedule.propTypes = {
+  event: PropTypes.shape({
+    startTime: PropTypes.string.isRequired,
+    endTime: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    eventId: PropTypes.string.isRequired,
+  }),
+};
+

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import Event from "../components/Event/Event";
 import { addEvent } from "../actions";
 
-import { addEventDatabase, getEventKey } from "../api";
+import { addEventToDatabase, getEventKey } from "../api";
 
 function EventContainer({ onSubmitAddEvent }) {
   const [eventDate, setEventDate] = useState("");
@@ -81,7 +81,7 @@ const mapDispatchToProps = dispatch => ({
       eventId: eventKey
     };
 
-    addEventDatabase(event, eventKey);
+    addEventToDatabase(event, eventKey);
     dispatch(addEvent(event));
   }
 });

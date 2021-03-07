@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
-// TODO: We are using CSS Modules here.
-// Do your own research about CSS Modules.
-// For example, what is it? what are benefits?
+
 import styles from "./App.module.css";
 
 import Header from "../Header/Header";
@@ -16,7 +14,7 @@ import PageNotFound from "../PageNotFound";
 function App({ onInitialLoad }) {
   useEffect(() => {
     onInitialLoad();
-  }, [onInitialLoad]);
+  }, []);
 
   return (
     <div className={styles.App}>
@@ -27,13 +25,13 @@ function App({ onInitialLoad }) {
         <Route exact path="/event/:id" component={DetailEvent} />
         <Route path="/weekly" component={Weekly} />
         <Route path="/daily" component={Daily} />
-        <Route path="*" component={PageNotFound} />
+        <Route component={PageNotFound} />
       </Switch>
     </div>
   );
 }
 
-App.proTypes = {
+App.propTypes = {
   onInitialLoad: PropTypes.func.isRequired,
 };
 

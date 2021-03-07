@@ -4,23 +4,24 @@ import buildWeekly from "./buildWeekly";
 import CalendarHeader from "../CalendarHeader";
 import TimeSidebar from "../SidebarTime";
 import CalendarColumn from "../../../containers/CalendarColumnContainer";
+import TIME_FORM from "../../../constants/dayForm";
 
 import styles from "./WeeklyCalendar.module.css";
 
 import moment from "moment";
 
 export default function WeeklyCalendar() {
-  const [weekly, setWeekly] = useState(moment());
+  const [targetDate, setTargetDate] = useState(moment());
 
-  const weekList = buildWeekly(weekly);
+  const weekList = buildWeekly(targetDate);
   const week = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
 
   return (
     <div className={styles.calendar}>
       <CalendarHeader
-        calendarTime={weekly}
-        onButtonClick={setWeekly}
-        typeOfTime="week"
+        calendarTime={targetDate}
+        onButtonClick={setTargetDate}
+        typeOfTime={TIME_FORM.WEEK}
       />
       <section className={styles.content}>
         <TimeSidebar />
@@ -36,8 +37,8 @@ export default function WeeklyCalendar() {
             week.map((day) => (
               <div key={day} className={styles.day}>
                 <CalendarColumn
-                  columnDay={day.format("D").toString()}
-                  dayID={day.format("YYYY-MM-DD")}
+                  columnDay={day.format(TIME_FORM.DAY).toString()}
+                  dayID={day.format(TIME_FORM.YEAR_MONTH_DAY)}
                 />
               </div>
             ))

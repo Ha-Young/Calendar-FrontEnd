@@ -6,8 +6,8 @@ import CALENDAR from "../../constants/calendarConstants";
 
 import styles from "./Calendar.module.css";
 
-function CalendarColumn({ events, columnDay, dayID }) {
-  const hasEvent = events && events.byId[dayID];
+function CalendarColumn({ calendarData, columnDay, dayID }) {
+  const hasEvent = calendarData && calendarData.byId[dayID];
   const result = [];
 
   for (let i = 0; i < CALENDAR.COLUMN_LENGTH; i++) {
@@ -26,7 +26,7 @@ function CalendarColumn({ events, columnDay, dayID }) {
           );
         })}
         {hasEvent &&
-          events.byId[dayID].map((event) =>
+          calendarData.byId[dayID].map((event) =>
             <Schedule key={event.eventId} event={event} dayID={dayID} />
           )
         }
@@ -36,7 +36,7 @@ function CalendarColumn({ events, columnDay, dayID }) {
 }
 
 CalendarColumn.propTypes = {
-  events: PropTypes.shape({
+  calendarData: PropTypes.shape({
     byId: PropTypes.object.isRequired
   }),
   columnDay: PropTypes.string.isRequired,

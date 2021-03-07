@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { addEvent, removeEvent } from "../actions";
 import DetailEvent from "../components/Event/DetailEvent";
 
-import { addEventDatabase, getEventKey, removeEventDatabase } from "../api";
+import { addEventToDatabase, getEventKey, removeEventToDatabase } from "../api";
 
 function DetailEventContainer({
   eventInformation,
@@ -114,11 +114,11 @@ const mapDispatchToProps = dispatch => ({
       eventId: eventKey
     };
 
-    addEventDatabase(event, eventKey);
+    addEventToDatabase(event, eventKey);
     dispatch(addEvent(event));
   },
   onSubmitRemoveEvent: (eventInformation) => {
-    removeEventDatabase(eventInformation);
+    removeEventToDatabase(eventInformation);
     dispatch(removeEvent(eventInformation));
   }
 });

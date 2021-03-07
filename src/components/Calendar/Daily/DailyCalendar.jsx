@@ -3,24 +3,25 @@ import React, { useState } from "react";
 import CalendarHeader from "../CalendarHeader";
 import TimeSidebar from "../SidebarTime";
 import CalendarColumn from "../../../containers/CalendarColumnContainer";
+import TIME_FORM from "../../../constants/dayForm";
 
 import moment from "moment";
 
 import styles from "./DailyCalendar.module.css";
 
 export default function DailyCalendar() {
-  const [day, setDay] = useState(moment());
+  const [targetDate, setTargetDate] = useState(moment());
 
-  const referenceDay = day.clone().startOf("day");
-  const columnDay = referenceDay.format("D").toString();
-  const yearMonthDate = referenceDay.format("YYYY-MM-DD");
+  const referenceDay = targetDate.clone().startOf(TIME_FORM.DATE);
+  const columnDay = referenceDay.format(TIME_FORM.DAY).toString();
+  const yearMonthDate = referenceDay.format(TIME_FORM.YEAR_MONTH_DAY);
 
   return (
     <div>
       <CalendarHeader
-        calendarTime={day}
-        onButtonClick={setDay}
-        typeOfTime="day"
+        calendarTime={targetDate}
+        onButtonClick={setTargetDate}
+        typeOfTime={TIME_FORM.DATE}
       />
       <section className={styles.calendar}>
         <TimeSidebar />

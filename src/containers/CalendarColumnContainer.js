@@ -4,8 +4,8 @@ import CalendarColumn from "../components/Calendar/CalendarColumn";
 
 const mapStateToProps = state => {
   return {
-    events: state
+    calendarData: state
   };
 }
 
-export default connect(mapStateToProps, null)(CalendarColumn);
+export default connect(mapStateToProps)(CalendarColumn);
