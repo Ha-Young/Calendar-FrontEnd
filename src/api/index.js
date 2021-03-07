@@ -11,7 +11,7 @@ export async function init(callback) {
 export async function loadData({ date, id, callback }) {
   const database = firebase.database();
 
-  database.ref(`calendar/${date}`).on("value", (snapshot) => {
+  database.ref(`calendar/${date}/${id}`).on("value", (snapshot) => {
     callback(snapshot.val());
   });
 }

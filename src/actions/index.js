@@ -20,6 +20,8 @@ export const addEvent = (event) => ({
   payload: event,
 });
 
+
+
 export const eventDetail = (date, id) => ({
   type: actionTypes.DETAIL_EVENT,
   payload: {

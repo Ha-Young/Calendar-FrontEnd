@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
   event: state.events.targetEvent,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   onEditSubmit: (event, prevId) => {
     const { date, start: id } = event;
 
@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(editEvent(event, date, prevId));
   },
   onDeleteEvent: (date, prevId) => dispatch(deleteEvent(date, prevId)),
+  onLoadEvent: () => {},
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventDetail);
