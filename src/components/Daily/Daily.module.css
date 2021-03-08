@@ -15,10 +15,6 @@
   align-items: center;
 }
 
-.flex div:hover {
-  font-size: 3rem;
-}
-
 .daily_container {
   display: flex;
   height: 90vh;

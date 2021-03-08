@@ -18,7 +18,7 @@ function App() {
         <Route path="/calendar">
           <Daily />
         </Route>
-        <Redirect from="/" to="/calendar" />
+        <Redirect exact from="/" to="/calendar" />
         <Route path="/weekly">
           <Weekly />
         </Route>
@@ -28,6 +28,7 @@ function App() {
         <Route path="/event/:time">
           <UpdateEventForm type="update" />
         </Route>
+        <Redirect from="*" to="/https://http.cat/404" />
       </Switch>
     </div>
   );
