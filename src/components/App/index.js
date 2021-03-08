@@ -104,12 +104,13 @@ function App({
           viewSecond={ERROR_VIEW_SECOND}
         />
       )}
-      <Header className={styles.header} user={user}>
+      <Header className={styles.header}>
         <AppHeader currentDate={currentDate} updateDate={updateCurrentDate} />
       </Header>
       <Layout className={styles.main}>
         <Sider className={styles.sidebar} width={SIDER_WIDTH}>
           <AppSider
+            user={user}
             viewOption={viewOption}
             onChangeViewOption={updateViewOption}
           />

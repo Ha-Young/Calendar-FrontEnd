@@ -1,5 +1,4 @@
-import { Button, Modal } from "antd";
-import { auth } from "firebase";
+import { Button } from "antd";
 import React from "react";
 
 import { signInWithGoogle } from "../../api/firebase";
