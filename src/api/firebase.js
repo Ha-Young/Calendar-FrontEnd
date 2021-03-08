@@ -4,14 +4,14 @@ import "firebase/database";
 import firebase from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAvhk_t4USS0XKZJea_pWHbcyjeDb_CrWw",
-  authDomain: "vaco-calendar-7a9c7.firebaseapp.com",
-  databaseURL: "https://vaco-calendar-7a9c7-default-rtdb.firebaseio.com",
-  projectId: "vaco-calendar-7a9c7",
-  storageBucket: "vaco-calendar-7a9c7.appspot.com",
-  messagingSenderId: "390533237521",
-  appId: "1:390533237521:web:37b18e11ccd70cba475ab0",
-  measurementId: "G-2Z2Z9T7VSV",
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
