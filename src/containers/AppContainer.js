@@ -8,7 +8,7 @@ import { startLoading, stopLoading } from "../actions/loading";
 import { loginUser } from "../actions/user";
 import { readDate, readDateListRange, writeEvent } from "../api";
 import App from "../components/App";
-import { ERROR_MSG_GET_API_ERROR } from "../constants/errorMsg";
+import { ERROR_MSG_GET_API_ERROR } from "../constants/error";
 
 const mapStateToProps = state => ({
   viewOption: state.viewOption,

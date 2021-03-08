@@ -4,13 +4,13 @@ import humanImg from "../../assets/human.png";
 import DailyWeekDropDown from "../DailyWeekDropDown";
 import styles from "./AppSider.module.css";
 
-function AppSider({ viewOption, onChangeViewOption }) {
+function AppSider({ viewOption, onChangeViewOption, user }) {
   return (
     <div className={styles.appSider}>
       <h1 className={styles.appTitle}>My Scheduler</h1>
       <figure className={styles.userInfo}>
-        <img src={humanImg} alt="user" className={styles.userImg}/>
-        <figcaption>hahayoung@naver.com</figcaption>
+        <img src={user ? user.photoURL : humanImg} alt="user_img" className={styles.userImg}/>
+        <figcaption>{!!user && user.email}</figcaption>
       </figure>
       <div>
         <DailyWeekDropDown
